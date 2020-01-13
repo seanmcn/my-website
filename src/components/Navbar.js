@@ -1,59 +1,90 @@
 import React from 'react'
-import { Link, StaticQuery, graphql } from 'gatsby'
-import github from '../img/github-icon.svg'
-import logo from '../img/logo.svg'
+import { Link } from 'gatsby'
+import logo from '../img/logo.png'
 
 const Navbar = () => (
-  <StaticQuery
-    query={graphql`
-      query {
-        allWordpressPage(sort: { fields: wordpress_id }, limit: 5) {
-          edges {
-            node {
-              title
-              slug
-            }
-          }
-        }
-      }
-    `}
-    render={data => (
-      <nav className="navbar is-transparent">
-        <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item">
-              <figure className="image">
-                <img src={logo} alt="Kaldi" style={{ width: '88px' }} />
-              </figure>
-            </Link>
-          </div>
-          <div className="navbar-start">
-            {data.allWordpressPage.edges.map(edge => (
-              <Link
-                className="navbar-item"
-                to={edge.node.slug}
-                key={edge.node.slug}
-              >
-                {edge.node.title}
-              </Link>
-            ))}
-          </div>
-          <div className="navbar-end">
-            <a
-              className="navbar-item"
-              href="https://github.com/GatsbyCentral/gatsby-starter-wordpress"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="icon">
-                <img src={github} alt="Github" />
-              </span>
-            </a>
-          </div>
-        </div>
-      </nav>
-    )}
-  />
+  <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+
+    <div className="container">
+
+      <div className="navbar-brand">
+        <Link to="/" className="navbar-item" aria-label="Homepage">
+          <figure className="image">
+            <img src={logo} alt="Sean McNamara" />
+          </figure>
+        </Link>
+      </div>
+
+      <div className="navbar-menu">
+        <Link to="/" className="navbar-item" aria-label="Homepage">
+              Home
+        </Link>
+
+        <Link to="/about" className="navbar-item" aria-label="About">
+              About Me
+        </Link>
+
+        <Link to="/portfolio" className="navbar-item" aria-label="Contact">
+              Portfolio
+        </Link>
+
+        <Link to="/contact" className="navbar-item" aria-label="Contact">
+              Contact
+        </Link>
+      </div>
+
+      <div className="navbar-end is-desktop">
+        <a
+          className="navbar-item"
+          href="https://www.linkedin.com/in/mrseanmcn"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn Profile"
+        >
+          <span className="icon">
+            <i className="fab fa-linkedin fa-2x" />
+          </span>
+        </a>
+            
+        <a
+          className="navbar-item"
+          href="https://github.com/seanmcn"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Github Profile"
+        >
+          <span className="icon">
+            <i className="fab fa-github-alt fa-2x" />
+          </span>
+        </a>
+
+        <a
+          className="navbar-item"
+          href="https://www.hackerrank.com/mrseanmcn"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="HackerRank Profile"
+        >
+          <span className="icon">
+            <i className="fab fa-hackerrank fa-2x" />
+          </span>
+        </a>
+
+        <a
+          className="navbar-item"
+          href="https://www.goodreads.com/seanmcn"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GoodReads Profile"
+        >
+          <span className="icon">
+            <i className="fab fa-goodreads fa-2x" />
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </nav>
 )
 
 export default Navbar
