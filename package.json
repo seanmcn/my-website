@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-wordpress",
-  "description": "Gatsby v2 starter for WordPress",
+  "name": "seanmcn-web-frontend",
+  "description": "Frontend for seanmcn.com",
   "version": "0.1.0",
-  "author": "GatsbyCentral.com",
+  "author": "Sean McNamara",
   "dependencies": {
     "bulma": "^0.7.5",
     "gatsby": "^2.18.1",
@@ -45,7 +45,8 @@
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.3.0",
     "prettier": "^1.18.2",
-    "rimraf": "^3.0.0"
+    "rimraf": "^3.0.0",
+    "stylelint-config-standard": "^19.0.0"
   },
   "prettier": {
     "trailingComma": "es5",
