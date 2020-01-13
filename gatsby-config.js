@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + WordPress Starter',
+    title: 'Sean McNamara | Programming Stuff',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -9,23 +9,41 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         // The base url to your WP site.
-        baseUrl: 'wpdemo.gatsbycentral.com',
+        baseUrl: 'seanmcn.com',
         // WP.com sites set to true, WP.org set to false
         hostingWPCOM: false,
         // The protocol. This can be http or https.
         protocol: 'https',
         // Use 'Advanced Custom Fields' Wordpress plugin
         useACF: false,
-        auth: {},
+        auth: {
+          jwt_user: process.env.JWT_USER,
+          jwt_pass: process.env.JWT_PASSWORD,
+          jwt_base_path: '/jwt-auth/v1/token',
+        },
         // Set to true to debug endpoints on 'gatsby build'
         verboseOutput: false,
+        // Number of posts per page request
+        perPage: 100,
+        // Number of concurrent requests
+        concurrentRequests: 10,
+        // Routes to include in cache
+        includedRoutes: [
+          '**/categories',
+          '**/posts',
+          '**/pages',
+          '**/media',
+          '**/tags',
+          '**/taxonomies',
+          '**/users',
+        ],
       },
     },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
       // Removes unused css rules
-      resolve:'gatsby-plugin-purgecss',
+      resolve: 'gatsby-plugin-purgecss',
       options: {
         // Activates purging in gatsby develop
         develop: true,
