@@ -1,8 +1,10 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
-import PostList from '../components/PostList'
+import Layout from '../components/layout/layout'
+import PostList from '../components/blog/postList'
+import Pagination from '../components/blog/pagination'
+import Sidebar from '../components/blog/sidebar'
 
 const Tag = props => {
   const { data, pageContext } = props
@@ -16,7 +18,16 @@ const Tag = props => {
   return (
     <Layout>
       <Helmet title={`${tag} | ${siteTitle}`} />
-      <PostList posts={posts} title={title} />
+      {/*<h2>{title}</h2>*/}
+      <div className="columns">
+        <div className="column is-three-quarters" id="postMainColumn">
+          <PostList posts={posts} />
+          <Pagination pageContext={pageContext} />
+        </div>
+        <div className="column is-one-quarter" id="postSidebarColumn">
+          <Sidebar />
+        </div>
+      </div>
     </Layout>
   )
 }

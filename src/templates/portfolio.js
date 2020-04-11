@@ -3,23 +3,19 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout/layout'
-import PostList from '../components/blog/postList'
-import Pagination from '../components/blog/pagination'
 import Sidebar from '../components/blog/sidebar'
 
-export default class BlogPage extends React.Component {
+export default class PortfolioPage extends React.Component {
   render() {
-    const { data, pageContext } = this.props
-    const { edges: posts } = data.allWordpressPost
+    const { data } = this.props
     const { title: siteTitle } = data.site.siteMetadata
 
     return (
       <Layout>
-        <Helmet title={`Blog | ${siteTitle}`} />
+        <Helmet title={`Portfolio | ${siteTitle}`} />
         <div className="columns">
           <div className="column is-three-quarters" id="postMainColumn">
-            <PostList posts={posts} />
-            <Pagination pageContext={pageContext} />
+            Hello!
           </div>
           <div className="column is-one-quarter" id="postSidebarColumn">
             <Sidebar />
@@ -30,7 +26,7 @@ export default class BlogPage extends React.Component {
   }
 }
 
-BlogPage.propTypes = {
+PortfolioPage.propTypes = {
   data: PropTypes.shape({
     allWordpressPost: PropTypes.shape({
       edges: PropTypes.array,
@@ -42,22 +38,11 @@ BlogPage.propTypes = {
   }),
 }
 
-export const blogPageQuery = graphql`
-  query BlogIndexQuery($limit: Int!, $skip: Int!) {
+export const portfolioPageQuery = graphql`
+  query PortfolioQuery {
     site {
       siteMetadata {
         title
-      }
-    }
-    allWordpressPost(
-      sort: { fields: date, order: DESC }
-      limit: $limit
-      skip: $skip
-    ) {
-      edges {
-        node {
-          ...PostListFields
-        }
       }
     }
   }

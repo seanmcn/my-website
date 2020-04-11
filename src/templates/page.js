@@ -1,27 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
+import Layout from '../components/layout/layout'
+import Sidebar from '../components/blog/sidebar'
 
 export const PageTemplate = ({ title, content }) => {
   return (
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
-              </h2>
-              <div
-                className="content"
-                dangerouslySetInnerHTML={{ __html: content }}
-              />
-            </div>
+    <div>
+      <div className="columns">
+        <div className="column is-three-quarters" id="postMainColumn">
+          <div className="box">
+            <h1 className="title">{title}</h1>
+            <div
+              className="content"
+              dangerouslySetInnerHTML={{ __html: content }}
+            />
           </div>
         </div>
+        <div className="column is-one-quarter" id="postSidebarColumn">
+          <Sidebar />
+        </div>
       </div>
-    </section>
+    </div>
   )
 }
 
