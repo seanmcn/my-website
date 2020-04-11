@@ -1,62 +1,41 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { graphql, Link } from 'gatsby'
-import Layout from '../components/Layout'
+import { graphql } from 'gatsby'
+import Layout from '../components/layout/layout'
+import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs'
+import Sidebar from '../components/blog/sidebar'
+import Post from '../components/blog/post/post'
 
 export const BlogPostTemplate = ({
+  id,
   content,
   categories,
   tags,
   title,
   date,
-  author,
+  slug,
 }) => {
   return (
-    <section className="section">
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
-            <div dangerouslySetInnerHTML={{ __html: content }} />
-            <div style={{ marginTop: `4rem` }}>
-              <p>
-                {date} - posted by{' '}
-                <Link to={`/author/${author.slug}`}>{author.name}</Link>
-              </p>
-              {categories && categories.length ? (
-                <div>
-                  <h4>Categories</h4>
-                  <ul className="taglist">
-                    {categories.map(category => (
-                      <li key={`${category.slug}cat`}>
-                        <Link to={`/categories/${category.slug}/`}>
-                          {category.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-              {tags && tags.length ? (
-                <div>
-                  <h4>Tags</h4>
-                  <ul className="taglist">
-                    {tags.map(tag => (
-                      <li key={`${tag.slug}tag`}>
-                        <Link to={`/tags/${tag.slug}/`}>{tag.name}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-            </div>
-          </div>
+    <div>
+      <Breadcrumbs categories={categories} title={title} slug={slug} />
+      <div className="columns">
+        <div className="column is-three-quarters" id="postMainColumn">
+          <Post
+            id={id}
+            slug={slug}
+            title={title}
+            content={content}
+            date={date}
+            tags={tags}
+          />
+        </div>
+
+        <div className="column is-one-quarter" id="postSidebarColumn">
+          <Sidebar categories={categories} />
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 
@@ -72,12 +51,13 @@ const BlogPost = ({ data }) => {
     <Layout>
       <Helmet title={`${post.title} | Blog`} />
       <BlogPostTemplate
+        id={post.id}
         content={post.content}
         categories={post.categories}
         tags={post.tags}
         title={post.title}
         date={post.date}
-        author={post.author}
+        slug={post.slug}
       />
     </Layout>
   )
@@ -111,10 +91,6 @@ export const pageQuery = graphql`
         slug
       }
       tags {
-        name
-        slug
-      }
-      author {
         name
         slug
       }

@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import logo from '../img/logo.png'
+import logo from '../../assets/images/logo.png'
 
 const Navbar = () => (
-  <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-
+  <nav
+    className="navbar is-fixed-top"
+    role="navigation"
+    aria-label="main navigation"
+  >
     <div className="container">
-
       <div className="navbar-brand">
         <Link to="/" className="navbar-item" aria-label="Homepage">
           <figure className="image">
@@ -17,19 +19,23 @@ const Navbar = () => (
 
       <div className="navbar-menu">
         <Link to="/" className="navbar-item" aria-label="Homepage">
-              Home
+          Home
+        </Link>
+
+        <Link to="/blog" className="navbar-item" aria-label="About">
+          Blog
         </Link>
 
         <Link to="/about" className="navbar-item" aria-label="About">
-              About Me
+          About Me
         </Link>
 
-        <Link to="/portfolio" className="navbar-item" aria-label="Contact">
-              Portfolio
-        </Link>
+        {/*<Link to="/portfolio" className="navbar-item" aria-label="Contact">*/}
+        {/*  Portfolio*/}
+        {/*</Link>*/}
 
         <Link to="/contact" className="navbar-item" aria-label="Contact">
-              Contact
+          Contact
         </Link>
       </div>
 
@@ -45,7 +51,7 @@ const Navbar = () => (
             <i className="fab fa-linkedin fa-2x" />
           </span>
         </a>
-            
+
         <a
           className="navbar-item"
           href="https://github.com/seanmcn"
@@ -58,17 +64,17 @@ const Navbar = () => (
           </span>
         </a>
 
-        <a
-          className="navbar-item"
-          href="https://www.hackerrank.com/mrseanmcn"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="HackerRank Profile"
-        >
-          <span className="icon">
-            <i className="fab fa-hackerrank fa-2x" />
-          </span>
-        </a>
+        {/*<a*/}
+        {/*  className="navbar-item"*/}
+        {/*  href="https://www.hackerrank.com/mrseanmcn"*/}
+        {/*  target="_blank"*/}
+        {/*  rel="noopener noreferrer"*/}
+        {/*  aria-label="HackerRank Profile"*/}
+        {/*>*/}
+        {/*  <span className="icon">*/}
+        {/*    <i className="fab fa-hackerrank fa-2x" />*/}
+        {/*  </span>*/}
+        {/*</a>*/}
 
         <a
           className="navbar-item"
@@ -81,7 +87,6 @@ const Navbar = () => (
             <i className="fab fa-goodreads fa-2x" />
           </span>
         </a>
-
       </div>
     </div>
   </nav>
