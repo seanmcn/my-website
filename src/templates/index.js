@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import Helmet from 'react-helmet'
+import StaticData from '../data/static'
 import Layout from '../components/layout/layout'
 import AboutMeWidget from '../components/widgets/aboutMe'
 import LatestPostsWidget from '../components/widgets/latestPosts/latestPosts'
-import StaticData from '../data/static'
+import GithubReposWidget from '../components/widgets/githubRepos/githubRepos'
 
 export default class IndexPage extends React.Component {
   render() {
@@ -29,33 +30,15 @@ export default class IndexPage extends React.Component {
                   __html: StaticData.about_me,
                 }}
               />
-              <Link to={`/about`}>
-                <button className="button is-small is-fullwidth">
+              <Link to="/about">
+                <button className="button is-small is-fullwidth" type="button">
                   Read More
                 </button>
               </Link>
             </div>
             <div className="columns">
               <div className="column is-half">
-                <div className="box">
-                  <h1 className="subtitle">Github Repos</h1>
-                  <div className="content">
-                    <ul className="link-list">
-                      <li className="list-item">
-                        <a href="">One</a>
-                      </li>
-                      <li className="list-item">
-                        <a href="">Something longer</a>
-                      </li>
-                      <li className="list-item">
-                        <a href="">Something longer</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <button className="button is-link is-small is-fullwidth">
-                    View more
-                  </button>
-                </div>
+                <GithubReposWidget />
               </div>
               <div className="column is-half">
                 <div className="box">

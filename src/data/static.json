@@ -1,3 +1,33 @@
 {
-  "about_me": "I’m originally from Ireland and currently working as a Lead Engineer at Kobas in London, England. At Kobas my days involve improving our EPoS and API & Cloud systems. I also seem to spend a lot of time wrestling with integrating PDQ machines and dealing with the many complicated bugs that come up in a system of our size. I can tell you all about stock + tax. \uD83D\uDE00\n\nPrevious to being in London I spent two years in Vancouver in Canada the majority of that working at the University of British Columbia, helping to create & launch Open Collections. I love talking about Open Collections, especially it’s powerful API which I’ve wrote most of the documentation for. I’ve talked at Code4LibBC and Pixelating Sessions about using the Open Collections API to do Full Text Analysis.<br />Outside of work I actually enjoy doing more programming (insane I know), lately I’ve been building a wine database tool using Python & D3, it’s a project I expect to finish and do some blog posts on so watch this space. Other times you’ll find me playing with C# in Unity, trying to improve PHP open-source projects, optimising servers and just playing around with API’s. I use Github for all the things I possibly can, I really don’t believe code should be locked away and hidden but try tell that to a customer. \uD83D\uDE00 I also like to play poker and Starcraft and a collection of other video games.<br/>When I’m not doing any of that, you’ll probably find me in a downtown either in a lounge pretending to be pretentious while drinking wine or in the middle of a pub-crawl drinking lots of beer. #justIrishThings. #blameJoshForTheWine."
+  "about_me": "I’m originally from Ireland and currently working as a Lead Engineer at Kobas in London, England. At Kobas my days involve improving our EPoS and API & Cloud systems. I also seem to spend a lot of time wrestling with integrating PDQ machines and dealing with the many complicated bugs that come up in a system of our size. I can tell you all about stock + tax. \uD83D\uDE00\n\nPrevious to being in London I spent two years in Vancouver in Canada the majority of that working at the University of British Columbia, helping to create & launch Open Collections. I love talking about Open Collections, especially it’s powerful API which I’ve wrote most of the documentation for. I’ve talked at Code4LibBC and Pixelating Sessions about using the Open Collections API to do Full Text Analysis.<br />Outside of work I actually enjoy doing more programming (insane I know), lately I’ve been building a wine database tool using Python & D3, it’s a project I expect to finish and do some blog posts on so watch this space. Other times you’ll find me playing with C# in Unity, trying to improve PHP open-source projects, optimising servers and just playing around with API’s. I use Github for all the things I possibly can, I really don’t believe code should be locked away and hidden but try tell that to a customer. \uD83D\uDE00 I also like to play poker and Starcraft and a collection of other video games.<br/>When I’m not doing any of that, you’ll probably find me in a downtown either in a lounge pretending to be pretentious while drinking wine or in the middle of a pub-crawl drinking lots of beer. #justIrishThings. #blameJoshForTheWine.",
+  "github_repos": [
+    {
+      "id": "blog",
+      "title": "My Blog",
+      "link": "https://github.com/Seanmcn/blog",
+      "description": "Source code for this website, front-end built using ReactJS & Gatsby, back-end data sourced from Wordpress and static JSON.",
+      "icons": [
+        "fa-react",
+        "fa-js"
+      ]
+    },
+    {
+      "id": "elemental-rts",
+      "title": "Elemental RTS",
+      "link": "https://github.com/Seanmcn/Elemental-RTS",
+      "description": "An ambitious venture into making an RTS browser based game using PhaserJS. A hobby project that I return to occasionally.",
+      "icons": [
+        "fa-js"
+      ]
+    },
+    {
+      "id": "oc-fulltext-ipython",
+      "title": "Open Collections - iPython Notebooks",
+      "link": "https://github.com/Seanmcn/oc-fulltext-ipython-notebooks",
+      "description": "Some iPython notebooks showing how to use UBC's Open Collections API to do some basic text analysis.",
+      "icons": [
+        "fa-python"
+      ]
+    }
+  ]
 }
