@@ -17,14 +17,14 @@ const AboutMeWidget = () => (
     </div>
     <p>
       Hello and welcome to my website, which has been&nbsp;
-      <Link
-        to="https://web.archive.org/web/*/seanmcn.com"
+      <a
+        href="https://web.archive.org/web/*/seanmcn.com"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Archive.org link for this website"
       >
         online since 2006
-      </Link>
+      </a>
       . On here you&apos;ll find anything I thought was interesting enough to
       write a blog post about throughout the years.
     </p>
