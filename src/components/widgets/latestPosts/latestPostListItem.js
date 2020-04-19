@@ -4,7 +4,7 @@ import '../../blog/post/post.scss'
 import PropTypes from 'prop-types'
 
 const LatestPostListItem = ({ id, slug, title }) => (
-  <li key={id}>
+  <li key={id} className="list-item">
     <Link className="has-text-primary" to={`/blog/${slug}/`}>
       {title}
     </Link>

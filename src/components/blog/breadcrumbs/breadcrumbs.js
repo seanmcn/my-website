@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import './breadcrumbs.scss';
+import './breadcrumbs.scss'
 
 const Breadcrumbs = ({ categories, title, slug }) => (
   <div>
