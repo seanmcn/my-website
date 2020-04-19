@@ -12,14 +12,14 @@ export default class IndexPage extends React.Component {
   render() {
     const { data } = this.props
     const { title: siteTitle } = data.site.siteMetadata
-
+    const { edges: posts } = data.allWordpressPost
     return (
       <Layout>
         <Helmet title={`Home | ${siteTitle}`} />
         <div className="columns is-multiline">
           <div className="column is-one-quarter">
             <AboutMeWidget />
-            <LatestPostsWidget />
+            <LatestPostsWidget posts={posts} />
           </div>
           <div className="column is-three-quarters">
             <div className="box">
@@ -94,6 +94,13 @@ export const indexPageQuery = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    allWordpressPost(sort: { fields: date, order: DESC }, limit: 5, skip: 0) {
+      edges {
+        node {
+          ...PostListFields
+        }
       }
     }
   }

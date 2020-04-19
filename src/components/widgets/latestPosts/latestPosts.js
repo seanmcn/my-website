@@ -1,26 +1,32 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import LatestPostListItem from './latestPostListItem'
+import WidgetBox from '../widgetBox'
 
-const LatestPostsWidget = () => (
-  <div className="box">
-    <h1 className="subtitle">Latest Posts</h1>
-    <div className="content">
-      <ul className="link-list">
-        <li className="list-item">
-          <a href="">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </a>
-        </li>
-        <li className="list-item">
-          <a href="">Praesent ac sapien vel orci tincidunt ornare.</a>
-        </li>
-        <li className="list-item">
-          <a href="">
-            Nam vel massa eu dui fringilla elementum et eget turpis.
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-)
+export default class LatestPostsWidget extends React.Component {
+  render() {
+    const { posts } = this.props
 
-export default LatestPostsWidget
+    return (
+      <WidgetBox
+        title="Latest Posts"
+        content={(
+          <ul>
+            {posts.map(({ node: post }) => (
+              <LatestPostListItem
+                key={post.id}
+                id={post.id}
+                slug={post.slug}
+                title={post.title}
+              />
+            ))}
+          </ul>
+        )}
+      />
+    )
+  }
+}
+
+LatestPostsWidget.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+}
