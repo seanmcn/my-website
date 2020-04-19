@@ -7,6 +7,7 @@ import Layout from '../components/layout/layout'
 import AboutMeWidget from '../components/widgets/aboutMe'
 import LatestPostsWidget from '../components/widgets/latestPosts/latestPosts'
 import GithubReposWidget from '../components/widgets/githubRepos/githubRepos'
+import BlogPostSeriesWidget from '../components/widgets/blogPostSeries'
 
 export default class IndexPage extends React.Component {
   render() {
@@ -41,33 +42,7 @@ export default class IndexPage extends React.Component {
                 <GithubReposWidget />
               </div>
               <div className="column is-half">
-                <div className="box">
-                  <h1 className="subtitle">Blog Post Series</h1>
-                  <div className="content">
-                    <ul className="link-list">
-                      <li className="list-item">
-                        <a href="">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit.
-                        </a>
-                      </li>
-                      <li className="list-item">
-                        <a href="">
-                          Praesent ac sapien vel orci tincidunt ornare.
-                        </a>
-                      </li>
-                      <li className="list-item">
-                        <a href="">
-                          Nam vel massa eu dui fringilla elementum et eget
-                          turpis.
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <button className="button is-link is-small is-fullwidth">
-                    View more
-                  </button>
-                </div>
+                <BlogPostSeriesWidget />
               </div>
             </div>
           </div>
