@@ -15,6 +15,7 @@ export const BlogPostTemplate = ({
   title,
   date,
   slug,
+  relatedPosts,
 }) => {
   return (
     <div>
@@ -32,7 +33,7 @@ export const BlogPostTemplate = ({
         </div>
 
         <div className="column is-one-quarter" id="postSidebarColumn">
-          <Sidebar categories={categories} />
+          <Sidebar categories={categories} relatedPosts={relatedPosts.edges} />
         </div>
       </div>
     </div>
@@ -40,12 +41,20 @@ export const BlogPostTemplate = ({
 }
 
 BlogPostTemplate.propTypes = {
+  id: PropTypes.string.isRequired,
   content: PropTypes.node.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tags: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string,
+  date: PropTypes.string,
+  slug: PropTypes.string,
+  relatedPosts: PropTypes.shape({
+    edges: PropTypes.array,
+  }),
 }
 
 const BlogPost = ({ data }) => {
-  const { wordpressPost: post } = data
+  const { wordpressPost: post, allWordpressPost: relatedPosts } = data
 
   return (
     <Layout>
@@ -58,6 +67,7 @@ const BlogPost = ({ data }) => {
         title={post.title}
         date={post.date}
         slug={post.slug}
+        relatedPosts={relatedPosts}
       />
     </Layout>
   )
@@ -72,28 +82,37 @@ BlogPost.propTypes = {
 export default BlogPost
 
 export const pageQuery = graphql`
-  fragment PostFields on wordpress__POST {
-    id
-    slug
-    content
-    date(formatString: "MMMM DD, YYYY")
-    title
-  }
-  query BlogPostByID($id: String!) {
-    wordpressPost(id: { eq: $id }) {
-      id
-      title
-      slug
-      content
-      date(formatString: "MMMM DD, YYYY")
-      categories {
-        name
+    fragment PostFields on wordpress__POST {
+        id
         slug
-      }
-      tags {
-        name
-        slug
-      }
+        content
+        date(formatString: "MMMM DD, YYYY")
+        title
     }
-  }
+    query BlogPostByID($id: String!, $tags: [String]) {
+        wordpressPost(id: { eq: $id }) {
+            id
+            title
+            slug
+            content
+            date(formatString: "MMMM DD, YYYY")
+            categories {
+                name
+                slug
+            }
+            tags {
+                name
+                slug
+            }
+        }
+        allWordpressPost(filter: {tags: {elemMatch: {slug: {in: $tags}}}, id: {ne: $id}}, limit: 4) {
+            edges {
+                node {
+                    id
+                    title
+                    slug
+                }
+            }
+        }
+    }
 `
