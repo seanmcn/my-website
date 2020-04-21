@@ -8,3 +8,4 @@ static/admin/*.bundle.*
 yarn-error.log
 # IDE ignores
 .idea
+project_schema.graphql
