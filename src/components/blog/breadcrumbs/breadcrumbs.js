@@ -18,9 +18,7 @@ const Breadcrumbs = ({ categories, title, slug }) => (
           </li>
         ))}
         <li key={`/blog/${slug}`} className="is-active">
-          <Link to={`/blog/${slug}`} aria-current="page">
-            {title}
-          </Link>
+          <Link to={`/blog/${slug}`} aria-current="page" dangerouslySetInnerHTML={{ __html: title }} />
         </li>
       </ul>
     </nav>

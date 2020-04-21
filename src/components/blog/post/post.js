@@ -6,7 +6,7 @@ const Post = ({ id, slug, title, content, date, tags }) => (
   <div className="box" key={id}>
     <div>
       <Link className="has-text-primary" to={`/blog/${slug}/`}>
-        <h1 className="title">{title}</h1>
+        <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
       </Link>
       <div className="content">
         <div
