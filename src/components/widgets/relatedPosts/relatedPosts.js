@@ -1,38 +1,34 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import PropTypes from 'prop-types'
 import PostListItem from '../../blog/postListItem'
 import WidgetBox from '../widgetBox'
 
-const LatestPostsWidget = () => {
-  const data = useStaticQuery(graphql`
-      query latestPostsTwoQuery {
-          allWordpressPost(sort: { fields: date, order: DESC }, limit: 4, skip: 0) {
-              edges {
-                  node {
-                      ...PostListFields
-                  }
-              }
-          }
-      }
-  `)
-  const { edges: posts } = data.allWordpressPost
-  return (
-    <WidgetBox
-      title="Related Posts"
-      content={(
-        <ul className="link-list">
-          {posts.map(({ node: post }) => (
-            <PostListItem
-              key={post.id}
-              id={post.id}
-              slug={post.slug}
-              title={post.title}
-            />
-          ))}
-        </ul>
-      )}
-    />
-  )
+const LatestPostsWidget = ({ posts }) => {
+  if (posts) {
+    return (
+      <WidgetBox
+        title="Related Posts"
+        content={(
+          <ul className="link-list">
+            {posts.map(({ node: post }) => (
+              <PostListItem
+                key={post.id}
+                id={post.id}
+                slug={post.slug}
+                title={post.title}
+              />
+            ))}
+          </ul>
+        )}
+      />
+    )
+  }
+  return (<div />)
 }
+
+LatestPostsWidget.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.object),
+}
+
 
 export default LatestPostsWidget
