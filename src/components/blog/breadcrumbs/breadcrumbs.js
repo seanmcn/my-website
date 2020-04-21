@@ -9,15 +9,15 @@ const Breadcrumbs = ({ categories, title, slug }) => (
       aria-label="breadcrumbs"
     >
       <ul>
-        <li>
+        <li key="/blog/">
           <Link to="/blog">Blog</Link>
         </li>
         {categories.map(category => (
-          <li>
+          <li key={`/blog/categories/${category.slug}`}>
             <a href={`/blog/categories/${category.slug}`}>{category.name}</a>
           </li>
         ))}
-        <li className="is-active">
+        <li key={`/blog/${slug}`} className="is-active">
           <Link to={`/blog/${slug}`} aria-current="page">
             {title}
           </Link>
