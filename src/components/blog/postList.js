@@ -11,6 +11,7 @@ export default class IndexPage extends React.Component {
       <div>
         {posts.map(({ node: post }) => (
           <Post
+            key={post.id}
             id={post.id}
             slug={post.slug}
             title={post.title}
