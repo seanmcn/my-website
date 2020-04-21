@@ -1,9 +1,0 @@
-query RelatedPostsQuery($input:[String]) {
-    allWordpressPost(filter: {tags: {elemMatch: {slug: {in: $input}}}}) {
-        edges {
-            node {
-                ...PostFields
-            }
-        }
-    }
-}
