@@ -5,10 +5,11 @@ import Post from './post/post'
 
 export default class IndexPage extends React.Component {
   render() {
-    const { posts } = this.props
+    const { posts, title } = this.props
 
     return (
       <div>
+        <h2>{title}</h2>
         {posts.map(({ node: post }) => (
           <Post
             key={post.id}
@@ -27,8 +28,7 @@ export default class IndexPage extends React.Component {
 
 IndexPage.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object),
-  // title: PropTypes.string,
-  // tags: PropTypes.arrayOf(PropTypes.object),
+  title: PropTypes.string,
 }
 
 export const pageQuery = graphql`

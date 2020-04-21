@@ -8,7 +8,7 @@ const LatestPostsWidget = ({ posts }) => {
     return (
       <WidgetBox
         title="Related Posts"
-        content={(
+        content={
           <ul className="link-list">
             {posts.map(({ node: post }) => (
               <PostListItem
@@ -19,16 +19,15 @@ const LatestPostsWidget = ({ posts }) => {
               />
             ))}
           </ul>
-        )}
+        }
       />
     )
   }
-  return (<div />)
+  return <div />
 }
 
 LatestPostsWidget.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object),
 }
-
 
 export default LatestPostsWidget

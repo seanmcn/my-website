@@ -19,7 +19,7 @@ const LatestPostsWidget = () => {
   return (
     <WidgetBox
       title="Latest Posts"
-      content={(
+      content={
         <ul className="link-list">
           {posts.map(({ node: post }) => (
             <PostListItem
@@ -30,7 +30,7 @@ const LatestPostsWidget = () => {
             />
           ))}
         </ul>
-      )}
+      }
     />
   )
 }
