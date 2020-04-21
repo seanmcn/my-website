@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout/layout'
 import PostList from '../components/blog/postList'
 import Pagination from '../components/blog/pagination'
+import Sidebar from '../components/blog/sidebar'
 
 const Category = props => {
   const { data, pageContext } = props
@@ -17,8 +18,15 @@ const Category = props => {
   return (
     <Layout>
       <Helmet title={`${category} | ${siteTitle}`} />
-      <PostList posts={posts} title={title} />
-      <Pagination pageContext={pageContext} />
+      <div className="columns">
+        <div className="column is-three-quarters" id="postMainColumn">
+          <PostList posts={posts} title={title} />
+          <Pagination pageContext={pageContext} />
+        </div>
+        <div className="column is-one-quarter" id="postSidebarColumn">
+          <Sidebar />
+        </div>
+      </div>
     </Layout>
   )
 }
