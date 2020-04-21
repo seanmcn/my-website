@@ -82,37 +82,40 @@ BlogPost.propTypes = {
 export default BlogPost
 
 export const pageQuery = graphql`
-    fragment PostFields on wordpress__POST {
-        id
+  fragment PostFields on wordpress__POST {
+    id
+    slug
+    content
+    date(formatString: "MMMM DD, YYYY")
+    title
+  }
+  query BlogPostByID($id: String!, $tags: [String]) {
+    wordpressPost(id: { eq: $id }) {
+      id
+      title
+      slug
+      content
+      date(formatString: "MMMM DD, YYYY")
+      categories {
+        name
         slug
-        content
-        date(formatString: "MMMM DD, YYYY")
-        title
+      }
+      tags {
+        name
+        slug
+      }
     }
-    query BlogPostByID($id: String!, $tags: [String]) {
-        wordpressPost(id: { eq: $id }) {
-            id
-            title
-            slug
-            content
-            date(formatString: "MMMM DD, YYYY")
-            categories {
-                name
-                slug
-            }
-            tags {
-                name
-                slug
-            }
+    allWordpressPost(
+      filter: { tags: { elemMatch: { slug: { in: $tags } } }, id: { ne: $id } }
+      limit: 4
+    ) {
+      edges {
+        node {
+          id
+          title
+          slug
         }
-        allWordpressPost(filter: {tags: {elemMatch: {slug: {in: $tags}}}, id: {ne: $id}}, limit: 4) {
-            edges {
-                node {
-                    id
-                    title
-                    slug
-                }
-            }
-        }
+      }
     }
+  }
 `

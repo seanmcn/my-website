@@ -65,20 +65,20 @@ exports.createPages = ({ actions, graphql }) => {
     })
     .then(() => {
       return graphql(`
-              {
-                allWordpressPost {
-                  edges {
-                    node {
-                      id
-                      slug
-                      status
-                      tags {
-                        slug
-                      }
-                    }
-                  }
+        {
+          allWordpressPost {
+            edges {
+              node {
+                id
+                slug
+                status
+                tags {
+                  slug
                 }
               }
+            }
+          }
+        }
       `)
     })
     .then(result => {
@@ -105,7 +105,7 @@ exports.createPages = ({ actions, graphql }) => {
           component: postTemplate,
           context: {
             id: post.id,
-            tags: post.tags ? post.tags.map(x => x.slug) : []
+            tags: post.tags ? post.tags.map(x => x.slug) : [],
           },
         })
       })
