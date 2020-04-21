@@ -1,6 +1,6 @@
 import React from 'react'
 import AboutMeWidget from '../widgets/aboutMe'
-import RelatedPostsWidget from '../widgets/relatedPosts'
+import RelatedPostsWidget from '../widgets/relatedPosts/relatedPosts'
 
 const Sidebar = () => (
   <div>
