@@ -14,7 +14,7 @@ const Breadcrumbs = ({ categories, title, slug }) => (
         </li>
         {categories.map(category => (
           <li key={`/blog/categories/${category.slug}`}>
-            <a href={`/blog/categories/${category.slug}`}>{category.name}</a>
+            <Link to={`/blog/categories/${category.slug}`}>{category.name}</Link>
           </li>
         ))}
         <li key={`/blog/${slug}`} className="is-active">
