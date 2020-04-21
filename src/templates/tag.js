@@ -18,10 +18,9 @@ const Tag = props => {
   return (
     <Layout>
       <Helmet title={`${tag} | ${siteTitle}`} />
-      {/*<h2>{title}</h2>*/}
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
-          <PostList posts={posts} />
+          <PostList posts={posts} title={title} />
           <Pagination pageContext={pageContext} />
         </div>
         <div className="column is-one-quarter" id="postSidebarColumn">
