@@ -5,13 +5,8 @@ import './navbarLogo.scss'
 
 const NavbarLogo = () => {
   // eslint-disable-next-line global-require
-  const map = [
-    'beer.png',
-    'cheer.png',
-    'thumbs-up.png',
-    'wave.png'
-  ]
-  const randomMapKey = Math.floor(Math.random() * 4);
+  const map = ['beer.png', 'cheer.png', 'thumbs-up.png', 'wave.png']
+  const randomMapKey = Math.floor(Math.random() * 4)
   // eslint-disable-next-line global-require,import/no-dynamic-require
   const emoji = require(`../../../assets/images/emojis/75/${map[randomMapKey]}`)
 
