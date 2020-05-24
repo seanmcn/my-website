@@ -15,56 +15,7 @@ exports.createPages = ({ actions, graphql }) => {
     component: indexTemplate,
   })
 
-  const portfolioTemplate = path.resolve(`./src/templates/portfolio.js`)
-  createPage({
-    path: `/portfolio`,
-    component: portfolioTemplate,
-  })
-
   return graphql(`
-    {
-      allWordpressPage {
-        edges {
-          node {
-            id
-            slug
-            status
-          }
-        }
-      }
-    }
-  `)
-    .then(result => {
-      if (result.errors) {
-        result.errors.forEach(e => console.error(e.toString()))
-        return Promise.reject(result.errors)
-      }
-
-      const pageTemplate = path.resolve(`./src/templates/page.js`)
-
-      // Only publish pages with a `status === 'publish'` in production. This
-      // excludes drafts, future posts, etc. They will appear in development,
-      // but not in a production build.
-
-      const allPages = result.data.allWordpressPage.edges
-      const pages =
-        process.env.NODE_ENV === 'production'
-          ? getOnlyPublished(allPages)
-          : allPages
-
-      // Call `createPage()` once per WordPress page
-      _.each(pages, ({ node: page }) => {
-        createPage({
-          path: `/${page.slug}/`,
-          component: pageTemplate,
-          context: {
-            id: page.id,
-          },
-        })
-      })
-    })
-    .then(() => {
-      return graphql(`
         {
           allWordpressPost {
             edges {
@@ -80,7 +31,6 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       `)
-    })
     .then(result => {
       if (result.errors) {
         result.errors.forEach(e => console.error(e.toString()))
