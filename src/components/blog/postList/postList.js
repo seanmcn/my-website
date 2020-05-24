@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import Post from './post/post'
+import Post from '../post/post'
+import './postList.scss'
 
 export default class IndexPage extends React.Component {
   render() {
@@ -9,7 +10,7 @@ export default class IndexPage extends React.Component {
 
     return (
       <div>
-        <h2>{title}</h2>
+        <h2 className="title is-5 postListTitle">{title}</h2>
         {posts.map(({ node: post }) => (
           <Post
             key={post.id}

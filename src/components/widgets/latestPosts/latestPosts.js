@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import PostListItem from '../../blog/postListItem'
+import PostListItem from '../../blog/postList/postListItem'
 import WidgetBox from '../widgetBox'
 
 const LatestPostsWidget = () => {
