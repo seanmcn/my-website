@@ -1,10 +1,10 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import Navbar from './navbar'
+import Navbar from '../navbar/navbar'
 
 import '../../assets/styles/main.scss'
-import '../layout/layout.scss'
+import './layout.scss'
 
 const TemplateWrapper = ({ children }) => (
   <div>

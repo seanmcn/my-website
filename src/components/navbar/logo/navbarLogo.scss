@@ -1,0 +1,20 @@
+@import "../../../assets/styles/main";
+
+h1.logoText {
+    display: flex;
+    margin-top: auto;
+    line-height: 2.8rem;
+    padding-left: 0.5rem;
+    font-weight: $weight-semibold;
+    color: $secondary-color;
+    font-size: $size-large;
+}
+
+.navbar-item img.emjoiLogo {
+    height: 50px;
+    max-height: inherit;
+}
+
+.navbar-brand .navbar-item {
+    padding-bottom: 0;
+}

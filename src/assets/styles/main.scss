@@ -4,8 +4,17 @@
 @import "~bulma/sass/utilities/initial-variables";
 @import "base/colors";
 @import "base/bulma";
-// Import a Google Font
-//@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import "~bulma";
+//todo: reduce this to only use what we need.
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-weight: $weight-light;
+}
 
 .content ul.link-list {
     list-style: none;
@@ -16,6 +25,17 @@ footer.footer {
     padding: 1rem 1.5rem;
 }
 
-@import "~bulma";
-//todo: reduce this to only use what we need.
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
+.button {
+    font-weight: $weight-semibold;
+}
+
+.navbar {
+    border-top: 3px solid $primary-color;
+
+    @include widescreen {
+        //padding: 0 10%;
+    }
+    @include desktop {
+        //padding: 0 4rem;
+    }
+}
