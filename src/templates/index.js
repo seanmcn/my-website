@@ -7,7 +7,6 @@ import Layout from '../components/layout/layout'
 import AboutMeWidget from '../components/widgets/aboutMe'
 import LatestPostsWidget from '../components/widgets/latestPosts/latestPosts'
 import GithubReposWidget from '../components/widgets/githubRepos/githubRepos'
-import BlogPostSeriesWidget from '../components/widgets/blogPostSeries'
 
 export default class IndexPage extends React.Component {
   render() {
@@ -17,33 +16,22 @@ export default class IndexPage extends React.Component {
       <Layout>
         <Helmet title={`Home | ${siteTitle}`} />
         <div className="columns is-multiline">
-          <div className="column is-one-quarter">
+          <div className="column is-one-fifth">
             <AboutMeWidget />
-            <LatestPostsWidget />
           </div>
-          <div className="column is-three-quarters">
+          <div className="column is-three-fifths">
             <div className="box">
-              <h1 className="subtitle">About Me</h1>
               <div
                 className="content"
                 dangerouslySetInnerHTML={{
                   __html: StaticData.about_me,
                 }}
               />
-              <Link to="/about">
-                <button className="button is-small is-fullwidth" type="button">
-                  Read More
-                </button>
-              </Link>
             </div>
-            <div className="columns">
-              <div className="column is-half">
-                <GithubReposWidget />
-              </div>
-              <div className="column is-half">
-                <BlogPostSeriesWidget />
-              </div>
-            </div>
+          </div>
+          <div className="column is-one-fifth">
+            <GithubReposWidget />
+            <LatestPostsWidget />
           </div>
         </div>
       </Layout>
