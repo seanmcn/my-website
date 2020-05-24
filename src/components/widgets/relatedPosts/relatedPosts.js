@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PostListItem from '../../blog/postListItem'
+import PostListItem from '../../blog/postList/postListItem'
 import WidgetBox from '../widgetBox'
 
 const LatestPostsWidget = ({ posts }) => {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout/layout'
-import PostList from '../components/blog/postList'
+import PostList from '../components/blog/postList/postList'
 import Pagination from '../components/blog/pagination'
 import Sidebar from '../components/blog/sidebar'
 

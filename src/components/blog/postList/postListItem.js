@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import './post/post.scss'
+import '../post/post.scss'
 import PropTypes from 'prop-types'
 
 const PostListItem = ({ id, slug, title }) => (
