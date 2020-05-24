@@ -14,11 +14,17 @@ const Breadcrumbs = ({ categories, title, slug }) => (
         </li>
         {categories.map(category => (
           <li key={`/blog/categories/${category.slug}`}>
-            <Link to={`/blog/categories/${category.slug}`}>{category.name}</Link>
+            <Link to={`/blog/categories/${category.slug}`}>
+              {category.name}
+            </Link>
           </li>
         ))}
         <li key={`/blog/${slug}`} className="is-active">
-          <Link to={`/blog/${slug}`} aria-current="page" dangerouslySetInnerHTML={{ __html: title }} />
+          <Link
+            to={`/blog/${slug}`}
+            aria-current="page"
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
         </li>
       </ul>
     </nav>
