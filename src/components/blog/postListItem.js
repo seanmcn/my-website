@@ -5,7 +5,11 @@ import PropTypes from 'prop-types'
 
 const PostListItem = ({ id, slug, title }) => (
   <li key={id} className="list-item">
-    <Link className="has-text-primary" to={`/blog/${slug}/`} dangerouslySetInnerHTML={{ __html: title }} />
+    <Link
+      className="has-text-primary"
+      to={`/blog/${slug}/`}
+      dangerouslySetInnerHTML={{ __html: title }}
+    />
   </li>
 )
 
