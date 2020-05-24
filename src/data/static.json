@@ -4,7 +4,7 @@
     {
       "id": "blog",
       "title": "My Blog",
-      "link": "https://github.com/Seanmcn/blog",
+      "link": "https://github.com/Seanmcn/my-website",
       "description": "Source code for this website, front-end built using ReactJS & Gatsby, back-end data sourced from Wordpress and static JSON.",
       "icons": [
         "fa-react",
@@ -24,7 +24,7 @@
       "id": "oc-fulltext-ipython",
       "title": "Open Collections - iPython Notebooks",
       "link": "https://github.com/Seanmcn/oc-fulltext-ipython-notebooks",
-      "description": "Some iPython notebooks showing how to use UBC's Open Collections API to do some basic text analysis.",
+      "description": "iPython notebooks showing how to use UBC's Open Collections API to do some basic text analysis.",
       "icons": [
         "fa-python"
       ]
