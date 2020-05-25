@@ -10,7 +10,10 @@ export default class IndexPage extends React.Component {
 
     return (
       <div>
-        <h2 className="title is-5 postListTitle">{title}</h2>
+        {title && (
+          <h2 className="title is-5 postListTitle">{title}</h2>
+        )}
+
         {posts.map(({ node: post }) => (
           <Post
             key={post.id}
