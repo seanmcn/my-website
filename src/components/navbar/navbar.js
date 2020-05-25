@@ -40,7 +40,7 @@ export default class Navbar extends React.Component {
               <NavbarItem link="/" label="Home" />
               <NavbarItem link="/blog" label="Blog" />
               <NavbarItem link="/about" label="About Me" />
-              <NavbarItem link="/contact" label="Contact" />
+              <NavbarItem link="/contact" label="Contact Me" />
             </div>
 
             <div className="navbar-end navbar-social-icons">
