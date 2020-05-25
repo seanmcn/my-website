@@ -16,21 +16,21 @@ exports.createPages = ({ actions, graphql }) => {
   })
 
   return graphql(`
-        {
-          allWordpressPost {
-            edges {
-              node {
-                id
-                slug
-                status
-                tags {
-                  slug
-                }
-              }
+    {
+      allWordpressPost {
+        edges {
+          node {
+            id
+            slug
+            status
+            tags {
+              slug
             }
           }
         }
-      `)
+      }
+    }
+  `)
     .then(result => {
       if (result.errors) {
         result.errors.forEach(e => console.error(e.toString()))
