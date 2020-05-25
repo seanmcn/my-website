@@ -1,8 +1,6 @@
 import React from 'react'
 import Layout from '../components/layout/layout'
 import data from '../data/static.json'
-import GithubReposWidget from '../components/widgets/githubRepos/githubRepos'
-import LatestPostsWidget from '../components/widgets/latestPosts/latestPosts'
 import Sidebar from '../components/layout/sidebar'
 
 const AboutPage = () => (
