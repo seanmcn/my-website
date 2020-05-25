@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import AboutMeWidget from '../widgets/aboutMe'
 import RelatedPostsWidget from '../widgets/relatedPosts/relatedPosts'
 import CategoriesWidget from '../widgets/categories/categoriesWidget'
 import TagsWidget from '../widgets/tags/tagsWidget'
