@@ -7,7 +7,6 @@ import TagsWidget from '../widgets/tags/tagsWidget'
 
 const Sidebar = ({ relatedPosts }) => (
   <div>
-    <AboutMeWidget />
     <RelatedPostsWidget posts={relatedPosts} />
     <CategoriesWidget />
     <TagsWidget />
