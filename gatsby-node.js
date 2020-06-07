@@ -9,63 +9,28 @@ const getOnlyPublished = edges =>
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
+  const indexTemplate = path.resolve(`./src/templates/index.js`)
+  createPage({
+    path: `/`,
+    component: indexTemplate,
+  })
+
   return graphql(`
     {
-      allWordpressPage {
+      allWordpressPost {
         edges {
           node {
             id
             slug
             status
+            tags {
+              slug
+            }
           }
         }
       }
     }
   `)
-    .then(result => {
-      if (result.errors) {
-        result.errors.forEach(e => console.error(e.toString()))
-        return Promise.reject(result.errors)
-      }
-
-      const pageTemplate = path.resolve(`./src/templates/page.js`)
-
-      // Only publish pages with a `status === 'publish'` in production. This
-      // excludes drafts, future posts, etc. They will appear in development,
-      // but not in a production build.
-
-      const allPages = result.data.allWordpressPage.edges
-      const pages =
-        process.env.NODE_ENV === 'production'
-          ? getOnlyPublished(allPages)
-          : allPages
-
-      // Call `createPage()` once per WordPress page
-      _.each(pages, ({ node: page }) => {
-        createPage({
-          path: `/${page.slug}/`,
-          component: pageTemplate,
-          context: {
-            id: page.id,
-          },
-        })
-      })
-    })
-    .then(() => {
-      return graphql(`
-        {
-          allWordpressPost {
-            edges {
-              node {
-                id
-                slug
-                status
-              }
-            }
-          }
-        }
-      `)
-    })
     .then(result => {
       if (result.errors) {
         result.errors.forEach(e => console.error(e.toString()))
@@ -86,10 +51,11 @@ exports.createPages = ({ actions, graphql }) => {
       _.each(posts, ({ node: post }) => {
         // Create the Gatsby page for this WordPress post
         createPage({
-          path: `/${post.slug}/`,
+          path: `/blog/${post.slug}/`,
           component: postTemplate,
           context: {
             id: post.id,
+            tags: post.tags ? post.tags.map(x => x.slug) : [],
           },
         })
       })
@@ -99,7 +65,8 @@ exports.createPages = ({ actions, graphql }) => {
         createPage,
         items: posts,
         itemsPerPage: 10,
-        pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/` : `/page`),
+        pathPrefix: ({ pageNumber }) =>
+          pageNumber === 0 ? `/blog` : `/blog/page`,
         component: blogTemplate,
       })
     })
@@ -129,7 +96,7 @@ exports.createPages = ({ actions, graphql }) => {
       // Create a Gatsby page for each WordPress Category
       _.each(result.data.allWordpressCategory.edges, ({ node: cat }) => {
         createPage({
-          path: `/categories/${cat.slug}/`,
+          path: `/blog/categories/${cat.slug}/`,
           component: categoriesTemplate,
           context: {
             name: cat.name,
@@ -165,7 +132,7 @@ exports.createPages = ({ actions, graphql }) => {
       // Create a Gatsby page for each WordPress tag
       _.each(result.data.allWordpressTag.edges, ({ node: tag }) => {
         createPage({
-          path: `/tags/${tag.slug}/`,
+          path: `/blog/tags/${tag.slug}/`,
           component: tagsTemplate,
           context: {
             name: tag.name,
@@ -187,24 +154,6 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       `)
-    })
-    .then(result => {
-      if (result.errors) {
-        result.errors.forEach(e => console.error(e.toString()))
-        return Promise.reject(result.errors)
-      }
-
-      const authorTemplate = path.resolve(`./src/templates/author.js`)
-
-      _.each(result.data.allWordpressWpUsers.edges, ({ node: author }) => {
-        createPage({
-          path: `/author/${author.slug}`,
-          component: authorTemplate,
-          context: {
-            id: author.id,
-          },
-        })
-      })
     })
 }
 
