@@ -1,0 +1,33 @@
+{
+  "about_me": "<p>Hi, I'm Sean!</p>\n\n<p>I spend most of my time programming and playing video games. If you are on this site, you probably already know me.\n    But on the off-chance that I've posted something useful and you now want to know more about the man behind the\n    article here is some information about me.</p>\n\n<p>I started learning HTML at ten years old to make a Harry Potter fansite, from there, I started learning PHP at\n    thirteen years old, to make an online text-based multiplayer game.</p>\n\n<p>At seventeen, I started to pursue freelance work, mainly focused on Wordpress plugins and themes. Eventually, in 2012\n    I ended up in W.I.T studying for a BSc in Applied Computing, shortly into that course, I decided that I was learning\n    more from work than college and decided to abandon it.</p>\n\n<p>In 2014 I decided to take a working holiday visa and move to Vancouver, Canada. While there, I initially worked in a\n    start-up called Motbot, working on their testing platform for phone carriers.</p>\n\n<p>In 2015, I joined U.B.C's Library I.T. services team, working on the Open Collections project, one of the few things\n    I've worked on that will probably outlive me. During my time there I picked up AngularJS, Python and somehow\n    Perl.</p>\n\n<p>In 2016, I left Vancouver and moved to London, England. I joined a start-up called Kobas, working on making software\n    for the hospitality industry. I still work there today and have picked up ReactJS and a lot of DevOps knowledge.</p>\n<p>I've had this website going since 2006, and it has transformed several times. My aim with the current iteration is to have a comfortable place to re-access information I use daily and share interesting/helpful things with the community.</p>",
+  "github_repos": [
+    {
+      "id": "blog",
+      "title": "My Blog",
+      "link": "https://github.com/Seanmcn/my-website",
+      "description": "Source code for this website, front-end built using ReactJS & Gatsby, back-end data sourced from Wordpress and static JSON.",
+      "icons": [
+        "fa-react",
+        "fa-js"
+      ]
+    },
+    {
+      "id": "elemental-rts",
+      "title": "Elemental RTS",
+      "link": "https://github.com/Seanmcn/Elemental-RTS",
+      "description": "An ambitious venture into making an RTS browser based game using PhaserJS. A hobby project that I return to occasionally.",
+      "icons": [
+        "fa-js"
+      ]
+    },
+    {
+      "id": "oc-fulltext-ipython",
+      "title": "Open Collections - iPython Notebooks",
+      "link": "https://github.com/Seanmcn/oc-fulltext-ipython-notebooks",
+      "description": "iPython notebooks showing how to use UBC's Open Collections API to do some basic text analysis.",
+      "icons": [
+        "fa-python"
+      ]
+    }
+  ]
+}

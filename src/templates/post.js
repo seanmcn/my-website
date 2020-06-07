@@ -1,83 +1,73 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { graphql, Link } from 'gatsby'
-import Layout from '../components/Layout'
+import { graphql } from 'gatsby'
+import Layout from '../components/layout/layout'
+import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs'
+import Sidebar from '../components/blog/sidebar'
+import Post from '../components/blog/post/post'
 
 export const BlogPostTemplate = ({
+  id,
   content,
   categories,
   tags,
   title,
   date,
-  author,
+  slug,
+  relatedPosts,
 }) => {
   return (
-    <section className="section">
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
-            <div dangerouslySetInnerHTML={{ __html: content }} />
-            <div style={{ marginTop: `4rem` }}>
-              <p>
-                {date} - posted by{' '}
-                <Link to={`/author/${author.slug}`}>{author.name}</Link>
-              </p>
-              {categories && categories.length ? (
-                <div>
-                  <h4>Categories</h4>
-                  <ul className="taglist">
-                    {categories.map(category => (
-                      <li key={`${category.slug}cat`}>
-                        <Link to={`/categories/${category.slug}/`}>
-                          {category.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-              {tags && tags.length ? (
-                <div>
-                  <h4>Tags</h4>
-                  <ul className="taglist">
-                    {tags.map(tag => (
-                      <li key={`${tag.slug}tag`}>
-                        <Link to={`/tags/${tag.slug}/`}>{tag.name}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-            </div>
-          </div>
+    <div>
+      <Breadcrumbs categories={categories} title={title} slug={slug} />
+      <div className="columns">
+        <div className="column is-three-quarters" id="postMainColumn">
+          <Post
+            id={id}
+            slug={slug}
+            title={title}
+            content={content}
+            date={date}
+            tags={tags}
+          />
+        </div>
+
+        <div className="column is-one-quarter" id="postSidebarColumn">
+          <Sidebar categories={categories} relatedPosts={relatedPosts.edges} />
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 
 BlogPostTemplate.propTypes = {
+  id: PropTypes.string.isRequired,
   content: PropTypes.node.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tags: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string,
+  date: PropTypes.string,
+  slug: PropTypes.string,
+  relatedPosts: PropTypes.shape({
+    edges: PropTypes.array,
+  }),
 }
 
 const BlogPost = ({ data }) => {
-  const { wordpressPost: post } = data
+  const { wordpressPost: post, allWordpressPost: relatedPosts } = data
 
   return (
     <Layout>
       <Helmet title={`${post.title} | Blog`} />
       <BlogPostTemplate
+        id={post.id}
         content={post.content}
         categories={post.categories}
         tags={post.tags}
         title={post.title}
         date={post.date}
-        author={post.author}
+        slug={post.slug}
+        relatedPosts={relatedPosts}
       />
     </Layout>
   )
@@ -99,7 +89,7 @@ export const pageQuery = graphql`
     date(formatString: "MMMM DD, YYYY")
     title
   }
-  query BlogPostByID($id: String!) {
+  query BlogPostByID($id: String!, $tags: [String]) {
     wordpressPost(id: { eq: $id }) {
       id
       title
@@ -114,9 +104,17 @@ export const pageQuery = graphql`
         name
         slug
       }
-      author {
-        name
-        slug
+    }
+    allWordpressPost(
+      filter: { tags: { elemMatch: { slug: { in: $tags } } }, id: { ne: $id } }
+      limit: 4
+    ) {
+      edges {
+        node {
+          id
+          title
+          slug
+        }
       }
     }
   }
