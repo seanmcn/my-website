@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import StaticData from '../data/static'
 import Layout from '../components/layout/layout'
-import AboutMeWidget from '../components/widgets/aboutMe'
+import AboutMeWidget from '../components/widgets/aboutMe/aboutMe'
 import LatestPostsWidget from '../components/widgets/latestPosts/latestPosts'
 import GithubReposWidget from '../components/widgets/githubRepos/githubRepos'
 
