@@ -22,18 +22,18 @@ const CategoriesWidget = () => {
   return (
     <WidgetBox
       title="Categories"
-      content={
+      content={(
         <ul className="menu-list categoryList">
           {categories.map(({ node: category }) => (
             <li>
-              <Link to={`blog/categories/${category.slug}`}>
+              <Link to={`/blog/categories/${category.slug}`}>
                 {category.name}
                 <span className="badge is-right">{category.count}</span>
               </Link>
             </li>
           ))}
         </ul>
-      }
+      )}
     />
   )
 }
