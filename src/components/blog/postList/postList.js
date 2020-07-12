@@ -4,9 +4,12 @@ import { graphql } from 'gatsby'
 import Post from '../post/post'
 import './postList.scss'
 
-export default class IndexPage extends React.Component {
+export default class postList extends React.Component {
   render() {
     const { posts, title } = this.props
+
+    console.log('title postlist', title);
+    console.log('posts postlist', posts);
 
     return (
       <div>
@@ -18,11 +21,11 @@ export default class IndexPage extends React.Component {
           <Post
             key={post.id}
             id={post.id}
-            slug={post.slug}
-            title={post.title}
-            content={post.content}
-            date={post.date}
-            tags={post.tags}
+            content={post.body}
+            slug={post.frontmatter.slug}
+            title={post.frontmatter.title}
+            date={post.frontmatter.date}
+            tags={post.frontmatter.tags}
           />
         ))}
       </div>
@@ -30,28 +33,21 @@ export default class IndexPage extends React.Component {
   }
 }
 
-IndexPage.propTypes = {
+postList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string,
 }
 
 export const pageQuery = graphql`
-  fragment PostListFields on wordpress__POST {
-    id
-    title
-    content
-    tags {
-      name
-      slug
+    fragment PostListFields on Mdx{
+        id
+        frontmatter {
+            title
+            date(formatString: "MMMM DD, YYYY")
+            slug
+            tags
+            category
+        }
+        body
     }
-    author {
-      name
-      slug
-      avatar_urls {
-        wordpress_48
-      }
-    }
-    date(formatString: "MMMM DD, YYYY")
-    slug
-  }
 `

@@ -6,16 +6,21 @@ import WidgetBox from '../widgetBox'
 const LatestPostsWidget = () => {
   const data = useStaticQuery(graphql`
     query latestPostsQuery {
-      allWordpressPost(sort: { fields: date, order: DESC }, limit: 4, skip: 0) {
-        edges {
-          node {
-            ...PostListFields
-          }
+        allMdx(
+            sort: {fields: frontmatter___date, order: DESC}
+            limit: 4
+            skip: 0
+        ) {
+            edges {
+                node {
+                    ...PostListFields
+                }
+            }
         }
-      }
     }
+    
   `)
-  const { edges: posts } = data.allWordpressPost
+  const { edges: posts } = data.allMdx
   return (
     <WidgetBox
       title="Latest Posts"
@@ -25,8 +30,8 @@ const LatestPostsWidget = () => {
             <PostListItem
               key={post.id}
               id={post.id}
-              slug={post.slug}
-              title={post.title}
+              slug={post.frontmatter.slug}
+              title={post.frontmatter.title}
             />
           ))}
         </ul>
