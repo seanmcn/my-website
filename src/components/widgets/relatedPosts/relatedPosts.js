@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import PostListItem from '../../blog/postList/postListItem'
 import WidgetBox from '../widgetBox'
 
-const LatestPostsWidget = ({ posts }) => {
+const RelatedPostsWidget = ({ posts }) => {
+  console.log('rp posts', posts);
   if (posts) {
     return (
       <WidgetBox
@@ -14,8 +15,8 @@ const LatestPostsWidget = ({ posts }) => {
               <PostListItem
                 key={post.id}
                 id={post.id}
-                slug={post.slug}
-                title={post.title}
+                slug={post.frontmatter.slug}
+                title={post.frontmatter.title}
               />
             ))}
           </ul>
@@ -26,8 +27,8 @@ const LatestPostsWidget = ({ posts }) => {
   return <div />
 }
 
-LatestPostsWidget.propTypes = {
+RelatedPostsWidget.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default LatestPostsWidget
+export default RelatedPostsWidget
