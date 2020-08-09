@@ -1,11 +1,11 @@
 ---
 title: "Learn PHP: Setup"
 date: '2009-07-07T22:12:03.284Z'
-slug: '2009/07/learn-php-setup'
+slug: 'learn/php/0-setup'
 tags: ['how-to', 'php', 'programming', 'learn-php']
 category: 'learn-php'
 ---
-> This article was severely outdated, as it was originally written in 2009, I have updated it with more modern options as of 12th July 2020
+> This series was severely outdated, as it was originally written in 2009, I have updated it with more modern options as of 12th July 2020
 
 ## Cloud based options
 There are plenty of free cloud based editors that will allow you to get up and running without having to install anything on your computer. If you are just looking to try out PHP and aren't sure you will continue using it, this is the best option.
@@ -44,3 +44,5 @@ brew install php
 
 ## Linux options
 If you are using Linux, you are going to need to utilise a search engine in order to get setup. Digital Ocean have good walkthroughs like [this one](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04) for Ubuntu 18.04.
+
+Now you can move onto the next part [Learn PHP: Output & Operators](/blog/learn/php/1/output-and-operators)

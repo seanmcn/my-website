@@ -87,6 +87,7 @@ exports.createPages = ({ graphql, actions }) => {
     const tags = result.data.allMdx.distinct
 
     tags.forEach((tag) => {
+      // Todo Enter/Update graphQL
       createPage({
         path: `/blog/tags/${tag}/`,
         component: tagsTemplate,
