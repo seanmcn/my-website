@@ -6,3 +6,10 @@ span.number {
     border-radius: unset;
     padding: 0;
 }
+
+.language-html .tag:not(body) {
+    padding: 0;
+    font-size: inherit;
+    border-radius: unset;
+    display: revert;
+}
