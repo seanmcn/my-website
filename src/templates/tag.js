@@ -41,7 +41,7 @@ export const pageQuery = graphql`
                 title
             }
         }
-        allMdx(filter: {frontmatter: {tags: {eq: $slug}}}) {
+        allMdx(filter: {frontmatter: {tags: {eq: $slug}}}, sort: {fields: frontmatter___date, order: DESC}) {
             edges {
                 node {
                     ...PostListFields

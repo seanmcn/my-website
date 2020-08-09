@@ -10,9 +10,7 @@ import { slugToTitle } from '../utils/blog';
 const Category = props => {
   const { data, pageContext } = props
   const { edges: posts } = data.allMdx
-  // const { edges: posts } = []
   const { title: siteTitle } = data.site.siteMetadata
-  // const { title: siteTitle } = 'SEAN'
   const { name: category } = pageContext
   const displayCategory = slugToTitle(category);
   const title = `Posts in category "${displayCategory}"`
@@ -42,7 +40,7 @@ export const pageQuery = graphql`
                 title
             }
         }
-        allMdx(filter: {frontmatter: {category: {eq: $slug}}}) {
+        allMdx(filter: {frontmatter: {category: {eq: $slug}}}, sort: {fields: frontmatter___date, order: DESC}) {
             edges {
                 node {
                     ...PostListFields
