@@ -16,7 +16,7 @@ const tagsWidget = () => {
   return (
     <WidgetBox
       title="Tags"
-      content={
+      content={(
         <div
           className="tags tagsList"
           aria-label="List of tags used on blog posts"
@@ -25,6 +25,7 @@ const tagsWidget = () => {
             <Link
               to={`/blog/tags/${tag}`}
               aria-label={`Links to posts in tag ${slugToTitle(tag)}`}
+              key={tag}
             >
               <div className="tags has-addons">
                 <span className="tag" aria-label="Tag name">
@@ -41,7 +42,7 @@ const tagsWidget = () => {
             </Link>
           ))}
         </div>
-      }
+      )}
     />
   );
 };
