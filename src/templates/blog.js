@@ -10,8 +10,14 @@ import Sidebar from '../components/blog/sidebar'
 export default class BlogPage extends React.Component {
   render() {
     const { data, pageContext } = this.props
-    const { edges: posts } = data.allWordpressPost
+    console.log('data', data);
+    console.log('pageContext', pageContext);
+
+    const { edges: posts } = data.allMdx
+    // const { edges: posts } = [];
     const { title: siteTitle } = data.site.siteMetadata
+    // const { title: siteTitle } = 'SEAN'
+    console.log('posts is', posts);
 
     return (
       <Layout>
@@ -19,7 +25,7 @@ export default class BlogPage extends React.Component {
         <div className="columns">
           <div className="column is-three-quarters" id="postMainColumn">
             <PostList posts={posts} />
-            <Pagination pageContext={pageContext} />
+            {/*<Pagination pageContext={pageContext} />*/}
           </div>
           <div className="column is-one-quarter" id="postSidebarColumn">
             <Sidebar />
@@ -32,7 +38,7 @@ export default class BlogPage extends React.Component {
 
 BlogPage.propTypes = {
   data: PropTypes.shape({
-    allWordpressPost: PropTypes.shape({
+    allMdx: PropTypes.shape({
       edges: PropTypes.array,
     }),
   }),
@@ -41,7 +47,7 @@ BlogPage.propTypes = {
     numPages: PropTypes.number,
   }),
 }
-
+//
 export const blogPageQuery = graphql`
   query BlogIndexQuery($limit: Int!, $skip: Int!) {
     site {
@@ -49,8 +55,8 @@ export const blogPageQuery = graphql`
         title
       }
     }
-    allWordpressPost(
-      sort: { fields: date, order: DESC }
+    allMdx(
+      sort: {fields: frontmatter___date, order: DESC}
       limit: $limit
       skip: $skip
     ) {
@@ -62,3 +68,6 @@ export const blogPageQuery = graphql`
     }
   }
 `
+
+
+

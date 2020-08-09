@@ -1,55 +1,125 @@
 module.exports = {
   siteMetadata: {
-    title: 'Sean McNamara | Programming Stuff',
+    title: `Sean McNamara | Programming Stuff`,
+    author: `Sean McNamara`,
+    description: `Sean McNamara's blog mostly programming articles with a sprinkle of games & reviews.`,
+    siteUrl: `https://seanmcn.com`,
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
     {
-      resolve: 'gatsby-source-wordpress',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        // The base url to your WP site.
-        baseUrl: 'seanmcn.com',
-        // WP.com sites set to true, WP.org set to false
-        hostingWPCOM: false,
-        // The protocol. This can be http or https.
-        protocol: 'https',
-        // Use 'Advanced Custom Fields' Wordpress plugin
-        useACF: false,
-        auth: {
-          jwt_user: process.env.JWT_USER,
-          jwt_pass: process.env.JWT_PASSWORD,
-          jwt_base_path: '/jwt-auth/v1/token',
-        },
-        // Set to true to debug endpoints on 'gatsby build'
-        verboseOutput: false,
-        // Number of posts per page request
-        perPage: 100,
-        // Number of concurrent requests
-        concurrentRequests: 10,
-        // Routes to include in cache
-        includedRoutes: [
-          '**/categories',
-          '**/posts',
-          '**/media',
-          '**/tags',
-          '**/taxonomies',
-          '**/users',
+        path: `${__dirname}/content/blog`,
+        name: `blog`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/assets`,
+        name: `assets`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: ['.mdx', '.md'],
+        // a workaround to solve mdx-remark plugin compat issue
+        // https://github.com/gatsbyjs/gatsby/issues/15486
+        plugins: [
+          `gatsby-remark-images`,
+        ],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+          },
+
+          {
+            resolve: `gatsby-remark-smartypants`,
+          },
         ],
       },
     },
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
-      // Removes unused css rules
-      resolve: 'gatsby-plugin-purgecss',
+      resolve: `gatsby-plugin-feed`,
       options: {
-        // Activates purging in gatsby develop
-        // develop: true,
-        // Purge only the main css file
-        // purgeOnly: ['/all.sass'],
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  data: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ 'content:encoded': edge.node.html }],
+                })
+              })
+            },
+            query: `
+            {
+              allMdx(
+                limit: 1000,
+                sort: { order: DESC, fields: [frontmatter___date] },
+              ) {
+                edges {
+                  node {
+                    frontmatter {
+                      title
+                      date
+                      slug
+                    }
+                    html
+                  }
+                }
+              }
+            }
+            `,
+            output: '/rss.xml',
+            title: 'Seanmcn.com RSS feed',
+          },
+        ],
       },
-    }, // must be after other CSS plugins
-    'gatsby-plugin-netlify', // make sure to keep it last in the array
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Sean McNamara`,
+        short_name: `Sean McN`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `content/assets/pwa/icon.png`,
+      },
+    },
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-react-helmet`,
   ],
 }

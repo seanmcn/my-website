@@ -5,17 +5,19 @@ import Layout from '../components/layout/layout'
 import PostList from '../components/blog/postList/postList'
 import Pagination from '../components/blog/pagination'
 import Sidebar from '../components/blog/sidebar'
+import { slugToTitle } from '../utils/blog';
 
 const Category = props => {
   const { data, pageContext } = props
-  const { edges: posts } = data.allWordpressPost
+  const { edges: posts } = data.allMdx
   const { title: siteTitle } = data.site.siteMetadata
   const { name: category } = pageContext
-  const title = `Posts in category "${category}"`
+  const displayCategory = slugToTitle(category);
+  const title = `Posts in category "${displayCategory}"`
 
   return (
     <Layout>
-      <Helmet title={`${category} | ${siteTitle}`} />
+      <Helmet title={`${displayCategory} | ${siteTitle}`} />
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
           <PostList posts={posts} title={title} />
@@ -32,21 +34,18 @@ const Category = props => {
 export default Category
 
 export const pageQuery = graphql`
-  query CategoryPage($slug: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allWordpressPost(
-      filter: { categories: { elemMatch: { slug: { eq: $slug } } } }
-    ) {
-      totalCount
-      edges {
-        node {
-          ...PostListFields
+    query CategoryPage($slug: String!) {
+        site {
+            siteMetadata {
+                title
+            }
         }
-      }
+        allMdx(filter: {frontmatter: {category: {eq: $slug}}}, sort: {fields: frontmatter___date, order: DESC}) {
+            edges {
+                node {
+                    ...PostListFields
+                }
+            }
+        }
     }
-  }
 `
