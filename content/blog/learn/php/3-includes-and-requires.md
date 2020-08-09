@@ -3,7 +3,7 @@ title: "Learn PHP: Includes & Requires"
 date: '2009-09-16T05:12:03.284Z'
 slug: 'learn/php/3-includes-and-requires'
 tags: ['php', 'programming', 'learn-php']
-category: 'learn-php'
+category: 'php-learn'
 ---
 
 Continuing on from [Learn PHP: Ifs & Elses](/blog/learn/php/2-ifs-and-elses), we can start learning about including other files, which is very helpful for things like sidebars on your website etc.

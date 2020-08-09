@@ -3,7 +3,7 @@ title: "Learn PHP: Ifs & Else's"
 date: '2009-08-28T05:12:03.284Z'
 slug: 'learn/php/2-ifs-and-elses'
 tags: ['php', 'programming', 'learn-php']
-category: 'learn-php'
+category: 'php-learn'
 ---
 
 Continuing on from [Learn PHP: Output And Operators](/blog/learn/php/1-output-and-operators), we can start learning about control statements which will make up the logic of your code.

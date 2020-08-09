@@ -3,7 +3,7 @@ title: "Learn PHP: Setup"
 date: '2009-07-07T22:12:03.284Z'
 slug: 'learn/php/0-setup'
 tags: ['php', 'programming', 'learn-php']
-category: 'learn-php'
+category: 'php-learn'
 ---
 > This series was severely outdated, as it was originally written in 2009, I have updated it with more modern options as of 12th July 2020
 
