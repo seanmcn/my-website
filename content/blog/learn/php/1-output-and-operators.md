@@ -1,13 +1,13 @@
 ---
 title: "Learn PHP: Output & Operators"
-date: '2009-08-21T22:12:03.284Z'
+date: '2009-08-20T22:12:03.284Z'
 slug: 'learn/php/1-output-and-operators'
-tags: ['how-to', 'php', 'programming', 'learn-php']
+tags: ['php', 'programming', 'learn-php']
 category: 'learn-php'
 ---
 > This series was severely outdated, as it was originally written in 2009, I have updated it with more modern options as of 12th July 2020
 
-Now [you have PHP setup](/blog/learn/php/0/setup), we can start with a few of the basic principles / building blocks of the language.
+Continuing on from [Learn PHP: Setup](/blog/learn/php/0-setup), we can start with a few of the basic principles / building blocks of the language.
 
 ##  Output
 The first thing you want to be able to do is output data to your console, we can do this by using [the echo statement](https://www.php.net/manual/en/function.echo.php).
@@ -83,3 +83,5 @@ echo $variable . " world"; // Will output 'Hello world'
 $variable .= " world";
 echo $variable; // Will now output 'Hello world'
 ```
+
+You can now move onto the next part [Learn PHP: Ifs And Else's](/blog/learn/php/2-ifs-and-elses)

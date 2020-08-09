@@ -2,7 +2,7 @@
 title: "Learn PHP: Setup"
 date: '2009-07-07T22:12:03.284Z'
 slug: 'learn/php/0-setup'
-tags: ['how-to', 'php', 'programming', 'learn-php']
+tags: ['php', 'programming', 'learn-php']
 category: 'learn-php'
 ---
 > This series was severely outdated, as it was originally written in 2009, I have updated it with more modern options as of 12th July 2020
@@ -45,4 +45,5 @@ brew install php
 ## Linux options
 If you are using Linux, you are going to need to utilise a search engine in order to get setup. Digital Ocean have good walkthroughs like [this one](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04) for Ubuntu 18.04.
 
-Now you can move onto the next part [Learn PHP: Output & Operators](/blog/learn/php/1/output-and-operators)
+
+You can now move onto the next part [Learn PHP: Output & Operators](/blog/learn/php/1-output-and-operators)

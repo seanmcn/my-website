@@ -30,7 +30,7 @@ const CategoriesWidget = () => {
         <ul className="menu-list categoryList">
           {categories.map((category) => (
             <li key={category.edges[0].node.frontmatter.category}>
-              <Link to={`/blog/categories${category.edges[0].node.frontmatter.category}`}>
+              <Link to={`/blog/categories/${category.edges[0].node.frontmatter.category}`}>
                 {slugToTitle(category.edges[0].node.frontmatter.category)}
                 <span className="badge is/-right">{category.totalCount}</span>
               </Link>
