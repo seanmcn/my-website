@@ -28,11 +28,11 @@ const CategoriesWidget = () => {
       title="Categories"
       content={(
         <ul className="menu-list categoryList">
-          {categories.map((category ) => (
-            <li>
-              <Link to={`/blog/categories/${category.edges[0].node.frontmatter.category}`}>
+          {categories.map((category) => (
+            <li key={category.edges[0].node.frontmatter.category}>
+              <Link to={`/blog/categories${category.edges[0].node.frontmatter.category}`}>
                 {slugToTitle(category.edges[0].node.frontmatter.category)}
-                <span className="badge is-right">{category.totalCount}</span>
+                <span className="badge is/-right">{category.totalCount}</span>
               </Link>
             </li>
           ))}
