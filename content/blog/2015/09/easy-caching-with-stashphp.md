@@ -2,8 +2,9 @@
 title: "Easy Caching with StashPHP"
 date: '2015-09-08T00:39:03.284Z'
 slug: '2015/09/stash-php'
-tags: ['programming', 'php', 'caching']
 category: 'php'
+tags: ['programming', 'php', 'caching']
+keywords: ['cache', 'stash', 'apc', 'redis', 'guide']
 ---
 
 Frequently with PHP you are going to need to cache things, mostly expensive SQL queries, but also data you aren't going to want to be inserting into the database on every page hit, for instance website statistics.

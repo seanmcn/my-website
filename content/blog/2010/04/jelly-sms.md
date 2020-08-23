@@ -2,8 +2,9 @@
 title: "Jelly SMS – Use your web texts from your desktop"
 date: '2010-04-08T01:39:03.284Z'
 slug: '2010/04/programmer-personality'
-tags: ['software', 'sms']
 category: 'software'
+tags: ['software', 'sms']
+keywords: ['jellysms', 'text', 'software']
 ---
 >JellySMS is now abandoned, I've removed any links to it.
 

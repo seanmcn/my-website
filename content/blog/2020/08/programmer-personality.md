@@ -2,8 +2,9 @@
 title: "Programmer Personality: 2020"
 date: '2020-08-09T16:39:03.284Z'
 slug: '2020/08/programmer-personality'
-tags: ['funny', 'programming', 'personal']
 category: 'personal'
+tags: ['funny', 'programming', 'personal']
+keywords: ['type', 'personality', 'personal', 'quiz', 'fun']
 ---
 
 While converting over [my previous post](/blog/2009/11/programmer-personality) of my Programmer Personality, I decided to do it again and see whats changed, as expected it has.

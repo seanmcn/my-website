@@ -2,8 +2,9 @@
 title: "Control Your Windows PC with an Xbox Controller"
 date: '2012-01-25T18:39:03.284Z'
 slug: '2012/01/control-your-pc-with-xbox-controller'
-tags: ['how-to', 'xbox', 'controller', 'control', 'windows']
 category: 'how-to'
+tags: ['how-to', 'xbox', 'controller', 'control', 'windows']
+keywords: ['how', 'guide']
 ---
 ![Xbox 360 Controller](images/Microsoft-Xbox360-Controller-Wireless_enl.jpg)
 

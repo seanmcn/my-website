@@ -2,8 +2,9 @@
 title: "Programmers Day"
 date: '2009-09-13T01:39:03.284Z'
 slug: '2009/09/programmers-day'
-tags: ['programming', 'news']
 category: 'news'
+tags: ['programming', 'news']
+keywords: ['comic', 'day', 'programmer']
 ---
 ![programmer-comic.jpg](images/programmer-comic.jpg)
 Today, it is "The Day of the Programmer". Since yesterday this has been made an official Russian holiday!

@@ -2,8 +2,9 @@
 title: "DevOps at Kobas"
 date: '2018-09-23T17:39:03.284Z'
 slug: '2018/09/devops-at-kobas'
-tags: ['work', 'kobas', 'devops', 'jenkins', 'puppet', 'codeception']
 category: 'work'
+tags: ['work', 'kobas', 'devops', 'jenkins', 'puppet', 'codeception']
+keywords: ['updates', 'ci', 'testing', 'tests']
 ---
 I’ve been at Kobas two years now, I previously wrote about [my experiences in my first month](/blog/2016/07/first-month-at-kobas) , so it seemed fitting to do an overview of my experiences since then surrounding the software we use for DevOps.
 

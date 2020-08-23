@@ -2,8 +2,9 @@
 title: "PyroCMS – CMS on the CodeIgnitor Framework"
 date: '2011-08-14T20:39:03.284Z'
 slug: '2011/08/pyrocms-cms-on-the-codeignitor-framework'
-tags: ['programming', 'cms', 'pyrocms']
 category: 'programming'
+tags: ['programming', 'cms', 'pyrocms']
+keywords: ['pyro', 'content', 'management', 'system']
 ---
 > Update as of August 2020 - PyroCMS now relies upon Laravel.
 

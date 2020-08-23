@@ -2,8 +2,9 @@
 title: "The Sony Ericsson Elm"
 date: '2010-06-06T00:39:03.284Z'
 slug: '2010/06/the-sony-ericsson-elm'
-tags: ['review', 'phone']
 category: 'review'
+tags: ['review', 'phone']
+keywords: ['sony', 'ericsson', 'phone', 'greenheart']
 ---
 
 ![elm_front_metalblack_latin42090.jpg](images/elm_front_metalblack_latin42090.jpg)

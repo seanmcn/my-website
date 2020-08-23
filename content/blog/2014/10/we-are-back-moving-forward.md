@@ -2,8 +2,9 @@
 title: "We're Back / Moving Forward"
 date: '2014-10-22T18:39:03.284Z'
 slug: '2014/10/we-are-back-moving-forward'
-tags: ['personal']
 category: 'personal'
+tags: ['personal']
+keywords: ['update', 'goals']
 ---
 ![were-back-baby.jpg](images/were-back-baby.jpg)
 So I've truly neglected here, my original space on the internet.. It's been almost two years since my last post, which was really just a code snippet.

@@ -2,8 +2,9 @@
 title: "My thoughts on management & time tracking"
 date: '2016-08-29T15:39:03.284Z'
 slug: '2016/08/thoughts-management-time-tracking'
-tags: ['work', 'management']
 category: 'management'
+tags: ['work', 'management']
+keywords: ['time', 'tracking', 'opinion']
 ---
 ![manager-time.jpg](images/manager-time.jpg)
 So I’ve talked about [time tracking before](/blog/2015/03/software-to-track-time) , however that was much more a "Keep yourself on track / how to know what to bill per hour as a freelancer/contractor”. Today I’d like to share some thoughts on bigger companies and my feelings toward management and time tracking there.

@@ -2,8 +2,9 @@
 title: "Making a simple RTS game – Week Two"
 date: '2016-09-09T15:39:03.284Z'
 slug: '2016/09/making-simple-rts-game-week-two'
-tags: ['javascript', 'game-development', 'simple-rts-game']
 category: 'game-development'
+tags: ['javascript', 'game-development', 'simple-rts-game']
+keywords: ['rts', 'game', 'development', 'phaser', 'socket', 'planning', 'project', 'hobby', 'series']
 ---
 So week two has gone relatively well, I didn’t spend as much time working on the game as I would have liked, it’s hard going from programming at work to programming at home every day. However I persevered and at least made some progress.
 

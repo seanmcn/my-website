@@ -2,8 +2,9 @@
 title: "Goodbye Vancouver, Hello London"
 date: '2016-05-26T19:39:03.284Z'
 slug: '2016/05/goodbye-vancouver-london'
-tags: ['personal']
 category: 'personal'
+tags: ['personal']
+keywords: ['vancouver', 'london', 'updates', 'life']
 ---
 ![vancouver.jpg](images/vancouver.jpg)
 

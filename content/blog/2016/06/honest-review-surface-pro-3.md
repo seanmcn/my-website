@@ -2,8 +2,9 @@
 title: "An honest review of the Surface Pro 3"
 date: '2016-06-11T15:39:03.284Z'
 slug: '2016/06/honest-review-surface-pro-3'
-tags: ['review', 'surface', 'windows']
 category: 'review'
+tags: ['review', 'surface', 'windows']
+keywords: ['pro', 'surface', '3', 'honest']
 ---
 ![surface-pro.jpg](images/surface-pro.jpg)
 

@@ -2,8 +2,9 @@
 title: "The Perfect Web Server - Nginx, Ajenti, Ubuntu"
 date: '2015-02-18T08:39:03.284Z'
 slug: '2015/02/perfect-web-server'
-tags: ['ajenti', 'linux', 'nginx', 'ubuntu']
 category: 'how-to'
+tags: ['ajenti', 'linux', 'nginx', 'ubuntu']
+keywords: ['perfect', 'web', 'server', 'setup', 'guide']
 ---
 ![ajenti-dashboard.png](images/ajenti-dashboard.png)
 

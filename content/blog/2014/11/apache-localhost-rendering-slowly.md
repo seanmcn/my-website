@@ -2,8 +2,9 @@
 title: "Apache Localhost Rendering Slowly?"
 date: '2014-11-03T19:39:03.284Z'
 slug: '2014/11/apache-localhost-rendering-slowly'
-tags: ['apache', 'programming']
 category: 'programming'
+tags: ['apache', 'programming']
+keywords: ['localhost', 'slow', 'render']
 ---
 ![Slowweb-2.jpg](images/Slowweb-2.jpg)
 Is your localhost taking longer than expected to load?

@@ -2,8 +2,9 @@
 title: "Google Chrome on Ubuntu"
 date: '2009-09-22T07:39:03.284Z'
 slug: '2009/09/google-chrome-on-ubuntu'
-tags: [ 'software', 'ubuntu', 'linux']
 category: 'software'
+tags: [ 'software', 'ubuntu', 'linux']
+keywords: [ 'chromium', 'install']
 ---
 If your using Ubuntu you can now start using Chrome, or Chromium at least, which is based on it. Daily builds of Chromium can be got from [here](https://launchpad.net/~chromium-daily/+archive/ubuntu/ppa).
 

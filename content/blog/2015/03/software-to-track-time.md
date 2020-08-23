@@ -2,8 +2,9 @@
 title: "Software I’m using to track tasks & time"
 date: '2015-03-29T08:39:03.284Z'
 slug: '2015/03/tracking-time'
-tags: ['software', 'time', 'tracking']
 category: 'software'
+tags: ['software', 'time', 'tracking']
+keywords: ['trello', 'jira', 'github', 'todoist', 'toggl', 'wakatime']
 ---
 So lately I’ve been trying to manage my time better, with countless personal projects and legacy applications to support I find not properly tracking what I’m doing to surprisingly be more of a waste of time than tracking my time, even when you take in the time lost by tracking said time.
 

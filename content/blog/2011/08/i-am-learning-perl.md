@@ -2,8 +2,9 @@
 title: "Why I am learning Perl"
 date: '2011-08-19T01:39:03.284Z'
 slug: '2011/08/why-im-learning-perl'
-tags: ['programming', 'perl']
 category: 'programming'
+tags: ['programming', 'perl']
+keywords: ['languages', 'pros', 'cons']
 ---
 ![i-want-you-to-learn-perl.jpg](images/i-want-you-to-learn-perl.jpg)
 

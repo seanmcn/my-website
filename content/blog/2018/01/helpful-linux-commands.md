@@ -2,8 +2,9 @@
 title: "Helpful Linux commands"
 date: '2018-01-14T15:39:03.284Z'
 slug: '2018/01/helpful-linux-commands'
-tags: ['linux', 'commands', 'screen']
 category: 'linux'
+tags: ['linux', 'commands', 'screen']
+keywords: ['bash', 'command', 'sudo', 'history']
 ---
 So this is just going to be a bit of knowledge dump of things I’ve picked up lately / don’t want to forget.
 ### Bang Cash !$

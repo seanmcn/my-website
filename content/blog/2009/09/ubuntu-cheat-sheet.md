@@ -2,8 +2,9 @@
 title: "Ubuntu Cheat Sheets"
 date: '2009-09-12T03:39:03.284Z'
 slug: '2009/09/ubuntu-cheat-sheets'
-tags: ['linux', 'ubuntu', 'cheat-sheet']
 category: 'linux'
+tags: ['linux', 'ubuntu', 'cheat-sheet']
+keywords: ['manual', 'cheat', 'sheet']
 ---
 > Somehow I lost the original files of these, I've updated to use cheat sheets [provided by Gary Woodfine](https://garywoodfine.com/linux-terminal-command-cheat-sheets/).
 

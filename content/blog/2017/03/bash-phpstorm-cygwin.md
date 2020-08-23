@@ -2,8 +2,9 @@
 title: "Bash/Cygwin Terminal in PHPStorm"
 date: '2017-03-14T15:39:03.284Z'
 slug: '2017/03/bash-phpstorm-cygwin'
-tags: ['bash', 'cygwin', 'windows', 'phpstorm', 'terminal']
 category: 'how-to'
+tags: ['bash', 'cygwin', 'windows', 'phpstorm', 'terminal']
+keywords: ['guide']
 ---
 I’ve been meaning to post about this for a while, but it seems hard lately to make time to post here.
 
