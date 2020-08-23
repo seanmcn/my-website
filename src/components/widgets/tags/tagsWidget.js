@@ -31,13 +31,13 @@ const tagsWidget = () => {
                 <span className="tag" aria-label="Tag name">
                   {slugToTitle(tag)}
                 </span>
-                {/*Todo need to create a different schema for tags I guesS? */}
-                {/*<span*/}
-                {/*  className="tag is-info"*/}
-                {/*  aria-label="Count of posts in this tag"*/}
-                {/*>*/}
-                {/*  {tag.count}*/}
-                {/*</span>*/}
+                {/* Todo need to create a different schema for tags I guess? */}
+                {/* <span */}
+                {/*  className="tag is-info" */}
+                {/*  aria-label="Count of posts in this tag" */}
+                {/* > */}
+                {/*  {tag.count} */}
+                {/* </span> */}
               </div>
             </Link>
           ))}

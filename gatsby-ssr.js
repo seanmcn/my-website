@@ -1,3 +1,4 @@
 import { wrapRootElement as wrap } from './wrap-root-element'
 
-export const wrapRootElement = wrap
+const wrapRootElement = wrap
+export default wrapRootElement
