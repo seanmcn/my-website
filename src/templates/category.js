@@ -17,7 +17,9 @@ const Category = props => {
 
   return (
     <Layout>
-      <Helmet title={`${displayCategory} | ${siteTitle}`} />
+      <Helmet>
+        <title>{`${displayCategory} - Category - ${siteTitle}`}</title>
+      </Helmet>
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
           <PostList posts={posts} title={title} />

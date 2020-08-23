@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Sean McNamara | Programming Stuff`,
+    title: `Sean McNamara`,
     author: `Sean McNamara`,
-    description: `Sean McNamara's blog mostly programming articles with a sprinkle of games & reviews.`,
+    description: `Sean McNamara's personal website, mainly contains articles surrounding programming, technology, games & reviews.`,
     siteUrl: `https://seanmcn.com`,
   },
   plugins: [

@@ -56,7 +56,9 @@ const BlogPost = ({ data }) => {
 
   return (
     <Layout>
-      <Helmet title={`${post.frontmatter.title} | Blog | ${title}`} />
+      <Helmet>
+        <title>{`${post.frontmatter.title} - Blog - ${title}`} </title>
+      </Helmet>
       <BlogPostTemplate
         id={post.id}
         content={post.body}

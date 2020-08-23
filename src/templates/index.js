@@ -11,10 +11,13 @@ import GithubReposWidget from '../components/widgets/githubRepos/githubRepos'
 export default class IndexPage extends React.Component {
   render() {
     const { data } = this.props
-    const { title: siteTitle } = data.site.siteMetadata
+    const { title: siteTitle, description: siteDescription } = data.site.siteMetadata
     return (
       <Layout>
-        <Helmet title={`Home | ${siteTitle}`} />
+        <Helmet>
+          <title>{`Home - ${siteTitle}`}</title>
+          <meta name="description" content={`${siteDescription}`} />
+        </Helmet>
         <div className="columns is-multiline">
           <div className="column is-one-fifth">
             <AboutMeWidget />
@@ -56,6 +59,7 @@ export const indexPageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
       }
     }
   }
