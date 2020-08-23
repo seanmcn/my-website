@@ -17,7 +17,6 @@ const components = {
     
   },
 }
-const wrapRootElement = ({ element }) => (
+export const wrapRootElement = ({ element }) => (
   <MDXProvider components={components}>{element}</MDXProvider>
 )
-export default wrapRootElement
