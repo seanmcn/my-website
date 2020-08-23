@@ -8,9 +8,6 @@ export default class postList extends React.Component {
   render() {
     const { posts, title } = this.props
 
-    console.log('title postlist', title);
-    console.log('posts postlist', posts);
-
     return (
       <div>
         {title && (
