@@ -8,7 +8,7 @@ const RelatedPostsWidget = ({ posts }) => {
     return (
       <WidgetBox
         title="Related Posts"
-        content={
+        content={(
           <ul className="link-list">
             {posts.map(({ node: post }) => (
               <PostListItem
@@ -19,7 +19,7 @@ const RelatedPostsWidget = ({ posts }) => {
               />
             ))}
           </ul>
-        }
+        )}
       />
     )
   }
