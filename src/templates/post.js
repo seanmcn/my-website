@@ -44,7 +44,7 @@ BlogPostTemplate.propTypes = {
   id: PropTypes.string.isRequired,
   content: PropTypes.node.isRequired,
   category: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   title: PropTypes.string,
   date: PropTypes.string,
   slug: PropTypes.string,
@@ -57,7 +57,9 @@ const BlogPost = ({ data }) => {
   return (
     <Layout>
       <Helmet>
-        <title>{`${post.frontmatter.title} - Blog - ${title}`} </title>
+        <title>
+          {`${post.frontmatter.title} - Blog - ${title}`}
+        </title>
       </Helmet>
       <BlogPostTemplate
         id={post.id}
@@ -75,6 +77,7 @@ const BlogPost = ({ data }) => {
 
 BlogPost.propTypes = {
   data: PropTypes.shape({
+    // eslint-disable-next-line react/forbid-prop-types
     mdx: PropTypes.object,
   }),
 }
