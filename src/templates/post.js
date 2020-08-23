@@ -10,7 +10,7 @@ import Post from '../components/blog/post/post'
 export const BlogPostTemplate = ({
   id,
   content,
-  categories,
+  category,
   tags,
   title,
   date,
@@ -19,7 +19,7 @@ export const BlogPostTemplate = ({
 }) => {
   return (
     <div>
-      <Breadcrumbs categories={categories} title={title} slug={slug} />
+      <Breadcrumbs category={category} title={title} slug={slug} />
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
           <Post
@@ -33,7 +33,7 @@ export const BlogPostTemplate = ({
         </div>
 
         <div className="column is-one-quarter" id="postSidebarColumn">
-          <Sidebar categories={categories} relatedPosts={relatedPosts.edges} />
+          <Sidebar category={category} relatedPosts={relatedPosts.edges} />
         </div>
       </div>
     </div>
@@ -43,30 +43,32 @@ export const BlogPostTemplate = ({
 BlogPostTemplate.propTypes = {
   id: PropTypes.string.isRequired,
   content: PropTypes.node.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
-  tags: PropTypes.arrayOf(PropTypes.object).isRequired,
+  category: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   title: PropTypes.string,
   date: PropTypes.string,
   slug: PropTypes.string,
-  relatedPosts: PropTypes.shape({
-    edges: PropTypes.array,
-  }),
 }
 
 const BlogPost = ({ data }) => {
-  const { wordpressPost: post, allWordpressPost: relatedPosts } = data
+  const { mdx: post,  allMdx : relatedPosts} = data
+  const {title} = data.site.siteMetadata;
 
   return (
     <Layout>
-      <Helmet title={`${post.title} | Blog`} />
+      <Helmet>
+        <title>
+          {`${post.frontmatter.title} - Blog - ${title}`}
+        </title>
+      </Helmet>
       <BlogPostTemplate
         id={post.id}
-        content={post.content}
-        categories={post.categories}
-        tags={post.tags}
-        title={post.title}
-        date={post.date}
-        slug={post.slug}
+        content={post.body}
+        category={post.frontmatter.category}
+        tags={post.frontmatter.tags}
+        title={post.frontmatter.title}
+        date={post.frontmatter.date}
+        slug={post.frontmatter.slug}
         relatedPosts={relatedPosts}
       />
     </Layout>
@@ -75,47 +77,34 @@ const BlogPost = ({ data }) => {
 
 BlogPost.propTypes = {
   data: PropTypes.shape({
-    markdownRemark: PropTypes.object,
+    // eslint-disable-next-line react/forbid-prop-types
+    mdx: PropTypes.object,
   }),
 }
 
 export default BlogPost
 
 export const pageQuery = graphql`
-  fragment PostFields on wordpress__POST {
-    id
-    slug
-    content
-    date(formatString: "MMMM DD, YYYY")
-    title
-  }
-  query BlogPostByID($id: String!, $tags: [String]) {
-    wordpressPost(id: { eq: $id }) {
-      id
-      title
-      slug
-      content
-      date(formatString: "MMMM DD, YYYY")
-      categories {
-        name
-        slug
-      }
-      tags {
-        name
-        slug
-      }
-    }
-    allWordpressPost(
-      filter: { tags: { elemMatch: { slug: { in: $tags } } }, id: { ne: $id } }
-      limit: 4
-    ) {
-      edges {
-        node {
-          id
-          title
-          slug
+    query PostBySlug($slug: String!, $tags: [String]) {
+        site {
+            siteMetadata {
+                title
+                author
+            }
         }
-      }
+        mdx(frontmatter: { slug: { eq: $slug } }) {
+            ...PostListFields
+        }
+        allMdx(
+            filter: {frontmatter: {tags: {in: $tags}, slug: { ne: $slug}}}
+            limit: 4
+        ) {
+            edges {
+                node {
+                    ...PostListFields
+                }
+            }
+        }
     }
-  }
 `
+

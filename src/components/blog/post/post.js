@@ -1,19 +1,23 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import './post.scss'
 
-const Post = ({ id, slug, title, content, date, tags }) => (
+const Post = ({
+  id,
+  slug,
+  title,
+  content,
+  date,
+  tags
+}) => (
   <div className="box" key={id}>
     <div>
       <Link className="has-text-primary" to={`/blog/${slug}/`}>
-        <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
+        <h1 className="title">{title}</h1>
       </Link>
       <div className="content">
-        <div
-          dangerouslySetInnerHTML={{
-            __html: content,
-          }}
-        />
+        <MDXRenderer>{content}</MDXRenderer>
         <hr />
         <div className="is-grouped">
           <p className="subtitle is-7 is-pulled-right">
@@ -23,8 +27,8 @@ const Post = ({ id, slug, title, content, date, tags }) => (
           {tags && tags.length ? (
             <div className="tags">
               {tags.map(tag => (
-                <span key={`${tag.slug}tag`} className="tag">
-                  <Link to={`/blog/tags/${tag.slug}/`}>{tag.name}</Link>
+                <span key={`${tag}tag`} className="tag">
+                  <Link to={`/blog/tags/${tag}/`}>{tag}</Link>
                 </span>
               ))}
             </div>

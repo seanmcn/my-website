@@ -1,0 +1,19 @@
+.prism-code {
+    border-left: 6px solid #3498db;
+}
+
+span.number {
+    background: none;
+    display: revert;
+    font-size: inherit;
+    margin-right: 0;
+    border-radius: unset;
+    padding: 0;
+}
+
+.language-html .tag:not(body) {
+    padding: 0;
+    font-size: inherit;
+    border-radius: unset;
+    display: revert;
+}
