@@ -18,7 +18,9 @@ const Tag = props => {
 
   return (
     <Layout>
-      <Helmet title={`Tag: ${displayTag} | ${siteTitle}`} />
+      <Helmet>
+        <title>{`${displayTag} - Tag - ${siteTitle}`}</title>
+      </Helmet>
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
           <PostList posts={posts} title={postListTitle} />

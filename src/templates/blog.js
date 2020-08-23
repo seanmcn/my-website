@@ -15,7 +15,9 @@ export default class BlogPage extends React.Component {
 
     return (
       <Layout>
-        <Helmet title={`Blog | ${siteTitle}`} />
+        <Helmet>
+          <title>{`Blog - ${siteTitle}`}</title>
+        </Helmet>
         <div className="columns">
           <div className="column is-three-quarters" id="postMainColumn">
             <PostList posts={posts} />
@@ -40,7 +42,7 @@ BlogPage.propTypes = {
     numPages: PropTypes.number,
   }),
 }
-//
+
 export const blogPageQuery = graphql`
   query BlogIndexQuery($limit: Int!, $skip: Int!) {
     site {
