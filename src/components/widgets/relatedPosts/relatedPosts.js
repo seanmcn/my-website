@@ -4,7 +4,6 @@ import PostListItem from '../../blog/postList/postListItem'
 import WidgetBox from '../widgetBox'
 
 const RelatedPostsWidget = ({ posts }) => {
-  console.log('rp posts', posts);
   if (posts) {
     return (
       <WidgetBox

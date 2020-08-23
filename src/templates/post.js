@@ -17,7 +17,6 @@ export const BlogPostTemplate = ({
   slug,
   relatedPosts,
 }) => {
-  console.log('content', content);
   return (
     <div>
       <Breadcrumbs category={category} title={title} slug={slug} />
@@ -45,24 +44,16 @@ BlogPostTemplate.propTypes = {
   id: PropTypes.string.isRequired,
   content: PropTypes.node.isRequired,
   category: PropTypes.string.isRequired,
-  // categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   tags: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string,
   date: PropTypes.string,
   slug: PropTypes.string,
-  // relatedPosts: PropTypes.shape({
-  //   edges: PropTypes.array,
-  // }),
 }
 
 const BlogPost = ({ data }) => {
-  // const { wordpressPost: post, allWordpressPost: relatedPosts } = data
   const { mdx: post,  allMdx : relatedPosts} = data
   const {title} = data.site.siteMetadata;
 
-  console.log('postz is', post);
-  console.log('postz front is', post.frontmatter);
-  console.log('dataz is', data);
   return (
     <Layout>
       <Helmet title={`${post.frontmatter.title} | Blog | ${title}`} />
