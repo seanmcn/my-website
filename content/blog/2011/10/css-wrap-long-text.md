@@ -2,8 +2,9 @@
 title: "CSS Code for Wrapping Long URLs and Text"
 date: '2011-10-04T20:39:03.284Z'
 slug: '2011/10/css-code-for-wrapping-long-urls-and-text'
-tags: ['css', 'web-design']
 category: 'css'
+tags: ['css', 'web-design']
+keywords: ['break', 'word', 'white', 'space']
 ---
 
 Ran into a problem last night where a long email was messing up a design in smaller screen resolutions.

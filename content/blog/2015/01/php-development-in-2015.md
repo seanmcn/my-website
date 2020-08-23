@@ -2,8 +2,9 @@
 title: "Being a PHP Developer in 2015"
 date: '2015-01-27T08:39:03.284Z'
 slug: '2015/01/being-a-php-developer'
-tags: ['php', 'programming', 'web', 'linux', 'javascript']
 category: 'programming'
+tags: ['php', 'programming', 'web', 'linux', 'javascript']
+keywords: ['thoughts', 'update', '2015']
 ---
 ![Generic coding image](images/coding.png)
 

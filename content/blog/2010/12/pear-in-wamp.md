@@ -2,8 +2,9 @@
 title: "Installing PEAR in WAMP"
 date: '2010-12-27T20:39:03.284Z'
 slug: '2010/12/installing-pear-in-wamp'
-tags: ['pear', 'wampp', 'windows']
 category: 'how-to'
+tags: ['pear', 'wampp', 'windows']
+keywords: ['guide', 'install']
 ---
 
 ![pear.png](images/pear.png)

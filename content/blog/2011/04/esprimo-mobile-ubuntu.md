@@ -2,8 +2,9 @@
 title: "Esprimo Mobile v5535 and Ubuntu 10.10"
 date: '2011-02-04T20:39:03.284Z'
 slug: '2011/02/esprimo-mobile-v5535-and-ubuntu-10-10'
-tags: ['review', 'esprimo', 'ubuntu']
 category: 'review'
+tags: ['review', 'esprimo', 'ubuntu']
+keywords: ['fujitsu', 'siemens', 'mobile', 'v5505', 'v5545', 'laptop']
 ---
 ![fujitsu_siemens_esprimo_mobile_v5505_v5545.jpg](images/fujitsu_siemens_esprimo_mobile_v5505_v5545.jpg)
 

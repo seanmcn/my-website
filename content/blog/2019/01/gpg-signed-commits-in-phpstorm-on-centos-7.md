@@ -2,8 +2,9 @@
 title: "GPG signed commits in PHPStorm on CentOS 7"
 date: '2019-01-23T15:39:03.284Z'
 slug: '2019/01/gpg-signed-commits-in-phpstorm-on-centos-7'
-tags: ['gpg', 'commit', 'phpstorm', 'git', 'how-to']
 category: 'how-to'
+tags: ['gpg', 'commit', 'phpstorm', 'git', 'how-to']
+keywords: ['centos', 'commits', 'signed']
 ---
 
 Having the functionality of automatically being prompted to sign your commits while still using PHPStorms Git GUI means you’ll never forget to sign commits again.

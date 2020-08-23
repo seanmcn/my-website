@@ -2,8 +2,9 @@
 title: "Free SSL Certificates with LetsEncrypt and Ajenti-v"
 date: '2016-03-21T08:39:03.284Z'
 slug: '2016/03/letsencrypt-ajenti-v'
-tags: ['ajenti', 'linux', 'nginx', 'ubuntu']
 category: 'how-to'
+tags: ['ajenti', 'linux', 'nginx', 'ubuntu']
+keywords: ['ssl', 'ajenti-v', 'setup', 'guide']
 ---
 This is a quick post on how to use [LetsEncrypt](https://letsencrypt.org/) SSL certificates on your [Ajenti-v setup](/blog/2015/02/perfect-web-server) .
 

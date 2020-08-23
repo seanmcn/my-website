@@ -2,8 +2,9 @@
 title: "Who Hosts Irish Blogs ?"
 date: '2009-09-09T20:39:03.284Z'
 slug: '2009/09/who-hosts-irish-blogs'
-tags: ['stats', 'hosting', 'irish', 'blogs']
 category: 'stats'
+tags: ['stats', 'hosting', 'irish', 'blogs']
+keywords: ['ireland', 'blogging', 'history']
 ---
 
 I was interested to see what web hosts are hosting Irish blogs in 2009, so here are the stats.

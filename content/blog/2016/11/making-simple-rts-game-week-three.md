@@ -2,8 +2,9 @@
 title: "Making a simple RTS game – Week Three"
 date: '2016-11-27T15:39:03.284Z'
 slug: '2016/11/making-simple-rts-game-week-three'
-tags: ['javascript', 'game-development', 'simple-rts-game']
 category: 'game-development'
+tags: ['javascript', 'game-development', 'simple-rts-game']
+keywords: ['rts', 'game', 'development', 'phaser', 'socket', 'planning', 'project', 'hobby', 'series']
 ---
 So week two of making an RTS was September 2nd – 9th. Almost three months later I’ve managed to spend most of my weekend on it. This is pretty typical timeline of any of my personal side-project’s. *sigh*
 

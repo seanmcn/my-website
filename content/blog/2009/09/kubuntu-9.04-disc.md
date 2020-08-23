@@ -2,8 +2,9 @@
 title: "Got kUbuntu 9.04 on disc!"
 date: '2009-09-25T13:01:03.284Z'
 slug: '2009/09/got-kubuntu-9-04-on-disc'
-tags: [ 'ubuntu', 'linux']
 category: 'linux'
+tags: [ 'ubuntu', 'linux']
+keywords: [ 'kubuntu', 'disc']
 ---
 > As of 5th April 2011, ShipIt has ended. [Source](https://ubuntu.com/blog/shipit-comes-to-an-end)
 

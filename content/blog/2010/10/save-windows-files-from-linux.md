@@ -2,8 +2,9 @@
 title: "Saving Your Windows PC From Virus Infections with Linux"
 date: '2010-10-30T19:39:03.284Z'
 slug: '2010/10/saving-your-windows-pc-from-virus-infections-with-linux'
-tags: ['linux', 'security', 'windows']
 category: 'how-to'
+tags: ['linux', 'security', 'windows']
+keywords: ['pc', 'virus', 'save', 'wipe', 'files']
 ---
 
 Often you get a friend or other times a client who has gotten themselves locked out of their system by a virus. I’m talking about the seriously nasty virus’s out there that will just corrupt every .dll file they can get their hands on so the minute you try to open any program, your reopening the virus.

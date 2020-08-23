@@ -2,8 +2,9 @@
 title: "First month at Kobas"
 date: '2016-07-03T15:39:03.284Z'
 slug: '2016/07/first-month-at-kobas'
-tags: ['personal', 'work', 'kobas']
 category: 'work'
+tags: ['personal', 'work', 'kobas']
+keywords: ['updates', 'work', 'life', 'epos', 'programming']
 ---
 ![Image of Kobas team meeting](images/k-meeting.jpg)
 
