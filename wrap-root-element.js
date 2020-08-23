@@ -11,12 +11,13 @@ const components = {
     // if there's a codeString and some props, we passed the test
     if (props) {
       return <Code {...props} />
-    } else {
-      // it's possible to have a pre without a code in it
-      return <pre {...preProps} />
-    }
+    } 
+    // it's possible to have a pre without a code in it
+    return <pre {...preProps} />
+    
   },
 }
-export const wrapRootElement = ({ element }) => (
+const wrapRootElement = ({ element }) => (
   <MDXProvider components={components}>{element}</MDXProvider>
 )
+export default wrapRootElement
