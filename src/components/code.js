@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
-// import { render } from 'react-dom'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
-import github from 'prism-react-renderer/themes/github';
+import codeTheme from 'prism-react-renderer/themes/github';
 import '../assets/styles/code.scss';
 
 export const Code = ({ codeString, language, ...props }) => {
@@ -18,7 +17,7 @@ export const Code = ({ codeString, language, ...props }) => {
     )
   } 
     return (
-      <Highlight {...defaultProps} code={codeString} language={language} theme={github}>
+      <Highlight {...defaultProps} code={codeString} language={language} theme={codeTheme}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
