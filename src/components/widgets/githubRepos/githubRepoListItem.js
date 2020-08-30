@@ -1,6 +1,6 @@
 import React from 'react'
-import '../../blog/post/post.scss'
 import PropTypes from 'prop-types'
+import '../../blog/post/post.scss'
 
 const GithubRepoListItem = ({ id, link, description, title, icons }) => (
   <li key={id}>
