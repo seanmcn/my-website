@@ -6,9 +6,9 @@
 ## About
 This repository is my personal website/blog, hosted at [seanmcn.com](https://seanmcn.com) .
 
-Originally this sourced data from my a WordPress instance, but I've now changed over to content sourced from Markdown/MDX files.
+Originally this sourced data from my WordPress instance, but I've now changed over to content sourced from Markdown/MDX files.
 
-This is hosted using AWS Amplify, the development branch auto builds on [develop.seanmcn.com](https://develop.seanmcn.com/), anything merged into master will automatically build for [seanmcn.com](https://seanmcn.com).
+This is hosted using AWS Amplify, the development branch automatically builds on [develop.seanmcn.com](https://develop.seanmcn.com/), anything merged into master will automatically build for [seanmcn.com](https://seanmcn.com).
 
 ## Technology
 - [Gatsby](https://gatsbyjs.org/)
