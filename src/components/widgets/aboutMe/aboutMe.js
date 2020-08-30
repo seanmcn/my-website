@@ -18,7 +18,7 @@ const AboutMeWidget = () => (
       . On here you&apos;ll find anything I thought was interesting enough to
       write a blog post about throughout the years.
     </p>
-    <br/>
+    <br />
     <Link to="/about" className="navbar-item" aria-label="Read more about me">
       <button className="button is-small is-fullwidth" type="button">
         Read more
