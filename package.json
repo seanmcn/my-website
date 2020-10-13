@@ -9,6 +9,7 @@
     "@mdx-js/react": "^1.4.0",
     "@mdx-js/tag": "^0.20.3",
     "bulma": "^0.9.0",
+    "bulma-timeline": "^3.0.4",
     "gatsby": "^2.14.4",
     "gatsby-awesome-pagination": "^0.3.6",
     "gatsby-image": "^2.0.22",
