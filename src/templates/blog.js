@@ -36,6 +36,7 @@ export default class BlogPage extends React.Component {
 BlogPage.propTypes = {
   data: PropTypes.shape({
     allMdx: PropTypes.shape({
+      // eslint-disable-next-line react/forbid-prop-types
       edges: PropTypes.array,
     }),
   }),
