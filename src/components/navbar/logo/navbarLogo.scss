@@ -4,10 +4,10 @@ h1.logoText {
     display: flex;
     margin-top: auto;
     line-height: 2.8rem;
-    padding-left: 0.5rem;
+    margin-left: 1rem;
     font-weight: $weight-semibold;
-    color: $secondary-color;
-    font-size: $size-large;
+    color: $logo-text-color;
+    font-size: 1.5rem;
 }
 
 .navbar-item img.emjoiLogo {

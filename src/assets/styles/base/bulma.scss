@@ -1,5 +1,5 @@
-//$widescreen-enabled: false;
-//$fullhd-enabled: false;
+$widescreen-enabled: true;
+$fullhd-enabled: false;
 
 // Update some of Bulma's component variables
 
@@ -9,16 +9,11 @@
 
 // Update Bulma's global variables
 $family-sans-serif: proxima-nova, sans-serif;
-//$weight-normal: 300;
-//$weight-medium: 400;
-//$weight-semibold:
 
 $primary: $primary-color;
 $link: $primary-color;
-//$link-visited
-//$link-hover: ;
 
 $body-background-color: $background-grey;
-$background: $white-smoke;
+$background: $background-white;
 
 $navbar-height: 4rem;

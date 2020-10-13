@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
-import StaticData from '../data/static.json'
 import Layout from '../components/layout/layout'
 import AboutMeWidget from '../components/widgets/aboutMe/aboutMe'
 import LatestPostsWidget from '../components/widgets/latestPosts/latestPosts'
 import GithubReposWidget from '../components/widgets/githubRepos/githubRepos'
+import Timeline from "../components/timeline/timeline";
 
 export default class IndexPage extends React.Component {
   render() {
@@ -19,20 +19,16 @@ export default class IndexPage extends React.Component {
           <meta name="description" content={`${siteDescription}`} />
         </Helmet>
         <div className="columns is-multiline">
-          <div className="column is-one-fifth">
+          <div className="column is-one-quarter">
             <AboutMeWidget />
           </div>
-          <div className="column is-three-fifths">
+          <div className="column is-half">
             <div className="box">
-              <div
-                className="content"
-                dangerouslySetInnerHTML={{
-                  __html: StaticData.about_me,
-                }}
-              />
+              <h1 className="subtitle">Timeline</h1>
+              <Timeline />
             </div>
           </div>
-          <div className="column is-one-fifth">
+          <div className="column is-one-quarter">
             <GithubReposWidget />
             <LatestPostsWidget />
           </div>
@@ -45,6 +41,7 @@ export default class IndexPage extends React.Component {
 IndexPage.propTypes = {
   data: PropTypes.shape({
     allWordpressPost: PropTypes.shape({
+      // eslint-disable-next-line react/forbid-prop-types
       edges: PropTypes.array,
     }),
   }),

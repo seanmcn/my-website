@@ -5,6 +5,7 @@
 @import "base/colors";
 @import "base/bulma";
 @import "~bulma";
+@import "~bulma-timeline";
 //todo: reduce this to only use what we need.
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -31,4 +32,9 @@ footer.footer {
 
 .navbar {
     border-top: 3px solid $primary-color;
+    border-bottom: 1px solid $background-grey;
+}
+
+.navbar-end {
+    margin-right: 0.5rem;
 }
