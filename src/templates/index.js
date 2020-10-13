@@ -41,6 +41,7 @@ export default class IndexPage extends React.Component {
 IndexPage.propTypes = {
   data: PropTypes.shape({
     allWordpressPost: PropTypes.shape({
+      // eslint-disable-next-line react/forbid-prop-types
       edges: PropTypes.array,
     }),
   }),
