@@ -5,10 +5,19 @@
       "id": "blog",
       "title": "My Blog",
       "link": "https://github.com/Seanmcn/my-website",
-      "description": "Source code for this website, front-end built using ReactJS & Gatsby, back-end data sourced from Wordpress and static JSON.",
+      "description": "Source code for this website, front-end built using ReactJS & Gatsby, back-end data sourced from JSON.",
       "icons": [
-        "fa-react",
-        "fa-js"
+        "fa-react"
+      ]
+    },
+    {
+      "id": "circle",
+      "title": "Circle",
+      "link": "https://github.com/Seanmcn/circle",
+      "description": "WIP: Building a basic social network using Laravel & ReactJS.",
+      "icons": [
+        "fa-php",
+        "fa-react"
       ]
     },
     {
