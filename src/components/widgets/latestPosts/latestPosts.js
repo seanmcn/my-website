@@ -2,6 +2,7 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import PostListItem from '../../blog/postList/postListItem'
 import WidgetBox from '../widgetBox'
+import './latestPostsList.scss'
 
 const LatestPostsWidget = () => {
   const data = useStaticQuery(graphql`
@@ -24,8 +25,8 @@ const LatestPostsWidget = () => {
   return (
     <WidgetBox
       title="Latest Posts"
-      content={
-        <ul className="link-list">
+      content={(
+        <ul className="link-list latestPostsList">
           {posts.map(({ node: post }) => (
             <PostListItem
               key={post.id}
@@ -35,7 +36,7 @@ const LatestPostsWidget = () => {
             />
           ))}
         </ul>
-      }
+      )}
     />
   )
 }

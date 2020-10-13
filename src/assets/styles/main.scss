@@ -31,4 +31,8 @@ footer.footer {
 
 .navbar {
     border-top: 3px solid $primary-color;
+    border-bottom: 1px solid $background-grey;
+}
+.navbar-end {
+    margin-right:0.5rem;
 }
