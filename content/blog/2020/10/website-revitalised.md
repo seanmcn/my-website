@@ -3,7 +3,7 @@ title: "Website revitalised using Gatsby!"
 date: '2020-10-29T02:09:03.284Z'
 slug: '2020/10/website-revitalised-gatsby'
 category: 'programming'
-tags: [ 'programming', 'gatsby', 'javascript']
+tags: [ 'programming', 'personal']
 keywords: ['gatsby', 'reactjs', 'js', 'javascript']
 ---
 This year, one of my personal goals was to revitalise this website and get the source code onto Github.
@@ -38,4 +38,4 @@ Over the next few weeks, I worked on the above MVP list. Doing my best to avoid 
 
 Once I was done with the MVP list, I started looking at deployment options. I wanted something I wouldn't need to spend much time configuring. [AWS Amplify](https://aws.amazon.com/amplify) fit that requirement. First, I moved my domain over to [Route53](https://aws.amazon.com/route53/). Then I pointed Amplify to [my Github repository](https://github.com/Seanmcn/my-website/), which automatically picked up the build command in my package.json. So simple!
 
-I'm pretty happy where I've got to at this point, any future development I want to do here is much more streamlined for me. More fun stuff to come I hope. :grinning:
+I'm pretty happy where I've got to at this point, any future development I want to do here is much more streamlined for me. More fun stuff to come I hope.
