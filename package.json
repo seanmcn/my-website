@@ -36,7 +36,8 @@
     "react-dom": "^16.13.1",
     "react-google-recaptcha-v3": "^1.5.2",
     "react-helmet": "^6.1.0",
-    "react-live": "^2.2.0"
+    "react-live": "^2.2.0",
+    "remark-emoji": "^2.1.0"
   },
   "keywords": [
     "gatsby"
