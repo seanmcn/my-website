@@ -1,3 +1,4 @@
+const emoji = require(`remark-emoji`);
 module.exports = {
   siteMetadata: {
     title: `Sean McNamara`,
@@ -45,6 +46,7 @@ module.exports = {
             resolve: `gatsby-remark-smartypants`,
           },
         ],
+        remarkPlugins: [emoji]
       },
     },
     `gatsby-transformer-sharp`,
