@@ -39,6 +39,16 @@ module.exports = {
             },
           },
           {
+            resolve: `gatsby-remark-embedder`,
+            options: {
+              services: {
+                YouTube: {
+                  height: "350px",
+                }
+              },
+            },
+          },
+          {
             resolve: `gatsby-remark-copy-linked-files`,
           },
 
