@@ -24,6 +24,6 @@ I’ve come to realise some things are going to be more complicated than I antic
 
 Here’s a crappy video of where we are so far:
 
-[![Video of game functionality](https://img.youtube.com/vi/q2V6toXFCH0/0.jpg)](https://youtu.be/q2V6toXFCH0)
+https://youtu.be/q2V6toXFCH0
 
 I’m unsure if I will have enough changes to do a Week 3 next week as I’m currently in the process of finding a new place to live in London and it’s a whole insane experience itself, very time consuming, very tiring and very depressing financially. So week 3 might be on the 23rd, we’ll see!
