@@ -1,4 +1,32 @@
 const emoji = require(`remark-emoji`);
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+// Setup `gatsby-source-filesystem` for blog gatsbySourceFilesystemBlogPosts here as for development
+// builds we don't want all the blog images having to generate etc.
+const posts = {
+  resolve: `gatsby-source-filesystem`,
+  options: {
+    path: `${__dirname}/content/blog`,
+    name: `blog`,
+  },
+};
+
+// Adds list of file globs to ignore for development builds
+if (isDevelopment) {
+  posts.options.ignore = [
+    '**/2009/**',
+    '**/2010/**',
+    '**/2011/**',
+    '**/2012/**',
+    '**/2013/**',
+    '**/2014/**',
+    '**/2015/**',
+    '**/2016/**',
+    '**/2017/**',
+    '**/learn/**',
+  ];
+}
+
 module.exports = {
   siteMetadata: {
     title: `Sean McNamara`,
@@ -8,13 +36,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-sass',
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/blog`,
-        name: `blog`,
-      },
-    },
+    posts,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
