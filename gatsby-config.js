@@ -1,5 +1,5 @@
-const emoji = require(`remark-emoji`);
-const isDevelopment = process.env.NODE_ENV === 'development';
+const emoji = require(`remark-emoji`)
+const { gatsbyPluginFeed } = require('./src/utils/rss')
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -95,56 +95,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-feed`,
-      options: {
-        query: `
-          {
-            site {
-              siteMetadata {
-                title
-                description
-                siteUrl
-              }
-            }
-          }
-        `,
-        feeds: [
-          {
-            serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.edges.map(edge => {
-                return { ...edge.node.frontmatter, description: edge.node.excerpt,
-                  data: edge.node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + edge.node.frontmatter.slug,
-                  guid: site.siteMetadata.siteUrl + edge.node.frontmatter.slug,
-                  custom_elements: [{ 'content:encoded': edge.node.html }],}
-              })
-            },
-            query: `
-            {
-              allMdx(
-                limit: 1000,
-                sort: { order: DESC, fields: [frontmatter___date] },
-              ) {
-                edges {
-                  node {
-                    frontmatter {
-                      title
-                      date
-                      slug
-                    }
-                    html
-                  }
-                }
-              }
-            }
-            `,
-            output: '/rss.xml',
-            title: 'Seanmcn.com RSS feed',
-          },
-        ],
-      },
-    },
+    gatsbyPluginFeed,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
