@@ -1,5 +1,6 @@
 const emoji = require(`remark-emoji`)
 const { gatsbyPluginFeed } = require('./src/utils/rss')
+const algoliaQueries = require('./src/utils/algolia')
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -106,6 +107,16 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `content/assets/pwa/icon.png`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
+        indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
+        queries: algoliaQueries,
+        chunkSize: 10000,
       },
     },
     `gatsby-plugin-offline`,
