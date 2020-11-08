@@ -6,14 +6,10 @@ import './postList.scss'
 
 export default class postList extends React.Component {
   render() {
-    const { posts, title } = this.props
+    const { posts } = this.props
 
     return (
       <div>
-        {title && (
-          <h2 className="title is-5 postListTitle">{title}</h2>
-        )}
-
         {posts.map(({ node: post }) => (
           <Post
             key={post.id}
@@ -32,7 +28,6 @@ export default class postList extends React.Component {
 
 postList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string,
 }
 
 export const pageQuery = graphql`
