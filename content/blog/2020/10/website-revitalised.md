@@ -3,7 +3,7 @@ title: "Website revitalised using Gatsby!"
 date: '2020-10-29T02:09:03.284Z'
 slug: '2020/10/website-revitalised-gatsby'
 category: 'programming'
-tags: [ 'programming', 'personal']
+tags: [ 'programming', 'gatsby', 'javascript']
 keywords: ['gatsby', 'reactjs', 'js', 'javascript']
 ---
 This year, one of my personal goals was to revitalise this website and get the source code onto Github.
