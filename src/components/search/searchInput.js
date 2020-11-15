@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
+/* eslint-disable jsx-a11y/no-autofocus */
+
 class SearchInput extends Component {
   timerId = null;
 
-  constructor(props) {
+  constructor (props) {
     super(props);
     const { currentRefinement } = this.props;
     this.state = {
@@ -13,7 +15,7 @@ class SearchInput extends Component {
 
   onChangeDebounce = (event) => {
     const { refine, delay } = this.props;
-    const {value} = event.currentTarget;
+    const { value } = event.currentTarget;
 
     window.clearTimeout(this.timerId);
     this.timerId = window.setTimeout(() => refine(value), delay);
@@ -23,9 +25,8 @@ class SearchInput extends Component {
     }));
   };
 
-  render() {
+  render () {
     const { value } = this.state;
-
     return (
       <input
         type="search"
@@ -35,6 +36,7 @@ class SearchInput extends Component {
         placeholder="Enter search term here"
         autoComplete="off"
         autoCorrect="off"
+        autoFocus
         autoCapitalize="off"
         spellCheck="false"
         maxLength="512"
@@ -43,4 +45,4 @@ class SearchInput extends Component {
   }
 }
 
-export default SearchInput
+export default SearchInput;
