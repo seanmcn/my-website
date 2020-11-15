@@ -1,6 +1,7 @@
 engines:
   eslint:
     enabled: true
+    channel: "eslint-7"
     config: .eslintrc.json
   stylelint:
     enabled: true
