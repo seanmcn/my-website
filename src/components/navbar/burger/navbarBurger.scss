@@ -1,12 +1,12 @@
 button.navbar-burger {
+  border: 0;
+
+  &:active {
     border: 0;
+  }
 
-    &:active {
-        border: 0;
-    }
-
-    &:focus:not(:active) {
-        border: 0;
-        box-shadow: none;
-    }
+  &:focus:not(:active) {
+    border: 0;
+    box-shadow: none;
+  }
 }
