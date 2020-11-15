@@ -13,9 +13,9 @@ const rssQuery = `
 
 const rssFeeds = [
   {
-    serialize: ({ query: { site, allMdx } }) => {
-      return allMdx.edges.map((edge) => {
-        return {
+    serialize: ({ query: { site, allMdx } }) => (
+      allMdx.edges.map((edge) => (
+        {
           ...edge.node.frontmatter,
           // description: edge.node.excerpt,
           date: edge.node.frontmatter.date,
@@ -23,8 +23,8 @@ const rssFeeds = [
           guid: `${site.siteMetadata.siteUrl}/blog/${edge.node.frontmatter.slug}`,
           custom_elements: [{ 'content:encoded': edge.node.html }],
         }
-      })
-    },
+      ))
+    ),
     query: `
             {
               allMdx(
