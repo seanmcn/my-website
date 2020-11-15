@@ -5,7 +5,7 @@ const ContactFormInputField  = props => {
   const { displayName, placeholder, id, name, type } = props
   return (
     <div className="field">
-      <label htmlFor={name} className="label">
+      <label htmlFor={id} className="label">
         {displayName}
       </label>
       <div className={type === 'email' ? 'control has-icons-left' : 'control'}>
