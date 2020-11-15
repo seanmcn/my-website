@@ -4,6 +4,7 @@ import NavbarBurger from './burger/navbarBurger'
 import NavbarItemSocial from './itemSocial/navbarItemSocial'
 import NavbarLogo from './logo/navbarLogo'
 import './navbar.scss'
+import Search from '../search/search';
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -59,6 +60,7 @@ export default class Navbar extends React.Component {
                 label="Goodreads Profile"
                 icon="fa-goodreads"
               />
+              <Search />
             </div>
           </div>
         </div>

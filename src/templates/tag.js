@@ -6,6 +6,7 @@ import PostList from '../components/blog/postList/postList'
 import Pagination from '../components/blog/pagination'
 import Sidebar from '../components/blog/sidebar'
 import { slugToTitle } from '../utils/blog';
+import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs';
 
 const Tag = props => {
   const { data, pageContext } = props
@@ -14,16 +15,15 @@ const Tag = props => {
   const { name: tag } = pageContext
   const displayTag = slugToTitle(tag);
 
-  const postListTitle = `Posts tagged with "${displayTag}"`
-
   return (
     <Layout>
       <Helmet>
         <title>{`${displayTag} - Tag - ${siteTitle}`}</title>
       </Helmet>
+      <Breadcrumbs tag={tag} />
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
-          <PostList posts={posts} title={postListTitle} />
+          <PostList posts={posts} />
           <Pagination pageContext={pageContext} />
         </div>
         <div className="column is-one-quarter" id="postSidebarColumn">

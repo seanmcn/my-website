@@ -1,6 +1,8 @@
 engines:
   eslint:
     enabled: true
+    channel: "eslint-7"
+    config: .eslintrc.json
   stylelint:
     enabled: true
   duplication:
@@ -15,6 +17,8 @@ ratings:
     - "**.js"
     - "**.jsx"
     - "**.css"
+    - "**.scss"
 
 exclude_paths:
 - static/**/*
+- content/**/*
