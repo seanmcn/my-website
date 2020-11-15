@@ -1,21 +1,21 @@
 @import "../../../assets/styles/main";
 
 h1.logoText {
-    display: flex;
-    margin-top: auto;
-    line-height: 2.8rem;
-    margin-left: 1rem;
-    font-weight: $weight-semibold;
-    color: $logo-text-color;
-    font-size: 1.5rem;
+  display: flex;
+  margin-top: auto;
+  line-height: 2.8rem;
+  margin-left: 1rem;
+  font-weight: $weight-semibold;
+  color: $logo-text-color;
+  font-size: 1.5rem;
 }
 
 .navbar-item img.emjoiLogo {
-    height: 50px;
-    width: 50px;
-    max-height: inherit;
+  height: 50px;
+  width: 50px;
+  max-height: inherit;
 }
 
 .navbar-brand .navbar-item {
-    padding-bottom: 0;
+  padding-bottom: 0;
 }
