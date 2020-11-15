@@ -20,7 +20,7 @@ export default function Search () {
     setModalIsOpen(false);
   }
 
-  return typeof document !== 'undefined' ? (
+  return (typeof document !== 'undefined') ? (
     <>
       <SearchButton openModal={openModal} />
       <SearchModal
