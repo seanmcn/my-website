@@ -1,3 +1,4 @@
-import { wrapRootElement as wrap } from './wrap-root-element'
+import { wrapRootElement as wrap } from './wrap-root-element';
 
-export const wrapRootElement = wrap
+// eslint-disable-next-line import/prefer-default-export
+export const wrapRootElement = wrap;
