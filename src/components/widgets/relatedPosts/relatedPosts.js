@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import PostListItem from '../../blog/postList/postListItem'
-import WidgetBox from '../widgetBox'
+import React from 'react';
+import PropTypes from 'prop-types';
+import PostListItem from '../../blog/postList/postListItem';
+import WidgetBox from '../widgetBox';
 
 const RelatedPostsWidget = ({ posts }) => {
   if (posts) {
@@ -21,13 +21,13 @@ const RelatedPostsWidget = ({ posts }) => {
           </ul>
         )}
       />
-    )
+    );
   }
-  return <div />
-}
+  return <div />;
+};
 
 RelatedPostsWidget.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object),
-}
+};
 
-export default RelatedPostsWidget
+export default RelatedPostsWidget;

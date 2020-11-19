@@ -1,7 +1,12 @@
 @import "../../../assets/styles/main";
+@import "~bulma/bulma";
 
 .navbar-social-icons .navbar-item {
   color: $primary-alt-color;
+
+  @include touch {
+    display: inline-block;
+  }
 }
 
 .navbar-social-icons .navbar-item:hover {

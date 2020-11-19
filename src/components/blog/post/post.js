@@ -1,15 +1,10 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import './post.scss'
+import React from 'react';
+import { Link } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import './post.scss';
 
 const Post = ({
-  id,
-  slug,
-  title,
-  content,
-  date,
-  tags
+  id, slug, title, content, date, tags,
 }) => (
   <div className="box" key={id}>
     <div>
@@ -37,6 +32,6 @@ const Post = ({
       </div>
     </div>
   </div>
-)
+);
 
-export default Post
+export default Post;

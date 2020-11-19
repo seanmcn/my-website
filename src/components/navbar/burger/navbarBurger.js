@@ -1,8 +1,8 @@
-import React from 'react'
-import './navbarBurger.scss'
+import React from 'react';
+import './navbarBurger.scss';
 
-const NavbarBurger = props => {
-  const { toggleMenu, active } = props
+const NavbarBurger = (props) => {
+  const { toggleMenu, active } = props;
   return (
     <button
       type="button"
@@ -13,7 +13,7 @@ const NavbarBurger = props => {
       <span />
       <span />
     </button>
-  )
-}
+  );
+};
 
-export default NavbarBurger
+export default NavbarBurger;

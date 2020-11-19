@@ -1,28 +1,28 @@
-import React from 'react'
-import NavbarItem from './item/navbarItem'
-import NavbarBurger from './burger/navbarBurger'
-import NavbarItemSocial from './itemSocial/navbarItemSocial'
-import NavbarLogo from './logo/navbarLogo'
-import './navbar.scss'
+import React from 'react';
+import NavbarItem from './item/navbarItem';
+import NavbarBurger from './burger/navbarBurger';
+import NavbarItemSocial from './itemSocial/navbarItemSocial';
+import NavbarLogo from './logo/navbarLogo';
+import './navbar.scss';
 import Search from '../search/search';
 
 export default class Navbar extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       activeMenu: false,
-    }
+    };
   }
 
   toggleMenu = () => {
-    const { activeMenu } = this.state
+    const { activeMenu } = this.state;
     this.setState({
       activeMenu: !activeMenu,
-    })
+    });
   }
 
   render() {
-    const { activeMenu } = this.state
+    const { activeMenu } = this.state;
     return (
       <nav
         className="navbar is-fixed-top"
@@ -32,11 +32,9 @@ export default class Navbar extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <NavbarLogo />
-
             <NavbarBurger active={activeMenu} toggleMenu={this.toggleMenu} />
           </div>
-
-          <div className={`navbar-menu ${activeMenu ? 'is-active' : ''}`}>
+          <div className={`navbar-menu  ${activeMenu ? 'is-active' : ''}`}>
             <div className="navbar-start">
               <NavbarItem link="/" label="Home" />
               <NavbarItem link="/blog" label="Blog" />
@@ -60,11 +58,11 @@ export default class Navbar extends React.Component {
                 label="Goodreads Profile"
                 icon="fa-goodreads"
               />
-              <Search />
             </div>
+            <Search toggleMenu={this.toggleMenu} activeMenu={activeMenu} />
           </div>
         </div>
       </nav>
-    )
+    );
   }
 }

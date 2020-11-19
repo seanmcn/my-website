@@ -1,8 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const ContactFormTextAreaField  = props => {
-  const { displayName, placeholder, id, name } = props
+const ContactFormTextAreaField = (props) => {
+  const {
+    displayName, placeholder, id, name,
+  } = props;
   return (
     <div className="field">
       <label htmlFor={id} className="label">
@@ -17,14 +19,14 @@ const ContactFormTextAreaField  = props => {
         </div>
       </label>
     </div>
-  )
-}
+  );
+};
 
 ContactFormTextAreaField.propTypes = {
   displayName: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-}
+};
 
-export default ContactFormTextAreaField
+export default ContactFormTextAreaField;

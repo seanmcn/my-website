@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 /* eslint-disable jsx-a11y/no-autofocus */
 
 class SearchInput extends Component {
-  timerId = null;
+  timerId = null
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     const { currentRefinement } = this.props;
     this.state = {
-      value: currentRefinement
+      value: currentRefinement,
     };
   }
 
@@ -21,11 +21,11 @@ class SearchInput extends Component {
     this.timerId = window.setTimeout(() => refine(value), delay);
 
     this.setState(() => ({
-      value
+      value,
     }));
-  };
+  }
 
-  render () {
+  render() {
     const { value } = this.state;
     return (
       <input

@@ -1,10 +1,10 @@
-import React from 'react'
-import Helmet from 'react-helmet'
+import React from 'react';
+import Helmet from 'react-helmet';
 
-import Navbar from '../navbar/navbar'
+import Navbar from '../navbar/navbar';
 
-import '../../assets/styles/main.scss'
-import './layout.scss'
+import '../../assets/styles/main.scss';
+import './layout.scss';
 
 const TemplateWrapper = ({ children }) => (
   <div>
@@ -19,6 +19,6 @@ const TemplateWrapper = ({ children }) => (
       <div className="container">{children}</div>
     </section>
   </div>
-)
+);
 
-export default TemplateWrapper
+export default TemplateWrapper;

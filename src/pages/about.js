@@ -6,9 +6,9 @@ import staticData from '../data/static.json';
 import Sidebar from '../components/layout/sidebar';
 
 export default class AboutPage extends React.Component {
-  render () {
-    const { data } = this.props
-    const { title: siteTitle } = data.site.siteMetadata
+  render() {
+    const { data } = this.props;
+    const { title: siteTitle } = data.site.siteMetadata;
 
     return (
       <Layout>
@@ -30,18 +30,18 @@ export default class AboutPage extends React.Component {
           </div>
         </div>
       </Layout>
-    )
+    );
   }
 }
 
-AboutPage.propTypes = {}
+AboutPage.propTypes = {};
 
 export const aboutPageQuery = graphql`
-    query aboutPageQuery {
-        site {
-            siteMetadata {
-                title
-            }
-        }
+  query aboutPageQuery {
+    site {
+      siteMetadata {
+        title
+      }
     }
-`
+  }
+`;

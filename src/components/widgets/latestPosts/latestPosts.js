@@ -1,27 +1,26 @@
-import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
-import PostListItem from '../../blog/postList/postListItem'
-import WidgetBox from '../widgetBox'
-import './latestPostsList.scss'
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import PostListItem from '../../blog/postList/postListItem';
+import WidgetBox from '../widgetBox';
+import './latestPostsList.scss';
 
 const LatestPostsWidget = () => {
   const data = useStaticQuery(graphql`
     query latestPostsQuery {
-        allMdx(
-            sort: {fields: frontmatter___date, order: DESC}
-            limit: 4
-            skip: 0
-        ) {
-            edges {
-                node {
-                    ...PostListFields
-                }
-            }
+      allMdx(
+        sort: { fields: frontmatter___date, order: DESC }
+        limit: 4
+        skip: 0
+      ) {
+        edges {
+          node {
+            ...PostListFields
+          }
         }
+      }
     }
-    
-  `)
-  const { edges: posts } = data.allMdx
+  `);
+  const { edges: posts } = data.allMdx;
   return (
     <WidgetBox
       title="Latest Posts"
@@ -38,7 +37,7 @@ const LatestPostsWidget = () => {
         </ul>
       )}
     />
-  )
-}
+  );
+};
 
-export default LatestPostsWidget
+export default LatestPostsWidget;

@@ -6,11 +6,11 @@ import { slugToTitle } from '../../../utils/blog';
 
 const tagsWidget = () => {
   const data = useStaticQuery(graphql`
-      query allTagsQuery {
-          allMdx {
-              distinct(field: frontmatter___tags)
-          }
+    query allTagsQuery {
+      allMdx {
+        distinct(field: frontmatter___tags)
       }
+    }
   `);
   const { distinct: tags } = data.allMdx;
   return (
@@ -21,7 +21,7 @@ const tagsWidget = () => {
           className="tags tagsList"
           aria-label="List of tags used on blog posts"
         >
-          {tags.map((tag) => (
+          {tags.map(tag => (
             <Link
               to={`/blog/tags/${tag}`}
               aria-label={`Links to posts in tag ${slugToTitle(tag)}`}
