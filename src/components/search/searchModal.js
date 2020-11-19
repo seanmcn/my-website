@@ -11,30 +11,13 @@ import SearchButtonClose from './searchButtonClose';
 
 Modal.setAppElement('#___gatsby');
 
-const customStyles = {
-  content: {
-    top: '10%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%)',
-    minWidth: '50%',
-    maxWidth: '50%',
-    // height: '100%',
-    // maxHeight: '34em',
-  }
-};
-
 const DebouncedSearchBox = connectSearchBox(SearchInput);
 
 const SearchModal = ({ modalIsOpen, closeModal, searchClient }) => (
   <Modal
     isOpen={modalIsOpen}
     onRequestClose={closeModal}
-    // className="searchModal"
-    // overlayClassName="searchModalOverlay"
-    style={customStyles}
+    className="searchModal"
     contentLabel="Search Modal"
   >
     <SearchButtonClose closeModal={closeModal} />
