@@ -36,7 +36,7 @@ const splitRawBody = (node) => {
   const sections = rawBody.split('\n\n');
 
   // add the frontmatter content onto each record
-  return sections.map((section) => ({
+  return sections.map(section => ({
     ...rest,
     content: section,
   }));
@@ -46,7 +46,7 @@ const queries = [
   {
     query: mdxQuery,
     transformer: ({ data }) => data.allMdx.edges
-      .map((edge) => edge.node)
+      .map(edge => edge.node)
       .map(unnestFrontmatter)
     // get the raw body and split it into multiple records
       .map(splitRawBody)

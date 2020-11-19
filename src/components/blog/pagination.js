@@ -109,7 +109,7 @@ const Pagination = ({ pageContext }) => {
         )}
 
         <ul className="pagination-list">
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <li key={item.index}>
               {item.separator ? (
                 <span className="pagination-ellipsis">&hellip;</span>

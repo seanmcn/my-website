@@ -21,7 +21,7 @@ const tagsWidget = () => {
           className="tags tagsList"
           aria-label="List of tags used on blog posts"
         >
-          {tags.map((tag) => (
+          {tags.map(tag => (
             <Link
               to={`/blog/tags/${tag}`}
               aria-label={`Links to posts in tag ${slugToTitle(tag)}`}

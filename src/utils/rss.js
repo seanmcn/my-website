@@ -13,7 +13,7 @@ const rssQuery = `
 
 const rssFeeds = [
   {
-    serialize: ({ query: { site, allMdx } }) => allMdx.edges.map((edge) => ({
+    serialize: ({ query: { site, allMdx } }) => allMdx.edges.map(edge => ({
       ...edge.node.frontmatter,
       // description: edge.node.excerpt,
       date: edge.node.frontmatter.date,

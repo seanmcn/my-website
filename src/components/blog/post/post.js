@@ -21,7 +21,7 @@ const Post = ({
           </p>
           {tags && tags.length ? (
             <div className="tags">
-              {tags.map((tag) => (
+              {tags.map(tag => (
                 <span key={`${tag}tag`} className="tag">
                   <Link to={`/blog/tags/${tag}/`}>{tag}</Link>
                 </span>
