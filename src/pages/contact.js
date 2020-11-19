@@ -1,12 +1,12 @@
 import React from 'react'
-import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
+import { graphql } from 'gatsby'
+import Helmet from 'react-helmet'
 import Layout from '../components/layout/layout'
 import Sidebar from '../components/layout/sidebar'
-import ContactForm from '../components/contactForm/contactForm';
+import ContactForm from '../components/contactForm/contactForm'
 
 export default class ContactPage extends React.Component {
-  render () {
+  render() {
     const { data } = this.props
     const { title: siteTitle } = data.site.siteMetadata
 
@@ -27,17 +27,16 @@ export default class ContactPage extends React.Component {
           </div>
         </div>
       </Layout>
-
     )
   }
 }
 
 export const contactPageQuery = graphql`
-    query contactPageQuery {
-        site {
-            siteMetadata {
-                title
-            }
-        }
+  query contactPageQuery {
+    site {
+      siteMetadata {
+        title
+      }
     }
+  }
 `

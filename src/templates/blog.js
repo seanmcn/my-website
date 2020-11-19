@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 import Layout from '../components/layout/layout'
 import PostList from '../components/blog/postList/postList'
 import Sidebar from '../components/blog/sidebar'
-import Pagination from '../components/blog/pagination';
+import Pagination from '../components/blog/pagination'
 
 export default class BlogPage extends React.Component {
   render() {
@@ -54,7 +54,7 @@ export const blogPageQuery = graphql`
       }
     }
     allMdx(
-      sort: {fields: frontmatter___date, order: DESC}
+      sort: { fields: frontmatter___date, order: DESC }
       limit: $limit
       skip: $skip
     ) {
@@ -66,6 +66,3 @@ export const blogPageQuery = graphql`
     }
   }
 `
-
-
-

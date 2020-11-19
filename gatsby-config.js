@@ -54,9 +54,7 @@ module.exports = {
         extensions: ['.mdx', '.md'],
         // a workaround to solve mdx-remark plugin compat issue
         // https://github.com/gatsbyjs/gatsby/issues/15486
-        plugins: [
-          `gatsby-remark-images`,
-        ],
+        plugins: [`gatsby-remark-images`],
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
@@ -70,8 +68,8 @@ module.exports = {
             options: {
               services: {
                 YouTube: {
-                  height: "350px",
-                }
+                  height: '350px',
+                },
               },
             },
           },
@@ -83,14 +81,14 @@ module.exports = {
             resolve: `gatsby-remark-smartypants`,
           },
           {
-            resolve: "gatsby-remark-external-links",
+            resolve: 'gatsby-remark-external-links',
             options: {
-              target: "_self",
-              rel: "nofollow"
-            }
-          }
+              target: '_self',
+              rel: 'nofollow',
+            },
+          },
         ],
-        remarkPlugins: [emoji]
+        remarkPlugins: [emoji],
       },
     },
     `gatsby-transformer-sharp`,

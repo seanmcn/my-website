@@ -31,15 +31,15 @@ postList.propTypes = {
 }
 
 export const pageQuery = graphql`
-    fragment PostListFields on Mdx{
-        id
-        frontmatter {
-            title
-            date(formatString: "MMMM DD, YYYY")
-            slug
-            tags
-            category
-        }
-        body
+  fragment PostListFields on Mdx {
+    id
+    frontmatter {
+      title
+      date(formatString: "MMMM DD, YYYY")
+      slug
+      tags
+      category
     }
+    body
+  }
 `

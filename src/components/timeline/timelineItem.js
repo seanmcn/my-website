@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
-const TimelineItem = ({title, content, icon}) => (
+const TimelineItem = ({ title, content, icon }) => (
   <div className="timeline-item">
     <div className="timeline-marker is-icon">
       <i className={`fa ${icon}`} />
@@ -14,9 +14,9 @@ const TimelineItem = ({title, content, icon}) => (
 )
 
 TimelineItem.propTypes = {
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
 }
 
 export default TimelineItem

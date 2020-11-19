@@ -1,7 +1,7 @@
 import React from 'react'
 import './navbarBurger.scss'
 
-const NavbarBurger = props => {
+const NavbarBurger = (props) => {
   const { toggleMenu, active } = props
   return (
     <button

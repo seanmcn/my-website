@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ContactFormTextAreaField  = props => {
+const ContactFormTextAreaField = (props) => {
   const { displayName, placeholder, id, name } = props
   return (
     <div className="field">

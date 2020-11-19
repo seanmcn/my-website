@@ -51,15 +51,13 @@ BlogPostTemplate.propTypes = {
 }
 
 const BlogPost = ({ data }) => {
-  const { mdx: post,  allMdx : relatedPosts} = data
-  const {title} = data.site.siteMetadata;
+  const { mdx: post, allMdx: relatedPosts } = data
+  const { title } = data.site.siteMetadata
 
   return (
     <Layout>
       <Helmet>
-        <title>
-          {`${post.frontmatter.title} - Blog - ${title}`}
-        </title>
+        <title>{`${post.frontmatter.title} - Blog - ${title}`}</title>
       </Helmet>
       <BlogPostTemplate
         id={post.id}
@@ -85,26 +83,25 @@ BlogPost.propTypes = {
 export default BlogPost
 
 export const pageQuery = graphql`
-    query PostBySlug($slug: String!, $tags: [String]) {
-        site {
-            siteMetadata {
-                title
-                author
-            }
-        }
-        mdx(frontmatter: { slug: { eq: $slug } }) {
-            ...PostListFields
-        }
-        allMdx(
-            filter: {frontmatter: {tags: {in: $tags}, slug: { ne: $slug}}}
-            limit: 4
-        ) {
-            edges {
-                node {
-                    ...PostListFields
-                }
-            }
-        }
+  query PostBySlug($slug: String!, $tags: [String]) {
+    site {
+      siteMetadata {
+        title
+        author
+      }
     }
+    mdx(frontmatter: { slug: { eq: $slug } }) {
+      ...PostListFields
+    }
+    allMdx(
+      filter: { frontmatter: { tags: { in: $tags }, slug: { ne: $slug } } }
+      limit: 4
+    ) {
+      edges {
+        node {
+          ...PostListFields
+        }
+      }
+    }
+  }
 `
-

@@ -5,11 +5,13 @@
   font-weight: $weight-bold;
   margin-top: auto;
 }
+
 button.navbar-item.searchButton {
   @include touch {
     margin: 0 auto;
   }
 }
+
 .navbar-menu {
   @include touch {
     text-align: center;
