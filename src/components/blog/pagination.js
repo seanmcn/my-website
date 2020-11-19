@@ -1,29 +1,29 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from 'react';
+import { Link } from 'gatsby';
 
 const Pagination = ({ pageContext }) => {
-  const { previousPagePath, nextPagePath } = pageContext
+  const { previousPagePath, nextPagePath } = pageContext;
 
   // A sweet helper function to create pagination object
-  const createPaginationObjects = (length, page, increment = 2) =>
-    Array.from({ length }, (_, i) => ({
+  const createPaginationObjects = (length, page, increment = 2) => Array
+    .from({ length }, (_, i) => ({
       link: `/blog/page/${i + increment}/`,
       index: i + increment,
       current: page === i + increment,
-    }))
+    }));
 
-  const pages = pageContext.numberOfPages
-  const page = pageContext.humanPageNumber
+  const pages = pageContext.numberOfPages;
+  const page = pageContext.humanPageNumber;
   let navItems = [
     {
-      link: `/blog/`,
+      link: '/blog/',
       index: 1,
       current: pages === 1,
     },
-  ]
+  ];
 
   if (typeof pages === 'undefined') {
-    return ''
+    return '';
   }
 
   if (pages <= 5) {
@@ -34,7 +34,7 @@ const Pagination = ({ pageContext }) => {
         index: i + 2,
         current: page === i + 2,
       })),
-    ]
+    ];
   } else {
     // We have a situation where we have to show the first
     // item, three items around the current one
@@ -54,7 +54,7 @@ const Pagination = ({ pageContext }) => {
           index: pages,
           current: false,
         },
-      ]
+      ];
     } else if (page > pages - 3) {
       // If the current one is closer to the last one
       navItems = [
@@ -64,7 +64,7 @@ const Pagination = ({ pageContext }) => {
           index: 'finisher-separator',
         },
         ...createPaginationObjects(4, page, pages - 3),
-      ]
+      ];
     } else {
       navItems = [
         ...navItems,
@@ -82,7 +82,7 @@ const Pagination = ({ pageContext }) => {
           index: pages,
           current: false,
         },
-      ]
+      ];
     }
   }
   return (
@@ -129,7 +129,7 @@ const Pagination = ({ pageContext }) => {
         </ul>
       </nav>
     </section>
-  )
-}
+  );
+};
 
-export default Pagination
+export default Pagination;

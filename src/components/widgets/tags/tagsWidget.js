@@ -1,8 +1,8 @@
-import React from 'react'
-import { useStaticQuery, graphql, Link } from 'gatsby'
-import WidgetBox from '../widgetBox'
-import './tagWidget.scss'
-import { slugToTitle } from '../../../utils/blog'
+import React from 'react';
+import { useStaticQuery, graphql, Link } from 'gatsby';
+import WidgetBox from '../widgetBox';
+import './tagWidget.scss';
+import { slugToTitle } from '../../../utils/blog';
 
 const tagsWidget = () => {
   const data = useStaticQuery(graphql`
@@ -11,12 +11,12 @@ const tagsWidget = () => {
         distinct(field: frontmatter___tags)
       }
     }
-  `)
-  const { distinct: tags } = data.allMdx
+  `);
+  const { distinct: tags } = data.allMdx;
   return (
     <WidgetBox
       title="Tags"
-      content={
+      content={(
         <div
           className="tags tagsList"
           aria-label="List of tags used on blog posts"
@@ -42,9 +42,9 @@ const tagsWidget = () => {
             </Link>
           ))}
         </div>
-      }
+      )}
     />
-  )
-}
+  );
+};
 
-export default tagsWidget
+export default tagsWidget;

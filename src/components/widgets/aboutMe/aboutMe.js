@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import avatar from '../../../assets/images/emojis/250/wave.png'
-import './aboutMe.scss'
+import React from 'react';
+import { Link } from 'gatsby';
+import avatar from '../../../assets/images/emojis/250/wave.png';
+import './aboutMe.scss';
 
 const AboutMeWidget = () => (
   <div className="box">
@@ -21,6 +21,6 @@ const AboutMeWidget = () => (
       </button>
     </Link>
   </div>
-)
+);
 
-export default AboutMeWidget
+export default AboutMeWidget;

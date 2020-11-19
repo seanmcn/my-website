@@ -1,14 +1,14 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import Helmet from 'react-helmet'
-import Layout from '../components/layout/layout'
-import Sidebar from '../components/layout/sidebar'
-import ContactForm from '../components/contactForm/contactForm'
+import React from 'react';
+import { graphql } from 'gatsby';
+import Helmet from 'react-helmet';
+import Layout from '../components/layout/layout';
+import Sidebar from '../components/layout/sidebar';
+import ContactForm from '../components/contactForm/contactForm';
 
 export default class ContactPage extends React.Component {
   render() {
-    const { data } = this.props
-    const { title: siteTitle } = data.site.siteMetadata
+    const { data } = this.props;
+    const { title: siteTitle } = data.site.siteMetadata;
 
     return (
       <Layout>
@@ -27,7 +27,7 @@ export default class ContactPage extends React.Component {
           </div>
         </div>
       </Layout>
-    )
+    );
   }
 }
 
@@ -39,4 +39,4 @@ export const contactPageQuery = graphql`
       }
     }
   }
-`
+`;

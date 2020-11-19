@@ -1,7 +1,7 @@
-import React from 'react'
-import Layout from '../components/layout/layout'
-import Sidebar from '../components/layout/sidebar'
-import NotFoundImage from '../assets/images/404.png'
+import React from 'react';
+import Layout from '../components/layout/layout';
+import Sidebar from '../components/layout/sidebar';
+import NotFoundImage from '../assets/images/404.png';
 
 const NotFoundPage = () => (
   <Layout>
@@ -22,6 +22,6 @@ const NotFoundPage = () => (
       </div>
     </div>
   </Layout>
-)
+);
 
-export default NotFoundPage
+export default NotFoundPage;

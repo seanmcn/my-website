@@ -1,11 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
-import { graphql } from 'gatsby'
-import Layout from '../components/layout/layout'
-import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs'
-import Sidebar from '../components/blog/sidebar'
-import Post from '../components/blog/post/post'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
+import Layout from '../components/layout/layout';
+import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs';
+import Sidebar from '../components/blog/sidebar';
+import Post from '../components/blog/post/post';
 
 export const BlogPostTemplate = ({
   id,
@@ -16,29 +16,27 @@ export const BlogPostTemplate = ({
   date,
   slug,
   relatedPosts,
-}) => {
-  return (
-    <div>
-      <Breadcrumbs category={category} title={title} slug={slug} />
-      <div className="columns">
-        <div className="column is-three-quarters" id="postMainColumn">
-          <Post
-            id={id}
-            slug={slug}
-            title={title}
-            content={content}
-            date={date}
-            tags={tags}
-          />
-        </div>
+}) => (
+  <div>
+    <Breadcrumbs category={category} title={title} slug={slug} />
+    <div className="columns">
+      <div className="column is-three-quarters" id="postMainColumn">
+        <Post
+          id={id}
+          slug={slug}
+          title={title}
+          content={content}
+          date={date}
+          tags={tags}
+        />
+      </div>
 
-        <div className="column is-one-quarter" id="postSidebarColumn">
-          <Sidebar category={category} relatedPosts={relatedPosts.edges} />
-        </div>
+      <div className="column is-one-quarter" id="postSidebarColumn">
+        <Sidebar category={category} relatedPosts={relatedPosts.edges} />
       </div>
     </div>
-  )
-}
+  </div>
+);
 
 BlogPostTemplate.propTypes = {
   id: PropTypes.string.isRequired,
@@ -48,11 +46,11 @@ BlogPostTemplate.propTypes = {
   title: PropTypes.string,
   date: PropTypes.string,
   slug: PropTypes.string,
-}
+};
 
 const BlogPost = ({ data }) => {
-  const { mdx: post, allMdx: relatedPosts } = data
-  const { title } = data.site.siteMetadata
+  const { mdx: post, allMdx: relatedPosts } = data;
+  const { title } = data.site.siteMetadata;
 
   return (
     <Layout>
@@ -70,17 +68,17 @@ const BlogPost = ({ data }) => {
         relatedPosts={relatedPosts}
       />
     </Layout>
-  )
-}
+  );
+};
 
 BlogPost.propTypes = {
   data: PropTypes.shape({
     // eslint-disable-next-line react/forbid-prop-types
     mdx: PropTypes.object,
   }),
-}
+};
 
-export default BlogPost
+export default BlogPost;
 
 export const pageQuery = graphql`
   query PostBySlug($slug: String!, $tags: [String]) {
@@ -104,4 +102,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

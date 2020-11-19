@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import { Highlight } from 'react-instantsearch-dom'
+import React from 'react';
+import { Link } from 'gatsby';
+import { Highlight } from 'react-instantsearch-dom';
 
 const SearchResult = ({ hit }) => (
   <div key={hit.objectID}>
@@ -13,6 +13,6 @@ const SearchResult = ({ hit }) => (
       <Highlight attribute="excerpt" hit={hit} tagName="strong" />
     </div>
   </div>
-)
+);
 
-export default SearchResult
+export default SearchResult;

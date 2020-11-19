@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
-import TimelineItem from './timelineItem'
-import TimelineHeader from './timelineHeader'
-import data from './data.json'
+import React, { Fragment } from 'react';
+import TimelineItem from './timelineItem';
+import TimelineHeader from './timelineHeader';
+import data from './data.json';
 
 const Timeline = () => (
   <div className="timeline is-centered">
@@ -19,6 +19,6 @@ const Timeline = () => (
       </Fragment>
     ))}
   </div>
-)
+);
 
-export default Timeline
+export default Timeline;

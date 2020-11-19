@@ -9,19 +9,18 @@ const rssQuery = `
               }
             }
           }
-        `
+        `;
 
 const rssFeeds = [
   {
-    serialize: ({ query: { site, allMdx } }) =>
-      allMdx.edges.map((edge) => ({
-        ...edge.node.frontmatter,
-        // description: edge.node.excerpt,
-        date: edge.node.frontmatter.date,
-        url: `${site.siteMetadata.siteUrl}/blog/${edge.node.frontmatter.slug}`,
-        guid: `${site.siteMetadata.siteUrl}/blog/${edge.node.frontmatter.slug}`,
-        custom_elements: [{ 'content:encoded': edge.node.html }],
-      })),
+    serialize: ({ query: { site, allMdx } }) => allMdx.edges.map((edge) => ({
+      ...edge.node.frontmatter,
+      // description: edge.node.excerpt,
+      date: edge.node.frontmatter.date,
+      url: `${site.siteMetadata.siteUrl}/blog/${edge.node.frontmatter.slug}`,
+      guid: `${site.siteMetadata.siteUrl}/blog/${edge.node.frontmatter.slug}`,
+      custom_elements: [{ 'content:encoded': edge.node.html }],
+    })),
     query: `
             {
               allMdx(
@@ -44,14 +43,14 @@ const rssFeeds = [
     output: '/rss.xml',
     title: 'Seanmcn.com RSS feed',
   },
-]
+];
 
 const gatsbyPluginFeed = {
-  resolve: `gatsby-plugin-feed`,
+  resolve: 'gatsby-plugin-feed',
   options: {
     query: rssQuery,
     feeds: rssFeeds,
   },
-}
+};
 
-module.exports = { gatsbyPluginFeed }
+module.exports = { gatsbyPluginFeed };

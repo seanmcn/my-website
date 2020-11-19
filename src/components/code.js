@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react'
-import Highlight, { defaultProps } from 'prism-react-renderer'
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
-import codeTheme from 'prism-react-renderer/themes/github'
-import '../assets/styles/code.scss'
+import React from 'react';
+import Highlight, { defaultProps } from 'prism-react-renderer';
+import {
+  LiveProvider, LiveEditor, LiveError, LivePreview,
+} from 'react-live';
+import codeTheme from 'prism-react-renderer/themes/github';
+import '../assets/styles/code.scss';
 
 export const Code = ({ codeString, language, ...props }) => {
   // eslint-disable-next-line react/destructuring-assignment
@@ -14,7 +16,7 @@ export const Code = ({ codeString, language, ...props }) => {
         <LiveError />
         <LivePreview />
       </LiveProvider>
-    )
+    );
   }
   return (
     <Highlight
@@ -23,7 +25,9 @@ export const Code = ({ codeString, language, ...props }) => {
       language={language}
       theme={codeTheme}
     >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+      {({
+        className, style, tokens, getLineProps, getTokenProps,
+      }) => (
         <pre className={className} style={style}>
           {tokens.map((line, i) => (
             <div {...getLineProps({ line, key: i })}>
@@ -35,7 +39,7 @@ export const Code = ({ codeString, language, ...props }) => {
         </pre>
       )}
     </Highlight>
-  )
-}
+  );
+};
 
-export default Code
+export default Code;
