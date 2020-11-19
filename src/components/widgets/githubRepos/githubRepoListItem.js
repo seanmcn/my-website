@@ -16,7 +16,7 @@ const GithubRepoListItem = ({
     >
       {title}
     </a>
-    {icons.map((icon) => <i className={`fab ${icon}`} key={icon} />)}
+    {icons.map(icon => <i className={`fab ${icon}`} key={icon} />)}
     <p className="description">{description}</p>
   </li>
 );

@@ -5,10 +5,10 @@ import data from './data.json';
 
 const Timeline = () => (
   <div className="timeline is-centered">
-    {data.map((itemYears) => (
+    {data.map(itemYears => (
       <Fragment key={itemYears.year}>
         <TimelineHeader content={itemYears.year} />
-        {itemYears.items.map((item) => (
+        {itemYears.items.map(item => (
           <TimelineItem
             title={item.title}
             content={item.content}

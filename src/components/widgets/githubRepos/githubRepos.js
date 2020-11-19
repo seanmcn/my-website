@@ -9,7 +9,7 @@ const GithubReposWidget = () => (
     title="Github Repos"
     content={(
       <ul className="link-list githubRepos">
-        {StaticData.github_repos.map((data) => (
+        {StaticData.github_repos.map(data => (
           <GithubRepoListItem
             key={data.id}
             id={data.id}

@@ -28,7 +28,7 @@ const CategoriesWidget = () => {
       title="Categories"
       content={(
         <ul className="menu-list categoryList">
-          {categories.map((category) => (
+          {categories.map(category => (
             <li key={category.edges[0].node.frontmatter.category}>
               <Link
                 to={`/blog/categories/${category.edges[0].node.frontmatter.category}`}
