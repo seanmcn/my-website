@@ -76,8 +76,9 @@
   background: rgb(255, 255, 255) none repeat scroll 0% 0%;
   overflow: auto;
   border-radius: 4px;
-  outline: currentcolor none medium;
+  outline: currentColor none medium;
   padding: 20px;
+
   @include touch {
     min-width: 80%;
     max-width: 80%;

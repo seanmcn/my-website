@@ -1,12 +1,12 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
-import Layout from '../components/layout/layout';
-import staticData from '../data/static.json';
-import Sidebar from '../components/layout/sidebar';
+import React from 'react'
+import { graphql } from 'gatsby'
+import Helmet from 'react-helmet'
+import Layout from '../components/layout/layout'
+import staticData from '../data/static.json'
+import Sidebar from '../components/layout/sidebar'
 
 export default class AboutPage extends React.Component {
-  render () {
+  render() {
     const { data } = this.props
     const { title: siteTitle } = data.site.siteMetadata
 
@@ -37,11 +37,11 @@ export default class AboutPage extends React.Component {
 AboutPage.propTypes = {}
 
 export const aboutPageQuery = graphql`
-    query aboutPageQuery {
-        site {
-            siteMetadata {
-                title
-            }
-        }
+  query aboutPageQuery {
+    site {
+      siteMetadata {
+        title
+      }
     }
+  }
 `

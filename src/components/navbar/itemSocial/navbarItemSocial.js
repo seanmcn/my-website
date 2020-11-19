@@ -1,7 +1,7 @@
 import React from 'react'
 import './navbarItemSocial.scss'
 
-const NavbarItemSocial = props => {
+const NavbarItemSocial = (props) => {
   const { link, label, icon } = props
   return (
     <a

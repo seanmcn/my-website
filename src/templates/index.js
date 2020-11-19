@@ -6,12 +6,15 @@ import Layout from '../components/layout/layout'
 import AboutMeWidget from '../components/widgets/aboutMe/aboutMe'
 import LatestPostsWidget from '../components/widgets/latestPosts/latestPosts'
 import GithubReposWidget from '../components/widgets/githubRepos/githubRepos'
-import Timeline from "../components/timeline/timeline";
+import Timeline from '../components/timeline/timeline'
 
 export default class IndexPage extends React.Component {
   render() {
     const { data } = this.props
-    const { title: siteTitle, description: siteDescription } = data.site.siteMetadata
+    const {
+      title: siteTitle,
+      description: siteDescription,
+    } = data.site.siteMetadata
     return (
       <Layout>
         <Helmet>

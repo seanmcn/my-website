@@ -1,6 +1,6 @@
-import React from 'react';
-import { connectStateResults, InfiniteHits } from 'react-instantsearch-dom';
-import SearchResult from './searchResult';
+import React from 'react'
+import { connectStateResults, InfiniteHits } from 'react-instantsearch-dom'
+import SearchResult from './searchResult'
 
 const SearchResults = connectStateResults(({ searchState }) =>
   searchState && searchState.query ? (
@@ -10,6 +10,6 @@ const SearchResults = connectStateResults(({ searchState }) =>
   ) : (
     <div />
   )
-);
+)
 
-export default SearchResults;
+export default SearchResults

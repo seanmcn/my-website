@@ -3,14 +3,7 @@ import { Link } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import './post.scss'
 
-const Post = ({
-  id,
-  slug,
-  title,
-  content,
-  date,
-  tags
-}) => (
+const Post = ({ id, slug, title, content, date, tags }) => (
   <div className="box" key={id}>
     <div>
       <Link className="has-text-primary" to={`/blog/${slug}/`}>
@@ -26,7 +19,7 @@ const Post = ({
           </p>
           {tags && tags.length ? (
             <div className="tags">
-              {tags.map(tag => (
+              {tags.map((tag) => (
                 <span key={`${tag}tag`} className="tag">
                   <Link to={`/blog/tags/${tag}/`}>{tag}</Link>
                 </span>

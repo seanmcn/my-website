@@ -9,7 +9,6 @@ const Sidebar = () => (
   </div>
 )
 
-Sidebar.propTypes = {
-}
+Sidebar.propTypes = {}
 
 export default Sidebar

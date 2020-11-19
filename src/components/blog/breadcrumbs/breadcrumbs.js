@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import './breadcrumbs.scss';
-import { slugToTitle } from '../../../utils/blog';
+import React from 'react'
+import { Link } from 'gatsby'
+import './breadcrumbs.scss'
+import { slugToTitle } from '../../../utils/blog'
 
 const Breadcrumbs = ({ category, tag, title, slug }) => (
   <div>
@@ -13,14 +13,14 @@ const Breadcrumbs = ({ category, tag, title, slug }) => (
         <li key="/blog/">
           <Link to="/blog">Blog</Link>
         </li>
-        {category &&  (
-        <li key={`/blog/categories/${category}`}>
-          <Link to={`/blog/categories/${category}`}>
-            {slugToTitle(category)}
-          </Link>
-        </li>
-        ) }
-        {tag &&  (
+        {category && (
+          <li key={`/blog/categories/${category}`}>
+            <Link to={`/blog/categories/${category}`}>
+              {slugToTitle(category)}
+            </Link>
+          </li>
+        )}
+        {tag && (
           <li key={`/blog/tags/${tag}`}>
             <Link to={`/blog/tags/${tag}`}>
               <i className="fas fa-tag" />
@@ -28,7 +28,7 @@ const Breadcrumbs = ({ category, tag, title, slug }) => (
               {slugToTitle(tag)}
             </Link>
           </li>
-        ) }
+        )}
         {title && (
           <li key={`/blog/${slug}`} className="is-active">
             <Link
@@ -41,6 +41,6 @@ const Breadcrumbs = ({ category, tag, title, slug }) => (
       </ul>
     </nav>
   </div>
-);
+)
 
-export default Breadcrumbs;
+export default Breadcrumbs

@@ -7,9 +7,9 @@ import GithubRepoListItem from './githubRepoListItem'
 const GithubReposWidget = () => (
   <WidgetBox
     title="Github Repos"
-    content={(
+    content={
       <ul className="link-list githubRepos">
-        {StaticData.github_repos.map(data => {
+        {StaticData.github_repos.map((data) => {
           return (
             <GithubRepoListItem
               key={data.id}
@@ -22,7 +22,7 @@ const GithubReposWidget = () => (
           )
         })}
       </ul>
-    )}
+    }
   />
 )
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const SearchButton = ({ openModal }) => (
   <button
@@ -12,6 +12,6 @@ const SearchButton = ({ openModal }) => (
     </span>
     Search
   </button>
-);
+)
 
-export default SearchButton;
+export default SearchButton
