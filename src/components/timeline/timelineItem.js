@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const TimelineItem = ({ title, content, icon }) => (
   <div className="timeline-item">
@@ -11,12 +11,12 @@ const TimelineItem = ({ title, content, icon }) => (
       <p>{content}</p>
     </div>
   </div>
-)
+);
 
 TimelineItem.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
-}
+};
 
-export default TimelineItem
+export default TimelineItem;

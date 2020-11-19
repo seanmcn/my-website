@@ -1,8 +1,8 @@
-import React from 'react'
-import './navbarItemSocial.scss'
+import React from 'react';
+import './navbarItemSocial.scss';
 
 const NavbarItemSocial = (props) => {
-  const { link, label, icon } = props
+  const { link, label, icon } = props;
   return (
     <a
       className="navbar-item"
@@ -15,7 +15,7 @@ const NavbarItemSocial = (props) => {
         <i className={`fab ${icon} fa-2x`} />
       </span>
     </a>
-  )
-}
+  );
+};
 
-export default NavbarItemSocial
+export default NavbarItemSocial;

@@ -1,28 +1,28 @@
-import React from 'react'
-import NavbarItem from './item/navbarItem'
-import NavbarBurger from './burger/navbarBurger'
-import NavbarItemSocial from './itemSocial/navbarItemSocial'
-import NavbarLogo from './logo/navbarLogo'
-import './navbar.scss'
-import Search from '../search/search'
+import React from 'react';
+import NavbarItem from './item/navbarItem';
+import NavbarBurger from './burger/navbarBurger';
+import NavbarItemSocial from './itemSocial/navbarItemSocial';
+import NavbarLogo from './logo/navbarLogo';
+import './navbar.scss';
+import Search from '../search/search';
 
 export default class Navbar extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       activeMenu: false,
-    }
+    };
   }
 
   toggleMenu = () => {
-    const { activeMenu } = this.state
+    const { activeMenu } = this.state;
     this.setState({
       activeMenu: !activeMenu,
-    })
+    });
   }
 
   render() {
-    const { activeMenu } = this.state
+    const { activeMenu } = this.state;
     return (
       <nav
         className="navbar is-fixed-top"
@@ -63,6 +63,6 @@ export default class Navbar extends React.Component {
           </div>
         </div>
       </nav>
-    )
+    );
   }
 }

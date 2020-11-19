@@ -1,9 +1,11 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import './breadcrumbs.scss'
-import { slugToTitle } from '../../../utils/blog'
+import React from 'react';
+import { Link } from 'gatsby';
+import './breadcrumbs.scss';
+import { slugToTitle } from '../../../utils/blog';
 
-const Breadcrumbs = ({ category, tag, title, slug }) => (
+const Breadcrumbs = ({
+  category, tag, title, slug,
+}) => (
   <div>
     <nav
       className="breadcrumb is-small has-succeeds-separator"
@@ -41,6 +43,6 @@ const Breadcrumbs = ({ category, tag, title, slug }) => (
       </ul>
     </nav>
   </div>
-)
+);
 
-export default Breadcrumbs
+export default Breadcrumbs;

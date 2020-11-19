@@ -1,20 +1,20 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import { graphql } from 'gatsby'
-import Layout from '../components/layout/layout'
-import PostList from '../components/blog/postList/postList'
-import Pagination from '../components/blog/pagination'
-import Sidebar from '../components/blog/sidebar'
-import { slugToTitle } from '../utils/blog'
-import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs'
+import React from 'react';
+import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
+import Layout from '../components/layout/layout';
+import PostList from '../components/blog/postList/postList';
+import Pagination from '../components/blog/pagination';
+import Sidebar from '../components/blog/sidebar';
+import { slugToTitle } from '../utils/blog';
+import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs';
 
 const Category = (props) => {
-  const { data, pageContext } = props
-  const { edges: posts } = data.allMdx
-  const { title: siteTitle } = data.site.siteMetadata
-  const { name: category } = pageContext
-  const displayCategory = slugToTitle(category)
-  const title = `Posts in category "${displayCategory}"`
+  const { data, pageContext } = props;
+  const { edges: posts } = data.allMdx;
+  const { title: siteTitle } = data.site.siteMetadata;
+  const { name: category } = pageContext;
+  const displayCategory = slugToTitle(category);
+  const title = `Posts in category "${displayCategory}"`;
 
   return (
     <Layout>
@@ -32,10 +32,10 @@ const Category = (props) => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Category
+export default Category;
 
 export const pageQuery = graphql`
   query CategoryPage($slug: String!) {
@@ -55,4 +55,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

@@ -1,8 +1,8 @@
-import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
-import PostListItem from '../../blog/postList/postListItem'
-import WidgetBox from '../widgetBox'
-import './latestPostsList.scss'
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import PostListItem from '../../blog/postList/postListItem';
+import WidgetBox from '../widgetBox';
+import './latestPostsList.scss';
 
 const LatestPostsWidget = () => {
   const data = useStaticQuery(graphql`
@@ -19,12 +19,12 @@ const LatestPostsWidget = () => {
         }
       }
     }
-  `)
-  const { edges: posts } = data.allMdx
+  `);
+  const { edges: posts } = data.allMdx;
   return (
     <WidgetBox
       title="Latest Posts"
-      content={
+      content={(
         <ul className="link-list latestPostsList">
           {posts.map(({ node: post }) => (
             <PostListItem
@@ -35,9 +35,9 @@ const LatestPostsWidget = () => {
             />
           ))}
         </ul>
-      }
+      )}
     />
-  )
-}
+  );
+};
 
-export default LatestPostsWidget
+export default LatestPostsWidget;
