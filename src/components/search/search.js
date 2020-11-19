@@ -4,7 +4,8 @@ import SearchButton from './searchButton';
 import SearchModal from './searchModal';
 import './search.scss';
 
-export default function Search () {
+const Search = props => {
+  const { toggleMenu, activeMenu } = props;
   const searchClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID,
     process.env.GATSBY_ALGOLIA_SEARCH_KEY
@@ -13,6 +14,9 @@ export default function Search () {
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
   function openModal () {
+    if(activeMenu) {
+      toggleMenu();
+    }
     setModalIsOpen(true);
   }
 
@@ -32,3 +36,5 @@ export default function Search () {
 
   ) : null;
 }
+
+export default Search;

@@ -32,11 +32,9 @@ export default class Navbar extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <NavbarLogo />
-
             <NavbarBurger active={activeMenu} toggleMenu={this.toggleMenu} />
           </div>
-
-          <div className={`navbar-menu ${activeMenu ? 'is-active' : ''}`}>
+          <div className={`navbar-menu  ${activeMenu ? 'is-active' : ''}`}>
             <div className="navbar-start">
               <NavbarItem link="/" label="Home" />
               <NavbarItem link="/blog" label="Blog" />
@@ -60,8 +58,8 @@ export default class Navbar extends React.Component {
                 label="Goodreads Profile"
                 icon="fa-goodreads"
               />
-              <Search />
             </div>
+            <Search toggleMenu={this.toggleMenu} activeMenu={activeMenu} />
           </div>
         </div>
       </nav>
