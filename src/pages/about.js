@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import Layout from '../components/layout/layout';
 import staticData from '../data/static.json';
-import Sidebar from '../components/layout/sidebar';
+import Sidebar from '../components/sidebar/sidebar';
 
 export default class AboutPage extends React.Component {
   render() {
