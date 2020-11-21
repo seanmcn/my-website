@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/layout/layout';
-import Sidebar from '../components/layout/sidebar';
+import Sidebar from '../components/sidebar/sidebar';
 import NotFoundImage from '../assets/images/404.png';
 
 const NotFoundPage = () => (
