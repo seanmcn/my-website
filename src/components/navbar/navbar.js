@@ -26,15 +26,17 @@ export default class Navbar extends React.Component {
     return (
       <nav
         className="navbar is-fixed-top"
-        role="navigation"
-        aria-label="main navigation"
       >
         <div className="container">
           <div className="navbar-brand">
             <NavbarLogo />
             <NavbarBurger active={activeMenu} toggleMenu={this.toggleMenu} />
           </div>
-          <div className={`navbar-menu  ${activeMenu ? 'is-active' : ''}`}>
+          <div
+            className={`navbar-menu  ${activeMenu ? 'is-active' : ''}`}
+            role="navigation"
+            aria-label="navigation"
+          >
             <div className="navbar-start">
               <NavbarItem link="/" label="Home" />
               <NavbarItem link="/blog" label="Blog" />

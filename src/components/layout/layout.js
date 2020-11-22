@@ -18,7 +18,7 @@ const Layout = ({ children }) => (
       <html lang="en" />
     </Helmet>
     <Navbar />
-    <section className="section" id="mainSection">
+    <section className="section" id="mainSection" role="main">
       <div className="container">{children}</div>
     </section>
   </div>
