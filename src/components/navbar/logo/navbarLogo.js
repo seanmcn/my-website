@@ -12,7 +12,7 @@ const NavbarLogo = () => {
 
   return (
     <Link to="/" className="navbar-item" aria-label="Homepage">
-      <img src={emoji} alt="Sean McNamara" className="emjoiLogo" />
+      <img src={emoji} alt="Emoji of Sean (varies between waving, thumbs up, cheering and having a beer)" className="emjoiLogo" />
       <h1 className="logoText">Sean McNamara</h1>
     </Link>
   );
