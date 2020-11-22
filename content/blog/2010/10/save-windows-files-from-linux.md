@@ -11,7 +11,7 @@ Often you get a friend or other times a client who has gotten themselves locked 
 
 When this is the case there isn’t much you can do in terms of anti-virus scans etc. your only option is to wipe the machine and go for a clean re-install of Windows.
 
-### But what about all my files?
+## But what about all my files?
 Well we backup all of those files onto an external hard drive before wiping by loading up a “Live CD” of Ubuntu, simply navigating to the computers hard drive,  selecting what we need and loading it onto the external hard drive.
 
 The beauty of a “Live CD” is that the entire operating system runs of the CD (believe me you’ll hear it spinning around the place) so the virus has no chance to load since Windows never gets booted.

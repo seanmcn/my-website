@@ -9,7 +9,7 @@ keywords: ['ireland', 'blogging', 'history']
 
 I was interested to see what web hosts are hosting Irish blogs in 2009, so here are the stats.
 
-### Stats
+## Stats
 - [BLACKNIGHT](http://www.blacknight.ie) - 46 Irish Blogs Hosted
 - [GOOGLE/ BLOGGER](http://www.blogger.com) - 30 Irish Blogs Hosted
 - [HOSTING365](http://hosting365.com) - 11 Irish Blogs Hosted
@@ -24,5 +24,5 @@ I was interested to see what web hosts are hosting Irish blogs in 2009, so here 
 - [BLUEHOST](http://bluehost.com) - 2 Irish Blogs Hosted
 - [SERVAGE](http://servage.net) - 2 Irish Blogs Hosted
 
-### Pie Chart
+## Pie Chart
 ![blog-hosts.png](images/blog-hosts.png)

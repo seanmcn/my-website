@@ -21,7 +21,7 @@ I love my new job, I don't think I would go back to owning my own company anytim
 
 I can't see myself returning to Ireland if I can work out staying here. Canada is an amazing country and Vancouver is just such a beautiful city.. So much is better here, its hard to even put into words, I'll try over a series of articles! 😛
 
-### What are my future plans?
+## What are my future plans?
 
 - **Create a game using Unity**
   - Anyone who knows me knows I've always wanted to create a game, that's what originally got me into programming. I've tipped my toes into a few games along my way, but I've never actually created my own game and had complete creative control. That's the next plan. I'm going to create a 2D game over the coming months and document my progress here along the way.

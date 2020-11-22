@@ -8,7 +8,7 @@ keywords: ['dropdown', 'input', 'js']
 ---
 I thought I’d share this, maybe it’ll help somebody else. Basically this will take the value of the drop down (select) and `show()` that many input fields.
 
-### Javascript
+## Javascript
 ```js
  $(document).ready(function(){
 	    $("select[name=example]").change(function () {
@@ -24,7 +24,7 @@ I thought I’d share this, maybe it’ll help somebody else. Basically this wil
 	 
 });
 ```
-### HTML/CSS
+## HTML/CSS
 ```html
 <style>
 .hidden_input{

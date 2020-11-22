@@ -8,7 +8,7 @@ keywords: ['updates', 'ci', 'testing', 'tests']
 ---
 I’ve been at Kobas two years now, I previously wrote about [my experiences in my first month](/blog/2016/07/first-month-at-kobas) , so it seemed fitting to do an overview of my experiences since then surrounding the software we use for DevOps.
 
-### Jenkins & Continuous Delivery
+## Jenkins & Continuous Delivery
 ![Jenkins Image](images/jenkins.png)
 At Kobas we use continuous delivery rather than continuous deployment, tool of choice; old man [Jenkins](https://www.jenkins.io/) .
 
@@ -18,7 +18,7 @@ Having the ability to rollback to a previous git tag when a bug has been introdu
 
 We keep our Jenkins configuration backed up in Git as the thought of losing all the work put into Jenkins and having to start again is nightmare inducing.
 
-### Codeception & Jenkins
+## Codeception & Jenkins
 My latest win, and one that took the longest to achieve was having Codeception and Jenkins play nicely together for automated testing.
 
 The initial part of that went fine, just getting Codeception to run automatically via the Jenkins build process. But then I decided I wanted metrics like code coverage, the ability to run acceptance tests via Selenium & being able to reset our testing database before each test runs.
@@ -37,7 +37,7 @@ You also get a dashboard for coverage distribution and showing you the files wit
 
 Perhaps later I’ll do a blog post on how to set this up on an open source project and will link to it from here. (Making plans for 2020 already)
 
-### Puppet & Server Config
+## Puppet & Server Config
  Controlling configuration manually might seem okay when you only have a handful of servers, I certainly manage my personal servers manually still.
 
 At Kobas we have two types of servers, our ‘Cloud’ servers (hosted by AWS) and our ‘EPoS’ servers (hosted by our clients on-site). Currently, we have 4-5 AWS servers, and 170+ EPoS servers. Managing configuration change across the EPoS servers would be impossible without Puppet.

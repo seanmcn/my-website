@@ -7,7 +7,7 @@ tags: ['linux', 'commands', 'screen']
 keywords: ['bash', 'command', 'sudo', 'history']
 ---
 So this is just going to be a bit of knowledge dump of things I’ve picked up lately / don’t want to forget.
-### Bang Cash !$
+## Bang Cash !$
 If you are intending on running a few commands with the last argument of the command being the same this can be really helpful. For example:
 ```bash
 ping 127.0.0.1
@@ -16,10 +16,10 @@ traceroute !$
 ```
 Alternatively you can also do `!*` to use all the arguments of the previous command.
 
-### sudo !!
+## sudo !!
 This one is pretty simple `sudo !!` takes the last command and re-runs with sudo.
 
-### Screen
+## Screen
 `screen` is a great feature that allows you to do any of the following;
 – Use multiple shells in a single SSH session.
 – Run a long running process without maintaining an active shell or worrying about network disruptions.
@@ -58,7 +58,7 @@ This will detach your window and return you to your bash shell.
 `screen -r`
 If you have multiple screens, this will display a list of them and you will have to use the name of the screen as a third parameter to reattach to it.
 
-### Searching through previous commands
+## Searching through previous commands
 So as you may know you can use Control + R on Linux to search through previous commands you’ve entered in the terminal. You can with a few modifications of your `~/.profile` or `~/.bash_profile` improve what is stored in the `~/.bash_history file`, making this feature even more useful for remembering previous commands.
 
 **Ignore certain commands:**
