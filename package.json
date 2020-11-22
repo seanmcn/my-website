@@ -1,7 +1,7 @@
 {
     "name": "seanmcn-web-frontend",
     "description": "Frontend for seanmcn.com",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "author": "Sean McNamara",
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.12.0",
@@ -52,15 +52,22 @@
     "scripts": {
         "start": "npm run develop",
         "clean": "rimraf .cache public",
+        "cy:open": "cypress open",
+        "cy:run": "cypress run",
         "build": "npm run clean && gatsby build",
         "develop": "npm run clean && gatsby develop",
         "serve": "gatsby serve",
         "formatz": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js,src/**/*.scss}\"",
         "format": "eslint src --fix",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "test:e2e": "start-server-and-test develop http://localhost:8000 cy:open"
     },
     "devDependencies": {
+        "@testing-library/cypress": "^7.0.1",
+        "axe-core": "^4.1.1",
         "babel-eslint": "^10.1.0",
+        "cypress": "^5.6.0",
+        "cypress-axe": "^0.11.0",
         "eslint": "^7.13.0",
         "eslint-config-airbnb": "^18.2.1",
         "eslint-plugin-import": "^2.22.1",
@@ -68,6 +75,7 @@
         "eslint-plugin-react": "^7.21.5",
         "eslint-plugin-react-hooks": "^4.2.0",
         "rimraf": "^3.0.0",
+        "start-server-and-test": "^1.11.6",
         "stylelint": "^13.7.2",
         "stylelint-config-standard": "^20.0.0",
         "stylelint-scss": "^3.18.0"
