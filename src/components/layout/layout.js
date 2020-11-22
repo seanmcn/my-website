@@ -14,6 +14,9 @@ const Layout = ({ children }) => (
         class: 'has-navbar-fixed-top',
       }}
     />
+    <Helmet>
+      <html lang="en" />
+    </Helmet>
     <Navbar />
     <section className="section" id="mainSection">
       <div className="container">{children}</div>
