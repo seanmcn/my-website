@@ -1,7 +1,8 @@
 {
     "baseUrl": "http://localhost:8000/",
-    "viewportWidth": 1200,
-    "viewportHeight": 660,
     "fixturesFolder": false,
-    "pluginsFile" : false
+    "pluginsFile" : false,
+    "projectId": "m1uz2r",
+    "viewportWidth": 1200,
+    "viewportHeight": 660
 }
