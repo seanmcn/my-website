@@ -17,3 +17,20 @@ span.number {
   border-radius: unset;
   display: revert;
 }
+
+// Overriding for accessibility
+code {
+  color: #d42b3b !important;
+}
+
+.token.function {
+  color: #d42b3b !important;
+}
+
+.token.boolean {
+  color: #297a78 !important;
+}
+
+.token.number {
+  color: #297a78 !important;
+}
