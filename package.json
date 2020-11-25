@@ -51,7 +51,7 @@
     "main": "n/a",
     "scripts": {
         "start": "npm run develop",
-        "start:ci": "gatsby build && gatsby serve",
+        "start:ci": "start-server-and-test start http://localhost:3030 cy:run",
         "clean": "rimraf .cache public",
         "cy:open": "cypress open",
         "cy:run": "cypress run",
