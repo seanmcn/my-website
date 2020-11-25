@@ -51,7 +51,7 @@
     "main": "n/a",
     "scripts": {
         "start": "npm run develop",
-        "start:ci": "serve",
+        "start:ci": "npm run serve",
         "clean": "rimraf .cache public",
         "cy:open": "cypress open",
         "cy:run": "cypress run",
