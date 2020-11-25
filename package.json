@@ -51,7 +51,7 @@
     "main": "n/a",
     "scripts": {
         "start": "npm run develop",
-        "start:ci": "start-server-and-test start http://localhost:3030 cy:run",
+        "start:ci": "start-server-and-test serve http://localhost:8000 cy:run --record",
         "clean": "rimraf .cache public",
         "cy:open": "cypress open",
         "cy:run": "cypress run",
