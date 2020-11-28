@@ -51,10 +51,11 @@
     "main": "n/a",
     "scripts": {
         "start": "npm run develop",
-        "start:ci": "start-server-and-test serve http://localhost:8000 cy:run --record",
+        "start:ci": "start-server-and-test serve http://localhost:9000 cy:run_record",
         "clean": "rimraf .cache public",
         "cy:open": "cypress open",
         "cy:run": "cypress run",
+        "cy:run_record": "cypress run --record",
         "build": "npm run clean && gatsby build",
         "develop": "npm run clean && gatsby develop",
         "serve": "gatsby serve",
