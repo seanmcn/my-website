@@ -26,7 +26,7 @@ test:
                 - 'yarn start & yarn wait-on http://localhost:8000'
         test:
             commands:
-                - 'yarn cypress run --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
+                - 'yarn cypress run --record --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
         postTest:
             commands:
                 - yarn mochawesome-merge cypress/report/mochawesome-report/mochawesome*.json > cypress/report/mochawesome.json
