@@ -54,13 +54,11 @@
         "clean": "rimraf .cache public",
         "cy:open": "cypress open",
         "cy:run": "cypress run",
-        "cy:run_record": "cypress run --record",
         "develop": "npm run clean && gatsby develop",
         "format": "eslint src --fix",
         "serve": "gatsby serve",
         "start": "npm run develop",
-        "start:ci": "start-server-and-test serve http://localhost:9000 cy:run_record",
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "echo \"Error: no tests setup yet!\" && exit 1",
         "test:e2e": "start-server-and-test develop http://localhost:8000 cy:open"
     },
     "devDependencies": {
