@@ -20,16 +20,16 @@ test:
     phases:
         preTest:
             commands:
-                - npm ci
-                - npm install wait-on
-                - npm install mocha@5.2.0 mochawesome mochawesome-merge mochawesome-report-generator
-                - 'npm start & npx wait-on http://localhost:8000'
+                - rm -rf node_modules && yarn install --frozen-lockfile
+                - yarn install wait-on
+                - yarn install mocha@5.2.0 mochawesome mochawesome-merge mochawesome-report-generator
+                - 'yarn start & yarn wait-on http://localhost:8000'
         test:
             commands:
-                - 'npx cypress run --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
+                - 'yarn cypress run --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
         postTest:
             commands:
-                - npx mochawesome-merge cypress/report/mochawesome-report/mochawesome*.json > cypress/report/mochawesome.json
+                - yarn mochawesome-merge cypress/report/mochawesome-report/mochawesome*.json > cypress/report/mochawesome.json
     artifacts:
         baseDirectory: cypress
         configFilePath: '**/mochawesome.json'
