@@ -6,7 +6,7 @@ import Navbar from '../navbar/navbar';
 import '../../assets/styles/main.scss';
 import './layout.scss';
 
-const TemplateWrapper = ({ children }) => (
+const Layout = ({ children }) => (
   <div>
     <Helmet title="Home | Sean McNamara" />
     <Helmet
@@ -14,11 +14,14 @@ const TemplateWrapper = ({ children }) => (
         class: 'has-navbar-fixed-top',
       }}
     />
+    <Helmet>
+      <html lang="en" />
+    </Helmet>
     <Navbar />
-    <section className="section" id="mainSection">
+    <section className="section" id="mainSection" role="main">
       <div className="container">{children}</div>
     </section>
   </div>
 );
 
-export default TemplateWrapper;
+export default Layout;

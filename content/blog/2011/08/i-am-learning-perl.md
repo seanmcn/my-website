@@ -20,12 +20,12 @@ Perl is an Interpreted language, so you don’t have to compile it like you do J
 
 > Perl has been successfully used for a lot of diverse tasks: text processing, system administration, web programming, web automation, GUI programming, games programming, code generation, bio-informatics and genealogical research, lingual and etymological research, number crunching, and testing and quality assurance.
 
-### Perl Pros
+## Perl Pros
 - Cross Platform compatibility. A perl script for linux/unix will work just as well in windows and vice versa, and the only exceptions to that rule are those dictated by the operating system itself. (for example file paths are different in windows and unix.)
 - Online support. Perl has been around since the early 90’s, its exceptionally well known and thousands of tutorial and help sites abound on the internet.
 - CPAN.org, a massive collection of perl modules that can do almost anything, someone has usually done the work for you.
 - Taint mode, this helps you to write secure code by not trusting any data provided by the users until you have tested and declared it safe.
 
-### Perl Cons
+## Perl Cons
 - Speed. Apparently with a very large program (Like word or something) the sheer size of it would make it extremely slow to compile at runtime.. This is the only Con I’ve found about Perl!
 

@@ -5,7 +5,7 @@ import {
   LiveProvider, LiveEditor, LiveError, LivePreview,
 } from 'react-live';
 import codeTheme from 'prism-react-renderer/themes/github';
-import '../assets/styles/code.scss';
+import '../../assets/styles/code.scss';
 
 export const Code = ({ codeString, language, ...props }) => {
   // eslint-disable-next-line react/destructuring-assignment
