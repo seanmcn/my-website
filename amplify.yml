@@ -20,10 +20,9 @@ test:
     phases:
         preTest:
             commands:
-                - yarn install --frozen-lockfile
                 - yarn add wait-on
                 - yarn add mocha@5.2.0 mochawesome mochawesome-merge mochawesome-report-generator
-                - 'yarn start & yarn wait-on http://localhost:8000'
+                - 'gatsby serve -p 8000 & yarn wait-on http://localhost:8000'
         test:
             commands:
                 - 'yarn cypress run --record --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
