@@ -36,7 +36,6 @@ class SearchInput extends Component {
         placeholder="Enter search term here"
         autoComplete="off"
         autoCorrect="off"
-        autoFocus
         autoCapitalize="off"
         spellCheck="false"
         maxLength="512"
