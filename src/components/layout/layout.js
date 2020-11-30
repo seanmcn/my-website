@@ -16,6 +16,7 @@ const Layout = ({ children }) => (
     />
     <Helmet>
       <html lang="en" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     </Helmet>
     <Navbar />
     <section className="section" id="mainSection" role="main">
