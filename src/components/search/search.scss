@@ -66,14 +66,15 @@
 }
 
 .searchModal {
-  inset: 10% auto auto 50%;
-  margin-right: -50%;
-  transform: translate(-50%);
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   min-width: 50%;
   max-width: 50%;
-  position: absolute;
   border: 1px solid rgb(204, 204, 204);
-  background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+  background: rgb(255, 255, 255) none repeat scroll 0 0;
   overflow: auto;
   border-radius: 4px;
   outline: currentColor none medium;
