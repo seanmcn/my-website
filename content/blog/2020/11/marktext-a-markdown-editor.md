@@ -6,7 +6,7 @@ category: "software"
 tags: ["markdown", "windows", "osx", "open-source"]
 keywords: ["markdown", "software"]
 ---
-After switching over my blog to Gatsby and using markdown, I have been on the lookout for a decent markdown editor to use for writing. Up until now, I have been using a combination of [Dillinger.io](https://dillinger.io/) and [Markdown Navigator Enhanced](https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced)  in [PHPStorm](https://www.jetbrains.com/phpstorm/).
+After switching over my blog to Gatsby and using markdown, I have been on the lookout for a decent markdown editor to use for writing. Up until now, I have been using a combination of [Dillinger.io](https://dillinger.io/) and [Markdown Navigator Enhanced](https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced) in [PHPStorm](https://www.jetbrains.com/phpstorm/).
 
 I switch between a windows desktop computer and a MacBook throughout the day, so having the same software on both platforms was vital to me. I also wanted something open-source, as I'm trying to focus on making more open-source contributions.
 
