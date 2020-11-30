@@ -1,5 +1,6 @@
 import React from 'react';
 import algoliasearch from 'algoliasearch/lite';
+import { Helmet } from 'react-helmet';
 import SearchButton from './searchButton';
 import SearchModal from './searchModal';
 import './search.scss';
@@ -32,6 +33,8 @@ const Search = (props) => {
         closeModal={closeModal}
         searchClient={searchClient}
       />
+      {modalIsOpen
+      && (<Helmet htmlAttributes={{ class: 'no-html-scroll' }} />)}
     </>
   ) : null;
 };
