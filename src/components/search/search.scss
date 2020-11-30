@@ -10,6 +10,10 @@
 .ais-InfiniteHits-list {
   overflow-y: auto;
   padding: 1em 0;
+
+  @include touch {
+    max-height: 27em;
+  }
 }
 
 .ais-InfiniteHits-item {
