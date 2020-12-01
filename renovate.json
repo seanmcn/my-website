@@ -1,10 +1,13 @@
 {
-  "extends": [
-    "config:base"
-  ],
-  "rangeStrategy": "replace",
-  "lockFileMaintenance": {
-    "enabled": true,
-    "extends": "schedule:weekly"
-  }
+    "baseBranches": [
+        "develop"
+    ],
+    "extends": [
+        "config:base"
+    ],
+    "rangeStrategy": "replace",
+    "lockFileMaintenance": {
+        "enabled": true,
+        "extends": "schedule:weekly"
+    }
 }
