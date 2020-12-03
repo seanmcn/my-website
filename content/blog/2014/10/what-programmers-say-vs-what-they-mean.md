@@ -2,7 +2,7 @@
 title: "What Programmers say vs What they mean"
 date: '2014-10-31T01:39:03.284Z'
 slug: '2014/10/what-programmers-say-vs-what-they-mean'
-category: 'funny'
+category: 'memes'
 tags: ['funny', 'programming']
 keywords: ['programmers', 'comic']
 ---
