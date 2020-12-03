@@ -2,7 +2,7 @@
 title: "DevOps at Kobas"
 date: '2018-09-23T17:39:03.284Z'
 slug: '2018/09/devops-at-kobas'
-category: 'work'
+category: 'programming'
 tags: ['work', 'kobas', 'devops', 'jenkins', 'puppet', 'codeception']
 keywords: ['updates', 'ci', 'testing', 'tests']
 ---

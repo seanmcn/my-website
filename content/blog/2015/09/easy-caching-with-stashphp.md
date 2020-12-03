@@ -2,7 +2,7 @@
 title: "Easy Caching with StashPHP"
 date: '2015-09-08T00:39:03.284Z'
 slug: '2015/09/stash-php'
-category: 'php'
+category: 'programming'
 tags: ['programming', 'php', 'caching']
 keywords: ['cache', 'stash', 'apc', 'redis', 'guide']
 ---
