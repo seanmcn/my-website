@@ -2,7 +2,7 @@
 title: "Cross Browser .PNGs"
 date: '2010-12-24T20:39:03.284Z'
 slug: '2010/12/food-for-thought-cross-browser-pngs'
-category: 'funny'
+category: 'memes'
 tags: ['funny', 'comic', 'browsers']
 keywords: ['png', 'cross', 'browser']
 ---

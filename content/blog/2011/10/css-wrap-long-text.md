@@ -2,7 +2,7 @@
 title: "CSS Code for Wrapping Long URLs and Text"
 date: '2011-10-04T20:39:03.284Z'
 slug: '2011/10/css-code-for-wrapping-long-urls-and-text'
-category: 'css'
+category: 'programming'
 tags: ['css', 'web-design']
 keywords: ['break', 'word', 'white', 'space']
 ---

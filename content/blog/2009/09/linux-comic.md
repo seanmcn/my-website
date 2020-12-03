@@ -2,7 +2,7 @@
 title: "Linux Comic"
 date: '2009-09-15T07:39:03.284Z'
 slug: '2009/09/linux-comic'
-category: 'funny'
+category: 'memes'
 tags: ['comic', 'funny', 'linux']
 keywords: ['mac', 'windows']
 ---

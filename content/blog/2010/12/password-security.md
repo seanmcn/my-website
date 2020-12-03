@@ -2,7 +2,7 @@
 title: "Password Security"
 date: '2010-12-24T19:39:03.284Z'
 slug: '2010/12/food-for-thought-password-security'
-category: 'funny'
+category: 'memes'
 tags: ['funny', 'comic', 'security']
 keywords: ['password', 'reuse', 'xkcd']
 ---
