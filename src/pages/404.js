@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/layout/layout';
 import Sidebar from '../components/sidebar/sidebar';
-import NotFoundImage from '../assets/images/404.png';
+import NotFoundImage from '../assets/images/emojis/250/confused.png';
 
 const NotFoundPage = () => (
   <Layout>
@@ -14,7 +14,7 @@ const NotFoundPage = () => (
               You just hit a route that doesn&#39;t exist... the sadness.
             </strong>
           </p>
-          <img src={NotFoundImage} alt="404" />
+          <img src={NotFoundImage} alt="Sean confused" />
         </div>
       </div>
       <div className="column is-one-quarter">
