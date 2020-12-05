@@ -14,7 +14,7 @@ const NotFoundPage = () => (
               You just hit a route that doesn&#39;t exist... the sadness.
             </strong>
           </p>
-          <img src={NotFoundImage} alt="Image of Sean confused" />
+          <img src={NotFoundImage} alt="Sean confused" />
         </div>
       </div>
       <div className="column is-one-quarter">
