@@ -2,19 +2,27 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const { paginate } = require('gatsby-awesome-pagination');
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async function ({ actions, graphql }) {
   const { createPage } = actions;
+  const itemsPerPage = 5;
 
+  /**
+   * Homepage
+   * */
   const indexTemplate = path.resolve('./src/templates/index.js');
   createPage({
     path: '/',
     component: indexTemplate,
   });
-  return graphql(
+
+  /**
+   * Blog
+   * */
+  const blogPosts = await graphql(
     `
-      {
+     {
         allMdx(
-          sort: { fields: [frontmatter___date], order: DESC }
+          sort: { fields: [frontmatter___date], order: DESC } 
           limit: 1000
         ) {
           edges {
@@ -29,104 +37,154 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-    `,
-  )
-    .then((result) => {
-      if (result.errors) {
-        throw result.errors;
-      }
+        `,
+  );
 
-      // Create blog posts pages.
-      const posts = result.data.allMdx.edges;
+  const posts = blogPosts.data.allMdx.edges;
+  const postTemplate = path.resolve('./src/templates/post.js');
+  const blogPostPromises = posts.map(async (edge, index) => {
+    const previous = index === posts.length - 1 ? null : posts[index
+    + 1].node;
+    const next = index === 0 ? null : posts[index - 1].node;
+    createPage({
+      path: `/blog/${edge.node.frontmatter.slug}/`,
+      component: postTemplate,
+      context: {
+        slug: edge.node.frontmatter.slug,
+        previous,
+        next,
+      },
+    });
+  });
 
-      const postTemplate = path.resolve('./src/templates/post.js');
-      const blogTemplate = path.resolve('./src/templates/blog.js');
+  await Promise.all(blogPostPromises);
 
-      posts.forEach((post, index) => {
-        const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-        const next = index === 0 ? null : posts[index - 1].node;
+  // Create a paginated blog, e.g., /, /page/2, /page/3
+  const blogTemplate = path.resolve('./src/templates/blog.js');
+  paginate({
+    createPage,
+    items: posts,
+    itemsPerPage,
+    pathPrefix: ({ pageNumber }) => (pageNumber === 0
+      ? '/blog'
+      : '/blog/page'),
+    component: blogTemplate,
+    context: {
+      paginate_link: '/blog',
+    },
+  });
 
-        createPage({
-          path: `/blog/${post.node.frontmatter.slug}/`,
-          component: postTemplate,
-          context: {
-            slug: post.node.frontmatter.slug,
-            previous,
-            next,
-          },
-        });
-      });
-
-      // Create a paginated blog, e.g., /, /page/2, /page/3
-      paginate({
-        createPage,
-        items: posts,
-        itemsPerPage: 10,
-        pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? '/blog' : '/blog/page'),
-        component: blogTemplate,
-      });
-    })
-    .then(() => graphql(
-      `
+  /**
+   * Tag pages + pagination
+  * */
+  const distinctTags = await graphql(
+    `
           {
             allMdx {
               distinct(field: frontmatter___tags)
             }
           }
         `,
-    ))
-    .then((result) => {
-      if (result.errors) {
-        throw result.errors;
-      }
-
-      const tagsTemplate = path.resolve('./src/templates/tag.js');
-
-      // Create blog tag pages.
-      const tags = result.data.allMdx.distinct;
-
-      tags.forEach((tag) => {
-        // Todo Enter/Update graphQL
-        createPage({
-          path: `/blog/tags/${tag}/`,
-          component: tagsTemplate,
-          context: {
-            name: tag,
-            slug: tag.toLowerCase(),
-          },
-        });
-      });
-    })
-    .then(() => graphql(
+  );
+  const tagList = distinctTags.data.allMdx.distinct;
+  const tagsTemplate = path.resolve('./src/templates/tag.js');
+  const tagPromises = tagList.map(async (tag) => {
+    await graphql(
       `
+        {
+          allMdx(filter: {frontmatter: {tags: {in: "${tag}"}}}) {
+            edges {
+              node {
+                id
+                frontmatter {
+                  title
+                  slug
+                }
+                body
+              }
+            }
+          }
+        }
+        `,
+    ).then((tagPosts) => {
+      if (tagPosts.errors) {
+        throw tagPosts.errors;
+      }
+      const tagLower = tag.toLowerCase();
+      paginate({
+        createPage,
+        items: tagPosts.data.allMdx.edges,
+        itemsPerPage,
+        pathPrefix: ({ pageNumber }) => (pageNumber === 0
+          ? `/blog/tags/${tagLower}`
+          : `/blog/tags/${tagLower}/page`),
+        component: tagsTemplate,
+        context: {
+          name: tag,
+          slug: tagLower,
+          paginate_link: `/blog/tags/${tagLower}`,
+        },
+      });
+    });
+  });
+
+  await Promise.all(tagPromises);
+
+  /**
+   * Category pages + pagination
+   * */
+  const distinctCategories = await graphql(
+    `
           {
             allMdx {
               distinct(field: frontmatter___category)
             }
           }
         `,
-    ))
-    .then((result) => {
-      if (result.errors) {
-        throw result.errors;
+  );
+
+  const categoryList = distinctCategories.data.allMdx.distinct;
+  const categoriesTemplate = path.resolve('./src/templates/category.js');
+  const categoryPromises = categoryList.map(async (category) => {
+    await graphql(
+      `
+        {
+          allMdx(filter: {frontmatter: {category: {eq: "${category}"}}}) {
+            edges {
+              node {
+                id
+                frontmatter {
+                  title
+                  slug
+                }
+                body
+              }
+            }
+          }
+        }
+        `,
+    ).then((categoryPosts) => {
+      if (categoryPosts.errors) {
+        throw categoryPosts.errors;
       }
-
-      const categoriesTemplate = path.resolve('./src/templates/category.js');
-
-      // Create blog category pages.
-      const categories = result.data.allMdx.distinct;
-
-      categories.forEach((category) => {
-        createPage({
-          path: `/blog/categories/${category}/`,
-          component: categoriesTemplate,
-          context: {
-            name: category,
-            slug: category,
-          },
-        });
+      paginate({
+        createPage,
+        items: categoryPosts.data.allMdx.edges,
+        itemsPerPage,
+        pathPrefix: ({ pageNumber }) => (pageNumber === 0
+          ? `/blog/categories/${category}`
+          : `/blog/categories/${category}/page`),
+        component: categoriesTemplate,
+        context: {
+          name: category,
+          slug: category,
+          paginate_link: `/blog/categories/${category}`,
+        },
       });
     });
+  });
+
+  await Promise.all(categoryPromises);
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

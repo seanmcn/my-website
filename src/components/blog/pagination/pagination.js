@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import './pagination.scss';
 
 const Pagination = ({ pageContext }) => {
   const { previousPagePath, nextPagePath } = pageContext;
+  const defaultLink = pageContext.paginate_link;
+  const pageLink = `${defaultLink}/page`;
 
   // A sweet helper function to create pagination object
   const createPaginationObjects = (length, page, increment = 2) => Array
     .from({ length }, (_, i) => ({
-      link: `/blog/page/${i + increment}/`,
+      link: `${pageLink}/${i + increment}/`,
       index: i + increment,
       current: page === i + increment,
     }));
@@ -16,13 +19,13 @@ const Pagination = ({ pageContext }) => {
   const page = pageContext.humanPageNumber;
   let navItems = [
     {
-      link: '/blog/',
+      link: defaultLink,
       index: 1,
-      current: pages === 1,
+      current: page === 1,
     },
   ];
 
-  if (typeof pages === 'undefined') {
+  if (typeof pages === 'undefined' || pages === 1) {
     return '';
   }
 
@@ -30,7 +33,7 @@ const Pagination = ({ pageContext }) => {
     navItems = [
       ...navItems,
       ...Array.from({ length: pages - 1 }, (_, i) => ({
-        link: `/blog/page/${i + 2}/`,
+        link: `${pageLink}/${i + 2}/`,
         index: i + 2,
         current: page === i + 2,
       })),
@@ -50,7 +53,7 @@ const Pagination = ({ pageContext }) => {
           index: 'starter-separator',
         },
         {
-          link: `/blog/page/${pages}/`,
+          link: `${pageLink}/${pages}/`,
           index: pages,
           current: false,
         },
@@ -78,7 +81,7 @@ const Pagination = ({ pageContext }) => {
           index: 'finisher-separator',
         },
         {
-          link: `/blog/page/${pages}/`,
+          link: `${pageLink}/${pages}/`,
           index: pages,
           current: false,
         },
@@ -87,7 +90,6 @@ const Pagination = ({ pageContext }) => {
   }
   return (
     <section>
-      <br />
       <nav
         className="pagination is-centered navbar"
         role="navigation"
