@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout/layout';
 import PostList from '../components/blog/postList/postList';
-import Pagination from '../components/blog/pagination';
+import Pagination from '../components/blog/pagination/pagination';
 import Sidebar from '../components/blog/sidebar';
 import { slugToTitle } from '../utils/blog';
 import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs';
@@ -37,7 +37,7 @@ const Tag = (props) => {
 export default Tag;
 
 export const pageQuery = graphql`
-  query TagPage($slug: String!) {
+  query TagPage($slug: String!, $limit: Int!, $skip: Int!) {
     site {
       siteMetadata {
         title
@@ -46,6 +46,8 @@ export const pageQuery = graphql`
     allMdx(
       filter: { frontmatter: { tags: { eq: $slug } } }
       sort: { fields: frontmatter___date, order: DESC }
+      limit: $limit
+      skip: $skip
     ) {
       edges {
         node {
