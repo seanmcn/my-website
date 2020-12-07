@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import Layout from '../components/layout/layout';
 import PostList from '../components/blog/postList/postList';
 import Sidebar from '../components/blog/sidebar';
-import Pagination from '../components/blog/pagination';
+import Pagination from '../components/blog/pagination/pagination';
 
 export default class BlogPage extends React.Component {
   render() {
