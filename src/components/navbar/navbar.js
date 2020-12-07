@@ -3,8 +3,8 @@ import NavbarItem from './item/navbarItem';
 import NavbarBurger from './burger/navbarBurger';
 import NavbarItemSocial from './itemSocial/navbarItemSocial';
 import NavbarLogo from './logo/navbarLogo';
-import './navbar.scss';
 import Search from '../search/search';
+import './navbar.scss';
 
 export default class Navbar extends React.Component {
   constructor(props) {

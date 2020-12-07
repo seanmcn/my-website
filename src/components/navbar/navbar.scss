@@ -1,5 +1,9 @@
 @import "../../assets/styles/main";
-@import "~bulma/bulma";
+
+.navbar {
+  border-top: 3px solid $primary-color;
+  border-bottom: 1px solid $background-grey;
+}
 
 .navbar-item {
   font-weight: $weight-bold;
@@ -7,6 +11,8 @@
 }
 
 button.navbar-item.searchButton {
+  margin-right: 0.5em;
+
   @include touch {
     margin: 0 auto;
   }
