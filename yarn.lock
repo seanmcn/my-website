@@ -1812,7 +1812,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.0", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1":
+"@babel/runtime@^7.10.0", "@babel/runtime@^7.11.2":
   version "7.12.1"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.1.tgz#b4116a6b6711d010b2dad3b7b6e43bf1b9954740"
   integrity sha512-J5AIf3vPj3UwXaAzb5j1xM4WAQDX3EMgemF8rjCP3SoW09LfRKAXQKt6CoVYl230P6iWdRcBbnLDDdnqWxZSCA==
@@ -1823,6 +1823,13 @@
   version "7.11.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
   integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@^7.13.10":
+  version "7.13.17"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.17.tgz#8966d1fc9593bf848602f0662d6b4d0069e3a7ec"
+  integrity sha512-NCdgJEelPTSh+FEFylhnP1ylq848l1z9t9N0j1Lfbcw0+KXGjsTvUmkxy+voLLXB5SOKMbLLx4jxYliGrYQseA==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -7788,10 +7795,10 @@ fd@~0.0.2:
   resolved "https://registry.yarnpkg.com/fd/-/fd-0.0.3.tgz#b3240de86dbf5a345baae7382a07d4713566ff0c"
   integrity sha512-iAHrIslQb3U68OcMSP0kkNWabp7sSN6d2TBSb2JO3gcLJVDd4owr/hKM4SFJovFOUeeXeItjYgouEDTMWiVAnA==
 
-fetch-retry@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/fetch-retry/-/fetch-retry-4.0.1.tgz#ca746666399aaf0547aa3851ccb543cfb112b8da"
-  integrity sha512-EhIeVBkq9T2z1ANDr2kmLujoHOTdLvR9t/nzLSdX4PMIFinLyyZFYX9T6Fb3LrbiHQEhujq1O7ElsqjuqYIsEA==
+fetch-retry@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/fetch-retry/-/fetch-retry-4.1.1.tgz#fafe0bb22b54f4d0a9c788dff6dd7f8673ca63f3"
+  integrity sha512-e6eB7zN6UBSwGVwrbWVH+gdLnkW9WwHhmq2YDK1Sh30pzx1onRVGBvogTlUeWxwTa+L86NYdo4hFkh7O8ZjSnA==
 
 figgy-pudding@^3.5.1:
   version "3.5.2"
@@ -8562,14 +8569,16 @@ gatsby-remark-copy-linked-files@^2.3.19:
     probe-image-size "^5.0.0"
     unist-util-visit "^1.4.1"
 
-gatsby-remark-embedder@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-embedder/-/gatsby-remark-embedder-4.0.0.tgz#ed0e2ddc669d21b4ba8e2cdffbd3f79aa5ee1102"
-  integrity sha512-nBVxhnuKcZZaibN6ipRKiAQibRcEJRBC6fuF2JW9op+W/uvgpqkaIzvH/JSKzESDQWX/eg+MnR8UAKsfR/6BKA==
+gatsby-remark-embedder@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-embedder/-/gatsby-remark-embedder-5.0.0.tgz#87863c546816863bb3161897788433d5d85995c4"
+  integrity sha512-frNy0DEEo5dgGtBokNPmDbX7PWSA76UFkLzSfqpwKAAL4zKm5++F4uDeRujYEdbbj5/yoXUMbUHQIxyplaw1oQ==
   dependencies:
-    "@babel/runtime" "^7.12.1"
-    fetch-retry "^4.0.1"
+    "@babel/runtime" "^7.13.10"
+    fetch-retry "^4.1.1"
+    hast-util-from-parse5 "^6.0.1"
     node-fetch "^2.6.1"
+    parse5 "^6.0.1"
     unist-util-visit "^2.0.3"
 
 gatsby-remark-external-links@^0.0.4:
@@ -9550,6 +9559,18 @@ hast-util-from-parse5@^6.0.0:
     vfile "^4.0.0"
     web-namespaces "^1.0.0"
 
+hast-util-from-parse5@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-from-parse5/-/hast-util-from-parse5-6.0.1.tgz#554e34abdeea25ac76f5bd950a1f0180e0b3bc2a"
+  integrity sha512-jeJUWiN5pSxW12Rh01smtVkZgZr33wBokLzKLwinYOUfSzm1Nl/c3GUGebDyOKjdsRgMvoVbV0VpAcpjF4NrJA==
+  dependencies:
+    "@types/parse5" "^5.0.0"
+    hastscript "^6.0.0"
+    property-information "^5.0.0"
+    vfile "^4.0.0"
+    vfile-location "^3.2.0"
+    web-namespaces "^1.0.0"
+
 hast-util-is-element@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hast-util-is-element/-/hast-util-is-element-1.1.0.tgz#3b3ed5159a2707c6137b48637fbfe068e175a425"
@@ -9648,6 +9669,17 @@ hastscript@^5.0.0:
   resolved "https://registry.yarnpkg.com/hastscript/-/hastscript-5.1.2.tgz#bde2c2e56d04c62dd24e8c5df288d050a355fb8a"
   integrity sha512-WlztFuK+Lrvi3EggsqOkQ52rKbxkXL3RwB6t5lwoa8QLMemoWfBuL43eDrwOamJyR7uKQKdmKYaBH1NZBiIRrQ==
   dependencies:
+    comma-separated-tokens "^1.0.0"
+    hast-util-parse-selector "^2.0.0"
+    property-information "^5.0.0"
+    space-separated-tokens "^1.0.0"
+
+hastscript@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/hastscript/-/hastscript-6.0.0.tgz#e8768d7eac56c3fdeac8a92830d58e811e5bf640"
+  integrity sha512-nDM6bvd7lIqDUiYEiu5Sl/+6ReP0BMk/2f4U/Rooccxkj0P5nm+acM5PrGJ/t5I8qPGiqZSE6hVAwZEdZIvP4w==
+  dependencies:
+    "@types/hast" "^2.0.0"
     comma-separated-tokens "^1.0.0"
     hast-util-parse-selector "^2.0.0"
     property-information "^5.0.0"
@@ -13581,7 +13613,7 @@ parse5@^5.0.0:
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
   integrity sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
 
-parse5@^6.0.0:
+parse5@^6.0.0, parse5@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-6.0.1.tgz#e1a1c085c569b3dc08321184f19a39cc27f7c30b"
   integrity sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==
@@ -18338,6 +18370,11 @@ vfile-location@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/vfile-location/-/vfile-location-3.1.0.tgz#81cd8a04b0ac935185f4fce16f270503fc2f692f"
   integrity sha512-FCZ4AN9xMcjFIG1oGmZKo61PjwJHRVA+0/tPUP2ul4uIwjGGndIxavEMRpWn5p4xwm/ZsdXp9YNygf1ZyE4x8g==
+
+vfile-location@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/vfile-location/-/vfile-location-3.2.0.tgz#d8e41fbcbd406063669ebf6c33d56ae8721d0f3c"
+  integrity sha512-aLEIZKv/oxuCDZ8lkJGhuhztf/BW4M+iHdCwglA/eWc+vtuRFJj8EtgceYFX4LRjOhCAAiNHsKGssC6onJ+jbA==
 
 vfile-message@*, vfile-message@^2.0.0:
   version "2.0.4"
