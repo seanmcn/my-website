@@ -10,10 +10,10 @@
       ]
     },
     {
-      "id": "circle",
-      "title": "Circle",
-      "link": "https://github.com/Seanmcn/circle",
-      "description": "WIP: Building a basic social network using Laravel & ReactJS.",
+      "id": "portally",
+      "title": "Portally",
+      "link": "https://github.com/Seanmcn/portally",
+      "description": "WIP: Building a social portal using Laravel & ReactJS.",
       "icons": [
         "fa-php",
         "fa-react"
@@ -23,7 +23,7 @@
       "id": "elemental-rts",
       "title": "Elemental RTS",
       "link": "https://github.com/Seanmcn/Elemental-RTS",
-      "description": "An ambitious venture into making an RTS browser based game using PhaserJS. A hobby project that I return to occasionally.",
+      "description": "WIP: An ambitious venture into making an RTS browser based game using PhaserJS. A hobby project that I return to occasionally.",
       "icons": [
         "fa-js"
       ]
