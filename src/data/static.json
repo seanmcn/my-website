@@ -11,7 +11,7 @@
     },
     {
       "id": "portally",
-      "title": "portally",
+      "title": "Portally",
       "link": "https://github.com/Seanmcn/portally",
       "description": "WIP: Building a social portal using Laravel & ReactJS.",
       "icons": [
