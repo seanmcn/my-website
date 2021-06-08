@@ -79,7 +79,7 @@
         "start-server-and-test": "^1.11.6",
         "slugify": "^1.4.6",
         "stylelint": "^13.7.2",
-        "stylelint-config-standard": "^20.0.0",
+        "stylelint-config-standard": "^22.0.0",
         "stylelint-scss": "^3.18.0"
     }
 }
