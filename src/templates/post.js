@@ -7,7 +7,7 @@ import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs';
 import Sidebar from '../components/blog/sidebar';
 import Post from '../components/blog/post/post';
 
-export const BlogPostTemplate = ({
+const BlogPostTemplate = ({
   id,
   content,
   category,
