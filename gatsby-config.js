@@ -1,4 +1,5 @@
 const emoji = require('remark-emoji');
+
 const { gatsbyPluginFeed } = require('./src/utils/rss');
 const algoliaQueries = require('./src/utils/algolia');
 
@@ -46,15 +47,16 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-sass',
-    gatsbySourceFileSystemBlogPosts,
-    gatsbySourceFileSystemAssets,
+    'gatsby-plugin-sharp',
+    'gatsby-remark-images',
+    'gatsby-remark-emoji',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: ['.mdx', '.md'],
         // a workaround to solve mdx-remark plugin compat issue
         // https://github.com/gatsbyjs/gatsby/issues/15486
-        plugins: ['gatsby-remark-images'],
+        // plugins: ['gatsby-remark-images'],
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',
@@ -76,7 +78,6 @@ module.exports = {
           {
             resolve: 'gatsby-remark-copy-linked-files',
           },
-
           {
             resolve: 'gatsby-remark-smartypants',
           },
@@ -88,11 +89,15 @@ module.exports = {
             },
           },
         ],
-        remarkPlugins: [emoji],
+        // eslint-disable-next-line global-require
+        remarkPlugins: [
+          emoji,
+        ],
       },
     },
     'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
+    gatsbySourceFileSystemBlogPosts,
+    gatsbySourceFileSystemAssets,
     gatsbyPluginFeed,
     {
       resolve: 'gatsby-plugin-manifest',
