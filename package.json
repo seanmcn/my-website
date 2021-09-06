@@ -32,6 +32,7 @@
         "gatsby-source-filesystem": "^3.0.0",
         "gatsby-transformer-remark": "^4.0.0",
         "gatsby-transformer-sharp": "^3.0.0",
+        "match-sorter": "^6.3.0",
         "mdx-utils": "^0.2.0",
         "node-sass": "^6.0.1",
         "prism-react-renderer": "^1.2.1",
@@ -43,6 +44,7 @@
         "react-instantsearch-dom": "^6.12.1",
         "react-live": "^2.3.0",
         "react-modal": "^3.14.3",
+        "react-table": "^7.7.0",
         "remark-emoji": "^2.2.0"
     },
     "keywords": [
