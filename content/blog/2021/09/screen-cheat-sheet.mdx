@@ -1,0 +1,22 @@
+---
+title: "Cheat Sheet: Screen"
+date: "2021-09-06T20:04:57.587Z"
+slug: "cheat-sheets/screen"
+category: 'cheat-sheets'
+tags: ["screen", "linux", "cheat-sheet", "commands"]
+keywords: []
+---
+import screenColumns from '../../../../src/data/cheatSheets/screen/screenColumns';
+import screenData from '../../../../src/data/cheatSheets/screen/screenData';
+import CheatSheetCommandTable from '../../../../src/components/cheatSheet/cheatSheetCommandTable';
+
+The screen command is a used to launch and arrange multiple terminal shells within a single shell.
+
+It is mainly used for two purposes:
+1. It can be used to run long-running commands on remote servers.
+2. It can be used to organise multiple shells and allow you to navigate between them.
+
+<h2 className={"subtitle is-4"}>Commands</h2>
+<p>All screen commands need to be prefixed by an escape key, which is <code>Ctrl-a</code> by default.</p>
+
+<CheatSheetCommandTable columns={screenColumns} data={screenData} />
