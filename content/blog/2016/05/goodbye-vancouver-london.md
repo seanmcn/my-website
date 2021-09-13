@@ -25,7 +25,7 @@ Saint Johns was uneventful, pretty much just had enough time to go and grab a ci
 But anyway, now I’m in London. Exchanging my money from CAD to GBP was very depressing, outside of that though re-exploring London has been a lot of fun!
 
 
-I’ve got a double room in a flat for now, getting my own place initially just seemed like a terrible idea money wise. It’s nothing special but it will do for now.
+I’ve got a double room in a flat for now, getting my own place initially just seemed like a terrible idea money wise. It’s nothing special, but it will do for now.
 
 ![camden.jpg](images/camden.jpg)
 
