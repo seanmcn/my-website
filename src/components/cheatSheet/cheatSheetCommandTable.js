@@ -4,6 +4,7 @@ import React from 'react';
 import { useGlobalFilter, useTable } from 'react-table';
 import matchSorter from 'match-sorter';
 import GlobalFilter from './globalFilter';
+import './cheatSheetCommandTable.scss';
 
 function fuzzyTextFilterFn(rows, id, filterValue) {
   return matchSorter(rows, filterValue, { keys: [row => row.values[id]] });
@@ -52,59 +53,60 @@ function CheatSheetCommandTable({ columns, data }) {
 
   return (
     <>
-      <table
-        {...getTableProps()}
-        className="table is-striped is-fullwidth is-hoverable is-bordered"
-      >
-        <thead>
-          <tr>
-            <th
-              colSpan={visibleColumns.length}
-              style={{
-                textAlign: 'left',
-              }}
-            >
-              <GlobalFilter
-                preGlobalFilteredRows={preGlobalFilteredRows}
-                globalFilter={state.globalFilter}
-                setGlobalFilter={setGlobalFilter}
-              />
-            </th>
-          </tr>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column, index) => (
-                (index === 0) ? (
-                  <th {...column.getHeaderProps()} width="35%">
-                    {column.render('Header')}
-                  </th>
-                ) : (
-                  <th {...column.getHeaderProps()}>
-                    {column.render('Header')}
-                  </th>
-                )
-              ))}
+      <div className="table-container">
+        <table
+          {...getTableProps()}
+          className="table is-striped is-fullwidth is-hoverable is-bordered super-responsive-table"
+        >
+          <thead>
+            <tr>
+              <th
+                colSpan={visibleColumns.length}
+                style={{
+                  textAlign: 'left',
+                }}
+              >
+                <GlobalFilter
+                  preGlobalFilteredRows={preGlobalFilteredRows}
+                  globalFilter={state.globalFilter}
+                  setGlobalFilter={setGlobalFilter}
+                />
+              </th>
             </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell, index) => (
-                  <td {...cell.getCellProps()}>
-                    {index === 0
-                      ? (<code>{cell.render('Cell')}</code>)
-                      : cell.render('Cell')}
-                  </td>
+            {headerGroups.map(headerGroup => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column, index) => (
+                  (index === 0) ? (
+                    <th {...column.getHeaderProps()}>
+                      {column.render('Header')}
+                    </th>
+                  ) : (
+                    <th {...column.getHeaderProps()}>
+                      {column.render('Header')}
+                    </th>
+                  )
                 ))}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map((cell, index) => (
+                    <td {...cell.getCellProps()}>
+                      {index === 0
+                        ? (<code>{cell.render('Cell')}</code>)
+                        : cell.render('Cell')}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
       {rows.length === 0
       && (
         <div>
