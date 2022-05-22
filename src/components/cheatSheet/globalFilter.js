@@ -1,6 +1,4 @@
-// Define a default UI for filtering
 import React from 'react';
-import { useAsyncDebounce } from 'react-table';
 
 function GlobalFilter({
   preGlobalFilteredRows,
@@ -8,18 +6,13 @@ function GlobalFilter({
   setGlobalFilter,
 }) {
   const count = preGlobalFilteredRows.length;
-  const [value, setValue] = React.useState(globalFilter);
-  const onChange = useAsyncDebounce((v) => {
-    setGlobalFilter(v || undefined);
-  }, 200);
 
   return (
     <div className="control has-icons-right">
       <input
-        value={value || ''}
+        value={globalFilter || ''}
         onChange={(e) => {
-          setValue(e.target.value);
-          onChange(e.target.value);
+          setGlobalFilter(e.target.value || undefined);
         }}
         placeholder={`Search ${count} commands...`}
         className="input is-medium"
