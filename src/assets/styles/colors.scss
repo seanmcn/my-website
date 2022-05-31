@@ -16,3 +16,15 @@ $logo-text-color: #2a9d8f;
 
 $primary-alt-color: #e76f51;
 $secondary-alt-color: #f4a261;
+
+$primary: $primary-color;
+$link: $primary-color;
+
+$body-background-color: $background-grey;
+$background: $background-white;
+
+@media (prefers-color-scheme: dark) {
+  $scheme-main: #000;
+  $scheme-invert: #fff;
+  $background: black;
+}
