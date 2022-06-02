@@ -5,6 +5,7 @@ import NavbarItemSocial from './itemSocial/navbarItemSocial';
 import NavbarLogo from './logo/navbarLogo';
 import Search from '../search/search';
 import './navbar.scss';
+import DarkModeToggle from './darkModeToggle/darkModeToggle';
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -42,6 +43,7 @@ export default class Navbar extends React.Component {
               <NavbarItem link="/blog" label="Blog" />
               <NavbarItem link="/about" label="About Me" />
               <NavbarItem link="/contact" label="Contact Me" />
+              <DarkModeToggle />
             </div>
 
             <div className="navbar-end navbar-social-icons">

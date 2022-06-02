@@ -1,22 +1,33 @@
+@import "../../assets/styles/colors.scss";
+
 @media
-only screen and (max-width: 500px) {
-  table, thead, tbody, th, td, tr {
+  only screen and (max-width: 500px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
     display: block;
   }
-  thead tr {
-    display:none;
-  }
+
   tr {
-    border: 1px solid #ccc;
+    border: 1px solid $cheatsheet-border;
   }
+
+  thead tr {
+    display: none;
+  }
+
   td {
     border: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $cheatsheet-border;
     position: relative;
     padding-left: 100px;
     margin-left: 100px;
   }
-  td:before {
+
+  td::before {
     position: absolute;
     top: 12px;
     left: 6px;
@@ -25,7 +36,19 @@ only screen and (max-width: 500px) {
     white-space: nowrap;
     margin-left: -100px;
   }
-  td:nth-of-type(1):before { content: "Command:"; font-weight: bold; }
-  td:nth-of-type(2):before { content: "Category:"; font-weight: bold; }
-  td:nth-of-type(3):before { content: "Description:"; font-weight: bold; }
+
+  td:nth-of-type(1)::before {
+    content: "Command:";
+    font-weight: bold;
+  }
+
+  td:nth-of-type(2)::before {
+    content: "Category:";
+    font-weight: bold;
+  }
+
+  td:nth-of-type(3)::before {
+    content: "Description:";
+    font-weight: bold;
+  }
 }

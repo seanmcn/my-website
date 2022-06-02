@@ -2,7 +2,7 @@
 
 .navbar {
   border-top: 3px solid $primary-color;
-  border-bottom: 1px solid $background-grey;
+  border-bottom: 1px solid $navbar-border;
 }
 
 .navbar-item {
@@ -21,6 +21,6 @@ button.navbar-item.searchButton {
 .navbar-menu {
   @include touch {
     text-align: center;
-    border-top: 1px solid $background-grey;
+    border-top: 1px solid $navbar-border;
   }
 }

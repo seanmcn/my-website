@@ -11,7 +11,6 @@ $background-white: $white-smoke;
 //https://coolors.co/264653-2a9d8f-e9c46a-f4a261-e76f51
 $primary-color: #227c71;
 $secondary-color: #264653;
-
 $logo-text-color: #2a9d8f;
 
 $primary-alt-color: #e76f51;
@@ -23,8 +22,43 @@ $link: $primary-color;
 $body-background-color: $background-grey;
 $background: $background-white;
 
-@media (prefers-color-scheme: dark) {
-  $scheme-main: #000;
-  $scheme-invert: #fff;
-  $background: black;
-}
+$navbar-border: $background-grey;
+
+$cheatsheet-border: #ccc;
+
+/**
+Dark Mode
+ */
+//@media (prefers-color-scheme: dark) {
+$scheme-main: #272727;
+//$scheme-main: #121212;
+//$scheme-main: #212121;
+//$scheme-main: #1d1d1d;
+$scheme-invert: #fff;
+
+$background: #212121;
+//$background: #121212;
+//$body-background-color: #121212;
+$body-background-color: #212121;
+$box-shadow: none;
+
+$text: white;
+$text-strong: inherit;
+
+$link-hover: black;
+$navbar-border: $body-background-color;
+
+$navbar-background-color: $background;
+$navbar-item-hover-background-color: $background;
+
+$table-striped-row-even-background-color: $background;
+$table-row-hover-background-color: $background;
+$table-striped-row-even-hover-background-color: $background;
+$table-color: white;
+$table-head-cell-color: white;
+
+$title-color: white;
+$subtitle-color: white;
+$content-heading-color: white;
+
+//}

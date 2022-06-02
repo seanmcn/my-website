@@ -1,0 +1,15 @@
+.darkModeOffBulb {
+  color: yellow;
+}
+
+.darkModeOnBulb {
+  color: red;
+}
+
+button.darkModeToggleButton {
+  border: none;
+}
+
+button.darkModeToggleButton:active, button.darkModeToggleButton:focus {
+  border: none;
+}
