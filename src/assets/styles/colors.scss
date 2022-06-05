@@ -61,4 +61,10 @@ $title-color: white;
 $subtitle-color: white;
 $content-heading-color: white;
 
-//}
+:root {
+  --primary-color: #{$primary-color};
+  --primary-alt-color: #{$primary-alt-color};
+  --secondary-alt-color: #{$secondary-alt-color};
+  --navbar-border-color: #{$navbar-border};
+  --logo-text-color: #{$logo-text-color};
+}

@@ -1,12 +1,12 @@
-@import "../../assets/styles/main";
+@import "~bulma/bulma";
 
 .navbar {
-  border-top: 3px solid $primary-color;
-  border-bottom: 1px solid $navbar-border;
+  border-top: 3px solid var(--primary-color);
+  border-bottom: 1px solid var(--navbar-border-color);
 }
 
 .navbar-item {
-  font-weight: $weight-bold;
+  font-weight: bold;
   margin-top: auto;
 }
 
@@ -21,6 +21,6 @@ button.navbar-item.searchButton {
 .navbar-menu {
   @include touch {
     text-align: center;
-    border-top: 1px solid $navbar-border;
+    border-top: 1px solid var(--navbar-border-color);
   }
 }
