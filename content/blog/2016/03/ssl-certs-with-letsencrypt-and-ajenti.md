@@ -2,7 +2,7 @@
 title: "Free SSL Certificates with LetsEncrypt and Ajenti-v"
 date: '2016-03-21T08:39:03.284Z'
 slug: '2016/03/letsencrypt-ajenti-v'
-category: 'how-to'
+category: 'devops'
 tags: ['ajenti', 'linux', 'nginx', 'ubuntu']
 keywords: ['ssl', 'ajenti-v', 'setup', 'guide']
 ---

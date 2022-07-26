@@ -2,7 +2,7 @@
 title: "MoBlock - Peerguardian for Linux"
 date: '2009-08-26T16:39:03.284Z'
 slug: '2009/08/moblock-peerguardian-for-linux'
-category: 'how-to'
+category: 'linux'
 tags: ['how-to', 'linux', 'ubuntu', 'moblock']
 keywords: ['moblock', 'peer', 'guardian', 'mpaa', 'torrent']
 ---

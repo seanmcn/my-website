@@ -2,7 +2,7 @@
 title: "Programmers Day"
 date: '2009-09-13T01:39:03.284Z'
 slug: '2009/09/programmers-day'
-category: 'news'
+category: 'programming'
 tags: ['programming', 'news']
 keywords: ['comic', 'day', 'programmer']
 ---

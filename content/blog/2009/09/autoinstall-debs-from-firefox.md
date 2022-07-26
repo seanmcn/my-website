@@ -2,7 +2,7 @@
 title: "Autoinstalling .Debs on Firefox"
 date: '2009-09-17T21:39:03.284Z'
 slug: '2009/09/autoinstalling-debs-on-firefox'
-category: 'how-to'
+category: 'linux'
 tags: ['how-to', 'linux', 'ubuntu', 'firefox']
 keywords: ['debs', 'auto', 'install']
 ---
