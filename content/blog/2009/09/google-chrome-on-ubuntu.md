@@ -2,7 +2,7 @@
 title: "Google Chrome on Ubuntu"
 date: '2009-09-22T07:39:03.284Z'
 slug: '2009/09/google-chrome-on-ubuntu'
-category: 'software'
+category: 'linux'
 tags: [ 'software', 'ubuntu', 'linux']
 keywords: [ 'chromium', 'install']
 ---

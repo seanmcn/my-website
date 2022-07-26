@@ -2,7 +2,7 @@
 title: "Open source software I use for development"
 date: "2021-08-28T15:50:19.327Z"
 slug: "2021/08/open-source-projects-i-use-for-development"
-category: "software"
+category: "open-source"
 tags: ["software","programming", "open source"]
 keywords: ["pandoc", "screentogif", "draw.io", "git", "recall", "inspector", ]
 ---

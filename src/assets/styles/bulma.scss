@@ -1,19 +1,14 @@
+@import "colors";
+
+// Update Bulma's global variables
 $widescreen-enabled: true;
 $fullhd-enabled: false;
-
-// Update some of Bulma's component variables
 
 //$control-border-width: 2px;
 //$input-border-color: transparent;
 //$input-shadow: none;
 
-// Update Bulma's global variables
+// todo: font here
 $family-sans-serif: proxima-nova, sans-serif;
-
-$primary: $primary-color;
-$link: $primary-color;
-
-$body-background-color: $background-grey;
-$background: $background-white;
 
 $navbar-height: 4rem;

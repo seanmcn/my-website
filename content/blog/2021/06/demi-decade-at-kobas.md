@@ -2,7 +2,7 @@
 title: "A demi-decade at Kobas"
 date: "2021-06-08T19:39:19.327Z"  
 slug: "2021/06/demi-decade-at-kobas"  
-category: "personal"  
+category: "work"  
 tags: ["php","programming"]  
 keywords: ["epos", "hospitality", "demi-decade", "remote work", "kobas"]
 ---
