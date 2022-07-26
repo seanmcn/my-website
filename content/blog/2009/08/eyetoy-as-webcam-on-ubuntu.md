@@ -2,7 +2,7 @@
 title: "Eyetoy as a Webcam on Ubuntu"
 date: '2009-08-21T11:12:03.284Z'
 slug: '2009/08/eyetoy-as-a-webcam-on-ubuntu'
-category: 'how-to'
+category: 'linux'
 tags: ['how-to', 'linux', 'ubuntu', 'eyetoy']
 keywords: ['guide', 'eye', 'toy', 'linux', 'drivers', 'ov51x', 'webcam']
 ---

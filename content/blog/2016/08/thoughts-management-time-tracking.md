@@ -2,7 +2,7 @@
 title: "My thoughts on management & time tracking"
 date: '2016-08-29T15:39:03.284Z'
 slug: '2016/08/thoughts-management-time-tracking'
-category: 'personal'
+category: 'project-management'
 tags: ['work', 'management']
 keywords: ['time', 'tracking', 'opinion']
 ---

@@ -2,7 +2,7 @@
 title: "Software I’m using to track tasks & time"
 date: '2015-03-29T08:39:03.284Z'
 slug: '2015/03/tracking-time'
-category: 'software'
+category: 'project-management'
 tags: ['software', 'time', 'tracking']
 keywords: ['trello', 'jira', 'github', 'todoist', 'toggl', 'wakatime']
 ---
