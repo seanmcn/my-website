@@ -4,6 +4,7 @@ frontend:
         preBuild:
             commands:
                 - nvm install 14.15.0
+                - rm -rf node_modules
                 - yarn install
         build:
             commands:
