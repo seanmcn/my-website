@@ -11,7 +11,7 @@ const RelatedPosts = ({
       <h2 className="subtitle">Related Posts</h2>
       <div className="content">
         {relatedPosts.posts.slice(0, 5).map(x => (
-          <div className="relatedPost">
+          <div className="relatedPost" key={`container_${x.frontmatter.slug}`}>
             <div className="relatedPostContainer">
               <Link
                 to={`/blog/${x.frontmatter.slug}`}
@@ -23,7 +23,7 @@ const RelatedPosts = ({
                   <Link
                     to={`/blog/tags/${tag}`}
                     aria-label={`Links to posts in tag ${slugToTitle(tag)}`}
-                    key={tag}
+                    key={`link_${x.frontmatter.slug}_tag_${tag}`}
                   >
                     <span className="tag" aria-label="Tag name">
                       {slugToTitle(tag)}
