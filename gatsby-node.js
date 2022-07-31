@@ -50,6 +50,7 @@ exports.createPages = async function ({ actions, graphql }) {
       path: `/blog/${edge.node.frontmatter.slug}/`,
       component: postTemplate,
       context: {
+        id: edge.node.id,
         slug: edge.node.frontmatter.slug,
         previous,
         next,

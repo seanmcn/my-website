@@ -123,5 +123,13 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-image',
+    {
+      resolve: 'gatsby-remark-related-posts',
+      options: {
+        target_node: 'Mdx',
+        getMarkdown: node => node.rawBody,
+      },
+    },
   ],
 };

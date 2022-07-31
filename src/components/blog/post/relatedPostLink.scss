@@ -1,0 +1,15 @@
+.relatedPost {
+  display: list-item;
+  margin-left : 1em;
+}
+.relatedPostContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 0.35em;
+}
+.relatedPostContainer .tags {
+  margin-left: 0.5em;
+}
+.relatedPostContainer .tags .tag{
+  margin-right: 0.5em;
+}
