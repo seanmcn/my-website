@@ -8,11 +8,14 @@ const tagsWidget = () => {
   const data = useStaticQuery(graphql`
     query allTagsQuery {
       allMdx {
-        distinct(field: frontmatter___tags)
+        group(field: frontmatter___tags) {
+          tag: fieldValue
+          totalCount
+        }
       }
     }
   `);
-  const { distinct: tags } = data.allMdx;
+  const { group: tagsAndCount } = data.allMdx;
   return (
     <WidgetBox
       title="Tags"
@@ -21,23 +24,22 @@ const tagsWidget = () => {
           className="tags tagsList"
           aria-label="List of tags used on blog posts"
         >
-          {tags.map(tag => (
+          {tagsAndCount.filter(tagAndCount => tagAndCount.totalCount > 1).map(tagAndCount => (
             <Link
-              to={`/blog/tags/${tag}`}
-              aria-label={`Links to posts in tag ${slugToTitle(tag)}`}
-              key={tag}
+              to={`/blog/tags/${tagAndCount.tag}`}
+              aria-label={`Links to posts in tag ${slugToTitle(tagAndCount.tag)}`}
+              key={tagAndCount.tag}
             >
               <div className="tags has-addons">
                 <span className="tag" aria-label="Tag name">
-                  {slugToTitle(tag)}
+                  {slugToTitle(tagAndCount.tag)}
                 </span>
-                {/* Todo need to create a different schema for tags I guess? */}
-                {/* <span */}
-                {/*  className="tag is-info" */}
-                {/*  aria-label="Count of posts in this tag" */}
-                {/* > */}
-                {/*  {tag.count} */}
-                {/* </span> */}
+                <span
+                  className="tag is-primary is-light"
+                  aria-label="Count of posts in this tag"
+                >
+                  {tagAndCount.totalCount}
+                </span>
               </div>
             </Link>
           ))}
