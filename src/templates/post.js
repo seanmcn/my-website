@@ -6,6 +6,7 @@ import Layout from '../components/layout/layout';
 import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs';
 import Sidebar from '../components/blog/sidebar';
 import Post from '../components/blog/post/post';
+import RelatedPosts from '../components/blog/post/relatedPosts';
 
 const BlogPostTemplate = ({
   id,
@@ -29,10 +30,11 @@ const BlogPostTemplate = ({
           date={date}
           tags={tags}
         />
+        <RelatedPosts relatedPosts={relatedPosts} />
       </div>
 
       <div className="column is-one-quarter" id="postSidebarColumn">
-        <Sidebar category={category} relatedPosts={relatedPosts.edges} />
+        <Sidebar category={category} />
       </div>
     </div>
   </div>
@@ -49,7 +51,7 @@ BlogPostTemplate.propTypes = {
 };
 
 const BlogPost = ({ data }) => {
-  const { mdx: post, allMdx: relatedPosts } = data;
+  const { mdx: post, relatedMdxs: relatedPosts } = data;
   const { title } = data.site.siteMetadata;
 
   return (
@@ -81,7 +83,7 @@ BlogPost.propTypes = {
 export default BlogPost;
 
 export const pageQuery = graphql`
-  query PostBySlug($slug: String!, $tags: [String]) {
+  query PostBySlug($slug: String!, $id: String!) {
     site {
       siteMetadata {
         title
@@ -91,13 +93,12 @@ export const pageQuery = graphql`
     mdx(frontmatter: { slug: { eq: $slug } }) {
       ...PostListFields
     }
-    allMdx(
-      filter: { frontmatter: { tags: { in: $tags }, slug: { ne: $slug } } }
-      limit: 4
-    ) {
-      edges {
-        node {
-          ...PostListFields
+    relatedMdxs(parent: { id: { eq: $id } }) {
+      posts {
+        frontmatter {
+          title,
+          slug,
+          tags
         }
       }
     }
