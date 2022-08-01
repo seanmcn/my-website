@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
-
-/* eslint-disable jsx-a11y/no-autofocus */
+import React, {Component} from 'react';
 
 class SearchInput extends Component {
-  timerId = null
+  timerId = null;
 
   constructor(props) {
     super(props);
-    const { currentRefinement } = this.props;
+    const {currentRefinement} = this.props;
     this.state = {
       value: currentRefinement,
     };
   }
 
   onChangeDebounce = (event) => {
-    const { refine, delay } = this.props;
-    const { value } = event.currentTarget;
+    const {refine, delay} = this.props;
+    const {value} = event.currentTarget;
 
     window.clearTimeout(this.timerId);
     this.timerId = window.setTimeout(() => refine(value), delay);
@@ -23,10 +21,10 @@ class SearchInput extends Component {
     this.setState(() => ({
       value,
     }));
-  }
+  };
 
   render() {
-    const { value } = this.state;
+    const {value} = this.state;
     return (
       <input
         type="search"

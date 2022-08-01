@@ -15,14 +15,14 @@ export default class Navbar extends React.Component {
   }
 
   toggleMenu = () => {
-    const { activeMenu } = this.state;
+    const {activeMenu} = this.state;
     this.setState({
       activeMenu: !activeMenu,
     });
-  }
+  };
 
   render() {
-    const { activeMenu } = this.state;
+    const {activeMenu} = this.state;
     return (
       <nav
         className="navbar is-fixed-top"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import {Link} from 'gatsby';
 import avatar from '../../../assets/images/emojis/250/wave.png';
 import './aboutMe.scss';
 

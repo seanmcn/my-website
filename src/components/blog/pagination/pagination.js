@@ -1,19 +1,19 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import {Link} from 'gatsby';
 import './pagination.scss';
 
-const Pagination = ({ pageContext }) => {
-  const { previousPagePath, nextPagePath } = pageContext;
+const Pagination = ({pageContext}) => {
+  const {previousPagePath, nextPagePath} = pageContext;
   const defaultLink = pageContext.paginate_link;
   const pageLink = `${defaultLink}/page`;
 
   // A sweet helper function to create pagination object
   const createPaginationObjects = (length, page, increment = 2) => Array
-    .from({ length }, (_, i) => ({
-      link: `${pageLink}/${i + increment}/`,
-      index: i + increment,
-      current: page === i + increment,
-    }));
+      .from({length}, (_, i) => ({
+        link: `${pageLink}/${i + increment}/`,
+        index: i + increment,
+        current: page === i + increment,
+      }));
 
   const pages = pageContext.numberOfPages;
   const page = pageContext.humanPageNumber;
@@ -32,7 +32,7 @@ const Pagination = ({ pageContext }) => {
   if (pages <= 5) {
     navItems = [
       ...navItems,
-      ...Array.from({ length: pages - 1 }, (_, i) => ({
+      ...Array.from({length: pages - 1}, (_, i) => ({
         link: `${pageLink}/${i + 2}/`,
         index: i + 2,
         current: page === i + 2,

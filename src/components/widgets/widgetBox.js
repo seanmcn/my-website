@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const WidgetBox = ({ title, content }) => (
+const WidgetBox = ({title, content}) => (
   <div className="box">
     <h1 className="subtitle">{title}</h1>
     <div className="content">{content}</div>

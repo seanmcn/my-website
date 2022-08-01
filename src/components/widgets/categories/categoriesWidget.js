@@ -1,8 +1,8 @@
 import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import {useStaticQuery, graphql, Link} from 'gatsby';
 import WidgetBox from '../widgetBox';
 import './categoriesWidget.scss';
-import { slugToTitle } from '../../../utils/blog';
+import {slugToTitle} from '../../../utils/blog';
 
 const CategoriesWidget = () => {
   const data = useStaticQuery(graphql`
@@ -22,7 +22,7 @@ const CategoriesWidget = () => {
       }
     }
   `);
-  const { group: categories } = data.allMdx;
+  const {group: categories} = data.allMdx;
   return (
     <WidgetBox
       title="Categories"
@@ -31,7 +31,8 @@ const CategoriesWidget = () => {
           {categories.map(category => (
             <li key={category.edges[0].node.frontmatter.category}>
               <Link
-                to={`/blog/categories/${category.edges[0].node.frontmatter.category}`}
+                to={`/blog/categories/`+
+                  `${category.edges[0].node.frontmatter.category}`}
               >
                 {slugToTitle(category.edges[0].node.frontmatter.category)}
                 <span className="badge is/-right">{category.totalCount}</span>

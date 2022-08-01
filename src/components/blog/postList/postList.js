@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import {graphql} from 'gatsby';
 import Post from '../post/post';
 import './postList.scss';
 
 export default class postList extends React.Component {
   render() {
-    const { posts } = this.props;
+    const {posts} = this.props;
 
     return (
       <div>
-        {posts.map(({ node: post }) => (
+        {posts.map(({node: post}) => (
           <Post
             key={post.id}
             id={post.id}

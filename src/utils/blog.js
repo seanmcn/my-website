@@ -17,7 +17,8 @@ export function slugToTitle(str) {
   const splitStr = str.toLowerCase().split('-');
   for (let i = 0; i < splitStr.length; i += 1) {
     // Remove `-` symbol and upper case first letter of each word
-    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+    splitStr[i] = splitStr[i].charAt(0).toUpperCase() +
+      splitStr[i].substring(1);
     // Check if we have an over-ride in place on the word, if so apply it.
     if (splitStr[i] in capitalisationOverride) {
       splitStr[i] = capitalisationOverride[splitStr[i]];

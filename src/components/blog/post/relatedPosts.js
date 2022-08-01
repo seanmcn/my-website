@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import { slugToTitle } from '../../../utils/blog';
+import {Link} from 'gatsby';
+import {slugToTitle} from '../../../utils/blog';
 import './relatedPostLink.scss';
 
 const RelatedPosts = ({

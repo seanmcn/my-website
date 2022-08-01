@@ -97,7 +97,8 @@ const screenData = [
   {
     command: 'Ctrl-a "',
     category: 'Window Management',
-    description: 'Displays list of windows, allowing to select window to change into',
+    description: 'Displays list of windows, allowing to ' +
+      'select window to change into',
   },
   {
     command: 'Ctrl-a A',
@@ -117,7 +118,8 @@ const screenData = [
   {
     command: 'Ctrl-a a',
     category: 'Misc',
-    description: 'Send Ctrl-A to screen within screen, useful when working with screen within screen',
+    description: 'Send Ctrl-A to screen within screen, useful when ' +
+      'working with screen within screen',
   },
 ];
 

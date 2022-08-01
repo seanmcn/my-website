@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
+import {Link} from 'gatsby';
+import {MDXRenderer} from 'gatsby-plugin-mdx';
 import './post.scss';
 
 const Post = ({

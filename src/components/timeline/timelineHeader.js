@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TimelineHeader = ({ content }) => (
+const TimelineHeader = ({content}) => (
   <header className="timeline-header">
     <span className="tag is-primary">{content}</span>
   </header>
