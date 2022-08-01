@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SearchButton = ({ openModal }) => (
+const SearchButton = ({openModal}) => (
   <button
     className="navbar-item searchButton"
     onClick={openModal}

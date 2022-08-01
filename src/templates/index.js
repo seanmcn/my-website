@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import {graphql} from 'gatsby';
 import Helmet from 'react-helmet';
 import Layout from '../components/layout/layout';
 import AboutMeWidget from '../components/widgets/aboutMe/aboutMe';
@@ -10,7 +10,7 @@ import Timeline from '../components/timeline/timeline';
 
 export default class IndexPage extends React.Component {
   render() {
-    const { data } = this.props;
+    const {data} = this.props;
     const {
       title: siteTitle,
       description: siteDescription,
