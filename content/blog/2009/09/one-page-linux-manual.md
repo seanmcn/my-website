@@ -2,7 +2,7 @@
 title: "The One-Page Linux Manual"
 date: '2009-09-19T03:39:03.284Z'
 slug: '2009/09/the-one-page-linux-manual'
-category: 'cheat-sheets'
+category: 'linux'
 tags: ['linux', 'cheat-sheet']
 keywords: ['one', 'page', 'manual']
 ---
