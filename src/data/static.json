@@ -1,41 +1,31 @@
 {
     "github_repos": [
-    {
-      "id": "blog",
-      "title": "My Blog",
-      "link": "https://github.com/Seanmcn/my-website",
-      "description": "Source code for this website, front-end built using ReactJS & Gatsby, back-end data sourced from JSON.",
-      "icons": [
-        "fa-react"
-      ]
-    },
-    {
-      "id": "portally",
-      "title": "Portally",
-      "link": "https://github.com/Seanmcn/portally",
-      "description": "WIP: Building a social portal using Laravel & ReactJS.",
-      "icons": [
-        "fa-php",
-        "fa-react"
-      ]
-    },
-    {
-      "id": "elemental-rts",
-      "title": "Elemental RTS",
-      "link": "https://github.com/Seanmcn/Elemental-RTS",
-      "description": "WIP: An ambitious venture into making an RTS browser based game using PhaserJS. A hobby project that I return to occasionally.",
-      "icons": [
-        "fa-js"
-      ]
-    },
-    {
-      "id": "oc-fulltext-ipython",
-      "title": "Open Collections - iPython Notebooks",
-      "link": "https://github.com/Seanmcn/oc-fulltext-ipython-notebooks",
-      "description": "iPython notebooks showing how to use UBC's Open Collections API to do some basic text analysis.",
-      "icons": [
-        "fa-python"
-      ]
-    }
-  ]
+        {
+            "id": "blog",
+            "title": "My Blog",
+            "link": "https://github.com/Seanmcn/my-website",
+            "description": "Source code for this website, built using ReactJS & Gatsby.",
+            "icons": [
+                "fa-react"
+            ]
+        },
+        {
+            "id": "oc-fulltext-ipython",
+            "title": "Open Collections - iPython Notebooks",
+            "link": "https://github.com/Seanmcn/oc-fulltext-ipython-notebooks",
+            "description": "iPython notebooks showing how to use UBC's Open Collections API to do some basic text analysis.",
+            "icons": [
+                "fa-python"
+            ]
+        },
+        {
+            "id": "elemental-rts",
+            "title": "Elemental RTS",
+            "link": "https://github.com/Seanmcn/Elemental-RTS",
+            "description": "WIP/Currently Abandoned: An ambitious venture into making an RTS browser based game using PhaserJS. A hobby project that I return to occasionally.",
+            "icons": [
+                "fa-js"
+            ]
+        }
+    ]
 }
