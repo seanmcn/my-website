@@ -7,7 +7,7 @@ const SearchButton = ({openModal}) => (
     aria-label="Open search modal"
     type="button"
   >
-    <span className="icon searchIcon" aria-label="Magnifying glass icon">
+    <span className="icon searchIcon">
       <i className="fas fa-search" />
     </span>
     Search
