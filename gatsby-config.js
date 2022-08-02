@@ -1,12 +1,13 @@
 const emoji = require('remark-emoji');
 
-const { gatsbyPluginFeed } = require('./src/utils/rss');
+const {gatsbyPluginFeed} = require('./src/utils/rss');
 const algoliaQueries = require('./src/utils/algolia');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-// Setup `gatsby-source-filesystem` for blog gatsbySourceFileSystemBlogPosts here as for development
-// builds we don't want all the blog images having to generate etc.
+// Setup `gatsby-source-filesystem` for blog gatsbySourceFileSystemBlogPosts
+// here as for development builds we don't want all the blog images having
+// to generate etc.
 const gatsbySourceFileSystemBlogPosts = {
   resolve: 'gatsby-source-filesystem',
   options: {
@@ -23,10 +24,8 @@ if (isDevelopment) {
     '**/2012/**',
     '**/2013/**',
     '**/2014/**',
-    '**/2015/**',
     '**/2016/**',
     '**/2017/**',
-    '**/learn/**',
   ];
 }
 
@@ -42,7 +41,8 @@ module.exports = {
   siteMetadata: {
     title: 'Sean McNamara',
     author: 'Sean McNamara',
-    description: 'Sean McNamara\'s personal website, mainly contains articles surrounding programming, technology, games & reviews.',
+    description: 'Sean McNamara\'s personal website, containing ' +
+      'articles surrounding programming, technology, games & reviews.',
     siteUrl: 'https://seanmcn.com',
   },
   plugins: [
