@@ -2,7 +2,7 @@
 title: "Ubuntu Cheat Sheets"
 date: '2009-09-12T03:39:03.284Z'
 slug: '2009/09/ubuntu-cheat-sheets'
-category: 'cheat-sheets'
+category: 'linux'
 tags: ['linux', 'ubuntu', 'cheat-sheet']
 keywords: ['manual', 'cheat', 'sheet']
 ---

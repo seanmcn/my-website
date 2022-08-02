@@ -2,7 +2,7 @@
 title: "Helpful Linux commands"
 date: '2018-01-14T15:39:03.284Z'
 slug: '2018/01/helpful-linux-commands'
-category: 'cheat-sheets'
+category: 'linux'
 tags: ['linux', 'commands', 'screen']
 keywords: ['bash', 'command', 'sudo', 'history']
 ---
