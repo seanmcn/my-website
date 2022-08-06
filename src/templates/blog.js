@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import {graphql} from 'gatsby';
 import Helmet from 'react-helmet';
 import Layout from '../components/layout/layout';
 import PostList from '../components/blog/postList/postList';
@@ -9,10 +9,10 @@ import Pagination from '../components/blog/pagination/pagination';
 
 export default class BlogPage extends React.Component {
   render() {
-    const { data, pageContext } = this.props;
+    const {data, pageContext} = this.props;
 
-    const { edges: posts } = data.allMdx;
-    const { title: siteTitle } = data.site.siteMetadata;
+    const {edges: posts} = data.allMdx;
+    const {title: siteTitle} = data.site.siteMetadata;
 
     return (
       <Layout>

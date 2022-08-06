@@ -13,13 +13,13 @@ const rssQuery = `
 
 const rssFeeds = [
   {
-    serialize: ({ query: { site, allMdx } }) => allMdx.edges.map(edge => ({
+    serialize: ({query: {site, allMdx}}) => allMdx.edges.map(edge => ({
       ...edge.node.frontmatter,
       // description: edge.node.excerpt,
       date: edge.node.frontmatter.date,
       url: `${site.siteMetadata.siteUrl}/blog/${edge.node.frontmatter.slug}`,
       guid: `${site.siteMetadata.siteUrl}/blog/${edge.node.frontmatter.slug}`,
-      custom_elements: [{ 'content:encoded': edge.node.html }],
+      custom_elements: [{'content:encoded': edge.node.html}],
     })),
     query: `
             {
@@ -53,4 +53,4 @@ const gatsbyPluginFeed = {
   },
 };
 
-module.exports = { gatsbyPluginFeed };
+module.exports = {gatsbyPluginFeed};

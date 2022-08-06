@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
+import {graphql} from 'gatsby';
 import Layout from '../components/layout/layout';
 import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs';
 import Sidebar from '../components/blog/sidebar';
@@ -50,9 +50,9 @@ BlogPostTemplate.propTypes = {
   slug: PropTypes.string,
 };
 
-const BlogPost = ({ data }) => {
-  const { mdx: post, relatedMdxs: relatedPosts } = data;
-  const { title } = data.site.siteMetadata;
+const BlogPost = ({data}) => {
+  const {mdx: post, relatedMdxs: relatedPosts} = data;
+  const {title} = data.site.siteMetadata;
 
   return (
     <Layout>

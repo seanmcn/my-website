@@ -14,7 +14,7 @@ Modal.setAppElement('#___gatsby');
 
 const DebouncedSearchBox = connectSearchBox(SearchInput);
 
-const SearchModal = ({ modalIsOpen, closeModal, searchClient }) => (
+const SearchModal = ({modalIsOpen, closeModal, searchClient}) => (
   <Modal
     isOpen={modalIsOpen}
     onRequestClose={closeModal}

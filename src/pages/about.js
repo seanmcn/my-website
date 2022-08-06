@@ -1,13 +1,13 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import {graphql} from 'gatsby';
 import Helmet from 'react-helmet';
 import Layout from '../components/layout/layout';
 import Sidebar from '../components/sidebar/sidebar';
 
 export default class AboutPage extends React.Component {
   render() {
-    const { data } = this.props;
-    const { title: siteTitle } = data.site.siteMetadata;
+    const {data} = this.props;
+    const {title: siteTitle} = data.site.siteMetadata;
 
     return (
       <Layout>
@@ -53,13 +53,14 @@ export default class AboutPage extends React.Component {
                   I&apos;m comfortable with programming in a lot of programming
                   languages, but my two favourites are Python for file
                   parsing/web scraping/console commands and PHP for web
-                  projects. Front-end development-wise I&apos;m a fan of ReactJS.
+                  projects. Front-end development-wise I&apos;m a fan of
+                  ReactJS.
                 </p>
               </div>
             </div>
           </div>
           <div className="column is-one-quarter">
-            <Sidebar />
+            <Sidebar/>
           </div>
         </div>
       </Layout>

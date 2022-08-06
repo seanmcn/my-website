@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import {Link} from 'gatsby';
 import './breadcrumbs.scss';
-import { slugToTitle } from '../../../utils/blog';
+import {slugToTitle} from '../../../utils/blog';
 
 const Breadcrumbs = ({
   category, tag, title, slug,
@@ -36,7 +36,7 @@ const Breadcrumbs = ({
             <Link
               to={`/blog/${slug}`}
               aria-current="page"
-              dangerouslySetInnerHTML={{ __html: title }}
+              dangerouslySetInnerHTML={{__html: title}}
             />
           </li>
         )}

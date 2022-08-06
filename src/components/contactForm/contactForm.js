@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import {GoogleReCaptchaProvider} from 'react-google-recaptcha-v3';
 import ContactFormInputField from './contactFormInputField';
 import ContactFormTextAreaField from './contactFormTextAreaField';
 

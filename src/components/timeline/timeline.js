@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 import TimelineItem from './timelineItem';
 import TimelineHeader from './timelineHeader';
 import data from './data.json';
