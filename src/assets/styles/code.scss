@@ -1,36 +1,8 @@
-.prism-code {
-  border-left: 6px solid #3498db;
+pre {
+  border: 1px solid darkgrey;
+  border-left: 6px solid #227c71;
 }
 
-span.number {
-  background: none;
-  display: revert;
-  font-size: inherit;
-  margin-right: 0;
-  border-radius: unset;
-  padding: 0;
-}
-
-.language-html .tag:not(body) {
-  padding: 0;
-  font-size: inherit;
-  border-radius: unset;
-  display: revert;
-}
-
-// Overriding for accessibility
-code {
-  color: #d42b3b !important;
-}
-
-.token.function {
-  color: #d42b3b !important;
-}
-
-.token.boolean {
-  color: #297a78 !important;
-}
-
-.token.number {
-  color: #297a78 !important;
+.language-text, .language-shell, .language-bash {
+  word-break: break-all;
 }
