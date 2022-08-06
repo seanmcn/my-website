@@ -6,3 +6,15 @@ pre {
 .language-text, .language-shell, .language-bash {
   word-break: break-all;
 }
+
+.codeWrapper {
+  position: relative;
+}
+.codeCopyButton{
+  position: absolute !important;
+  right: 0;
+  opacity: 25%;
+}
+.codeCopyButton:hover {
+  opacity: 100%;
+}
