@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {LightAsync as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {a11yLight} from 'react-syntax-highlighter/dist/esm/styles/hljs';
 // Supported Language Highlighting:
@@ -31,13 +31,22 @@ SyntaxHighlighter.registerLanguage('yaml', yaml);
 
 export const Code = ({codeString, language}) => {
   return (
-    <SyntaxHighlighter
-      language={language}
-      style={a11yLight}
-      wrapLongLines={true}
-    >
-      {codeString}
-    </SyntaxHighlighter>
+    <div className={'codeWrapper'}>
+      <CopyToClipboard text={codeString}>
+        <button className="codeCopyButton button is-small">
+          <span className="icon is-small" title={'Copy to clipboard'}>
+            <i className="fas fa-copy"></i>
+          </span>
+        </button>
+      </CopyToClipboard>
+      <SyntaxHighlighter
+        language={language}
+        style={a11yLight}
+        wrapLongLines={true}
+      >
+        {codeString}
+      </SyntaxHighlighter>
+    </div>
   );
 };
 
