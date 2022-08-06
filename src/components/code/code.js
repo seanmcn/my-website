@@ -1,46 +1,43 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import Highlight, {defaultProps} from 'prism-react-renderer';
-import {
-  LiveProvider, LiveEditor, LiveError, LivePreview,
-} from 'react-live';
-import codeTheme from 'prism-react-renderer/themes/github';
+
+import {LightAsync as SyntaxHighlighter} from 'react-syntax-highlighter';
+import {a11yLight} from 'react-syntax-highlighter/dist/esm/styles/hljs';
+// Supported Language Highlighting:
+import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
+import php from 'react-syntax-highlighter/dist/esm/languages/hljs/php';
+import bash from 'react-syntax-highlighter/dist/esm/languages/hljs/bash';
+import css from 'react-syntax-highlighter/dist/esm/languages/hljs/css';
+import dart from 'react-syntax-highlighter/dist/esm/languages/hljs/dart';
+import diff from 'react-syntax-highlighter/dist/esm/languages/hljs/diff';
+import go from 'react-syntax-highlighter/dist/esm/languages/hljs/go';
+import python from 'react-syntax-highlighter/dist/esm/languages/hljs/python';
+import shell from 'react-syntax-highlighter/dist/esm/languages/hljs/shell';
+import sql from 'react-syntax-highlighter/dist/esm/languages/hljs/sql';
+import yaml from 'react-syntax-highlighter/dist/esm/languages/hljs/yaml';
 import '../../assets/styles/code.scss';
 
-export const Code = ({codeString, language, ...props}) => {
-  // eslint-disable-next-line react/destructuring-assignment
-  if (props['react-live']) {
-    return (
-      <LiveProvider code={codeString} noInline>
-        <LiveEditor />
-        <LiveError />
-        <LivePreview />
-      </LiveProvider>
-    );
-  }
+SyntaxHighlighter.registerLanguage('js', js);
+SyntaxHighlighter.registerLanguage('php', php);
+SyntaxHighlighter.registerLanguage('bash', bash);
+SyntaxHighlighter.registerLanguage('css', css);
+SyntaxHighlighter.registerLanguage('dart', dart);
+SyntaxHighlighter.registerLanguage('diff', diff);
+SyntaxHighlighter.registerLanguage('go', go);
+SyntaxHighlighter.registerLanguage('python', python);
+SyntaxHighlighter.registerLanguage('shell', shell);
+SyntaxHighlighter.registerLanguage('sql', sql);
+SyntaxHighlighter.registerLanguage('yaml', yaml);
+
+export const Code = ({codeString, language}) => {
   return (
-    <Highlight
-      {...defaultProps}
-      code={codeString}
+    <SyntaxHighlighter
       language={language}
-      theme={codeTheme}
+      style={a11yLight}
+      wrapLongLines={true}
     >
-      {({
-        className, style, tokens, getLineProps, getTokenProps,
-      }) => (
-        <pre className={className} style={style}>
-          {tokens.map((line, i) => (
-            // eslint-disable-next-line react/jsx-key
-            <div {...getLineProps({line, key: i})}>
-              {line.map((token, key) => (
-                // eslint-disable-next-line react/jsx-key
-                <span {...getTokenProps({token, key})} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
+      {codeString}
+    </SyntaxHighlighter>
   );
 };
 
