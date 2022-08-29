@@ -8,7 +8,7 @@ import './layout.scss';
 
 const Layout = ({children}) => (
   <div>
-    <Helmet title="Home | Sean McNamara"/>
+    <Helmet title="Home | Seán McNamara"/>
     <Helmet
       bodyAttributes={{
         class: 'has-navbar-fixed-top',
