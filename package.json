@@ -2,7 +2,7 @@
     "name": "seanmcn-web-frontend",
     "description": "Frontend for seanmcn.com",
     "version": "1.1.0",
-    "author": "Sean McNamara",
+    "author": "Seán McNamara",
     "engines": {
         "npm": ">=8.15.1",
         "node": ">=16.6.0"

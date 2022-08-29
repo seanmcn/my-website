@@ -39,9 +39,9 @@ const gatsbySourceFileSystemAssets = {
 
 module.exports = {
   siteMetadata: {
-    title: 'Sean McNamara',
-    author: 'Sean McNamara',
-    description: 'Sean McNamara\'s personal website, containing ' +
+    title: 'Seán McNamara',
+    author: 'Seán McNamara',
+    description: 'Seán McNamara\'s personal website, containing ' +
       'articles surrounding programming, technology, games & reviews.',
     siteUrl: 'https://seanmcn.com',
   },
@@ -102,7 +102,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Sean McNamara',
+        name: 'Seán McNamara',
         short_name: 'Sean McN',
         start_url: '/',
         background_color: '#ffffff',

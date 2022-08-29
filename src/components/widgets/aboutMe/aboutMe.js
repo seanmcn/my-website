@@ -6,7 +6,7 @@ import './aboutMe.scss';
 const AboutMeWidget = () => (
   <div className="box">
     <figure className="image is-128x128 aboutMeImage">
-      <img src={avatar} alt="Sean jumping on top of a mountain" />
+      <img src={avatar} alt="Seán jumping on top of a mountain" />
     </figure>
     <hr className="aboutMeImageDivider" />
     <p>
