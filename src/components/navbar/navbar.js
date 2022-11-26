@@ -46,6 +46,11 @@ export default class Navbar extends React.Component {
 
             <div className="navbar-end navbar-social-icons">
               <NavbarItemSocial
+                link="https://mas.to/@seanmcn"
+                label="Mastodon Profile"
+                icon="fa-mastodon"
+              />
+              <NavbarItemSocial
                 link="https://www.linkedin.com/in/mrseanmcn"
                 label="LinkedIn Profile"
                 icon="fa-linkedin"
