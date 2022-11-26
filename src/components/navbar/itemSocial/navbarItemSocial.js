@@ -8,7 +8,7 @@ const NavbarItemSocial = (props) => {
       className="navbar-item"
       href={link}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener noreferrer me"
       aria-label={label}
     >
       <span className="icon">
