@@ -10,8 +10,8 @@ After switching over my blog to Gatsby and using markdown, I have been on the lo
 
 I switch between a windows desktop computer and a MacBook throughout the day, so having the same software on both platforms was vital to me. I also wanted something open-source, as I'm trying to focus on making more open-source contributions.
 
-Well, I've found something that satisfies both of the above: [Mark Text](https://marktext.app/).
+Well, I've found something that satisfies both of the above: [Mark Text](https://github.com/marktext/marktext).
 
 ![An image of MarkText software](images/marktext.png)
 
-I could talk about all of its features and how its interface is beautifully minimalistic, but you can read all about that [on their website](https://marktext.app/) or if `README.md` is more your thing, [check out their Github](https://github.com/marktext/marktext).
+I could talk about all of its features and how its interface is beautifully minimalistic, but you can read all about that [on their Github](https://github.com/marktext/marktext).
