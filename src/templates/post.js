@@ -21,7 +21,7 @@ const BlogPostTemplate = ({
   <div>
     <Breadcrumbs category={category} title={title} slug={slug} />
     <div className="columns">
-      <div className="column is-three-quarters" id="postMainColumn">
+      <div className="column is-four-fifths" id="postMainColumn">
         <Post
           id={id}
           slug={slug}
@@ -33,7 +33,7 @@ const BlogPostTemplate = ({
         <RelatedPosts relatedPosts={relatedPosts} />
       </div>
 
-      <div className="column is-one-quarter" id="postSidebarColumn">
+      <div className="column is-one-fifth" id="postSidebarColumn">
         <Sidebar category={category} />
       </div>
     </div>
