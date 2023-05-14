@@ -5,8 +5,8 @@ slug: '2016/06/honest-review-surface-pro-3'
 category: 'review'
 tags: ['review', 'surface', 'windows']
 keywords: ['pro', 'surface', '3', 'honest']
+featured: images/cartoon-tablet-review.png
 ---
-![surface-pro.jpg](images/surface-pro.jpg)
 
 I bought a Surface Pro 3 in November 2014, I haven’t wrote anything at all about my thoughts on it since purchasing it, I figured it was better to wait until I had actually been using it for a significant amount of time and give it an honest review. A year and a half I figure to be more than enough time.
 
@@ -25,6 +25,9 @@ So this post is going to be structured in the following way, condensed Pro/Cons.
 - Overheating is a serious issue, even when running just a browser the surface can become incredibly hot, some people are combating this by having an external fan pointed at the device.
 - The chargers connection to the Surface is pretty much the worst design ever. Unless you constantly make sure it’s not bending in any way whatsoever prepare to replace your charger every 6 months. The chargers are not cheap either!
 - You constantly need to change the scaling of the resolution depending on what you’re running. Coding in an IDE scale up, games scale down. Changing scaling requires logging out and back into Windows, kind of awkward but could be worse.
+
+![surface-pro.jpg](images/surface-pro.jpg)
+
 
 Well that’s the basic pro and cons down, now lets get into why I actually bought the Surface and my personal feelings on it.
 

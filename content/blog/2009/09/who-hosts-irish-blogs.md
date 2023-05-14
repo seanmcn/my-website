@@ -5,6 +5,7 @@ slug: '2009/09/who-hosts-irish-blogs'
 category: 'research'
 tags: ['stats', 'hosting', 'irish', 'blogs']
 keywords: ['ireland', 'blogging', 'history']
+featured: images/cartoon-programmer-research.png
 ---
 
 I was interested to see what web hosts are hosting Irish blogs in 2009, so here are the stats.

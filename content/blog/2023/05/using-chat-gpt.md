@@ -5,9 +5,8 @@ slug: "2023/05/using-chat-gpt"
 category: "AI"
 tags: ["ai", "chat-gpt"]
 keywords: ["ai", "chat-gpt", "gpt3", "programming"]
+featured: images/robot-programming.png
 ---
-![Robot Programming](images/robot-programming.jpg)
-
 I've been using Open AI's [ChatGPT](https://chat.openai.com/) for a couple of months now, it feels game changing in terms of search & handling remedial tasks. I wanted to share some ways that I've been finding it useful in enhancing my workflow day-to-day.
 
 ## Programming Questions

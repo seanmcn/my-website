@@ -2,9 +2,10 @@
 title: "Gitlab CI - Commit & Push in a Job"
 date: "2022-07-26T22:01:00.000Z"  
 slug: "2022/07/gitlab-ci-commit-and-push-in-job"  
-category: "workflow-&-tools"  
-tags: ["programming", "gitlab", "ci"]  
+category: "devops"  
+tags: ["programming", "gitlab", "ci", "devops"]  
 keywords: ["gitlab", "continuous integration", "gitlab ci", "gitlab runner"]
+featured: images/gitlab-ci.png
 ---
 Recently I needed to make a GitLab CI job where when a merge to master occurs, it runs a bash script, commits the files & pushes them back to master. I needed this to build a change log out of separate files, and now I have it working; it feels like a helpful thing to share how to do.
 

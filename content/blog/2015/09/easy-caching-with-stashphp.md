@@ -5,6 +5,7 @@ slug: '2015/09/stash-php'
 category: 'programming'
 tags: ['programming', 'php', 'caching']
 keywords: ['cache', 'stash', 'apc', 'redis', 'guide']
+featured: images/cartoon-server-cache.png
 ---
 
 Frequently with PHP you are going to need to cache things, mostly expensive SQL queries, but also data you aren't going to want to be inserting into the database on every page hit, for instance website statistics.
