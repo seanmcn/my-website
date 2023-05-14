@@ -2,7 +2,9 @@ export function getPostsFromQuery() {}
 
 export function slugToTitle(str) {
   const capitalisationOverride = {
+    Ai: 'AI',
     Css: 'CSS',
+    Devops: 'DevOps',
     Cms: 'CMS',
     Gpg: 'GPG',
     Jquery: 'jQuery',
