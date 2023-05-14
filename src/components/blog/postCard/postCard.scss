@@ -1,0 +1,35 @@
+.postCardBox {
+  width: 45%;
+  margin: 1em;
+  border-top: 2px solid #227c71;
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+
+  h1 {
+    padding-bottom: 1rem;
+  }
+}
+
+.postCardContent {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.postCardTags {
+  flex-direction: row;
+  margin-bottom: -0.5rem !important;
+  display: flex;
+  align-items: flex-end;
+  align-content: flex-end;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+}
+
+.postedOn {
+  font-size: 0.9em;
+  font-style: italic;
+}
