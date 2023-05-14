@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import {graphql} from 'gatsby';
 import Post from '../post/post';
 import './postList.scss';
+import PostCard from '../postCard/postCard';
 
 export default class postList extends React.Component {
   render() {
     const {posts} = this.props;
 
     return (
-      <div>
+      <div className={'is-flex is-flex-direction-row is-flex-wrap-wrap'}>
         {posts.map(({node: post}) => (
-          <Post
+          <PostCard
             key={post.id}
             id={post.id}
             content={post.body}
