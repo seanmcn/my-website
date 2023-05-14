@@ -7,7 +7,6 @@ import PostCard from '../postCard/postCard';
 export default class postList extends React.Component {
   render() {
     const {posts} = this.props;
-    console.log(posts);
     return (
       <div className={'is-flex is-flex-direction-row is-flex-wrap-wrap'}>
         {posts.map(({node: post}) => {
