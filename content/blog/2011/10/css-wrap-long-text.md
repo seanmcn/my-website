@@ -5,6 +5,7 @@ slug: '2011/10/css-code-for-wrapping-long-urls-and-text'
 category: 'programming'
 tags: ['css', 'web-design']
 keywords: ['break', 'word', 'white', 'space']
+featured: images/cartoon-programmer-text.png
 ---
 
 Ran into a problem last night where a long email was messing up a design in smaller screen resolutions.

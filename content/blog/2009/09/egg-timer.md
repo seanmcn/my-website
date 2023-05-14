@@ -5,10 +5,15 @@ slug: '2009/09/e-ggtimer-com-online-timer'
 category: 'review'
 tags: [ 'software', 'alarm']
 keywords: ['egg', 'timer', 'browser', 'review']
+featured: images/cartoon-egg-timer.png
 ---
 
-![eggtimer.jpg](images/eggtimer.jpg)
+This website is a little gem I came across last night. 
 
-This website is a little gem I came across last night. Will take and countdown from any time, given in words or figures. :) Even when open in a tab you can still see the timer continue to countdown! Have to say I like the use of these "subdomain" websites!
+It will take and countdown from any time, given in words or figures. :smile:
 
-[Go to E.ggtimer.com ->](https://e.ggtimer.com/)
+Even when open in a tab you can still see the timer continue to countdown! 
+
+I have to say I like the use of these websites that utilise the URL so that you can access the same timer again.
+
+[Go to E.ggtimer.com](https://e.ggtimer.com/)

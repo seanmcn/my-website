@@ -5,8 +5,8 @@ slug: '2012/01/control-your-pc-with-xbox-controller'
 category: 'windows'
 tags: ['how-to', 'xbox', 'controller', 'control', 'windows']
 keywords: ['how', 'guide']
+featured: images/cartoon-xbox-pc.png
 ---
-![Xbox 360 Controller](images/Microsoft-Xbox360-Controller-Wireless_enl.jpg)
 
 Today I’m going to walk you through setting up an xbox controller to work on your computer and control the mouse / keyboard.
 

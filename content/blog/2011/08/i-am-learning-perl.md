@@ -5,8 +5,8 @@ slug: '2011/08/why-im-learning-perl'
 category: 'programming'
 tags: ['programming', 'perl']
 keywords: ['languages', 'pros', 'cons']
+featured: images/cartoon-perl.png
 ---
-![i-want-you-to-learn-perl.jpg](images/i-want-you-to-learn-perl.jpg)
 
 So this post may not be to everyone's taste, its more a post to remind myself why I've decided to learn Perl. If anyone doesn't know I already know PHP and Java.
 

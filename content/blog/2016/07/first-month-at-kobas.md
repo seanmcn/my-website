@@ -5,14 +5,16 @@ slug: '2016/07/first-month-at-kobas'
 category: 'work'
 tags: ['personal', 'work', 'kobas']
 keywords: ['updates', 'work', 'life', 'epos', 'programming']
+featured: images/cartoon-olive-young.png
 ---
-![Image of Kobas team meeting](images/k-meeting.jpg)
 
 So I’ve been working for roughly a month at [Kobas](http://www.kobas.co.uk/) now, I think things have been going very well and I wanted to highlight what I’ve been working on for the last couple of weeks.
 
 For anyone that does not know what [Kobas](http://www.kobas.co.uk/) does, it is a hospitality management solution covering; stock control, rotas, HR, EPoS, customer loyalty and much more. It’s actually a very useful piece of software for clients, allowing them to gather lots of data from all areas of their business and providing a cloud interface that outputs that data in fancy reports. After seeing it in action I find it very surprising that not all businesses use this as it can really help you to increase your profits and avoid wasting money unnecessarily.
 
 Anyway, on to what I’ve been doing, I’ve been mainly working on the EPoS (Electronic Point of Sale) side of things, which in layman’s terms are the [Kobas](http://www.kobas.co.uk/) tills.
+
+![Image of Kobas team meeting](images/k-meeting.jpg)
 
 To side-track just a little I think the [Kobas](http://www.kobas.co.uk/) tills are so nice to look at and use, here is an example screen from one:
 

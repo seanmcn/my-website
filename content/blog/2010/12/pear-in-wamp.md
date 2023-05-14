@@ -5,9 +5,8 @@ slug: '2010/12/installing-pear-in-wamp'
 category: 'windows'
 tags: ['pear', 'wampp', 'windows']
 keywords: ['guide', 'install']
+featured: images/cartoon-pear.png
 ---
-
-![pear.png](images/pear.png)
 
 So this evening I went about attempting to install PEAR on my WAMP installation, this should be as simple as opening up a command window navigating to `C:/wamp/bin/php/*phpversion*` and running `go-pear.bat`, however upon doing this I ran into the following errors:
 

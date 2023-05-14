@@ -5,10 +5,9 @@ slug: '2011/08/pyrocms-cms-on-the-codeignitor-framework'
 category: 'programming'
 tags: ['programming', 'cms', 'pyrocms']
 keywords: ['pyro', 'content', 'management', 'system']
+featured: images/cartoon-computer-pyro.png
 ---
 > Update as of August 2020 - PyroCMS now relies upon Laravel.
-
-![pyro-cms.png](images/pyro-cms.png)
 
 So lately I've been playing around with [PyroCMS](http://pyrocms.com/) , for any of you who don’t know about Pyro, its basically an open source content  management solution that iss based on the CodeIgnitor framework. What does that mean you ask?
 

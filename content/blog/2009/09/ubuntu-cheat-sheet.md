@@ -5,6 +5,7 @@ slug: '2009/09/ubuntu-cheat-sheets'
 category: 'linux'
 tags: ['linux', 'ubuntu', 'cheat-sheet']
 keywords: ['manual', 'cheat', 'sheet']
+featured: images/cartoon-programmer-stickers.png
 ---
 > Somehow I lost the original files of these, I've updated to use cheat sheets [provided by Gary Woodfine](https://garywoodfine.com/linux-terminal-command-cheat-sheets/).
 

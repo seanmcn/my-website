@@ -5,6 +5,7 @@ slug: "2021/08/open-source-projects-i-use-for-development"
 category: "open-source"
 tags: ["software","programming", "open source"]
 keywords: ["pandoc", "screentogif", "draw.io", "git", "recall", "inspector", ]
+featured: images/laptop-with-software.png
 ---
 I love open source software, and I try to use it whenever possible. The ability to be able to fork the codebase and add (or fix) functionality you need means you're not reliant on a third party for a bug fix.
 

@@ -5,6 +5,7 @@ slug: '2020/10/website-revitalised-gatsby'
 category: 'meta'
 tags: [ 'programming', 'gatsby', 'javascript']
 keywords: ['gatsby', 'reactjs', 'js', 'javascript']
+featured: images/cartoon-web-design.png
 ---
 This year, one of my personal goals was to revitalise this website and get the source code onto Github.
 

@@ -5,6 +5,7 @@ slug: "2020/11/marktext-a-markdown-editor"
 category: "open-source"
 tags: ["markdown", "windows", "osx", "open-source"]
 keywords: ["markdown", "software"]
+featured: images/cartoon-laptop-page.png
 ---
 After switching over my blog to Gatsby and using markdown, I have been on the lookout for a decent markdown editor to use for writing. Up until now, I have been using a combination of [Dillinger.io](https://dillinger.io/) and [Markdown Navigator Enhanced](https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced) in [PHPStorm](https://www.jetbrains.com/phpstorm/).
 
@@ -12,6 +13,5 @@ I switch between a windows desktop computer and a MacBook throughout the day, so
 
 Well, I've found something that satisfies both of the above: [Mark Text](https://github.com/marktext/marktext).
 
-![An image of MarkText software](images/marktext.png)
 
 I could talk about all of its features and how its interface is beautifully minimalistic, but you can read all about that [on their Github](https://github.com/marktext/marktext).

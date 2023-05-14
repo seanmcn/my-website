@@ -5,6 +5,7 @@ slug: '2020/08/programmer-personality'
 category: 'personal'
 tags: ['funny', 'programming', 'personal']
 keywords: ['type', 'personality', 'personal', 'quiz', 'fun']
+featured: images/cartoon-survey.png
 ---
 
 While converting over [my previous post](/blog/2009/11/programmer-personality) of my Programmer Personality, I decided to do it again and see whats changed, as expected it has.

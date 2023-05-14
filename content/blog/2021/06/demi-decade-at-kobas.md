@@ -5,6 +5,7 @@ slug: "2021/06/demi-decade-at-kobas"
 category: "work"  
 tags: ["php","programming"]  
 keywords: ["epos", "hospitality", "demi-decade", "remote work", "kobas"]
+featured: images/cartoon-olive-working.png
 ---
 
 As of last Sunday, I've been working at [Kobas](https://www.kobas.co.uk/) for five years (a demi-decade :sweat_smile:) , reading [my post from a month in](https://seanmcn.com/blog/2016/07/first-month-at-kobas/) reminds me how much has changed and prompted me to provide an update.

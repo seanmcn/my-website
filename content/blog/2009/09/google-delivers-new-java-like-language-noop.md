@@ -5,6 +5,7 @@ slug: '2009/09/google-delivers-new-java-like-language-noop'
 category: 'programming'
 tags: [ 'google', 'java', 'noop', 'programming']
 keywords: ['new', 'language']
+featured: images/cartoon-programmer-language.png
 ---
 
 The developers over at Google have come up with Noop, a new language that runs on the Java Virtual Machine.

@@ -5,8 +5,8 @@ slug: '2011/02/esprimo-mobile-v5535-and-ubuntu-10-10'
 category: 'review'
 tags: ['review', 'esprimo', 'ubuntu']
 keywords: ['fujitsu', 'siemens', 'mobile', 'v5505', 'v5545', 'laptop']
+featured: images/cartoon-linux.png
 ---
-![fujitsu_siemens_esprimo_mobile_v5505_v5545.jpg](images/fujitsu_siemens_esprimo_mobile_v5505_v5545.jpg)
 
 So I ended up picking up a cheap Esprimo Mobile v5535 a few days ago, long story short; laptop broke, Argos have sent it off for repairs that will take 2-3 weeks, that's the last time I buy a laptop from Argos.
 

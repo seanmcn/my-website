@@ -5,8 +5,8 @@ slug: '2015/01/being-a-php-developer'
 category: 'programming'
 tags: ['php', 'programming', 'web', 'linux', 'javascript']
 keywords: ['thoughts', 'update', '2015']
+featured: images/cartoon-programmer-journal.png
 ---
-![Generic coding image](images/coding.png)
 
 This is just some thoughts on being a PHP developer in 2015.
 

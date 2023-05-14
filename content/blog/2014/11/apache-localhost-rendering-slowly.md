@@ -5,8 +5,8 @@ slug: '2014/11/apache-localhost-rendering-slowly'
 category: 'programming'
 tags: ['apache', 'programming']
 keywords: ['localhost', 'slow', 'render']
+featured: images/cartoon-server-unhealthy.png
 ---
-![Slowweb-2.jpg](images/Slowweb-2.jpg)
 Is your localhost taking longer than expected to load?
 
 A possible quick fix is to edit your `httpd.conf` file and set `'ServerName'` to `127.0.0.1:80` . This can make the difference between millisecond load times and crying while Apache tries to load.

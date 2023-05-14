@@ -5,6 +5,7 @@ slug: "2022/01/reflections-on-2021"
 category: "personal"  
 tags: ["crypto","programming", "personal"]  
 keywords: ["klima", "polygon", "fantom", "flutter", "ios", "android"]
+featured: images/brain-thinking.png
 ---
 
 With the first month of 2022 ending, I thought it would make sense to reflect on what I've picked up in 2021 and my goals for 2022. With the last of the COVID-19 restrictions are being removed in England, I am cautiously optimistic about what the future has in store.
