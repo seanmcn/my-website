@@ -4,7 +4,7 @@ const {paginate} = require('gatsby-awesome-pagination');
 
 exports.createPages = async function({actions, graphql}) {
   const {createPage} = actions;
-  const itemsPerPage = 10;
+  const itemsPerPage = 9;
 
   /**
    * Homepage
@@ -199,4 +199,19 @@ exports.onCreateNode = ({node, actions, getNode}) => {
       value,
     });
   }
+};
+
+exports.createSchemaCustomization = ({actions, schema}) => {
+  const {createTypes} = actions;
+
+  const typeDefs = [
+    `type MarkdownRemark implements Node {
+            frontmatter: Frontmatter
+        }`,
+    `type Frontmatter @infer {
+            featured: [File!]! @fileByRelativePath,
+        }`,
+  ];
+
+  createTypes(typeDefs);
 };

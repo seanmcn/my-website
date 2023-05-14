@@ -1,5 +1,12 @@
+@import "../../../assets/styles/main";
+
 .postCardBox {
-  width: 45%;
+  @include tablet  {
+    width: 40%;
+  }
+  @include desktop  {
+    width: 30%;
+  }
   margin: 1em;
   border-top: 2px solid #227c71;
   flex-direction: column;
@@ -7,29 +14,22 @@
   display: flex;
 
   h1 {
-    padding-bottom: 1rem;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-size: 1.5em;
   }
 }
 
-.postCardContent {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: flex-end;
-}
-
 .postCardTags {
-  flex-direction: row;
-  margin-bottom: -0.5rem !important;
+  margin-bottom: 0 !important;
   display: flex;
-  align-items: flex-end;
-  align-content: flex-end;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-end;
-
+  gap: 0.5em;
 }
 
 .postedOn {
+  align-self: flex-end;
   font-size: 0.9em;
   font-style: italic;
 }
