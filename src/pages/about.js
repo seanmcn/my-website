@@ -3,6 +3,7 @@ import {graphql} from 'gatsby';
 import Helmet from 'react-helmet';
 import Layout from '../components/layout/layout';
 import Sidebar from '../components/sidebar/sidebar';
+import Timeline from '../components/timeline/timeline';
 
 export default class AboutPage extends React.Component {
   render() {
@@ -15,7 +16,10 @@ export default class AboutPage extends React.Component {
           <title>{`About Me - ${siteTitle}`}</title>
         </Helmet>
         <div className="columns">
-          <div className="column is-three-quarters">
+          <div className="column is-one-fifth-desktop">
+            <Sidebar/>
+          </div>
+          <div className="column is-two-fifths-desktop">
             <div className="box">
               <h1 className="title">About Me</h1>
               <div
@@ -59,9 +63,13 @@ export default class AboutPage extends React.Component {
               </div>
             </div>
           </div>
-          <div className="column is-one-quarter">
-            <Sidebar/>
+          <div className="column is-two-fifths-desktop">
+            <div className="box">
+              <h1 className="title">Timeline</h1>
+              <Timeline />
+            </div>
           </div>
+
         </div>
       </Layout>
     );

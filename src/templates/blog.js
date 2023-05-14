@@ -20,11 +20,15 @@ export default class BlogPage extends React.Component {
           <title>{`Blog - ${siteTitle}`}</title>
         </Helmet>
         <div className="columns">
-          <div className="column is-four-fifths" id="postMainColumn">
+          <div className="column
+          is-four-fifths-desktop
+          is-three-quarters-tablet" id="postMainColumn">
             <PostList posts={posts} />
             <Pagination pageContext={pageContext} />
           </div>
-          <div className="column is-one-fifth" id="postSidebarColumn">
+          <div className="column
+          is-one-fifth-desktop
+          is-one-quarter-tablet" id="postSidebarColumn">
             <Sidebar />
           </div>
         </div>
