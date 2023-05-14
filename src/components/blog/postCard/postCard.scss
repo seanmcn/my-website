@@ -1,0 +1,35 @@
+@import "../../../assets/styles/main";
+
+.postCardBox {
+  @include tablet  {
+    width: 40%;
+  }
+  @include desktop  {
+    width: 30%;
+  }
+  margin: 1em;
+  border-top: 2px solid #227c71;
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+
+  h1 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-size: 1.5em;
+  }
+}
+
+.postCardTags {
+  margin-bottom: 0 !important;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.postedOn {
+  align-self: flex-end;
+  font-size: 0.9em;
+  font-style: italic;
+}

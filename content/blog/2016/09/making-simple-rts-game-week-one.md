@@ -5,6 +5,7 @@ slug: '2016/09/making-simple-rts-game-week-one'
 category: 'game-development'
 tags: ['javascript', 'game-development', 'simple-rts-game']
 keywords: ['rts', 'game', 'development', 'phaser', 'socket', 'planning', 'project', 'hobby', 'series']
+featured: images/cartoon-programmer-game-1.png
 ---
 So I’ve decided I want to make a game again, nothing crazy just a simple RTS game, browser based (mainly for speed of development and that I’m interested to see what it’s like),  I’ve decided I may as well blog along the journey to keep myself motivated and prevent quitting mid-way through.
 

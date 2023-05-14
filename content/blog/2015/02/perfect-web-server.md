@@ -5,6 +5,7 @@ slug: '2015/02/perfect-web-server'
 category: 'devops'
 tags: ['ajenti', 'linux', 'nginx', 'ubuntu']
 keywords: ['perfect', 'web', 'server', 'setup', 'guide']
+featured: images/cartoon-web-server.png
 ---
 ![ajenti-dashboard.png](images/ajenti-dashboard.png)
 

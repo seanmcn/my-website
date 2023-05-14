@@ -5,6 +5,7 @@ slug: '2016/11/making-simple-rts-game-week-three'
 category: 'game-development'
 tags: ['javascript', 'game-development', 'simple-rts-game']
 keywords: ['rts', 'game', 'development', 'phaser', 'socket', 'planning', 'project', 'hobby', 'series']
+featured: images/cartoon-programmer-game-3.png
 ---
 So week two of making an RTS was September 2nd – 9th. Almost three months later I’ve managed to spend most of my weekend on it. This is pretty typical timeline of any of my personal side-project’s. *sigh*
 

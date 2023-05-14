@@ -5,6 +5,7 @@ slug: '2009/11/programmer-personality'
 category: 'personal'
 tags: ['personal', 'funny', 'programming']
 keywords: ['personality', 'programmer']
+featured: images/cartoon-survey-2.png
 ---
 
 I just took a fun test on "What is your programmer personality?" It is based of the [Myers-Briggs Personality Test](https://en.wikipedia.org/wiki/Myers%E2%80%93Briggs_Type_Indicator) and has been changed to relate to your programming personality type.

@@ -1,0 +1,21 @@
+@import "../../../assets/styles/main";
+
+.latestPostsHome {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  .postCardBox {
+    @include mobile {
+      width: 100%;
+      align-items: center;
+    }
+    @include tablet {
+      width: 40%;
+    }
+    @include desktop {
+      width: 30%;
+    }
+  }
+}

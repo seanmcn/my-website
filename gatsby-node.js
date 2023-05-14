@@ -1,10 +1,10 @@
 const path = require('path');
-const { createFilePath } = require('gatsby-source-filesystem');
-const { paginate } = require('gatsby-awesome-pagination');
+const {createFilePath} = require('gatsby-source-filesystem');
+const {paginate} = require('gatsby-awesome-pagination');
 
-exports.createPages = async function ({ actions, graphql }) {
-  const { createPage } = actions;
-  const itemsPerPage = 5;
+exports.createPages = async function({actions, graphql}) {
+  const {createPage} = actions;
+  const itemsPerPage = 9;
 
   /**
    * Homepage
@@ -19,7 +19,7 @@ exports.createPages = async function ({ actions, graphql }) {
    * Blog
    * */
   const blogPosts = await graphql(
-    `
+      `
      {
         allMdx(
           sort: { fields: [frontmatter___date], order: DESC } 
@@ -43,8 +43,8 @@ exports.createPages = async function ({ actions, graphql }) {
   const posts = blogPosts.data.allMdx.edges;
   const postTemplate = path.resolve('./src/templates/post.js');
   const blogPostPromises = posts.map(async (edge, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index
-    + 1].node;
+    const previous = index === posts.length - 1 ? null : posts[index +
+    1].node;
     const next = index === 0 ? null : posts[index - 1].node;
     createPage({
       path: `/blog/${edge.node.frontmatter.slug}/`,
@@ -66,9 +66,9 @@ exports.createPages = async function ({ actions, graphql }) {
     createPage,
     items: posts,
     itemsPerPage,
-    pathPrefix: ({ pageNumber }) => (pageNumber === 0
-      ? '/blog'
-      : '/blog/page'),
+    pathPrefix: ({pageNumber}) => (pageNumber === 0 ?
+      '/blog' :
+      '/blog/page'),
     component: blogTemplate,
     context: {
       paginate_link: '/blog',
@@ -79,7 +79,7 @@ exports.createPages = async function ({ actions, graphql }) {
    * Tag pages + pagination
   * */
   const distinctTags = await graphql(
-    `
+      `
           {
             allMdx {
               distinct(field: frontmatter___tags)
@@ -91,7 +91,7 @@ exports.createPages = async function ({ actions, graphql }) {
   const tagsTemplate = path.resolve('./src/templates/tag.js');
   const tagPromises = tagList.map(async (tag) => {
     await graphql(
-      `
+        `
         {
           allMdx(filter: {frontmatter: {tags: {in: "${tag}"}}}) {
             edges {
@@ -116,9 +116,9 @@ exports.createPages = async function ({ actions, graphql }) {
         createPage,
         items: tagPosts.data.allMdx.edges,
         itemsPerPage,
-        pathPrefix: ({ pageNumber }) => (pageNumber === 0
-          ? `/blog/tags/${tagLower}`
-          : `/blog/tags/${tagLower}/page`),
+        pathPrefix: ({pageNumber}) => (pageNumber === 0 ?
+          `/blog/tags/${tagLower}` :
+          `/blog/tags/${tagLower}/page`),
         component: tagsTemplate,
         context: {
           name: tag,
@@ -135,7 +135,7 @@ exports.createPages = async function ({ actions, graphql }) {
    * Category pages + pagination
    * */
   const distinctCategories = await graphql(
-    `
+      `
           {
             allMdx {
               distinct(field: frontmatter___category)
@@ -148,7 +148,7 @@ exports.createPages = async function ({ actions, graphql }) {
   const categoriesTemplate = path.resolve('./src/templates/category.js');
   const categoryPromises = categoryList.map(async (category) => {
     await graphql(
-      `
+        `
         {
           allMdx(filter: {frontmatter: {category: {eq: "${category}"}}}) {
             edges {
@@ -172,9 +172,9 @@ exports.createPages = async function ({ actions, graphql }) {
         createPage,
         items: categoryPosts.data.allMdx.edges,
         itemsPerPage,
-        pathPrefix: ({ pageNumber }) => (pageNumber === 0
-          ? `/blog/categories/${category}`
-          : `/blog/categories/${category}/page`),
+        pathPrefix: ({pageNumber}) => (pageNumber === 0 ?
+          `/blog/categories/${category}` :
+          `/blog/categories/${category}/page`),
         component: categoriesTemplate,
         context: {
           name: category,
@@ -188,15 +188,30 @@ exports.createPages = async function ({ actions, graphql }) {
   await Promise.all(categoryPromises);
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
+exports.onCreateNode = ({node, actions, getNode}) => {
+  const {createNodeField} = actions;
 
   if (node.internal.type === 'Mdx') {
-    const value = createFilePath({ node, getNode });
+    const value = createFilePath({node, getNode});
     createNodeField({
       name: 'slug',
       node,
       value,
     });
   }
+};
+
+exports.createSchemaCustomization = ({actions, schema}) => {
+  const {createTypes} = actions;
+
+  const typeDefs = [
+    `type MarkdownRemark implements Node {
+            frontmatter: Frontmatter
+        }`,
+    `type Frontmatter @infer {
+            featured: [File!]! @fileByRelativePath,
+        }`,
+  ];
+
+  createTypes(typeDefs);
 };

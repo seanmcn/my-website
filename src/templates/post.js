@@ -17,11 +17,13 @@ const BlogPostTemplate = ({
   date,
   slug,
   relatedPosts,
+  featured,
 }) => (
   <div>
-    <Breadcrumbs category={category} title={title} slug={slug} />
+    <Breadcrumbs category={category} title={title} slug={slug}/>
     <div className="columns">
-      <div className="column is-three-quarters" id="postMainColumn">
+      <div className="column is-four-fifths-desktop is-three-quarters-tablet"
+        id="postMainColumn">
         <Post
           id={id}
           slug={slug}
@@ -29,12 +31,15 @@ const BlogPostTemplate = ({
           content={content}
           date={date}
           tags={tags}
+          featured={featured}
         />
-        <RelatedPosts relatedPosts={relatedPosts} />
+        <RelatedPosts relatedPosts={relatedPosts}/>
       </div>
 
-      <div className="column is-one-quarter" id="postSidebarColumn">
-        <Sidebar category={category} />
+      <div className="column
+      is-one-fifth-desktop
+      is-one-quarter-tablet" id="postSidebarColumn">
+        <Sidebar category={category}/>
       </div>
     </div>
   </div>
@@ -48,11 +53,16 @@ BlogPostTemplate.propTypes = {
   title: PropTypes.string,
   date: PropTypes.string,
   slug: PropTypes.string,
+  featured: PropTypes.any,
 };
 
 const BlogPost = ({data}) => {
   const {mdx: post, relatedMdxs: relatedPosts} = data;
   const {title} = data.site.siteMetadata;
+
+  const featured = post.frontmatter.featured ?
+    post.frontmatter.featured :
+    null;
 
   return (
     <Layout>
@@ -68,6 +78,7 @@ const BlogPost = ({data}) => {
         date={post.frontmatter.date}
         slug={post.frontmatter.slug}
         relatedPosts={relatedPosts}
+        featured={featured}
       />
     </Layout>
   );

@@ -5,6 +5,7 @@ slug: '2018/01/helpful-linux-commands'
 category: 'linux'
 tags: ['linux', 'commands', 'screen']
 keywords: ['bash', 'command', 'sudo', 'history']
+featured: images/cartoon-penguin-computer.png
 ---
 So this is just going to be a bit of knowledge dump of things I’ve picked up lately / don’t want to forget.
 ## Bang Cash !$

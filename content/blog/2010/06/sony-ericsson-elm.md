@@ -5,14 +5,17 @@ slug: '2010/06/the-sony-ericsson-elm'
 category: 'review'
 tags: ['review', 'phone']
 keywords: ['sony', 'ericsson', 'phone', 'greenheart']
+featured: images/cartoon-eco-friendly-phone.png
 ---
 
-![elm_front_metalblack_latin42090.jpg](images/elm_front_metalblack_latin42090.jpg)
 So I’ve finally gotten a new phone, the Sony Ericsson Elm which is a part of Sony Ericsson’s “Greenheart” family. So far I’ve been using the phone a week I am extremely pleased with it. It’s made from recycled plastics and is free from hazardous chemicals – and comes with a low power consumption charger, reduced packaging, some eco-aware apps and an e-manual on the phone instead of a printed guide.
 
 It also comes with built in Wi-Fi and A-GPS technology, HSPA high-speed mobile network data capability, a 5-megapixel camera and a full of multimedia features. Measuring up at 110 x 45 x 14mm at its thickest, and weighing 90g, the Elm feels slim in-hand and pretty lightweight.
 
 The buttons are familiar to Sony Ericsson’s, with a rectangular central navigation D-pad surrounded by more comfortably curved buttons. Although it comes with decent music player software, Sony Ericsson hasn’t built in a standard 3.5mm headphone socket on this model, relying on its Sony Ericsson multi-connector socket on the side. A camera button is included on the side, along with volume keys, while the camera lens on the back panel is accompanied by a small LED flash.
+
+![elm_front_metalblack_latin42090.jpg](images/elm_front_metalblack_latin42090.jpg)
+
 
 The home screen has a simple widget system, currently allowing a Facebook app, a calendar app and the Sony Ericsson Walk Mate Eco pedometer application. Once selected, these sit on the home screen, and you can switch between them, so you can see regular updates from whichever of the widgets you use.
 

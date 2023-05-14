@@ -5,8 +5,8 @@ slug: '2014/10/we-are-back-moving-forward'
 category: 'personal'
 tags: ['personal']
 keywords: ['update', 'goals']
+featured: images/cartoon-programmer-start.png
 ---
-![were-back-baby.jpg](images/were-back-baby.jpg)
 So I've truly neglected here, my original space on the internet.. It's been almost two years since my last post, which was really just a code snippet.
 
 So moving forward I'm going to be blogging about completely different topics that I haven't blogged about before. .
@@ -20,6 +20,8 @@ Well, a lot has happened since I've last posted on here. It's even kind of hard 
 I love my new job, I don't think I would go back to owning my own company anytime soon. Landing a job after landing in Vancouver was a breath of relief and I really lucked out ending up with a company that are doing some amazing stuff. My co-workers are really experienced in their respective fields and I don't think a day goes by where I don't learn something new. It's so refreshing after the stress of working on my own for so long  and nearly losing my love for programming. I think that's partly why I stopped posting on here, when I finished working the last thing I wanted to do is use the computer any further.
 
 I can't see myself returning to Ireland if I can work out staying here. Canada is an amazing country and Vancouver is just such a beautiful city.. So much is better here, its hard to even put into words, I'll try over a series of articles! 😛
+
+
 
 ## What are my future plans?
 

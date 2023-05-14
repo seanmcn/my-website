@@ -5,6 +5,7 @@ slug: "2021/05/turn-up-volume-mixer"
 category: 'review'
 tags: ['review', 'hardware']
 keywords: ['turn up', 'volume', 'mixer']
+featured: images/cartoon-man-laptop.png
 ---
 Last week my brother Kieran told me to expect a delivery, I love surprise gifts :laughing:, after opening the package I realised it was a volume mixer by [TurnUp software](https://www.turnup.tech/), a Kickstarter project.
 
