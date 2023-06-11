@@ -1,3 +1,6 @@
+// eslint-disable-next-line max-len
+const chatGptTransformer = require('./src/utils/remark-embedder/chatgpt-transformer');
+
 const emoji = require('remark-emoji');
 
 const {gatsbyPluginFeed} = require('./src/utils/rss');
@@ -68,6 +71,9 @@ module.exports = {
           {
             resolve: 'gatsby-remark-embedder',
             options: {
+              customTransformers: [
+                chatGptTransformer,
+              ],
               services: {
                 YouTube: {
                   height: '350px',
