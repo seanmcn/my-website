@@ -14,7 +14,7 @@ ChatGPT has become my go-to for programming questions now, previously I'd use Go
 
 ### Example 1
 
-https://chat.openai.com/share/b3c603c3-f005-4144-b181-5095c9b22d4d
+https://chat.openai.com/share/ade55596-7d45-47bf-859e-a14a83ae104e
 
 ### Example 2
 
