@@ -18,7 +18,7 @@ https://chat.openai.com/share/ade55596-7d45-47bf-859e-a14a83ae104e
 
 ### Example 2
 
-https://chat.openai.com/share/4a7f29d8-906a-44dc-8d1a-227d2000def1
+https://chat.openai.com/share/93255abc-918a-4fee-9d26-8ca3cca6b200
 
 ## Writing functions
 ChatGPT can be good at writing functions, it doesn't always provide the most efficient solution, but it can be great as a starting point to a solution.
