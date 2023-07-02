@@ -6,6 +6,6 @@ h2.title.postListTitle {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
   align-items: stretch;
+  align-content: flex-start;
 }
