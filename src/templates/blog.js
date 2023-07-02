@@ -28,7 +28,7 @@ export default class BlogPage extends React.Component {
           </div>
           <div className="column
           is-one-fifth-desktop
-          is-one-quarter-tablet" id="postSidebarColumn">
+          is-one-quarter-tablet" id="postsSidebarColumn">
             <Sidebar />
           </div>
         </div>

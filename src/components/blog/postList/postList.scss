@@ -1,3 +1,11 @@
 h2.title.postListTitle {
   margin-bottom: 0.5rem;
 }
+
+.postList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+}

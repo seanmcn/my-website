@@ -1,17 +1,23 @@
 @import "../../../assets/styles/main";
 
-.postCardBox {
-  @include tablet  {
-    width: 40%;
-  }
-  @include desktop  {
-    width: 30%;
-  }
+.box.postCardBox {
   margin: 1em;
+  padding: 1rem;
   border-top: 2px solid #227c71;
   flex-direction: column;
   justify-content: space-between;
   display: flex;
+
+  @include mobile {
+    width: 100%;
+  }
+  @include tablet  {
+    width: 45%;
+    margin: 0.5em;
+  }
+  @include desktop  {
+    width: 30%;
+  }
 
   h1 {
     padding-bottom: 0;
