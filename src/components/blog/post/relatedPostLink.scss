@@ -1,3 +1,5 @@
+@import "../../../assets/styles/main";
+
 .relatedPost {
   display: list-item;
   margin-left : 1em;
@@ -9,6 +11,9 @@
 }
 .relatedPostContainer .tags {
   margin-left: 0.5em;
+  @include mobile {
+    display:none;
+  }
 }
 .relatedPostContainer .tags .tag{
   margin-right: 0.5em;

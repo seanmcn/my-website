@@ -8,7 +8,7 @@ export default class postList extends React.Component {
   render() {
     const {posts} = this.props;
     return (
-      <div className={'is-flex is-flex-direction-row is-flex-wrap-wrap'}>
+      <div className={'postList'}>
         {posts.map(({node: post}) => {
           const coverImage = post.frontmatter.featured ?
             post.frontmatter.featured :

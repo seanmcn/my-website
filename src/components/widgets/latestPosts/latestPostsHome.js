@@ -33,7 +33,7 @@ const LatestPostsHomeWidget = () => {
         date={post.frontmatter.date}
         tags={post.frontmatter.tags}
         cover={coverImage}
-      /> );
+      />);
     })}
   </div>);
 };
