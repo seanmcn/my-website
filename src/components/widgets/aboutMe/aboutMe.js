@@ -6,15 +6,16 @@ import './aboutMe.scss';
 const AboutMeWidget = () => (
   <div className="box">
     <figure className="image is-128x128 aboutMeImage">
-      <img src={avatar} alt="Seán jumping on top of a mountain" />
+      <img src={avatar} alt="Avatar displaying Seán waving" width={'250px'}
+        height={'250px'}/>
     </figure>
-    <hr className="aboutMeImageDivider" />
+    <hr className="aboutMeImageDivider"/>
     <p>
       Hello and welcome to my website, which has been online since 2006 . On
       here you&apos;ll find anything I thought was interesting enough to write a
       blog post about throughout the years.
     </p>
-    <br />
+    <br/>
     <Link to="/about" className="navbar-item" aria-label="Read more about me">
       <button className="button is-small is-fullwidth" type="button">
         Read more
