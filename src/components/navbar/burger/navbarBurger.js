@@ -8,6 +8,7 @@ const NavbarBurger = (props) => {
       type="button"
       onClick={toggleMenu}
       className={`button navbar-burger ${active ? 'is-active' : ''}`}
+      aria-label={'Mobile navigation'}
     >
       <span />
       <span />
