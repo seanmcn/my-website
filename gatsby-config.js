@@ -55,7 +55,7 @@ module.exports = {
     'gatsby-plugin-sass',
     'gatsby-plugin-sharp',
     'gatsby-remark-images',
-    // 'gatsby-remark-emoji',
+    'gatsby-remark-emoji',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -98,13 +98,9 @@ module.exports = {
             },
           },
         ],
-        // eslint-disable-next-line global-require
         mdxOptions: {
           remarkPlugins: [emoji],
         },
-        // remarkPlugins: [
-        // emoji,
-        // ],
       },
     },
     'gatsby-transformer-sharp',
