@@ -32,6 +32,8 @@
         "gatsby-remark-emojis": "^0.4.3",
         "gatsby-remark-external-links": "^0.0.4",
         "gatsby-remark-images": "^7.11.0",
+        "gatsby-plugin-robots-txt": "^1.8.0",
+        "gatsby-plugin-sitemap": "^6.11.0",
         "gatsby-remark-related-posts": "^2.0.3",
         "gatsby-remark-smartypants": "^6.11.0",
         "gatsby-source-filesystem": "^5.11.0",

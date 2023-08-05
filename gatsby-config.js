@@ -1,5 +1,6 @@
 // eslint-disable-next-line max-len
-const chatGptTransformer = require('./src/utils/remark-embedder/chatgpt-transformer');
+const chatGptTransformer = require(
+    './src/utils/remark-embedder/chatgpt-transformer');
 
 const emoji = require('remark-emoji');
 
@@ -7,7 +8,6 @@ const {gatsbyPluginFeed} = require('./src/utils/rss');
 const algoliaQueries = require('./src/utils/algolia');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
-
 // Setup `gatsby-source-filesystem` for blog gatsbySourceFileSystemBlogPosts
 // here as for development builds we don't want all the blog images having
 // to generate etc.
@@ -29,6 +29,9 @@ if (isDevelopment) {
     '**/2014/**',
     '**/2016/**',
     '**/2017/**',
+    '**/2018/**',
+    '**/2019/**',
+    '**/2020/**',
   ];
 }
 
@@ -138,6 +141,15 @@ module.exports = {
       options: {
         target_node: 'Mdx',
         getMarkdown: node => node.body,
+      },
+    },
+    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.seanmcn.com',
+        sitemap: 'https://www.seanmcn.com/sitemap-index.xml',
+        policy: [{userAgent: '*', allow: '/'}],
       },
     },
   ],
