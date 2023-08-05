@@ -11,7 +11,7 @@ const mdxQuery = `
           title
           keywords
         }
-        rawBody
+        body
       }
     }
   }
@@ -28,12 +28,12 @@ const unnestFrontmatter = (node) => {
   };
 };
 
-// Split raw body into multiple records
-const splitRawBody = (node) => {
-  const {rawBody, ...rest} = node;
+// Split body into multiple records
+const splitBody = (node) => {
+  const {body, ...rest} = node;
 
   // create a record for each paragraph
-  const sections = rawBody.split('\n\n');
+  const sections = body.split('\n\n');
 
   // add the frontmatter content onto each record
   return sections.map(section => ({
@@ -49,7 +49,7 @@ const queries = [
         .map(edge => edge.node)
         .map(unnestFrontmatter)
     // get the raw body and split it into multiple records
-        .map(splitRawBody)
+        .map(splitBody)
     // flatten above records into a single array
         .reduce((acc, cur) => [...acc, ...cur], []),
     settings: {
