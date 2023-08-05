@@ -50,23 +50,17 @@ BlogPage.propTypes = {
   }),
 };
 
-export const blogPageQuery = graphql`
-  query BlogIndexQuery($limit: Int!, $skip: Int!) {
-    site {
-      siteMetadata {
-        title
-      }
+export const blogPageQuery = graphql`query BlogIndexQuery($limit: Int!, $skip: Int!) {
+  site {
+    siteMetadata {
+      title
     }
-    allMdx(
-      sort: { fields: frontmatter___date, order: DESC }
-      limit: $limit
-      skip: $skip
-    ) {
-      edges {
-        node {
-          ...PostListFields
-        }
+  }
+  allMdx(sort: {frontmatter: {date: DESC}}, limit: $limit, skip: $skip) {
+    edges {
+      node {
+        ...PostListFields
       }
     }
   }
-`;
+}`;

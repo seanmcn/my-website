@@ -52,7 +52,7 @@ module.exports = {
     'gatsby-plugin-sass',
     'gatsby-plugin-sharp',
     'gatsby-remark-images',
-    'gatsby-remark-emoji',
+    // 'gatsby-remark-emoji',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -96,9 +96,12 @@ module.exports = {
           },
         ],
         // eslint-disable-next-line global-require
-        remarkPlugins: [
-          emoji,
-        ],
+        mdxOptions: {
+          remarkPlugins: [emoji],
+        },
+        // remarkPlugins: [
+        // emoji,
+        // ],
       },
     },
     'gatsby-transformer-sharp',
@@ -134,7 +137,7 @@ module.exports = {
       resolve: 'gatsby-remark-related-posts',
       options: {
         target_node: 'Mdx',
-        getMarkdown: node => node.rawBody,
+        getMarkdown: node => node.body,
       },
     },
   ],

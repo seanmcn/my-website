@@ -5,16 +5,14 @@ import './tagWidget.scss';
 import {slugToTitle} from '../../../utils/blog';
 
 const tagsWidget = () => {
-  const data = useStaticQuery(graphql`
-    query allTagsQuery {
-      allMdx {
-        group(field: frontmatter___tags) {
-          tag: fieldValue
-          totalCount
-        }
-      }
+  const data = useStaticQuery(graphql`query allTagsQuery {
+  allMdx {
+    group(field: {frontmatter: {tags: SELECT}}) {
+      tag: fieldValue
+      totalCount
     }
-  `);
+  }
+}`);
   const {group: tagsAndCount} = data.allMdx;
   return (
     <WidgetBox

@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import {MDXRenderer} from 'gatsby-plugin-mdx';
 import './post.scss';
 import {GatsbyImage, getImage} from 'gatsby-plugin-image';
 
@@ -17,7 +16,7 @@ function Post({
         {featured && (
           <GatsbyImage image={image} alt={title} className={'featuredImage'}/>
         )}
-        <MDXRenderer>{content}</MDXRenderer>
+        {content}
         <hr/>
         <div className="is-grouped">
           <p className="subtitle is-7 is-pulled-right">

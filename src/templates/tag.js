@@ -20,14 +20,14 @@ const Tag = (props) => {
       <Helmet>
         <title>{`${displayTag} - Tag - ${siteTitle}`}</title>
       </Helmet>
-      <Breadcrumbs tag={tag} />
+      <Breadcrumbs tag={tag}/>
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
-          <PostList posts={posts} />
-          <Pagination pageContext={pageContext} />
+          <PostList posts={posts}/>
+          <Pagination pageContext={pageContext}/>
         </div>
         <div className="column is-one-quarter" id="postSidebarColumn">
-          <Sidebar />
+          <Sidebar/>
         </div>
       </div>
     </Layout>
@@ -36,24 +36,22 @@ const Tag = (props) => {
 
 export default Tag;
 
-export const pageQuery = graphql`
-  query TagPage($slug: String!, $limit: Int!, $skip: Int!) {
-    site {
-      siteMetadata {
-        title
-      }
+export const pageQuery = graphql`query TagPage($slug: String!, $limit: Int!, $skip: Int!) {
+  site {
+    siteMetadata {
+      title
     }
-    allMdx(
-      filter: { frontmatter: { tags: { eq: $slug } } }
-      sort: { fields: frontmatter___date, order: DESC }
-      limit: $limit
-      skip: $skip
-    ) {
-      edges {
-        node {
-          ...PostListFields
-        }
+  }
+  allMdx(
+    filter: {frontmatter: {tags: {eq: $slug}}}
+    sort: {frontmatter: {date: DESC}}
+    limit: $limit
+    skip: $skip
+  ) {
+    edges {
+      node {
+        ...PostListFields
       }
     }
   }
-`;
+}`;

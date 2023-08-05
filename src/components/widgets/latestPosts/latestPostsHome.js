@@ -4,21 +4,15 @@ import './latestPostsHome.scss';
 import PostCard from '../../blog/postCard/postCard';
 
 const LatestPostsHomeWidget = () => {
-  const data = useStaticQuery(graphql`
-    query latestPostsHomeQuery {
-      allMdx(
-        sort: { fields: frontmatter___date, order: DESC }
-        limit: 6
-        skip: 0
-      ) {
-        edges {
-          node {
-            ...PostListFields
-          }
-        }
+  const data = useStaticQuery(graphql`query latestPostsHomeQuery {
+  allMdx(sort: {frontmatter: {date: DESC}}, limit: 6, skip: 0) {
+    edges {
+      node {
+        ...PostListFields
       }
     }
-  `);
+  }
+}`);
   const {edges: posts} = data.allMdx;
   return (<div className={'latestPostsHome'}>
     {posts.map(({node: post}) => {

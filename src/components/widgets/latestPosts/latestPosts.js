@@ -5,21 +5,15 @@ import WidgetBox from '../widgetBox';
 import './latestPostsList.scss';
 
 const LatestPostsWidget = () => {
-  const data = useStaticQuery(graphql`
-    query latestPostsQuery {
-      allMdx(
-        sort: { fields: frontmatter___date, order: DESC }
-        limit: 4
-        skip: 0
-      ) {
-        edges {
-          node {
-            ...PostListFields
-          }
-        }
+  const data = useStaticQuery(graphql`query latestPostsQuery {
+  allMdx(sort: {frontmatter: {date: DESC}}, limit: 4, skip: 0) {
+    edges {
+      node {
+        ...PostListFields
       }
     }
-  `);
+  }
+}`);
   const {edges: posts} = data.allMdx;
   return (
     <WidgetBox

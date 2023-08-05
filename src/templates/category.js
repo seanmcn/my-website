@@ -21,14 +21,14 @@ const Category = (props) => {
       <Helmet>
         <title>{`${displayCategory} - Category - ${siteTitle}`}</title>
       </Helmet>
-      <Breadcrumbs category={category} />
+      <Breadcrumbs category={category}/>
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
-          <PostList posts={posts} title={title} />
-          <Pagination pageContext={pageContext} />
+          <PostList posts={posts} title={title}/>
+          <Pagination pageContext={pageContext}/>
         </div>
         <div className="column is-one-quarter" id="postSidebarColumn">
-          <Sidebar />
+          <Sidebar/>
         </div>
       </div>
     </Layout>
@@ -37,24 +37,22 @@ const Category = (props) => {
 
 export default Category;
 
-export const pageQuery = graphql`
-  query CategoryPage($slug: String!, $limit: Int!, $skip: Int!) {
-    site {
-      siteMetadata {
-        title
-      }
+export const pageQuery = graphql`query CategoryPage($slug: String!, $limit: Int!, $skip: Int!) {
+  site {
+    siteMetadata {
+      title
     }
-    allMdx(
-      filter: { frontmatter: { category: { eq: $slug } } }
-      sort: { fields: frontmatter___date, order: DESC },
-      limit: $limit
-      skip: $skip
-    ) {
-      edges {
-        node {
-          ...PostListFields
-        }
+  }
+  allMdx(
+    filter: {frontmatter: {category: {eq: $slug}}}
+    sort: {frontmatter: {date: DESC}}
+    limit: $limit
+    skip: $skip
+  ) {
+    edges {
+      node {
+        ...PostListFields
       }
     }
   }
-`;
+}`;
