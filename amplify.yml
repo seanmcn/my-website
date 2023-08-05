@@ -3,6 +3,8 @@ frontend:
     phases:
         preBuild:
             commands:
+                - echo $PATH
+                - which yarn
                 - yarn install
         build:
             commands:
