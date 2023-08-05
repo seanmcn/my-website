@@ -8,7 +8,7 @@
 
 This repository houses the codebase for my personal website, [seanmcn.com](https://seanmcn.com).
 
-Built with the power of Gatsby, the site dynamically serves blog content sourced from Markdown & MDX files located in content/blog. Deployment is made seamless with AWS Amplify, using a [custom image](https://gallery.ecr.aws/y1e1i7y7/gatsby-5.11_amazonlinux-latest) for optimized performance.
+Built with the power of Gatsby, the site dynamically serves blog content sourced from Markdown & MDX files located in [content/blog](https://github.com/Seanmcn/my-website/tree/develop/content/blog). Deployment is made seamless with AWS Amplify, using a [custom image](https://gallery.ecr.aws/y1e1i7y7/gatsby-5.11_amazonlinux-latest) for optimized performance.
 
 ## 🔄 CI/CD Branching Strategy
 
