@@ -12,8 +12,8 @@ Built with the power of Gatsby, the site dynamically serves blog content sourced
 
 ## 🔄 CI/CD Branching Strategy
 
-- **Development:** [develop branch](https://github.com/Seanmcn/my-website/tree/develop) → develop.seanmcn.com
-- **Production:** [main branch](https://github.com/Seanmcn/my-website/tree/main) → seanmcn.com
+- **Development:** [develop branch](https://github.com/Seanmcn/my-website/tree/develop) → [develop.seanmcn.com](https://develop.seanmcn.com)
+- **Production:** [main branch](https://github.com/Seanmcn/my-website/tree/main) → [seanmcn.com](https://seanmcn.com)
 
 ## 🛠 Technology Stack
 - **Framework:** [Gatsby](https://gatsbyjs.org/)
