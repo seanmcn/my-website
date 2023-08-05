@@ -21,25 +21,20 @@ const rssFeeds = [
       guid: `${site.siteMetadata.siteUrl}/blog/${edge.node.frontmatter.slug}`,
       custom_elements: [{'content:encoded': edge.node.html}],
     })),
-    query: `
-            {
-              allMdx(
-                limit: 1000,
-                sort: { order: DESC, fields: [frontmatter___date] },
-              ) {
-                edges {
-                  node {
-                    frontmatter {
-                      title
-                      date
-                      slug
-                    }
-                    html
-                  }
-                }
-              }
+    query: `{
+      allMdx(limit: 1000, sort: {frontmatter: {date: DESC}}) {
+        edges {
+          node {
+            frontmatter {
+              title
+              date
+              slug
             }
-            `,
+            html
+          }
+        }
+      }
+    }`,
     output: '/rss.xml',
     title: 'Seanmcn.com RSS feed',
   },

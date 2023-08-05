@@ -56,7 +56,7 @@ BlogPostTemplate.propTypes = {
   featured: PropTypes.any,
 };
 
-const BlogPost = ({data}) => {
+const BlogPost = ({data, children}) => {
   const {mdx: post, relatedMdxs: relatedPosts} = data;
   const {title} = data.site.siteMetadata;
 
@@ -71,7 +71,7 @@ const BlogPost = ({data}) => {
       </Helmet>
       <BlogPostTemplate
         id={post.id}
-        content={post.body}
+        content={children}
         category={post.frontmatter.category}
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
@@ -86,7 +86,6 @@ const BlogPost = ({data}) => {
 
 BlogPost.propTypes = {
   data: PropTypes.shape({
-    // eslint-disable-next-line react/forbid-prop-types
     mdx: PropTypes.object,
   }),
 };

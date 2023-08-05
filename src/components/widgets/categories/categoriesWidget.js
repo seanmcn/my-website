@@ -5,23 +5,21 @@ import './categoriesWidget.scss';
 import {slugToTitle} from '../../../utils/blog';
 
 const CategoriesWidget = () => {
-  const data = useStaticQuery(graphql`
-    {
-      allMdx {
-        group(field: frontmatter___category, limit: 1) {
-          edges {
-            node {
-              id
-              frontmatter {
-                category
-              }
-            }
+  const data = useStaticQuery(graphql`{
+  allMdx {
+    group(field: {frontmatter: {category: SELECT}}, limit: 1) {
+      edges {
+        node {
+          id
+          frontmatter {
+            category
           }
-          totalCount
         }
       }
+      totalCount
     }
-  `);
+  }
+}`);
   const {group: categories} = data.allMdx;
   return (
     <WidgetBox
