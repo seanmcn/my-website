@@ -19,25 +19,23 @@ exports.createPages = async function({actions, graphql}) {
    * Blog
    * */
   const blogPosts = await graphql(
-      `
-     {
-        allMdx(
-          sort: { fields: [frontmatter___date], order: DESC } 
-          limit: 1000
-        ) {
-          edges {
-            node {
-              id
-              frontmatter {
-                title
-                slug
-              }
-              body
+      `{
+      allMdx(sort: {frontmatter: {date: DESC}}, limit: 1000) {
+        edges {
+          node {
+            id
+            frontmatter {
+              title
+              slug
+            }
+            body
+            internal {
+              contentFilePath
             }
           }
         }
       }
-        `,
+    }`,
   );
 
   const posts = blogPosts.data.allMdx.edges;
@@ -48,7 +46,8 @@ exports.createPages = async function({actions, graphql}) {
     const next = index === 0 ? null : posts[index - 1].node;
     createPage({
       path: `/blog/${edge.node.frontmatter.slug}/`,
-      component: postTemplate,
+      // eslint-disable-next-line max-len
+      component: `${postTemplate}?__contentFilePath=${edge.node.internal.contentFilePath}`,
       context: {
         id: edge.node.id,
         slug: edge.node.frontmatter.slug,
@@ -77,15 +76,13 @@ exports.createPages = async function({actions, graphql}) {
 
   /**
    * Tag pages + pagination
-  * */
+   * */
   const distinctTags = await graphql(
-      `
-          {
-            allMdx {
-              distinct(field: frontmatter___tags)
-            }
+      `{
+          allMdx {
+            distinct(field: {frontmatter: {tags: SELECT}})
           }
-        `,
+        }`,
   );
   const tagList = distinctTags.data.allMdx.distinct;
   const tagsTemplate = path.resolve('./src/templates/tag.js');
@@ -135,13 +132,11 @@ exports.createPages = async function({actions, graphql}) {
    * Category pages + pagination
    * */
   const distinctCategories = await graphql(
-      `
-          {
-            allMdx {
-              distinct(field: frontmatter___category)
-            }
+      `{
+          allMdx {
+            distinct(field: {frontmatter: {category: SELECT}})
           }
-        `,
+        }`,
   );
 
   const categoryList = distinctCategories.data.allMdx.distinct;
