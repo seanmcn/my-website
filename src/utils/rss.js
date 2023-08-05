@@ -13,28 +13,33 @@ const rssQuery = `
 
 const rssFeeds = [
   {
-    serialize: ({query: {site, allMdx}}) => allMdx.edges.map(edge => ({
-      ...edge.node.frontmatter,
-      // description: edge.node.excerpt,
-      date: edge.node.frontmatter.date,
-      url: `${site.siteMetadata.siteUrl}/blog/${edge.node.frontmatter.slug}`,
-      guid: `${site.siteMetadata.siteUrl}/blog/${edge.node.frontmatter.slug}`,
-      custom_elements: [{'content:encoded': edge.node.html}],
-    })),
+    serialize: ({query: {site, allMdx}}) => {
+      return allMdx.nodes.map((node) => {
+        return Object.assign({}, node.frontmatter, {
+          title: node.frontmatter.title,
+          slug: node.frontmatter.slug,
+          date: node.frontmatter.date,
+          description: node.body.length > 3000 ?
+            node.body.substring(0, 3000) :
+            node.body,
+          url: `${site.siteMetadata.siteUrl}/blog/${node.frontmatter.slug}`,
+          guid: `${site.siteMetadata.siteUrl}/blog/${node.frontmatter.slug}`,
+          custom_elements: [{'content:encoded': node.html}],
+        });
+      });
+    },
     query: `{
-      allMdx(limit: 1000, sort: {frontmatter: {date: DESC}}) {
-        edges {
-          node {
-            frontmatter {
-              title
-              date
-              slug
-            }
-            html
-          }
-        }
-      }
-    }`,
+                allMdx(sort: {frontmatter: {date: DESC}}) {
+                  nodes {
+                    frontmatter {
+                      title
+                      date
+                      slug
+                    }
+                    body
+                  }
+                }
+              }`,
     output: '/rss.xml',
     title: 'Seanmcn.com RSS feed',
   },
