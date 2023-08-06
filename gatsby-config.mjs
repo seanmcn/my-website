@@ -44,6 +44,9 @@ const gatsbySourceFileSystemAssets = {
 };
 
 const config = {
+    flags: {
+        DEV_SSR: true
+    },
     siteMetadata: {
         title: 'Seán McNamara',
         author: 'Seán McNamara',
