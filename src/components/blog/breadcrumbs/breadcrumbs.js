@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'gatsby';
 import './breadcrumbs.scss';
 import {slugToTitle} from '../../../utils/blog';
+import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const Breadcrumbs = ({
   category, tag, title, slug,
@@ -25,7 +27,7 @@ const Breadcrumbs = ({
         {tag && (
           <li key={`/blog/tags/${tag}`}>
             <Link to={`/blog/tags/${tag}`}>
-              <i className="fas fa-tag" />
+              <FontAwesomeIcon icon={icon({name: 'tag'})} />
               &nbsp;
               {slugToTitle(tag)}
             </Link>

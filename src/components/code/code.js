@@ -3,6 +3,9 @@ import React from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {LightAsync as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {a11yLight} from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+
 // Supported Language Highlighting:
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
 import php from 'react-syntax-highlighter/dist/esm/languages/hljs/php';
@@ -30,12 +33,13 @@ SyntaxHighlighter.registerLanguage('sql', sql);
 SyntaxHighlighter.registerLanguage('yaml', yaml);
 
 export const Code = ({codeString, language}) => {
+  // Todo: CopyToClipboard seems to be broken?
   return (
     <div className={'codeWrapper'}>
       <CopyToClipboard text={codeString}>
         <button className="codeCopyButton button is-small">
           <span className="icon is-small" title={'Copy to clipboard'}>
-            <i className="fas fa-copy"></i>
+            <FontAwesomeIcon icon={icon({name: 'copy'})} />
           </span>
         </button>
       </CopyToClipboard>
