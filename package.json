@@ -30,8 +30,6 @@
         "gatsby-plugin-sitemap": "^6.11.0",
         "gatsby-remark-copy-linked-files": "^6.11.0",
         "gatsby-remark-embedder": "^7.0.0",
-        "gatsby-remark-emoji": "^0.0.3",
-        "gatsby-remark-emojis": "^0.4.3",
         "gatsby-remark-external-links": "^0.0.4",
         "gatsby-remark-images": "^7.11.0",
         "gatsby-remark-related-posts": "^2.0.3",
@@ -53,7 +51,7 @@
         "react-syntax-highlighter": "^15.5.0",
         "react-table": "^7.8.0",
         "regenerator-runtime": "^0.13.11",
-        "remark-emoji": "^3.0.0",
+        "remark-emoji": "^3.1.2",
         "sass": "^1.52.1"
     },
     "keywords": [
