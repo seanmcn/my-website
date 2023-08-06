@@ -1,5 +1,4 @@
 // eslint-disable-next-line max-len
-import chatGptTransformer from './src/utils/remark-embedder/chatgpt-transformer.js';
 import {gatsbyPluginFeed} from './src/utils/rss.js';
 import algoliaQueries from './src/utils/algolia.js';
 import {dirname} from "path"
@@ -71,9 +70,6 @@ const config = {
                     {
                         resolve: 'gatsby-remark-embedder',
                         options: {
-                            customTransformers: [
-                                chatGptTransformer,
-                            ],
                             services: {
                                 YouTube: {
                                     height: '350px',
