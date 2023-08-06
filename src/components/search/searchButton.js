@@ -1,5 +1,6 @@
 import React from 'react';
-
+import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 const SearchButton = ({openModal}) => (
   <button
     className="navbar-item searchButton"
@@ -8,7 +9,7 @@ const SearchButton = ({openModal}) => (
     type="button"
   >
     <span className="icon searchIcon">
-      <i className="fas fa-search" />
+      <FontAwesomeIcon icon={icon({name: 'search'})} />
     </span>
     Search
   </button>

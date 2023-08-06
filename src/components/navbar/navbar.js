@@ -5,6 +5,8 @@ import NavbarItemSocial from './itemSocial/navbarItemSocial';
 import NavbarLogo from './logo/navbarLogo';
 import Search from '../search/search';
 import './navbar.scss';
+import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -29,8 +31,8 @@ export default class Navbar extends React.Component {
       >
         <div className="container">
           <div className="navbar-brand">
-            <NavbarLogo />
-            <NavbarBurger active={activeMenu} toggleMenu={this.toggleMenu} />
+            <NavbarLogo/>
+            <NavbarBurger active={activeMenu} toggleMenu={this.toggleMenu}/>
           </div>
           <div
             className={`navbar-menu  ${activeMenu ? 'is-active' : ''}`}
@@ -38,35 +40,47 @@ export default class Navbar extends React.Component {
             aria-label="navigation"
           >
             <div className="navbar-start">
-              <NavbarItem link="/" label="Home" />
-              <NavbarItem link="/blog" label="Blog" />
-              <NavbarItem link="/about" label="About Me" />
-              <NavbarItem link="/contact" label="Contact Me" />
+              <NavbarItem link="/" label="Home"/>
+              <NavbarItem link="/blog" label="Blog"/>
+              <NavbarItem link="/about" label="About Me"/>
+              <NavbarItem link="/contact" label="Contact Me"/>
             </div>
 
             <div className="navbar-end navbar-social-icons">
               <NavbarItemSocial
                 link="https://mas.to/@seanmcn"
                 label="Mastodon Profile"
-                icon="fa-mastodon"
-              />
+              >
+                <FontAwesomeIcon
+                  icon={icon({name: 'mastodon', style: 'brands'})}
+                  size={'2x'}/>
+              </NavbarItemSocial>
               <NavbarItemSocial
                 link="https://www.linkedin.com/in/mrseanmcn"
                 label="LinkedIn Profile"
-                icon="fa-linkedin"
-              />
+              >
+                <FontAwesomeIcon
+                  icon={icon({name: 'linkedin', style: 'brands'})}
+                  size={'2x'}/>
+              </NavbarItemSocial>
               <NavbarItemSocial
                 link="https://github.com/seanmcn"
                 label="Github Profile"
-                icon="fa-github-alt"
-              />
+              >
+                <FontAwesomeIcon
+                  icon={icon({name: 'github-alt', style: 'brands'})}
+                  size={'2x'}/>
+              </NavbarItemSocial>
               <NavbarItemSocial
                 link="https://www.goodreads.com/seanmcn"
                 label="Goodreads Profile"
-                icon="fa-goodreads"
-              />
+              >
+                <FontAwesomeIcon
+                  icon={icon({name: 'goodreads', style: 'brands'})}
+                  size={'2x'}/>
+              </NavbarItemSocial>
             </div>
-            <Search toggleMenu={this.toggleMenu} activeMenu={activeMenu} />
+            <Search toggleMenu={this.toggleMenu} activeMenu={activeMenu}/>
           </div>
         </div>
       </nav>

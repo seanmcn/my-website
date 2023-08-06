@@ -4,8 +4,6 @@
 @import "bulma";
 @import "~bulma";
 @import "~bulma-timeline";
-//todo: reduce this to only use what we need.
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 html {
   scroll-behavior: smooth;
@@ -34,18 +32,4 @@ footer.footer {
 
 blockquote {
   overflow: auto;
-}
-
-.embedChatGPT {
-  width: 100%;
-  @include mobile {
-    min-height: 80vh;
-  }
-  @include tablet {
-    min-height: 80vh;
-  }
-  @include desktop {
-    min-height: 75vh;
-  }
-
 }

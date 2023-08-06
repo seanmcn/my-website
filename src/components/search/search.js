@@ -25,18 +25,27 @@ const Search = (props) => {
     setModalIsOpen(false);
   }
 
-  return typeof document !== 'undefined' ? (
+  const [isClient, setIsClient] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  return (
     <>
-      <SearchButton openModal={openModal} />
-      <SearchModal
-        modalIsOpen={modalIsOpen}
-        closeModal={closeModal}
-        searchClient={searchClient}
-      />
-      {modalIsOpen &&
-      (<Helmet htmlAttributes={{class: 'no-html-scroll'}} />)}
+      <SearchButton openModal={openModal}/>
+      {isClient && (
+        <SearchModal
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+          searchClient={searchClient}
+        />
+      )}
+      {modalIsOpen && isClient && (
+        <Helmet htmlAttributes={{class: 'no-html-scroll'}}/>
+      )}
     </>
-  ) : null;
+  );
 };
 
 export default Search;

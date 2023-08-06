@@ -1,8 +1,8 @@
-const path = require('path');
-const {createFilePath} = require('gatsby-source-filesystem');
-const {paginate} = require('gatsby-awesome-pagination');
+import path from 'path';
+import {createFilePath} from 'gatsby-source-filesystem';
+import {paginate} from 'gatsby-awesome-pagination';
 
-exports.createPages = async function({actions, graphql}) {
+export const createPages = async function({actions, graphql}) {
   const {createPage} = actions;
   const itemsPerPage = 9;
 
@@ -183,7 +183,7 @@ exports.createPages = async function({actions, graphql}) {
   await Promise.all(categoryPromises);
 };
 
-exports.onCreateNode = ({node, actions, getNode}) => {
+export const onCreateNode = ({node, actions, getNode}) => {
   const {createNodeField} = actions;
 
   if (node.internal.type === 'Mdx') {
@@ -196,7 +196,7 @@ exports.onCreateNode = ({node, actions, getNode}) => {
   }
 };
 
-exports.createSchemaCustomization = ({actions, schema}) => {
+export const createSchemaCustomization = ({actions, schema}) => {
   const {createTypes} = actions;
 
   const typeDefs = [
