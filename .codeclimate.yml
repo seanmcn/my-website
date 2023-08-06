@@ -23,5 +23,5 @@ exclude_paths:
 - static/**/*
 - content/**/*
 - cypress/**/*
-- gatsby-config.js
-- gatsby-node.js
+- gatsby-config.mjs
+- gatsby-node.mjs
