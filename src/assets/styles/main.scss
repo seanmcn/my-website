@@ -35,17 +35,3 @@ footer.footer {
 blockquote {
   overflow: auto;
 }
-
-.embedChatGPT {
-  width: 100%;
-  @include mobile {
-    min-height: 80vh;
-  }
-  @include tablet {
-    min-height: 80vh;
-  }
-  @include desktop {
-    min-height: 75vh;
-  }
-
-}
