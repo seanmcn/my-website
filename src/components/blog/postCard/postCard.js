@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'gatsby';
 import './postCard.scss';
 import {GatsbyImage, getImage} from 'gatsby-plugin-image';
+import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 function PostCard({
   id, slug, title, date, tags, cover,
@@ -15,9 +17,9 @@ function PostCard({
       <div className="postedOn">
         <span className="icon-text">
           <span className="icon">
-            <i className="fas fa-calendar"></i>
+            <FontAwesomeIcon icon={icon({name: 'calendar'})} />
           </span>
-          <span> {date}</span>
+          <span>{date}</span>
         </span>
       </div>
       {cover && (

@@ -1,31 +1,25 @@
 {
-    "github_repos": [
-        {
-            "id": "blog",
-            "title": "My Blog",
-            "link": "https://github.com/Seanmcn/my-website",
-            "description": "Source code for this website, built using ReactJS & Gatsby.",
-            "icons": [
-                "fa-react"
-            ]
-        },
-        {
-            "id": "oc-fulltext-ipython",
-            "title": "Open Collections - iPython Notebooks",
-            "link": "https://github.com/Seanmcn/oc-fulltext-ipython-notebooks",
-            "description": "iPython notebooks showing how to use UBC's Open Collections API to do some basic text analysis.",
-            "icons": [
-                "fa-python"
-            ]
-        },
-        {
-            "id": "elemental-rts",
-            "title": "Elemental RTS",
-            "link": "https://github.com/Seanmcn/Elemental-RTS",
-            "description": "WIP/Currently Abandoned: An ambitious venture into making an RTS browser based game using PhaserJS. A hobby project that I return to occasionally.",
-            "icons": [
-                "fa-js"
-            ]
-        }
-    ]
+  "github_repos": [
+    {
+      "id": "blog",
+      "title": "My Blog",
+      "link": "https://github.com/Seanmcn/my-website",
+      "description": "Source code for this website, built using ReactJS & Gatsby.",
+      "language": "react"
+    },
+    {
+      "id": "oc-fulltext-ipython",
+      "title": "Open Collections - iPython Notebooks",
+      "link": "https://github.com/Seanmcn/oc-fulltext-ipython-notebooks",
+      "description": "iPython notebooks showing how to use UBC's Open Collections API to do some basic text analysis.",
+      "language": "python"
+    },
+    {
+      "id": "elemental-rts",
+      "title": "Elemental RTS",
+      "link": "https://github.com/Seanmcn/Elemental-RTS",
+      "description": "WIP/Currently Abandoned: An ambitious venture into making an RTS browser based game using PhaserJS. A hobby project that I return to occasionally.",
+      "language": "js"
+    }
+  ]
 }

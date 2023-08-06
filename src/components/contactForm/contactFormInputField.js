@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const ContactFormInputField = (props) => {
   const {
@@ -21,7 +23,7 @@ const ContactFormInputField = (props) => {
           />
           {type === 'email' && (
             <span className="icon is-small is-left">
-              <i className="fas fa-envelope" />
+              <FontAwesomeIcon icon={icon({name: 'envelope'})} />
             </span>
           )}
         </div>

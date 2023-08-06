@@ -16,7 +16,7 @@ const GithubReposWidget = () => (
             link={data.link}
             description={data.description}
             title={data.title}
-            icons={data.icons}
+            language={data.language}
           />
         ))}
       </ul>

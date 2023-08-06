@@ -12,7 +12,7 @@ const Timeline = () => (
           <TimelineItem
             title={item.title}
             content={item.content}
-            icon={item.icon}
+            type={item.type}
             key={item.title}
           />
         ))}

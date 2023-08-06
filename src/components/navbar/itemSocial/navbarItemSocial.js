@@ -1,8 +1,9 @@
 import React from 'react';
 import './navbarItemSocial.scss';
 
+
 const NavbarItemSocial = (props) => {
-  const {link, label, icon} = props;
+  const {link, label, children} = props;
   return (
     <a
       className="navbar-item"
@@ -12,7 +13,7 @@ const NavbarItemSocial = (props) => {
       aria-label={label}
     >
       <span className="icon">
-        <i className={`fab ${icon} fa-2x`} />
+        {children}
       </span>
     </a>
   );

@@ -1,67 +1,67 @@
 [
-    {
-        "year": "2023",
-        "items": [
-            {
-                "title": "February 2023",
-                "content": "Started working at Bumble",
-                "icon": "fa-briefcase"
-            }
-        ]
-    },
-    {
-        "year": "2016",
-        "items": [
-            {
-                "title": "June 2016",
-                "content": "Started working at Kobas",
-                "icon": "fa-briefcase"
-            },
-            {
-                "title": "May 2016",
-                "content": "Moved to London, UK",
-                "icon": "fa-plane"
-            }
-        ]
-    },
-    {
-        "year": "2015",
-        "items": [
-            {
-                "title": "January 2015",
-                "content": "Started working at UBC",
-                "icon": "fa-briefcase"
-            }
-        ]
-    },
-    {
-        "year": "2014",
-        "items": [
-            {
-                "title": "May 2014",
-                "content": "Moved to Vancouver, Canada",
-                "icon": "fa-plane"
-            },
-            {
-                "title": "June 2014",
-                "content": "Started working at Motbot",
-                "icon": "fa-briefcase"
-            }
-        ]
-    },
-    {
-        "year": "2010",
-        "items": [
-            {
-                "title": "",
-                "content": "Kilkenny, Ireland",
-                "icon": "fa-home"
-            },
-            {
-                "title": "January 2010",
-                "content": "Started working as a PHP freelancer.",
-                "icon": "fa-briefcase"
-            }
-        ]
-    }
+  {
+    "year": "2023",
+    "items": [
+      {
+        "title": "February 2023",
+        "content": "Started working at Bumble",
+        "type": "work"
+      }
+    ]
+  },
+  {
+    "year": "2016",
+    "items": [
+      {
+        "title": "June 2016",
+        "content": "Started working at Kobas",
+        "type": "work"
+      },
+      {
+        "title": "May 2016",
+        "content": "Moved to London, UK",
+        "type": "travel"
+      }
+    ]
+  },
+  {
+    "year": "2015",
+    "items": [
+      {
+        "title": "January 2015",
+        "content": "Started working at UBC",
+        "type": "work"
+      }
+    ]
+  },
+  {
+    "year": "2014",
+    "items": [
+      {
+        "title": "May 2014",
+        "content": "Moved to Vancouver, Canada",
+        "type": "travel"
+      },
+      {
+        "title": "June 2014",
+        "content": "Started working at Motbot",
+        "type": "work"
+      }
+    ]
+  },
+  {
+    "year": "2010",
+    "items": [
+      {
+        "title": "",
+        "content": "Kilkenny, Ireland",
+        "type": "travel"
+      },
+      {
+        "title": "January 2010",
+        "content": "Started working as a PHP freelancer.",
+        "type": "work"
+      }
+    ]
+  }
 ]
