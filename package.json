@@ -54,7 +54,7 @@
         "react-modal": "^3.16.1",
         "react-syntax-highlighter": "^15.5.0",
         "react-table": "^7.8.0",
-        "regenerator-runtime": "^0.13.11",
+        "regenerator-runtime": "^0.14.0",
         "remark-emoji": "^3.1.2",
         "sass": "^1.52.1"
     },
