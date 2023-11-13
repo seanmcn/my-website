@@ -3,7 +3,6 @@ import {graphql} from 'gatsby';
 import Helmet from 'react-helmet';
 import Layout from '../components/layout/layout';
 import Sidebar from '../components/sidebar/sidebar';
-import Timeline from '../components/timeline/timeline';
 
 export default class AboutPage extends React.Component {
   render() {
@@ -19,57 +18,63 @@ export default class AboutPage extends React.Component {
           <div className="column is-one-fifth-desktop">
             <Sidebar/>
           </div>
-          <div className="column is-two-fifths-desktop">
+          <div className="column">
             <div className="box">
-              <h1 className="title">About Me</h1>
-              <div
-                className="content"
-              >
+              <h1 className="title">A Peek Into My Journey</h1>
+              <div className="content">
                 <p>
-                  My journey into the world of programming started at a young
-                  age, fuelled by wanting to understand how computers work.
-                  I taught myself how to make some basic websites using HTML
-                  and CSS, and then quickly moved on to learn PHP.
+                  Hey there! I&apos;m a coding enthusiast turned professional,
+                  starting my journey with the ABCs of HTML and CSS. It
+                  wasn&apos;t long before PHP and I became best buddies, laying
+                  a solid foundation for my web development adventures.
                 </p>
                 <p>
-                  I entered the world of professional development in Kilkenny,
-                  Ireland as a freelancer, working on creating WordPress plugins
-                  and themes, and setting up e-commerce platforms. While working
-                  for myself had its advantages, I wanted to experience working
-                  with teams on larger projects.
+                  My professional saga began in the quaint town of Kilkenny,
+                  Ireland, as a freelance developer. I dove into the world of
+                  WordPress, crafting plugins and themes, and exploring the
+                  realms of e-commerce. It was more than just coding; it was
+                  about bringing ideas to life and mastering the art of
+                  collaboration.
                 </p>
                 <p>
-                  I then decided to leave Ireland to move to Canada on a working
-                  holiday visa. While there I had the chance to work with some
-                  amazing people at both Motbot and U.B.C&apos;s Library I.T.
-                  services team. When my working holiday ended, I moved to
-                  London, England where I started working at Kobas, a company
-                  that creates software for the hospitality industry.
+                  My next chapter unfolded in Canada, where I joined the
+                  University of British Columbia&apos;s Library IT Services.
+                  This experience was a game-changer, enhancing my tech skills
+                  and teaching me the art of interpersonal communication.
                 </p>
                 <p>
-                  I&apos;m an advocate for open-source software and I&apos;m
-                  always trying to open source what I&apos;m working on as much
-                  as possible. I try to keep all my personal projects open
-                  source, and I&apos;m aiming to do more in this area moving
-                  forward.
+                  While I&apos;m a backend development aficionado, I didn&apos;t
+                  shy away from using ReactJS for this website. I admire its
+                  flair but just so you know, frontend isn&apos;t my main stage.
                 </p>
                 <p>
-                  I&apos;m comfortable with programming in a lot of programming
-                  languages, but my two favourites are Python for file
-                  parsing/web scraping/console commands and PHP for web
-                  projects. Front-end development-wise I&apos;m a fan of
-                  ReactJS.
+                  Recently, I&apos;ve been flirting with Golang and wading into
+                  the exciting waters of artificial intelligence, specifically
+                  working on GPT integrations. It&apos;s a thrilling new
+                  frontier!
+                </p>
+                <p>
+                  Currently, I&apos;m part of a leading dating app company,
+                  diving into innovative projects and constantly evolving.
+                  I&apos;m also looking to sprinkle some open-source magic into
+                  my work, marrying my professional goals with my passion for
+                  open-source principles.
+                </p>
+                <p>
+                  A chapter of my story also includes a deep dive into
+                  hospitality technology during my time at Kobas. It&apos;s an
+                  experience that has enriched my understanding of this unique
+                  sector.
+                </p>
+                <p>
+                  As a tech enthusiast, I&apos;m committed to the open-source
+                  community. My toolkit is pretty diverse, ranging from Python
+                  for backend magic, PHP for web wizardry, to my growing
+                  expertise in Golang and AI tech.
                 </p>
               </div>
             </div>
           </div>
-          <div className="column is-two-fifths-desktop">
-            <div className="box">
-              <h1 className="title">Timeline</h1>
-              <Timeline />
-            </div>
-          </div>
-
         </div>
       </Layout>
     );
