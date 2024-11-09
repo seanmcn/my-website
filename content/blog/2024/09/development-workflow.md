@@ -4,7 +4,7 @@ date: '2024-11-09T13:21:42.341Z'
 slug: '2024/11/my-development-workflow'
 category: 'workflow'
 tags: ['ai', 'php', 'phpstorm', 'game development', 'python', 'godot']
-keywords: ['developer', 'workflow', 'cursor', 'ai coding', 'hosting']
+keywords: ['developer', 'workflow', 'cursor', 'ai coding', 'hosting', 'chat gpt']
 featured: 'images/cartoon-dev-workflow.png'
 ---
 
