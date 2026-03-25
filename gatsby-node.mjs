@@ -1,4 +1,5 @@
 import path from 'path';
+import fs from 'fs';
 import {createFilePath} from 'gatsby-source-filesystem';
 import {paginate} from 'gatsby-awesome-pagination';
 
@@ -181,6 +182,39 @@ export const createPages = async function({actions, graphql}) {
   });
 
   await Promise.all(categoryPromises);
+
+  /**
+   * Search index
+   * */
+  const searchData = await graphql(`
+    {
+      allMdx(sort: {frontmatter: {date: DESC}}) {
+        nodes {
+          frontmatter {
+            title
+            slug
+            date
+            tags
+          }
+          excerpt(pruneLength: 200)
+        }
+      }
+    }
+  `);
+
+  const searchIndex = searchData.data.allMdx.nodes.map((node) => ({
+    title: node.frontmatter.title,
+    slug: node.frontmatter.slug,
+    date: node.frontmatter.date,
+    tags: node.frontmatter.tags || [],
+    excerpt: node.excerpt,
+  }));
+
+  fs.mkdirSync(path.resolve('./public'), {recursive: true});
+  fs.writeFileSync(
+      path.resolve('./public/search-index.json'),
+      JSON.stringify(searchIndex),
+  );
 };
 
 export const onCreateNode = ({node, actions, getNode}) => {

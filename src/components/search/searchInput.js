@@ -5,18 +5,17 @@ class SearchInput extends Component {
 
   constructor(props) {
     super(props);
-    const {currentRefinement} = this.props;
     this.state = {
-      value: currentRefinement,
+      value: '',
     };
   }
 
   onChangeDebounce = (event) => {
-    const {refine, delay} = this.props;
+    const {onSearch, delay} = this.props;
     const {value} = event.currentTarget;
 
     clearTimeout(this.timerId);
-    this.timerId = setTimeout(() => refine(value), delay);
+    this.timerId = setTimeout(() => onSearch(value), delay);
 
     this.setState(() => ({
       value,
@@ -30,7 +29,7 @@ class SearchInput extends Component {
         type="search"
         value={value}
         onChange={this.onChangeDebounce}
-        className="ais-SearchBox-input"
+        className="searchBox-input"
         placeholder="Enter search term here"
         autoComplete="off"
         autoCorrect="off"

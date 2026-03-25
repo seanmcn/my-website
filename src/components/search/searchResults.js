@@ -1,14 +1,19 @@
 import React from 'react';
-import {connectStateResults, InfiniteHits} from 'react-instantsearch-dom';
 import SearchResult from './searchResult';
 
-const SearchResults = connectStateResults(
-    ({searchState}) => (searchState && searchState.query ? (
-    <div>
-      <InfiniteHits hitComponent={SearchResult}/>
+const SearchResults = ({results, query}) => {
+  if (!query) return <div />;
+
+  return (
+    <div className="searchResults-list">
+      {results.map((result) => (
+        <SearchResult key={result.item.slug} hit={result.item} />
+      ))}
+      {results.length === 0 && (
+        <p className="searchResults-empty">No results found.</p>
+      )}
     </div>
-  ) : (
-    <div/>
-  )));
+  );
+};
 
 export default SearchResults;
