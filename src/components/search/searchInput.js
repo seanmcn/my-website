@@ -15,8 +15,8 @@ class SearchInput extends Component {
     const {refine, delay} = this.props;
     const {value} = event.currentTarget;
 
-    window.clearTimeout(this.timerId);
-    this.timerId = window.setTimeout(() => refine(value), delay);
+    clearTimeout(this.timerId);
+    this.timerId = setTimeout(() => refine(value), delay);
 
     this.setState(() => ({
       value,

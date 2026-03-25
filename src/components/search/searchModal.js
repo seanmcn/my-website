@@ -10,7 +10,9 @@ import SearchInput from './searchInput';
 import SearchResults from './searchResults';
 import SearchButtonClose from './searchButtonClose';
 
-Modal.setAppElement('#___gatsby');
+if (typeof document !== 'undefined') {
+  Modal.setAppElement('#___gatsby');
+}
 
 const DebouncedSearchBox = connectSearchBox(SearchInput);
 
