@@ -4,4 +4,8 @@ div.tagsList {
   .tags {
     padding: 0.25rem;
   }
+
+  .tag.is-primary.is-light {
+    color: darken($primary-color, 10%);
+  }
 }
