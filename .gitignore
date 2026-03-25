@@ -10,3 +10,5 @@ yarn-error.log
 .idea
 project_schema.graphql
 .env
+# Cypress
+cypress/screenshots/
