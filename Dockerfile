@@ -5,8 +5,8 @@ FROM public.ecr.aws/amazonlinux/amazonlinux:latest
 RUN yum -y update && \
     yum -y install git tar xz gcc-c++ make
 
-# Install Node.js v18.17.0
-RUN curl -fsSL https://nodejs.org/dist/v18.17.0/node-v18.17.0-linux-x64.tar.xz | tar -C /usr/local --strip-components=1 -xJf -
+# Install Node.js v20 (LTS)
+RUN curl -fsSL https://nodejs.org/dist/v20.19.0/node-v20.19.0-linux-x64.tar.xz | tar -C /usr/local --strip-components=1 -xJf -
 
 # Confirm Node.js installation
 RUN node --version && npm --version

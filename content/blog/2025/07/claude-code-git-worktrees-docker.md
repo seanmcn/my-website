@@ -8,7 +8,7 @@ keywords: ['claude code', 'git worktrees', 'docker', 'multitasking', 'developmen
 featured: 'images/claude-code-workflow.png'
 ---
 
-As developers, we've all been there—you're deep in fixing a critical bug when suddenly a urgent feature request lands on your desk. Context switching between branches, stashing changes, and trying to keep multiple workstreams in your head can be mentally exhausting. Over the past few months, I've discovered a workflow that's completely transformed how I handle multiple concurrent tasks: combining [Claude Code](https://claude.ai/code) with [git worktrees](https://git-scm.com/docs/git-worktree) and [Docker](https://www.docker.com/).
+As developers, we've all been there, you're deep in fixing a critical bug when suddenly a urgent feature request lands on your desk. Context switching between branches, stashing changes, and trying to keep multiple workstreams in your head can be mentally exhausting. Over the past few months, I've discovered a workflow that's completely transformed how I handle multiple concurrent tasks: combining [Claude Code](https://claude.ai/code) with [git worktrees](https://git-scm.com/docs/git-worktree) and [Docker](https://www.docker.com/).
 
 ## The Problem with Traditional Branch Switching
 
@@ -75,7 +75,7 @@ git worktree add ../myproject-review feature/colleague-work
 cd ../myproject-review
 ```
 
-Claude Code can help me understand the changes, suggest improvements, or even help write comprehensive review comments—all while my main development work continues uninterrupted in other worktrees.
+Claude Code can help me understand the changes, suggest improvements, or even help write comprehensive review comments, all while my main development work continues uninterrupted in other worktrees.
 
 ## My Current Workflow
 
@@ -114,7 +114,7 @@ Each Claude Code session maintains context for its specific worktree and branch,
 
 ## Costs and Considerations
 
-The main downside is disk space—each worktree is a complete copy of your repository. For large repositories, this can add up quickly. A typical project might consume 2-3x more disk space, but storage is cheap compared to developer productivity.
+The main downside is disk space, each worktree is a complete copy of your repository. For large repositories, this can add up quickly. A typical project might consume 2-3x more disk space, but storage is cheap compared to developer productivity.
 
 There's also a slight learning curve with managing multiple worktrees, but the `git worktree list` command helps you keep track of what's checked out where.
 
