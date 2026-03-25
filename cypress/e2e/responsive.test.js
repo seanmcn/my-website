@@ -24,7 +24,7 @@ describe('Responsive menu', () => {
       cy.get('.navbar-brand > .button').click();
       cy.get('.navbar-menu').should('be.visible');
       cy.get('.navbar-brand > .button').click();
-      cy.get('#navbar').should('not.be.visible');
+      cy.get('.navbar-menu').should('not.be.visible');
     });
   });
   fullSizes.forEach((size) => {
