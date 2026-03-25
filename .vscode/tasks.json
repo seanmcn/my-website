@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Dev Server",
+            "type": "npm",
+            "script": "start",
+            "group": "build",
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Run E2E Tests",
+            "type": "npm",
+            "script": "test:e2e",
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Create Post",
+            "type": "npm",
+            "script": "post:create",
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
