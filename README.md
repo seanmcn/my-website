@@ -1,4 +1,3 @@
-
 # My Website
 ![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/Seanmcn/my-website?style=for-the-badge)
 ![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/Seanmcn/my-website?style=for-the-badge)
