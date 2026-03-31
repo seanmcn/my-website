@@ -8,7 +8,8 @@ $fullhd-enabled: true;
 //$input-border-color: transparent;
 //$input-shadow: none;
 
-@import url("https://use.typekit.net/qun5xao.css");
-$family-sans-serif: proxima-nova, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap');
+$family-sans-serif: 'Raleway', 'Century Gothic', CenturyGothic, AppleGothic,
+  sans-serif;
 
 $navbar-height: 4rem;

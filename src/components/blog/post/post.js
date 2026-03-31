@@ -9,10 +9,12 @@ function Post({
   const image = getImage(featured);
   return (<div className="box" key={id}>
     <div>
-      <Link className="has-text-primary" to={`/blog/${slug}/`}>
-        <h1 className="title">{title}</h1>
+      <Link
+        className="has-text-primary blog-post-title-link"
+        to={`/blog/${slug}/`}>
+        <h1 className="title blog-post-title">{title}</h1>
       </Link>
-      <div className="content">
+      <div className="content blog-post-content">
         {featured && (
           <GatsbyImage image={image} alt={title} className={'featuredImage'}/>
         )}
