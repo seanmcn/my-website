@@ -114,6 +114,30 @@ describe('Blog post features', () => {
     });
   });
 
+  describe('Legacy markdown post - GFM table rendering', () => {
+    beforeEach(() => {
+      cy.visit('/blog/2014/10/what-programmers-say-vs-what-they-mean/');
+      cy.get('#postMainColumn');
+    });
+
+    it('Renders the markdown table as HTML', () => {
+      cy.get('#postMainColumn .content table').should('exist');
+
+      cy.get('#postMainColumn .content table thead').within(() => {
+        cy.contains('th', 'What we say');
+        cy.contains('th', 'What we mean');
+      });
+
+      cy.get('#postMainColumn .content table tbody')
+          .contains('td', 'Horrible hack');
+
+      cy.contains(
+          '#postMainColumn .content',
+          '|--------------------------------------|',
+      ).should('not.exist');
+    });
+  });
+
   describe('Volume Mixer post - embedded image', () => {
     beforeEach(() => {
       cy.visit('/blog/2021/05/turn-up-volume-mixer/');

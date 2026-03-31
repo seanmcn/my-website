@@ -3,6 +3,7 @@ import {gatsbyPluginFeed} from './src/utils/rss.js';
 import {dirname} from "path"
 import {fileURLToPath} from "url"
 import remarkEmoji from 'remark-emoji';
+import remarkGfm from 'remark-gfm';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isTesting = process.env.CYPRESS_TESTING === 'true';
@@ -26,7 +27,7 @@ if (isDevelopment && !isTesting) {
         '**/2011/**',
         '**/2012/**',
         '**/2013/**',
-        '**/2014/**',
+        // '**/2014/**',
         '**/2016/**',
         '**/2017/**',
         '**/2018/**',
@@ -96,7 +97,8 @@ const config = {
                 ],
                 mdxOptions: {
                     remarkPlugins: [
-                            remarkEmoji
+                            remarkGfm,
+                            remarkEmoji,
                     ],
                 },
             },

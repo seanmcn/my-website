@@ -54,6 +54,7 @@
         "react-table": "^7.8.0",
         "regenerator-runtime": "^0.13.11",
         "remark-emoji": "^3.1.2",
+        "remark-gfm": "^1.0.0",
         "sass": "^1.52.1"
     },
     "keywords": [
