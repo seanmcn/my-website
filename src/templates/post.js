@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {graphql} from 'gatsby';
 import Layout from '../components/layout/layout';
-import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs';
 import Sidebar from '../components/blog/sidebar';
 import Post from '../components/blog/post/post';
 import RelatedPosts from '../components/blog/post/relatedPosts';
@@ -20,7 +19,6 @@ const BlogPostTemplate = ({
   featured,
 }) => (
   <div>
-    <Breadcrumbs category={category} title={title} slug={slug}/>
     <div className="columns">
       <div className="column is-four-fifths-desktop is-three-quarters-tablet"
         id="postMainColumn">
@@ -30,6 +28,7 @@ const BlogPostTemplate = ({
           title={title}
           content={content}
           date={date}
+          category={category}
           tags={tags}
           featured={featured}
         />

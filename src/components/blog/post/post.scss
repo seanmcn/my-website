@@ -1,3 +1,54 @@
+.blog-post-box {
+  margin-top: 0.65rem;
+  overflow: visible;
+  position: relative;
+}
+
+.blog-post-badges {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  left: 1.25rem;
+  position: absolute;
+  right: 1.25rem;
+  top: -1rem;
+  z-index: 1;
+}
+
+.blog-post-category-badge,
+.blog-post-date-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.15rem;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(34, 124, 113, 0.2);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #f2fbf8 100%);
+  box-shadow: 0 8px 18px rgba(38, 70, 83, 0.1);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.blog-post-category-badge {
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.blog-post-category-badge a,
+.blog-post-date-badge {
+  color: #227c71;
+}
+
+.blog-post-date-badge .icon-text {
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.blog-post-date-badge .icon {
+  color: #227c71;
+}
+
 .content.blog-post-content {
   color: #1f2933;
   font-size: 1.15rem;
@@ -30,6 +81,7 @@
 .blog-post-title-link {
   display: block;
   margin-bottom: 1rem;
+  padding-top: 1.35rem;
 }
 
 .blog-post-title {
@@ -96,6 +148,12 @@ pre.wp-block-code {
 }
 
 @media screen and (width <= 768px) {
+  .blog-post-badges {
+    left: 1rem;
+    right: 1rem;
+    top: -0.95rem;
+  }
+
   .content.blog-post-content {
     font-size: 1.05rem;
     line-height: 1.55;
@@ -103,6 +161,10 @@ pre.wp-block-code {
 
   .blog-post-title {
     font-size: 1.85rem;
+  }
+
+  .blog-post-title-link {
+    padding-top: 2.75rem;
   }
 
   .content.blog-post-content h2 {

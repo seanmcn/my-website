@@ -6,7 +6,6 @@ import PostList from '../components/blog/postList/postList';
 import Pagination from '../components/blog/pagination/pagination';
 import Sidebar from '../components/blog/sidebar';
 import {slugToTitle} from '../utils/blog';
-import Breadcrumbs from '../components/blog/breadcrumbs/breadcrumbs';
 
 const Category = (props) => {
   const {data, pageContext} = props;
@@ -21,7 +20,6 @@ const Category = (props) => {
       <Helmet>
         <title>{`${displayCategory} - Category - ${siteTitle}`}</title>
       </Helmet>
-      <Breadcrumbs category={category}/>
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
           <PostList posts={posts} title={title}/>
@@ -37,7 +35,8 @@ const Category = (props) => {
 
 export default Category;
 
-export const pageQuery = graphql`query CategoryPage($slug: String!, $limit: Int!, $skip: Int!) {
+export const pageQuery = graphql`
+  query CategoryPage($slug: String!, $limit: Int!, $skip: Int!) {
   site {
     siteMetadata {
       title
