@@ -10,9 +10,3 @@ RUN curl -fsSL https://nodejs.org/dist/v20.19.0/node-v20.19.0-linux-x64.tar.xz |
 
 # Confirm Node.js installation
 RUN node --version && npm --version
-
-# Install Yarn
-RUN npm install -g yarn
-
-# Confirm Yarn installation
-RUN yarn --version
