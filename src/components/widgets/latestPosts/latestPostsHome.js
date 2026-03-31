@@ -25,7 +25,7 @@ const LatestPostsHomeWidget = () => {
         slug={post.frontmatter.slug}
         title={post.frontmatter.title}
         date={post.frontmatter.date}
-        tags={post.frontmatter.tags}
+        category={post.frontmatter.category}
         cover={coverImage}
       />);
     })}

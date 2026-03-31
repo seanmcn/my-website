@@ -4,17 +4,15 @@ import './postCard.scss';
 import {GatsbyImage, getImage} from 'gatsby-plugin-image';
 import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {slugToTitle} from '../../../utils/blog';
 
 function PostCard({
-  id, slug, title, date, tags, cover,
+  id, slug, title, date, category, cover,
 }) {
   const image = getImage(cover);
   return (
     <div className="box postCardBox" key={id}>
-      <Link className="has-text-primary" to={`/blog/${slug}/`}>
-        <h1 className="title">{title}</h1>
-      </Link>
-      <div className="postedOn">
+      <div className="postCardDateBadge">
         <span className="icon-text">
           <span className="icon">
             <FontAwesomeIcon icon={icon({name: 'calendar'})} />
@@ -22,20 +20,30 @@ function PostCard({
           <span>{date}</span>
         </span>
       </div>
-      {cover && (
-        <Link to={`/blog/${slug}/`}>
-          <GatsbyImage image={image} alt={title}/>
-        </Link>
-      )}
-      {tags && tags.length ? (
-        <div className="postCardTags">
-          {tags.map(tag => (
-            <span key={`${tag}tag`} className="tag">
-              <Link to={`/blog/tags/${tag}/`}>{tag}</Link>
+
+      <div className="postCardBody">
+        {category && (
+          <div className="postCardCategoryRow">
+            <span className="postCardCategory">
+              <Link to={`/blog/categories/${category}/`}>
+                {slugToTitle(category)}
+              </Link>
             </span>
-          ))}
-        </div>
-      ) : null}
+          </div>
+        )}
+
+        <Link className="has-text-primary postCardTitleLink"
+          to={`/blog/${slug}/`}>
+          <h1 className="title postCardTitle">{title}</h1>
+        </Link>
+
+        {cover && (
+          <Link className="postCardImageLink" to={`/blog/${slug}/`}>
+            <GatsbyImage image={image} alt={title} className="postCardImage"/>
+          </Link>
+        )}
+
+      </div>
 
     </div>);
 }
