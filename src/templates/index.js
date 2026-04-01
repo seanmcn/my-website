@@ -42,20 +42,16 @@ export default class IndexPage extends React.Component {
               </div>
               <div className="homeAboutContent">
                 <p className="homeAboutLead">
-                  I&apos;m a backend-focused software engineer with a long-running
-                  interest in practical tools, clean product thinking, and
-                  useful software.
+                  I&apos;m a software engineer who likes building things that are simple, fast, and actually useful.
                 </p>
                 <p className="homeAboutText">
-                  I started out with HTML, CSS, and PHP, then built a career
-                  across freelance web work, digital archives at UBC,
-                  hospitality technology at Kobas, and large-scale backend
-                  systems at Bumble.
+                  Ive worked across everything from digital archives at UBC to hospitality systems at Kobas, and later large-scale backend services at Bumble focused on recommendations and discovery.
                 </p>
                 <p className="homeAboutText">
-                  These days I&apos;m especially interested in backend
-                  engineering, AI-assisted workflows, and building smaller
-                  tools that are thoughtful, fast, and useful.
+                  Between shipping quickly in smaller teams and working on systems at scale, I&rsquo;ve developed a bias toward keeping things simple and practical.
+                </p>
+                <p className="homeAboutText">
+                  These days I&rsquo;m mostly interested in backend engineering, AI-assisted workflows, and building smaller tools with a strong focus on usability and performance.               
                 </p>
                 <div className="homeAboutFooter">
                   <Link className="button homeAboutButton" to="/about">
