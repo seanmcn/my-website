@@ -3,19 +3,39 @@ pre {
   border-left: 6px solid #227c71;
 }
 
-.language-text, .language-shell, .language-bash {
-  word-break: break-all;
-}
-
 .codeWrapper {
   position: relative;
-  overflow: auto;
+  overflow-x: auto;
+  margin: 1.5rem 0;
 }
-.codeCopyButton{
+
+.codeWrapper pre {
+  overflow-x: auto;
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
+  tab-size: 2;
+  padding-right: 3.5rem !important;
+}
+
+.codeWrapper code {
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.codeWrapper[data-language='plain'] pre,
+.codeWrapper[data-language='text'] pre {
+  background: #f6f8fa !important;
+}
+
+.codeCopyButton {
   position: absolute !important;
   right: 0;
+  top: 0;
   opacity: 25%;
+  z-index: 1;
 }
+
 .codeCopyButton:hover {
   opacity: 100%;
 }

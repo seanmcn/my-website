@@ -1,7 +1,26 @@
 import React from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import { preToCodeBlock } from 'mdx-utils';
-import { Code } from './src/components/code/code';
+import {MDXProvider} from '@mdx-js/react';
+import {Code} from './src/components/code/code';
+
+function preToCodeBlock(preProps) {
+  const {children} = preProps;
+
+  if (!React.isValidElement(children)) {
+    return null;
+  }
+
+  const {children: codeString, className, ...codeProps} = children.props || {};
+
+  if (typeof codeString !== 'string') {
+    return null;
+  }
+
+  return {
+    codeString,
+    language: className,
+    ...codeProps,
+  };
+}
 
 // components is its own object outside of render so that the references to
 // components are stable
@@ -18,7 +37,6 @@ const components = {
     return <pre {...preProps} />;
   },
 };
-// eslint-disable-next-line import/prefer-default-export
-export const wrapRootElement = ({ element }) => (
+export const wrapRootElement = ({element}) => (
   <MDXProvider components={components}>{element}</MDXProvider>
 );

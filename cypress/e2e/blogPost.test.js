@@ -114,6 +114,24 @@ describe('Blog post features', () => {
     });
   });
 
+  describe('Workflow post - bash syntax highlighting', () => {
+    beforeEach(() => {
+      cy.visit('/blog/2025/07/claude-code-git-worktrees-docker/');
+      cy.get('#postMainColumn');
+    });
+
+    it('Renders bash code blocks with syntax markup', () => {
+      cy.get('.codeWrapper[data-language="bash"]')
+        .should('have.length.at.least', 1)
+        .first()
+        .within(() => {
+          cy.get('pre').should('exist');
+          cy.get('pre span').should('have.length.at.least', 1);
+          cy.contains('git worktree add');
+        });
+    });
+  });
+
   describe('Screen cheat sheet - command table', () => {
     beforeEach(() => {
       cy.visit('/blog/cheat-sheets/screen/');
