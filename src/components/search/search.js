@@ -23,6 +23,10 @@ const fuseOptions = {
 };
 
 function getTopCategories(searchIndex) {
+  if (!Array.isArray(searchIndex)) {
+    return [];
+  }
+
   const categoryMap = new Map();
 
   searchIndex.forEach(post => {
@@ -44,6 +48,22 @@ function getTopCategories(searchIndex) {
   return Array.from(categoryMap.values())
       .sort((left, right) => right.count - left.count)
       .slice(0, 6);
+}
+
+function normalizeSearchIndex(data) {
+  if (Array.isArray(data)) {
+    return data;
+  }
+
+  if (Array.isArray(data?.items)) {
+    return data.items;
+  }
+
+  if (Array.isArray(data?.nodes)) {
+    return data.nodes;
+  }
+
+  return [];
 }
 
 function getRecencyBoost(date) {
@@ -160,11 +180,15 @@ const Search = (props) => {
     fetch('/search-index.json')
         .then(res => res.json())
         .then(data => {
-          setSearchIndex(data);
-          setFuse(new Fuse(data, fuseOptions));
+          const normalizedIndex = normalizeSearchIndex(data);
+
+          setSearchIndex(normalizedIndex);
+          setFuse(new Fuse(normalizedIndex, fuseOptions));
           setLoadingIndex(false);
         })
         .catch(() => {
+          setSearchIndex([]);
+          setFuse(new Fuse([], fuseOptions));
           setLoadingIndex(false);
         });
   }, []);
