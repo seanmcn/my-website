@@ -52,12 +52,22 @@ BlogPostTemplate.propTypes = {
   title: PropTypes.string,
   date: PropTypes.string,
   slug: PropTypes.string,
+  relatedPosts: PropTypes.arrayOf(PropTypes.shape({
+    category: PropTypes.string,
+    date: PropTypes.string,
+    excerpt: PropTypes.string,
+    reason: PropTypes.string,
+    slug: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string.isRequired,
+  })).isRequired,
   featured: PropTypes.any,
 };
 
-const BlogPost = ({data, children}) => {
-  const {mdx: post, relatedMdxs: relatedPosts} = data;
+const BlogPost = ({data, children, pageContext}) => {
+  const {mdx: post} = data;
   const {title} = data.site.siteMetadata;
+  const {relatedPosts = []} = pageContext;
 
   const featured = post.frontmatter.featured ?
     post.frontmatter.featured :
@@ -87,12 +97,16 @@ BlogPost.propTypes = {
   data: PropTypes.shape({
     mdx: PropTypes.object,
   }),
+  children: PropTypes.node,
+  pageContext: PropTypes.shape({
+    relatedPosts: PropTypes.array,
+  }),
 };
 
 export default BlogPost;
 
 export const pageQuery = graphql`
-  query PostBySlug($slug: String!, $id: String!) {
+  query PostBySlug($slug: String!) {
     site {
       siteMetadata {
         title
@@ -101,17 +115,6 @@ export const pageQuery = graphql`
     }
     mdx(frontmatter: { slug: { eq: $slug } }) {
       ...PostListFields
-    }
-    relatedMdxs(parent: { id: { eq: $id } }) {
-      posts {
-        excerpt(pruneLength: 110)
-        frontmatter {
-          title,
-          slug,
-          date(formatString: "MMMM DD, YYYY")
-          category
-        }
-      }
     }
   }
 `;

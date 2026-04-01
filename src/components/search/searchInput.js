@@ -1,45 +1,40 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class SearchInput extends Component {
-  timerId = null;
+const SearchInput = ({onSearch, delay, query}) => {
+  const [value, setValue] = React.useState(query);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-    };
-  }
+  React.useEffect(() => {
+    setValue(query);
+  }, [query]);
 
-  onChangeDebounce = (event) => {
-    const {onSearch, delay} = this.props;
-    const {value} = event.currentTarget;
+  React.useEffect(() => {
+    const timerId = setTimeout(() => onSearch(value), delay);
 
-    clearTimeout(this.timerId);
-    this.timerId = setTimeout(() => onSearch(value), delay);
+    return () => clearTimeout(timerId);
+  }, [delay, onSearch, value]);
 
-    this.setState(() => ({
-      value,
-    }));
-  };
+  return (
+    <input
+      type="search"
+      value={value}
+      onChange={(event) => setValue(event.currentTarget.value)}
+      className="searchBox-input"
+      placeholder="Search posts"
+      autoComplete="off"
+      autoCorrect="off"
+      autoCapitalize="off"
+      spellCheck="false"
+      maxLength="512"
+      aria-label="Search blog posts"
+    />
+  );
+};
 
-  render() {
-    const {value} = this.state;
-    return (
-      <input
-        type="search"
-        value={value}
-        onChange={this.onChangeDebounce}
-        className="searchBox-input"
-        placeholder="Search posts"
-        autoComplete="off"
-        autoCorrect="off"
-        autoCapitalize="off"
-        spellCheck="false"
-        maxLength="512"
-        aria-label="Search blog posts"
-      />
-    );
-  }
-}
+SearchInput.propTypes = {
+  delay: PropTypes.number.isRequired,
+  onSearch: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
+};
 
 export default SearchInput;

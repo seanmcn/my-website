@@ -45,6 +45,20 @@ describe('Blog post features', () => {
         cy.get('.relatedPost .tag').should('have.length.at.least', 1);
       });
     });
+
+    it('Search modal returns keyword matches and browse filters', () => {
+      cy.contains('button', 'Search').click();
+      cy.get('.searchModal').should('be.visible');
+      cy.contains('.searchBrowseLabel', 'Browse popular categories');
+      cy.get('input[aria-label="Search blog posts"]').type('continuous integration');
+      cy.get('.searchResults-list .searchResult-item').should(
+          'have.length.at.least',
+          1,
+      );
+      cy.get('.searchResults-list .searchResult-item').first()
+          .should('contain.text', 'GitLab CI');
+      cy.get('.searchFilterChip').should('have.length.at.least', 1);
+    });
   });
 
   describe('GitLab CI post - code and featured image', () => {

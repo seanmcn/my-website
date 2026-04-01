@@ -3,6 +3,255 @@ import fs from 'fs';
 import {createFilePath} from 'gatsby-source-filesystem';
 import {paginate} from 'gatsby-awesome-pagination';
 
+const TECHNICAL_CATEGORIES = new Set([
+  'ai',
+  'devops',
+  'linux',
+  'open-source',
+  'programming',
+  'windows',
+  'workflow',
+]);
+
+function normaliseValue(value) {
+  return (value || '')
+      .toString()
+      .trim()
+      .toLowerCase();
+}
+
+function normaliseList(values = []) {
+  return values
+      .map(normaliseValue)
+      .filter(Boolean);
+}
+
+function stripMarkdown(markdown = '') {
+  return markdown
+      .replace(/^---[\s\S]*?---/, '')
+      .replace(/```[\s\S]*?```/g, ' ')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/!\[[^\]]*]\([^)]*\)/g, ' ')
+      .replace(/\[([^\]]+)]\([^)]*\)/g, '$1')
+      .replace(/^>\s+/gm, '')
+      .replace(/[*_~#>-]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+}
+
+function extractHeadings(markdown = '') {
+  return markdown
+      .split('\n')
+      .filter(line => /^#{1,6}\s+/.test(line))
+      .map(line => line.replace(/^#{1,6}\s+/, '').trim())
+      .filter(Boolean);
+}
+
+function scoreRelatedPost(currentPost, candidatePost) {
+  if (currentPost.id === candidatePost.id) {
+    return null;
+  }
+
+  const currentSeries = normaliseValue(currentPost.frontmatter.series);
+  const candidateSeries = normaliseValue(candidatePost.frontmatter.series);
+  const currentTags = new Set(normaliseList(currentPost.frontmatter.tags));
+  const candidateTags = normaliseList(candidatePost.frontmatter.tags);
+  const currentKeywords = new Set(normaliseList(currentPost.frontmatter.keywords));
+  const candidateKeywords = normaliseList(candidatePost.frontmatter.keywords);
+  const currentCategory = normaliseValue(currentPost.frontmatter.category);
+  const candidateCategory = normaliseValue(candidatePost.frontmatter.category);
+  const currentTitleTokens = new Set(
+      normaliseValue(currentPost.frontmatter.title).split(/\W+/).filter(Boolean),
+  );
+  const candidateTitleTokens = normaliseValue(candidatePost.frontmatter.title)
+      .split(/\W+/)
+      .filter(Boolean);
+
+  let score = 0;
+  let reason = 'Recent post';
+
+  if (currentSeries && currentSeries === candidateSeries) {
+    score += 100;
+    reason = 'Same series';
+  }
+
+  const sharedTags = candidateTags.filter(tag => currentTags.has(tag));
+  if (sharedTags.length > 0) {
+    score += sharedTags.length * 24;
+    if (reason !== 'Same series') {
+      reason = 'Shared tags';
+    }
+  }
+
+  if (currentCategory && currentCategory === candidateCategory) {
+    score += 14;
+    if (reason === 'Recent post') {
+      reason = 'Same category';
+    }
+  }
+
+  const sharedKeywords = candidateKeywords.filter(keyword => currentKeywords.has(keyword));
+  if (sharedKeywords.length > 0) {
+    score += sharedKeywords.length * 8;
+    if (reason === 'Recent post') {
+      reason = 'Shared keywords';
+    }
+  }
+
+  const sharedTitleTokens = candidateTitleTokens.filter(token =>
+    token.length > 2 && currentTitleTokens.has(token),
+  );
+  score += Math.min(sharedTitleTokens.length, 4) * 2;
+
+  const candidateDate = Date.parse(candidatePost.frontmatter.date);
+  if (!Number.isNaN(candidateDate)) {
+    const ageInDays = Math.max(0, (Date.now() - candidateDate) / (1000 * 60 * 60 * 24));
+    score += Math.max(0, 8 - Math.floor(ageInDays / 365));
+  }
+
+  return {
+    score,
+    reason,
+  };
+}
+
+function buildRelatedPosts(currentPost, allPostsBySlug) {
+  const editorialSlugs = currentPost.frontmatter.related || [];
+  const editorialPosts = editorialSlugs
+      .map(slug => allPostsBySlug.get(slug))
+      .filter(Boolean)
+      .map(post => ({
+        title: post.frontmatter.title,
+        slug: post.frontmatter.slug,
+        date: post.frontmatter.dateDisplay,
+        category: post.frontmatter.category,
+        tags: post.frontmatter.tags || [],
+        excerpt: post.excerpt,
+        reason: 'Hand-picked',
+      }));
+
+  const scoredPosts = Array.from(allPostsBySlug.values())
+      .map(candidatePost => {
+        const scoredPost = scoreRelatedPost(currentPost, candidatePost);
+        if (!scoredPost || scoredPost.score <= 0) {
+          return null;
+        }
+
+        return {
+          title: candidatePost.frontmatter.title,
+          slug: candidatePost.frontmatter.slug,
+          date: candidatePost.frontmatter.dateDisplay,
+          category: candidatePost.frontmatter.category,
+          tags: candidatePost.frontmatter.tags || [],
+          excerpt: candidatePost.excerpt,
+          reason: scoredPost.reason,
+          score: scoredPost.score,
+        };
+      })
+      .filter(Boolean)
+      .filter(candidatePost =>
+        !editorialSlugs.includes(candidatePost.slug),
+      )
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6);
+
+  const sameCategoryFallback = Array.from(allPostsBySlug.values())
+      .filter(candidatePost =>
+        candidatePost.id !== currentPost.id &&
+        normaliseValue(candidatePost.frontmatter.category) ===
+          normaliseValue(currentPost.frontmatter.category),
+      )
+      .filter(candidatePost =>
+        !editorialSlugs.includes(candidatePost.frontmatter.slug),
+      )
+      .map(candidatePost => ({
+        title: candidatePost.frontmatter.title,
+        slug: candidatePost.frontmatter.slug,
+        date: candidatePost.frontmatter.dateDisplay,
+        category: candidatePost.frontmatter.category,
+        tags: candidatePost.frontmatter.tags || [],
+        excerpt: candidatePost.excerpt,
+        reason: 'Same category',
+      }));
+
+  const recentFallback = Array.from(allPostsBySlug.values())
+      .filter(candidatePost => candidatePost.id !== currentPost.id)
+      .filter(candidatePost =>
+        !editorialSlugs.includes(candidatePost.frontmatter.slug),
+      )
+      .map(candidatePost => ({
+        title: candidatePost.frontmatter.title,
+        slug: candidatePost.frontmatter.slug,
+        date: candidatePost.frontmatter.dateDisplay,
+        category: candidatePost.frontmatter.category,
+        tags: candidatePost.frontmatter.tags || [],
+        excerpt: candidatePost.excerpt,
+        reason: 'Recent post',
+      }));
+
+  const mergedPosts = [];
+  const seenSlugs = new Set();
+  const candidates = [
+    ...editorialPosts,
+    ...scoredPosts,
+    ...sameCategoryFallback,
+    ...recentFallback,
+  ];
+
+  candidates.forEach(candidatePost => {
+    if (seenSlugs.has(candidatePost.slug) || mergedPosts.length >= 3) {
+      return;
+    }
+
+    seenSlugs.add(candidatePost.slug);
+    mergedPosts.push(candidatePost);
+  });
+
+  return mergedPosts;
+}
+
+function validatePostMetadata(posts) {
+  const categoryVariants = new Map();
+  const postSlugs = new Set(posts.map(({frontmatter}) => frontmatter.slug));
+
+  posts.forEach(post => {
+    const {frontmatter} = post;
+    const rawCategory = frontmatter.category;
+    const normalisedCategory = normaliseValue(rawCategory);
+
+    if (!categoryVariants.has(normalisedCategory)) {
+      categoryVariants.set(normalisedCategory, new Set());
+    }
+
+    categoryVariants.get(normalisedCategory).add(rawCategory);
+
+    if (TECHNICAL_CATEGORIES.has(normalisedCategory) &&
+        (!frontmatter.tags || frontmatter.tags.length === 0)) {
+      console.warn(
+          `[search] "${frontmatter.slug}" is in a technical category but has no tags.`,
+      );
+    }
+
+    (frontmatter.related || []).forEach(relatedSlug => {
+      if (!postSlugs.has(relatedSlug)) {
+        console.warn(
+            `[related] "${frontmatter.slug}" references missing post "${relatedSlug}".`,
+        );
+      }
+    });
+  });
+
+  categoryVariants.forEach((variants, category) => {
+    if (variants.size > 1) {
+      console.warn(
+          `[search] Category "${category}" has inconsistent casing: ${Array.from(
+              variants,
+          ).join(', ')}`,
+      );
+    }
+  });
+}
+
 export const createPages = async function({actions, graphql}) {
   const {createPage} = actions;
   const itemsPerPage = 9;
@@ -28,8 +277,16 @@ export const createPages = async function({actions, graphql}) {
             frontmatter {
               title
               slug
+              date
+              category
+              tags
+              keywords
+              series
+              seriesOrder
+              related
             }
             body
+            excerpt(pruneLength: 140)
             internal {
               contentFilePath
             }
@@ -40,20 +297,32 @@ export const createPages = async function({actions, graphql}) {
   );
 
   const posts = blogPosts.data.allMdx.edges;
+  const postNodes = posts.map(({node}) => ({
+    ...node,
+    frontmatter: {
+      ...node.frontmatter,
+      dateDisplay: new Date(node.frontmatter.date).toLocaleDateString(
+          'en-GB',
+          {year: 'numeric', month: 'long', day: 'numeric'},
+      ),
+    },
+  }));
+  const postsBySlug = new Map(postNodes.map(post => [post.frontmatter.slug, post]));
+  validatePostMetadata(postNodes);
   const postTemplate = path.resolve('./src/templates/post.js');
-  const blogPostPromises = posts.map(async (edge, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index +
-    1].node;
-    const next = index === 0 ? null : posts[index - 1].node;
+  const blogPostPromises = postNodes.map(async (post, index) => {
+    const previous = index === postNodes.length - 1 ? null : postNodes[index + 1];
+    const next = index === 0 ? null : postNodes[index - 1];
     createPage({
-      path: `/blog/${edge.node.frontmatter.slug}/`,
+      path: `/blog/${post.frontmatter.slug}/`,
       // eslint-disable-next-line max-len
-      component: `${postTemplate}?__contentFilePath=${edge.node.internal.contentFilePath}`,
+      component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
       context: {
-        id: edge.node.id,
-        slug: edge.node.frontmatter.slug,
+        id: post.id,
+        slug: post.frontmatter.slug,
         previous,
         next,
+        relatedPosts: buildRelatedPosts(post, postsBySlug),
       },
     });
   });
@@ -196,7 +465,9 @@ export const createPages = async function({actions, graphql}) {
             date(formatString: "MMMM DD, YYYY")
             category
             tags
+            keywords
           }
+          body
           excerpt(pruneLength: 200)
         }
       }
@@ -205,10 +476,18 @@ export const createPages = async function({actions, graphql}) {
 
   const searchIndex = searchData.data.allMdx.nodes.map(node => ({
     title: node.frontmatter.title,
+    normalizedTitle: normaliseValue(node.frontmatter.title),
     slug: node.frontmatter.slug,
+    path: `/blog/${node.frontmatter.slug}/`,
     date: node.frontmatter.date,
     category: node.frontmatter.category,
+    normalizedCategory: normaliseValue(node.frontmatter.category),
     tags: node.frontmatter.tags || [],
+    normalizedTags: normaliseList(node.frontmatter.tags),
+    keywords: node.frontmatter.keywords || [],
+    normalizedKeywords: normaliseList(node.frontmatter.keywords),
+    headings: extractHeadings(node.body),
+    bodyPlainText: stripMarkdown(node.body).slice(0, 2000),
     excerpt: node.excerpt,
   }));
 
@@ -240,7 +519,16 @@ export const createSchemaCustomization = ({actions, schema}) => {
             frontmatter: Frontmatter
         }`,
     `type Frontmatter @infer {
-            featured: [File!]! @fileByRelativePath,
+            featured: File @fileByRelativePath,
+        }`,
+    `type MdxFrontmatter @infer {
+            category: String
+            featured: File @fileByRelativePath,
+            keywords: [String!]
+            related: [String!]
+            series: String
+            seriesOrder: Int
+            tags: [String!]
         }`,
   ];
 

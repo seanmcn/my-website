@@ -12,23 +12,31 @@ const RelatedPosts = ({
         <h2 className="subtitle relatedPostsTitle">Related Posts</h2>
       </div>
       <div className="relatedPostsList">
-        {relatedPosts.posts.slice(0, 3).map(x => (
+        {relatedPosts.map(x => (
           <Link
-            className="relatedPostItem"
-            key={`container_${x.frontmatter.slug}`}
-            to={`/blog/${x.frontmatter.slug}`}>
-            {x.frontmatter.date && (
-              <span className="relatedPostDateBadge">{x.frontmatter.date}</span>
+            className="relatedPost relatedPostItem"
+            key={`container_${x.slug}`}
+            to={`/blog/${x.slug}/`}>
+            {x.date && (
+              <span className="relatedPostDateBadge">{x.date}</span>
             )}
             <span className="relatedPostLink">
-              {x.frontmatter.title}
+              {x.title}
             </span>
             {x.excerpt && (
               <p className="relatedPostExcerpt">{x.excerpt}</p>
             )}
-            {x.frontmatter.category && (
+            <div className="tags">
+              {x.reason && (
+                <span className="tag is-primary is-light">{x.reason}</span>
+              )}
+              {x.tags && x.tags.slice(0, 2).map(tag => (
+                <span className="tag" key={`${x.slug}-${tag}`}>{tag}</span>
+              ))}
+            </div>
+            {x.category && (
               <span className="relatedPostCategoryBadge">
-                {slugToTitle(x.frontmatter.category)}
+                {slugToTitle(x.category)}
               </span>
             )}
           </Link>

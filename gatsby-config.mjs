@@ -122,13 +122,6 @@ const config = {
         'gatsby-plugin-offline',
         'gatsby-plugin-react-helmet',
         'gatsby-plugin-image',
-        {
-            resolve: 'gatsby-remark-related-posts',
-            options: {
-                target_node: 'Mdx',
-                getMarkdown: node => node.body,
-            },
-        },
         'gatsby-plugin-sitemap',
         {
             resolve: 'gatsby-plugin-robots-txt',
