@@ -2,7 +2,7 @@
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fseanmcn.com&style=for-the-badge&label=seanmcn.com)](https://seanmcn.com)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Seanmcn/my-website?style=for-the-badge)](https://github.com/Seanmcn/my-website/commits/main)
-[![Node.js](https://img.shields.io/badge/node-20.x-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/node-22.x-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Cypress Test Runs](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/m1uz2r&style=for-the-badge&logo=cypress)](https://dashboard.cypress.io/projects/m1uz2r/runs)
 
 The codebase for [seanmcn.com](https://seanmcn.com), a Gatsby-powered personal site and blog built with React, MDX, and Bulma.
@@ -32,8 +32,8 @@ The codebase for [seanmcn.com](https://seanmcn.com), a Gatsby-powered personal s
 
 ### Requirements
 
-- Node.js 20
-- npm 9+
+- Node.js 22
+- npm 10+
 
 ### Install
 
@@ -62,6 +62,22 @@ npm run test:e2e    # Open Cypress against a local Gatsby instance
 npm run test:e2e:ci # Run Cypress headlessly
 npm run test:e2e:record # Run Cypress headlessly and record to the dashboard
 ```
+
+## VS Code Image Generation
+
+Add `OPENAI_API_KEY=...` to a repo-root `.env` file, open a post under
+`content/blog`, then run the `Generate Featured Image` VS Code task.
+
+The task will:
+
+- ask for the image concept prompt
+- generate a square OpenAI image using the built-in illustration style prompt
+- save the PNG into the post's sibling `images/` directory
+- update the post's `featured:` frontmatter automatically
+
+For example, running it from
+`content/blog/2026/04/world-models-(trying-to-understand-them).md` writes the
+image into `content/blog/2026/04/images/`.
 
 ## Project Structure
 

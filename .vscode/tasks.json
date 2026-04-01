@@ -27,6 +27,35 @@
                 "focus": true
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Generate Featured Image",
+            "type": "process",
+            "command": "node",
+            "args": [
+                "scripts/generate-featured-image.mjs",
+                "--file",
+                "${file}",
+                "--prompt",
+                "${input:featuredImagePrompt}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": true
+            },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "featuredImagePrompt",
+            "type": "promptString",
+            "description": "Describe the featured image you want OpenAI to generate"
         }
     ]
 }
