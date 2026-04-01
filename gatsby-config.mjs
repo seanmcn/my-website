@@ -4,6 +4,7 @@ import {dirname} from "path"
 import {fileURLToPath} from "url"
 import remarkEmoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
+import remarkYouTubeEmbed from './src/utils/remark-youtube-embed.mjs';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isTesting = process.env.CYPRESS_TESTING === 'true';
@@ -45,9 +46,6 @@ const gatsbySourceFileSystemAssets = {
 };
 
 const config = {
-    flags: {
-        DEV_SSR: true
-    },
     siteMetadata: {
         title: 'Seán McNamara',
         author: 'Seán McNamara',
@@ -56,7 +54,14 @@ const config = {
         siteUrl: 'https://seanmcn.com',
     },
     plugins: [
-        'gatsby-plugin-sass',
+        {
+            resolve: 'gatsby-plugin-sass',
+            options: {
+                sassOptions: {
+                    quietDeps: true,
+                },
+            },
+        },
         'gatsby-plugin-sharp',
         'gatsby-remark-images',
         {
@@ -69,16 +74,6 @@ const config = {
                         options: {
                             maxWidth: 850,
                             linkImagesToOriginal: true,
-                        },
-                    },
-                    {
-                        resolve: 'gatsby-remark-embedder',
-                        options: {
-                            services: {
-                                YouTube: {
-                                    height: '350px',
-                                },
-                            },
                         },
                     },
                     {
@@ -98,6 +93,7 @@ const config = {
                 mdxOptions: {
                     remarkPlugins: [
                             remarkGfm,
+                            remarkYouTubeEmbed,
                             remarkEmoji,
                     ],
                 },
@@ -120,17 +116,8 @@ const config = {
             },
         },
         'gatsby-plugin-offline',
-        'gatsby-plugin-react-helmet',
         'gatsby-plugin-image',
         'gatsby-plugin-sitemap',
-        {
-            resolve: 'gatsby-plugin-robots-txt',
-            options: {
-                host: 'https://www.seanmcn.com',
-                sitemap: 'https://www.seanmcn.com/sitemap-index.xml',
-                policy: [{userAgent: '*', allow: '/'}],
-            },
-        },
     ],
 };
 

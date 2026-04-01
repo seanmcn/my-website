@@ -1,22 +1,16 @@
 import React from 'react';
 import {graphql} from 'gatsby';
-import Helmet from 'react-helmet';
 import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Layout from '../components/layout/layout';
 import ContactForm from '../components/contactForm/contactForm';
+import SEO from '../components/seo/seo';
 import './contact.scss';
 
 export default class ContactPage extends React.Component {
   render() {
-    const {data} = this.props;
-    const {title: siteTitle} = data.site.siteMetadata;
-
     return (
       <Layout>
-        <Helmet>
-          <title>{`Contact Me - ${siteTitle}`}</title>
-        </Helmet>
         <div className="contactPage">
           <section className="contactHero box">
             <div className="contactHeroEyebrow">Contact</div>
@@ -90,7 +84,28 @@ export const contactPageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
+        siteUrl
       }
     }
   }
 `;
+
+export const Head = ({data, location}) => {
+  const {
+    title: siteTitle,
+    description: siteDescription,
+    siteUrl,
+  } = data.site.siteMetadata;
+
+  return (
+    <SEO
+      title={`Contact Me - ${siteTitle}`}
+      description="Get in touch with Seán McNamara about software engineering roles, project ideas, collaborations, or questions about the articles published on this site."
+      siteTitle={siteTitle}
+      siteDescription={siteDescription}
+      siteUrl={siteUrl}
+      pathname={location.pathname}
+    />
+  );
+};

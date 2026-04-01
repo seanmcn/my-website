@@ -1,24 +1,20 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import {graphql} from 'gatsby';
 import Layout from '../components/layout/layout';
 import PostList from '../components/blog/postList/postList';
 import Pagination from '../components/blog/pagination/pagination';
 import Sidebar from '../components/blog/sidebar';
+import SEO from '../components/seo/seo';
 import {slugToTitle} from '../utils/blog';
 
 const Tag = (props) => {
   const {data, pageContext} = props;
   const {edges: posts} = data.allMdx;
-  const {title: siteTitle} = data.site.siteMetadata;
   const {name: tag} = pageContext;
   const displayTag = slugToTitle(tag);
 
   return (
     <Layout>
-      <Helmet>
-        <title>{`${displayTag} - Tag - ${siteTitle}`}</title>
-      </Helmet>
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
           <PostList posts={posts}/>
@@ -39,6 +35,8 @@ export const pageQuery = graphql`
   site {
     siteMetadata {
       title
+      description
+      siteUrl
     }
   }
   allMdx(
@@ -54,3 +52,23 @@ export const pageQuery = graphql`
     }
   }
 }`;
+
+export const Head = ({data, pageContext, location}) => {
+  const {
+    title: siteTitle,
+    description: siteDescription,
+    siteUrl,
+  } = data.site.siteMetadata;
+  const displayTag = slugToTitle(pageContext.name);
+
+  return (
+    <SEO
+      title={`${displayTag} - Tag - ${siteTitle}`}
+      description={`Browse posts tagged ${displayTag} on Sean McNamara's blog.`}
+      siteTitle={siteTitle}
+      siteDescription={siteDescription}
+      siteUrl={siteUrl}
+      pathname={location.pathname}
+    />
+  );
+};

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {graphql, Link} from 'gatsby';
-import Helmet from 'react-helmet';
 import Layout from '../components/layout/layout';
+import SEO from '../components/seo/seo';
 import LatestPostsHomeWidget from '../components/widgets/latestPosts/latestPostsHome';
 import StaticData from '../data/static.json';
 import avatar from '../assets/images/emojis/250/wave.png';
@@ -10,17 +10,8 @@ import './index.scss';
 
 export default class IndexPage extends React.Component {
   render() {
-    const {data} = this.props;
-    const {
-      title: siteTitle,
-      description: siteDescription,
-    } = data.site.siteMetadata;
     return (
       <Layout>
-        <Helmet>
-          <title>{`Home - ${siteTitle}`}</title>
-          <meta name="description" content={`${siteDescription}`} />
-        </Helmet>
         <div className="homePage">
           <section className="homeSection">
             <div className="homeSectionHeader">
@@ -130,7 +121,27 @@ export const indexPageQuery = graphql`
       siteMetadata {
         title
         description
+        siteUrl
       }
     }
   }
 `;
+
+export const Head = ({data, location}) => {
+  const {
+    title: siteTitle,
+    description: siteDescription,
+    siteUrl,
+  } = data.site.siteMetadata;
+
+  return (
+    <SEO
+      title={`Home - ${siteTitle}`}
+      description={siteDescription}
+      siteTitle={siteTitle}
+      siteDescription={siteDescription}
+      siteUrl={siteUrl}
+      pathname={location.pathname}
+    />
+  );
+};

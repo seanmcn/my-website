@@ -132,6 +132,24 @@ describe('Blog post features', () => {
     });
   });
 
+  describe('RTS week two post - YouTube embed', () => {
+    beforeEach(() => {
+      cy.visit('/blog/2016/09/making-simple-rts-game-week-two/');
+      cy.get('#postMainColumn');
+    });
+
+    it('Renders a responsive YouTube iframe from a standalone YouTube URL', () => {
+      cy.get('#postMainColumn .videoEmbed')
+        .should('have.length', 1)
+        .within(() => {
+          cy.get('iframe')
+            .should('have.attr', 'src', 'https://www.youtube.com/embed/q2V6toXFCH0')
+            .and('have.attr', 'title', 'Embedded YouTube video')
+            .and('have.attr', 'allowfullscreen');
+        });
+    });
+  });
+
   describe('Screen cheat sheet - command table', () => {
     beforeEach(() => {
       cy.visit('/blog/cheat-sheets/screen/');

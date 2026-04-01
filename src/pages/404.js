@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../components/layout/layout';
 import Sidebar from '../components/sidebar/sidebar';
 import NotFoundImage from '../assets/images/emojis/250/confused.png';
+import SEO from '../components/seo/seo';
 
 const NotFoundPage = () => (
   <Layout>
@@ -25,3 +26,15 @@ const NotFoundPage = () => (
 );
 
 export default NotFoundPage;
+
+export const Head = ({location}) => (
+  <SEO
+    title="404 - Not Found"
+    description="The page you were looking for could not be found."
+    siteTitle="Seán McNamara"
+    siteDescription=""
+    siteUrl="https://seanmcn.com"
+    pathname={location.pathname}
+    noIndex={true}
+  />
+);

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import {graphql} from 'gatsby';
 import Layout from '../components/layout/layout';
 import Sidebar from '../components/blog/sidebar';
 import Post from '../components/blog/post/post';
 import RelatedPosts from '../components/blog/post/relatedPosts';
+import SEO from '../components/seo/seo';
 
 const BlogPostTemplate = ({
   id,
@@ -66,7 +66,6 @@ BlogPostTemplate.propTypes = {
 
 const BlogPost = ({data, children, pageContext}) => {
   const {mdx: post} = data;
-  const {title} = data.site.siteMetadata;
   const {relatedPosts = []} = pageContext;
 
   const featured = post.frontmatter.featured ?
@@ -75,9 +74,6 @@ const BlogPost = ({data, children, pageContext}) => {
 
   return (
     <Layout>
-      <Helmet>
-        <title>{`${post.frontmatter.title} - Blog - ${title}`}</title>
-      </Helmet>
       <BlogPostTemplate
         id={post.id}
         content={children}
@@ -110,11 +106,35 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
+        siteUrl
         author
       }
     }
     mdx(frontmatter: { slug: { eq: $slug } }) {
       ...PostListFields
+      excerpt(pruneLength: 160)
     }
   }
 `;
+
+export const Head = ({data, location}) => {
+  const {mdx: post} = data;
+  const {
+    title: siteTitle,
+    description: siteDescription,
+    siteUrl,
+  } = data.site.siteMetadata;
+
+  return (
+    <SEO
+      title={`${post.frontmatter.title} - Blog - ${siteTitle}`}
+      description={post.excerpt}
+      siteTitle={siteTitle}
+      siteDescription={siteDescription}
+      siteUrl={siteUrl}
+      pathname={location.pathname}
+      type="article"
+    />
+  );
+};

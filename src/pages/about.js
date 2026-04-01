@@ -1,21 +1,15 @@
 import React from 'react';
 import {graphql} from 'gatsby';
-import Helmet from 'react-helmet';
 import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Layout from '../components/layout/layout';
+import SEO from '../components/seo/seo';
 import './about.scss';
 
 export default class AboutPage extends React.Component {
   render() {
-    const {data} = this.props;
-    const {title: siteTitle} = data.site.siteMetadata;
-
     return (
       <Layout>
-        <Helmet>
-          <title>{`About Me - ${siteTitle}`}</title>
-        </Helmet>
         <div className="aboutPage">
           <section className="aboutHero box">
             <div className="aboutHeroContent">
@@ -246,7 +240,28 @@ export const aboutPageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
+        siteUrl
       }
     }
   }
 `;
+
+export const Head = ({data, location}) => {
+  const {
+    title: siteTitle,
+    description: siteDescription,
+    siteUrl,
+  } = data.site.siteMetadata;
+
+  return (
+    <SEO
+      title={`About Me - ${siteTitle}`}
+      description="Learn more about Seán McNamara, a backend-focused software engineer in London with experience across product engineering, platforms, and AI-assisted workflows."
+      siteTitle={siteTitle}
+      siteDescription={siteDescription}
+      siteUrl={siteUrl}
+      pathname={location.pathname}
+    />
+  );
+};

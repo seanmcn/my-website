@@ -1,5 +1,7 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import '../../assets/styles/bulma.scss';
+import 'bulma-timeline/dist/css/bulma-timeline.min.css';
+import '../../assets/styles/code.scss';
 
 import Navbar from '../navbar/navbar';
 
@@ -8,12 +10,6 @@ import './layout.scss';
 
 const Layout = ({children}) => (
   <div>
-    <Helmet title="Home | Seán McNamara"/>
-    <Helmet>
-      <html lang="en"/>
-      <meta name="viewport"
-        content="width=device-width, initial-scale=1"/>
-    </Helmet>
     <Navbar/>
     <section className="section" id="mainSection" role="main">
       <div className="container">{children}</div>

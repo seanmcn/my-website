@@ -5,8 +5,8 @@ frontend:
             commands:
                 - export NVM_DIR="$HOME/.nvm"
                 - . "$NVM_DIR/nvm.sh"
-                - nvm install --no-progress 20.19.0
-                - nvm use 20.19.0
+                - nvm install --no-progress 22
+                - nvm use 22
                 - export CI=true
                 - export CYPRESS_INSTALL_BINARY=0
                 - export GATSBY_TELEMETRY_DISABLED=1

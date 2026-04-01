@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {graphql} from 'gatsby';
-import Helmet from 'react-helmet';
 import Layout from '../components/layout/layout';
 import PostList from '../components/blog/postList/postList';
-import Sidebar from '../components/blog/sidebar';
 import Pagination from '../components/blog/pagination/pagination';
+import Sidebar from '../components/blog/sidebar';
+import SEO from '../components/seo/seo';
 import './blog.scss';
 
 export default class BlogPage extends React.Component {
@@ -13,13 +13,9 @@ export default class BlogPage extends React.Component {
     const {data, pageContext} = this.props;
 
     const {edges: posts} = data.allMdx;
-    const {title: siteTitle} = data.site.siteMetadata;
 
     return (
       <Layout>
-        <Helmet>
-          <title>{`Blog - ${siteTitle}`}</title>
-        </Helmet>
         <div className="columns blogPageLayout">
           <div className="column
           is-four-fifths-desktop
@@ -52,11 +48,13 @@ BlogPage.propTypes = {
 };
 
 export const blogPageQuery = graphql`query BlogIndexQuery($limit: Int!, $skip: Int!) {
-  site {
-    siteMetadata {
-      title
+    site {
+      siteMetadata {
+        title
+        description
+        siteUrl
+      }
     }
-  }
   allMdx(sort: {frontmatter: {date: DESC}}, limit: $limit, skip: $skip) {
     edges {
       node {
@@ -65,3 +63,26 @@ export const blogPageQuery = graphql`query BlogIndexQuery($limit: Int!, $skip: I
     }
   }
 }`;
+
+export const Head = ({data, location, pageContext}) => {
+  const {
+    title: siteTitle,
+    description: siteDescription,
+    siteUrl,
+  } = data.site.siteMetadata;
+  const currentPage = pageContext.currentPage || 1;
+  const description = currentPage > 1 ?
+    `Page ${currentPage} of the Sean McNamara blog archive covering software engineering, workflow, AI, DevOps, and programming.` :
+    'Articles on software engineering, workflow, AI, DevOps, backend systems, and practical development.';
+
+  return (
+    <SEO
+      title={`Blog - ${siteTitle}`}
+      description={description}
+      siteTitle={siteTitle}
+      siteDescription={siteDescription}
+      siteUrl={siteUrl}
+      pathname={location.pathname}
+    />
+  );
+};

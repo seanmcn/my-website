@@ -1,25 +1,21 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import {graphql} from 'gatsby';
 import Layout from '../components/layout/layout';
 import PostList from '../components/blog/postList/postList';
 import Pagination from '../components/blog/pagination/pagination';
 import Sidebar from '../components/blog/sidebar';
+import SEO from '../components/seo/seo';
 import {slugToTitle} from '../utils/blog';
 
 const Category = (props) => {
   const {data, pageContext} = props;
   const {edges: posts} = data.allMdx;
-  const {title: siteTitle} = data.site.siteMetadata;
   const {name: category} = pageContext;
   const displayCategory = slugToTitle(category);
   const title = `Posts in category "${displayCategory}"`;
 
   return (
     <Layout>
-      <Helmet>
-        <title>{`${displayCategory} - Category - ${siteTitle}`}</title>
-      </Helmet>
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
           <PostList posts={posts} title={title}/>
@@ -40,6 +36,8 @@ export const pageQuery = graphql`
   site {
     siteMetadata {
       title
+      description
+      siteUrl
     }
   }
   allMdx(
@@ -55,3 +53,23 @@ export const pageQuery = graphql`
     }
   }
 }`;
+
+export const Head = ({data, pageContext, location}) => {
+  const {
+    title: siteTitle,
+    description: siteDescription,
+    siteUrl,
+  } = data.site.siteMetadata;
+  const displayCategory = slugToTitle(pageContext.name);
+
+  return (
+    <SEO
+      title={`${displayCategory} - Category - ${siteTitle}`}
+      description={`Browse posts in the ${displayCategory} category on Sean McNamara's blog.`}
+      siteTitle={siteTitle}
+      siteDescription={siteDescription}
+      siteUrl={siteUrl}
+      pathname={location.pathname}
+    />
+  );
+};

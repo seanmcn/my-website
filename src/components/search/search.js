@@ -1,6 +1,5 @@
 import React from 'react';
 import Fuse from 'fuse.js';
-import {Helmet} from 'react-helmet';
 import SearchButton from './searchButton';
 import SearchModal from './searchModal';
 import './search.scss';
@@ -194,6 +193,19 @@ const Search = (props) => {
   }, []);
 
   React.useEffect(() => {
+    if (!isClient) {
+      return undefined;
+    }
+
+    const className = 'no-html-scroll';
+    document.documentElement.classList.toggle(className, modalIsOpen);
+
+    return () => {
+      document.documentElement.classList.remove(className);
+    };
+  }, [isClient, modalIsOpen]);
+
+  React.useEffect(() => {
     if (!fuse || !query.trim()) {
       setResults([]);
       return;
@@ -255,9 +267,6 @@ const Search = (props) => {
           onSelectFilter={setActiveFilter}
           clearFilter={() => setActiveFilter(null)}
         />
-      )}
-      {modalIsOpen && isClient && (
-        <Helmet htmlAttributes={{class: 'no-html-scroll'}}/>
       )}
     </>
   );
