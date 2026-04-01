@@ -1,4 +1,4 @@
-@import "../../../assets/styles/colors";
+@use "../../../assets/styles/tokens" as *;
 
 ul.githubRepos {
   display: flex;

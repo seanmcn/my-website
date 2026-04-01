@@ -1,4 +1,5 @@
-//https://coolors.co/00b9e8-fe4a49-fed766-e6e6ea-f4f4f8
+@use "sass:color";
+
 $cyan: #00b9e8;
 $tart-orange: #fe4a49;
 $orange-yellow: #fed766;
@@ -8,9 +9,9 @@ $white-smoke: #f4f4f8;
 $background-grey: $platinum;
 $background-white: $white-smoke;
 
-//https://coolors.co/264653-2a9d8f-e9c46a-f4a261-e76f51
 $primary-color: #227c71;
 $secondary-color: #264653;
+$secondary-color-strong: color.adjust($secondary-color, $lightness: -2%);
 
 $logo-text-color: #2a9d8f;
 
@@ -23,8 +24,20 @@ $link: $primary-color;
 $body-background-color: $background-grey;
 $background: $background-white;
 
-@media (prefers-color-scheme: dark) {
-  $scheme-main: #000;
-  $scheme-invert: #fff;
-  $background: black;
+$weight-light: 300;
+$weight-medium: 500;
+$weight-semibold: 600;
+
+$border: #dbdbdb;
+$white: #ffffff;
+$text: #4a4a4a;
+$grey: #7a7a7a;
+
+$font-family-sans: 'Raleway', 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+$touch-max: 1023px;
+
+@mixin touch {
+  @media screen and (max-width: $touch-max) {
+    @content;
+  }
 }

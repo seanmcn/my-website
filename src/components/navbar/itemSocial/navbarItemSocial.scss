@@ -1,5 +1,4 @@
-@import "../../../assets/styles/main";
-@import "~bulma/bulma";
+@use "../../../assets/styles/tokens" as *;
 
 .navbar-social-icons .navbar-item {
   border-radius: 999px;

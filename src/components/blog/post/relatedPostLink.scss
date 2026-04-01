@@ -1,4 +1,4 @@
-@import "../../../assets/styles/main";
+@use "../../../assets/styles/tokens" as *;
 
 .relatedPostsBox {
   border: 1px solid rgba(34, 124, 113, 0.16);

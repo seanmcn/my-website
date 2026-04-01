@@ -1,15 +1,15 @@
-@import "colors";
+@charset "utf-8";
 
-// Update Bulma's global variables
+@use "./tokens";
+
 $widescreen-enabled: true;
 $fullhd-enabled: true;
-
-//$control-border-width: 2px;
-//$input-border-color: transparent;
-//$input-shadow: none;
-
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap');
-$family-sans-serif: 'Raleway', 'Century Gothic', CenturyGothic, AppleGothic,
-  sans-serif;
-
+$family-sans-serif: tokens.$font-family-sans;
 $navbar-height: 4rem;
+
+$primary: tokens.$primary;
+$link: tokens.$link;
+$body-background-color: tokens.$body-background-color;
+$background: tokens.$background;
+
+@import "bulma/bulma.sass";

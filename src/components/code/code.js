@@ -19,7 +19,6 @@ import shellSession
   from 'react-syntax-highlighter/dist/esm/languages/prism/shell-session';
 import sql from 'react-syntax-highlighter/dist/esm/languages/prism/sql';
 import yaml from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
-import '../../assets/styles/code.scss';
 
 const SHELL_LANGUAGE_ALIASES = new Set([
   'bash',

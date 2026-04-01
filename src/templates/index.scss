@@ -1,4 +1,4 @@
-@import "../assets/styles/main";
+@use "../assets/styles/tokens" as *;
 
 .homePage {
   display: flex;
@@ -16,14 +16,19 @@
 }
 
 .homeSectionTitle {
-  color: #264653;
-  letter-spacing: -0.03em;
+  color: #363636;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.125;
+  margin-bottom: 0 !important;
 }
 
 .homeSectionIntro {
   color: #425866;
   font-size: 1rem;
   line-height: 1.7;
+  max-width: 38rem;
+  margin: 0;
 }
 
 .homeSection {
@@ -36,18 +41,7 @@
   display: flex;
   justify-content: space-between;
   gap: 1.5rem;
-  align-items: end;
-}
-
-.homeSectionTitle {
-  font-size: clamp(1.8rem, 2vw, 2.4rem);
-  line-height: 1.05;
-  margin-bottom: 0 !important;
-}
-
-.homeSectionIntro {
-  max-width: 38rem;
-  margin: 0;
+  align-items: flex-end;
 }
 
 .homeAboutCard {

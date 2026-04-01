@@ -1,4 +1,4 @@
-@import "../../../assets/styles/colors";
+@use "../../../assets/styles/tokens" as *;
 
 .widgetBoxContent ul.categoryList {
   list-style: none;
@@ -39,7 +39,7 @@
   padding: 0.18rem 0.45rem;
   border-radius: 999px;
   background: rgba(34, 124, 113, 0.2);
-  color: darken($secondary-color, 2%);
+  color: $secondary-color-strong;
   font-size: 0.76rem;
   font-weight: 600;
   text-align: center;
