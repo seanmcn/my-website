@@ -6,6 +6,7 @@ import Layout from '../components/layout/layout';
 import PostList from '../components/blog/postList/postList';
 import Sidebar from '../components/blog/sidebar';
 import Pagination from '../components/blog/pagination/pagination';
+import './blog.scss';
 
 export default class BlogPage extends React.Component {
   render() {
@@ -19,7 +20,7 @@ export default class BlogPage extends React.Component {
         <Helmet>
           <title>{`Blog - ${siteTitle}`}</title>
         </Helmet>
-        <div className="columns">
+        <div className="columns blogPageLayout">
           <div className="column
           is-four-fifths-desktop
           is-three-quarters-tablet" id="postMainColumn">

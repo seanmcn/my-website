@@ -40,11 +40,11 @@ function Post({
         )}
         {content}
         <hr/>
-        <div className="is-grouped">
+        <div className="blog-post-footer">
           {tags && tags.length ? (
-              <div className="tags">
+              <div className="blog-post-tags">
                 {tags.map(tag => (
-                  <span key={`${tag}tag`} className="tag">
+                  <span key={`${tag}tag`} className="blog-post-tag-chip">
                     <Link to={`/blog/tags/${tag}/`}>{tag}</Link>
                   </span>
                 ))}

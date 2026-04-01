@@ -1,20 +1,121 @@
 @import "../../../assets/styles/main";
 
-.relatedPost {
-  display: list-item;
-  margin-left : 1em;
+.relatedPostsBox {
+  border: 1px solid rgba(34, 124, 113, 0.16);
+  border-top: 4px solid #227c71;
+  border-radius: 1rem;
+  box-shadow: 0 14px 30px rgba(38, 70, 83, 0.08);
 }
-.relatedPostContainer {
+
+.relatedPostsHeader {
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(38, 70, 83, 0.08);
+}
+
+.relatedPostsTitle {
+  margin-bottom: 0 !important;
+  color: #264653;
+  font-size: 1.1rem !important;
+  font-weight: 600;
+}
+
+.relatedPostsList {
   display: flex;
-  flex-direction: row;
-  padding: 0.35em;
+  flex-direction: column;
+  gap: 1.15rem;
 }
-.relatedPostContainer .tags {
-  margin-left: 0.5em;
-  @include mobile {
-    display:none;
+
+.relatedPostItem {
+  display: block;
+  position: relative;
+  padding: 0.8rem 0.9rem;
+  border-radius: 0.95rem;
+  background: rgba(34, 124, 113, 0.03);
+  overflow: visible;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.relatedPostItem:hover {
+  background: rgba(34, 124, 113, 0.06);
+  box-shadow: 0 12px 24px rgba(38, 70, 83, 0.08);
+  transform: translateY(-3px);
+}
+
+.relatedPostDateBadge,
+.relatedPostCategoryBadge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0 0.65rem;
+  border: 1px solid rgba(34, 124, 113, 0.18);
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  line-height: 1;
+  position: absolute;
+  right: 0.85rem;
+  z-index: 1;
+}
+
+.relatedPostDateBadge {
+  top: -0.8rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f2fbf8 100%);
+  box-shadow: 0 8px 18px rgba(38, 70, 83, 0.1);
+  color: #5c6f7d;
+}
+
+.relatedPostCategoryBadge {
+  bottom: -0.8rem;
+  left: 0.85rem;
+  right: auto;
+  background: linear-gradient(180deg, #ffffff 0%, #f2fbf8 100%);
+  box-shadow: 0 8px 18px rgba(38, 70, 83, 0.1);
+  color: #227c71;
+  text-transform: uppercase;
+}
+
+.relatedPostLink {
+  display: inline-block;
+  color: #264653;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 0.2rem;
+  padding-right: 8.5rem;
+}
+
+.relatedPostExcerpt {
+  margin: 0.55rem 0 0;
+  padding-bottom: 0.9rem;
+  color: #5c6f7d;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media screen and (width <= 768px) {
+  .relatedPostItem {
+    padding: 0.75rem;
   }
-}
-.relatedPostContainer .tags .tag{
-  margin-right: 0.5em;
+
+  .relatedPostLink {
+    font-size: 0.95rem;
+    padding-right: 0;
+  }
+
+  .relatedPostDateBadge,
+  .relatedPostCategoryBadge {
+    right: 0.75rem;
+  }
+
+  .relatedPostCategoryBadge {
+    left: 0.75rem;
+    right: auto;
+  }
+
+  .relatedPostExcerpt {
+    font-size: 0.86rem;
+  }
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import './pagination.scss';
+import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const Pagination = ({pageContext}) => {
   const {previousPagePath, nextPagePath} = pageContext;
@@ -89,36 +91,47 @@ const Pagination = ({pageContext}) => {
     }
   }
   return (
-    <section>
+    <section className="paginationShell">
       <nav
-        className="pagination is-centered navbar"
+        className="pagination is-centered blogPagination"
         role="navigation"
         aria-label="pagination"
       >
         {previousPagePath && (
           <Link
             to={previousPagePath}
-            rel="next"
-            className="pagination-previous"
+            rel="prev"
+            className="pagination-previous blogPaginationNav"
+            aria-label="Go to previous page"
           >
-            Previous
+            <span className="icon">
+              <FontAwesomeIcon icon={icon({name: 'chevron-left'})} />
+            </span>
           </Link>
         )}
         {nextPagePath && (
-          <Link to={nextPagePath} rel="next" className="pagination-next">
-            Next
+          <Link
+            to={nextPagePath}
+            rel="next"
+            className="pagination-next blogPaginationNav"
+            aria-label="Go to next page">
+            <span className="icon">
+              <FontAwesomeIcon icon={icon({name: 'chevron-right'})} />
+            </span>
           </Link>
         )}
 
-        <ul className="pagination-list">
+        <ul className="pagination-list blogPaginationList">
           {navItems.map(item => (
             <li key={item.index}>
               {item.separator ? (
-                <span className="pagination-ellipsis">&hellip;</span>
+                <span className="pagination-ellipsis blogPaginationEllipsis">
+                  &hellip;
+                </span>
               ) : (
                 <Link
                   to={item.link}
-                  className={`pagination-link ${
+                  className={`pagination-link blogPaginationLink ${
                     item.current ? 'is-current' : ''
                   }`}
                   aria-label={`Goto page ${item.index}`}

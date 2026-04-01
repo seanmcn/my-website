@@ -137,6 +137,34 @@
   text-underline-offset: 0.12em;
 }
 
+.blog-post-footer {
+  padding-top: 0.25rem;
+}
+
+.blog-post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.blog-post-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.8rem;
+  border: 1px solid rgba(34, 124, 113, 0.14);
+  border-radius: 999px;
+  background: rgba(34, 124, 113, 0.05);
+}
+
+.blog-post-tag-chip a {
+  color: #227c71;
+  font-size: 0.84rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+}
+
 pre.wp-block-code {
   border-left: 6px solid #3498db;
   background-color: #f5f7f9;

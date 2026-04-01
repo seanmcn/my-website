@@ -6,33 +6,32 @@ import './relatedPostLink.scss';
 const RelatedPosts = ({
   relatedPosts,
 }) => (
-  <div className="box">
-    <nav>
-      <h2 className="subtitle">Related Posts</h2>
-      <div className="content">
-        {relatedPosts.posts.slice(0, 5).map(x => (
-          <div className="relatedPost" key={`container_${x.frontmatter.slug}`}>
-            <div className="relatedPostContainer">
-              <Link
-                to={`/blog/${x.frontmatter.slug}`}
-              >
-                {x.frontmatter.title}
-              </Link>
-              <div className="tags has-addons">
-                {x.frontmatter.tags.map(tag => (
-                  <Link
-                    to={`/blog/tags/${tag}`}
-                    aria-label={`Links to posts in tag ${slugToTitle(tag)}`}
-                    key={`link_${x.frontmatter.slug}_tag_${tag}`}
-                  >
-                    <span className="tag" aria-label="Tag name">
-                      {slugToTitle(tag)}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
+  <div className="box relatedPostsBox">
+    <nav className="relatedPosts">
+      <div className="relatedPostsHeader">
+        <h2 className="subtitle relatedPostsTitle">Related Posts</h2>
+      </div>
+      <div className="relatedPostsList">
+        {relatedPosts.posts.slice(0, 3).map(x => (
+          <Link
+            className="relatedPostItem"
+            key={`container_${x.frontmatter.slug}`}
+            to={`/blog/${x.frontmatter.slug}`}>
+            {x.frontmatter.date && (
+              <span className="relatedPostDateBadge">{x.frontmatter.date}</span>
+            )}
+            <span className="relatedPostLink">
+              {x.frontmatter.title}
+            </span>
+            {x.excerpt && (
+              <p className="relatedPostExcerpt">{x.excerpt}</p>
+            )}
+            {x.frontmatter.category && (
+              <span className="relatedPostCategoryBadge">
+                {slugToTitle(x.frontmatter.category)}
+              </span>
+            )}
+          </Link>
         ))}
       </div>
     </nav>

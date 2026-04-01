@@ -104,10 +104,12 @@ export const pageQuery = graphql`
     }
     relatedMdxs(parent: { id: { eq: $id } }) {
       posts {
+        excerpt(pruneLength: 110)
         frontmatter {
           title,
           slug,
-          tags
+          date(formatString: "MMMM DD, YYYY")
+          category
         }
       }
     }
