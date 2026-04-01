@@ -70,6 +70,7 @@ SyntaxHighlighter.registerLanguage('yaml', yaml);
 
 export const Code = ({codeString, language}) => {
   const resolvedLanguage = resolveLanguage(language);
+  const isPlainText = !resolvedLanguage || resolvedLanguage === 'text';
 
   // Todo: CopyToClipboard seems to be broken?
   return (
@@ -84,13 +85,19 @@ export const Code = ({codeString, language}) => {
           </span>
         </button>
       </CopyToClipboard>
-      <SyntaxHighlighter
-        language={resolvedLanguage === 'text' ? undefined : resolvedLanguage}
-        style={oneLight}
-        wrapLongLines={false}
-      >
-        {codeString}
-      </SyntaxHighlighter>
+      {isPlainText ? (
+        <pre className="codePlainText">
+          <code>{codeString}</code>
+        </pre>
+      ) : (
+        <SyntaxHighlighter
+          language={resolvedLanguage}
+          style={oneLight}
+          wrapLongLines={false}
+        >
+          {codeString}
+        </SyntaxHighlighter>
+      )}
     </div>
   );
 };
