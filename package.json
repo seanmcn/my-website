@@ -110,5 +110,8 @@
         "stylelint-scss": "^5.0.1",
         "typescript": "^5.0.0",
         "webpack": "^5.0.0"
+    },
+    "optionalDependencies": {
+        "@parcel/watcher-linux-x64-glibc": "^2.2.0"
     }
 }
