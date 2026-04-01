@@ -70,13 +70,15 @@
         "post:create": "plop --plopfile .plop/plopfile.js",
         "cy:open": "cypress open",
         "cy:run": "cypress run",
+        "cy:run:record": "cypress run --record",
         "develop": "npm run clean && mkdir -p .cache && detect-port 8000 | xargs -I {} gatsby develop -p {}",
         "format": "eslint src --fix",
         "serve": "gatsby serve",
         "start": "npm run develop",
         "test": "echo \"Error: no tests setup yet!\" && exit 1",
         "test:e2e": "npm run clean && mkdir -p .cache && PORT=$(detect-port 8000) && CYPRESS_BASE_URL=http://localhost:$PORT CYPRESS_TESTING=true start-server-and-test \"CYPRESS_TESTING=true gatsby develop -p $PORT\" http://localhost:$PORT cy:open",
-        "test:e2e:ci": "npm run clean && mkdir -p .cache && PORT=$(detect-port 8000) && CYPRESS_BASE_URL=http://localhost:$PORT CYPRESS_TESTING=true start-server-and-test \"CYPRESS_TESTING=true gatsby develop -p $PORT\" http://localhost:$PORT cy:run"
+        "test:e2e:ci": "npm run clean && mkdir -p .cache && PORT=$(detect-port 8000) && CYPRESS_BASE_URL=http://localhost:$PORT CYPRESS_TESTING=true start-server-and-test \"CYPRESS_TESTING=true gatsby develop -p $PORT\" http://localhost:$PORT cy:run",
+        "test:e2e:record": "npm run clean && mkdir -p .cache && PORT=$(detect-port 8000) && CYPRESS_BASE_URL=http://localhost:$PORT CYPRESS_TESTING=true start-server-and-test \"CYPRESS_TESTING=true gatsby develop -p $PORT\" http://localhost:$PORT cy:run:record"
     },
     "devDependencies": {
         "@babel/core": "^7.11.0",

@@ -60,6 +60,7 @@ npm run clean       # Remove Gatsby caches and build output
 npm run post:create # Scaffold a new post
 npm run test:e2e    # Open Cypress against a local Gatsby instance
 npm run test:e2e:ci # Run Cypress headlessly
+npm run test:e2e:record # Run Cypress headlessly and record to the dashboard
 ```
 
 ## Project Structure
@@ -81,6 +82,12 @@ Branch mapping:
 
 - `main` -> production
 - `develop` -> development
+
+## CI
+
+GitHub Actions runs Cypress on pushes to `main` and `develop`, and on pull requests.
+
+To keep the Cypress Dashboard badge accurate, add `CYPRESS_RECORD_KEY` as a GitHub Actions repository secret.
 
 ## Notes
 
