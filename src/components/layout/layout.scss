@@ -1,9 +1,15 @@
 #mainSection {
-  padding-top: 1rem;
+  padding-top: 1.4rem;
 }
 #postSidebarColumn {
   padding-top: 0.75rem;
 }
 #postsSidebarColumn {
   padding-top: 1.25rem;
+}
+
+@media screen and (max-width: 768px) {
+  #mainSection {
+    padding-top: 1rem;
+  }
 }

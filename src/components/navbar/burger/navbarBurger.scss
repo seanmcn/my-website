@@ -1,12 +1,20 @@
+@import "../../../assets/styles/main";
+
 button.navbar-burger {
-  border: 0;
+  align-self: center;
+  border: 1px solid rgba(34, 124, 113, 0.14);
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(38, 70, 83, 0.06);
+  color: $secondary-color;
+  height: 2.8rem;
+  width: 2.8rem;
 
   &:active {
-    border: 0;
+    border: 1px solid rgba(34, 124, 113, 0.14);
   }
 
   &:focus:not(:active) {
-    border: 0;
+    border: 1px solid rgba(34, 124, 113, 0.22);
     box-shadow: none;
   }
 }

@@ -6,7 +6,7 @@ import SearchModal from './searchModal';
 import './search.scss';
 
 const fuseOptions = {
-  keys: ['title', 'tags', 'excerpt'],
+  keys: ['title', 'category', 'tags', 'excerpt'],
   threshold: 0.3,
   includeMatches: true,
 };
@@ -22,8 +22,8 @@ const Search = (props) => {
   React.useEffect(() => {
     setIsClient(true);
     fetch('/search-index.json')
-        .then((res) => res.json())
-        .then((data) => setFuse(new Fuse(data, fuseOptions)))
+        .then(res => res.json())
+        .then(data => setFuse(new Fuse(data, fuseOptions)))
         .catch(() => {});
   }, []);
 

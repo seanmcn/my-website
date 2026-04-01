@@ -2,14 +2,26 @@
 @import "~bulma/bulma";
 
 .searchBox-input {
+  border: 1px solid rgba(34, 124, 113, 0.16);
+  border-radius: 1rem;
+  box-shadow: inset 0 1px 2px rgba(38, 70, 83, 0.04);
+  color: $secondary-color;
+  font-family: inherit;
+  font-size: 1.05rem;
   width: 100%;
-  padding: 1em;
-  margin-top: 0.5em;
+  margin-top: 0.75rem;
+  padding: 1rem 1.1rem;
+
+  &:focus {
+    border-color: rgba(34, 124, 113, 0.34);
+    box-shadow: 0 0 0 3px rgba(34, 124, 113, 0.12);
+    outline: none;
+  }
 }
 
 .searchResults-list {
   overflow-y: auto;
-  padding: 1em 0;
+  padding: 0.9rem 0 0;
 
   @include touch {
     max-height: 27em;
@@ -17,63 +29,218 @@
 }
 
 .searchResult-item {
-  padding: 0.25em;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(34, 124, 113, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 12px 24px rgba(38, 70, 83, 0.06);
+  color: inherit;
+  display: block;
+  margin-bottom: 1.35rem;
+  overflow: visible;
+  padding: 1rem 1.05rem 1.15rem;
+  position: relative;
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
+
+  &:hover,
+  &:focus {
+    border-color: rgba(34, 124, 113, 0.22);
+    box-shadow: 0 16px 28px rgba(38, 70, 83, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+.searchResultDateBadge,
+.searchResultCategoryBadge {
+  align-items: center;
+  background: linear-gradient(180deg, #ffffff 0%, #f2fbf8 100%);
+  border: 1px solid rgba(34, 124, 113, 0.18);
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(38, 70, 83, 0.1);
+  display: inline-flex;
+  font-size: 0.74rem;
+  font-weight: 500;
+  line-height: 1;
+  min-height: 1.75rem;
+  padding: 0 0.65rem;
+  position: absolute;
+  z-index: 1;
+}
+
+.searchResultDateBadge {
+  color: #5c6f7d;
+  right: 0.85rem;
+  top: -0.8rem;
+}
+
+.searchResultCategoryBadge {
+  bottom: -0.8rem;
+  color: #227c71;
+  left: 0.85rem;
+  text-transform: uppercase;
+}
+
+.searchResult-title {
+  color: $primary-color;
+  font-size: 1.45rem;
+  font-weight: $weight-semibold;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 0.45rem !important;
+  padding-right: 8.5rem;
 }
 
 .searchResults-empty {
-  padding: 0.5em;
+  padding: 1rem 0.25rem 0.25rem;
   color: $grey;
 }
 
+.searchResultsEmptyState {
+  color: rgba(38, 70, 83, 0.7);
+  font-size: 1rem;
+  padding: 1rem 0.1rem 0.2rem;
+}
+
+.searchResult-excerpt {
+  color: rgba(38, 70, 83, 0.82);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
 .navbar-item.searchButton {
-  margin-left: 1em;
-  color: inherit;
+  align-items: center;
+  border: 1px solid rgba(34, 124, 113, 0.12);
+  border-radius: 999px;
+  color: $secondary-color;
   font-size: 100%;
   font-family: inherit;
-  border: 0;
-  padding: 0.5em;
-  background: none;
+  font-weight: $weight-medium;
+  gap: 0.55rem;
+  padding: 0.68rem 1rem;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 10px 24px rgba(38, 70, 83, 0.06);
   cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .navbar-item.searchButton:hover {
+  background: rgba(34, 124, 113, 0.08);
   color: $primary-color;
+  transform: translateY(-1px);
 }
 
 .searchIcon {
-  padding-right: 1em;
+  padding-right: 0;
 }
 
 .searchCloseButton {
-  font-size: 100%;
-  font-family: inherit;
-  border: 0;
-  padding: 0;
-  background: none;
+  align-items: center;
+  background: rgba(34, 124, 113, 0.1);
+  border: 1px solid rgba(34, 124, 113, 0.12);
+  border-radius: 999px;
   color: $primary-color;
-  position: absolute;
-  top: 0;
-  right: 0;
   cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 100%;
+  height: 2.7rem;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  width: 2.7rem;
+
+  &:hover {
+    background: rgba(34, 124, 113, 0.16);
+    transform: translateY(-1px);
+  }
+}
+
+.searchModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(244, 244, 248, 0.76);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 6.2rem 1.2rem 1.5rem;
+  z-index: 90;
+
+  @include touch {
+    padding: 5.2rem 0.8rem 1rem;
+  }
 }
 
 .searchModal {
-  position: fixed;
-  top: 5em;
-  left: 50%;
-  -webkit-transform: translate(-50%);
-  transform: translate(-50%);
-  min-width: 50%;
-  max-width: 50%;
-  border: 1px solid rgb(204, 204, 204);
-  background: rgb(255, 255, 255) none repeat scroll 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(244, 244, 248, 0.98) 100%
+  );
+  border: 1px solid rgba(34, 124, 113, 0.14);
+  border-top: 4px solid $primary-color;
+  border-radius: 1.35rem;
+  box-shadow: 0 28px 48px rgba(38, 70, 83, 0.16);
+  max-height: calc(100vh - 7.7rem);
+  max-width: 64rem;
+  outline: none;
   overflow: auto;
-  border-radius: 4px;
-  outline: currentColor none medium;
-  padding: 20px;
+  padding: 1.35rem 1.4rem 1.2rem;
+  width: min(64rem, 100%);
+}
 
-  @include touch {
-    min-width: 80%;
-    max-width: 80%;
+.searchModalHeader {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.searchModalTitle {
+  color: $secondary-color;
+  font-size: 1.55rem;
+  font-weight: $weight-semibold;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0.25rem !important;
+}
+
+.searchModalSubtitle {
+  color: rgba(38, 70, 83, 0.72);
+  font-size: 0.98rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+@include touch {
+  .searchModal {
+    border-radius: 1rem;
+    max-height: calc(100vh - 6.2rem);
+    padding: 1.05rem 1rem 0.9rem;
+  }
+
+  .searchModalHeader {
+    gap: 0.8rem;
+  }
+
+  .searchModalTitle {
+    font-size: 1.3rem;
+  }
+
+  .searchResult-title {
+    font-size: 1.2rem;
+    padding-right: 0;
+  }
+
+  .searchResultDateBadge,
+  .searchResultCategoryBadge {
+    right: 0.75rem;
+  }
+
+  .searchResultCategoryBadge {
+    left: 0.75rem;
+    right: auto;
   }
 }

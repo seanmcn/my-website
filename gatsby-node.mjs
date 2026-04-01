@@ -193,7 +193,8 @@ export const createPages = async function({actions, graphql}) {
           frontmatter {
             title
             slug
-            date
+            date(formatString: "MMMM DD, YYYY")
+            category
             tags
           }
           excerpt(pruneLength: 200)
@@ -202,10 +203,11 @@ export const createPages = async function({actions, graphql}) {
     }
   `);
 
-  const searchIndex = searchData.data.allMdx.nodes.map((node) => ({
+  const searchIndex = searchData.data.allMdx.nodes.map(node => ({
     title: node.frontmatter.title,
     slug: node.frontmatter.slug,
     date: node.frontmatter.date,
+    category: node.frontmatter.category,
     tags: node.frontmatter.tags || [],
     excerpt: node.excerpt,
   }));

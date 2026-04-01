@@ -1,17 +1,46 @@
 @import "../../../assets/styles/colors";
 
-.content ul.categoryList {
+.widgetBoxContent ul.categoryList {
   list-style: none;
-  margin-left: 0;
+  margin: 0;
   margin-top: 0;
+  padding-left: 0;
 
-  li a {
-    padding: 0.5em 0.5em;
+  li + li {
+    margin-top: 0.45rem;
   }
+}
 
-  li a span {
-    margin-left: 0.25rem;
-    color: $secondary-color;
-    font-size: 0.75rem;
-  }
+.widgetBoxContent ul.categoryList li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.85rem;
+  color: $secondary-color;
+  line-height: 1.2;
+  transition: background-color 160ms ease, color 160ms ease,
+    transform 160ms ease;
+}
+
+.widgetBoxContent ul.categoryList li a:hover {
+  background: rgba(34, 124, 113, 0.07);
+  color: $primary-color;
+  transform: translateX(2px);
+}
+
+.widgetBoxContent ul.categoryList .categoryName {
+  font-weight: 500;
+}
+
+.widgetBoxContent ul.categoryList .categoryCount {
+  min-width: 1.9rem;
+  padding: 0.18rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(34, 124, 113, 0.09);
+  color: $primary-color;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-align: center;
 }

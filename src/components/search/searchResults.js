@@ -2,11 +2,17 @@ import React from 'react';
 import SearchResult from './searchResult';
 
 const SearchResults = ({results, query}) => {
-  if (!query) return <div />;
+  if (!query) {
+    return (
+      <div className="searchResultsEmptyState">
+        Start typing to search across blog posts.
+      </div>
+    );
+  }
 
   return (
     <div className="searchResults-list">
-      {results.map((result) => (
+      {results.map(result => (
         <SearchResult key={result.item.slug} hit={result.item} />
       ))}
       {results.length === 0 && (

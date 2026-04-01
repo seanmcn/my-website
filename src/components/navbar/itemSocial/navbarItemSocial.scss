@@ -2,7 +2,12 @@
 @import "~bulma/bulma";
 
 .navbar-social-icons .navbar-item {
+  border-radius: 999px;
   color: $primary-alt-color;
+  min-height: 0;
+  padding: 0.55rem;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    transform 0.2s ease;
 
   @include touch {
     display: inline-block;
@@ -10,5 +15,7 @@
 }
 
 .navbar-social-icons .navbar-item:hover {
+  background: rgba(231, 111, 81, 0.08);
   color: $secondary-alt-color;
+  transform: translateY(-1px);
 }

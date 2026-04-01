@@ -30,12 +30,13 @@ class SearchInput extends Component {
         value={value}
         onChange={this.onChangeDebounce}
         className="searchBox-input"
-        placeholder="Enter search term here"
+        placeholder="Search posts"
         autoComplete="off"
         autoCorrect="off"
         autoCapitalize="off"
         spellCheck="false"
         maxLength="512"
+        aria-label="Search blog posts"
       />
     );
   }

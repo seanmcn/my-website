@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './widgetBox.scss';
 
 const WidgetBox = ({title, content}) => (
-  <div className="box">
-    <h1 className="subtitle">{title}</h1>
-    <div className="content">{content}</div>
+  <div className="box widgetBox">
+    <div className="widgetBoxHeader">
+      <h1 className="subtitle widgetBoxTitle">{title}</h1>
+    </div>
+    <div className="content widgetBoxContent">{content}</div>
   </div>
 );
 

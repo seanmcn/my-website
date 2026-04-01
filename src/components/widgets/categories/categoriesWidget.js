@@ -25,15 +25,17 @@ const CategoriesWidget = () => {
     <WidgetBox
       title="Categories"
       content={(
-        <ul className="menu-list categoryList">
+        <ul className="categoryList">
           {categories.map(category => (
             <li key={category.edges[0].node.frontmatter.category}>
               <Link
                 to={`/blog/categories/`+
                   `${category.edges[0].node.frontmatter.category}`}
               >
-                {slugToTitle(category.edges[0].node.frontmatter.category)}
-                <span className="badge is/-right">{category.totalCount}</span>
+                <span className="categoryName">
+                  {slugToTitle(category.edges[0].node.frontmatter.category)}
+                </span>
+                <span className="categoryCount">{category.totalCount}</span>
               </Link>
             </li>
           ))}

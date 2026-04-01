@@ -35,11 +35,14 @@ const GithubRepoListItem = ({
         aria-label={description}
         title={description}
         key={title}
+        className="githubRepoCard"
       >
-        {title}
+        <span className="githubRepoHeader">
+          <span className="githubRepoTitle">{title}</span>
+          <span className="githubRepoIcon">{iconElement}</span>
+        </span>
+        <span className="description">{description}</span>
       </a>
-      {iconElement}
-      <p className="description">{description}</p>
     </li>
   );
 };

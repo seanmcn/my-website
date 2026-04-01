@@ -2,13 +2,14 @@ import React from 'react';
 import {GoogleReCaptchaProvider} from 'react-google-recaptcha-v3';
 import ContactFormInputField from './contactFormInputField';
 import ContactFormTextAreaField from './contactFormTextAreaField';
+import './contactForm.scss';
 
 const recaptchaKey = '6LfhyvsUAAAAAK0VwkKfGF8YfWeTkD2lCeiLAvJ4';
 const getFormUrl = 'https://getform.io/f/d25c4df8-c821-4e9b-8e2f-94e08526caa0';
 
 const ContactForm = () => (
   <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey}>
-    <form action={getFormUrl} method="POST">
+    <form action={getFormUrl} className="contactForm" method="POST">
       <ContactFormInputField
         displayName="Name"
         id="name"
@@ -29,8 +30,8 @@ const ContactForm = () => (
         id="message"
         name="message"
       />
-      <div className="control">
-        <button className="button is-link" type="submit">
+      <div className="control contactFormSubmit">
+        <button className="button is-link contactSubmitButton" type="submit">
           Send
         </button>
       </div>

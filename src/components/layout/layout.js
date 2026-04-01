@@ -9,11 +9,6 @@ import './layout.scss';
 const Layout = ({children}) => (
   <div>
     <Helmet title="Home | Seán McNamara"/>
-    <Helmet
-      bodyAttributes={{
-        class: 'has-navbar-fixed-top',
-      }}
-    />
     <Helmet>
       <html lang="en"/>
       <meta name="viewport"

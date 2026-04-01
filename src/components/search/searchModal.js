@@ -14,9 +14,18 @@ const SearchModal = ({modalIsOpen, closeModal, onSearch, results, query}) => (
     isOpen={modalIsOpen}
     onRequestClose={closeModal}
     className="searchModal"
+    overlayClassName="searchModalOverlay"
     contentLabel="Search Modal"
   >
-    <SearchButtonClose closeModal={closeModal} />
+    <div className="searchModalHeader">
+      <div>
+        <h2 className="searchModalTitle">Search the blog</h2>
+        <p className="searchModalSubtitle">
+          Find posts by title, tags, or excerpt.
+        </p>
+      </div>
+      <SearchButtonClose closeModal={closeModal} />
+    </div>
     <SearchInput onSearch={onSearch} delay={500} />
     <SearchResults results={results} query={query} />
   </Modal>

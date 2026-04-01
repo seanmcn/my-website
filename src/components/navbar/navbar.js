@@ -26,61 +26,57 @@ export default class Navbar extends React.Component {
   render() {
     const {activeMenu} = this.state;
     return (
-      <nav
-        className="navbar is-fixed-top"
-      >
-        <div className="container">
+      <nav className="navbar siteNavbar" aria-label="Primary">
+        <div className="container siteNavbarContainer">
           <div className="navbar-brand">
             <NavbarLogo/>
             <NavbarBurger active={activeMenu} toggleMenu={this.toggleMenu}/>
           </div>
           <div
-            className={`navbar-menu  ${activeMenu ? 'is-active' : ''}`}
+            className={
+              `navbar-menu siteNavbarMenu ${activeMenu ? 'is-active' : ''}`
+            }
             role="navigation"
             aria-label="navigation"
           >
-            <div className="navbar-start">
+            <div className="navbar-start siteNavbarLinks">
               <NavbarItem link="/" label="Home"/>
               <NavbarItem link="/blog" label="Blog"/>
               <NavbarItem link="/about" label="About Me"/>
               <NavbarItem link="/contact" label="Contact Me"/>
             </div>
 
-            <div className="navbar-end navbar-social-icons">
-              <NavbarItemSocial
-                link="https://mas.to/@seanmcn"
-                label="Mastodon Profile"
-              >
-                <FontAwesomeIcon
-                  icon={icon({name: 'mastodon', style: 'brands'})}
-                  size={'2x'}/>
-              </NavbarItemSocial>
-              <NavbarItemSocial
-                link="https://www.linkedin.com/in/mrseanmcn"
-                label="LinkedIn Profile"
-              >
-                <FontAwesomeIcon
-                  icon={icon({name: 'linkedin', style: 'brands'})}
-                  size={'2x'}/>
-              </NavbarItemSocial>
-              <NavbarItemSocial
-                link="https://github.com/seanmcn"
-                label="Github Profile"
-              >
-                <FontAwesomeIcon
-                  icon={icon({name: 'github-alt', style: 'brands'})}
-                  size={'2x'}/>
-              </NavbarItemSocial>
-              <NavbarItemSocial
-                link="https://www.goodreads.com/seanmcn"
-                label="Goodreads Profile"
-              >
-                <FontAwesomeIcon
-                  icon={icon({name: 'goodreads', style: 'brands'})}
-                  size={'2x'}/>
-              </NavbarItemSocial>
+            <div className="navbar-end siteNavbarActions">
+              <div className="navbar-social-icons siteNavbarSocialGroup">
+                <NavbarItemSocial
+                  link="https://www.linkedin.com/in/mrseanmcn"
+                  label="LinkedIn Profile"
+                >
+                  <FontAwesomeIcon
+                    icon={icon({name: 'linkedin', style: 'brands'})}
+                    size={'lg'}/>
+                </NavbarItemSocial>
+                <NavbarItemSocial
+                  link="https://github.com/seanmcn"
+                  label="Github Profile"
+                >
+                  <FontAwesomeIcon
+                    icon={icon({name: 'github-alt', style: 'brands'})}
+                    size={'lg'}/>
+                </NavbarItemSocial>
+                <NavbarItemSocial
+                  link="https://www.goodreads.com/seanmcn"
+                  label="Goodreads Profile"
+                >
+                  <FontAwesomeIcon
+                    icon={icon({name: 'goodreads', style: 'brands'})}
+                    size={'lg'}/>
+                </NavbarItemSocial>
+              </div>
+              <div className="siteNavbarSearch">
+                <Search toggleMenu={this.toggleMenu} activeMenu={activeMenu}/>
+              </div>
             </div>
-            <Search toggleMenu={this.toggleMenu} activeMenu={activeMenu}/>
           </div>
         </div>
       </nav>
