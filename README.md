@@ -1,23 +1,88 @@
 # My Website
-![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/Seanmcn/my-website?style=for-the-badge)
-![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/Seanmcn/my-website?style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/Seanmcn/my-website?style=for-the-badge)
+
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fseanmcn.com&style=for-the-badge&label=seanmcn.com)](https://seanmcn.com)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Seanmcn/my-website?style=for-the-badge)](https://github.com/Seanmcn/my-website/commits/main)
+[![Node.js](https://img.shields.io/badge/node-20.x-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Cypress Test Runs](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/m1uz2r&style=for-the-badge&logo=cypress)](https://dashboard.cypress.io/projects/m1uz2r/runs)
 
-## 📖 About
+The codebase for [seanmcn.com](https://seanmcn.com), a Gatsby-powered personal site and blog built with React, MDX, and Bulma.
 
-This repository houses the codebase for my personal website, [seanmcn.com](https://seanmcn.com).
+## Overview
 
-Built with the power of Gatsby, the site dynamically serves blog content sourced from Markdown & [MDX](https://mdxjs.com/) files located in [content/blog](https://github.com/Seanmcn/my-website/tree/develop/content/blog). Deployment is made seamless with AWS Amplify, using a [custom image](https://gallery.ecr.aws/y1e1i7y7/gatsby-5.11_amazonlinux-latest) for optimised performance.
+- Blog content is sourced from Markdown and MDX files in `content/blog`.
+- Pages are statically generated with Gatsby and deployed via AWS Amplify.
+- Search is powered client-side with Fuse.js and `match-sorter`.
+- End-to-end coverage is handled with Cypress.
 
-## 🔄 CI/CD Branching Strategy
+## Live Environments
 
-- **Development:** [develop branch](https://github.com/Seanmcn/my-website/tree/develop) → [develop.seanmcn.com](https://develop.seanmcn.com)
-- **Production:** [main branch](https://github.com/Seanmcn/my-website/tree/main) → [seanmcn.com](https://seanmcn.com)
+- Production: [seanmcn.com](https://seanmcn.com)
+- Development: [develop.seanmcn.com](https://develop.seanmcn.com)
 
-## 🛠 Technology Stack
-- **Framework:** [Gatsby](https://gatsbyjs.org/)
-- **UI Library:** [ReactJS](https://reactjs.org/)
-- **CSS Framework:** [Bulma](https://bulma.io/)
-- **Icon Library:** [Font Awesome](https://fontawesome.com/)
-- **Deployment & Hosting:** [AWS Amplify](https://aws.amazon.com/amplify/)
+## Tech Stack
+
+- Gatsby 5
+- React 18
+- MDX
+- Bulma + Sass
+- AWS Amplify
+- Cypress
+
+## Getting Started
+
+### Requirements
+
+- Node.js 20
+- npm 9+
+
+### Install
+
+```bash
+nvm use
+npm ci
+```
+
+### Run Locally
+
+```bash
+npm run develop
+```
+
+The site will start on port `8000`, or the next available port if `8000` is already in use.
+
+## Useful Scripts
+
+```bash
+npm run develop     # Start the Gatsby dev server
+npm run build       # Create a production build
+npm run serve       # Serve the production build locally
+npm run clean       # Remove Gatsby caches and build output
+npm run post:create # Scaffold a new post
+npm run test:e2e    # Open Cypress against a local Gatsby instance
+npm run test:e2e:ci # Run Cypress headlessly
+```
+
+## Project Structure
+
+```text
+content/blog/   Blog posts and MDX content
+src/components/ Reusable UI components
+src/pages/      Route-level pages
+src/templates/  Gatsby page templates
+gatsby-*.mjs    Gatsby config and build hooks
+amplify.yml     AWS Amplify build configuration
+```
+
+## Deployment
+
+AWS Amplify builds and deploys the site from this repository using the default Amplify build image and the configuration in `amplify.yml`.
+
+Branch mapping:
+
+- `main` -> production
+- `develop` -> development
+
+## Notes
+
+- Some Gatsby config changes depend on environment variables used in CI and E2E runs.
+- Cypress is included for test runs, but its binary download is skipped during Amplify deployment.
