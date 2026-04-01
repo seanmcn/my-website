@@ -50,6 +50,38 @@ describe('Blog post features', () => {
       });
     });
 
+    it('Defines inverted selection styling for article text', () => {
+      cy.document().then(doc => {
+        const selectionRules = [];
+
+        Array.from(doc.styleSheets).forEach(styleSheet => {
+          let rules;
+          try {
+            rules = styleSheet.cssRules;
+          } catch (error) {
+            return;
+          }
+
+          if (!rules) {
+            return;
+          }
+
+          Array.from(rules).forEach(rule => {
+            if (
+              rule.selectorText &&
+              rule.selectorText.includes('.content.blog-post-content p::selection')
+            ) {
+              selectionRules.push(rule);
+            }
+          });
+        });
+
+        expect(selectionRules.length).to.be.greaterThan(0);
+        expect(selectionRules[0].style.background).to.equal('rgb(19, 33, 47)');
+        expect(selectionRules[0].style.color).to.equal('rgb(245, 247, 249)');
+      });
+    });
+
     it('Search modal returns keyword matches and browse filters', () => {
       cy.contains('button', 'Search').click();
       cy.get('.searchModal').should('be.visible');

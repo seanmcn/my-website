@@ -137,6 +137,56 @@
   text-underline-offset: 0.12em;
 }
 
+.content.blog-post-content p::selection,
+.content.blog-post-content p a::selection,
+.content.blog-post-content li::selection,
+.content.blog-post-content li a::selection,
+.content.blog-post-content blockquote::selection,
+.content.blog-post-content blockquote a::selection,
+.content.blog-post-content td::selection,
+.content.blog-post-content td a::selection,
+.content.blog-post-content th::selection,
+.content.blog-post-content th a::selection,
+.content.blog-post-content h2::selection,
+.content.blog-post-content h2 a::selection,
+.content.blog-post-content h3::selection,
+.content.blog-post-content h3 a::selection,
+.content.blog-post-content h4::selection,
+.content.blog-post-content h4 a::selection,
+.content.blog-post-content h5::selection,
+.content.blog-post-content h5 a::selection,
+.content.blog-post-content h6::selection,
+.content.blog-post-content h6 a::selection {
+  background: #13212f;
+  color: #f5f7f9;
+  text-shadow: none;
+}
+
+.content.blog-post-content p::-moz-selection,
+.content.blog-post-content p a::-moz-selection,
+.content.blog-post-content li::-moz-selection,
+.content.blog-post-content li a::-moz-selection,
+.content.blog-post-content blockquote::-moz-selection,
+.content.blog-post-content blockquote a::-moz-selection,
+.content.blog-post-content td::-moz-selection,
+.content.blog-post-content td a::-moz-selection,
+.content.blog-post-content th::-moz-selection,
+.content.blog-post-content th a::-moz-selection,
+.content.blog-post-content h2::-moz-selection,
+.content.blog-post-content h2 a::-moz-selection,
+.content.blog-post-content h3::-moz-selection,
+.content.blog-post-content h3 a::-moz-selection,
+.content.blog-post-content h4::-moz-selection,
+.content.blog-post-content h4 a::-moz-selection,
+.content.blog-post-content h5::-moz-selection,
+.content.blog-post-content h5 a::-moz-selection,
+.content.blog-post-content h6::-moz-selection,
+.content.blog-post-content h6 a::-moz-selection {
+  background: #13212f;
+  color: #f5f7f9;
+  text-shadow: none;
+}
+
 .blog-post-footer {
   padding-top: 0.25rem;
 }
