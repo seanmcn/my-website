@@ -15,10 +15,17 @@
       "language": "python"
     },
     {
-      "id": "elemental-rts",
-      "title": "Elemental RTS",
-      "link": "https://github.com/Seanmcn/Elemental-RTS",
-      "description": "WIP/Currently Abandoned: An ambitious venture into making an RTS browser based game using PhaserJS. A hobby project that I return to occasionally.",
+      "id": "day-timeline",
+      "title": "Day Timeline",
+      "link": "https://github.com/seanmcn/day-timeline",
+      "description": "A block-based daily timeline for tracking planned vs actual time without rigid schedules or productivity theatre.",
+      "language": "js"
+    },
+    {
+      "id": "min-feed",
+      "title": "MinFeed",
+      "link": "https://github.com/seanmcn/min-feed",
+      "description": "A minimal, AI-powered RSS reader that deduplicates stories and filters noise to surface what matters.",
       "language": "js"
     }
   ]

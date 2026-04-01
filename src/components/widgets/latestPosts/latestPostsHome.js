@@ -1,11 +1,11 @@
 import React from 'react';
-import {useStaticQuery, graphql} from 'gatsby';
+import {useStaticQuery, graphql, Link} from 'gatsby';
 import './latestPostsHome.scss';
 import PostCard from '../../blog/postCard/postCard';
 
 const LatestPostsHomeWidget = () => {
   const data = useStaticQuery(graphql`query latestPostsHomeQuery {
-  allMdx(sort: {frontmatter: {date: DESC}}, limit: 6, skip: 0) {
+  allMdx(sort: {frontmatter: {date: DESC}}, limit: 4, skip: 0) {
     edges {
       node {
         ...PostListFields
@@ -29,6 +29,11 @@ const LatestPostsHomeWidget = () => {
         cover={coverImage}
       />);
     })}
+    <div className="latestPostsHomeFooter">
+      <Link className="latestPostsHomeMoreLink" to="/blog">
+        View more posts
+      </Link>
+    </div>
   </div>);
 };
 

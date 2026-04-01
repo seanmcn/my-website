@@ -1,0 +1,233 @@
+@import "../assets/styles/main";
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.homeSectionEyebrow {
+  color: #227c71;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+
+.homeSectionTitle {
+  color: #264653;
+  letter-spacing: -0.03em;
+}
+
+.homeSectionIntro {
+  color: #5c6f7d;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.homeSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.homeSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: end;
+}
+
+.homeSectionTitle {
+  font-size: clamp(1.8rem, 2vw, 2.4rem);
+  line-height: 1.05;
+  margin-bottom: 0 !important;
+}
+
+.homeSectionIntro {
+  max-width: 38rem;
+  margin: 0;
+}
+
+.homeAboutCard {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+  align-items: center;
+  border: 1px solid rgba(34, 124, 113, 0.16);
+  border-top: 4px solid #227c71;
+  border-radius: 1rem;
+  box-shadow: 0 14px 30px rgba(38, 70, 83, 0.08);
+  padding: 1.3rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fcfa 100%);
+}
+
+.homeAboutImageWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 220px;
+}
+
+.homeAboutImage {
+  margin: 0;
+  width: 220px;
+  max-width: 100%;
+}
+
+.homeAboutImage img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
+.homeAboutContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 0.8rem;
+}
+
+.homeAboutLead {
+  color: #264653;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.homeAboutText {
+  color: #5c6f7d;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.homeAboutFooter {
+  margin-top: 0.35rem;
+}
+
+.homeAboutButton.button {
+  border-radius: 999px;
+  font-weight: 600;
+  background: #227c71;
+  border-color: #227c71;
+  color: #fff;
+}
+
+.homeAboutButton.button:hover {
+  background: #1b665d;
+  border-color: #1b665d;
+}
+
+.homeProjectsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.homeProjectCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 100%;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid rgba(34, 124, 113, 0.16);
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 14px 30px rgba(38, 70, 83, 0.06);
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.homeProjectCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 124, 113, 0.32);
+  box-shadow: 0 18px 36px rgba(38, 70, 83, 0.1);
+}
+
+.homeProjectMeta {
+  color: #227c71;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.homeProjectTitle {
+  color: #264653;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.homeProjectDescription {
+  color: #5c6f7d;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.homeProjectLink {
+  color: #227c71;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.homeWritingSection {
+  padding-top: 0.25rem;
+}
+
+.homeWritingSection .latestPostsHome {
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.homeWritingSection .postCardBox {
+  margin: 0;
+}
+
+@media screen and (width <= 1023px) {
+  .homeSectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .homeProjectsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (width <= 768px) {
+  .homePage {
+    gap: 1.5rem;
+  }
+
+  .homeAboutCard {
+    flex-direction: column !important;
+    padding: 1.1rem;
+  }
+
+  .homeAboutImageWrap {
+    flex-basis: auto;
+  }
+
+  .homeAboutImage {
+    width: 180px;
+  }
+
+  .homeAboutLead {
+    font-size: 1.1rem;
+  }
+
+  .homeAboutText,
+  .homeSectionIntro {
+    font-size: 0.96rem;
+  }
+}
