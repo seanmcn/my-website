@@ -128,6 +128,57 @@
   margin-bottom: 1.5rem;
 }
 
+.content.blog-post-content p {
+  margin-bottom: 0;
+}
+
+.content.blog-post-content ul,
+.content.blog-post-content ol {
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+}
+
+.content.blog-post-content p + p {
+  margin-top: 1.2rem;
+}
+
+.content.blog-post-content p + blockquote,
+.content.blog-post-content p + pre,
+.content.blog-post-content p + table,
+.content.blog-post-content p + .gatsby-resp-image-wrapper,
+.content.blog-post-content p + .videoEmbed {
+  margin-top: 1.5rem;
+}
+
+.content.blog-post-content p + ul,
+.content.blog-post-content p + ol {
+  margin-top: 0.45rem;
+}
+
+.content.blog-post-content blockquote {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1.35rem 1.5rem;
+  border: 1px solid rgba(34, 124, 113, 0.12);
+  border-left: 4px solid #227c71;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(242, 251, 248, 0.92) 100%);
+  box-shadow: 0 14px 28px rgba(38, 70, 83, 0.08);
+  color: #264653;
+}
+
+.content.blog-post-content blockquote p {
+  color: inherit;
+}
+
+.content.blog-post-content blockquote p:first-child {
+  margin-top: 0;
+}
+
+.content.blog-post-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
 .content.blog-post-content table {
   font-size: 1rem;
 }
@@ -255,6 +306,10 @@ pre.wp-block-code {
 
   .content.blog-post-content h4 {
     font-size: 1.1rem;
+  }
+
+  .content.blog-post-content blockquote {
+    padding: 1.15rem 1.1rem;
   }
 
   .featuredImage {
