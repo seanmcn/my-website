@@ -1,7 +1,7 @@
 @use "./tokens" as *;
 
 pre {
-  border: 1px solid darkgrey;
+  border: 1px solid var(--surface-border);
   border-left: 6px solid #227c71;
 }
 
@@ -27,7 +27,8 @@ pre {
 
 .codeWrapper[data-language='plain'] pre,
 .codeWrapper[data-language='text'] pre {
-  background: #f6f8fa !important;
+  background: var(--surface-code-plain) !important;
+  color: var(--text-color) !important;
 }
 
 .codeCopyButton {
@@ -45,12 +46,12 @@ pre {
 .mermaidWrapper {
   overflow-x: auto;
   padding: 1.5rem 1.25rem;
-  border: 1px solid rgba(38, 70, 83, 0.14);
+  border: 1px solid var(--surface-border);
   border-radius: 1rem;
   background:
     radial-gradient(circle at top left, rgba(34, 124, 113, 0.08), transparent 35%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 244, 248, 0.94));
-  box-shadow: 0 18px 36px rgba(38, 70, 83, 0.08);
+    var(--surface-panel-gradient);
+  box-shadow: var(--shadow-medium);
 }
 
 .mermaidWrapper .mermaidFallback {
@@ -61,6 +62,7 @@ pre {
   word-break: normal;
   overflow-wrap: normal;
   padding: 0;
+  color: var(--text-color);
 }
 
 .mermaidWrapper[data-mermaid-state='rendered'] .mermaidFallback {

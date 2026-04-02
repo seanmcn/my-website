@@ -5,11 +5,11 @@
   top: 0;
   z-index: 30;
   padding: 0;
-  background: rgba(244, 244, 248, 0.92);
+  background: var(--surface-nav);
   backdrop-filter: blur(18px);
   border-top: 3px solid $primary-color;
-  border-bottom: 1px solid rgba(34, 124, 113, 0.1);
-  box-shadow: 0 10px 24px rgba(38, 70, 83, 0.06);
+  border-bottom: 1px solid var(--surface-nav-border);
+  box-shadow: var(--shadow-soft);
 }
 
 .siteNavbarContainer {
@@ -42,7 +42,7 @@
 
 .siteNavbarLinks .navbar-item {
   border-radius: 999px;
-  color: $secondary-color;
+  color: var(--text-strong);
   font-size: 1.05rem;
   font-weight: $weight-medium;
   line-height: 1;
@@ -53,8 +53,8 @@
 
 .siteNavbarLinks .navbar-item:hover,
 .siteNavbarLinks .navbar-item:focus {
-  background: rgba(34, 124, 113, 0.08);
-  color: $primary-color;
+  background: var(--surface-accent-hover);
+  color: var(--link-color);
   transform: translateY(-1px);
 }
 
@@ -70,16 +70,105 @@
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  border: 1px solid rgba(34, 124, 113, 0.12);
+  border: 1px solid var(--surface-border);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 10px 24px rgba(38, 70, 83, 0.06);
+  background: var(--surface-elevated);
+  box-shadow: var(--shadow-soft);
   padding: 0.15rem 0.35rem;
 }
 
 .siteNavbarSearch {
   display: flex;
   align-items: center;
+}
+
+.siteThemeSelector {
+  align-items: center;
+  margin-left: 0;
+  padding: 0;
+}
+
+.siteThemeButton {
+  align-items: center;
+  border: 1px solid var(--surface-border);
+  height: 2.8rem;
+  min-height: 2.8rem;
+  border-radius: 999px;
+  background: var(--surface-elevated);
+  box-shadow: var(--shadow-soft);
+  color: var(--text-strong);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease, transform 0.2s ease;
+  width: 2.8rem;
+}
+
+.siteThemeButton:hover,
+.siteThemeButton:focus {
+  background: var(--surface-accent-hover);
+  border-color: var(--surface-border-strong);
+  color: var(--link-color);
+  transform: translateY(-1px);
+}
+
+.siteThemeButton::after {
+  background: var(--surface-elevated-strong);
+  border: 1px solid var(--surface-border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  color: var(--text-strong);
+  content: attr(data-theme-label);
+  font-size: 0.8rem;
+  font-weight: $weight-semibold;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  padding: 0.32rem 0.62rem;
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 0.55rem);
+  transform: translateX(-50%) scale(0.96);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  white-space: nowrap;
+}
+
+.siteThemeButton:hover::after,
+.siteThemeButton:focus::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.siteThemeIcon {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+  width: 1.1rem;
+}
+
+.siteThemeIcon.has-badge {
+  width: 1.35rem;
+}
+
+.siteThemeIconBadge {
+  align-items: center;
+  background: var(--surface-base);
+  border: 1px solid var(--surface-border);
+  border-radius: 999px;
+  color: var(--link-color);
+  display: inline-flex;
+  font-size: 0.48rem;
+  height: 0.82rem;
+  justify-content: center;
+  position: absolute;
+  right: -0.28rem;
+  top: -0.3rem;
+  width: 0.82rem;
 }
 
 .siteNavbarMenu {
@@ -99,7 +188,7 @@ button.navbar-item.searchButton {
 .siteNavbarMenu {
   @include touch {
     margin-top: 0.65rem;
-    border-top: 1px solid rgba(34, 124, 113, 0.1);
+    border-top: 1px solid var(--surface-nav-border);
     padding: 0.85rem 0 0.35rem;
     text-align: left;
   }
@@ -145,5 +234,14 @@ button.navbar-item.searchButton {
 
   .siteNavbarSearch {
     justify-content: center;
+  }
+
+  .siteThemeSelector {
+    justify-content: center;
+  }
+
+  .siteThemeButton {
+    width: 100%;
+    max-width: 4rem;
   }
 }

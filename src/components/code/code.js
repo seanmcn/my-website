@@ -3,8 +3,10 @@ import React, {useEffect, useRef, useState} from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {PrismAsyncLight as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {oneLight} from 'react-syntax-highlighter/dist/esm/styles/prism';
+import {oneDark} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {useTheme} from '../theme/theme';
 
 // Supported Language Highlighting:
 import js from 'react-syntax-highlighter/dist/esm/languages/prism/javascript';
@@ -29,11 +31,31 @@ const SHELL_LANGUAGE_ALIASES = new Set([
   'zsh',
 ]);
 
-const MERMAID_THEME = {
+const buildMermaidTheme = resolvedTheme => ({
   startOnLoad: false,
   securityLevel: 'strict',
   theme: 'base',
-  themeVariables: {
+  themeVariables: resolvedTheme === 'dark' ? {
+    primaryColor: '#14212b',
+    primaryBorderColor: '#74d3c3',
+    primaryTextColor: '#eaf2f6',
+    secondaryColor: '#1a2b38',
+    secondaryBorderColor: '#74d3c3',
+    secondaryTextColor: '#eaf2f6',
+    tertiaryColor: '#0d151d',
+    tertiaryBorderColor: '#aac0cb',
+    tertiaryTextColor: '#d5dee4',
+    mainBkg: '#0d151d',
+    nodeBkg: '#14212b',
+    nodeBorder: '#74d3c3',
+    clusterBkg: '#1a2b38',
+    clusterBorder: '#74d3c3',
+    lineColor: '#d5dee4',
+    defaultLinkColor: '#d5dee4',
+    textColor: '#eaf2f6',
+    fontFamily: 'Raleway, Century Gothic, CenturyGothic, ' +
+      'AppleGothic, sans-serif',
+  } : {
     primaryColor: '#e6e6ea',
     primaryBorderColor: '#227c71',
     primaryTextColor: '#264653',
@@ -54,23 +76,20 @@ const MERMAID_THEME = {
     fontFamily: 'Raleway, Century Gothic, CenturyGothic, ' +
       'AppleGothic, sans-serif',
   },
-};
+});
 
 let mermaidModulePromise;
 let mermaidIdCounter = 0;
 
-const getMermaid = async () => {
+const getMermaid = async (resolvedTheme) => {
   if (!mermaidModulePromise) {
-    mermaidModulePromise = import('mermaid').then((module) => {
-      const mermaid = module.default;
-
-      mermaid.initialize(MERMAID_THEME);
-
-      return mermaid;
-    });
+    mermaidModulePromise = import('mermaid').then(module => module.default);
   }
 
-  return mermaidModulePromise;
+  const mermaid = await mermaidModulePromise;
+  mermaid.initialize(buildMermaidTheme(resolvedTheme));
+
+  return mermaid;
 };
 
 const resolveLanguage = (language) => {
@@ -94,7 +113,7 @@ const resolveLanguage = (language) => {
   return normalizedLanguage;
 };
 
-const MermaidDiagram = ({codeString}) => {
+const MermaidDiagram = ({codeString, resolvedTheme}) => {
   const [svg, setSvg] = useState('');
   const [hasError, setHasError] = useState(false);
   const diagramIdRef = useRef(null);
@@ -109,7 +128,7 @@ const MermaidDiagram = ({codeString}) => {
 
     const renderDiagram = async () => {
       try {
-        const mermaid = await getMermaid();
+        const mermaid = await getMermaid(resolvedTheme);
         const {svg: renderedSvg} = await mermaid.render(
             diagramIdRef.current,
             codeString.trim(),
@@ -138,7 +157,7 @@ const MermaidDiagram = ({codeString}) => {
     return () => {
       isMounted = false;
     };
-  }, [codeString]);
+  }, [codeString, resolvedTheme]);
 
   const renderState = hasError ? 'error' : svg ? 'rendered' : 'pending';
 
@@ -179,12 +198,18 @@ SyntaxHighlighter.registerLanguage('sql', sql);
 SyntaxHighlighter.registerLanguage('yaml', yaml);
 
 export const Code = ({codeString, language}) => {
+  const {resolvedTheme} = useTheme();
   const resolvedLanguage = resolveLanguage(language);
   const isMermaid = resolvedLanguage === 'mermaid';
   const isPlainText = !resolvedLanguage || resolvedLanguage === 'text';
 
   if (isMermaid) {
-    return <MermaidDiagram codeString={codeString} />;
+    return (
+      <MermaidDiagram
+        codeString={codeString}
+        resolvedTheme={resolvedTheme}
+      />
+    );
   }
 
   // Todo: CopyToClipboard seems to be broken?
@@ -207,7 +232,7 @@ export const Code = ({codeString, language}) => {
       ) : (
         <SyntaxHighlighter
           language={resolvedLanguage}
-          style={oneLight}
+          style={resolvedTheme === 'dark' ? oneDark : oneLight}
           wrapLongLines={false}
         >
           {codeString}

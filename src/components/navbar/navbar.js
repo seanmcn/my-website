@@ -4,6 +4,7 @@ import NavbarBurger from './burger/navbarBurger';
 import NavbarItemSocial from './itemSocial/navbarItemSocial';
 import NavbarLogo from './logo/navbarLogo';
 import Search from '../search/search';
+import ThemeSelector from '../theme/themeSelector';
 import './navbar.scss';
 import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -47,6 +48,7 @@ export default class Navbar extends React.Component {
             </div>
 
             <div className="navbar-end siteNavbarActions">
+              <ThemeSelector/>
               <div className="navbar-social-icons siteNavbarSocialGroup">
                 <NavbarItemSocial
                   link="https://www.linkedin.com/in/mrseanmcn"

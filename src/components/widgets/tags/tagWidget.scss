@@ -11,18 +11,18 @@
   align-items: center;
   gap: 0.45rem;
   padding: 0.38rem 0.7rem;
-  border: 1px solid rgba(34, 124, 113, 0.14);
+  border: 1px solid var(--surface-border);
   border-radius: 999px;
-  background: rgba(34, 124, 113, 0.05);
-  color: $secondary-color;
+  background: var(--surface-accent);
+  color: var(--text-strong);
   line-height: 1;
   transition: background-color 160ms ease, border-color 160ms ease,
     transform 160ms ease;
 }
 
 .widgetBoxContent .tagChipLink:hover {
-  border-color: rgba(34, 124, 113, 0.28);
-  background: rgba(34, 124, 113, 0.1);
+  border-color: var(--surface-border-strong);
+  background: var(--surface-accent-hover);
   transform: translateY(-1px);
 }
 
@@ -35,8 +35,8 @@
   min-width: 1.35rem;
   padding: 0.16rem 0.35rem;
   border-radius: 999px;
-  background: rgba(34, 124, 113, 0.2);
-  color: $secondary-color-strong;
+  background: var(--surface-accent-strong);
+  color: var(--text-strong);
   font-size: 0.72rem;
   font-weight: 600;
   text-align: center;

@@ -7,7 +7,7 @@ h1.logoText {
   line-height: 1.1;
   margin-left: 0.9rem;
   font-weight: $weight-semibold;
-  color: $logo-text-color;
+  color: var(--logo-text-color);
   font-size: 1.7rem;
   letter-spacing: -0.03em;
   position: relative;

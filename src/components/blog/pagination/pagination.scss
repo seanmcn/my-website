@@ -4,11 +4,11 @@
 
 .pagination.blogPagination {
   align-items: center;
-  border: 1px solid rgba(34, 124, 113, 0.16);
+  border: 1px solid var(--surface-border);
   border-top: 4px solid #227c71;
   border-radius: 1rem;
-  background: #fff;
-  box-shadow: 0 14px 30px rgba(38, 70, 83, 0.08);
+  background: var(--surface-base);
+  box-shadow: var(--shadow-medium);
   padding: 1rem 1.1rem;
 }
 
@@ -22,16 +22,16 @@
   min-width: 3rem;
   width: 3rem;
   padding: 0;
-  border-color: rgba(34, 124, 113, 0.16);
-  background: rgba(34, 124, 113, 0.05);
-  color: #264653;
+  border-color: var(--surface-border);
+  background: var(--surface-accent);
+  color: var(--text-strong);
   font-weight: 500;
 }
 
 .pagination.blogPagination .blogPaginationNav:hover {
-  border-color: rgba(34, 124, 113, 0.3);
-  background: rgba(34, 124, 113, 0.1);
-  color: #227c71;
+  border-color: var(--surface-border-strong);
+  background: var(--surface-accent-hover);
+  color: var(--link-color);
 }
 
 .pagination.blogPagination .blogPaginationNav .icon {
@@ -44,15 +44,15 @@
 
 .pagination.blogPagination .blogPaginationLink,
 .pagination.blogPagination .blogPaginationEllipsis {
-  border: 1px solid rgba(38, 70, 83, 0.12);
-  color: #264653;
+  border: 1px solid var(--surface-border);
+  color: var(--text-strong);
   font-weight: 500;
   min-width: 2.9rem;
 }
 
 .pagination.blogPagination .blogPaginationLink:hover {
-  border-color: rgba(34, 124, 113, 0.26);
-  color: #227c71;
+  border-color: var(--surface-border-strong);
+  color: var(--link-color);
 }
 
 .pagination.blogPagination .blogPaginationLink.is-current {
@@ -62,7 +62,7 @@
 }
 
 .pagination.blogPagination .blogPaginationEllipsis {
-  background: rgba(34, 124, 113, 0.04);
+  background: var(--surface-accent);
 }
 
 @media screen and (width <= 768px) {

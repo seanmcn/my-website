@@ -13,17 +13,17 @@ ul.githubRepos li {
 ul.githubRepos li .githubRepoCard {
   display: block;
   padding: 0.85rem 0.9rem;
-  border: 1px solid rgba(34, 124, 113, 0.12);
+  border: 1px solid var(--surface-border);
   border-radius: 0.95rem;
-  background: rgba(34, 124, 113, 0.04);
+  background: var(--surface-accent);
   text-decoration: none;
   transition: background-color 160ms ease, border-color 160ms ease,
     transform 160ms ease;
 }
 
 ul.githubRepos li .githubRepoCard:hover {
-  border-color: rgba(34, 124, 113, 0.26);
-  background: rgba(34, 124, 113, 0.08);
+  border-color: var(--surface-border-strong);
+  background: var(--surface-accent-hover);
   transform: translateY(-2px);
 }
 
@@ -36,20 +36,20 @@ ul.githubRepos li .githubRepoCard:hover {
 }
 
 .githubRepoTitle {
-  color: $primary-color;
+  color: var(--link-color);
   font-size: 1rem;
   font-weight: 500;
 }
 
 .githubRepoIcon {
-  color: $primary-alt-color;
+  color: var(--primary-alt-color);
   flex-shrink: 0;
   line-height: 1;
 }
 
 ul.githubRepos li .description {
   display: block;
-  color: $secondary-color;
+  color: var(--text-color);
   font-size: 0.87rem;
   line-height: 1.55;
 }

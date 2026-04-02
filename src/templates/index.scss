@@ -7,7 +7,7 @@
 }
 
 .homeSectionEyebrow {
-  color: #1b665d;
+  color: var(--link-color);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -16,7 +16,7 @@
 }
 
 .homeSectionTitle {
-  color: #363636;
+  color: var(--text-heading);
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.125;
@@ -24,7 +24,7 @@
 }
 
 .homeSectionIntro {
-  color: #425866;
+  color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.7;
   max-width: 38rem;
@@ -50,12 +50,12 @@
   flex-wrap: nowrap;
   gap: 1.5rem;
   align-items: center;
-  border: 1px solid rgba(34, 124, 113, 0.16);
+  border: 1px solid var(--surface-border);
   border-top: 4px solid #227c71;
   border-radius: 1rem;
-  box-shadow: 0 14px 30px rgba(38, 70, 83, 0.08);
+  box-shadow: var(--shadow-medium);
   padding: 1.3rem;
-  background: linear-gradient(180deg, #ffffff 0%, #f7fcfa 100%);
+  background: var(--surface-panel-gradient);
 }
 
 .homeAboutImageWrap {
@@ -87,7 +87,7 @@
 }
 
 .homeAboutLead {
-  color: #264653;
+  color: var(--text-strong);
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.35;
@@ -95,7 +95,7 @@
 }
 
 .homeAboutText {
-  color: #425866;
+  color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.7;
   margin: 0;
@@ -108,14 +108,13 @@
 .homeAboutButton.button {
   border-radius: 999px;
   font-weight: 600;
-  background: #227c71;
-  border-color: #227c71;
+  background: var(--link-color);
+  border-color: var(--link-color);
   color: #fff;
 }
 
 .homeAboutButton.button:hover {
-  background: #1b665d;
-  border-color: #1b665d;
+  filter: brightness(1.08);
 }
 
 .homeProjectsGrid {
@@ -130,10 +129,10 @@
   gap: 0.75rem;
   min-height: 100%;
   padding: 1.1rem 1.15rem;
-  border: 1px solid rgba(34, 124, 113, 0.16);
+  border: 1px solid var(--surface-border);
   border-radius: 1rem;
-  background: #fff;
-  box-shadow: 0 14px 30px rgba(38, 70, 83, 0.06);
+  background: var(--surface-base);
+  box-shadow: var(--shadow-medium);
   text-decoration: none;
   transition: transform 160ms ease, box-shadow 160ms ease,
     border-color 160ms ease;
@@ -141,12 +140,12 @@
 
 .homeProjectCard:hover {
   transform: translateY(-2px);
-  border-color: rgba(34, 124, 113, 0.32);
-  box-shadow: 0 18px 36px rgba(38, 70, 83, 0.1);
+  border-color: var(--surface-border-strong);
+  box-shadow: var(--shadow-strong);
 }
 
 .homeProjectMeta {
-  color: #1b665d;
+  color: var(--link-color);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -154,7 +153,7 @@
 }
 
 .homeProjectTitle {
-  color: #264653;
+  color: var(--text-strong);
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.15;
@@ -162,13 +161,13 @@
 }
 
 .homeProjectDescription {
-  color: #425866;
+  color: var(--text-muted);
   line-height: 1.65;
   margin: 0;
 }
 
 .homeProjectLink {
-  color: #1b665d;
+  color: var(--link-color);
   font-size: 0.92rem;
   font-weight: 600;
   margin-top: auto;

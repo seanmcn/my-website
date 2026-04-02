@@ -1,6 +1,7 @@
 import React from 'react';
 import {MDXProvider} from '@mdx-js/react';
 import {Code} from './src/components/code/code';
+import {ThemeProvider} from './src/components/theme/theme';
 
 function preToCodeBlock(preProps) {
   const {children} = preProps;
@@ -38,5 +39,7 @@ const components = {
   },
 };
 export const wrapRootElement = ({element}) => (
-  <MDXProvider components={components}>{element}</MDXProvider>
+  <ThemeProvider>
+    <MDXProvider components={components}>{element}</MDXProvider>
+  </ThemeProvider>
 );
