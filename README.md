@@ -70,8 +70,10 @@ Add `OPENAI_API_KEY=...` to a repo-root `.env` file, open a post under
 
 The task will:
 
+- ask for an internal illustration style (`basic-cartoon`, `mascot-cartoon`, `chibi-cartoon`, or `cozy-cartoon-scene`)
 - ask for the image concept prompt
-- generate a square OpenAI image using the built-in illustration style prompt
+- ask for a palette mode (`pastel`, `balanced`, or `bright`)
+- generate a square OpenAI image using the built-in cartoon editorial style prompt, with automatic variation in palette emphasis, character treatment, and finish
 - save the PNG into the post's sibling `images/` directory
 - update the post's `featured:` frontmatter automatically
 

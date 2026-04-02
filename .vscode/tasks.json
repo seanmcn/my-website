@@ -36,8 +36,12 @@
                 "scripts/generate-featured-image.mjs",
                 "--file",
                 "${file}",
+                "--style",
+                "${input:featuredImageStyle}",
                 "--prompt",
-                "${input:featuredImagePrompt}"
+                "${input:featuredImagePrompt}",
+                "--palette",
+                "${input:featuredImagePalette}"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -56,6 +60,29 @@
             "id": "featuredImagePrompt",
             "type": "promptString",
             "description": "Describe the featured image you want OpenAI to generate"
+        },
+        {
+            "id": "featuredImageStyle",
+            "type": "pickString",
+            "description": "Choose an internal illustration style",
+            "default": "basic-cartoon",
+            "options": [
+                "basic-cartoon",
+                "mascot-cartoon",
+                "chibi-cartoon",
+                "cozy-cartoon-scene"
+            ]
+        },
+        {
+            "id": "featuredImagePalette",
+            "type": "pickString",
+            "description": "Choose a palette mode",
+            "default": "balanced",
+            "options": [
+                "pastel",
+                "balanced",
+                "bright"
+            ]
         }
     ]
 }
