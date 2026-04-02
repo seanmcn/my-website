@@ -5,6 +5,7 @@ import PostList from '../components/blog/postList/postList';
 import Pagination from '../components/blog/pagination/pagination';
 import Sidebar from '../components/blog/sidebar';
 import SEO from '../components/seo/seo';
+import RuntimeSeoSync from '../components/seo/runtimeSeoSync';
 import {slugToTitle} from '../utils/blog';
 
 const Category = (props) => {
@@ -13,9 +14,16 @@ const Category = (props) => {
   const {name: category} = pageContext;
   const displayCategory = slugToTitle(category);
   const title = `Posts in category "${displayCategory}"`;
+  const {title: siteTitle, siteUrl} = data.site.siteMetadata;
 
   return (
     <Layout>
+      <RuntimeSeoSync
+        title={`${displayCategory} - Category - ${siteTitle}`}
+        description={`Browse posts in the ${displayCategory} category on Sean McNamara's blog.`}
+        pathname={props.location?.pathname || `/blog/categories/${pageContext.slug}/`}
+        siteUrl={siteUrl}
+      />
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
           <PostList posts={posts} title={title}/>
@@ -61,15 +69,19 @@ export const Head = ({data, pageContext, location}) => {
     siteUrl,
   } = data.site.siteMetadata;
   const displayCategory = slugToTitle(pageContext.name);
+  const title = `${displayCategory} - Category - ${siteTitle}`;
 
   return (
-    <SEO
-      title={`${displayCategory} - Category - ${siteTitle}`}
-      description={`Browse posts in the ${displayCategory} category on Sean McNamara's blog.`}
-      siteTitle={siteTitle}
-      siteDescription={siteDescription}
-      siteUrl={siteUrl}
-      pathname={location.pathname}
-    />
+    <>
+      <title>{title}</title>
+      <SEO
+        title={title}
+        description={`Browse posts in the ${displayCategory} category on Sean McNamara's blog.`}
+        siteTitle={siteTitle}
+        siteDescription={siteDescription}
+        siteUrl={siteUrl}
+        pathname={location.pathname}
+      />
+    </>
   );
 };

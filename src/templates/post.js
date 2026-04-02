@@ -6,6 +6,7 @@ import Sidebar from '../components/blog/sidebar';
 import Post from '../components/blog/post/post';
 import RelatedPosts from '../components/blog/post/relatedPosts';
 import SEO from '../components/seo/seo';
+import RuntimeSeoSync from '../components/seo/runtimeSeoSync';
 
 const BlogPostTemplate = ({
   id,
@@ -64,9 +65,13 @@ BlogPostTemplate.propTypes = {
   featured: PropTypes.any,
 };
 
-const BlogPost = ({data, children, pageContext}) => {
+const BlogPost = ({data, children, location, pageContext}) => {
   const {mdx: post} = data;
   const {relatedPosts = []} = pageContext;
+  const {
+    title: siteTitle,
+    siteUrl,
+  } = data.site.siteMetadata;
 
   const featured = post.frontmatter.featured ?
     post.frontmatter.featured :
@@ -74,6 +79,12 @@ const BlogPost = ({data, children, pageContext}) => {
 
   return (
     <Layout>
+      <RuntimeSeoSync
+        title={`${post.frontmatter.title} - Blog - ${siteTitle}`}
+        description={post.excerpt}
+        pathname={location?.pathname || `/blog/${post.frontmatter.slug}/`}
+        siteUrl={siteUrl}
+      />
       <BlogPostTemplate
         id={post.id}
         content={children}
@@ -92,8 +103,12 @@ const BlogPost = ({data, children, pageContext}) => {
 BlogPost.propTypes = {
   data: PropTypes.shape({
     mdx: PropTypes.object,
+    site: PropTypes.object,
   }),
   children: PropTypes.node,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
   pageContext: PropTypes.shape({
     relatedPosts: PropTypes.array,
   }),
@@ -125,16 +140,20 @@ export const Head = ({data, location}) => {
     description: siteDescription,
     siteUrl,
   } = data.site.siteMetadata;
+  const title = `${post.frontmatter.title} - Blog - ${siteTitle}`;
 
   return (
-    <SEO
-      title={`${post.frontmatter.title} - Blog - ${siteTitle}`}
-      description={post.excerpt}
-      siteTitle={siteTitle}
-      siteDescription={siteDescription}
-      siteUrl={siteUrl}
-      pathname={location.pathname}
-      type="article"
-    />
+    <>
+      <title>{title}</title>
+      <SEO
+        title={title}
+        description={post.excerpt}
+        siteTitle={siteTitle}
+        siteDescription={siteDescription}
+        siteUrl={siteUrl}
+        pathname={location.pathname}
+        type="article"
+      />
+    </>
   );
 };

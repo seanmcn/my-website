@@ -5,12 +5,25 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Layout from '../components/layout/layout';
 import ContactForm from '../components/contactForm/contactForm';
 import SEO from '../components/seo/seo';
+import RuntimeSeoSync from '../components/seo/runtimeSeoSync';
 import './contact.scss';
 
 export default class ContactPage extends React.Component {
   render() {
+    const {
+      title: siteTitle,
+      siteUrl,
+    } = this.props.data.site.siteMetadata;
+    const description = 'Get in touch with Seán McNamara about software engineering roles, project ideas, collaborations, or questions about the articles published on this site.';
+
     return (
       <Layout>
+        <RuntimeSeoSync
+          title={`Contact Me - ${siteTitle}`}
+          description={description}
+          pathname="/contact/"
+          siteUrl={siteUrl}
+        />
         <div className="contactPage">
           <section className="contactHero box">
             <div className="contactHeroEyebrow">Contact</div>
@@ -97,15 +110,19 @@ export const Head = ({data, location}) => {
     description: siteDescription,
     siteUrl,
   } = data.site.siteMetadata;
+  const title = `Contact Me - ${siteTitle}`;
 
   return (
-    <SEO
-      title={`Contact Me - ${siteTitle}`}
-      description="Get in touch with Seán McNamara about software engineering roles, project ideas, collaborations, or questions about the articles published on this site."
-      siteTitle={siteTitle}
-      siteDescription={siteDescription}
-      siteUrl={siteUrl}
-      pathname={location.pathname}
-    />
+    <>
+      <title>{title}</title>
+      <SEO
+        title={title}
+        description="Get in touch with Seán McNamara about software engineering roles, project ideas, collaborations, or questions about the articles published on this site."
+        siteTitle={siteTitle}
+        siteDescription={siteDescription}
+        siteUrl={siteUrl}
+        pathname={location.pathname}
+      />
+    </>
   );
 };

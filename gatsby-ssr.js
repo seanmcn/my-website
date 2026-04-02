@@ -68,3 +68,28 @@ export const onRenderBody = ({setHeadComponents, setHtmlAttributes}) => {
     />,
   ]);
 };
+
+export const onPreRenderHTML = ({getHeadComponents, replaceHeadComponents}) => {
+  const headComponents = getHeadComponents();
+  const hasTitle = headComponents.some(component => component.type === 'title');
+
+  if (hasTitle) {
+    return;
+  }
+
+  const titleMeta = headComponents.find(component =>
+    component.type === 'meta' &&
+    (component.props?.property === 'og:title' ||
+      component.props?.name === 'twitter:title') &&
+    component.props?.content,
+  );
+
+  if (!titleMeta) {
+    return;
+  }
+
+  replaceHeadComponents([
+    <title key="page-title">{titleMeta.props.content}</title>,
+    ...headComponents,
+  ]);
+};

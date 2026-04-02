@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {graphql, Link} from 'gatsby';
 import Layout from '../components/layout/layout';
 import SEO from '../components/seo/seo';
+import RuntimeSeoSync from '../components/seo/runtimeSeoSync';
 import LatestPostsHomeWidget from '../components/widgets/latestPosts/latestPostsHome';
 import StaticData from '../data/static.json';
 import avatar from '../assets/images/emojis/250/wave.png';
@@ -10,8 +11,20 @@ import './index.scss';
 
 export default class IndexPage extends React.Component {
   render() {
+    const {
+      title: siteTitle,
+      description: siteDescription,
+      siteUrl,
+    } = this.props.data.site.siteMetadata;
+
     return (
       <Layout>
+        <RuntimeSeoSync
+          title={`Home - ${siteTitle}`}
+          description={siteDescription}
+          pathname="/"
+          siteUrl={siteUrl}
+        />
         <div className="homePage">
           <section className="homeSection">
             <div className="homeSectionHeader">
@@ -133,15 +146,19 @@ export const Head = ({data, location}) => {
     description: siteDescription,
     siteUrl,
   } = data.site.siteMetadata;
+  const title = `Home - ${siteTitle}`;
 
   return (
-    <SEO
-      title={`Home - ${siteTitle}`}
-      description={siteDescription}
-      siteTitle={siteTitle}
-      siteDescription={siteDescription}
-      siteUrl={siteUrl}
-      pathname={location.pathname}
-    />
+    <>
+      <title>{title}</title>
+      <SEO
+        title={title}
+        description={siteDescription}
+        siteTitle={siteTitle}
+        siteDescription={siteDescription}
+        siteUrl={siteUrl}
+        pathname={location.pathname}
+      />
+    </>
   );
 };

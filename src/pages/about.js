@@ -4,12 +4,25 @@ import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Layout from '../components/layout/layout';
 import SEO from '../components/seo/seo';
+import RuntimeSeoSync from '../components/seo/runtimeSeoSync';
 import './about.scss';
 
 export default class AboutPage extends React.Component {
   render() {
+    const {
+      title: siteTitle,
+      siteUrl,
+    } = this.props.data.site.siteMetadata;
+    const description = 'Learn more about Seán McNamara, a backend-focused software engineer in London with experience across product engineering, platforms, and AI-assisted workflows.';
+
     return (
       <Layout>
+        <RuntimeSeoSync
+          title={`About Me - ${siteTitle}`}
+          description={description}
+          pathname="/about/"
+          siteUrl={siteUrl}
+        />
         <div className="aboutPage">
           <section className="aboutHero box">
             <div className="aboutHeroContent">
@@ -253,15 +266,19 @@ export const Head = ({data, location}) => {
     description: siteDescription,
     siteUrl,
   } = data.site.siteMetadata;
+  const title = `About Me - ${siteTitle}`;
 
   return (
-    <SEO
-      title={`About Me - ${siteTitle}`}
-      description="Learn more about Seán McNamara, a backend-focused software engineer in London with experience across product engineering, platforms, and AI-assisted workflows."
-      siteTitle={siteTitle}
-      siteDescription={siteDescription}
-      siteUrl={siteUrl}
-      pathname={location.pathname}
-    />
+    <>
+      <title>{title}</title>
+      <SEO
+        title={title}
+        description="Learn more about Seán McNamara, a backend-focused software engineer in London with experience across product engineering, platforms, and AI-assisted workflows."
+        siteTitle={siteTitle}
+        siteDescription={siteDescription}
+        siteUrl={siteUrl}
+        pathname={location.pathname}
+      />
+    </>
   );
 };

@@ -5,6 +5,7 @@ import PostList from '../components/blog/postList/postList';
 import Pagination from '../components/blog/pagination/pagination';
 import Sidebar from '../components/blog/sidebar';
 import SEO from '../components/seo/seo';
+import RuntimeSeoSync from '../components/seo/runtimeSeoSync';
 import {slugToTitle} from '../utils/blog';
 
 const Tag = (props) => {
@@ -12,9 +13,16 @@ const Tag = (props) => {
   const {edges: posts} = data.allMdx;
   const {name: tag} = pageContext;
   const displayTag = slugToTitle(tag);
+  const {title: siteTitle, siteUrl} = data.site.siteMetadata;
 
   return (
     <Layout>
+      <RuntimeSeoSync
+        title={`${displayTag} - Tag - ${siteTitle}`}
+        description={`Browse posts tagged ${displayTag} on Sean McNamara's blog.`}
+        pathname={props.location?.pathname || `/blog/tags/${pageContext.slug}/`}
+        siteUrl={siteUrl}
+      />
       <div className="columns">
         <div className="column is-three-quarters" id="postMainColumn">
           <PostList posts={posts}/>
@@ -60,15 +68,19 @@ export const Head = ({data, pageContext, location}) => {
     siteUrl,
   } = data.site.siteMetadata;
   const displayTag = slugToTitle(pageContext.name);
+  const title = `${displayTag} - Tag - ${siteTitle}`;
 
   return (
-    <SEO
-      title={`${displayTag} - Tag - ${siteTitle}`}
-      description={`Browse posts tagged ${displayTag} on Sean McNamara's blog.`}
-      siteTitle={siteTitle}
-      siteDescription={siteDescription}
-      siteUrl={siteUrl}
-      pathname={location.pathname}
-    />
+    <>
+      <title>{title}</title>
+      <SEO
+        title={title}
+        description={`Browse posts tagged ${displayTag} on Sean McNamara's blog.`}
+        siteTitle={siteTitle}
+        siteDescription={siteDescription}
+        siteUrl={siteUrl}
+        pathname={location.pathname}
+      />
+    </>
   );
 };

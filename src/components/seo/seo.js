@@ -25,7 +25,6 @@ const SEO = ({
 
   return (
     <>
-      <title>{title}</title>
       {resolvedDescription && (
         <meta name="description" content={resolvedDescription} />
       )}
