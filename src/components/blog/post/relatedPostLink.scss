@@ -90,7 +90,7 @@
 .relatedPostExcerpt {
   margin: 0.55rem 0 0;
   padding-bottom: 0.9rem;
-  color: var(--text-muted);
+  color: var(--text-color);
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -122,7 +122,7 @@
 .relatedPostItem .tag.is-primary.is-light {
   background: var(--surface-accent);
   border-color: var(--surface-border-strong);
-  color: var(--link-color);
+  color: var(--text-strong);
 }
 
 @media screen and (width <= 768px) {

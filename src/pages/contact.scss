@@ -73,7 +73,7 @@
 }
 
 .contactSectionCopy {
-  color: var(--text-faint);
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 1rem !important;
 }
@@ -111,13 +111,13 @@
 }
 
 .contactLinkCard strong {
-  color: var(--link-color);
+  color: var(--text-strong);
   font-size: 0.98rem;
   font-weight: 600;
 }
 
 .contactLinkCard small {
-  color: var(--text-faint);
+  color: var(--text-color);
   font-size: 0.84rem;
 }
 

@@ -37,7 +37,7 @@
 
 .blog-post-category-badge a,
 .blog-post-date-badge {
-  color: var(--link-color);
+  color: var(--text-strong);
 }
 
 .blog-post-date-badge .icon-text {
@@ -46,7 +46,7 @@
 }
 
 .blog-post-date-badge .icon {
-  color: var(--link-color);
+  color: var(--text-strong);
 }
 
 .content.blog-post-content {
@@ -271,7 +271,7 @@
 }
 
 .blog-post-tag-chip a {
-  color: var(--link-color);
+  color: var(--text-strong);
   font-size: 0.84rem;
   font-weight: 500;
   line-height: 1;

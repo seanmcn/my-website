@@ -7,7 +7,7 @@
 }
 
 .homeSectionEyebrow {
-  color: var(--link-color);
+  color: var(--text-strong);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -24,7 +24,7 @@
 }
 
 .homeSectionIntro {
-  color: var(--text-muted);
+  color: var(--text-color);
   font-size: 1rem;
   line-height: 1.7;
   max-width: 38rem;
@@ -115,6 +115,10 @@
 
 .homeAboutButton.button:hover {
   filter: brightness(1.08);
+}
+
+html[data-theme='dark'] .homeAboutButton.button {
+  color: #081219;
 }
 
 .homeProjectsGrid {
