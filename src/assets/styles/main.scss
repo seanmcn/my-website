@@ -79,6 +79,7 @@ html[data-theme='dark'] {
 }
 
 html {
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -87,7 +88,13 @@ body {
   color: var(--text-color);
   font-family: $font-family-sans;
   font-weight: $weight-light;
+  overflow-x: hidden;
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#___gatsby,
+#gatsby-focus-wrapper {
+  overflow-x: hidden;
 }
 
 a {

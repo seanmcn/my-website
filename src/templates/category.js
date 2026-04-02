@@ -20,8 +20,14 @@ const Category = (props) => {
     <Layout>
       <RuntimeSeoSync
         title={`${displayCategory} - Category - ${siteTitle}`}
-        description={`Browse posts in the ${displayCategory} category on Sean McNamara's blog.`}
-        pathname={props.location?.pathname || `/blog/categories/${pageContext.slug}/`}
+        description={
+          `Browse posts in the ${displayCategory} category on Sean McNamara's
+          blog.`
+        }
+        pathname={
+          props.location?.pathname ||
+          `/blog/categories/${pageContext.slug}/`
+        }
         siteUrl={siteUrl}
       />
       <div className="columns">
@@ -29,8 +35,9 @@ const Category = (props) => {
           <PostList posts={posts} title={title}/>
           <Pagination pageContext={pageContext}/>
         </div>
-        <div className="column is-one-quarter" id="postSidebarColumn">
-          <Sidebar/>
+        <div className="column is-one-quarter blogSidebarColumn
+        blogSidebarColumn--hide-mobile" id="postSidebarColumn">
+          <Sidebar hideOnMobile />
         </div>
       </div>
     </Layout>
@@ -76,7 +83,10 @@ export const Head = ({data, pageContext, location}) => {
       <title>{title}</title>
       <SEO
         title={title}
-        description={`Browse posts in the ${displayCategory} category on Sean McNamara's blog.`}
+        description={
+          `Browse posts in the ${displayCategory} category on Sean McNamara's
+          blog.`
+        }
         siteTitle={siteTitle}
         siteDescription={siteDescription}
         siteUrl={siteUrl}

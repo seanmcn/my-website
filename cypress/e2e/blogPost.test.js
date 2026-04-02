@@ -119,6 +119,36 @@ describe('Blog post features', () => {
     });
   });
 
+  describe('Mobile drawer blog browse', () => {
+    beforeEach(() => {
+      cy.viewport('iphone-x');
+      cy.visit('/blog/2022/07/gitlab-ci-commit-and-push-in-job/');
+      cy.get('#postMainColumn');
+    });
+
+    it(
+        'shows categories and tags in the mobile drawer and hides the ' +
+        'sidebar column',
+        () => {
+          cy.get('#postSidebarColumn').should('not.be.visible');
+          cy.get('.navbar-brand > .button').click();
+          cy.get('.siteNavbarDrawer').should('have.class', 'is-active');
+          cy.contains('.siteNavbarDrawerSectionTitle', 'Browse blog');
+          cy.get('.siteNavbarDrawer .categoryList--drawer li')
+              .should('have.length.at.least', 1);
+          cy.get('.siteNavbarDrawer .tagsList--drawer .tagChipLink')
+              .should('have.length.at.least', 1);
+        },
+    );
+
+    it('closes the drawer after selecting a category link', () => {
+      cy.get('.navbar-brand > .button').click();
+      cy.get('.siteNavbarDrawer .categoryList--drawer a').first().click();
+      cy.location('pathname').should('match', /^\/blog\/categories\//);
+      cy.get('.siteNavbarDrawer').should('not.have.class', 'is-active');
+    });
+  });
+
   describe('GitLab CI post - code and featured image', () => {
     beforeEach(() => {
       cy.visit('/blog/2022/07/gitlab-ci-commit-and-push-in-job/');

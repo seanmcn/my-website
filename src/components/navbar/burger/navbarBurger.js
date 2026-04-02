@@ -9,6 +9,8 @@ const NavbarBurger = (props) => {
       onClick={toggleMenu}
       className={`button navbar-burger ${active ? 'is-active' : ''}`}
       aria-label={'Mobile navigation'}
+      aria-expanded={active}
+      aria-controls="mobile-navigation-drawer"
     >
       <span />
       <span />

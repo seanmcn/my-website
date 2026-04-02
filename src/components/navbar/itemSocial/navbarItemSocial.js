@@ -3,7 +3,7 @@ import './navbarItemSocial.scss';
 
 
 const NavbarItemSocial = (props) => {
-  const {link, label, children} = props;
+  const {link, label, children, onClick} = props;
   return (
     <a
       className="navbar-item"
@@ -11,6 +11,7 @@ const NavbarItemSocial = (props) => {
       target="_blank"
       rel="noopener noreferrer me"
       aria-label={label}
+      onClick={onClick}
     >
       <span className="icon">
         {children}

@@ -59,6 +59,8 @@ const visitWithThemeStub = (matches, options = {}) => {
   });
 };
 
+const getDesktopThemeButton = () => cy.get('.siteNavbarMenu .siteThemeButton');
+
 describe('Theme selection', () => {
   beforeEach(() => {
     cy.clearLocalStorage();
@@ -79,14 +81,14 @@ describe('Theme selection', () => {
   it('persists an explicit theme selection across reloads', () => {
     visitWithThemeStub(false);
 
-    cy.get('.siteThemeButton')
+    getDesktopThemeButton()
         .should('have.attr', 'data-theme-label', 'System');
-    cy.get('.siteThemeButton').click();
+    getDesktopThemeButton().click();
     cy.document().its('documentElement.dataset.themePreference')
         .should('eq', 'light');
     cy.document().its('documentElement.dataset.theme').should('eq', 'light');
 
-    cy.get('.siteThemeButton').click();
+    getDesktopThemeButton().click();
     cy.document().its('documentElement.dataset.themePreference')
         .should('eq', 'dark');
     cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
@@ -95,7 +97,7 @@ describe('Theme selection', () => {
 
     visitWithThemeStub(false);
 
-    cy.get('.siteThemeButton')
+    getDesktopThemeButton()
         .should('have.attr', 'data-theme-label', 'Dark');
     cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
   });
@@ -103,9 +105,9 @@ describe('Theme selection', () => {
   it('reacts to system appearance changes while system is selected', () => {
     visitWithThemeStub(false);
 
-    cy.get('.siteThemeButton').click();
-    cy.get('.siteThemeButton').click();
-    cy.get('.siteThemeButton').click();
+    getDesktopThemeButton().click();
+    getDesktopThemeButton().click();
+    getDesktopThemeButton().click();
     cy.document().its('documentElement.dataset.theme').should('eq', 'light');
     cy.document().its('documentElement.dataset.themePreference')
         .should('eq', 'system');
@@ -122,7 +124,10 @@ describe('Theme selection', () => {
     visitWithThemeStub(false);
 
     cy.get('.navbar-brand > .button').click();
-    cy.get('.siteThemeButton').should('be.visible').click().click();
+    cy.get('.siteNavbarDrawer .siteThemeButton')
+        .should('be.visible')
+        .click()
+        .click();
     cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
   });
 });

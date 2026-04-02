@@ -163,7 +163,10 @@ function buildFacetGroups(results) {
 }
 
 const Search = (props) => {
-  const {toggleMenu, activeMenu} = props;
+  const {
+    registerOpenHandler,
+    hideButton,
+  } = props;
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
   const [isClient, setIsClient] = React.useState(false);
   const [fuse, setFuse] = React.useState(null);
@@ -221,12 +224,9 @@ const Search = (props) => {
     setResults(rankedResults);
   }, [fuse, query]);
 
-  function openModal() {
-    if (activeMenu) {
-      toggleMenu();
-    }
+  const openModal = React.useCallback(() => {
     setModalIsOpen(true);
-  }
+  }, []);
 
   function closeModal() {
     setModalIsOpen(false);
@@ -240,6 +240,18 @@ const Search = (props) => {
     setActiveFilter(null);
   }
 
+  React.useEffect(() => {
+    if (!registerOpenHandler) {
+      return undefined;
+    }
+
+    registerOpenHandler(() => openModal);
+
+    return () => {
+      registerOpenHandler(null);
+    };
+  }, [openModal, registerOpenHandler]);
+
   const facetGroups = React.useMemo(() => buildFacetGroups(results), [results]);
   const browseCategories = React.useMemo(() => getTopCategories(searchIndex), [searchIndex]);
   const filteredResults = React.useMemo(
@@ -251,7 +263,7 @@ const Search = (props) => {
 
   return (
     <>
-      <SearchButton openModal={openModal}/>
+      {!hideButton && <SearchButton openModal={openModal}/>}
       {isClient && (
         <SearchModal
           modalIsOpen={modalIsOpen}

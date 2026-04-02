@@ -9,8 +9,8 @@ const SearchButtonClose = ({closeModal}) => (
     type="button"
     aria-label="Close search"
   >
-    <span className="icon" aria-label="Close window icon">
-      <FontAwesomeIcon icon={icon({name: 'window-close'})} />
+    <span className="icon" aria-hidden="true">
+      <FontAwesomeIcon icon={icon({name: 'xmark'})} />
     </span>
   </button>
 );

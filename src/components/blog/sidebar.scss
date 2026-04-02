@@ -1,0 +1,16 @@
+@use "../../assets/styles/tokens" as *;
+
+.blogSidebar {
+  display: grid;
+  gap: 1.2rem;
+}
+
+@include touch {
+  .blogSidebarColumn--hide-mobile {
+    display: none;
+  }
+
+  .blogSidebar--hide-mobile {
+    display: none;
+  }
+}

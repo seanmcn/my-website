@@ -19,8 +19,10 @@ export default class BlogPage extends React.Component {
     const currentPage = pageContext.currentPage || 1;
     const title = `Blog - ${siteTitle}`;
     const description = currentPage > 1 ?
-      `Page ${currentPage} of the Sean McNamara blog archive covering software engineering, workflow, AI, DevOps, and programming.` :
-      'Articles on software engineering, workflow, AI, DevOps, backend systems, and practical development.';
+      `Page ${currentPage} of the Sean McNamara blog archive covering
+      software engineering, workflow, AI, DevOps, and programming.` :
+      'Articles on software engineering, workflow, AI, DevOps, backend ' +
+      'systems, and practical development.';
     const {edges: posts} = data.allMdx;
 
     return (
@@ -42,8 +44,10 @@ export default class BlogPage extends React.Component {
           </div>
           <div className="column
           is-one-fifth-desktop
-          is-one-quarter-tablet" id="postsSidebarColumn">
-            <Sidebar />
+          is-one-quarter-tablet
+          blogSidebarColumn
+          blogSidebarColumn--hide-mobile" id="postsSidebarColumn">
+            <Sidebar hideOnMobile />
           </div>
         </div>
       </Layout>
@@ -64,7 +68,8 @@ BlogPage.propTypes = {
   }),
 };
 
-export const blogPageQuery = graphql`query BlogIndexQuery($limit: Int!, $skip: Int!) {
+export const blogPageQuery = graphql`
+  query BlogIndexQuery($limit: Int!, $skip: Int!) {
     site {
       siteMetadata {
         title
@@ -77,9 +82,10 @@ export const blogPageQuery = graphql`query BlogIndexQuery($limit: Int!, $skip: I
       node {
         ...PostListFields
       }
+      }
     }
   }
-}`;
+`;
 
 export const Head = ({data, location, pageContext}) => {
   const {
@@ -90,8 +96,10 @@ export const Head = ({data, location, pageContext}) => {
   const currentPage = pageContext.currentPage || 1;
   const title = `Blog - ${siteTitle}`;
   const description = currentPage > 1 ?
-    `Page ${currentPage} of the Sean McNamara blog archive covering software engineering, workflow, AI, DevOps, and programming.` :
-    'Articles on software engineering, workflow, AI, DevOps, backend systems, and practical development.';
+      `Page ${currentPage} of the Sean McNamara blog archive covering
+      software engineering, workflow, AI, DevOps, and programming.` :
+      'Articles on software engineering, workflow, AI, DevOps, backend ' +
+      'systems, and practical development.';
 
   return (
     <>

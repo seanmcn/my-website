@@ -38,8 +38,10 @@ const BlogPostTemplate = ({
 
       <div className="column
       is-one-fifth-desktop
-      is-one-quarter-tablet" id="postSidebarColumn">
-        <Sidebar category={category}/>
+      is-one-quarter-tablet
+      blogSidebarColumn
+      blogSidebarColumn--hide-mobile" id="postSidebarColumn">
+        <Sidebar hideOnMobile />
       </div>
     </div>
   </div>
