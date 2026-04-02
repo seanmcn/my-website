@@ -5,7 +5,7 @@ slug: '2024/11/my-development-workflow'
 category: 'workflow'
 tags: ['ai', 'php', 'phpstorm', 'game development', 'python', 'godot']
 keywords: ['developer', 'workflow', 'cursor', 'ai coding', 'hosting', 'chat gpt']
-featured: 'images/cartoon-dev-workflow.png'
+featured: 'images/featured-development-workflow.png'
 ---
 
 Watching my development workflow evolve over the years has been quite a journey. The year 2024 has been no exception, introducing various tools and practices that have reshaped how I code and deploy projects. Here's a glimpse into what my workflow looks like today.

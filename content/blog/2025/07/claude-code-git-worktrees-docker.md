@@ -5,7 +5,7 @@ slug: '2025/07/claude-code-git-worktrees-docker'
 category: 'workflow'
 tags: ['ai', 'git', 'docker', 'workflow', 'productivity']
 keywords: ['claude code', 'git worktrees', 'docker', 'multitasking', 'development workflow', 'ai coding']
-featured: 'images/claude-code-workflow.png'
+featured: 'images/featured-claude-code-git-worktrees-docker.png'
 ---
 
 As developers, we've all been there, you're deep in fixing a critical bug when suddenly a urgent feature request lands on your desk. Context switching between branches, stashing changes, and trying to keep multiple workstreams in your head can be mentally exhausting. Over the past few months, I've discovered a workflow that's completely transformed how I handle multiple concurrent tasks: combining [Claude Code](https://claude.ai/code) with [git worktrees](https://git-scm.com/docs/git-worktree) and [Docker](https://www.docker.com/).

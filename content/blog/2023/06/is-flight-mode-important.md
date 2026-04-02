@@ -5,7 +5,7 @@ slug: '2023/06/whats-the-point-of-flight-mode'
 category: 'research'
 tags: ['questions']
 keywords: ['flight', 'mode', 'pointless', 'important', 'required']
-featured: images/cartoon-flight-mode.png
+featured: 'images/featured-is-flight-mode-important.png'
 ---
 
 Ever wonder why we're asked to switch our phones to airplane mode during a flight? You're not alone.
