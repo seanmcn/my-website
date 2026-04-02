@@ -53,6 +53,14 @@ describe('Blog post features', () => {
     it('Defines inverted selection styling for article text', () => {
       cy.document().then((doc) => {
         const selectionRules = [];
+        const rootStyles = getComputedStyle(doc.documentElement);
+        const activeTheme = doc.documentElement.dataset.theme;
+        const selectionBackground = rootStyles.getPropertyValue(
+            '--selection-background',
+        ).trim();
+        const selectionColor = rootStyles.getPropertyValue(
+            '--selection-color',
+        ).trim();
 
         Array.from(doc.styleSheets).forEach((styleSheet) => {
           let rules;
@@ -79,8 +87,19 @@ describe('Blog post features', () => {
         });
 
         expect(selectionRules.length).to.be.greaterThan(0);
-        expect(selectionRules[0].style.background).to.equal('rgb(19, 33, 47)');
-        expect(selectionRules[0].style.color).to.equal('rgb(245, 247, 249)');
+        expect(selectionRules[0].style.background).to.equal(
+            'var(--selection-background)',
+        );
+        expect(selectionRules[0].style.color).to.equal(
+            'var(--selection-color)',
+        );
+        if (activeTheme === 'dark') {
+          expect(selectionBackground).to.equal('#d9edf2');
+          expect(selectionColor).to.equal('#081219');
+        } else {
+          expect(selectionBackground).to.equal('#13212f');
+          expect(selectionColor).to.equal('#f5f7f9');
+        }
       });
     });
 
@@ -137,7 +156,7 @@ describe('Blog post features', () => {
 
   describe('World models post - Mermaid diagram', () => {
     beforeEach(() => {
-      cy.visit('/blog/2026/04/world-models-trying-to-understand-them/');
+      cy.visit('/blog/2026/04/what-are-world-models-in-ai/');
       cy.get('#postMainColumn');
     });
 
@@ -145,14 +164,20 @@ describe('Blog post features', () => {
       cy.get('.mermaidWrapper')
           .should('have.length.at.least', 1)
           .first()
-          .should('have.attr', 'data-mermaid-state', 'rendered')
-          .within(() => {
-            cy.get('.mermaidRendered svg').should('exist');
-            cy.contains('text', 'Choose Action');
-            cy.get('.mermaidFallback').should('not.be.visible');
-          });
+          .should('have.attr', 'data-mermaid-state', 'rendered');
 
-      cy.contains('#postMainColumn .content', 'Planning means:');
+      cy.get('.mermaidWrapper').first().find('.mermaidRendered svg')
+          .should('have.length', 1);
+      cy.get('.mermaidWrapper').first().find('.mermaidRendered')
+          .should('contain.text', 'Current state')
+          .and('contain.text', 'World model')
+          .and('contain.text', 'Predict possible futures')
+          .and('contain.text', 'Choose action')
+          .and('contain.text', 'New state');
+      cy.get('.mermaidWrapper').first().find('.mermaidFallback')
+          .should('not.be.visible');
+
+      cy.contains('#postMainColumn .content', 'The mental model that helped');
     });
   });
 

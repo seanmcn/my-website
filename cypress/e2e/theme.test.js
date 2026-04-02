@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 const THEME_STORAGE_KEY = 'site-theme-preference';
+const THEME_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 
-const createMatchMedia = (matches = false) => {
+const createMatchMedia = (matches = false, media = THEME_MEDIA_QUERY) => {
   const listeners = new Set();
 
   return {
@@ -16,13 +17,13 @@ const createMatchMedia = (matches = false) => {
     dispatch: (nextMatches) => {
       const event = {
         matches: nextMatches,
-        media: '(prefers-color-scheme: dark)',
+        media,
       };
       mediaQueryList.matches = nextMatches;
       listeners.forEach(listener => listener(event));
     },
     matches,
-    media: '(prefers-color-scheme: dark)',
+    media,
     onchange: null,
     removeEventListener: (eventName, listener) => {
       if (eventName === 'change') {
@@ -43,8 +44,11 @@ const visitWithThemeStub = (matches, options = {}) => {
     onBeforeLoad: (win) => {
       mediaQueryList = createMatchMedia(matches);
       win.matchMedia = cy.stub().callsFake((query) => {
-        expect(query).to.eq('(prefers-color-scheme: dark)');
-        return mediaQueryList;
+        if (query === THEME_MEDIA_QUERY) {
+          return mediaQueryList;
+        }
+
+        return createMatchMedia(false, query);
       });
       win.__themeMediaQuery = mediaQueryList;
 
@@ -75,7 +79,14 @@ describe('Theme selection', () => {
   it('persists an explicit theme selection across reloads', () => {
     visitWithThemeStub(false);
 
-    cy.get('.siteThemeSelect').select('dark');
+    cy.get('.siteThemeButton')
+        .should('have.attr', 'data-theme-label', 'System');
+    cy.get('.siteThemeButton').click();
+    cy.document().its('documentElement.dataset.themePreference')
+        .should('eq', 'light');
+    cy.document().its('documentElement.dataset.theme').should('eq', 'light');
+
+    cy.get('.siteThemeButton').click();
     cy.document().its('documentElement.dataset.themePreference')
         .should('eq', 'dark');
     cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
@@ -84,15 +95,20 @@ describe('Theme selection', () => {
 
     visitWithThemeStub(false);
 
-    cy.get('.siteThemeSelect').should('have.value', 'dark');
+    cy.get('.siteThemeButton')
+        .should('have.attr', 'data-theme-label', 'Dark');
     cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
   });
 
   it('reacts to system appearance changes while system is selected', () => {
     visitWithThemeStub(false);
 
-    cy.get('.siteThemeSelect').select('system');
+    cy.get('.siteThemeButton').click();
+    cy.get('.siteThemeButton').click();
+    cy.get('.siteThemeButton').click();
     cy.document().its('documentElement.dataset.theme').should('eq', 'light');
+    cy.document().its('documentElement.dataset.themePreference')
+        .should('eq', 'system');
 
     cy.window().then((win) => {
       win.__themeMediaQuery.dispatch(true);
@@ -106,7 +122,7 @@ describe('Theme selection', () => {
     visitWithThemeStub(false);
 
     cy.get('.navbar-brand > .button').click();
-    cy.get('.siteThemeSelect').should('be.visible').select('dark');
+    cy.get('.siteThemeButton').should('be.visible').click().click();
     cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
   });
 });
