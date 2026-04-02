@@ -10,12 +10,12 @@ describe('Blog post features', () => {
     it('Displays post badges and title', () => {
       cy.get('#postMainColumn .blog-post-box').within(() => {
         cy.get('.blog-post-category-badge a')
-          .should('contain.text', 'DevOps')
-          .and('have.attr', 'href', '/blog/categories/devops/');
+            .should('contain.text', 'DevOps')
+            .and('have.attr', 'href', '/blog/categories/devops/');
         cy.get('.blog-post-date-badge')
-          .should('contain.text', 'July 26, 2022');
+            .should('contain.text', 'July 26, 2022');
         cy.get('.blog-post-title')
-          .should('contain.text', 'Gitlab CI - Commit & Push in a Job');
+            .should('contain.text', 'Gitlab CI - Commit & Push in a Job');
       });
     });
 
@@ -51,10 +51,10 @@ describe('Blog post features', () => {
     });
 
     it('Defines inverted selection styling for article text', () => {
-      cy.document().then(doc => {
+      cy.document().then((doc) => {
         const selectionRules = [];
 
-        Array.from(doc.styleSheets).forEach(styleSheet => {
+        Array.from(doc.styleSheets).forEach((styleSheet) => {
           let rules;
           try {
             rules = styleSheet.cssRules;
@@ -66,10 +66,12 @@ describe('Blog post features', () => {
             return;
           }
 
-          Array.from(rules).forEach(rule => {
+          Array.from(rules).forEach((rule) => {
             if (
               rule.selectorText &&
-              rule.selectorText.includes('.content.blog-post-content p::selection')
+              rule.selectorText.includes(
+                  '.content.blog-post-content p::selection',
+              )
             ) {
               selectionRules.push(rule);
             }
@@ -86,7 +88,8 @@ describe('Blog post features', () => {
       cy.contains('button', 'Search').click();
       cy.get('.searchModal').should('be.visible');
       cy.contains('.searchBrowseLabel', 'Browse popular categories');
-      cy.get('input[aria-label="Search blog posts"]').type('continuous integration');
+      cy.get('input[aria-label="Search blog posts"]')
+          .type('continuous integration');
       cy.get('.searchResults-list .searchResult-item').should(
           'have.length.at.least',
           1,
@@ -110,7 +113,7 @@ describe('Blog post features', () => {
     it('Displays the featured image', () => {
       cy.get('#postMainColumn .featuredImage').should('be.visible');
       cy.get('#postMainColumn .featuredImage picture img')
-        .should('have.attr', 'alt', 'Gitlab CI - Commit & Push in a Job');
+          .should('have.attr', 'alt', 'Gitlab CI - Commit & Push in a Job');
     });
   });
 
@@ -122,13 +125,34 @@ describe('Blog post features', () => {
 
     it('Renders bash code blocks with syntax markup', () => {
       cy.get('.codeWrapper[data-language="bash"]')
-        .should('have.length.at.least', 1)
-        .first()
-        .within(() => {
-          cy.get('pre').should('exist');
-          cy.get('pre span').should('have.length.at.least', 1);
-          cy.contains('git worktree add');
-        });
+          .should('have.length.at.least', 1)
+          .first()
+          .within(() => {
+            cy.get('pre').should('exist');
+            cy.get('pre span').should('have.length.at.least', 1);
+            cy.contains('git worktree add');
+          });
+    });
+  });
+
+  describe('World models post - Mermaid diagram', () => {
+    beforeEach(() => {
+      cy.visit('/blog/2026/04/world-models-trying-to-understand-them/');
+      cy.get('#postMainColumn');
+    });
+
+    it('Renders Mermaid fenced blocks as SVG diagrams', () => {
+      cy.get('.mermaidWrapper')
+          .should('have.length.at.least', 1)
+          .first()
+          .should('have.attr', 'data-mermaid-state', 'rendered')
+          .within(() => {
+            cy.get('.mermaidRendered svg').should('exist');
+            cy.contains('text', 'Choose Action');
+            cy.get('.mermaidFallback').should('not.be.visible');
+          });
+
+      cy.contains('#postMainColumn .content', 'Planning means:');
     });
   });
 
@@ -138,15 +162,15 @@ describe('Blog post features', () => {
       cy.get('#postMainColumn');
     });
 
-    it('Renders a responsive YouTube iframe from a standalone YouTube URL', () => {
+    it('Renders a responsive YouTube iframe from a YouTube URL', () => {
       cy.get('#postMainColumn .videoEmbed')
-        .should('have.length', 1)
-        .within(() => {
-          cy.get('iframe')
-            .should('have.attr', 'src', 'https://www.youtube.com/embed/q2V6toXFCH0')
-            .and('have.attr', 'title', 'Embedded YouTube video')
-            .and('have.attr', 'allowfullscreen');
-        });
+          .should('have.length', 1)
+          .within(() => {
+            cy.get('iframe')
+                .should('have.attr', 'src', 'https://www.youtube.com/embed/q2V6toXFCH0')
+                .and('have.attr', 'title', 'Embedded YouTube video')
+                .and('have.attr', 'allowfullscreen');
+          });
     });
   });
 
@@ -159,7 +183,7 @@ describe('Blog post features', () => {
     it('Renders the command table with data', () => {
       cy.get('.table-container table').should('exist');
       cy.get('.table-container table tbody tr')
-        .should('have.length.at.least', 20);
+          .should('have.length.at.least', 20);
     });
 
     it('Displays table headers', () => {
@@ -177,8 +201,8 @@ describe('Blog post features', () => {
       cy.get('@searchInput').type('Detach');
 
       cy.get('.table-container table tbody tr')
-        .should('have.length.at.least', 1)
-        .and('have.length.at.most', 5);
+          .should('have.length.at.least', 1)
+          .and('have.length.at.most', 5);
 
       cy.get('.table-container table tbody').contains('Detach');
     });
@@ -193,10 +217,10 @@ describe('Blog post features', () => {
       cy.get('input[placeholder*="Search"]').as('searchInput');
       cy.get('@searchInput').type('Detach');
       cy.get('.table-container table tbody tr')
-        .should('have.length.below', 24);
+          .should('have.length.below', 24);
       cy.get('@searchInput').clear();
       cy.get('.table-container table tbody tr')
-        .should('have.length.at.least', 20);
+          .should('have.length.at.least', 20);
     });
   });
 
@@ -236,9 +260,9 @@ describe('Blog post features', () => {
 
     it('Displays the embedded image within post body', () => {
       cy.get('#postMainColumn .gatsby-resp-image-wrapper')
-        .should('have.length.at.least', 1);
+          .should('have.length.at.least', 1);
       cy.get('#postMainColumn .gatsby-resp-image-wrapper img')
-        .should('be.visible');
+          .should('be.visible');
     });
   });
 });

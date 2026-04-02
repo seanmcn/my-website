@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {PrismAsyncLight as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {oneLight} from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -29,6 +29,50 @@ const SHELL_LANGUAGE_ALIASES = new Set([
   'zsh',
 ]);
 
+const MERMAID_THEME = {
+  startOnLoad: false,
+  securityLevel: 'strict',
+  theme: 'base',
+  themeVariables: {
+    primaryColor: '#e6e6ea',
+    primaryBorderColor: '#227c71',
+    primaryTextColor: '#264653',
+    secondaryColor: '#ffffff',
+    secondaryBorderColor: '#227c71',
+    secondaryTextColor: '#264653',
+    tertiaryColor: '#f4f4f8',
+    tertiaryBorderColor: '#264653',
+    tertiaryTextColor: '#264653',
+    mainBkg: '#f4f4f8',
+    nodeBkg: '#f4f4f8',
+    nodeBorder: '#227c71',
+    clusterBkg: '#ffffff',
+    clusterBorder: '#227c71',
+    lineColor: '#264653',
+    defaultLinkColor: '#264653',
+    textColor: '#264653',
+    fontFamily: 'Raleway, Century Gothic, CenturyGothic, ' +
+      'AppleGothic, sans-serif',
+  },
+};
+
+let mermaidModulePromise;
+let mermaidIdCounter = 0;
+
+const getMermaid = async () => {
+  if (!mermaidModulePromise) {
+    mermaidModulePromise = import('mermaid').then((module) => {
+      const mermaid = module.default;
+
+      mermaid.initialize(MERMAID_THEME);
+
+      return mermaid;
+    });
+  }
+
+  return mermaidModulePromise;
+};
+
 const resolveLanguage = (language) => {
   if (!language) {
     return undefined;
@@ -50,6 +94,73 @@ const resolveLanguage = (language) => {
   return normalizedLanguage;
 };
 
+const MermaidDiagram = ({codeString}) => {
+  const [svg, setSvg] = useState('');
+  const [hasError, setHasError] = useState(false);
+  const diagramIdRef = useRef(null);
+
+  if (!diagramIdRef.current) {
+    mermaidIdCounter += 1;
+    diagramIdRef.current = `mermaid-diagram-${mermaidIdCounter}`;
+  }
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const renderDiagram = async () => {
+      try {
+        const mermaid = await getMermaid();
+        const {svg: renderedSvg} = await mermaid.render(
+            diagramIdRef.current,
+            codeString.trim(),
+        );
+
+        if (!isMounted) {
+          return;
+        }
+
+        setSvg(renderedSvg);
+        setHasError(false);
+      } catch (error) {
+        console.error('Failed to render Mermaid diagram', error);
+
+        if (!isMounted) {
+          return;
+        }
+
+        setSvg('');
+        setHasError(true);
+      }
+    };
+
+    renderDiagram();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [codeString]);
+
+  const renderState = hasError ? 'error' : svg ? 'rendered' : 'pending';
+
+  return (
+    <div
+      className="codeWrapper mermaidWrapper"
+      data-language="mermaid"
+      data-mermaid-state={renderState}
+    >
+      {svg ? (
+        <div
+          className="mermaidRendered"
+          dangerouslySetInnerHTML={{__html: svg}}
+        />
+      ) : null}
+      <pre className="mermaidFallback" aria-hidden={Boolean(svg)}>
+        <code>{codeString}</code>
+      </pre>
+    </div>
+  );
+};
+
 SyntaxHighlighter.registerLanguage('js', js);
 SyntaxHighlighter.registerLanguage('javascript', js);
 SyntaxHighlighter.registerLanguage('php', php);
@@ -69,7 +180,12 @@ SyntaxHighlighter.registerLanguage('yaml', yaml);
 
 export const Code = ({codeString, language}) => {
   const resolvedLanguage = resolveLanguage(language);
+  const isMermaid = resolvedLanguage === 'mermaid';
   const isPlainText = !resolvedLanguage || resolvedLanguage === 'text';
+
+  if (isMermaid) {
+    return <MermaidDiagram codeString={codeString} />;
+  }
 
   // Todo: CopyToClipboard seems to be broken?
   return (

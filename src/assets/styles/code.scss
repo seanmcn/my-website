@@ -1,3 +1,5 @@
+@use "./tokens" as *;
+
 pre {
   border: 1px solid darkgrey;
   border-left: 6px solid #227c71;
@@ -38,4 +40,54 @@ pre {
 
 .codeCopyButton:hover {
   opacity: 100%;
+}
+
+.mermaidWrapper {
+  overflow-x: auto;
+  padding: 1.5rem 1.25rem;
+  border: 1px solid rgba(38, 70, 83, 0.14);
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at top left, rgba(34, 124, 113, 0.08), transparent 35%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 244, 248, 0.94));
+  box-shadow: 0 18px 36px rgba(38, 70, 83, 0.08);
+}
+
+.mermaidWrapper .mermaidFallback {
+  margin: 0;
+  border: 0;
+  background: transparent;
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
+  padding: 0;
+}
+
+.mermaidWrapper[data-mermaid-state='rendered'] .mermaidFallback {
+  display: none;
+}
+
+.mermaidRendered {
+  display: flex;
+  justify-content: center;
+  min-width: min-content;
+  padding: 0.5rem 0.25rem;
+}
+
+.mermaidRendered svg {
+  display: block;
+  height: auto;
+  width: auto;
+  min-width: min(100%, 42rem);
+  max-width: none;
+}
+
+@media screen and (max-width: $touch-max) {
+  .mermaidWrapper {
+    padding: 1rem;
+  }
+
+  .mermaidRendered svg {
+    min-width: 100%;
+  }
 }
