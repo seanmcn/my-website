@@ -116,6 +116,7 @@
 .content.blog-post-content strong,
 .content.blog-post-content b,
 .content.blog-post-content th {
+  color: var(--text-strong) !important;
   font-weight: 600;
 }
 

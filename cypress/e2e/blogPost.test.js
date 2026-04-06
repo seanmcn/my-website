@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 
+const THEME_STORAGE_KEY = 'site-theme-preference';
 const MERMAID_VIEWER_CLOSE_BUTTON =
   '.mermaidViewerActions button[aria-label="Close Mermaid diagram viewer"]';
 const MERMAID_VIEWER_RESET_ZOOM_BUTTON =
@@ -192,6 +193,31 @@ describe('Blog post features', () => {
             cy.get('pre').should('exist');
             cy.get('pre span').should('have.length.at.least', 1);
             cy.contains('git worktree add');
+          });
+    });
+
+    it('Uses readable inline strong text in dark mode', () => {
+      cy.visit('/blog/2025/07/claude-code-git-worktrees-docker/', {
+        onBeforeLoad: (win) => {
+          win.localStorage.setItem(THEME_STORAGE_KEY, 'dark');
+        },
+      });
+      cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
+
+      cy.contains('#postMainColumn strong', 'Morning Setup:')
+          .then(($strong) => {
+            cy.document().then((doc) => {
+              const probe = doc.createElement('span');
+              probe.style.color = 'var(--text-strong)';
+              doc.body.appendChild(probe);
+
+              const expectedColor = getComputedStyle(probe).color;
+              const actualColor = getComputedStyle($strong[0]).color;
+
+              probe.remove();
+
+              expect(actualColor).to.equal(expectedColor);
+            });
           });
     });
   });
