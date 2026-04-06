@@ -1,5 +1,17 @@
 /* eslint-disable no-undef */
 
+const MERMAID_VIEWER_CLOSE_BUTTON =
+  '.mermaidViewerActions button[aria-label="Close Mermaid diagram viewer"]';
+const MERMAID_VIEWER_RESET_ZOOM_BUTTON =
+  '.mermaidZoomControls button[aria-label="Reset Mermaid diagram zoom"]';
+const MERMAID_VIEWER_ROTATE_BUTTON =
+  '.mermaidViewerActions ' +
+  'button[aria-label="Rotate Mermaid diagram within fullscreen viewer"]';
+const MERMAID_VIEWER_ZOOM_IN_BUTTON =
+  '.mermaidZoomControls button[aria-label="Zoom in Mermaid diagram"]';
+const MERMAID_VIEWER_ZOOM_OUT_BUTTON =
+  '.mermaidZoomControls button[aria-label="Zoom out Mermaid diagram"]';
+
 describe('Blog post features', () => {
   describe('General blog post elements', () => {
     beforeEach(() => {
@@ -198,6 +210,9 @@ describe('Blog post features', () => {
 
       cy.get('.mermaidWrapper').first().find('.mermaidRendered svg')
           .should('have.length', 1);
+      cy.get('.mermaidWrapper').first()
+          .contains('button', 'Fullscreen')
+          .should('be.visible');
       cy.get('.mermaidWrapper').first().find('.mermaidRendered')
           .should('contain.text', 'Current state')
           .and('contain.text', 'World model')
@@ -208,6 +223,109 @@ describe('Blog post features', () => {
           .should('not.be.visible');
 
       cy.contains('#postMainColumn .content', 'The mental model that helped');
+    });
+
+    it(
+        'Opens Mermaid diagrams in a fullscreen viewer with rotation controls',
+        () => {
+          cy.get('.mermaidWrapper').first()
+              .contains('button', 'Fullscreen')
+              .click();
+
+          cy.get('.mermaidViewerModal')
+              .should('be.visible')
+              .and('contain.text', 'Diagram viewer');
+          cy.get('.mermaidViewerRendered')
+              .should('contain.text', 'Current state')
+              .and('contain.text', 'Choose action');
+          cy.get('.mermaidViewerCanvas')
+              .should('have.attr', 'data-rotated', 'false')
+              .and('have.attr', 'data-zoom', '100')
+              .then(($canvas) => {
+                expect($canvas[0].scrollLeft).to.equal(0);
+                expect($canvas[0].scrollTop).to.equal(0);
+
+                const canvasRect = $canvas[0].getBoundingClientRect();
+
+                cy.get('.mermaidViewerStage').then(($stage) => {
+                  const stageRect = $stage[0].getBoundingClientRect();
+
+                  expect(stageRect.left + stageRect.width / 2)
+                      .to.be.closeTo(canvasRect.left + canvasRect.width / 2, 4);
+                  expect(stageRect.top + stageRect.height / 2)
+                      .to.be.closeTo(canvasRect.top + canvasRect.height / 2, 4);
+                });
+              });
+
+          cy.get(MERMAID_VIEWER_ZOOM_IN_BUTTON).click();
+          cy.get('.mermaidViewerCanvas')
+              .should('have.attr', 'data-zoom', '125')
+              .and('have.attr', 'data-pannable', 'true');
+          cy.get(MERMAID_VIEWER_RESET_ZOOM_BUTTON).click();
+          cy.get('.mermaidViewerCanvas')
+              .should('have.attr', 'data-zoom', '100');
+
+          cy.get(MERMAID_VIEWER_ROTATE_BUTTON).click();
+          cy.get('.mermaidViewerCanvas')
+              .should('have.attr', 'data-rotated', 'true');
+          cy.get('.mermaidViewerStage').then(($stage) => {
+            const stageRect = $stage[0].getBoundingClientRect();
+
+            cy.get('.mermaidViewerRendered').then(($rendered) => {
+              const renderedRect = $rendered[0].getBoundingClientRect();
+
+              expect(renderedRect.width).to.be.greaterThan(0);
+              expect(renderedRect.height).to.be.greaterThan(0);
+              expect(renderedRect.right).to.be.greaterThan(stageRect.left);
+              expect(renderedRect.bottom).to.be.greaterThan(stageRect.top);
+              expect(renderedRect.left).to.be.lessThan(stageRect.right);
+              expect(renderedRect.top).to.be.lessThan(stageRect.bottom);
+            });
+          });
+
+          cy.get(MERMAID_VIEWER_CLOSE_BUTTON).click();
+          cy.get('.mermaidViewerModal').should('not.exist');
+        },
+    );
+
+    it('Uses a mobile-friendly Mermaid viewer on narrow screens', () => {
+      cy.viewport('iphone-x');
+      cy.visit('/blog/2026/04/what-are-world-models-in-ai/');
+      cy.get('#postMainColumn');
+
+      cy.get('.mermaidWrapper').first()
+          .contains('button', 'Fullscreen')
+          .click();
+
+      cy.get('.mermaidViewerModal')
+          .should('be.visible')
+          .then(($modal) => {
+            cy.window().then((win) => {
+              expect($modal[0].getBoundingClientRect().width)
+                  .to.be.closeTo(win.innerWidth, 2);
+            });
+          });
+
+      cy.get(MERMAID_VIEWER_ZOOM_OUT_BUTTON).click();
+      cy.get('.mermaidViewerCanvas')
+          .should('have.attr', 'data-zoom', '75');
+      cy.get(MERMAID_VIEWER_ZOOM_IN_BUTTON).click().click();
+      cy.get('.mermaidViewerCanvas')
+          .should('have.attr', 'data-pannable', 'true');
+      cy.get('.mermaidViewerCanvas').then(($canvas) => {
+        $canvas[0].scrollLeft = 40;
+        $canvas[0].scrollTop = 12;
+      });
+      cy.get(MERMAID_VIEWER_RESET_ZOOM_BUTTON).click();
+      cy.get('.mermaidViewerCanvas')
+          .should('have.attr', 'data-zoom', '100')
+          .then(($canvas) => {
+            expect($canvas[0].scrollLeft).to.equal(0);
+            expect($canvas[0].scrollTop).to.equal(0);
+          });
+      cy.get(MERMAID_VIEWER_ROTATE_BUTTON).click();
+      cy.get('.mermaidViewerCanvas')
+          .should('have.attr', 'data-rotated', 'true');
     });
   });
 

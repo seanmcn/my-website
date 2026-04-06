@@ -48,10 +48,31 @@ pre {
   padding: 1.5rem 1.25rem;
   border: 1px solid var(--surface-border);
   border-radius: 1rem;
+  position: relative;
   background:
     radial-gradient(circle at top left, rgba(34, 124, 113, 0.08), transparent 35%),
     var(--surface-panel-gradient);
   box-shadow: var(--shadow-medium);
+}
+
+.mermaidActionButton {
+  align-items: center;
+  background: var(--surface-elevated) !important;
+  border: 1px solid var(--surface-border) !important;
+  border-radius: 999px !important;
+  box-shadow: var(--shadow-soft);
+  color: var(--text-strong) !important;
+  display: inline-flex !important;
+  gap: 0.45rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.9rem !important;
+}
+
+.mermaidExpandButton {
+  position: absolute !important;
+  right: 0.85rem;
+  top: 0.85rem;
+  z-index: 1;
 }
 
 .mermaidWrapper .mermaidFallback {
@@ -84,12 +105,267 @@ pre {
   max-width: none;
 }
 
+.mermaidViewerOverlay {
+  position: fixed;
+  inset: 0;
+  background: var(--surface-overlay);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0;
+  z-index: 100;
+}
+
+.mermaidViewerModal {
+  background: var(--surface-elevated-strong);
+  border: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  inset: 0 !important;
+  max-height: 100dvh;
+  max-width: 100vw;
+  outline: none;
+  overflow: hidden;
+  padding:
+    calc(env(safe-area-inset-top) + 0.9rem)
+    calc(env(safe-area-inset-right) + 0.9rem)
+    calc(env(safe-area-inset-bottom) + 0.9rem)
+    calc(env(safe-area-inset-left) + 0.9rem);
+  position: fixed !important;
+  width: 100vw;
+}
+
+.mermaidViewerHeader {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-bottom: 0.9rem;
+}
+
+.mermaidViewerHeader > :first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.mermaidViewerTitle {
+  color: $secondary-color;
+  font-size: 1.35rem;
+  font-weight: $weight-semibold;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0.25rem !important;
+}
+
+.mermaidViewerSubtitle {
+  color: var(--text-faint);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.mermaidViewerActions {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.mermaidZoomControls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mermaidViewerControlButton {
+  gap: 0;
+  line-height: 1;
+  justify-content: center;
+  min-height: 2.65rem;
+  min-width: 2.65rem;
+  padding: 0 !important;
+  width: 2.65rem;
+}
+
+.mermaidViewerControlButton .icon {
+  align-items: center;
+  display: inline-flex;
+  height: 1rem;
+  justify-content: center;
+  margin: 0;
+  width: 1rem;
+}
+
+.mermaidViewerControlButton .icon:first-child:not(:last-child),
+.mermaidViewerControlButton .icon:last-child:not(:first-child) {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.mermaidViewerControlLabel {
+  display: none;
+}
+
+.mermaidZoomStatus {
+  font-variant-numeric: tabular-nums;
+  justify-content: center;
+  min-height: 2.65rem;
+  min-width: 4.6rem;
+  padding: 0 0.85rem !important;
+}
+
+.mermaidViewerBody {
+  align-items: stretch;
+  background:
+    radial-gradient(circle at top left, rgba(34, 124, 113, 0.12), transparent 38%),
+    var(--surface-panel-gradient);
+  border: 1px solid var(--surface-border);
+  border-radius: 1rem;
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.mermaidViewerCanvas {
+  flex: 1 1 auto;
+  min-height: 100%;
+  min-width: 100%;
+  overflow: auto;
+  padding: 1rem;
+  touch-action: pinch-zoom pan-x pan-y;
+}
+
+.mermaidViewerCanvas[data-pannable='true'] {
+  cursor: grab;
+}
+
+.mermaidViewerCanvas[data-panning='true'] {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.mermaidViewerPositioner {
+  min-height: 100%;
+  min-width: 100%;
+  position: relative;
+}
+
+.mermaidViewerStage {
+  overflow: hidden;
+  position: absolute;
+}
+
+.mermaidViewerTransform {
+  height: 100%;
+  transform-origin: top left;
+  width: 100%;
+}
+
+.mermaidViewerRendered {
+  min-height: min-content;
+  min-width: min-content;
+  padding: 0;
+  transform-origin: top left;
+}
+
+.mermaidViewerRendered svg {
+  height: 100%;
+  max-width: none;
+  width: 100%;
+}
+
 @media screen and (max-width: $touch-max) {
   .mermaidWrapper {
     padding: 1rem;
   }
 
+  .mermaidExpandButton {
+    right: 0.65rem;
+    top: 0.65rem;
+  }
+
   .mermaidRendered svg {
     min-width: 100%;
+  }
+
+  .mermaidViewerHeader {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .mermaidViewerActions {
+    gap: 0.45rem;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .mermaidZoomControls {
+    gap: 0.45rem;
+    width: auto;
+  }
+
+  .mermaidActionButton {
+    justify-content: center;
+  }
+
+  .mermaidViewerControlButton {
+    min-height: 2.35rem;
+    min-width: 2.35rem;
+    width: 2.35rem;
+  }
+
+  .mermaidZoomStatus {
+    min-height: 2.35rem;
+    min-width: 4rem;
+    padding: 0 0.7rem !important;
+  }
+
+  .mermaidViewerTitle {
+    font-size: 1.2rem;
+  }
+
+  .mermaidViewerSubtitle {
+    font-size: 0.95rem;
+  }
+
+  .mermaidViewerCanvas {
+    padding: 0.75rem;
+  }
+}
+
+@media screen and (max-width: $touch-max) and (orientation: landscape) {
+  .mermaidViewerHeader {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+
+  .mermaidViewerActions {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    width: auto;
+  }
+
+  .mermaidZoomControls {
+    flex-shrink: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .mermaidViewerModal {
+    padding: 1.4rem;
+  }
+
+  .mermaidViewerHeader {
+    align-items: center;
+  }
+
+  .mermaidViewerBody {
+    max-width: min(96vw, 84rem);
+    margin: 0 auto;
+    width: 100%;
   }
 }
