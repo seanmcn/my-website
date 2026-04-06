@@ -374,6 +374,81 @@ describe('Blog post features', () => {
     });
   });
 
+  describe('RTS series navigator', () => {
+    it('Shows the ordered series navigator on week one', () => {
+      cy.visit('/blog/2016/09/making-simple-rts-game-week-one/');
+      cy.get('#postMainColumn');
+
+      cy.get('.seriesNavigator').within(() => {
+        cy.contains('Part 1 of 3 in Simple RTS Game');
+        cy.get('.seriesNavigatorItem').should('have.length', 3);
+        cy.get('.seriesNavigatorItem').eq(0)
+            .should('have.class', 'is-current')
+            .within(() => {
+              cy.contains(
+                  '.seriesNavigatorCurrent',
+                  'Making a simple RTS game – Week One',
+              )
+                  .should('have.attr', 'aria-current', 'true');
+              cy.get('.seriesNavigatorLink').should('not.exist');
+            });
+        cy.get('.seriesNavigatorItem').eq(1)
+            .contains(
+                '.seriesNavigatorLink',
+                'Making a simple RTS game – Week Two',
+            )
+            .should(
+                'have.attr',
+                'href',
+                '/blog/2016/09/making-simple-rts-game-week-two/',
+            );
+        cy.get('.seriesNavigatorItem').eq(2)
+            .contains(
+                '.seriesNavigatorLink',
+                'Making a simple RTS game – Week Three',
+            )
+            .should(
+                'have.attr',
+                'href',
+                '/blog/2016/11/making-simple-rts-game-week-three/',
+            );
+        cy.contains('.seriesNavigatorDirection', 'This is the first part');
+        cy.contains(
+            '.seriesNavigatorDirection',
+            'Next: Making a simple RTS game – Week Two',
+        ).should(
+            'have.attr',
+            'href',
+            '/blog/2016/09/making-simple-rts-game-week-two/',
+        );
+      });
+    });
+
+    it('Shows previous-only navigation on the final series post', () => {
+      cy.visit('/blog/2016/11/making-simple-rts-game-week-three/');
+      cy.get('#postMainColumn');
+
+      cy.get('.seriesNavigator').within(() => {
+        cy.contains('Part 3 of 3 in Simple RTS Game');
+        cy.contains(
+            '.seriesNavigatorDirection',
+            'Previous: Making a simple RTS game – Week Two',
+        ).should(
+            'have.attr',
+            'href',
+            '/blog/2016/09/making-simple-rts-game-week-two/',
+        );
+        cy.contains('.seriesNavigatorDirection', 'This is the latest part');
+      });
+    });
+
+    it('Does not show a series navigator on standalone posts', () => {
+      cy.visit('/blog/2022/07/gitlab-ci-commit-and-push-in-job/');
+      cy.get('#postMainColumn');
+      cy.get('.seriesNavigator').should('not.exist');
+    });
+  });
+
   describe('Screen cheat sheet - command table', () => {
     beforeEach(() => {
       cy.visit('/blog/cheat-sheets/screen/');

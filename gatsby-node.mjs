@@ -248,6 +248,91 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
   return mergedPosts;
 }
 
+function sortSeriesPosts(seriesPosts = []) {
+  return [...seriesPosts].sort((a, b) => {
+    const leftOrder = Number.isFinite(a.frontmatter.seriesOrder) ?
+      a.frontmatter.seriesOrder :
+      Number.MAX_SAFE_INTEGER;
+    const rightOrder = Number.isFinite(b.frontmatter.seriesOrder) ?
+      b.frontmatter.seriesOrder :
+      Number.MAX_SAFE_INTEGER;
+
+    if (leftOrder !== rightOrder) {
+      return leftOrder - rightOrder;
+    }
+
+    const leftDate = Date.parse(a.frontmatter.date);
+    const rightDate = Date.parse(b.frontmatter.date);
+    const safeLeftDate = Number.isNaN(leftDate) ?
+      Number.MAX_SAFE_INTEGER :
+      leftDate;
+    const safeRightDate = Number.isNaN(rightDate) ?
+      Number.MAX_SAFE_INTEGER :
+      rightDate;
+
+    if (safeLeftDate !== safeRightDate) {
+      return safeLeftDate - safeRightDate;
+    }
+
+    return a.frontmatter.slug.localeCompare(b.frontmatter.slug);
+  });
+}
+
+function buildSeriesContext(currentPost, postsBySeries) {
+  const seriesKey = normaliseValue(currentPost.frontmatter.series);
+
+  if (!seriesKey) {
+    return {
+      previousInSeries: null,
+      nextInSeries: null,
+      seriesCount: 0,
+      seriesIndex: null,
+      seriesPosts: [],
+      seriesTitle: null,
+    };
+  }
+
+  const seriesPosts = sortSeriesPosts(postsBySeries.get(seriesKey) || []);
+  if (seriesPosts.length < 2) {
+    return {
+      previousInSeries: null,
+      nextInSeries: null,
+      seriesCount: seriesPosts.length,
+      seriesIndex: null,
+      seriesPosts: [],
+      seriesTitle: null,
+    };
+  }
+
+  const currentIndex = seriesPosts.findIndex(
+      post => post.id === currentPost.id,
+  );
+  const previousPost = currentIndex > 0 ? seriesPosts[currentIndex - 1] : null;
+  const nextPost = currentIndex >= 0 && currentIndex < seriesPosts.length - 1 ?
+    seriesPosts[currentIndex + 1] :
+    null;
+
+  return {
+    previousInSeries: previousPost ? {
+      slug: previousPost.frontmatter.slug,
+      title: previousPost.frontmatter.title,
+    } : null,
+    nextInSeries: nextPost ? {
+      slug: nextPost.frontmatter.slug,
+      title: nextPost.frontmatter.title,
+    } : null,
+    seriesCount: seriesPosts.length,
+    seriesIndex: currentIndex >= 0 ? currentIndex + 1 : null,
+    seriesPosts: seriesPosts.map(post => ({
+      date: post.frontmatter.dateDisplay,
+      seriesOrder: post.frontmatter.seriesOrder ?? null,
+      slug: post.frontmatter.slug,
+      title: post.frontmatter.title,
+    })),
+    seriesTitle: currentPost.frontmatter.series,
+  };
+}
+
 function validatePostMetadata(posts) {
   const categoryVariants = new Map();
   const tagVariants = new Map();
@@ -368,12 +453,30 @@ export const createPages = async function({actions, graphql}) {
       ),
     },
   }));
-  const postsBySlug = new Map(postNodes.map(post => [post.frontmatter.slug, post]));
+  const postsBySlug = new Map(
+      postNodes.map(post => [post.frontmatter.slug, post]),
+  );
+  const postsBySeries = new Map();
+
+  postNodes.forEach((post) => {
+    const seriesKey = normaliseValue(post.frontmatter.series);
+    if (!seriesKey) {
+      return;
+    }
+
+    const existingPosts = postsBySeries.get(seriesKey) || [];
+    existingPosts.push(post);
+    postsBySeries.set(seriesKey, existingPosts);
+  });
+
   validatePostMetadata(postNodes);
   const postTemplate = path.resolve('./src/templates/post.js');
   const blogPostPromises = postNodes.map(async (post, index) => {
-    const previous = index === postNodes.length - 1 ? null : postNodes[index + 1];
+    const previous = index === postNodes.length - 1 ?
+      null :
+      postNodes[index + 1];
     const next = index === 0 ? null : postNodes[index - 1];
+    const seriesContext = buildSeriesContext(post, postsBySeries);
     createPage({
       path: `/blog/${post.frontmatter.slug}/`,
       // eslint-disable-next-line max-len
@@ -384,6 +487,7 @@ export const createPages = async function({actions, graphql}) {
         previous,
         next,
         relatedPosts: buildRelatedPosts(post, postsBySlug),
+        ...seriesContext,
       },
     });
   });

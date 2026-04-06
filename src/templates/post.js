@@ -18,6 +18,12 @@ const BlogPostTemplate = ({
   slug,
   relatedPosts,
   featured,
+  seriesTitle,
+  seriesCount,
+  seriesIndex,
+  seriesPosts,
+  previousInSeries,
+  nextInSeries,
 }) => (
   <div>
     <div className="columns">
@@ -32,6 +38,12 @@ const BlogPostTemplate = ({
           category={category}
           tags={tags}
           featured={featured}
+          seriesTitle={seriesTitle}
+          seriesCount={seriesCount}
+          seriesIndex={seriesIndex}
+          seriesPosts={seriesPosts}
+          previousInSeries={previousInSeries}
+          nextInSeries={nextInSeries}
         />
         <RelatedPosts relatedPosts={relatedPosts}/>
       </div>
@@ -65,11 +77,36 @@ BlogPostTemplate.propTypes = {
     title: PropTypes.string.isRequired,
   })).isRequired,
   featured: PropTypes.any,
+  nextInSeries: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }),
+  previousInSeries: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }),
+  seriesCount: PropTypes.number,
+  seriesIndex: PropTypes.number,
+  seriesPosts: PropTypes.arrayOf(PropTypes.shape({
+    date: PropTypes.string,
+    seriesOrder: PropTypes.number,
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  })),
+  seriesTitle: PropTypes.string,
 };
 
 const BlogPost = ({data, children, location, pageContext}) => {
   const {mdx: post} = data;
-  const {relatedPosts = []} = pageContext;
+  const {
+    nextInSeries = null,
+    previousInSeries = null,
+    relatedPosts = [],
+    seriesCount = 0,
+    seriesIndex = null,
+    seriesPosts = [],
+    seriesTitle = null,
+  } = pageContext;
   const {
     title: siteTitle,
     siteUrl,
@@ -97,6 +134,12 @@ const BlogPost = ({data, children, location, pageContext}) => {
         slug={post.frontmatter.slug}
         relatedPosts={relatedPosts}
         featured={featured}
+        seriesTitle={seriesTitle}
+        seriesCount={seriesCount}
+        seriesIndex={seriesIndex}
+        seriesPosts={seriesPosts}
+        previousInSeries={previousInSeries}
+        nextInSeries={nextInSeries}
       />
     </Layout>
   );
@@ -112,7 +155,13 @@ BlogPost.propTypes = {
     pathname: PropTypes.string,
   }),
   pageContext: PropTypes.shape({
+    nextInSeries: PropTypes.object,
+    previousInSeries: PropTypes.object,
     relatedPosts: PropTypes.array,
+    seriesCount: PropTypes.number,
+    seriesIndex: PropTypes.number,
+    seriesPosts: PropTypes.array,
+    seriesTitle: PropTypes.string,
   }),
 };
 
