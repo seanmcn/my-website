@@ -2,8 +2,8 @@
 title: "Bash/Cygwin Terminal in PHPStorm"
 date: '2017-03-14T15:39:03.284Z'
 slug: '2017/03/bash-phpstorm-cygwin'
-category: 'programming'
-tags: ['bash', 'cygwin', 'windows', 'phpstorm', 'terminal']
+category: 'systems'
+tags: ['bash', 'cygwin', 'windows', 'phpstorm']
 keywords: ['guide']
 featured: images/cartoon-programmer-app.png
 ---

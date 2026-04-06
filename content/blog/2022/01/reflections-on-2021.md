@@ -3,7 +3,7 @@ title: "Reflections on 2021"
 date: "2022-01-31T11:39:19.327Z"  
 slug: "2022/01/reflections-on-2021"  
 category: "personal"  
-tags: ["crypto","programming", "personal"]  
+tags: ['crypto']
 keywords: ["klima", "polygon", "fantom", "flutter", "ios", "android"]
 featured: images/brain-thinking.png
 ---

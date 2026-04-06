@@ -2,8 +2,8 @@
 title: "Create a URL Shortener With Your Domain"
 date: '2009-09-24T01:39:03.284Z'
 slug: '2009/09/create-a-url-shortener-with-your-domain'
-category: 'open-source'
-tags: [ 'how-to', 'software',]
+category: 'programming'
+tags: ['how-to', 'php', 'url-shortener']
 keywords: [ 'url', 'shortener', 'packages', 'open', 'source']
 featured: images/cartoon-programmer-url.png
 ---

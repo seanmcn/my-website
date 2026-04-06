@@ -5,13 +5,51 @@ import {paginate} from 'gatsby-awesome-pagination';
 
 const TECHNICAL_CATEGORIES = new Set([
   'ai',
-  'devops',
-  'linux',
-  'open-source',
   'programming',
-  'windows',
-  'workflow',
+  'productivity',
+  'systems',
 ]);
+
+const CATEGORY_REDIRECTS = {
+  AI: 'ai',
+  'devops': 'systems',
+  'game-development': 'programming',
+  'linux': 'systems',
+  'memes': 'personal',
+  'meta': 'personal',
+  'research': 'explainers',
+  'review': 'reviews',
+  'windows': 'systems',
+  'work': 'personal',
+  'workflow': 'productivity',
+};
+
+function createCategoryRedirects(createRedirect) {
+  Object.entries(CATEGORY_REDIRECTS).forEach(([fromCategory, toCategory]) => {
+    if (normaliseValue(fromCategory) === normaliseValue(toCategory)) {
+      return;
+    }
+
+    createRedirect({
+      fromPath: `/blog/categories/${fromCategory}`,
+      toPath: `/blog/categories/${toCategory}/`,
+      isPermanent: true,
+      redirectInBrowser: true,
+    });
+    createRedirect({
+      fromPath: `/blog/categories/${fromCategory}/`,
+      toPath: `/blog/categories/${toCategory}/`,
+      isPermanent: true,
+      redirectInBrowser: true,
+    });
+    createRedirect({
+      fromPath: `/blog/categories/${fromCategory}/page/:page`,
+      toPath: `/blog/categories/${toCategory}/page/:page`,
+      isPermanent: true,
+      redirectInBrowser: true,
+    });
+  });
+}
 
 function normaliseValue(value) {
   return (value || '')
@@ -212,6 +250,7 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
 
 function validatePostMetadata(posts) {
   const categoryVariants = new Map();
+  const tagVariants = new Map();
   const postSlugs = new Set(posts.map(({frontmatter}) => frontmatter.slug));
 
   posts.forEach(post => {
@@ -224,6 +263,16 @@ function validatePostMetadata(posts) {
     }
 
     categoryVariants.get(normalisedCategory).add(rawCategory);
+
+    (frontmatter.tags || []).forEach(rawTag => {
+      const normalisedTag = normaliseValue(rawTag);
+
+      if (!tagVariants.has(normalisedTag)) {
+        tagVariants.set(normalisedTag, new Set());
+      }
+
+      tagVariants.get(normalisedTag).add(rawTag);
+    });
 
     if (TECHNICAL_CATEGORIES.has(normalisedCategory) &&
         (!frontmatter.tags || frontmatter.tags.length === 0)) {
@@ -250,11 +299,23 @@ function validatePostMetadata(posts) {
       );
     }
   });
+
+  tagVariants.forEach((variants, tag) => {
+    if (variants.size > 1) {
+      console.warn(
+          `[search] Tag "${tag}" has inconsistent casing: ${Array.from(
+              variants,
+          ).join(', ')}`,
+      );
+    }
+  });
 }
 
 export const createPages = async function({actions, graphql}) {
-  const {createPage} = actions;
+  const {createPage, createRedirect} = actions;
   const itemsPerPage = 9;
+
+  createCategoryRedirects(createRedirect);
 
   /**
    * Homepage

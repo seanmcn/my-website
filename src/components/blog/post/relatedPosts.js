@@ -31,7 +31,9 @@ const RelatedPosts = ({
                 <span className="tag is-primary is-light">{x.reason}</span>
               )}
               {x.tags && x.tags.slice(0, 2).map(tag => (
-                <span className="tag" key={`${x.slug}-${tag}`}>{tag}</span>
+                <span className="tag" key={`${x.slug}-${tag}`}>
+                  {slugToTitle(tag)}
+                </span>
               ))}
             </div>
             {x.category && (

@@ -2,8 +2,8 @@
 title: "Jelly SMS – Use your web texts from your desktop"
 date: '2010-04-08T01:39:03.284Z'
 slug: '2010/04/programmer-personality'
-category: 'review'
-tags: ['software', 'sms']
+category: 'reviews'
+tags: ['review', 'sms']
 keywords: ['jellysms', 'text', 'software']
 featured: images/cartoon-phone-connected.png
 ---

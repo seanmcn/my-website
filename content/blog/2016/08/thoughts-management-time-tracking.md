@@ -2,8 +2,8 @@
 title: "My thoughts on management & time tracking"
 date: '2016-08-29T15:39:03.284Z'
 slug: '2016/08/thoughts-management-time-tracking'
-category: 'workflow'
-tags: ['work', 'management', 'tracking', 'time']
+category: 'productivity'
+tags: ['management', 'time-tracking']
 keywords: ['time', 'tracking', 'opinion']
 featured: images/cartoon-programmer-time.png
 ---

@@ -2,8 +2,8 @@
 title: "How I'm utilising ChatGPT"
 date: "2023-05-13T22:15:10.429Z"
 slug: "2023/05/using-chat-gpt"
-category: "AI"
-tags: ["ai", "chat-gpt"]
+category: "ai"
+tags: ['ai', 'chatgpt']
 keywords: ["ai", "chat-gpt", "gpt3", "programming"]
 featured: 'images/featured-using-chat-gpt.png'
 ---

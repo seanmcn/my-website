@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SearchResult from './searchResult';
+import {slugToTitle} from '../../utils/blog';
 
 const SearchResults = ({
   results,
@@ -35,7 +36,7 @@ const SearchResults = ({
                 onClick={() => onSelectBrowse(category.label)}
                 type="button"
               >
-                {category.label} <span>{category.count}</span>
+                {slugToTitle(category.label)} <span>{category.count}</span>
               </button>
             ))}
           </div>
@@ -58,7 +59,7 @@ const SearchResults = ({
                 onClick={() => onSelectFilter(filter)}
                 type="button"
               >
-                {filter.label} <span>{filter.count}</span>
+                {slugToTitle(filter.label)} <span>{filter.count}</span>
               </button>
             ))}
             {facetGroups.tags.slice(0, 6).map(filter => (
@@ -70,7 +71,7 @@ const SearchResults = ({
                 onClick={() => onSelectFilter(filter)}
                 type="button"
               >
-                #{filter.label} <span>{filter.count}</span>
+                #{slugToTitle(filter.label)} <span>{filter.count}</span>
               </button>
             ))}
             {activeFilter && (

@@ -2,8 +2,8 @@
 title: "E.ggtimer - Online Timer"
 date: '2009-09-21T07:39:03.284Z'
 slug: '2009/09/e-ggtimer-com-online-timer'
-category: 'review'
-tags: [ 'software', 'alarm']
+category: 'reviews'
+tags: ['review', 'timer']
 keywords: ['egg', 'timer', 'browser', 'review']
 featured: images/cartoon-egg-timer.png
 ---

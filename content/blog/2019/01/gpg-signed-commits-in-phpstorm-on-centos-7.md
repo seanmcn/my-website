@@ -3,7 +3,7 @@ title: "GPG signed commits in PHPStorm on CentOS 7"
 date: '2019-01-23T15:39:03.284Z'
 slug: '2019/01/gpg-signed-commits-in-phpstorm-on-centos-7'
 category: 'programming'
-tags: ['phpstorm', 'git', 'how-to']
+tags: ['how-to', 'git', 'gpg', 'phpstorm']
 keywords: ['centos', 'commits', 'signed', 'commit']
 featured: images/cartoon-programmer-signing-commit.png
 ---

@@ -2,8 +2,8 @@
 title: "My Development Workflow in 2024"
 date: '2024-11-09T13:21:42.341Z'
 slug: '2024/11/my-development-workflow'
-category: 'workflow'
-tags: ['ai', 'php', 'phpstorm', 'game development', 'python', 'godot']
+category: 'productivity'
+tags: ['ai', 'phpstorm', 'developer-tools']
 keywords: ['developer', 'workflow', 'cursor', 'ai coding', 'hosting', 'chat gpt']
 featured: 'images/featured-development-workflow.png'
 ---

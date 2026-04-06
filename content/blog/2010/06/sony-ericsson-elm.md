@@ -2,7 +2,7 @@
 title: "The Sony Ericsson Elm"
 date: '2010-06-06T00:39:03.284Z'
 slug: '2010/06/the-sony-ericsson-elm'
-category: 'review'
+category: 'reviews'
 tags: ['review', 'phone']
 keywords: ['sony', 'ericsson', 'phone', 'greenheart']
 featured: images/cartoon-eco-friendly-phone.png

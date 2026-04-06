@@ -3,7 +3,7 @@ title: "Apache Localhost Rendering Slowly?"
 date: '2014-11-03T19:39:03.284Z'
 slug: '2014/11/apache-localhost-rendering-slowly'
 category: 'programming'
-tags: ['apache', 'programming']
+tags: ['apache', 'how-to']
 keywords: ['localhost', 'slow', 'render']
 featured: images/cartoon-server-unhealthy.png
 ---

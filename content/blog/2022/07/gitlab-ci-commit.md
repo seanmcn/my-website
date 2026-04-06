@@ -2,8 +2,8 @@
 title: "Gitlab CI - Commit & Push in a Job"
 date: "2022-07-26T22:01:00.000Z"  
 slug: "2022/07/gitlab-ci-commit-and-push-in-job"  
-category: "devops"  
-tags: ["programming", "gitlab", "ci", "devops"]  
+category: "systems"
+tags: ['how-to', 'gitlab', 'ci', 'git']
 keywords: ["gitlab", "continuous integration", "gitlab ci", "gitlab runner"]
 featured: 'images/featured-gitlab-ci-commit.png'
 ---

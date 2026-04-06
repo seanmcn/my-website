@@ -3,7 +3,7 @@ title: "Why I am learning Perl"
 date: '2011-08-19T01:39:03.284Z'
 slug: '2011/08/why-im-learning-perl'
 category: 'programming'
-tags: ['programming', 'perl']
+tags: ['perl']
 keywords: ['languages', 'pros', 'cons']
 featured: images/cartoon-perl.png
 ---
@@ -28,4 +28,3 @@ Perl is an Interpreted language, so you don’t have to compile it like you do J
 
 ## Perl Cons
 - Speed. Apparently with a very large program (Like word or something) the sheer size of it would make it extremely slow to compile at runtime.. This is the only Con I’ve found about Perl!
-

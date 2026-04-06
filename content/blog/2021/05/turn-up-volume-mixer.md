@@ -2,7 +2,7 @@
 title: "Turn Up - Volume Mixer"
 date: "2021-05-30T13:40:19.149Z"
 slug: "2021/05/turn-up-volume-mixer"
-category: 'review'
+category: 'reviews'
 tags: ['review', 'hardware']
 keywords: ['turn up', 'volume', 'mixer']
 featured: images/cartoon-man-laptop.png

@@ -3,7 +3,7 @@ title: "Being a PHP Developer in 2015"
 date: '2015-01-27T08:39:03.284Z'
 slug: '2015/01/being-a-php-developer'
 category: 'programming'
-tags: ['php', 'programming', 'web', 'linux', 'javascript']
+tags: ['php', 'javascript', 'linux']
 keywords: ['thoughts', 'update', '2015']
 featured: images/cartoon-programmer-journal.png
 ---

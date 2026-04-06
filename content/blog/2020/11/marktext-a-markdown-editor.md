@@ -2,8 +2,8 @@
 title: "MarkText - An Open Source Markdown Editor"
 date: "2020-11-30T01:07:12.603Z"
 slug: "2020/11/marktext-a-markdown-editor"
-category: "open-source"
-tags: ["markdown", "windows", "osx", "open-source"]
+category: "reviews"
+tags: ['review', 'markdown', 'open-source']
 keywords: ["markdown", "software"]
 featured: images/cartoon-laptop-page.png
 ---

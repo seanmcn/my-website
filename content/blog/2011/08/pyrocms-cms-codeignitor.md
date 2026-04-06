@@ -3,7 +3,7 @@ title: "PyroCMS – CMS on the CodeIgnitor Framework"
 date: '2011-08-14T20:39:03.284Z'
 slug: '2011/08/pyrocms-cms-on-the-codeignitor-framework'
 category: 'programming'
-tags: ['programming', 'cms', 'pyrocms']
+tags: ['cms', 'php', 'pyrocms']
 keywords: ['pyro', 'content', 'management', 'system']
 featured: images/cartoon-computer-pyro.png
 ---

@@ -45,7 +45,7 @@ function Post({
               <div className="blog-post-tags">
                 {tags.map(tag => (
                   <span key={`${tag}tag`} className="blog-post-tag-chip">
-                    <Link to={`/blog/tags/${tag}/`}>{tag}</Link>
+                    <Link to={`/blog/tags/${tag}/`}>{slugToTitle(tag)}</Link>
                   </span>
                 ))}
               </div>

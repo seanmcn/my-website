@@ -3,7 +3,7 @@ title: "We're Back / Moving Forward"
 date: '2014-10-22T18:39:03.284Z'
 slug: '2014/10/we-are-back-moving-forward'
 category: 'personal'
-tags: ['personal']
+tags: []
 keywords: ['update', 'goals']
 featured: images/cartoon-programmer-start.png
 ---

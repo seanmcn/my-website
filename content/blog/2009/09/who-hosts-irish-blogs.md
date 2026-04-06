@@ -2,8 +2,8 @@
 title: "Who Hosts Irish Blogs ?"
 date: '2009-09-09T20:39:03.284Z'
 slug: '2009/09/who-hosts-irish-blogs'
-category: 'research'
-tags: ['stats', 'hosting', 'irish', 'blogs']
+category: 'explainers'
+tags: ['hosting', 'blogging', 'ireland']
 keywords: ['ireland', 'blogging', 'history']
 featured: images/cartoon-programmer-research.png
 ---

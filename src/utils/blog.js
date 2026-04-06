@@ -3,17 +3,25 @@ export function getPostsFromQuery() {}
 export function slugToTitle(str) {
   const capitalisationOverride = {
     Ai: 'AI',
+    Chatgpt: 'ChatGPT',
+    Ci: 'CI',
     Css: 'CSS',
     Devops: 'DevOps',
     Cms: 'CMS',
     Gpg: 'GPG',
+    Gitlab: 'GitLab',
     Jquery: 'jQuery',
+    Letsencrypt: "Let's Encrypt",
     Nginx: 'nginx',
     Pear: 'PEAR',
     Php: 'PHP',
-    Phpstorm: ' PHPStorm',
+    Phpstorm: 'PHPStorm',
     Pyrocms: 'PyroCMS',
     Rts: 'RTS',
+    Sms: 'SMS',
+    Stashphp: 'StashPHP',
+    Url: 'URL',
+    Wakatime: 'WakaTime',
   };
 
   const splitStr = str.toLowerCase().split('-');

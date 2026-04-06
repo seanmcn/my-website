@@ -3,7 +3,7 @@ title: "Programmer Personality: 2009"
 date: '2009-11-09T01:39:03.284Z'
 slug: '2009/11/programmer-personality'
 category: 'personal'
-tags: ['personal', 'funny', 'programming']
+tags: ['funny', 'personality']
 keywords: ['personality', 'programmer']
 featured: images/cartoon-survey-2.png
 ---

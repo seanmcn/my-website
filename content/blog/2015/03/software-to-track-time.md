@@ -2,8 +2,8 @@
 title: "Software I’m using to track tasks & time"
 date: '2015-03-29T08:39:03.284Z'
 slug: '2015/03/tracking-time'
-category: 'workflow'
-tags: ['software', 'time', 'tracking']
+category: 'productivity'
+tags: ['time-tracking', 'toggl', 'wakatime']
 keywords: ['trello', 'jira', 'github', 'todoist', 'toggl', 'wakatime']
 featured: images/cartoon-programmer-time-2.png
 ---

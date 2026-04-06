@@ -2,8 +2,8 @@
 title: "Earcandy in Ubuntu Jaunty"
 date: '2009-09-28T21:39:03.284Z'
 slug: '2009/09/earcandy-in-ubuntu-jaunty'
-category: 'linux'
-tags: ['how-to', 'linux', 'ubuntu', 'earcandy']
+category: 'systems'
+tags: ['how-to', 'linux', 'ubuntu']
 keywords: ['jaunty', 'volume', 'manager']
 featured: images/cartoon-penguin-music.png
 ---

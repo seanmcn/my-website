@@ -2,8 +2,8 @@
 title: "What Are World Models in AI?"
 date: "2026-04-01T17:17:17.522Z"
 slug: "2026/04/what-are-world-models-in-ai"
-category: 'AI'
-tags: ['AI', 'World Model']
+category: 'ai'
+tags: ['ai', 'world-model']
 keywords: ['AI']
 featured: 'images/what-are-world-models-in-ai.png'
 ---

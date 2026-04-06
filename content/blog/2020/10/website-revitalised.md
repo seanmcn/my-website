@@ -2,8 +2,8 @@
 title: "Website revitalised using Gatsby!"
 date: '2020-10-29T02:09:03.284Z'
 slug: '2020/10/website-revitalised-gatsby'
-category: 'meta'
-tags: [ 'programming', 'gatsby', 'javascript']
+category: 'personal'
+tags: ['gatsby', 'javascript']
 keywords: ['gatsby', 'reactjs', 'js', 'javascript']
 featured: images/cartoon-web-design.png
 ---

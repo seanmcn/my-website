@@ -3,7 +3,7 @@ title: "Programmer Personality: 2020"
 date: '2020-08-09T16:39:03.284Z'
 slug: '2020/08/programmer-personality'
 category: 'personal'
-tags: ['funny', 'programming', 'personal']
+tags: ['funny', 'personality']
 keywords: ['type', 'personality', 'personal', 'quiz', 'fun']
 featured: images/cartoon-survey.png
 ---
