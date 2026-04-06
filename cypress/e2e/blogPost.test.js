@@ -23,8 +23,8 @@ describe('Blog post features', () => {
     it('Displays post badges and title', () => {
       cy.get('#postMainColumn .blog-post-box').within(() => {
         cy.get('.blog-post-category-badge a')
-            .should('contain.text', 'DevOps')
-            .and('have.attr', 'href', '/blog/categories/devops/');
+            .should('contain.text', 'Systems')
+            .and('have.attr', 'href', '/blog/categories/systems/');
         cy.get('.blog-post-date-badge')
             .should('contain.text', 'July 26, 2022');
         cy.get('.blog-post-title')
@@ -35,9 +35,10 @@ describe('Blog post features', () => {
     it('Displays tags on the post', () => {
       cy.get('#postMainColumn .blog-post-tags').within(() => {
         cy.get('.blog-post-tag-chip').should('have.length.at.least', 1);
-        cy.contains('a', 'programming');
-        cy.contains('a', 'gitlab');
-        cy.contains('a', 'devops');
+        cy.contains('a', 'How To');
+        cy.contains('a', 'Git');
+        cy.contains('a', 'GitLab');
+        cy.contains('a', 'CI');
       });
     });
 
