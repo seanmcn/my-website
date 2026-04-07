@@ -1,4 +1,5 @@
 import React from 'react';
+import {useLocation} from '@gatsbyjs/reach-router';
 import NavbarItem from './item/navbarItem';
 import NavbarBurger from './burger/navbarBurger';
 import NavbarItemSocial from './itemSocial/navbarItemSocial';
@@ -19,9 +20,7 @@ const Navbar = () => {
   const pendingSearchOpenFrameRef = React.useRef(null);
   const searchOpenHandlerRef = React.useRef(null);
   const activeMenuRef = React.useRef(activeMenu);
-  const pathname = typeof window !== 'undefined' ?
-    window.location.pathname :
-    '';
+  const {pathname} = useLocation();
   const showBlogBrowseInMobileMenu = BLOG_ROUTE_PATTERN.test(pathname);
 
   const closeMenu = React.useCallback(() => {

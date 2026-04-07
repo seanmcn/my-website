@@ -7,15 +7,19 @@ import logoThumbsUp from '../../../assets/images/emojis/75/thumbs-up.png';
 import logoSanta from '../../../assets/images/emojis/75/santa.png';
 
 const NavbarLogo = () => {
-  const map = [logoBeer, logoCheer, logoThumbsUp];
-  const randomMapKey = Math.floor(Math.random() * 3);
-  let emoji = map[randomMapKey];
+  // Use a stable default during SSR/hydration to avoid markup mismatch
+  // (React error #423). The random/seasonal swap happens post-mount.
+  const [emoji, setEmoji] = React.useState(logoThumbsUp);
 
-  // If it's December, just display the Santa emoji.
-  const d = new Date();
-  if (d.getMonth() === 11) {
-    emoji = logoSanta;
-  }
+  React.useEffect(() => {
+    if (new Date().getMonth() === 11) {
+      setEmoji(logoSanta);
+      return;
+    }
+    const map = [logoBeer, logoCheer, logoThumbsUp];
+    setEmoji(map[Math.floor(Math.random() * 3)]);
+  }, []);
+
   return (
     <Link to="/" className="navbar-item" aria-label="Homepage">
       <img src={emoji}
