@@ -56,7 +56,10 @@ export const pageQuery = graphql`
     }
   }
   allMdx(
-    filter: {frontmatter: {category: {eq: $slug}}}
+    filter: {
+      fields: {sourceInstanceName: {eq: "blog"}}
+      frontmatter: {category: {eq: $slug}}
+    }
     sort: {frontmatter: {date: DESC}}
     limit: $limit
     skip: $skip

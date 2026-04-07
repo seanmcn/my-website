@@ -45,6 +45,14 @@ const gatsbySourceFileSystemAssets = {
     },
 };
 
+const gatsbySourceFileSystemProjects = {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+        name: 'projects',
+        path: `${__dirname}/content/projects`,
+    },
+};
+
 const config = {
     siteMetadata: {
         title: 'Seán McNamara',
@@ -101,6 +109,7 @@ const config = {
         },
         'gatsby-transformer-sharp',
         gatsbySourceFileSystemBlogPosts,
+        gatsbySourceFileSystemProjects,
         gatsbySourceFileSystemAssets,
         gatsbyPluginFeed,
         {

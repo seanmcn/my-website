@@ -59,7 +59,7 @@ function normaliseValue(value) {
 }
 
 function normaliseList(values = []) {
-  return values
+  return (values || [])
       .map(normaliseValue)
       .filter(Boolean);
 }
@@ -412,11 +412,59 @@ export const createPages = async function({actions, graphql}) {
   });
 
   /**
+   * Projects
+   * */
+  const projectsResult = await graphql(
+      `{
+        allFile(
+          filter: {sourceInstanceName: {eq: "projects"}, childMdx: {id: {ne: null}}}
+          sort: {childMdx: {frontmatter: {date: DESC}}}
+        ) {
+          nodes {
+            childMdx {
+              id
+              frontmatter {
+                slug
+              }
+              internal {
+                contentFilePath
+              }
+            }
+          }
+        }
+      }`,
+  );
+
+  if (projectsResult.errors) {
+    throw projectsResult.errors;
+  }
+
+  const projectTemplate = path.resolve('./src/templates/project.js');
+  const projectNodes = projectsResult.data.allFile.nodes
+      .map(({childMdx}) => childMdx)
+      .filter(Boolean);
+
+  projectNodes.forEach((project) => {
+    createPage({
+      path: `/projects/${project.frontmatter.slug}/`,
+      component:
+        `${projectTemplate}?__contentFilePath=${project.internal.contentFilePath}`,
+      context: {
+        id: project.id,
+      },
+    });
+  });
+
+  /**
    * Blog
    * */
   const blogPosts = await graphql(
       `{
-      allMdx(sort: {frontmatter: {date: DESC}}, limit: 1000) {
+      allMdx(
+        sort: {frontmatter: {date: DESC}}
+        limit: 1000
+        filter: {fields: {sourceInstanceName: {eq: "blog"}}}
+      ) {
         edges {
           node {
             id
@@ -441,6 +489,10 @@ export const createPages = async function({actions, graphql}) {
       }
     }`,
   );
+
+  if (blogPosts.errors) {
+    throw blogPosts.errors;
+  }
 
   const posts = blogPosts.data.allMdx.edges;
   const postNodes = posts.map(({node}) => ({
@@ -514,7 +566,7 @@ export const createPages = async function({actions, graphql}) {
    * */
   const distinctTags = await graphql(
       `{
-          allMdx {
+          allMdx(filter: {fields: {sourceInstanceName: {eq: "blog"}}}) {
             distinct(field: {frontmatter: {tags: SELECT}})
           }
         }`,
@@ -525,7 +577,12 @@ export const createPages = async function({actions, graphql}) {
     await graphql(
         `
         {
-          allMdx(filter: {frontmatter: {tags: {in: "${tag}"}}}) {
+          allMdx(
+            filter: {
+              fields: {sourceInstanceName: {eq: "blog"}}
+              frontmatter: {tags: {in: "${tag}"}}
+            }
+          ) {
             edges {
               node {
                 id
@@ -568,7 +625,7 @@ export const createPages = async function({actions, graphql}) {
    * */
   const distinctCategories = await graphql(
       `{
-          allMdx {
+          allMdx(filter: {fields: {sourceInstanceName: {eq: "blog"}}}) {
             distinct(field: {frontmatter: {category: SELECT}})
           }
         }`,
@@ -580,7 +637,12 @@ export const createPages = async function({actions, graphql}) {
     await graphql(
         `
         {
-          allMdx(filter: {frontmatter: {category: {eq: "${category}"}}}) {
+          allMdx(
+            filter: {
+              fields: {sourceInstanceName: {eq: "blog"}}
+              frontmatter: {category: {eq: "${category}"}}
+            }
+          ) {
             edges {
               node {
                 id
@@ -622,7 +684,10 @@ export const createPages = async function({actions, graphql}) {
    * */
   const searchData = await graphql(`
     {
-      allMdx(sort: {frontmatter: {date: DESC}}) {
+      allMdx(
+        sort: {frontmatter: {date: DESC}}
+        filter: {fields: {sourceInstanceName: {eq: "blog"}}}
+      ) {
         nodes {
           frontmatter {
             title
@@ -668,10 +733,16 @@ export const onCreateNode = ({node, actions, getNode}) => {
 
   if (node.internal.type === 'Mdx') {
     const value = createFilePath({node, getNode});
+    const parentNode = getNode(node.parent);
     createNodeField({
       name: 'slug',
       node,
       value,
+    });
+    createNodeField({
+      name: 'sourceInstanceName',
+      node,
+      value: parentNode?.sourceInstanceName || '',
     });
   }
 };
@@ -688,12 +759,26 @@ export const createSchemaCustomization = ({actions, schema}) => {
         }`,
     `type MdxFrontmatter @infer {
             category: String
+            demo: String
             featured: File @fileByRelativePath,
+            gallery: [ProjectGalleryImage!]
             keywords: [String!]
+            language: String
             related: [String!]
+            repo: String
             series: String
             seriesOrder: Int
+            summary: String
             tags: [String!]
+        }`,
+    `type ProjectGalleryImage {
+            image: File @fileByRelativePath
+            alt: String!
+            caption: String
+        }`,
+    `type MdxFields {
+            slug: String
+            sourceInstanceName: String
         }`,
   ];
 

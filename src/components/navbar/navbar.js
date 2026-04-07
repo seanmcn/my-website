@@ -117,6 +117,7 @@ const Navbar = () => {
           <div className="navbar-start siteNavbarLinks">
             <NavbarItem link="/" label="Home"/>
             <NavbarItem link="/blog" label="Blog"/>
+            <NavbarItem link="/projects" label="Projects"/>
             <NavbarItem link="/about" label="About Me"/>
             <NavbarItem link="/contact" label="Contact Me"/>
           </div>
@@ -214,6 +215,7 @@ const Navbar = () => {
             <div className="siteNavbarDrawerLinks">
               <NavbarItem link="/" label="Home" onClick={closeMenu}/>
               <NavbarItem link="/blog" label="Blog" onClick={closeMenu}/>
+              <NavbarItem link="/projects" label="Projects" onClick={closeMenu}/>
               <NavbarItem link="/about" label="About Me" onClick={closeMenu}/>
               <NavbarItem
                 link="/contact"

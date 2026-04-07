@@ -1,0 +1,19 @@
+---
+title: "Chinwag"
+slug: "chinwag"
+summary: "A local-first WhatsApp chat analyzer in Go that turns exports into interactive insights about tone, topics, timing, and conversation dynamics."
+date: "2026-04-06"
+language: "Go"
+repo: "https://github.com/seanmcn/chinwag"
+tags: ["go", "nlp", "whatsapp", "desktop"]
+---
+
+Chinwag is a local-first tool for analysing exported WhatsApp chats and turning them into something more structured and readable.
+
+At a technical level, the project is built in Go and parses raw WhatsApp exports into a timeline of messages, metadata, and conversation boundaries. Once the messages are normalised, Chinwag runs a set of lightweight analysis passes over the text to surface patterns around response times, topic signals, message balance, emotional tone, and other behavioural markers.
+
+One of the more interesting parts of the project is the NLP layer. Rather than leaning on external APIs or heavy models, Chinwag uses a practical local pipeline built around lexicons and heuristics. That includes VADER-style sentiment scoring, stopword filtering, TF-IDF-style topic extraction, and NRC-based emotion, intensity, and VAD scoring.
+
+The output is available both as a desktop app and as a CLI. The desktop app gives a more polished interactive view of the results, while the CLI is useful for experimentation and structured output.
+
+I built Chinwag because I liked the idea of taking messy conversational data and turning it into something that feels legible without compromising privacy. Everything runs locally, the runtime stays simple, and the analysis remains fast enough to feel lightweight rather than academic.

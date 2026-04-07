@@ -7,7 +7,7 @@ import {slugToTitle} from '../../../utils/blog';
 
 const CategoriesWidget = ({variant, onLinkClick}) => {
   const data = useStaticQuery(graphql`{
-  allMdx {
+  allMdx(filter: {fields: {sourceInstanceName: {eq: "blog"}}}) {
     group(field: {frontmatter: {category: SELECT}}, limit: 1) {
       edges {
         node {

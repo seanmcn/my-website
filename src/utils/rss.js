@@ -29,7 +29,10 @@ const rssFeeds = [
       });
     },
     query: `{
-                allMdx(sort: {frontmatter: {date: DESC}}) {
+                allMdx(
+                  sort: {frontmatter: {date: DESC}}
+                  filter: {fields: {sourceInstanceName: {eq: "blog"}}}
+                ) {
                   nodes {
                     frontmatter {
                       title

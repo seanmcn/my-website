@@ -7,7 +7,7 @@ import {slugToTitle} from '../../../utils/blog';
 
 const TagsWidget = ({variant, onLinkClick}) => {
   const data = useStaticQuery(graphql`query allTagsQuery {
-  allMdx {
+  allMdx(filter: {fields: {sourceInstanceName: {eq: "blog"}}}) {
     group(field: {frontmatter: {tags: SELECT}}) {
       tag: fieldValue
       totalCount

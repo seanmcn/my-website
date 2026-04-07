@@ -5,7 +5,12 @@ import PostCard from '../../blog/postCard/postCard';
 
 const LatestPostsHomeWidget = () => {
   const data = useStaticQuery(graphql`query latestPostsHomeQuery {
-  allMdx(sort: {frontmatter: {date: DESC}}, limit: 4, skip: 0) {
+  allMdx(
+    sort: {frontmatter: {date: DESC}}
+    limit: 4
+    skip: 0
+    filter: {fields: {sourceInstanceName: {eq: "blog"}}}
+  ) {
     edges {
       node {
         ...PostListFields

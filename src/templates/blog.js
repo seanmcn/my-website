@@ -77,7 +77,12 @@ export const blogPageQuery = graphql`
         siteUrl
       }
     }
-  allMdx(sort: {frontmatter: {date: DESC}}, limit: $limit, skip: $skip) {
+  allMdx(
+    sort: {frontmatter: {date: DESC}}
+    limit: $limit
+    skip: $skip
+    filter: {fields: {sourceInstanceName: {eq: "blog"}}}
+  ) {
     edges {
       node {
         ...PostListFields
