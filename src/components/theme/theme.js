@@ -87,13 +87,24 @@ const persistThemePreference = (themePreference, hasStoredPreference) => {
 };
 
 export const ThemeProvider = ({children}) => {
-  const [themePreference, setThemePreferenceState] = React.useState(
-      getInitialThemePreference,
-  );
-  const [hasStoredPreference, setHasStoredPreference] = React.useState(
-      getInitialHasStoredPreference,
-  );
-  const [systemTheme, setSystemTheme] = React.useState(getSystemTheme);
+  // Initialise with SSR-safe defaults so the first client render matches the
+  // server-rendered HTML (avoids React #418/#423 hydration mismatches). The
+  // real values from localStorage / <html> dataset are picked up in the effect
+  // below.
+  const [themePreference, setThemePreferenceState] = React.useState('system');
+  const [hasStoredPreference, setHasStoredPreference] = React.useState(false);
+  const [systemTheme, setSystemTheme] = React.useState('light');
+
+  React.useEffect(() => {
+    const initialPreference = getInitialThemePreference();
+    if (initialPreference !== 'system') {
+      setThemePreferenceState(initialPreference);
+    }
+    if (getInitialHasStoredPreference()) {
+      setHasStoredPreference(true);
+    }
+    setSystemTheme(getSystemTheme());
+  }, []);
 
   const resolvedTheme = themePreference === 'system' ? systemTheme :
     themePreference;
