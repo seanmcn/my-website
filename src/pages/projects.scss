@@ -111,9 +111,19 @@
 .projectsCardImage {
   border-radius: 0.85rem;
   overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.projectsCardImage .gatsby-image-wrapper,
+.projectsCardImage .gatsby-image-wrapper > div {
+  height: 100% !important;
+  width: 100% !important;
 }
 
 .projectsCardImage img {
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: cover !important;
   object-position: top left !important;
 }
 

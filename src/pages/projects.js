@@ -63,6 +63,7 @@ const ProjectsPage = ({data}) => {
                     image={image}
                     alt={project.frontmatter.title}
                     className="projectsCardImage"
+                    imgStyle={{objectFit: 'cover', objectPosition: 'top left'}}
                   />
                 )}
                 <p className="projectsCardSummary">
@@ -119,6 +120,7 @@ export const query = graphql`
                   width: 960
                   height: 560
                   placeholder: BLURRED
+                  transformOptions: {cropFocus: NORTH}
                 )
               }
             }
