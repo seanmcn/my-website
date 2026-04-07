@@ -121,10 +121,56 @@ html[data-theme='dark'] .homeAboutButton.button {
   color: #081219;
 }
 
-.homeProjectsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.homeProjectsCarousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.homeProjectsViewport {
+  overflow: hidden;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.homeProjectsTrack {
+  display: flex;
   gap: 1rem;
+  transition: transform 220ms ease;
+  will-change: transform;
+}
+
+.homeProjectsArrow {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.85rem;
+  height: 2.85rem;
+  border: 1px solid var(--surface-border-strong);
+  border-radius: 999px;
+  background: var(--surface-base);
+  color: var(--text-strong);
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-size: 1.8rem;
+  line-height: 1;
+  padding: 0;
+  box-shadow: var(--shadow-soft);
+  transition: background-color 160ms ease, border-color 160ms ease,
+    transform 160ms ease, opacity 160ms ease;
+}
+
+.homeProjectsArrow:hover:not(:disabled) {
+  background: var(--surface-accent);
+  border-color: var(--link-color);
+  transform: translateY(-1px);
+}
+
+.homeProjectsArrow:disabled {
+  cursor: default;
+  opacity: 0.45;
 }
 
 .homeProjectCard {
@@ -132,6 +178,8 @@ html[data-theme='dark'] .homeAboutButton.button {
   flex-direction: column;
   gap: 0.75rem;
   min-height: 100%;
+  flex: 0 0 calc((100% - (var(--projects-per-view) - 1) * 1rem) / var(--projects-per-view));
+  min-width: 0;
   padding: 1.1rem 1.15rem;
   border: 1px solid var(--surface-border);
   border-radius: 1rem;
@@ -164,6 +212,15 @@ html[data-theme='dark'] .homeAboutButton.button {
   margin: 0;
 }
 
+.homeProjectImage {
+  border-radius: 0.85rem;
+  overflow: hidden;
+}
+
+.homeProjectImage img {
+  object-position: top left !important;
+}
+
 .homeProjectDescription {
   color: var(--text-muted);
   line-height: 1.65;
@@ -175,6 +232,26 @@ html[data-theme='dark'] .homeAboutButton.button {
   font-size: 0.92rem;
   font-weight: 600;
   margin-top: auto;
+}
+
+.homeProjectsPagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+}
+
+.homeProjectsPaginationDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--surface-border-strong);
+  opacity: 0.45;
+}
+
+.homeProjectsPaginationDot.is-active {
+  background: var(--link-color);
+  opacity: 1;
 }
 
 .homeWritingSection {
@@ -194,10 +271,6 @@ html[data-theme='dark'] .homeAboutButton.button {
   .homeSectionHeader {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .homeProjectsGrid {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -221,6 +294,16 @@ html[data-theme='dark'] .homeAboutButton.button {
 
   .homeAboutLead {
     font-size: 1.1rem;
+  }
+
+  .homeProjectsCarousel {
+    gap: 0.55rem;
+  }
+
+  .homeProjectsArrow {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
   }
 
   .homeAboutText,

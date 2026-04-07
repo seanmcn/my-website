@@ -1,21 +1,109 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {graphql, Link} from 'gatsby';
+import {GatsbyImage, getImage} from 'gatsby-plugin-image';
 import Layout from '../components/layout/layout';
 import SEO from '../components/seo/seo';
 import RuntimeSeoSync from '../components/seo/runtimeSeoSync';
 import LatestPostsHomeWidget from '../components/widgets/latestPosts/latestPostsHome';
-import StaticData from '../data/static.json';
 import avatar from '../assets/images/emojis/250/wave.png';
 import './index.scss';
 
 export default class IndexPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentProjectIndex: 0,
+      projectsPerView: 3,
+    };
+  }
+
+  componentDidMount() {
+    this.updateProjectsPerView();
+    window.addEventListener('resize', this.updateProjectsPerView);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateProjectsPerView);
+  }
+
+  updateProjectsPerView = () => {
+    const projects = this.props.data.projects.nodes
+      .map(({childMdx}) => childMdx)
+      .filter(Boolean);
+    let projectsPerView = 3;
+
+    if (window.innerWidth <= 768) {
+      projectsPerView = 1;
+    } else if (window.innerWidth <= 1023) {
+      projectsPerView = 2;
+    }
+
+    this.setState(prevState => {
+      const maxIndex = Math.max(
+        projects.length - projectsPerView,
+        0
+      );
+
+      if (
+        prevState.projectsPerView === projectsPerView &&
+        prevState.currentProjectIndex <= maxIndex
+      ) {
+        return null;
+      }
+
+      return {
+        projectsPerView,
+        currentProjectIndex: Math.min(prevState.currentProjectIndex, maxIndex),
+      };
+    });
+  };
+
+  moveProjects = direction => {
+    const projects = this.props.data.projects.nodes
+      .map(({childMdx}) => childMdx)
+      .filter(Boolean);
+    this.setState(prevState => {
+      const maxIndex = Math.max(
+        projects.length - prevState.projectsPerView,
+        0
+      );
+      const step = prevState.projectsPerView;
+
+      return {
+        currentProjectIndex: Math.min(
+          Math.max(prevState.currentProjectIndex + direction * step, 0),
+          maxIndex
+        ),
+      };
+    });
+  };
+
   render() {
     const {
       title: siteTitle,
       description: siteDescription,
       siteUrl,
     } = this.props.data.site.siteMetadata;
+    const projects = this.props.data.projects.nodes
+      .map(({childMdx}) => childMdx)
+      .filter(Boolean);
+    const {currentProjectIndex, projectsPerView} = this.state;
+    const maxProjectIndex = Math.max(
+      projects.length - projectsPerView,
+      0
+    );
+    const projectPositions = [];
+    for (let index = 0; index <= maxProjectIndex; index += projectsPerView) {
+      projectPositions.push(index);
+    }
+    if (projectPositions[projectPositions.length - 1] !== maxProjectIndex) {
+      projectPositions.push(maxProjectIndex);
+    }
+    const projectTrackStyle = {
+      '--projects-per-view': projectsPerView,
+      transform: `translateX(calc(-${currentProjectIndex} * ((100% - (${projectsPerView} - 1) * 1rem) / ${projectsPerView} + 1rem)))`,
+    };
 
     return (
       <Layout>
@@ -76,22 +164,69 @@ export default class IndexPage extends React.Component {
                 A few projects and experiments I&apos;ve enjoyed working on.
               </p>
             </div>
-            <div className="homeProjectsGrid">
-              {StaticData.github_repos.map(project => (
-                <a
-                  className="homeProjectCard"
-                  href={project.link}
-                  key={project.id}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <div className="homeProjectMeta">{project.language}</div>
-                  <h3 className="homeProjectTitle">{project.title}</h3>
-                  <p className="homeProjectDescription">
-                    {project.description}
-                  </p>
-                  <span className="homeProjectLink">View repository</span>
-                </a>
+            <div className="homeProjectsCarousel">
+              <button
+                className="homeProjectsArrow homeProjectsArrowLeft"
+                type="button"
+                onClick={() => this.moveProjects(-1)}
+                disabled={currentProjectIndex === 0}
+                aria-label="Show previous projects"
+              >
+                ‹
+              </button>
+              <div className="homeProjectsViewport" aria-label="Project list">
+                <div className="homeProjectsTrack" style={projectTrackStyle}>
+                  {projects.map(project => {
+                    const image = getImage(project.frontmatter.featured);
+
+                    return (
+                    <Link
+                      className="homeProjectCard"
+                      to={`/projects/${project.frontmatter.slug}/`}
+                      key={project.id}
+                    >
+                      <div className="homeProjectMeta">
+                        {project.frontmatter.language}
+                      </div>
+                      <h3 className="homeProjectTitle">
+                        {project.frontmatter.title}
+                      </h3>
+                      {image && (
+                        <GatsbyImage
+                          image={image}
+                          alt={project.frontmatter.title}
+                          className="homeProjectImage"
+                        />
+                      )}
+                      <p className="homeProjectDescription">
+                        {project.frontmatter.summary}
+                      </p>
+                      <span className="homeProjectLink">View project</span>
+                    </Link>
+                    );
+                  })}
+                </div>
+              </div>
+              <button
+                className="homeProjectsArrow homeProjectsArrowRight"
+                type="button"
+                onClick={() => this.moveProjects(1)}
+                disabled={currentProjectIndex >= maxProjectIndex}
+                aria-label="Show more projects"
+              >
+                ›
+              </button>
+            </div>
+            <div className="homeProjectsPagination" aria-hidden="true">
+              {projectPositions.map(position => (
+                <span
+                  key={position}
+                  className={
+                    position === currentProjectIndex
+                      ? 'homeProjectsPaginationDot is-active'
+                      : 'homeProjectsPaginationDot'
+                  }
+                />
               ))}
             </div>
           </section>
@@ -117,9 +252,12 @@ export default class IndexPage extends React.Component {
 
 IndexPage.propTypes = {
   data: PropTypes.shape({
-    allWordpressPost: PropTypes.shape({
+    projects: PropTypes.shape({
       // eslint-disable-next-line react/forbid-prop-types
-      edges: PropTypes.array,
+      nodes: PropTypes.array,
+    }),
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.object,
     }),
   }),
   pageContext: PropTypes.shape({
@@ -135,6 +273,31 @@ export const indexPageQuery = graphql`
         title
         description
         siteUrl
+      }
+    }
+    projects: allFile(
+      filter: {sourceInstanceName: {eq: "projects"}, childMdx: {id: {ne: null}}}
+      sort: {childMdx: {frontmatter: {date: DESC}}}
+    ) {
+      nodes {
+        childMdx {
+          id
+          frontmatter {
+            title
+            slug
+            summary
+            language
+            featured {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 720
+                  height: 420
+                  placeholder: BLURRED
+                )
+              }
+            }
+          }
+        }
       }
     }
   }
