@@ -770,6 +770,7 @@ export const createSchemaCustomization = ({actions, schema}) => {
             seriesOrder: Int
             summary: String
             tags: [String!]
+            techStack: [String!]
         }`,
     `type ProjectGalleryImage {
             image: File @fileByRelativePath

@@ -22,6 +22,7 @@ const ProjectTemplate = ({data, children, location}) => {
     repo,
     demo,
     tags,
+    techStack,
     featured,
     gallery = [],
   } = project.frontmatter;
@@ -47,71 +48,85 @@ const ProjectTemplate = ({data, children, location}) => {
           ← Back to all projects
         </Link>
 
-        <div className="projectPageGrid">
-          <div className="projectMainColumn">
-            <section className="projectHero box">
-              <div className="projectHeroContent">
-                <div className="projectHeroEyebrow">Project</div>
-                <h1 className="title projectHeroTitle">{title}</h1>
-                {summary && (
-                  <p className="projectHeroLead">{summary}</p>
-                )}
-                <div className="projectHeroActions">
-                  {repo && (
-                    <a
-                      className="projectActionButton projectActionButton--primary"
-                      href={repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View repository
-                    </a>
-                  )}
-                  {demo && (
-                    <a
-                      className="projectActionButton"
-                      href={demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Open project
-                    </a>
-                  )}
-                </div>
-              </div>
-            </section>
-
-            {image && !hasGallery && (
-              <section className="projectFeatured box">
-                <GatsbyImage image={image} alt={title} className="projectImage" />
-              </section>
+        <section className="projectHero">
+          <div className="projectHeroInner">
+            <div className="projectHeroEyebrow">
+              <span>Project</span>
+              {language && <span className="projectHeroEyebrowDot">·</span>}
+              {language && <span className="projectHeroLanguage">{language}</span>}
+            </div>
+            <h1 className="projectHeroTitle">{title}</h1>
+            {summary && (
+              <p className="projectHeroLead">{summary}</p>
             )}
+          </div>
+          {(repo || demo) && (
+            <div className="projectHeroActions">
+              {repo && (
+                <a
+                  className="projectActionButton projectActionButton--primary"
+                  href={repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View repository
+                </a>
+              )}
+              {demo && (
+                <a
+                  className="projectActionButton projectActionButton--primary"
+                  href={demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View website
+                </a>
+              )}
+            </div>
+          )}
+        </section>
 
-            {hasGallery && activeGalleryImage && (
-              <section className="projectGallery box">
-                <div className="projectGalleryHeader">
-                  <h2 className="title projectGalleryTitle">Gallery</h2>
-                  <p className="projectGallerySubtitle">
-                    Screenshots and interface details from the project.
-                  </p>
-                </div>
-                <div className="projectGalleryShell">
-                  <div className="projectGalleryThumbs" aria-label="Gallery thumbnails">
+        <section className={`projectStory ${(image || hasGallery) ? 'has-media' : ''}`}>
+          {(image || hasGallery) && (
+            <aside className="projectStoryMedia">
+              <div className="projectStoryMediaSticky">
+                {hasGallery && activeGalleryImage ? (
+                  <button
+                    type="button"
+                    className="projectStoryThumb"
+                    onClick={() => setIsGalleryModalOpen(true)}
+                    aria-label="Zoom image"
+                  >
+                    <GatsbyImage
+                      image={activeGalleryImage}
+                      alt={activeGalleryItem.alt}
+                      imgStyle={{objectFit: 'contain', objectPosition: 'top center'}}
+                    />
+                    <span className="projectStoryThumbHint">Click to zoom</span>
+                  </button>
+                ) : (
+                  image && (
+                    <div className="projectStoryThumb">
+                      <GatsbyImage image={image} alt={title} />
+                    </div>
+                  )
+                )}
+                {hasGallery && activeGalleryItem?.caption && (
+                  <p className="projectStoryThumbCaption">{activeGalleryItem.caption}</p>
+                )}
+                {hasGallery && galleryItems.length > 1 && (
+                  <div className="projectStoryThumbRail" aria-label="Gallery thumbnails">
                     {galleryItems.map((item, index) => {
                       const thumbImage = getImage(item.image);
-
-                      if (!thumbImage) {
-                        return null;
-                      }
-
+                      if (!thumbImage) return null;
                       return (
                         <button
                           type="button"
                           key={`${item.alt}-${index}`}
                           className={
                             index === activeGalleryIndex ?
-                              'projectGalleryThumb is-active' :
-                              'projectGalleryThumb'
+                              'projectStoryThumbDot is-active' :
+                              'projectStoryThumbDot'
                           }
                           onClick={() => setActiveGalleryIndex(index)}
                           aria-label={`Show image ${index + 1}: ${item.alt}`}
@@ -119,90 +134,42 @@ const ProjectTemplate = ({data, children, location}) => {
                           <GatsbyImage
                             image={thumbImage}
                             alt={item.alt}
-                            className="projectGalleryThumbImage"
                             imgStyle={{objectFit: 'cover', objectPosition: 'top center'}}
                           />
                         </button>
                       );
                     })}
                   </div>
-
-                  <div className="projectGalleryViewer">
-                    <button
-                      type="button"
-                      className="projectGalleryActive"
-                      onClick={() => setIsGalleryModalOpen(true)}
-                    >
-                      <GatsbyImage
-                        image={activeGalleryImage}
-                        alt={activeGalleryItem.alt}
-                        className="projectGalleryActiveImage"
-                        imgStyle={{objectFit: 'contain', objectPosition: 'top center'}}
-                      />
-                    </button>
-                    <div className="projectGalleryViewerFooter">
-                      {activeGalleryItem.caption ? (
-                        <p className="projectGalleryCaption">
-                          {activeGalleryItem.caption}
-                        </p>
-                      ) : <span />}
-                      <button
-                        type="button"
-                        className="projectGalleryZoomButton"
-                        onClick={() => setIsGalleryModalOpen(true)}
-                      >
-                        Zoom image
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            <section className="projectBody box">
-              <div className="content projectBodyContent">
-                {children}
+                )}
               </div>
-            </section>
+            </aside>
+          )}
+          <div className="content projectStoryContent">
+            {children}
           </div>
-
-          <aside className="projectAside">
-            <div className="projectMetaCard box">
-              {language && (
-                <div className="projectMetaItem">
-                  <span className="projectMetaLabel">Language</span>
-                  <span className="projectMetaValue">{language}</span>
-                </div>
-              )}
-              {repo && (
-                <div className="projectMetaItem">
-                  <span className="projectMetaLabel">Repository</span>
-                  <a href={repo} target="_blank" rel="noopener noreferrer">
-                    View on GitHub
-                  </a>
-                </div>
-              )}
-              {demo && (
-                <div className="projectMetaItem">
-                  <span className="projectMetaLabel">Demo</span>
-                  <a href={demo} target="_blank" rel="noopener noreferrer">
-                    Open project
-                  </a>
-                </div>
-              )}
-              {tags && tags.length ? (
-                <div className="projectMetaItem">
-                  <span className="projectMetaLabel">Tags</span>
-                  <div className="projectTagList">
-                    {tags.map((tag) => (
-                      <span className="projectTag" key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-            </div>
+          <aside className="projectStoryMeta">
+            {techStack && techStack.length ? (
+              <div className="projectStoryMetaBlock">
+                <span className="projectStoryMetaLabel">Tech stack</span>
+                <ul className="projectStoryMetaTags">
+                  {techStack.map((item) => (
+                    <li className="projectStoryMetaTag" key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            {tags && tags.length ? (
+              <div className="projectStoryMetaBlock">
+                <span className="projectStoryMetaLabel">Tags</span>
+                <ul className="projectStoryMetaTags">
+                  {tags.map((tag) => (
+                    <li className="projectStoryMetaTag" key={tag}>#{tag}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
           </aside>
-        </div>
+        </section>
       </div>
 
       {activeGalleryImage && (
@@ -271,6 +238,7 @@ export const pageQuery = graphql`
         repo
         demo
         tags
+        techStack
         featured {
           childImageSharp {
             gatsbyImageData(
