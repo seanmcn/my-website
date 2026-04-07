@@ -293,6 +293,7 @@ export const indexPageQuery = graphql`
                   width: 720
                   height: 420
                   placeholder: BLURRED
+                  transformOptions: {cropFocus: NORTH}
                 )
               }
             }
