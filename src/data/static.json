@@ -1,6 +1,13 @@
 {
   "github_repos": [
     {
+      "id": "chinwag",
+      "title": "Chinwag",
+      "link": "https://github.com/seanmcn/chinwag",
+      "description": "A local-first WhatsApp chat analyzer in Go that turns exports into interactive insights about tone, topics, timing, and conversation dynamics.",
+      "language": "go"
+    },
+    {
       "id": "day-timeline",
       "title": "Day Timeline",
       "link": "https://github.com/seanmcn/day-timeline",
