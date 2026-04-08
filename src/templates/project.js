@@ -35,6 +35,80 @@ const ProjectTemplate = ({data, children, location}) => {
   const activeGalleryItem = galleryItems[activeGalleryIndex] || null;
   const activeGalleryImage = getImage(activeGalleryItem?.image);
 
+  const [zoom, setZoom] = React.useState(1);
+  const [pan, setPan] = React.useState({x: 0, y: 0});
+  const dragState = React.useRef(null);
+
+  const resetView = React.useCallback(() => {
+    setZoom(1);
+    setPan({x: 0, y: 0});
+  }, []);
+
+  const showPrev = React.useCallback(() => {
+    if (galleryItems.length < 2) return;
+    setActiveGalleryIndex((i) => (i - 1 + galleryItems.length) % galleryItems.length);
+    resetView();
+  }, [galleryItems.length, resetView]);
+
+  const showNext = React.useCallback(() => {
+    if (galleryItems.length < 2) return;
+    setActiveGalleryIndex((i) => (i + 1) % galleryItems.length);
+    resetView();
+  }, [galleryItems.length, resetView]);
+
+  const closeModal = React.useCallback(() => {
+    setIsGalleryModalOpen(false);
+    resetView();
+  }, [resetView]);
+
+  React.useEffect(() => {
+    if (!isGalleryModalOpen) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'ArrowLeft') showPrev();
+      else if (e.key === 'ArrowRight') showNext();
+      else if (e.key === '0') resetView();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isGalleryModalOpen, showPrev, showNext, resetView]);
+
+  const updateZoom = React.useCallback((next) => {
+    setZoom((z) => {
+      const clamped = Math.min(6, Math.max(1, typeof next === 'function' ? next(z) : next));
+      if (clamped === 1) setPan({x: 0, y: 0});
+      return clamped;
+    });
+  }, []);
+
+  const onWheel = (e) => {
+    e.preventDefault();
+    const delta = -e.deltaY * 0.0015;
+    updateZoom((z) => z + delta * z);
+  };
+
+  const onPointerDown = (e) => {
+    if (zoom <= 1) return;
+    dragState.current = {x: e.clientX - pan.x, y: e.clientY - pan.y};
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e) => {
+    if (!dragState.current) return;
+    setPan({x: e.clientX - dragState.current.x, y: e.clientY - dragState.current.y});
+  };
+
+  const onPointerUp = (e) => {
+    dragState.current = null;
+    if (e.currentTarget.hasPointerCapture?.(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+  };
+
+  const onImageDoubleClick = () => {
+    if (zoom === 1) updateZoom(2);
+    else resetView();
+  };
+
   return (
     <Layout>
       <RuntimeSeoSync
@@ -175,7 +249,7 @@ const ProjectTemplate = ({data, children, location}) => {
       {activeGalleryImage && (
         <Modal
           isOpen={isGalleryModalOpen}
-          onRequestClose={() => setIsGalleryModalOpen(false)}
+          onRequestClose={closeModal}
           className="projectGalleryModal"
           overlayClassName="projectGalleryModalOverlay"
           contentLabel={`${title} gallery image`}
@@ -183,17 +257,82 @@ const ProjectTemplate = ({data, children, location}) => {
           <button
             type="button"
             className="projectGalleryModalClose"
-            onClick={() => setIsGalleryModalOpen(false)}
+            onClick={closeModal}
             aria-label="Close image preview"
           >
             ×
           </button>
-          <GatsbyImage
-            image={activeGalleryImage}
-            alt={activeGalleryItem.alt}
-            className="projectGalleryModalImage"
-            imgStyle={{objectFit: 'contain', objectPosition: 'top center'}}
-          />
+          {galleryItems.length > 1 && (
+            <button
+              type="button"
+              className="projectGalleryModalNav projectGalleryModalNav--prev"
+              onClick={showPrev}
+              aria-label="Previous image"
+            >
+              ‹
+            </button>
+          )}
+          {galleryItems.length > 1 && (
+            <button
+              type="button"
+              className="projectGalleryModalNav projectGalleryModalNav--next"
+              onClick={showNext}
+              aria-label="Next image"
+            >
+              ›
+            </button>
+          )}
+          <div
+            className="projectGalleryModalStage"
+            onWheel={onWheel}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerUp}
+            onDoubleClick={onImageDoubleClick}
+            style={{cursor: zoom > 1 ? (dragState.current ? 'grabbing' : 'grab') : 'zoom-in'}}
+          >
+            <div
+              className="projectGalleryModalStageInner"
+              style={{
+                transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
+              }}
+            >
+              <GatsbyImage
+                image={activeGalleryImage}
+                alt={activeGalleryItem.alt}
+                className="projectGalleryModalImage"
+                imgStyle={{objectFit: 'contain', objectPosition: 'center'}}
+                draggable={false}
+              />
+            </div>
+          </div>
+          <div className="projectGalleryModalToolbar">
+            <button
+              type="button"
+              className="projectGalleryModalZoomBtn"
+              onClick={() => updateZoom((z) => z - 0.5)}
+              aria-label="Zoom out"
+            >
+              −
+            </button>
+            <button
+              type="button"
+              className="projectGalleryModalZoomBtn"
+              onClick={resetView}
+              aria-label="Reset zoom"
+            >
+              {Math.round(zoom * 100)}%
+            </button>
+            <button
+              type="button"
+              className="projectGalleryModalZoomBtn"
+              onClick={() => updateZoom((z) => z + 0.5)}
+              aria-label="Zoom in"
+            >
+              +
+            </button>
+          </div>
           {activeGalleryItem.caption && (
             <p className="projectGalleryModalCaption">
               {activeGalleryItem.caption}
