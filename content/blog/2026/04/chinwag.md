@@ -35,7 +35,7 @@ On top of that, Chinwag now uses the [NRC emotion lexicons](https://nrc.canada.c
 
 ## Why I Built It
 
-I was partly inspired by [Mimoto Messages Analyzer](https://apps.apple.com/gb/app/mimoto-messages-analyzer), but I also wanted to build something that was a bit more transparent in how it worked and more in line with the kind of software I enjoy making.
+I was partly inspired by [Mimoto Messages Analyzer](https://apps.apple.com/us/app/mimoto-messages-analyzer/id6739403565?mt=12), but I also wanted to build something that was a bit more transparent in how it worked and more in line with the kind of software I enjoy making.
 
 Back when I was at UBC, I did some basic text analysis work, and I liked the idea of applying that sort of thinking to something much more personal and conversational. WhatsApp exports are messy, informal, and full of small behavioural tells, which makes them a fun input for lightweight analysis.
 
