@@ -26,7 +26,7 @@ jobs:
         run: npm ci --include=optional
 
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           install: false
           command: npm run test:e2e:record
