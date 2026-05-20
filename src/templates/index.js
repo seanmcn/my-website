@@ -137,7 +137,7 @@ export default class IndexPage extends React.Component {
                   I&apos;m a software engineer who likes building things that are simple, fast, and actually useful.
                 </p>
                 <p className="homeAboutText">
-                  Ive worked across everything from digital archives at UBC to hospitality systems at Kobas, and later large-scale backend services at Bumble focused on recommendations and discovery.
+                  I&rsquo;ve worked across everything from digital archives at UBC to hospitality systems at Kobas, and large-scale backend services at Bumble focused on recommendations and discovery, before joining Axiom Maths to lead engineering.
                 </p>
                 <p className="homeAboutText">
                   Between shipping quickly in smaller teams and working on systems at scale, I&rsquo;ve developed a bias toward keeping things simple and practical.

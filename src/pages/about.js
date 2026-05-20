@@ -13,7 +13,7 @@ export default class AboutPage extends React.Component {
       title: siteTitle,
       siteUrl,
     } = this.props.data.site.siteMetadata;
-    const description = 'Learn more about Seán McNamara, a backend-focused software engineer in London with experience across product engineering, platforms, and AI-assisted workflows.';
+    const description = 'Learn more about Seán McNamara, Head of Engineering at Axiom Maths, with a background in backend platforms, product engineering, and AI-assisted workflows.';
 
     return (
       <Layout>
@@ -30,15 +30,16 @@ export default class AboutPage extends React.Component {
                 <div className="aboutHeroEyebrow">About</div>
                 <h1 className="title aboutHeroTitle">A Peek Into My Journey</h1>
                 <p className="aboutHeroLead">
-                  I&apos;m a software engineer based in London, with a backend
-                  leaning and a long-running interest in practical tooling,
-                  clean product thinking, and shipping useful things.
+                  I&apos;m Head of Engineering at <a href="https://axiommaths.com" target="_blank" rel="noopener noreferrer">Axiom Maths</a>,
+                  based in London, with a backend leaning and a long-running
+                  interest in practical tooling, clean product thinking, and
+                  shipping useful things.
                 </p>
                 <p className="aboutHeroLead aboutHeroLeadSecondary">
-                  Right now I&apos;m focused on finding my next role while
-                  exploring AI-assisted development workflows, especially with
-                  Claude and Codex, and thinking more seriously about where I
-                  want to grow next.
+                  Day to day, I&apos;m leading the technical side of Axiom
+                  Maths&apos; mission to help more young people realise their
+                  mathematical potential, while continuing to explore
+                  AI-assisted development workflows with Claude and Codex.
                 </p>
               </div>
 
@@ -52,7 +53,7 @@ export default class AboutPage extends React.Component {
                       </span>
                       <span>Role</span>
                     </dt>
-                    <dd>Software Engineer</dd>
+                    <dd>Head of Engineering, Axiom Maths</dd>
                   </div>
                   <div className="aboutSnapshotItem">
                     <dt>
@@ -70,7 +71,7 @@ export default class AboutPage extends React.Component {
                       </span>
                       <span>Current Focus</span>
                     </dt>
-                    <dd>Finding a new role</dd>
+                    <dd>Building engineering at Axiom Maths</dd>
                   </div>
                   <div className="aboutSnapshotItem">
                     <dt>
@@ -143,20 +144,37 @@ export default class AboutPage extends React.Component {
                     across a wide range of systems and challenges.
                   </p>
                   <p>
-                    More recently, I worked at Bumble, where I was part of the
+                    After that, I worked at Bumble, where I was part of the
                     backend platform behind recommendations and discovery. That
                     gave me experience working on large-scale distributed
                     systems serving a global product, and added another layer
                     to how I think about reliability, performance, and
                     engineering at scale.
                   </p>
+                  <h2>Where I Am Now</h2>
+                  <p>
+                    I&apos;ve recently joined <a href="https://axiommaths.com" target="_blank" rel="noopener noreferrer">Axiom Maths</a> as
+                    Head of Engineering. Axiom Maths partners with schools
+                    across England and Wales to help young people with the
+                    aptitude and appetite for maths realise their potential.
+                  </p>
+                  <p>
+                    My focus is building the technology that lets the
+                    organisation scale its impact: dependable systems,
+                    thoughtful tooling for our teams, and infrastructure that
+                    supports the curriculum, coaching, and operations behind
+                    the programmes. It&apos;s the most mission-driven work
+                    I&apos;ve done, and a good place to put a decade of
+                    engineering experience to use.
+                  </p>
                   <h2>What I&apos;m Exploring Now</h2>
                   <p>
-                    Lately, I&apos;ve been spending more time with Golang,
-                    modern developer workflows, and AI tooling, especially GPT
-                    integrations and coding assistants. I enjoy the mix of
-                    practical engineering and experimentation that comes with
-                    working in that space.
+                    Alongside the day job, I&apos;ve been spending time with
+                    Golang, modern developer workflows, and AI tooling,
+                    especially Claude and Codex. I enjoy the mix of practical
+                    engineering and experimentation that comes with working in
+                    that space, and looking for ways to bring it back into how
+                    teams I work with ship software.
                   </p>
                   <h2>What Keeps Me Interested</h2>
                   <p>
@@ -227,13 +245,18 @@ export default class AboutPage extends React.Component {
                     </span>
                   </li>
                   <li>
-                    <strong>TBD...</strong>
+                    <strong>Head of Engineering</strong>
                     <span className="aboutTimelineMeta">
-                      Next
+                      Axiom Maths · 2026 - Present
+                    </span>
+                    <span className="aboutTimelineMeta">
+                      London, England
                     </span>
                     <span>
-                      Looking for the right next role, with a longer-term goal
-                      of growing toward Head of Engineering.
+                      Leading engineering for a charity helping young people
+                      across England and Wales realise their mathematical
+                      potential, building the technology behind the
+                      programmes, partnerships, and operations.
                     </span>
                   </li>
                 </ol>
@@ -273,7 +296,7 @@ export const Head = ({data, location}) => {
       <title>{title}</title>
       <SEO
         title={title}
-        description="Learn more about Seán McNamara, a backend-focused software engineer in London with experience across product engineering, platforms, and AI-assisted workflows."
+        description="Learn more about Seán McNamara, Head of Engineering at Axiom Maths, with a background in backend platforms, product engineering, and AI-assisted workflows."
         siteTitle={siteTitle}
         siteDescription={siteDescription}
         siteUrl={siteUrl}
