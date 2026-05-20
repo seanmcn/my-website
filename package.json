@@ -52,7 +52,7 @@
         "regenerator-runtime": "^0.13.11",
         "remark-emoji": "^3.1.2",
         "remark-gfm": "^1.0.0",
-        "sass": "^1.98.0"
+        "sass": "^1.99.0"
     },
     "keywords": [
         "gatsby",
