@@ -71,6 +71,12 @@
   margin-top: 0.8rem;
 }
 
+.aboutHeroLead a,
+.aboutStoryContent a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .aboutSnapshotShell {
   align-self: start;
   background: var(--surface-elevated);
