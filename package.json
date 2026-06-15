@@ -78,7 +78,7 @@
         "test:e2e:record": "npm run clean && mkdir -p .cache && PORT=$(detect-port 8000) && CYPRESS_BASE_URL=http://localhost:$PORT CYPRESS_TESTING=true start-server-and-test \"env NODE_OPTIONS=--disable-warning=DEP0040 GATSBY_FEEDBACK_DISABLED=1 GATSBY_TELEMETRY_DISABLED=1 CYPRESS_TESTING=true gatsby develop -p $PORT\" http://localhost:$PORT cy:run:record"
     },
     "devDependencies": {
-        "@babel/core": "^7.11.0",
+        "@babel/core": "^7.29.6",
         "@babel/eslint-parser": "^7.22.9",
         "@babel/preset-react": "^7.22.5",
         "@testing-library/cypress": "^10.1.0",
