@@ -71,6 +71,7 @@
         "develop": "npm run clean && mkdir -p .cache && detect-port 8000 | xargs -I {} env NODE_OPTIONS=--disable-warning=DEP0040 GATSBY_FEEDBACK_DISABLED=1 GATSBY_TELEMETRY_DISABLED=1 gatsby develop -p {}",
         "format": "eslint src --fix",
         "serve": "NODE_OPTIONS=--disable-warning=DEP0040 GATSBY_FEEDBACK_DISABLED=1 GATSBY_TELEMETRY_DISABLED=1 gatsby serve",
+        "taxonomy": "node scripts/list-taxonomy.mjs",
         "start": "npm run develop",
         "test": "echo \"Error: no tests setup yet!\" && exit 1",
         "test:e2e": "npm run clean && mkdir -p .cache && PORT=$(detect-port 8000) && CYPRESS_BASE_URL=http://localhost:$PORT CYPRESS_TESTING=true start-server-and-test \"env NODE_OPTIONS=--disable-warning=DEP0040 GATSBY_FEEDBACK_DISABLED=1 GATSBY_TELEMETRY_DISABLED=1 CYPRESS_TESTING=true gatsby develop -p $PORT\" http://localhost:$PORT cy:open",
