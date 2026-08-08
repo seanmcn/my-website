@@ -1,0 +1,71 @@
+name: Sync develop
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-develop
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reset develop to main
+        run: |
+          set -euo pipefail
+
+          git fetch --quiet origin \
+            +refs/heads/main:refs/remotes/origin/main \
+            +refs/heads/develop:refs/remotes/origin/develop
+
+          main_sha=$(git rev-parse origin/main)
+          develop_sha=$(git rev-parse origin/develop)
+
+          if [ "$main_sha" = "$develop_sha" ]; then
+            echo "develop already matches main ($(git rev-parse --short "$main_sha")) - nothing to do."
+            exit 0
+          fi
+
+          # Commits on develop that main does not contain. git cherry marks a
+          # commit '-' when main already holds an equivalent patch (the
+          # duplicates left behind by rebase-merging the release) and '+' when
+          # the change is genuinely absent from main.
+          unreleased=$(git cherry origin/main origin/develop | grep '^+' || true)
+
+          if [ -n "$unreleased" ]; then
+            echo "::warning::develop holds work that is not on main - skipping reset."
+            echo "$unreleased"
+            {
+              echo "### develop not reset"
+              echo
+              echo "These commits exist only on develop, so resetting would discard them:"
+              echo
+              echo '```'
+              echo "$unreleased"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          git push --force-with-lease=refs/heads/develop:"$develop_sha" \
+            origin "$main_sha":refs/heads/develop
+
+          echo "develop reset to main ($(git rev-parse --short "$main_sha"))."
+          {
+            echo "### develop reset to main"
+            echo
+            echo "\`develop\` moved from \`$(git rev-parse --short "$develop_sha")\` to \`$(git rev-parse --short "$main_sha")\`."
+            echo "Only rebase duplicates were discarded."
+          } >> "$GITHUB_STEP_SUMMARY"
