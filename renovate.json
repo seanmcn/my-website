@@ -1,13 +1,54 @@
 {
-    "baseBranches": [
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended",
+        ":semanticCommits"
+    ],
+    "baseBranchPatterns": [
         "develop"
     ],
-    "extends": [
-        "config:base"
-    ],
     "rangeStrategy": "replace",
+    "prConcurrentLimit": 5,
     "lockFileMaintenance": {
         "enabled": true,
-        "extends": "schedule:weekly"
-    }
+        "extends": [
+            "schedule:weekly"
+        ]
+    },
+    "vulnerabilityAlerts": {
+        "labels": [
+            "security"
+        ]
+    },
+    "packageRules": [
+        {
+            "matchUpdateTypes": [
+                "minor",
+                "patch"
+            ],
+            "matchCurrentVersion": "!/^0/",
+            "groupName": "non-major dependencies",
+            "automerge": true
+        },
+        {
+            "matchPackageNames": [
+                "/^gatsby/"
+            ],
+            "groupName": "gatsby"
+        },
+        {
+            "matchManagers": [
+                "github-actions"
+            ],
+            "groupName": "github actions"
+        },
+        {
+            "matchPackageNames": [
+                "/^@?eslint/",
+                "/^@testing-library//",
+                "cypress"
+            ],
+            "groupName": "linting and testing"
+        }
+    ]
 }
