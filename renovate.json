@@ -9,6 +9,7 @@
     ],
     "rangeStrategy": "replace",
     "prConcurrentLimit": 5,
+    "automergeStrategy": "rebase",
     "lockFileMaintenance": {
         "enabled": true,
         "extends": [
