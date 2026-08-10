@@ -1,25 +1,22 @@
 ---
-title: "An Opinionated View on Making Your MacBook Better"
-date: "2026-08-08T09:00:00.000Z"
+title: "My Opinionated MacBook Setup"
+date: "2026-08-10T19:00:00.000Z"
 slug: "2026/08/opinionated-macbook-guide"
 category: 'productivity'
 tags: ['how-to', 'macos', 'developer-tools']
 keywords: ['macbook', 'macos', 'mac setup', 'spotlight', 'homebrew', 'iterm2', 'keyboard shortcuts', 'switching from windows']
+featured: 'images/featured-opinionated-macbook-guide.png'
 ---
 
-I moved to a Mac for development after years of doing it on Windows, and I've not gone back. I do still have a Windows PC, but that's for gaming, which a Mac is never realistically going to handle. There are Mac games. They aren't the reason you'd buy one.
+I moved to a Mac for development after years on Windows, and I've not gone back. I still have a Windows PC, but that's for gaming. There are Mac games. They aren't the reason you'd buy one.
 
-So I'm on both most weeks, and a few of the things below are about keeping my muscle memory working across the two rather than doing everything the Mac way. I've flagged those where they come up, so you can skip them if you're only ever on a Mac.
-
-The rest is opinion. It's the post I wish someone had handed me when I switched, because macOS ships with a lot of this turned off and nothing tells you it's there. It's also about MacBooks specifically, since I'd never buy a Mac desktop.
+I'm on both most weeks, so a few of these choices are really about keeping the same muscle memory across them. I've marked those. The rest is simply how I think a MacBook should be set up, and the guide I wish I'd had when I switched.
 
 I've split it into three parts:
 
 - **Part 1** is what I'd change on anyone's machine, whatever they use it for. Settings that are wrong out of the box, and a few basics nobody tells you, like how to take a screenshot.
 - **Part 2** is for people who are on the machine most of the day and want it quicker to drive. Multitasking, moving around text, a couple of apps.
-- **Part 3** is if you write code.
-
-How much of it is useful to you depends on how much time you spend on the thing, and how much you're already doing.
+- **Part 3** is for developers.
 
 ## Part 1: For everybody
 
@@ -31,11 +28,13 @@ Do this one first. It's the single biggest change on the list.
 
 Go to System Settings > Spotlight (or just type "Spotlight" into the Settings search box) and untick everything in the search results list **except Applications**.
 
-Now press **Cmd + Space**, type the first three or four letters of an app, press Enter. That's how you open things on a Mac. It's the one shortcut in this section and it's worth the twenty seconds it takes to learn.
+Now press **Cmd + Space**, type the first three or four letters of an app, press Enter. That's how you open things on a Mac. It's the first shortcut worth learning.
 
 Turning everything else off looks like the wrong move. Surely you want more results, not fewer? In practice it's the opposite. Leave it all on and typing three letters gets you a dictionary definition, a website nobody asked for, an App Store suggestion and somebody's phone number, and the app you actually wanted is fourth in the list, so you can't hit Enter without stopping to look. Turn it all off and it becomes instant and completely predictable. Type, Enter, app opens, you never look at the screen.
 
 You can switch a category back on if you find you miss it. I never have.
+
+I know Raycast and Alfred are popular, but I don't use either. Once Spotlight is stripped back to applications, it already does exactly what I want.
 
 ### Hide the Dock
 
@@ -69,11 +68,7 @@ Finder hides useful information by default, and makes a couple of odd guesses ab
 
 **In the View menu:** turn on **Show Path Bar** and **Show Status Bar**. You get a breadcrumb trail along the bottom telling you where you actually are, and a count of what's in the folder.
 
-### Trim the Finder sidebar
-
-**Finder > Settings > Sidebar.** This list is entirely yours and it's worth five minutes.
-
-Turn off every iCloud entry if you don't use iCloud. Turn off anything else you know you'll never click. Keep it short. Mine is basically Documents, Downloads, Pictures, Applications.
+While you're there, open **Finder > Settings > Sidebar** and turn off anything you never click, including the iCloud entries if you don't use them. Mine is basically Documents, Downloads, Pictures and Applications.
 
 A four-item sidebar you can hit without reading beats a fifteen-item one you scan every single time.
 
@@ -87,14 +82,6 @@ A few things behave differently enough to catch you out on day one:
 - **Cmd + Shift + .** shows and hides hidden files.
 
 That last one is, without competition, my least favourite shortcut on the entire system. I have looked it up more times than I've looked up anything else on this list, it is nowhere in any menu, and I resent it every single time.
-
-### Switching between apps
-
-**Cmd + Tab** cycles through your open apps. Hold Cmd down and keep tapping Tab to go further along the row, exactly like Alt + Tab did.
-
-The difference is that it switches between *apps*, not windows. If you've got three Word documents open, that's one entry in the list, not three. More on that in part 2.
-
-The other one to learn at the same time is **Ctrl + up arrow**, or the F3 key on most MacBooks. That zooms out and shows you every window you've got open, laid out so you can see what each one actually is, and you click the one you want. I use it far more than Cmd + Tab.
 
 ### Taking a screenshot
 
@@ -124,13 +111,9 @@ One thing to know before you do it. macOS stores this **per keyboard**, so if yo
 
 ## Part 2: The next level up
 
-This is what I'd do next if you're on the machine most of the day. Less about settings, more about knowing a few things exist, because most of what makes a Mac quick to use is invisible until somebody points at it.
-
-Two of these are apps. If your laptop is managed by work you may need them approved first, but both are well known and it's not usually a difficult ask.
+This is what I'd do next if you're on the machine most of the day. Most of the useful bits are hidden until somebody tells you they exist.
 
 ### Spaces: making one screen feel like three
-
-If you take one thing from this post, take this.
 
 Any app can go full screen with the green button top left, or **Ctrl + Cmd + F**. When it does it gets its own **space**, which behaves like its own monitor. You slide between spaces by swiping left and right on the trackpad with three or four fingers depending on how yours is set (System Settings > Trackpad > More Gestures), or **Ctrl + left/right arrow** from the keyboard.
 
@@ -142,23 +125,25 @@ On the laptop with nothing plugged in, I'll typically have:
 
 I move between them with a flick of the trackpad. No Alt-Tabbing, no hunting the Dock, no resizing anything to fit next to anything else.
 
-Which half of it I use depends on the setup. On the laptop it's almost all full-screen mode and I rarely make desktops by hand. Plugged into monitors it flips, because full screen stops earning its keep once one app is swallowing a whole big display. Either way the laptop is where it shines: one 14 inch screen that feels like three, and multitasking that doesn't fall apart when you undock.
+On the laptop I mostly use full-screen apps and rarely create extra desktops by hand. Plugged into monitors, I do the opposite because one app swallowing a whole display is usually a waste. This is where the MacBook is particularly good. My 14-inch screen effectively becomes three screens, and the setup still works when I unplug the monitors.
 
-### Windows are not apps
+### Apps, windows and Mission Control
+
+**Cmd + Tab** cycles through open apps, much like Alt + Tab on Windows. The important difference is that it switches between *apps*, not windows. If you've got three Word documents open, that's one entry in the list, not three.
+
+For windows within the same app, use **Cmd + `** (the backtick above Tab). Three documents in one app is one Cmd + Tab entry and three presses of Cmd + `.
 
 **Cmd + W** closes a window. **Cmd + Q** quits the app. An app with no windows open is still running, which is why its Dock icon keeps a dot under it and why it's still sat there in Cmd + Tab.
 
-That's also why Cmd + Tab only gets you so far. It moves between apps, so for windows within an app you want **Cmd + `** (the backtick, above Tab). Three documents in one app is one Cmd + Tab entry and three presses of Cmd + `.
-
 Useful side effect: **Cmd + Shift + T** in Chrome or Firefox reopens what you just closed and keeps stepping back if you press it again. Shutting a browser window by accident is almost never the disaster it feels like.
 
-### Mission Control, and keeping it worth using
-
-I mentioned **Ctrl + up arrow** in part 1. It's worth a bit more, because it's the single thing I use most and it spans displays, so on a desk with two monitors you get every window from both in one view. Three or four fingers swiped up on the trackpad does the same.
+**Ctrl + up arrow**, the F3 key on most MacBooks, or a three or four-finger swipe up opens Mission Control. It shows every window across all your displays, laid out so you can see what each one actually is.
 
 This is what I use instead of Alt-Tab, and it's the thing I miss most when I'm back on Windows. You're looking at the actual windows rather than a row of near-identical app icons, so three windows of the same application are three separate things you can pick between, instead of one entry you cycle through and hope.
 
 The catch is that it only stays useful if you're a bit disciplined about what's open. Thirty windows and every one of them is a tiny unreadable rectangle. So I minimise anything I'm not actively working in and pull it back off the Dock when I want it again. That keeps the Mission Control view down to a handful of windows I can identify at a glance, which is the whole point of it.
+
+You can also trigger Mission Control with a hot corner. I don't. Once you move between the laptop and external monitors, the corners stop being where your hands expect them. Ctrl + up works from anywhere.
 
 ### Moving around text
 
@@ -175,17 +160,13 @@ This is the set I'd actually learn, because you use it constantly and Home and E
 
 Hold **Shift** with any of those and you select instead of just moving. That's the bit that makes it click. Option + Shift + right selects the next word, Cmd + Shift + left selects back to the start of the line.
 
-### Hot corners, which I don't use
-
-**System Settings > Desktop & Dock > Hot Corners** assigns an action to each corner of the screen, so you can fire Mission Control by shoving the cursor into the top right rather than pressing anything.
-
-Plenty of people love it and I want you to know it's there. I turned it off, because as soon as you're moving between the laptop on its own and the laptop plugged into a monitor, the corners stop being where your hands expect them. Ctrl + up does the same job from anywhere.
-
-### Two apps worth installing
+### Apps worth installing
 
 **[Thaw](https://github.com/thaw-app/Thaw)** cleans up your menu bar. Once you've got a few apps running, the row of icons along the top becomes an unreadable mess, and Thaw hides the ones you don't need and brings them back on a hover or a keypress. Free and open source, which a lot of Mac utilities aren't. This is the one to get.
 
 **[The Unarchiver](https://theunarchiver.com/)** handles the archive formats macOS won't. The built-in tool really only does zip properly, so the first time someone sends you a .rar or a .7z and nothing happens when you double-click it, this is the answer. Free, install it once, forget it exists.
+
+**[Rectangle](https://rectangleapp.com/)** snaps windows to halves, thirds and quarters with keyboard shortcuts. Recent macOS versions have some tiling built in, but Rectangle is faster and behaves more sensibly across multiple monitors. I use full screen for the apps I swipe between and Rectangle when I want an editor and terminal side by side.
 
 ## Part 3: If you write code
 
@@ -227,29 +208,17 @@ brew bundle install # installs all of it on a new machine
 
 Full disclosure, I don't commit a Brewfile, and I only worked out fairly recently that I should. A new laptop, or one you've broken badly enough to wipe, becomes one command and a cup of tea instead of a lost afternoon. Do as I say and not as I do on that one.
 
-### Terminal tools that just work
-
-The nice thing is that the tools you already know from SSHing into servers are just available locally:
-
-```bash
-brew install htop tmux jq ripgrep fd bat eza
-```
-
-`htop` for what's eating your CPU. `tmux` for keeping sessions alive and splitting panes, though I'll admit I still reach for `screen` out of habit, which is already on the machine and does me fine. `jq` for making JSON readable. `ripgrep` and `fd` as much faster replacements for grep and find. `bat` as a `cat` that has syntax highlighting and knows what a page is. `eza` as an `ls` that colour-codes by file type and, with `--git`, shows you the git status of every file in the listing.
-
-None of this needs setting up. It installs, it's on your PATH, it behaves the way the man page says it does.
-
 ### The terminal itself
 
 Terminal.app is fine. If you drop in a few times a day to run something and get out again, don't bother changing it.
 
-If you're in there most of the day, this is the one part of the Mac where I'd switch without thinking about it. **[iTerm2](https://iterm2.com/)** is what I use. **[Ghostty](https://ghostty.org/)** is the newer option if you're starting fresh. Either gives you proper split panes and much better search.
+If you're in there most of the day, this is the one part of the Mac where I'd switch without thinking about it. **[iTerm2](https://iterm2.com/)** is what I use. It gives you proper split panes and much better search.
 
-The real win is customisation, because a good setup tells you things rather than just waiting for input. A decent prompt shows the current git branch and whether the tree is dirty, so you know the state of a repo the moment you `cd` into it. [Starship](https://starship.rs/) or [Powerlevel10k](https://github.com/romkatv/powerlevel10k) get you most of the way out of the box, and [oh-my-zsh](https://ohmyz.sh/) bundles up plugins and themes if you'd rather pick from a list than configure it yourself.
+I mainly want the prompt to show my current Git branch and whether the working tree is dirty. Then I know the state of a repo as soon as I `cd` into it.
 
 ### Aliases
 
-Worth setting up early because they compound. Anything you type more than a few times a day becomes two letters:
+If I type something several times a day, it gets an alias:
 
 ```bash
 alias gs='git status'
@@ -257,13 +226,7 @@ alias gp='git pull'
 alias ll='eza -la --git'
 ```
 
-Put them in `~/.zshrc` and they're there in every shell you open. I've got a few dozen now and I'd be slower without them. Spend an evening on it, then keep the config in your dotfiles and never do it again.
-
-### Other apps worth knowing about
-
-**[Rectangle](https://rectangleapp.com/)** is the one I'd install. It snaps windows to halves, thirds and quarters with keyboard shortcuts. Recent macOS has some tiling built in now, but Rectangle is faster and behaves far more sensibly across multiple monitors. It pairs well with the spaces setup from part 2: full screen for the things you swipe between, Rectangle for when you want an editor and a terminal side by side to the pixel. Free and open source, where most of the alternatives charge.
-
-**Raycast** and **Alfred** are the ones I'd skip, and I know that's unpopular. They replace Cmd + Space with something much bigger: clipboard history, window management, scripts, an AI box. Spotlight stripped back the way part 1 describes is already excellent at the one job I want from it, and it's excellent at that partly because it isn't trying to do anything else. Keep the launcher light and let it launch things. Preference rather than fact, and plenty of people I respect disagree.
+Put them in `~/.zshrc` and they're there in every shell you open. I've got a few dozen now and I'd be slower without them. Keep `.zshrc` in your dotfiles and the aliases will follow you to the next machine.
 
 ## Closing thoughts
 
