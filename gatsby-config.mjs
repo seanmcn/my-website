@@ -2,6 +2,7 @@
 import {gatsbyPluginFeed} from './src/utils/rss.js';
 import {dirname} from "path"
 import {fileURLToPath} from "url"
+import rehypeSlug from 'rehype-slug';
 import remarkEmoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkYouTubeEmbed from './src/utils/remark-youtube-embed.mjs';
@@ -103,6 +104,9 @@ const config = {
                             remarkGfm,
                             remarkYouTubeEmbed,
                             remarkEmoji,
+                    ],
+                    rehypePlugins: [
+                            rehypeSlug,
                     ],
                 },
             },

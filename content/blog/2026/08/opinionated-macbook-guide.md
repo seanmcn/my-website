@@ -14,9 +14,9 @@ I'm on both most weeks, so a few of these choices are really about keeping the s
 
 I've split it into three parts:
 
-- **Part 1** is what I'd change on anyone's machine, whatever they use it for. Settings that are wrong out of the box, and a few basics nobody tells you, like how to take a screenshot.
-- **Part 2** is for people who are on the machine most of the day and want it quicker to drive. Multitasking, moving around text, a couple of apps.
-- **Part 3** is for developers.
+- **[Part 1](#part-1-for-everybody)** is what I'd change on anyone's machine, whatever they use it for. Settings that are wrong out of the box, and a few basics nobody tells you, like how to take a screenshot.
+- **[Part 2](#part-2-the-next-level-up)** is for people who are on the machine most of the day and want it quicker to drive. Multitasking, moving around text, a couple of apps.
+- **[Part 3](#part-3-if-you-write-code)** is for developers.
 
 ## Part 1: For everybody
 

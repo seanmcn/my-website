@@ -93,8 +93,13 @@
   margin-bottom: 0;
 }
 
-.content.blog-post-content h2 {
-  font-size: 1.65rem;
+// Excludes .seriesNavigatorTitle, which is an h2 inside the post content but
+// is chrome rather than a section heading, and keeps its own 1.1rem sizing.
+.content.blog-post-content h2:not(.seriesNavigatorTitle) {
+  border-top: 1px solid var(--surface-border);
+  font-size: 2rem;
+  margin-top: 3rem;
+  padding-top: 1.75rem;
 }
 
 .content.blog-post-content h3 {
@@ -412,8 +417,10 @@ pre.wp-block-code {
     padding-top: 2.75rem;
   }
 
-  .content.blog-post-content h2 {
-    font-size: 1.45rem;
+  .content.blog-post-content h2:not(.seriesNavigatorTitle) {
+    font-size: 1.7rem;
+    margin-top: 2.25rem;
+    padding-top: 1.25rem;
   }
 
   .content.blog-post-content h3 {
