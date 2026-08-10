@@ -131,7 +131,7 @@ On the laptop I mostly use full-screen apps and rarely create extra desktops by 
 
 **Cmd + Tab** cycles through open apps, much like Alt + Tab on Windows. The important difference is that it switches between *apps*, not windows. If you've got three Word documents open, that's one entry in the list, not three.
 
-For windows within the same app, use **Cmd + `** (the backtick above Tab). Three documents in one app is one Cmd + Tab entry and three presses of Cmd + `.
+For windows within the same app, use **Cmd + \`** (the backtick above Tab). Three documents in one app is one Cmd + Tab entry and three presses of Cmd + \`.
 
 **Cmd + W** closes a window. **Cmd + Q** quits the app. An app with no windows open is still running, which is why its Dock icon keeps a dot under it and why it's still sat there in Cmd + Tab.
 
