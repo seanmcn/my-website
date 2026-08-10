@@ -30,11 +30,18 @@ Go to System Settings > Spotlight (or just type "Spotlight" into the Settings se
 
 Now press **Cmd + Space**, type the first three or four letters of an app, press Enter. That's how you open things on a Mac. It's the first shortcut worth learning.
 
-Turning everything else off looks like the wrong move. Surely you want more results, not fewer? In practice it's the opposite. Leave it all on and typing three letters gets you a dictionary definition, a website nobody asked for, an App Store suggestion and somebody's phone number, and the app you actually wanted is fourth in the list, so you can't hit Enter without stopping to look. Turn it all off and it becomes instant and completely predictable. Type, Enter, app opens, you never look at the screen.
+Turning everything else off looks like the wrong move. Surely you want more results, not fewer? In practice it's the opposite. Leave it all on, type three letters, and you get:
+
+- a dictionary definition
+- a website nobody asked for
+- an App Store suggestion
+- somebody's phone number
+
+The app you actually wanted is fourth in the list, so you can't hit Enter without stopping to look. Turn it all off and it becomes instant and completely predictable. Type, Enter, app opens, you never look at the screen.
 
 You can switch a category back on if you find you miss it. I never have.
 
-I know Raycast and Alfred are popular, but I don't use either. Once Spotlight is stripped back to applications, it already does exactly what I want.
+> I know Raycast and Alfred are popular, but I don't use either. Once Spotlight is stripped back to applications, it already does exactly what I want.
 
 ### Hide the Dock
 
@@ -81,7 +88,7 @@ A few things behave differently enough to catch you out on day one:
 - **Cmd + Delete** sends it to the Bin. There's no Delete key that does it.
 - **Cmd + Shift + .** shows and hides hidden files.
 
-That last one is, without competition, my least favourite shortcut on the entire system. I have looked it up more times than I've looked up anything else on this list, it is nowhere in any menu, and I resent it every single time.
+> That last one is, without competition, my least favourite shortcut on the entire system. I have looked it up more times than I've looked up anything else on this list, it is nowhere in any menu, and I resent it every single time.
 
 ### Taking a screenshot
 
@@ -107,7 +114,7 @@ Now Ctrl + C copies exactly like it always did, and the whole machine feels a go
 
 One thing to know before you do it. macOS stores this **per keyboard**, so if you later plug in a USB keyboard you'll need to set it again for that one. Same panel, but use the dropdown at the top to pick which keyboard you're configuring first.
 
-*Windows habit, not the Mac way. I do this because I'm on a Windows machine regularly and I'd rather not relearn the same shortcuts twice. If you're only ever on a Mac, don't bother, just learn Cmd and it'll be second nature in a week.*
+> **Windows habit, not the Mac way.** I do this because I'm on a Windows machine regularly and I'd rather not relearn the same shortcuts twice. If you're only ever on a Mac, don't bother, just learn Cmd and it'll be second nature in a week.
 
 ## Part 2: The next level up
 
@@ -129,21 +136,26 @@ On the laptop I mostly use full-screen apps and rarely create extra desktops by 
 
 ### Apps, windows and Mission Control
 
-**Cmd + Tab** cycles through open apps, much like Alt + Tab on Windows. The important difference is that it switches between *apps*, not windows. If you've got three Word documents open, that's one entry in the list, not three.
+**Cmd + Tab** cycles through open apps, much like Alt + Tab on Windows. The important difference is that it switches between *apps*, not windows. If you've got three Word documents open, that's one entry in the list, not three. For windows within the same app, use **Cmd + \`** (the backtick above Tab), so those three documents are one Cmd + Tab entry and three presses of Cmd + \`.
 
-For windows within the same app, use **Cmd + \`** (the backtick above Tab). Three documents in one app is one Cmd + Tab entry and three presses of Cmd + \`.
+| Shortcut | What it does |
+|---|---|
+| **Cmd + Tab** | Cycle through open apps |
+| **Cmd + \`** | Cycle windows within the current app |
+| **Cmd + W** | Close the window |
+| **Cmd + Q** | Quit the app |
+| **Cmd + Shift + T** | Reopen a closed tab or window in Chrome or Firefox |
+| **Ctrl + up arrow** | Mission Control, as does the F3 key on most MacBooks or a three or four-finger swipe up |
 
-**Cmd + W** closes a window. **Cmd + Q** quits the app. An app with no windows open is still running, which is why its Dock icon keeps a dot under it and why it's still sat there in Cmd + Tab.
+An app with no windows open is still running, which is why its Dock icon keeps a dot under it and why it's still sat there in Cmd + Tab. And shutting a browser window by accident is almost never the disaster it feels like, because Cmd + Shift + T keeps stepping back if you press it again.
 
-Useful side effect: **Cmd + Shift + T** in Chrome or Firefox reopens what you just closed and keeps stepping back if you press it again. Shutting a browser window by accident is almost never the disaster it feels like.
-
-**Ctrl + up arrow**, the F3 key on most MacBooks, or a three or four-finger swipe up opens Mission Control. It shows every window across all your displays, laid out so you can see what each one actually is.
+Mission Control shows every window across all your displays, laid out so you can see what each one actually is.
 
 This is what I use instead of Alt-Tab, and it's the thing I miss most when I'm back on Windows. You're looking at the actual windows rather than a row of near-identical app icons, so three windows of the same application are three separate things you can pick between, instead of one entry you cycle through and hope.
 
 The catch is that it only stays useful if you're a bit disciplined about what's open. Thirty windows and every one of them is a tiny unreadable rectangle. So I minimise anything I'm not actively working in and pull it back off the Dock when I want it again. That keeps the Mission Control view down to a handful of windows I can identify at a glance, which is the whole point of it.
 
-You can also trigger Mission Control with a hot corner. I don't. Once you move between the laptop and external monitors, the corners stop being where your hands expect them. Ctrl + up works from anywhere.
+> You can also trigger Mission Control with a hot corner. I don't. Once you move between the laptop and external monitors, the corners stop being where your hands expect them. Ctrl + up works from anywhere.
 
 ### Moving around text
 
@@ -174,7 +186,9 @@ This is the part where the Mac stops being a nice laptop and starts being the re
 
 ### It's Unix underneath
 
-macOS is a certified Unix, which means the gap between your laptop and the Linux box you deploy to is small. Tools built for servers install and run locally, without a compatibility layer, a VM or a translation shim. You're not picking between cmd, PowerShell, WSL, Git Bash and MSYS2, each with its own idea of what a path is and none of them quite agreeing with your editor. There's a shell, things you install turn up in it, and it works.
+macOS is a certified Unix, which means the gap between your laptop and the Linux box you deploy to is small. Tools built for servers install and run locally, without a compatibility layer, a VM or a translation shim.
+
+You're not picking between cmd, PowerShell, WSL, Git Bash and MSYS2, each with its own idea of what a path is and none of them quite agreeing with your editor. There's a shell, things you install turn up in it, and it works.
 
 That's a low bar. Windows still hasn't cleared it, and I don't miss the hours I used to lose to working out which terminal I was in and why the path had backslashes in it.
 
@@ -206,7 +220,7 @@ brew bundle dump    # writes a Brewfile listing everything you have
 brew bundle install # installs all of it on a new machine
 ```
 
-Full disclosure, I don't commit a Brewfile, and I only worked out fairly recently that I should. A new laptop, or one you've broken badly enough to wipe, becomes one command and a cup of tea instead of a lost afternoon. Do as I say and not as I do on that one.
+> Full disclosure, I don't commit a Brewfile, and I only worked out fairly recently that I should. A new laptop, or one you've broken badly enough to wipe, becomes one command and a cup of tea instead of a lost afternoon. Do as I say and not as I do on that one.
 
 ### The terminal itself
 
