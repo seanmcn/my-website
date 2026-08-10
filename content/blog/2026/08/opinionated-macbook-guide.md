@@ -4,7 +4,7 @@ date: "2026-08-10T19:00:00.000Z"
 slug: "2026/08/opinionated-macbook-guide"
 category: 'productivity'
 tags: ['how-to', 'macos', 'developer-tools']
-keywords: ['macbook', 'macos', 'mac setup', 'spotlight', 'homebrew', 'iterm2', 'keyboard shortcuts', 'switching from windows']
+keywords: ['macbook', 'macos', 'mac setup', 'spotlight', 'homebrew', 'ghostty', 'iterm2', 'keyboard shortcuts', 'switching from windows']
 featured: 'images/featured-opinionated-macbook-guide.png'
 ---
 
@@ -209,6 +209,7 @@ Casks are the part people miss. You can install real desktop apps this way, incl
 
 ```bash
 brew install thaw
+brew install --cask ghostty
 brew install --cask rectangle
 brew install --cask the-unarchiver
 ```
@@ -226,7 +227,9 @@ brew bundle install # installs all of it on a new machine
 
 Terminal.app is fine. If you drop in a few times a day to run something and get out again, don't bother changing it.
 
-If you're in there most of the day, this is the one part of the Mac where I'd switch without thinking about it. **[iTerm2](https://iterm2.com/)** is what I use. It gives you proper split panes and much better search.
+If you're in there most of the day, this is the one part of the Mac where I'd switch without thinking about it. I used **[iTerm2](https://iterm2.com/)** for years and it's still a perfectly good answer. These days I use **[Ghostty](https://ghostty.org/)** and I prefer it. It's quick, the defaults are sensible, and I get proper split panes without configuring anything.
+
+The feature I'd not want to give up now is desktop notifications. A long build finishes, or Claude Code gets to the end of a job and wants an answer, and I'm told about it while I'm reading something else, instead of tabbing back every couple of minutes to check whether it's still going.
 
 I mainly want the prompt to show my current Git branch and whether the working tree is dirty. Then I know the state of a repo as soon as I `cd` into it.
 
