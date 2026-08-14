@@ -25,11 +25,29 @@ jobs:
       - name: Install dependencies
         run: npm ci --include=optional
 
+      # Cypress Cloud meters recorded test results and the free tier allows 500
+      # a month. The specs expand to 63 results a run, so recording every push
+      # and pull request blew through the quota several times over. Only release
+      # pushes to main are recorded now; everything else runs the same specs
+      # without --record, which is unmetered.
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           install: false
-          command: npm run test:e2e:record
+          command: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') && 'npm run test:e2e:record' || 'npm run test:e2e:ci' }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Unrecorded runs have no Cypress Cloud page to open, so keep the
+      # screenshots and videos a failure produces available on the run itself.
+      - name: Upload Cypress failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-artifacts-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            cypress/screenshots
+            cypress/videos
+          if-no-files-found: ignore
+          retention-days: 7
