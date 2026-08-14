@@ -12,6 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
+    env:
+      # Cypress Cloud meters recorded test results and the free tier allows 500
+      # a month. The specs expand to 63 results a run, so recording every push
+      # and pull request blew through the quota several times over. Only release
+      # pushes to main are recorded; everything else runs the same specs without
+      # --record, which is unmetered.
+      RECORD: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,18 +33,15 @@ jobs:
       - name: Install dependencies
         run: npm ci --include=optional
 
-      # Cypress Cloud meters recorded test results and the free tier allows 500
-      # a month. The specs expand to 63 results a run, so recording every push
-      # and pull request blew through the quota several times over. Only release
-      # pushes to main are recorded now; everything else runs the same specs
-      # without --record, which is unmetered.
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           install: false
-          command: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') && 'npm run test:e2e:record' || 'npm run test:e2e:ci' }}
+          command: ${{ env.RECORD == 'true' && 'npm run test:e2e:record' || 'npm run test:e2e:ci' }}
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # Only handed to runs that actually record. Passing it otherwise makes
+          # Cypress warn that a record key was supplied without --record.
+          CYPRESS_RECORD_KEY: ${{ env.RECORD == 'true' && secrets.CYPRESS_RECORD_KEY || '' }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Unrecorded runs have no Cypress Cloud page to open, so keep the
