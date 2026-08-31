@@ -27,6 +27,11 @@ const LibraryScreen = ({
 
   return (
     <div className="pageWrap">
+      {/*
+        * Every library view names itself in the rail and the filter bar rather
+        * than in a page title, so the h1 is held for assistive tech only.
+        */}
+      <h1 className="visually-hidden">{title}</h1>
       <div className="twoCol twoCol--padded">
         <div className="mobileIntro">
           <div className="libraryRail__eyebrow">

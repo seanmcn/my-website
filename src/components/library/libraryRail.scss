@@ -192,7 +192,9 @@
     padding: 2px 6px;
     background: var(--line);
     border-radius: 9px;
-    color: var(--muted);
+
+    /* 9px on the tinted pill: --muted only reaches 4.0:1 against --line. */
+    color: var(--ink-2);
     font-family: $font-mono;
     font-size: 9px;
     letter-spacing: 0;
@@ -240,10 +242,14 @@
       color: var(--accent);
     }
 
+    /*
+     * A span rather than a disabled control, so it gets no contrast exemption
+     * and has to stay readable: --faint-2 sits at 3.2:1 on the page ground.
+     */
     &.is-disabled {
       background: transparent;
       border-color: var(--surface-2);
-      color: var(--faint-2);
+      color: var(--faint);
       cursor: default;
       pointer-events: none;
     }

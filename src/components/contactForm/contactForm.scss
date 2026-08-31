@@ -77,6 +77,12 @@
   &__hint {
     color: var(--faint);
     font-size: 15px;
+
+    /* The address sits mid-sentence, so colour alone will not mark it. */
+    a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
   }
 }
 

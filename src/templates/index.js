@@ -59,6 +59,11 @@ const HomePage = ({data, pageContext}) => {
         title={`Home - ${siteTitle}`}
       />
       <div className="pageWrap homePage">
+        {/*
+          * The design opens on the bio rather than a page title, so the h1 is
+          * carried for screen readers and skipped visually.
+          */}
+        <h1 className="visually-hidden">{siteTitle}</h1>
         <div className="homePage__row">
           <aside className="rail rail--bio homeBio">
             <div className="homeBio__top">

@@ -202,6 +202,7 @@ const SearchPage = ({data, location}) => {
         title={`Search - ${siteTitle}`}
       />
       <div className="pageWrap searchPage">
+        <h1 className="visually-hidden">Search</h1>
         <div className="twoCol">
           <button
             aria-expanded={filtersOpen}

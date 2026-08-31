@@ -157,7 +157,7 @@ const AboutPage = ({data}) => {
       />
       <div className="pageWrap aboutPage">
         <div className="aboutPage__cols">
-          <aside className="rail rail--bio aboutBio">
+          <aside aria-label="Profile" className="rail rail--bio aboutBio">
             <span className="aboutBio__portraitFrame">
               <span
                 className={`aboutBio__portrait ${
@@ -259,7 +259,10 @@ const AboutPage = ({data}) => {
             ))}
           </div>
 
-          <aside className="rightRail aboutTimeline">
+          <aside
+            aria-label="Career timeline"
+            className="rightRail aboutTimeline"
+          >
             <div>
               <div className="railHeading aboutTimeline__heading">
                 Where I&apos;ve worked

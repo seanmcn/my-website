@@ -46,6 +46,15 @@
     font-size: 19px;
     line-height: 1.6;
     text-wrap: pretty;
+
+    /*
+     * Underlined rather than left to colour alone: a link sitting inside a
+     * sentence has to be findable without seeing the accent.
+     */
+    a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
   }
 }
 
@@ -166,7 +175,12 @@
 
     &--daily {
       background: var(--accent);
-      color: #fff;
+
+      /*
+       * Not #fff: the accent lightens in dark mode, where white on it falls to
+       * 2.4:1. The page ground inverts with the theme and stays legible.
+       */
+      color: var(--bg);
     }
 
     &--often {

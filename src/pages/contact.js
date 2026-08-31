@@ -52,7 +52,7 @@ const ContactPage = ({data, location}) => {
       />
       <div className="pageWrap contactPage">
         <div className="contactPage__cols">
-          <aside className="rail rail--bio contactBio">
+          <aside aria-label="Profile" className="rail rail--bio contactBio">
             <span className="contactBio__portrait">
               <img alt="Seán McNamara" src={avatar} />
             </span>
@@ -123,7 +123,7 @@ const ContactPage = ({data, location}) => {
             />
           </div>
 
-          <aside className="rightRail contactElsewhere">
+          <aside aria-label="Elsewhere" className="rightRail contactElsewhere">
             <div className="railHeading">Elsewhere</div>
             <ElsewhereLinks />
           </aside>
