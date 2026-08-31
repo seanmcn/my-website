@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import {createFilePath} from 'gatsby-source-filesystem';
 import {paginate} from 'gatsby-awesome-pagination';
+import readingTime from 'reading-time';
 
 const ITEMS_PER_PAGE = 12;
 
@@ -140,9 +141,12 @@ function normaliseList(values = []) {
       .filter(Boolean);
 }
 
+/*
+ * Markdown to plain text for the search index. Both callers pass an MDX node
+ * body, which gatsby-plugin-mdx has already stripped of frontmatter.
+ */
 function stripMarkdown(markdown = '') {
   return markdown
-      .replace(/^---[\s\S]*?---/, '')
       .replace(/```[\s\S]*?```/g, ' ')
       .replace(/`([^`]+)`/g, '$1')
       .replace(/!\[[^\]]*]\([^)]*\)/g, ' ')
@@ -928,20 +932,21 @@ export const createPages = async function({actions, graphql}) {
 /*
  * Words per minute for the read-time estimate. Deliberately unhurried: the
  * posts are technical, and an over-confident "3 min" on a thousand-word piece
- * reads as a lie.
+ * reads as a lie. Passed to `reading-time` explicitly rather than left to its
+ * default, so the pace stays a decision this repo owns.
  */
 const WORDS_PER_MINUTE = 200;
 
-function readingTimeFromFile(contentFilePath) {
-  if (!contentFilePath || !fs.existsSync(contentFilePath)) {
-    return 1;
-  }
+/*
+ * `reading-time` does its own word counting, so it gets the MDX body as
+ * authored. gatsby-plugin-mdx has already stripped the frontmatter by the time
+ * the node exists, and the estimate is rounded to whole minutes with a floor of
+ * one so a two-line note still reads as "1 min read".
+ */
+function readingTimeMinutes(body) {
+  const stats = readingTime(body || '', {wordsPerMinute: WORDS_PER_MINUTE});
 
-  const words = stripMarkdown(fs.readFileSync(contentFilePath, 'utf8'))
-      .split(/\s+/)
-      .filter(Boolean).length;
-
-  return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+  return Math.max(1, Math.round(stats.minutes));
 }
 
 function redirectHtml(toPath) {
@@ -1050,7 +1055,7 @@ export const onCreateNode = ({node, actions, getNode}) => {
     createNodeField({
       name: 'readingTime',
       node,
-      value: readingTimeFromFile(node.internal?.contentFilePath),
+      value: readingTimeMinutes(node.body),
     });
     // Drafts stay visible while writing and disappear from the built site, so
     // a half-finished note can sit in the repo without being published.

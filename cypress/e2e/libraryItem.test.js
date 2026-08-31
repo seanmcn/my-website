@@ -49,6 +49,9 @@ describe('Library item pages', () => {
     it('Shows read time and related items in the rail', () => {
       cy.get('#postSidebarColumn').within(() => {
         cy.contains('.railBlock__label', 'Read time');
+        // Pins the estimate itself, not just its label, so a change to how
+        // reading time is derived at build time cannot pass unnoticed.
+        cy.get('.itemRail__readTime').should('contain.text', '2 min read');
         cy.contains('.railBlock__label', 'Related');
         cy.get('.itemRail__related').should('have.length.at.least', 1);
       });
