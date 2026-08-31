@@ -5,7 +5,7 @@ import Layout from '../components/layout/layout';
 import ContactForm from '../components/contactForm/contactForm';
 import SEO from '../components/seo/seo';
 import RuntimeSeoSync from '../components/seo/runtimeSeoSync';
-import {ElsewhereLinks} from './about';
+import ElsewhereLinks from '../components/elsewhere/elsewhereLinks';
 import avatar from '../assets/images/emojis/250/wave.png';
 import {itemPath} from '../utils/content';
 import './contact.scss';

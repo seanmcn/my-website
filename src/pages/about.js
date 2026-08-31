@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {graphql} from 'gatsby';
-import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Layout from '../components/layout/layout';
+import ElsewhereLinks from '../components/elsewhere/elsewhereLinks';
 import SEO from '../components/seo/seo';
 import RuntimeSeoSync from '../components/seo/runtimeSeoSync';
 import useCondensedHeader from '../hooks/useCondensedHeader';
@@ -143,32 +142,6 @@ const TIMELINE = [
     years: 'Where it started',
   },
 ];
-
-/* Shared with the contact page, which shows the same two links. */
-export const ElsewhereLinks = () => (
-  <div className="elsewhereLinks">
-    <a
-      className="elsewhereLink"
-      href="https://www.linkedin.com/in/mrseanmcn"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <FontAwesomeIcon icon={icon({name: 'linkedin-in', style: 'brands'})} />
-      LinkedIn
-      <span aria-hidden="true" className="elsewhereLink__arrow">↗</span>
-    </a>
-    <a
-      className="elsewhereLink"
-      href="https://github.com/seanmcn"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <FontAwesomeIcon icon={icon({name: 'github', style: 'brands'})} />
-      GitHub
-      <span aria-hidden="true" className="elsewhereLink__arrow">↗</span>
-    </a>
-  </div>
-);
 
 const AboutPage = ({data}) => {
   const {title: siteTitle, siteUrl} = data.site.siteMetadata;
