@@ -12,3 +12,5 @@ project_schema.graphql
 .env
 # Cypress
 cypress/screenshots/
+# Local Node version pin for fnm/nvm; the repo pins Node via package.json engines
+.node-version
