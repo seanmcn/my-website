@@ -22,7 +22,12 @@ const gatsbySourceFileSystemBlogPosts = {
     },
 };
 
-if (isDevelopment && !isTesting) {
+// Flip this back to `true` to restore the fast development build. It skips the
+// image-heavy archive years, which keeps `gatsby develop` quick but leaves the
+// library showing only a handful of items.
+const skipArchiveYearsInDevelopment = false;
+
+if (skipArchiveYearsInDevelopment && isDevelopment && !isTesting) {
     gatsbySourceFileSystemBlogPosts.options.ignore = [
         '**/2009/**',
         '**/2010/**',
