@@ -1,5 +1,6 @@
 ---
 title: "Control Your Windows PC with an Xbox Controller"
+type: 'post'
 date: '2012-01-25T18:39:03.284Z'
 slug: '2012/01/control-your-pc-with-xbox-controller'
 category: 'systems'

@@ -6,337 +6,300 @@ import Modal from 'react-modal';
 import Layout from '../components/layout/layout';
 import SEO from '../components/seo/seo';
 import RuntimeSeoSync from '../components/seo/runtimeSeoSync';
+import {ArrowLeftIcon, CalendarIcon} from '../components/icons/icons';
+import useCondensedHeader from '../hooks/useCondensedHeader';
+import {formatLongDate} from '../utils/content';
 import './project.scss';
 
 if (typeof document !== 'undefined') {
   Modal.setAppElement('#___gatsby');
 }
 
-const ProjectTemplate = ({data, children, location}) => {
-  const {mdx: project, site} = data;
+const ProjectTemplate = ({children, data, location}) => {
+  const {mdx: project, site, others} = data;
   const {
     title,
     summary,
     slug,
-    language,
     repo,
     demo,
     tags,
     techStack,
+    date,
     featured,
     gallery = [],
   } = project.frontmatter;
-  const image = getImage(featured);
+
+  const condensed = useCondensedHeader();
+  const shots = (gallery || []).filter(item => item?.image);
+  const [activeShot, setActiveShot] = React.useState(0);
+  const [lightboxOpen, setLightboxOpen] = React.useState(false);
+  const shot = shots[activeShot] || null;
+  const shotImage = getImage(shot?.image);
+  const featuredImage = getImage(featured);
+  const otherProjects = others.nodes
+      .map(({childMdx}) => childMdx)
+      .filter(Boolean)
+      .filter(other => other.frontmatter.slug !== slug)
+      .slice(0, 4);
   const pageTitle = `${title} - Projects - ${site.siteMetadata.title}`;
-  const galleryItems = (gallery || []).filter(item => item?.image);
-  const hasGallery = galleryItems.length > 0;
-  const [activeGalleryIndex, setActiveGalleryIndex] = React.useState(0);
-  const [isGalleryModalOpen, setIsGalleryModalOpen] = React.useState(false);
-  const activeGalleryItem = galleryItems[activeGalleryIndex] || null;
-  const activeGalleryImage = getImage(activeGalleryItem?.image);
 
-  const [zoom, setZoom] = React.useState(1);
-  const [pan, setPan] = React.useState({x: 0, y: 0});
-  const dragState = React.useRef(null);
+  const step = React.useCallback((direction) => {
+    if (shots.length < 2) {
+      return;
+    }
 
-  const resetView = React.useCallback(() => {
-    setZoom(1);
-    setPan({x: 0, y: 0});
-  }, []);
-
-  const showPrev = React.useCallback(() => {
-    if (galleryItems.length < 2) return;
-    setActiveGalleryIndex((i) => (i - 1 + galleryItems.length) % galleryItems.length);
-    resetView();
-  }, [galleryItems.length, resetView]);
-
-  const showNext = React.useCallback(() => {
-    if (galleryItems.length < 2) return;
-    setActiveGalleryIndex((i) => (i + 1) % galleryItems.length);
-    resetView();
-  }, [galleryItems.length, resetView]);
-
-  const closeModal = React.useCallback(() => {
-    setIsGalleryModalOpen(false);
-    resetView();
-  }, [resetView]);
+    setActiveShot(index => (index + direction + shots.length) % shots.length);
+  }, [shots.length]);
 
   React.useEffect(() => {
-    if (!isGalleryModalOpen) return undefined;
-    const onKey = (e) => {
-      if (e.key === 'ArrowLeft') showPrev();
-      else if (e.key === 'ArrowRight') showNext();
-      else if (e.key === '0') resetView();
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [isGalleryModalOpen, showPrev, showNext, resetView]);
-
-  const updateZoom = React.useCallback((next) => {
-    setZoom((z) => {
-      const clamped = Math.min(6, Math.max(1, typeof next === 'function' ? next(z) : next));
-      if (clamped === 1) setPan({x: 0, y: 0});
-      return clamped;
-    });
-  }, []);
-
-  const onWheel = (e) => {
-    e.preventDefault();
-    const delta = -e.deltaY * 0.0015;
-    updateZoom((z) => z + delta * z);
-  };
-
-  const onPointerDown = (e) => {
-    if (zoom <= 1) return;
-    dragState.current = {x: e.clientX - pan.x, y: e.clientY - pan.y};
-    e.currentTarget.setPointerCapture(e.pointerId);
-  };
-
-  const onPointerMove = (e) => {
-    if (!dragState.current) return;
-    setPan({x: e.clientX - dragState.current.x, y: e.clientY - dragState.current.y});
-  };
-
-  const onPointerUp = (e) => {
-    dragState.current = null;
-    if (e.currentTarget.hasPointerCapture?.(e.pointerId)) {
-      e.currentTarget.releasePointerCapture(e.pointerId);
+    if (!lightboxOpen) {
+      return undefined;
     }
-  };
 
-  const onImageDoubleClick = () => {
-    if (zoom === 1) updateZoom(2);
-    else resetView();
-  };
+    const onKey = (event) => {
+      if (event.key === 'ArrowLeft') step(-1);
+      if (event.key === 'ArrowRight') step(1);
+    };
+
+    window.addEventListener('keydown', onKey);
+
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightboxOpen, step]);
+
+  const counter = shots.length ?
+    `${String(activeShot + 1).padStart(2, '0')} / ` +
+      `${String(shots.length).padStart(2, '0')}` :
+    '';
 
   return (
     <Layout>
       <RuntimeSeoSync
-        title={pageTitle}
         description={summary || project.excerpt}
         pathname={location?.pathname || `/projects/${slug}/`}
         siteUrl={site.siteMetadata.siteUrl}
+        title={pageTitle}
       />
-      <div className="projectPage">
-        <Link className="projectBackLink" to="/projects/">
-          ← Back to all projects
-        </Link>
-
-        <section className="projectHero">
-          <div className="projectHeroInner">
-            <div className="projectHeroEyebrow">
-              <span>Project</span>
-              {language && <span className="projectHeroEyebrowDot">·</span>}
-              {language && <span className="projectHeroLanguage">{language}</span>}
-            </div>
-            <h1 className="projectHeroTitle">{title}</h1>
-            {summary && (
-              <p className="projectHeroLead">{summary}</p>
-            )}
+      <div className="pageWrap projectPage">
+        <article className="projectPage__article">
+          <div className={`itemBar ${condensed ? 'is-condensed' : ''}`}>
+            <Link className="itemBar__back" to="/projects/">
+              <ArrowLeftIcon />
+              Projects
+            </Link>
+            <h1 className="itemBar__title">{title}</h1>
+            <span className="itemBar__date">
+              <CalendarIcon />
+              {formatLongDate(date)}
+            </span>
           </div>
-          {(repo || demo) && (
-            <div className="projectHeroActions">
-              {repo && (
-                <a
-                  className="projectActionButton projectActionButton--primary"
-                  href={repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View repository
-                </a>
+
+          {summary && <p className="projectPage__lead">{summary}</p>}
+
+          {(shot || featuredImage) && (
+            <figure className="projectShots">
+              <figcaption className="projectShots__head">
+                <span>{counter || 'Featured'}</span>
+                <span>{shot?.alt || title}</span>
+              </figcaption>
+              <button
+                aria-label="Expand image"
+                className="projectShots__stage"
+                onClick={() => setLightboxOpen(true)}
+                type="button"
+              >
+                <GatsbyImage
+                  alt={shot?.alt || title}
+                  image={shotImage || featuredImage}
+                  objectFit="contain"
+                />
+                <span className="projectShots__expand">Expand ⤢</span>
+              </button>
+
+              {shots.length > 1 && (
+                <div className="projectShots__rail">
+                  {shots.map((item, index) => {
+                    const thumb = getImage(item.image);
+
+                    if (!thumb) {
+                      return null;
+                    }
+
+                    return (
+                      <button
+                        aria-label={`Show image ${index + 1}: ${item.alt}`}
+                        className={`projectShots__thumb ${
+                          index === activeShot ? 'is-active' : ''
+                        }`}
+                        key={item.alt || index}
+                        onClick={() => setActiveShot(index)}
+                        type="button"
+                      >
+                        <GatsbyImage alt={item.alt} image={thumb} />
+                        <span className="projectShots__num">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
               )}
-              {demo && (
-                <a
-                  className="projectActionButton projectActionButton--primary"
-                  href={demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View website
-                </a>
+
+              {(shot?.caption || shot?.alt) && (
+                <p className="projectShots__caption">
+                  {shot.caption || shot.alt}
+                </p>
               )}
+            </figure>
+          )}
+
+          <div className="projectPage__divider" />
+          <div className="prose">{children}</div>
+        </article>
+
+        <aside className="rightRail projectRail">
+          {repo && (
+            <a
+              className="projectRail__cta"
+              href={repo}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              View repository ↗
+            </a>
+          )}
+          {demo && (
+            <a
+              className="projectRail__cta projectRail__cta--secondary"
+              href={demo}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              View website ↗
+            </a>
+          )}
+
+          <div>
+            <div className="railBlock__label">Started</div>
+            <div className="projectRail__value">{formatLongDate(date)}</div>
+          </div>
+
+          {techStack && techStack.length > 0 && (
+            <div className="railBlock">
+              <div className="railBlock__label">Tech stack</div>
+              <div className="projectRail__chips">
+                {techStack.map(item => (
+                  <span className="projectRail__chip" key={item}>{item}</span>
+                ))}
+              </div>
             </div>
           )}
-        </section>
 
-        <section className={`projectStory ${(image || hasGallery) ? 'has-media' : ''}`}>
-          {(image || hasGallery) && (
-            <aside className="projectStoryMedia">
-              <div className="projectStoryMediaSticky">
-                {hasGallery && activeGalleryImage ? (
-                  <button
-                    type="button"
-                    className="projectStoryThumb"
-                    onClick={() => setIsGalleryModalOpen(true)}
-                    aria-label="Zoom image"
-                  >
-                    <GatsbyImage
-                      image={activeGalleryImage}
-                      alt={activeGalleryItem.alt}
-                      imgStyle={{objectFit: 'contain', objectPosition: 'top center'}}
-                    />
-                    <span className="projectStoryThumbHint">Click to zoom</span>
-                  </button>
-                ) : (
-                  image && (
-                    <div className="projectStoryThumb">
-                      <GatsbyImage image={image} alt={title} />
-                    </div>
-                  )
-                )}
-                {hasGallery && activeGalleryItem?.caption && (
-                  <p className="projectStoryThumbCaption">{activeGalleryItem.caption}</p>
-                )}
-                {hasGallery && galleryItems.length > 1 && (
-                  <div className="projectStoryThumbRail" aria-label="Gallery thumbnails">
-                    {galleryItems.map((item, index) => {
-                      const thumbImage = getImage(item.image);
-                      if (!thumbImage) return null;
-                      return (
-                        <button
-                          type="button"
-                          key={`${item.alt}-${index}`}
-                          className={
-                            index === activeGalleryIndex ?
-                              'projectStoryThumbDot is-active' :
-                              'projectStoryThumbDot'
-                          }
-                          onClick={() => setActiveGalleryIndex(index)}
-                          aria-label={`Show image ${index + 1}: ${item.alt}`}
-                        >
-                          <GatsbyImage
-                            image={thumbImage}
-                            alt={item.alt}
-                            imgStyle={{objectFit: 'cover', objectPosition: 'top center'}}
-                          />
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
+          {tags && tags.length > 0 && (
+            <div className="railBlock">
+              <div className="railBlock__label">Tags</div>
+              <div className="projectRail__chips">
+                {tags.map(tag => (
+                  <span className="projectRail__tag" key={tag}>#{tag}</span>
+                ))}
               </div>
-            </aside>
+            </div>
           )}
-          <div className="content projectStoryContent">
-            {children}
-          </div>
-          <aside className="projectStoryMeta">
-            {techStack && techStack.length ? (
-              <div className="projectStoryMetaBlock">
-                <span className="projectStoryMetaLabel">Tech stack</span>
-                <ul className="projectStoryMetaTags">
-                  {techStack.map((item) => (
-                    <li className="projectStoryMetaTag" key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-            {tags && tags.length ? (
-              <div className="projectStoryMetaBlock">
-                <span className="projectStoryMetaLabel">Tags</span>
-                <ul className="projectStoryMetaTags">
-                  {tags.map((tag) => (
-                    <li className="projectStoryMetaTag" key={tag}>#{tag}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-          </aside>
-        </section>
+
+          {otherProjects.length > 0 && (
+            <div className="railBlock">
+              <div className="railBlock__label">Other projects</div>
+              {otherProjects.map(other => (
+                <Link
+                  className="projectRail__other"
+                  key={other.frontmatter.slug}
+                  to={`/projects/${other.frontmatter.slug}/`}
+                >
+                  {other.frontmatter.title}{' '}
+                  <span className="projectRail__otherStack">
+                    {other.frontmatter.language}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
+        </aside>
       </div>
 
-      {activeGalleryImage && (
+      {(shotImage || featuredImage) && (
         <Modal
-          isOpen={isGalleryModalOpen}
-          onRequestClose={closeModal}
-          className="projectGalleryModal"
-          overlayClassName="projectGalleryModalOverlay"
+          className="lightbox"
           contentLabel={`${title} gallery image`}
+          isOpen={lightboxOpen}
+          onRequestClose={() => setLightboxOpen(false)}
+          overlayClassName="lightbox__overlay"
         >
-          <button
-            type="button"
-            className="projectGalleryModalClose"
-            onClick={closeModal}
-            aria-label="Close image preview"
-          >
-            ×
-          </button>
-          {galleryItems.length > 1 && (
+          <div className="lightbox__head">
+            <span className="lightbox__counter">{counter}</span>
+            <span>{shot?.alt || title}</span>
             <button
+              className="lightbox__close"
+              onClick={() => setLightboxOpen(false)}
               type="button"
-              className="projectGalleryModalNav projectGalleryModalNav--prev"
-              onClick={showPrev}
-              aria-label="Previous image"
             >
-              ‹
+              Close ✕
             </button>
+          </div>
+          <div className="lightbox__stage">
+            {shots.length > 1 && (
+              <button
+                aria-label="Previous image"
+                className="lightbox__nav lightbox__nav--prev"
+                onClick={() => step(-1)}
+                type="button"
+              >
+                ‹
+              </button>
+            )}
+            <GatsbyImage
+              alt={shot?.alt || title}
+              className="lightbox__image"
+              image={shotImage || featuredImage}
+              objectFit="contain"
+            />
+            {shots.length > 1 && (
+              <button
+                aria-label="Next image"
+                className="lightbox__nav lightbox__nav--next"
+                onClick={() => step(1)}
+                type="button"
+              >
+                ›
+              </button>
+            )}
+          </div>
+          {(shot?.caption || shot?.alt) && (
+            <p className="lightbox__caption">{shot.caption || shot.alt}</p>
           )}
-          {galleryItems.length > 1 && (
-            <button
-              type="button"
-              className="projectGalleryModalNav projectGalleryModalNav--next"
-              onClick={showNext}
-              aria-label="Next image"
-            >
-              ›
-            </button>
-          )}
-          <div
-            className="projectGalleryModalStage"
-            onWheel={onWheel}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={onPointerUp}
-            onPointerCancel={onPointerUp}
-            onDoubleClick={onImageDoubleClick}
-            style={{cursor: zoom > 1 ? (dragState.current ? 'grabbing' : 'grab') : 'zoom-in'}}
-          >
-            <div
-              className="projectGalleryModalStageInner"
-              style={{
-                transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
-              }}
-            >
-              <GatsbyImage
-                image={activeGalleryImage}
-                alt={activeGalleryItem.alt}
-                className="projectGalleryModalImage"
-                imgStyle={{objectFit: 'contain', objectPosition: 'center'}}
-                draggable={false}
-              />
+          {shots.length > 1 && (
+            <div className="lightbox__rail">
+              {shots.map((item, index) => {
+                const thumb = getImage(item.image);
+
+                if (!thumb) {
+                  return null;
+                }
+
+                return (
+                  <button
+                    aria-label={`Show image ${index + 1}`}
+                    className={`lightbox__thumb ${
+                      index === activeShot ? 'is-active' : ''
+                    }`}
+                    key={item.alt || index}
+                    onClick={() => setActiveShot(index)}
+                    type="button"
+                  >
+                    <GatsbyImage alt={item.alt} image={thumb} />
+                  </button>
+                );
+              })}
             </div>
-          </div>
-          <div className="projectGalleryModalToolbar">
-            <button
-              type="button"
-              className="projectGalleryModalZoomBtn"
-              onClick={() => updateZoom((z) => z - 0.5)}
-              aria-label="Zoom out"
-            >
-              −
-            </button>
-            <button
-              type="button"
-              className="projectGalleryModalZoomBtn"
-              onClick={resetView}
-              aria-label="Reset zoom"
-            >
-              {Math.round(zoom * 100)}%
-            </button>
-            <button
-              type="button"
-              className="projectGalleryModalZoomBtn"
-              onClick={() => updateZoom((z) => z + 0.5)}
-              aria-label="Zoom in"
-            >
-              +
-            </button>
-          </div>
-          {activeGalleryItem.caption && (
-            <p className="projectGalleryModalCaption">
-              {activeGalleryItem.caption}
-            </p>
           )}
         </Modal>
       )}
@@ -348,6 +311,7 @@ ProjectTemplate.propTypes = {
   children: PropTypes.node,
   data: PropTypes.shape({
     mdx: PropTypes.object,
+    others: PropTypes.object,
     site: PropTypes.object,
   }).isRequired,
   location: PropTypes.shape({
@@ -378,13 +342,10 @@ export const pageQuery = graphql`
         demo
         tags
         techStack
+        date
         featured {
           childImageSharp {
-            gatsbyImageData(
-              width: 1400
-              height: 780
-              placeholder: BLURRED
-            )
+            gatsbyImageData(width: 1400 placeholder: BLURRED)
           }
         }
         gallery {
@@ -392,11 +353,22 @@ export const pageQuery = graphql`
           caption
           image {
             childImageSharp {
-              gatsbyImageData(
-                width: 1400
-                placeholder: BLURRED
-              )
+              gatsbyImageData(width: 1400 placeholder: BLURRED)
             }
+          }
+        }
+      }
+    }
+    others: allFile(
+      filter: {sourceInstanceName: {eq: "projects"}, childMdx: {id: {ne: null}}}
+      sort: {childMdx: {frontmatter: {date: DESC}}}
+    ) {
+      nodes {
+        childMdx {
+          frontmatter {
+            title
+            slug
+            language
           }
         }
       }
@@ -406,18 +378,19 @@ export const pageQuery = graphql`
 
 export const Head = ({data, location}) => {
   const {mdx: project, site} = data;
-  const title = `${project.frontmatter.title} - Projects - ${site.siteMetadata.title}`;
+  const title =
+    `${project.frontmatter.title} - Projects - ${site.siteMetadata.title}`;
 
   return (
     <>
       <title>{title}</title>
       <SEO
-        title={title}
         description={project.frontmatter.summary || project.excerpt}
-        siteTitle={site.siteMetadata.title}
-        siteDescription={site.siteMetadata.description}
-        siteUrl={site.siteMetadata.siteUrl}
         pathname={location.pathname}
+        siteDescription={site.siteMetadata.description}
+        siteTitle={site.siteMetadata.title}
+        siteUrl={site.siteMetadata.siteUrl}
+        title={title}
       />
     </>
   );

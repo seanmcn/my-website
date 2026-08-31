@@ -1,5 +1,6 @@
 ---
 title: "Installing PEAR in WAMP"
+type: 'post'
 date: '2010-12-27T20:39:03.284Z'
 slug: '2010/12/installing-pear-in-wamp'
 category: 'systems'

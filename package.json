@@ -2,7 +2,7 @@
     "name": "seanmcn-web-frontend",
     "description": "Frontend for seanmcn.com",
     "version": "2.0.0",
-    "author": "Seán McNamara",
+    "author": "Se\u00e1n McNamara",
     "private": true,
     "engines": {
         "npm": ">=10.9.0",
@@ -16,8 +16,6 @@
         "@mdx-js/mdx": "^2.3.0",
         "@mdx-js/react": "^2.3.0",
         "babel-plugin-macros": "^3.1.0",
-        "bulma": "^0.9.4",
-        "bulma-timeline": "^3.0.5",
         "fuse.js": "^7.1.0",
         "gatsby": "^5.16.1",
         "gatsby-awesome-pagination": "^0.3.8",

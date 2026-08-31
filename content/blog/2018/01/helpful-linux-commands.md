@@ -1,5 +1,6 @@
 ---
 title: "Helpful Linux commands"
+type: 'post'
 date: '2018-01-14T15:39:03.284Z'
 slug: '2018/01/helpful-linux-commands'
 category: 'systems'

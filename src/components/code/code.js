@@ -715,6 +715,16 @@ export const Code = ({codeString, language}) => {
   const resolvedLanguage = resolveLanguage(language);
   const isMermaid = resolvedLanguage === 'mermaid';
   const isPlainText = !resolvedLanguage || resolvedLanguage === 'text';
+  const [copied, setCopied] = useState(false);
+  const copyTimer = useRef(null);
+
+  const onCopied = () => {
+    setCopied(true);
+    clearTimeout(copyTimer.current);
+    copyTimer.current = setTimeout(() => setCopied(false), 1600);
+  };
+
+  useEffect(() => () => clearTimeout(copyTimer.current), []);
 
   if (isMermaid) {
     return (
@@ -725,19 +735,32 @@ export const Code = ({codeString, language}) => {
     );
   }
 
-  // Todo: CopyToClipboard seems to be broken?
   return (
     <div
       className={'codeWrapper'}
       data-language={resolvedLanguage || 'plain'}
     >
-      <CopyToClipboard text={codeString}>
-        <button className="codeCopyButton button is-small">
-          <span className="icon is-small" title={'Copy to clipboard'}>
-            <FontAwesomeIcon icon={icon({name: 'copy'})} />
-          </span>
-        </button>
-      </CopyToClipboard>
+      {/* Language left, copy right, like a printed listing head. */}
+      <div className="codeHeader">
+        <span className="codeLanguage">{resolvedLanguage || 'text'}</span>
+        <CopyToClipboard onCopy={onCopied} text={codeString}>
+          <button className="codeCopyButton" type="button">
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="12"
+              stroke="currentColor"
+              strokeWidth="1.3"
+              viewBox="0 0 14 14"
+              width="12"
+            >
+              <path d="M4.4 4.4V1.6h8v8H9.6" />
+              <path d="M1.6 4.4h8v8h-8z" />
+            </svg>
+            {copied ? 'Copied' : 'Copy'}
+          </button>
+        </CopyToClipboard>
+      </div>
       {isPlainText ? (
         <pre className="codePlainText">
           <code>{codeString}</code>

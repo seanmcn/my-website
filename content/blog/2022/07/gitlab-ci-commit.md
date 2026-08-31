@@ -1,5 +1,6 @@
 ---
 title: "Gitlab CI - Commit & Push in a Job"
+type: 'post'
 date: "2022-07-26T22:01:00.000Z"  
 slug: "2022/07/gitlab-ci-commit-and-push-in-job"  
 category: "systems"

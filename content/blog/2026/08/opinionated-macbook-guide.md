@@ -1,11 +1,18 @@
 ---
 title: "My Opinionated MacBook Setup"
+type: 'post'
 date: "2026-08-10T19:00:00.000Z"
 slug: "2026/08/opinionated-macbook-guide"
 category: 'productivity'
 tags: ['how-to', 'macos', 'developer-tools']
 keywords: ['macbook', 'macos', 'mac setup', 'spotlight', 'homebrew', 'ghostty', 'iterm2', 'keyboard shortcuts', 'switching from windows']
 featured: 'images/featured-opinionated-macbook-guide.png'
+summary: "Everything I change on a fresh machine, in three parts: the settings anyone benefits from, the next level up, and the bits that only matter if you write code."
+margins:
+  - label: 'In one line'
+    text: 'Twenty changes, written down once, so the next machine takes an hour instead of a week.'
+  - label: 'Where to start'
+    text: 'Strip Spotlight back to applications only. Everything else on the list is smaller than that one.'
 ---
 
 I moved to a Mac for development after years on Windows, and I've not gone back. I still have a Windows PC, but that's for gaming. There are Mac games. They aren't the reason you'd buy one.

@@ -1,5 +1,6 @@
 ---
 title: "Earcandy in Ubuntu Jaunty"
+type: 'post'
 date: '2009-09-28T21:39:03.284Z'
 slug: '2009/09/earcandy-in-ubuntu-jaunty'
 category: 'systems'

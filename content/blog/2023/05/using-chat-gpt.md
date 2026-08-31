@@ -1,5 +1,6 @@
 ---
 title: "How I'm utilising ChatGPT"
+type: 'post'
 date: "2023-05-13T22:15:10.429Z"
 slug: "2023/05/using-chat-gpt"
 category: "ai"

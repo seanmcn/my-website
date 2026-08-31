@@ -1,0 +1,194 @@
+@use "../assets/styles/tokens" as *;
+
+.searchPage {
+  &__facetHeading {
+    padding-bottom: 8px;
+  }
+
+  &__field {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 0 18px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  &__glyph {
+    flex: none;
+    color: var(--faint);
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  &__input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    color: var(--ink);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.016em;
+    outline: none;
+
+    &::placeholder {
+      color: var(--faint);
+      font-weight: 400;
+    }
+
+    @include narrow {
+      font-size: 19px;
+    }
+  }
+
+  &__count {
+    flex: none;
+    color: var(--faint);
+
+    @include label(10px, 0.16em);
+
+    @include narrow {
+      display: none;
+    }
+  }
+
+  &__clear {
+    flex: none;
+    padding: 0;
+    background: none;
+    border: 0;
+    color: var(--accent);
+    cursor: pointer;
+
+    @include label(10px, 0.16em);
+  }
+
+  &__scopes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+
+    @include label(10px, 0.14em);
+  }
+
+  &__scopesLabel {
+    color: var(--faint);
+  }
+
+  &__scope {
+    padding: 4px 9px;
+    background: transparent;
+    border: 1px solid var(--line-2);
+    color: var(--muted);
+    cursor: pointer;
+
+    @include label(10px, 0.14em);
+
+    &.is-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+  }
+
+  &__results {
+    padding: 6px 0 40px;
+  }
+
+  &__hit {
+    padding: 0 2px;
+    background: var(--accent-tint-2);
+    color: inherit;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__tag {
+    padding: 5px 8px;
+    background: none;
+    border: 1px solid var(--line-2);
+    color: var(--ink-2);
+    cursor: pointer;
+
+    @include label(10px, 0.14em);
+
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+  }
+
+  &__recents {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  &__recent {
+    padding: 0;
+    background: none;
+    border: 0;
+    color: var(--accent);
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+  }
+}
+
+.searchFacet {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 6px 0;
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+
+  &--bordered {
+    border-bottom: 1px solid var(--line);
+  }
+
+  &__name {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    svg {
+      flex: none;
+      color: var(--accent);
+    }
+  }
+
+  &__dot {
+    display: inline-block;
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 1px;
+  }
+
+  &__count {
+    color: var(--faint);
+    font-family: $font-mono;
+    font-size: 10px;
+  }
+
+  &.is-active {
+    margin: 0 -8px;
+    padding: 6px 8px;
+    background: var(--surface-2);
+    box-shadow: inset 2px 0 0 var(--accent);
+  }
+}

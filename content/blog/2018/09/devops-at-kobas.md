@@ -1,5 +1,6 @@
 ---
 title: "DevOps at Kobas"
+type: 'post'
 date: '2018-09-23T17:39:03.284Z'
 slug: '2018/09/devops-at-kobas'
 category: 'personal'

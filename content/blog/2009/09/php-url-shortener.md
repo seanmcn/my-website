@@ -1,5 +1,6 @@
 ---
 title: "Create a URL Shortener With Your Domain"
+type: 'post'
 date: '2009-09-24T01:39:03.284Z'
 slug: '2009/09/create-a-url-shortener-with-your-domain'
 category: 'programming'

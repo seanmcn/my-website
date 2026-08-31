@@ -164,17 +164,48 @@ module.exports = function (plop) {
       },
       {
         type: 'list',
+        name: 'itemType',
+        message: 'Kind?',
+        choices: [
+          { name: 'Post - a full article', value: 'post' },
+          { name: 'Note - a short piece', value: 'note' },
+          { name: 'Find - a link worth passing on', value: 'find' },
+        ],
+        default: 'post',
+      },
+      {
+        type: 'input',
+        name: 'source',
+        message: 'Source URL?',
+        when(answers) {
+          return answers.itemType === 'find';
+        },
+        validate(value) {
+          return String(value || '').trim() ? true : 'Enter a source URL.';
+        },
+      },
+      {
+        type: 'input',
+        name: 'summary',
+        message: 'One-line summary:',
+      },
+      {
+        type: 'list',
         name: 'categorySelection',
         message: 'Category?',
         choices: categoryChoices,
         default: categories[0]?.value || NEW_CATEGORY_VALUE,
+        when(answers) {
+          return answers.itemType !== 'find';
+        },
       },
       {
         type: 'input',
         name: 'newCategory',
         message: 'New category?',
         when(answers) {
-          return answers.categorySelection === NEW_CATEGORY_VALUE;
+          return answers.itemType !== 'find' &&
+            answers.categorySelection === NEW_CATEGORY_VALUE;
         },
         filter: normalizeTaxonomyValue,
         validate(value) {
@@ -224,9 +255,13 @@ module.exports = function (plop) {
         path: path.join(contentDirectory, `${slug}.md`),
         templateFile: path.join(__dirname, 'templates', 'post.txt'),
         data: {
-          category: escapeSingleQuotedYaml(category),
+          category: escapeSingleQuotedYaml(category || ''),
           date: date.toISOString(),
+          isFind: data.itemType === 'find',
+          itemType: data.itemType || 'post',
           slug: `${displayYear}/${displayMonth}/${slug}`,
+          source: escapeSingleQuotedYaml(data.source || ''),
+          summary: String(data.summary || '').replace(/"/g, '\\"'),
           tags: formatYamlStringArray(tagsList),
         },
       });

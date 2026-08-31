@@ -1,0 +1,58 @@
+@use "../assets/styles/tokens" as *;
+
+.notFound {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 44px;
+  align-items: center;
+  padding-top: 70px;
+
+  @include narrow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+    padding-top: 36px;
+  }
+
+  &__inner {
+    max-width: 54ch;
+  }
+
+  &__title {
+    margin-top: 10px;
+    font-size: 38px;
+    letter-spacing: -0.024em;
+
+    @include narrow {
+      font-size: 30px;
+    }
+  }
+
+  &__body {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 19px;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 24px;
+  }
+
+  &__link {
+    @include label(11px, 0.16em);
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+
+    @include narrow {
+      max-width: 160px;
+    }
+  }
+}

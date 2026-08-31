@@ -1,5 +1,6 @@
 ---
 title: "Populating a Form with a dropdown (jQuery)"
+type: 'post'
 date: '2012-02-05T18:39:03.284Z'
 slug: '2012/02/populating-a-form-with-a-dropdown-jquery'
 category: 'programming'

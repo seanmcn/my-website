@@ -1,5 +1,6 @@
 ---
 title: "Bash/Cygwin Terminal in PHPStorm"
+type: 'post'
 date: '2017-03-14T15:39:03.284Z'
 slug: '2017/03/bash-phpstorm-cygwin'
 category: 'systems'

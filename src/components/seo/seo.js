@@ -20,7 +20,8 @@ const SEO = ({
   type = 'website',
   noIndex = false,
 }) => {
-  const resolvedDescription = normaliseDescription(description, siteDescription);
+  const resolvedDescription =
+    normaliseDescription(description, siteDescription);
   const canonicalUrl = buildCanonicalUrl(siteUrl, pathname);
 
   return (

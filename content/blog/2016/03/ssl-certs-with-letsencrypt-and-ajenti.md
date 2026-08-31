@@ -1,5 +1,6 @@
 ---
 title: "Free SSL Certificates with LetsEncrypt and Ajenti-v"
+type: 'post'
 date: '2016-03-21T08:39:03.284Z'
 slug: '2016/03/letsencrypt-ajenti-v'
 category: 'systems'

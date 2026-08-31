@@ -3,13 +3,18 @@ const THEME_STORAGE_KEY = 'site-theme-preference';
 
 const pages = [
   {label: 'home', path: '/'},
-  {label: 'blog landing', path: '/blog/'},
+  {label: 'library', path: '/library/'},
+  {label: 'library posts filter', path: '/library/posts/'},
+  {label: 'tag index', path: '/library/tags/'},
   {
-    label: 'world models blog post',
-    path: '/blog/2026/04/what-are-world-models-in-ai/',
+    label: 'world models post',
+    path: '/library/2026/04/what-are-world-models-in-ai/',
   },
+  {label: 'projects', path: '/projects/'},
+  {label: 'chinwag project', path: '/projects/chinwag/'},
   {label: 'about', path: '/about/'},
   {label: 'contact', path: '/contact/'},
+  {label: 'search', path: '/search/'},
 ];
 
 const themes = ['light', 'dark'];
@@ -32,7 +37,10 @@ describe('Accessibility tests', () => {
 
   pages.forEach(({label, path}) => {
     themes.forEach((theme) => {
-      it(`Checks ${label} page for accessibility violations in ${theme} mode`, () => {
+      const name =
+        `Checks ${label} for accessibility violations in ${theme} mode`;
+
+      it(name, () => {
         visitPageWithTheme(path, theme);
         cy.checkA11y();
       });

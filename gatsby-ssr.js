@@ -59,7 +59,11 @@ export const onRenderBody = ({setHeadComponents, setHtmlAttributes}) => {
     <link
       key="fonts-stylesheet"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap"
+      href={
+        'https://fonts.googleapis.com/css2?' +
+        'family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&' +
+        'family=IBM+Plex+Mono:wght@400;500&display=swap'
+      }
     />,
     <meta
       key="viewport"

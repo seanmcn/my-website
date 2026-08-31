@@ -1,5 +1,6 @@
 ---
 title: "Software I’m using to track tasks & time"
+type: 'post'
 date: '2015-03-29T08:39:03.284Z'
 slug: '2015/03/tracking-time'
 category: 'productivity'

@@ -1,5 +1,6 @@
 ---
 title: "Easy Caching with StashPHP"
+type: 'post'
 date: '2015-09-08T00:39:03.284Z'
 slug: '2015/09/stash-php'
 category: 'programming'

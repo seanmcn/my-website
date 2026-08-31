@@ -1,5 +1,6 @@
 ---
 title: "First month at Kobas"
+type: 'post'
 date: '2016-07-03T15:39:03.284Z'
 slug: '2016/07/first-month-at-kobas'
 category: 'personal'

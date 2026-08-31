@@ -1,5 +1,6 @@
 ---
 title: "Making a simple RTS game – Week Three"
+type: 'post'
 date: '2016-11-27T15:39:03.284Z'
 slug: '2016/11/making-simple-rts-game-week-three'
 category: 'programming'

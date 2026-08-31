@@ -1,5 +1,6 @@
 ---
 title: "Who Hosts Irish Blogs ?"
+type: 'post'
 date: '2009-09-09T20:39:03.284Z'
 slug: '2009/09/who-hosts-irish-blogs'
 category: 'explainers'

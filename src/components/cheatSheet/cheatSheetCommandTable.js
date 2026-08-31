@@ -77,16 +77,11 @@ function CheatSheetCommandTable({columns, data}) {
             {headerGroups.map(headerGroup => (
               // eslint-disable-next-line react/jsx-key
               <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column, index) => (
-                (index === 0) ? (
+                {headerGroup.headers.map(column => (
+                  // eslint-disable-next-line react/jsx-key
                   <th {...column.getHeaderProps()}>
                     {column.render('Header')}
                   </th>
-                ) : (
-                  <th {...column.getHeaderProps()}>
-                    {column.render('Header')}
-                  </th>
-                )
                 ))}
               </tr>
             ))}

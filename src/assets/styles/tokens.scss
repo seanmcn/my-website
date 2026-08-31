@@ -1,40 +1,54 @@
 @use "sass:color";
 
-$cyan: #00b9e8;
-$tart-orange: #fe4a49;
-$orange-yellow: #fed766;
-$platinum: #e6e6ea;
-$white-smoke: #f4f4f8;
-
-$background-grey: $platinum;
-$background-white: $white-smoke;
-
-$primary-color: #227c71;
-$secondary-color: #264653;
-$secondary-color-strong: color.adjust($secondary-color, $lightness: -2%);
-
-$logo-text-color: #2a9d8f;
-
-$primary-alt-color: #e76f51;
-$secondary-alt-color: #f4a261;
-
-$primary: $primary-color;
-$link: $primary-color;
-
-$body-background-color: $background-grey;
-$background: $background-white;
-
-$weight-light: 300;
-$weight-medium: 500;
-$weight-semibold: 600;
-
-$border: #dbdbdb;
-$white: #ffffff;
-$text: #4a4a4a;
-$grey: #7a7a7a;
-
-$font-family-sans: 'Raleway', 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+// Breakpoints. The design collapses at two points: below 760px the rails
+// stack under the content, below 1080px the third column is dropped and the
+// gutters tighten.
+$narrow-max: 759px;
+$mid-max: 1079px;
+// Retained for the Mermaid viewer, which predates the redesign's breakpoints.
 $touch-max: 1023px;
+
+@mixin narrow {
+  @media screen and (max-width: $narrow-max) {
+    @content;
+  }
+}
+
+@mixin mid {
+  @media screen and (max-width: $mid-max) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media screen and (min-width: #{$mid-max + 1px}) {
+    @content;
+  }
+}
+
+@mixin not-narrow {
+  @media screen and (min-width: #{$narrow-max + 1px}) {
+    @content;
+  }
+}
+
+$font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+$font-mono: 'IBM Plex Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+
+$shell-max: 1180px;
+$rail-width: 262px;
+$rail-width-mid: 224px;
+$header-height: 66px;
+
+// Small caps label used everywhere in the design: eyebrows, meta rows,
+// filter bars, badges.
+@mixin label($size: 10px, $tracking: 0.16em) {
+  font-family: $font-mono;
+  font-size: $size;
+  font-weight: 400;
+  letter-spacing: $tracking;
+  text-transform: uppercase;
+}
 
 @mixin touch {
   @media screen and (max-width: $touch-max) {

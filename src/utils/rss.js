@@ -11,19 +11,27 @@ const rssQuery = `
           }
         `;
 
+// The feed carries the whole library, not just the posts: a note or a find is
+// exactly the kind of short item a reader subscribes for.
 const rssFeeds = [
   {
     serialize: ({query: {site, allMdx}}) => {
       return allMdx.nodes.map((node) => {
+        const itemUrl =
+          `${site.siteMetadata.siteUrl}/library/${node.frontmatter.slug}/`;
+
         return Object.assign({}, node.frontmatter, {
           title: node.frontmatter.title,
           slug: node.frontmatter.slug,
           date: node.frontmatter.date,
-          description: node.body.length > 3000 ?
-            node.body.substring(0, 3000) :
-            node.body,
-          url: `${site.siteMetadata.siteUrl}/blog/${node.frontmatter.slug}`,
-          guid: `${site.siteMetadata.siteUrl}/blog/${node.frontmatter.slug}`,
+          description: node.frontmatter.summary || (
+            node.body.length > 3000 ?
+              node.body.substring(0, 3000) :
+              node.body
+          ),
+          categories: [node.fields?.itemType || 'post'],
+          url: itemUrl,
+          guid: itemUrl,
           custom_elements: [{'content:encoded': node.html}],
         });
       });
@@ -31,13 +39,22 @@ const rssFeeds = [
     query: `{
                 allMdx(
                   sort: {frontmatter: {date: DESC}}
-                  filter: {fields: {sourceInstanceName: {eq: "blog"}}}
+                  filter: {
+                    fields: {
+                      sourceInstanceName: {eq: "blog"}
+                      visible: {eq: true}
+                    }
+                  }
                 ) {
                   nodes {
+                    fields {
+                      itemType
+                    }
                     frontmatter {
                       title
                       date
                       slug
+                      summary
                     }
                     body
                   }

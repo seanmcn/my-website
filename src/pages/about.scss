@@ -1,279 +1,251 @@
 @use "../assets/styles/tokens" as *;
 
 .aboutPage {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-}
+  &__cols {
+    display: grid;
+    grid-template-columns: $rail-width minmax(0, 1fr) 240px;
+    gap: 44px;
+    align-items: start;
+    padding-top: 24px;
 
-.aboutHero,
-.aboutStoryCard,
-.aboutTimelineCard {
-  border: 1px solid var(--surface-border);
-  border-top: 4px solid $primary-color;
-  border-radius: 1rem;
-  box-shadow: var(--shadow-medium);
-}
+    @include mid {
+      grid-template-columns: $rail-width-mid minmax(0, 1fr);
+      gap: 30px;
+    }
 
-.aboutHero {
-  background: var(--surface-panel-gradient);
-  overflow: hidden;
-  padding: 1.6rem 1.8rem 1.75rem;
-  position: relative;
-}
+    @include narrow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 8px;
+    }
+  }
 
-.aboutHero::after {
-  background:
-    radial-gradient(circle at top right, rgba(34, 124, 113, 0.12), transparent 34%),
-    radial-gradient(circle at bottom left, var(--surface-accent-warm), transparent 24%);
-  content: "";
-  inset: 0;
-  pointer-events: none;
-  position: absolute;
-}
+  &__main {
+    min-width: 0;
+  }
 
-.aboutHeroContent {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: minmax(0, 1.6fr) minmax(18rem, 1fr);
-  position: relative;
-  z-index: 1;
-}
+  &__bar {
+    border-bottom-color: var(--ink);
+  }
 
-.aboutHeroIntro {
-  max-width: 46rem;
-}
+  &__title {
+    flex: none;
+    color: var(--faint);
+    font-family: $font-mono;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
 
-.aboutHeroEyebrow {
-  color: var(--link-color);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  margin-bottom: 0.55rem;
-  text-transform: uppercase;
-}
-
-.aboutHeroTitle {
-  color: var(--text-heading);
-  font-size: 2.2rem !important;
-  line-height: 1.05;
-  margin-bottom: 0.65rem !important;
-}
-
-.aboutHeroLead {
-  color: var(--text-faint);
-  font-size: 1.08rem;
-  line-height: 1.7;
-  margin: 0;
-}
-
-.aboutHeroLeadSecondary {
-  margin-top: 0.8rem;
-}
-
-.aboutHeroLead a,
-.aboutStoryContent a {
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-
-.aboutSnapshotShell {
-  align-self: start;
-  background: var(--surface-elevated);
-  border: 1px solid var(--surface-border);
-  border-radius: 1rem;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  padding: 1rem 1rem 1.05rem;
-}
-
-.aboutPageGrid {
-  display: grid;
-  gap: 1.4rem;
-  grid-template-columns: minmax(0, 1.9fr) minmax(18rem, 0.95fr);
-  align-items: start;
-}
-
-.aboutPageAside {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.aboutStoryCard {
-  padding: 1.55rem 1.7rem;
-}
-
-.aboutStoryContent {
-  color: var(--text-color);
-  font-size: 1.04rem;
-  line-height: 1.82;
-}
-
-.aboutStoryContent h2 {
-  color: var(--text-heading);
-  font-size: 1.28rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin: 1.55rem 0 0.6rem;
-}
-
-.aboutStoryContent h2:first-child {
-  margin-top: 0;
-}
-
-.aboutStoryContent p + p {
-  margin-top: 1.15rem;
-}
-
-.aboutSectionTitle {
-  color: var(--text-strong);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.85rem !important;
-}
-
-.aboutSnapshotGrid {
-  display: grid;
-  gap: 0.75rem;
-  margin: 0;
-}
-
-.aboutSnapshotItem {
-  align-items: start;
-  border-top: 1px solid var(--surface-border);
-  display: grid;
-  gap: 0.25rem;
-  padding-top: 0.75rem;
-}
-
-.aboutSnapshotItem:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.aboutSnapshotItem dt {
-  align-items: center;
-  color: var(--link-color);
-  display: inline-flex;
-  gap: 0.55rem;
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.aboutSnapshotIcon {
-  align-items: center;
-  background: var(--surface-badge-gradient);
-  border: 1px solid var(--surface-border-strong);
-  border-radius: 999px;
-  box-shadow: var(--shadow-soft);
-  color: var(--link-color);
-  display: inline-flex;
-  font-size: 0.78rem;
-  height: 1.65rem;
-  justify-content: center;
-  letter-spacing: normal;
-  text-transform: none;
-  width: 1.65rem;
-}
-
-.aboutSnapshotItem dd {
-  color: var(--text-color);
-  font-size: 0.96rem;
-  line-height: 1.55;
-  margin: 0;
-}
-
-.aboutTimelineCard {
-  padding: 1.2rem 1.25rem 1.3rem;
-}
-
-.aboutTimelineList {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
-
-.aboutTimelineList li {
-  border-left: 2px solid var(--surface-border-strong);
-  list-style: none;
-  margin-left: 0.4rem;
-  padding: 0 0 1rem 1rem;
-  position: relative;
-}
-
-.aboutTimelineList li:last-child {
-  padding-bottom: 0;
-}
-
-.aboutTimelineList li::before {
-  background: var(--surface-badge-gradient);
-  border: 2px solid var(--surface-border-strong);
-  border-radius: 999px;
-  content: "";
-  height: 0.8rem;
-  left: -0.5rem;
-  position: absolute;
-  top: 0.25rem;
-  width: 0.8rem;
-}
-
-.aboutTimelineList strong,
-.aboutTimelineList span {
-  display: block;
-}
-
-.aboutTimelineList strong {
-  color: var(--text-strong);
-  font-size: 0.98rem;
-  font-weight: 600;
-  margin-bottom: 0.18rem;
-}
-
-.aboutTimelineList span {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.aboutTimelineList .aboutTimelineMeta {
-  color: var(--link-color);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  margin-bottom: 0.18rem;
-}
-
-@media screen and (width <= 1023px) {
-  .aboutHeroContent,
-  .aboutPageGrid {
-    grid-template-columns: 1fr;
+  &__lead {
+    max-width: 64ch;
+    margin: 22px 0 0;
+    color: var(--ink-2);
+    font-size: 19px;
+    line-height: 1.6;
+    text-wrap: pretty;
   }
 }
 
-@media screen and (width <= 768px) {
-  .aboutHero {
-    padding: 1.3rem 1.15rem;
+.aboutSection {
+  padding: 24px 0 0;
+
+  &__head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 10px;
   }
 
-  .aboutHeroTitle {
-    font-size: 1.8rem !important;
+  &__num {
+    flex: none;
+    color: var(--faint);
+
+    @include label(10px, 0.16em);
   }
 
-  .aboutHeroLead,
-  .aboutStoryContent {
-    font-size: 1rem;
+  &__heading {
+    font-size: 24px;
+    letter-spacing: -0.018em;
   }
 
-  .aboutStoryCard,
-  .aboutTimelineCard {
-    padding: 1.15rem 1rem;
+  &__para {
+    max-width: 66ch;
+    margin: 0 0 13px;
+    color: var(--ink-2);
+    font-size: 18px;
+    line-height: 1.72;
+    text-wrap: pretty;
   }
 
-  .aboutSnapshotShell {
-    padding: 0.95rem 0.95rem 1rem;
+  &__divider {
+    height: 1px;
+    margin-top: 24px;
+    background: var(--line);
+  }
+}
+
+.aboutBio {
+  &__portraitFrame {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+  }
+
+  &__portrait {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    transition: width 0.28s ease;
+
+    &.is-condensed {
+      width: 62%;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    @include narrow {
+      width: 44%;
+
+      &.is-condensed {
+        width: 44%;
+      }
+    }
+  }
+
+  &__blurb {
+    margin: 9px 0 0;
+    color: var(--faint);
+    font-size: 14px;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  &__snapshot {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  &__snapshotLabel {
+    flex: none;
+    width: 70px;
+    color: var(--faint);
+
+    @include label(10px, 0.14em);
+  }
+
+  &__snapshotValue {
+    color: var(--ink-2);
+    font-size: 13.5px;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  &__toolsHeading {
+    margin-bottom: 12px;
+  }
+
+  &__tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__tool {
+    padding: 5px 9px;
+
+    @include label(10px, 0.12em);
+
+    &--daily {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    &--often {
+      background: var(--accent-tint);
+      border: 1px solid var(--accent-tint-2);
+      color: var(--accent);
+    }
+
+    &--shipped {
+      border: 1px solid var(--line);
+      color: var(--faint);
+    }
+  }
+
+  &__key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    color: var(--faint);
+
+    @include label(9px, 0.12em);
+  }
+
+  &__keyItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__swatch {
+    width: 8px;
+    height: 8px;
+
+    &--daily {
+      background: var(--accent);
+    }
+
+    &--often {
+      background: var(--accent-tint);
+      border: 1px solid var(--accent-tint-2);
+    }
+
+    &--shipped {
+      border: 1px solid var(--line);
+    }
+  }
+}
+
+.aboutTimeline {
+  &__heading {
+    margin-bottom: 8px;
+  }
+
+  &__entry {
+    padding: 13px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  &__years {
+    color: var(--faint);
+
+    @include label(10px, 0.12em);
+  }
+
+  &__role {
+    margin-top: 4px;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    line-height: 1.3;
+  }
+
+  &__org {
+    margin-top: 3px;
+    color: var(--accent);
+
+    @include label(10px, 0.12em);
   }
 }

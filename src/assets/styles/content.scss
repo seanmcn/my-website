@@ -1,0 +1,262 @@
+@use "./tokens" as *;
+
+/**
+ * Rendered markdown. The measure is deliberately wide for a serif at 19px
+ * (74ch) because the articles are technical and lean on code and lists; the
+ * headings are held much narrower so they read as titles, not paragraphs.
+ */
+.prose {
+  font-size: 19px;
+  line-height: 1.75;
+  color: var(--ink);
+
+  > p,
+  > .gatsby-highlight + p {
+    max-width: 74ch;
+    margin: 0 0 22px;
+    text-wrap: pretty;
+  }
+
+  p {
+    margin: 0 0 22px;
+    text-wrap: pretty;
+  }
+
+  h2 {
+    max-width: 38ch;
+    margin: 44px 0 16px;
+    font-size: 29px;
+    letter-spacing: -0.022em;
+    line-height: 1.25;
+  }
+
+  h3 {
+    max-width: 48ch;
+    margin: 34px 0 12px;
+    font-size: 21px;
+    letter-spacing: -0.012em;
+    line-height: 1.35;
+  }
+
+  h4 {
+    max-width: 52ch;
+    margin: 26px 0 10px;
+    font-size: 18px;
+  }
+
+  a {
+    border-bottom: 1px solid var(--accent-tint-2);
+  }
+
+  strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  ul,
+  ol {
+    max-width: 72ch;
+    margin: 0 0 24px;
+    padding: 0 0 0 2px;
+  }
+
+  /**
+   * Markdown puts inline content straight inside <li>, so the bullet has to be
+   * drawn out of flow — a grid or flex list item would treat every word as its
+   * own child and stack them.
+   */
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      position: relative;
+      padding-left: 24px;
+      line-height: 1.7;
+      text-wrap: pretty;
+
+      &::before {
+        content: "•";
+        position: absolute;
+        left: 4px;
+        color: var(--faint-2);
+      }
+    }
+  }
+
+  ol {
+    padding-left: 24px;
+
+    li {
+      padding-left: 4px;
+      line-height: 1.7;
+      text-wrap: pretty;
+
+      &::marker {
+        color: var(--faint-2);
+        font-family: $font-mono;
+        font-size: 15px;
+      }
+    }
+  }
+
+  li > ul,
+  li > ol {
+    margin: 4px 0 8px;
+  }
+
+  li p {
+    margin: 0 0 8px;
+  }
+
+  blockquote {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    max-width: 68ch;
+    margin: 6px 0 30px;
+    padding: 16px 20px;
+    background: var(--accent-tint);
+    text-wrap: pretty;
+
+    &::before {
+      content: "“";
+      color: var(--accent);
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 1.1;
+      opacity: 0.45;
+    }
+
+    > * {
+      grid-column: 2;
+      color: var(--ink-2);
+      font-size: 17px;
+      line-height: 1.72;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  code {
+    padding: 2px 5px;
+    background: var(--surface-2);
+    color: var(--accent-deep);
+    font-family: $font-mono;
+    font-size: 15px;
+  }
+
+  pre code {
+    padding: 0;
+    background: none;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  table {
+    display: block;
+    max-width: 82ch;
+    margin: 2px 0 28px;
+    overflow-x: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-collapse: collapse;
+  }
+
+  th {
+    padding: 9px 16px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    text-align: left;
+
+    @include label(10px, 0.16em);
+  }
+
+  td {
+    padding: 11px 16px;
+    border-top: 1px solid var(--surface-2);
+    color: var(--ink-2);
+    font-size: 17px;
+    line-height: 1.5;
+    vertical-align: top;
+    text-wrap: pretty;
+  }
+
+  tbody tr:nth-child(even) {
+    background: var(--surface);
+  }
+
+  /** Keyboard shortcuts printed in a table read as keycaps. */
+  td:first-child code,
+  th:first-child code {
+    display: inline-block;
+    padding: 3px 7px;
+    background: var(--surface);
+    border: 1px solid var(--line-2);
+    box-shadow: 0 1px 0 var(--line-2);
+    color: var(--ink);
+    font-size: 12px;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+
+  hr {
+    max-width: 74ch;
+    margin: 34px 0;
+  }
+
+  figure {
+    margin: 0 0 28px;
+  }
+
+  figcaption {
+    margin-top: 8px;
+    color: var(--faint);
+
+    @include label(10px, 0.12em);
+  }
+
+  img,
+  .gatsby-resp-image-wrapper {
+    display: block;
+    margin: 0 0 28px;
+    border: 1px solid var(--line);
+  }
+
+  .gatsby-resp-image-wrapper {
+    max-width: 100% !important;
+  }
+
+  /**
+   * The featured image floats into the article's right margin on wide screens,
+   * the way a plate would sit beside body copy in print.
+   */
+  &__floatFigure {
+    float: right;
+    width: 40%;
+    margin: 0 -44px 12px 0;
+
+    @include mid {
+      margin: 0 0 12px 20px;
+    }
+
+    @include narrow {
+      float: none;
+      width: 100%;
+      margin: 0 0 18px;
+    }
+
+    .gatsby-image-wrapper {
+      border: 1px solid var(--line);
+    }
+  }
+}
+
+/** Notes and finds sit in a centred single column; nothing should float. */
+.itemPage__body--narrow .prose__floatFigure {
+  float: none;
+  width: 100%;
+  margin: 0 0 24px;
+}

@@ -1,313 +1,528 @@
 @use "../assets/styles/tokens" as *;
 
 .homePage {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
+  &__row {
+    display: grid;
+    grid-template-columns: $rail-width minmax(0, 1fr);
+    gap: 44px;
+    align-items: start;
+    padding: 44px 0 0;
 
-.homeSectionEyebrow {
-  color: var(--text-strong);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.6rem;
-  text-transform: uppercase;
-}
+    @include mid {
+      grid-template-columns: $rail-width-mid minmax(0, 1fr);
+      gap: 30px;
+    }
 
-.homeSectionTitle {
-  color: var(--text-heading);
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.125;
-  margin-bottom: 0 !important;
-}
+    @include narrow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 10px 0 0;
+    }
+  }
 
-.homeSectionIntro {
-  color: var(--text-color);
-  font-size: 1rem;
-  line-height: 1.7;
-  max-width: 38rem;
-  margin: 0;
-}
-
-.homeSection {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.homeSectionHeader {
-  display: flex;
-  justify-content: space-between;
-  gap: 1.5rem;
-  align-items: flex-end;
-}
-
-.homeAboutCard {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap;
-  gap: 1.5rem;
-  align-items: center;
-  border: 1px solid var(--surface-border);
-  border-top: 4px solid #227c71;
-  border-radius: 1rem;
-  box-shadow: var(--shadow-medium);
-  padding: 1.3rem;
-  background: var(--surface-panel-gradient);
-}
-
-.homeAboutImageWrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 0 0 220px;
-}
-
-.homeAboutImage {
-  margin: 0;
-  width: 220px;
-  max-width: 100%;
-}
-
-.homeAboutImage img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 1rem;
-}
-
-.homeAboutContent {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  min-width: 0;
-  gap: 0.8rem;
-}
-
-.homeAboutLead {
-  color: var(--text-strong);
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.35;
-  margin: 0;
-}
-
-.homeAboutText {
-  color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 1.7;
-  margin: 0;
-}
-
-.homeAboutFooter {
-  margin-top: 0.35rem;
-}
-
-.homeAboutButton.button {
-  border-radius: 999px;
-  font-weight: 600;
-  background: var(--link-color);
-  border-color: var(--link-color);
-  color: #fff;
-}
-
-.homeAboutButton.button:hover {
-  filter: brightness(1.08);
-}
-
-html[data-theme='dark'] .homeAboutButton.button {
-  color: #081219;
-}
-
-.homeProjectsCarousel {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-}
-
-.homeProjectsViewport {
-  overflow: hidden;
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.homeProjectsTrack {
-  display: flex;
-  gap: 1rem;
-  transition: transform 220ms ease;
-  will-change: transform;
-}
-
-.homeProjectsArrow {
-  appearance: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.85rem;
-  height: 2.85rem;
-  border: 1px solid var(--surface-border-strong);
-  border-radius: 999px;
-  background: var(--surface-base);
-  color: var(--text-strong);
-  cursor: pointer;
-  flex: 0 0 auto;
-  font-size: 1.8rem;
-  line-height: 1;
-  padding: 0;
-  box-shadow: var(--shadow-soft);
-  transition: background-color 160ms ease, border-color 160ms ease,
-    transform 160ms ease, opacity 160ms ease;
-}
-
-.homeProjectsArrow:hover:not(:disabled) {
-  background: var(--surface-accent);
-  border-color: var(--link-color);
-  transform: translateY(-1px);
-}
-
-.homeProjectsArrow:disabled {
-  cursor: default;
-  opacity: 0.45;
-}
-
-.homeProjectCard {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  min-height: 100%;
-  flex: 0 0 calc((100% - (var(--projects-per-view) - 1) * 1rem) / var(--projects-per-view));
-  min-width: 0;
-  padding: 1.1rem 1.15rem;
-  border: 1px solid var(--surface-border);
-  border-radius: 1rem;
-  background: var(--surface-base);
-  box-shadow: var(--shadow-medium);
-  text-decoration: none;
-  transition: transform 160ms ease, box-shadow 160ms ease,
-    border-color 160ms ease;
-}
-
-.homeProjectCard:hover {
-  transform: translateY(-2px);
-  border-color: var(--surface-border-strong);
-  box-shadow: var(--shadow-strong);
-}
-
-.homeProjectMeta {
-  color: var(--link-color);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.homeProjectTitle {
-  color: var(--text-strong);
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.15;
-  margin: 0;
-}
-
-.homeProjectImage {
-  border-radius: 0.85rem;
-  overflow: hidden;
-}
-
-.homeProjectImage img {
-  object-position: top left !important;
-}
-
-.homeProjectDescription {
-  color: var(--text-muted);
-  line-height: 1.65;
-  margin: 0;
-}
-
-.homeProjectLink {
-  color: var(--link-color);
-  font-size: 0.92rem;
-  font-weight: 600;
-  margin-top: auto;
-}
-
-.homeProjectsPagination {
-  display: flex;
-  justify-content: center;
-  gap: 0.45rem;
-  margin-top: 0.35rem;
-}
-
-.homeProjectsPaginationDot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 999px;
-  background: var(--surface-border-strong);
-  opacity: 0.45;
-}
-
-.homeProjectsPaginationDot.is-active {
-  background: var(--link-color);
-  opacity: 1;
-}
-
-.homeWritingSection {
-  padding-top: 0.25rem;
-}
-
-.homeWritingSection .latestPostsHome {
-  justify-content: flex-start;
-  gap: 1rem;
-}
-
-.homeWritingSection .postCardBox {
-  margin: 0;
-}
-
-@media screen and (width <= 1023px) {
-  .homeSectionHeader {
+  &__main {
+    display: flex;
+    flex: 1;
     flex-direction: column;
-    align-items: flex-start;
+    gap: 44px;
+    min-width: 0;
+  }
+
+  /** Posts lead; finds and notes run down a narrower column beside them. */
+  &__split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.8fr);
+    gap: 36px;
+    align-items: start;
+
+    @include mid {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
   }
 }
 
-@media screen and (width <= 768px) {
-  .homePage {
-    gap: 1.5rem;
+/* -------------------------------------------------------------- bio rail */
+
+.homeBio {
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+
+    @include narrow {
+      flex-flow: row wrap;
+      align-items: center;
+      gap: 16px;
+    }
   }
 
-  .homeAboutCard {
-    flex-direction: column !important;
-    padding: 1.1rem;
+  &__headline {
+    order: 2;
+    flex: none;
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: -0.012em;
+    line-height: 1.35;
+    text-wrap: pretty;
+
+    @include narrow {
+      order: 1;
+      flex: 1 1 0;
+      font-size: 19px;
+    }
   }
 
-  .homeAboutImageWrap {
-    flex-basis: auto;
+  &__avatarOuter {
+    display: block;
+    order: 1;
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+
+    @include narrow {
+      order: 2;
+      flex: none;
+      width: 82px;
+      border-bottom: 0;
+    }
   }
 
-  .homeAboutImage {
-    width: 180px;
+  /** The portrait pulls in as the page scrolls so the rail keeps pace. */
+  &__avatar {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    transition: width 0.28s ease;
+
+    &.is-condensed {
+      width: 50%;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include narrow {
+      width: 82px;
+      margin: 0;
+
+      &.is-condensed {
+        width: 82px;
+      }
+    }
   }
 
-  .homeAboutLead {
-    font-size: 1.1rem;
+  &__body {
+    margin-top: -17px;
+
+    @include narrow {
+      margin-top: -6px;
+    }
   }
 
-  .homeProjectsCarousel {
-    gap: 0.55rem;
+  &__blurb {
+    margin: 9px 0 0;
+    color: var(--faint);
+    font-size: 14px;
+    line-height: 1.6;
+    text-wrap: pretty;
   }
 
-  .homeProjectsArrow {
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1.5rem;
+  &__aboutLink {
+    margin-top: 12px;
+    text-align: right;
+
+    @include label(10px, 0.16em);
+
+    @include narrow {
+      display: none;
+    }
   }
 
-  .homeAboutText,
-  .homeSectionIntro {
-    font-size: 0.96rem;
+  &__role {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 16px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-2);
+    font-family: $font-mono;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+
+    @include narrow {
+      display: none;
+    }
+  }
+
+  &__roleDot {
+    flex: none;
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  &__roleOrg {
+    color: var(--ink);
+  }
+
+  &__stats {
+    @include narrow {
+      display: none;
+    }
+  }
+
+  &__stat {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid var(--line);
+    color: var(--faint);
+
+    @include label(10px, 0.14em);
+  }
+
+  &__statValue {
+    flex: none;
+    margin-left: auto;
+    color: var(--ink);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+}
+
+/* ------------------------------------------------------------ lead posts */
+
+.homeLead {
+  display: flex;
+  flex-direction: column;
+  margin-top: -12px;
+
+  &__card {
+    display: grid;
+    grid-template-areas:
+      "meta  img"
+      "title img"
+      "body  img"
+      "time  img";
+    grid-template-columns: minmax(0, 1fr) clamp(104px, 24%, 160px);
+    column-gap: 24px;
+    align-items: start;
+    margin: 0 -8px;
+    padding: 22px 8px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+
+    &:last-child {
+      border-bottom-color: transparent;
+    }
+
+    &:hover {
+      background: var(--surface-2);
+      color: var(--ink);
+    }
+
+    @include narrow {
+      grid-template-areas:
+        "meta  meta"
+        "title title"
+        "body  img"
+        "time  time";
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      column-gap: 16px;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    grid-area: meta;
+    align-items: center;
+    gap: 6px 14px;
+    min-width: 0;
+    color: var(--faint);
+
+    @include label(10px, 0.14em);
+  }
+
+  &__metaCat {
+    display: inline-flex;
+    order: 2;
+    align-items: center;
+    gap: 6px;
+
+    svg {
+      color: var(--accent);
+    }
+
+    @include narrow {
+      order: 1;
+    }
+  }
+
+  &__metaDate {
+    display: inline-flex;
+    order: 1;
+    align-items: center;
+    gap: 6px;
+
+    svg {
+      color: var(--faint-2);
+    }
+
+    @include narrow {
+      order: 2;
+      margin-left: auto;
+    }
+  }
+
+  &__metaTime {
+    display: inline-flex;
+    order: 3;
+    align-items: center;
+    gap: 6px;
+
+    svg {
+      color: var(--faint-2);
+    }
+
+    @include narrow {
+      display: none;
+    }
+  }
+
+  &__title {
+    display: block;
+    grid-area: title;
+    min-width: 0;
+    margin-top: 6px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.16;
+    text-wrap: pretty;
+
+    @include narrow {
+      font-size: 24px;
+    }
+  }
+
+  &__body {
+    display: block;
+    grid-area: body;
+    min-width: 0;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.55;
+    text-wrap: pretty;
+
+    @include narrow {
+      font-size: 16px;
+    }
+  }
+
+  &__image {
+    display: flex;
+    grid-area: img;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    padding-left: 22px;
+    border-left: 1px solid var(--line);
+
+    @include narrow {
+      align-self: start;
+      margin-top: 10px;
+      padding-left: 14px;
+    }
+
+    .gatsby-image-wrapper {
+      max-height: 150px;
+    }
+  }
+
+  &__timeRow {
+    display: none;
+    grid-area: time;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-top: 12px;
+    color: var(--faint);
+
+    @include label(10px, 0.14em);
+
+    svg {
+      color: var(--faint-2);
+    }
+
+    @include narrow {
+      display: inline-flex;
+    }
+  }
+}
+
+/* --------------------------------------------------------- finds & notes */
+
+.homeAside {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  padding: 22px 20px 24px;
+  background: var(--surface-2);
+
+  &__empty {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  &__finds {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  &__find {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 10px;
+    align-items: baseline;
+    color: var(--ink);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  &__findDate {
+    color: var(--blue);
+
+    @include label(10px, 0.08em);
+  }
+
+  &__findTitle {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    text-wrap: pretty;
+  }
+
+  &__notes {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  &__note {
+    display: block;
+    color: var(--ink);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  &__noteDate {
+    display: block;
+    color: var(--amber);
+
+    @include label(10px, 0.08em);
+  }
+
+  &__noteTitle {
+    display: block;
+    margin-top: 3px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    line-height: 1.35;
+    text-wrap: pretty;
+  }
+
+  &__noteExcerpt {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+}
+
+/* -------------------------------------------------------------- projects */
+
+.homeProjects {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 87px minmax(0, 1fr);
+    gap: 22px;
+    align-items: center;
+    color: var(--ink);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  &__thumb {
+    display: block;
+    width: 87px;
+    height: 65px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+
+    .gatsby-image-wrapper {
+      width: 100%;
+      height: 100%;
+    }
+
+    &--blank {
+      background: var(--surface-2);
+      border-left: 3px solid var(--accent);
+    }
+  }
+
+  &__meta {
+    display: block;
+    color: var(--accent);
+
+    @include label(10px, 0.16em);
+  }
+
+  &__line {
+    display: block;
+    margin-top: 4px;
+  }
+
+  &__name {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.014em;
+  }
+
+  &__blurb {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.5;
   }
 }

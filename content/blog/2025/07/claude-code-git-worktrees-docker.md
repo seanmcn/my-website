@@ -1,11 +1,18 @@
 ---
 title: "Multitasking Like a Pro: Claude Code, Git Worktrees, and Docker"
+type: 'post'
 date: '2025-07-23T14:30:00.000Z'
 slug: '2025/07/claude-code-git-worktrees-docker'
 category: 'productivity'
 tags: ['ai', 'claude-code', 'git-worktrees', 'docker']
 keywords: ['claude code', 'git worktrees', 'docker', 'multitasking', 'development workflow', 'ai coding']
 featured: 'images/featured-claude-code-git-worktrees-docker.png'
+summary: 'Running several Claude Code sessions at once by giving each one its own worktree and its own container, so nothing has to be stashed.'
+margins:
+  - label: 'In one line'
+    text: 'Stop switching branches. Give every task its own directory and let them run side by side.'
+  - label: 'The catch'
+    text: 'Ports collide the moment two containers come up. Assign them per worktree before you need to.'
 ---
 
 As developers, we've all been there, you're deep in fixing a critical bug when suddenly a urgent feature request lands on your desk. Context switching between branches, stashing changes, and trying to keep multiple workstreams in your head can be mentally exhausting. Over the past few months, I've discovered a workflow that's completely transformed how I handle multiple concurrent tasks: combining [Claude Code](https://claude.ai/code) with [git worktrees](https://git-scm.com/docs/git-worktree) and [Docker](https://www.docker.com/).

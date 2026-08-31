@@ -1,5 +1,6 @@
 ---
 title: "Turn Up - Volume Mixer"
+type: 'post'
 date: "2021-05-30T13:40:19.149Z"
 slug: "2021/05/turn-up-volume-mixer"
 category: 'reviews'

@@ -1,5 +1,6 @@
 ---
 title: "A demi-decade at Kobas"
+type: 'post'
 date: "2021-06-08T19:39:19.327Z"  
 slug: "2021/06/demi-decade-at-kobas"  
 category: "personal"  

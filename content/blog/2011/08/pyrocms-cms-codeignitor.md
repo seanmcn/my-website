@@ -1,5 +1,6 @@
 ---
 title: "PyroCMS – CMS on the CodeIgnitor Framework"
+type: 'post'
 date: '2011-08-14T20:39:03.284Z'
 slug: '2011/08/pyrocms-cms-on-the-codeignitor-framework'
 category: 'programming'

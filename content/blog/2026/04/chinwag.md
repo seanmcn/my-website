@@ -1,11 +1,18 @@
 ---
 title: "Building Chinwag: Local-First WhatsApp Chat Analysis in Go"
+type: 'post'
 date: "2026-04-07T09:31:11.746Z"
 slug: "2026/04/chinwag"
 category: 'programming'
 tags: ['text-analysis', 'go', 'whatsapp', 'open-source']
 keywords: ['chinwag', 'whatsapp chat analysis', 'go app', 'local first', 'text analysis']
 featured: 'images/featured-chinwag.png'
+summary: 'Parsing WhatsApp exports into a timeline, running lexicon-based sentiment over it, and keeping every byte on your own machine.'
+margins:
+  - label: 'In one line'
+    text: 'Messy conversational data made legible without any of it leaving the machine.'
+  - label: 'Deliberately unfashionable'
+    text: 'Lexicons and heuristics instead of models: VADER-style sentiment, TF-IDF topics, NRC emotion.'
 ---
 
 Recently, I have been working on [Chinwag](https://github.com/seanmcn/chinwag), a local-first tool for analysing exported WhatsApp chats and turning them into an interactive breakdown of how two people actually communicate.

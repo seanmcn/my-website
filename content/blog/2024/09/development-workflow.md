@@ -1,5 +1,6 @@
 ---
 title: "My Development Workflow in 2024"
+type: 'post'
 date: '2024-11-09T13:21:42.341Z'
 slug: '2024/11/my-development-workflow'
 category: 'productivity'

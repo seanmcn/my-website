@@ -1,64 +1,61 @@
 /* eslint-disable no-undef */
-const touchSizes = [
-  'ipad-2',
+
+// The design stacks its rails below 760px, which is also where the header
+// swaps its inline nav for the full-screen menu.
+const narrowSizes = [
   'iphone-6',
-  ['iphone-6', 'landscape'],
   'iphone-x',
-  ['iphone-x', 'landscape'],
   'samsung-s10',
 ];
-const fullSizes = [['ipad-2', 'landscape'], 'macbook-11', 'macbook-16'];
+const wideSizes = [['ipad-2', 'landscape'], 'macbook-11', 'macbook-16'];
 
-describe('Responsive menu', () => {
+describe('Responsive navigation', () => {
   beforeEach(() => {
     cy.visit('/').get('#mainSection');
   });
-  touchSizes.forEach((size) => {
-    it(`Should display navbar burger on ${size} screen`, () => {
-      if (Cypress._.isArray(size)) {
-        cy.viewport(size[0], size[1]);
-      } else {
-        cy.viewport(size);
-      }
-      cy.get('.navbar-brand > .button').should('be.visible');
-    });
-    it(`Can open and close navigation menu using navbar burger on
-    ${size} screen`, () => {
-      if (Cypress._.isArray(size)) {
-        cy.viewport(size[0], size[1]);
-      } else {
-        cy.viewport(size);
-      }
-      cy.get('.navbar-brand > .button').click();
-      cy.get('.siteNavbarDrawer').should('have.class', 'is-active')
-          .and('be.visible');
-      cy.get('.siteNavbarDrawerBackdrop').should('have.class', 'is-active');
-      cy.get('.siteNavbarDrawerClose').click();
-      cy.get('.siteNavbarDrawer').should('not.have.class', 'is-active');
+
+  narrowSizes.forEach((size) => {
+    it(`Shows the menu button on ${size}`, () => {
+      cy.viewport(size);
+      cy.get('.siteHeader__burger').should('be.visible');
+      cy.get('.siteHeader__nav').should('not.be.visible');
     });
 
-    it(`Can close navigation drawer via backdrop on ${size} screen`, () => {
-      if (Cypress._.isArray(size)) {
-        cy.viewport(size[0], size[1]);
-      } else {
-        cy.viewport(size);
-      }
-      cy.get('.navbar-brand > .button').click();
-      cy.get('.siteNavbarDrawer').should('have.class', 'is-active');
-      cy.get('.siteNavbarDrawerBackdrop').click({force: true});
-      cy.get('.siteNavbarDrawer').should('not.have.class', 'is-active');
+    it(`Opens and closes the full-screen menu on ${size}`, () => {
+      cy.viewport(size);
+      cy.get('.siteHeader__burger').click();
+      cy.get('.mobileMenu').should('be.visible');
+      cy.get('.mobileMenu__link').should('have.length', 5);
+      cy.get('.mobileMenu__close').click();
+      cy.get('.mobileMenu').should('not.exist');
+    });
+
+    it(`Navigates from the menu on ${size}`, () => {
+      cy.viewport(size);
+      cy.get('.siteHeader__burger').click();
+      cy.contains('.mobileMenu__link', 'Library').click();
+      cy.location('pathname').should('eq', '/library/');
+      cy.get('.mobileMenu').should('not.exist');
+    });
+
+    it(`Stacks the library rail behind a toggle on ${size}`, () => {
+      cy.viewport(size);
+      cy.visit('/library/');
+      cy.get('.rail--collapsible').should('not.be.visible');
+      cy.get('.railToggle').click();
+      cy.get('.rail--collapsible').should('be.visible');
     });
   });
-  fullSizes.forEach((size) => {
-    // make assertions on the logo using
-    // an array of different viewports
-    it(`Should not display navbar burger on ${size} screen`, () => {
+
+  wideSizes.forEach((size) => {
+    it(`Shows inline navigation instead of the menu button on ${size}`, () => {
       if (Cypress._.isArray(size)) {
         cy.viewport(size[0], size[1]);
       } else {
         cy.viewport(size);
       }
-      cy.get('.navbar-brand > .button').should('not.be.visible');
+      cy.get('.siteHeader__burger').should('not.be.visible');
+      cy.get('.siteHeader__nav').should('be.visible');
     });
   });
 });

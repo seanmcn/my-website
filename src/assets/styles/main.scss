@@ -2,94 +2,120 @@
 
 @use "./tokens" as *;
 
+/**
+ * Palette. Warm paper ground, near-black ink, a single green accent, and three
+ * type colours that identify posts, notes and finds wherever they appear.
+ */
 :root {
-  --body-background: #{$body-background-color};
-  --surface-base: #{$background};
-  --surface-elevated: rgba(255, 255, 255, 0.82);
-  --surface-elevated-strong: rgba(255, 255, 255, 0.92);
-  --surface-nav: rgba(244, 244, 248, 0.92);
-  --surface-nav-border: rgba(34, 124, 113, 0.1);
-  --surface-border: rgba(34, 124, 113, 0.14);
-  --surface-border-strong: rgba(34, 124, 113, 0.28);
-  --surface-accent: rgba(34, 124, 113, 0.05);
-  --surface-accent-hover: rgba(34, 124, 113, 0.09);
-  --surface-accent-strong: rgba(34, 124, 113, 0.18);
-  --surface-accent-warm: rgba(231, 111, 81, 0.08);
-  --surface-overlay: rgba(244, 244, 248, 0.76);
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --surface-2: #f2efe7;
+  --line: #e0dad0;
+  --line-2: #ded8cd;
+  --ink: #1a1f1e;
+  --ink-2: #4a453d;
+  --muted: #6d675e;
+  --faint: #6a645b;
+  --faint-2: #8f8779;
+  --accent: #0b6b57;
+  --accent-hover: #08503f;
+  --accent-deep: #0b5b4a;
+  --accent-tint: #e6efeb;
+  --accent-tint-2: #d8e8df;
+  --amber: #955d17;
+  --amber-bg: #f3efe6;
+  --amber-line: #e6ded0;
+  --amber-stripe: #e9e0cf;
+  --blue: #415966;
+  --blue-bg: #eceef0;
+  --blue-line: #dfe3e6;
+  --blue-stripe: #e0e5e8;
+  --blue-faint: #cfd5d8;
+  --plum: #6f4a7a;
+  --selection-background: #d8e8df;
+
+  /**
+   * Aliases kept for the Mermaid diagram viewer, which is the one component
+   * carried over intact from the previous design. Mapping them here means the
+   * viewer follows the new palette without being rewritten.
+   */
+  --surface-border: var(--line);
+  --surface-elevated: var(--surface);
+  --surface-elevated-strong: var(--surface);
+  --surface-overlay: rgb(19 19 17 / 72%);
   --surface-panel-gradient: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(244, 244, 248, 0.98) 100%
+    var(--surface) 0%,
+    var(--surface-2) 100%
   );
-  --surface-badge-gradient: linear-gradient(180deg, #ffffff 0%, #f2fbf8 100%);
-  --surface-code-plain: #f6f8fa;
-  --surface-inverse: #13212f;
-  --text-color: #{$text};
-  --text-strong: #{$secondary-color};
-  --text-heading: #13212f;
-  --text-muted: #5c6f7d;
-  --text-faint: rgba(38, 70, 83, 0.72);
-  --link-color: #{$primary-color};
-  --logo-text-color: #{$logo-text-color};
-  --primary-alt-color: #{$primary-alt-color};
-  --secondary-alt-color: #{$secondary-alt-color};
-  --shadow-soft: 0 10px 24px rgba(38, 70, 83, 0.06);
-  --shadow-medium: 0 14px 30px rgba(38, 70, 83, 0.08);
-  --shadow-strong: 0 18px 38px rgba(38, 70, 83, 0.12);
-  --selection-background: #13212f;
-  --selection-color: #f5f7f9;
+  --surface-code-plain: var(--surface);
+  --text-color: var(--ink);
+  --text-strong: var(--ink);
+  --text-faint: var(--faint);
+  --link-color: var(--accent);
+  --shadow-soft: 0 10px 24px rgb(26 31 30 / 8%);
+  --shadow-medium: 0 14px 30px rgb(26 31 30 / 10%);
+
+  color-scheme: light;
 }
 
 html[data-theme='dark'] {
-  --body-background: #0d151d;
-  --surface-base: #14212b;
-  --surface-elevated: rgba(20, 33, 43, 0.88);
-  --surface-elevated-strong: rgba(20, 33, 43, 0.96);
-  --surface-nav: rgba(11, 19, 26, 0.9);
-  --surface-nav-border: rgba(105, 183, 171, 0.18);
-  --surface-border: rgba(105, 183, 171, 0.22);
-  --surface-border-strong: rgba(105, 183, 171, 0.42);
-  --surface-accent: rgba(105, 183, 171, 0.11);
-  --surface-accent-hover: rgba(105, 183, 171, 0.16);
-  --surface-accent-strong: rgba(105, 183, 171, 0.24);
-  --surface-accent-warm: rgba(244, 162, 97, 0.12);
-  --surface-overlay: rgba(8, 13, 18, 0.72);
-  --surface-panel-gradient: linear-gradient(
-    180deg,
-    rgba(20, 33, 43, 0.98) 0%,
-    rgba(13, 21, 29, 0.98) 100%
-  );
-  --surface-badge-gradient: linear-gradient(180deg, #1a2b38 0%, #13212b 100%);
-  --surface-code-plain: #101a23;
-  --surface-inverse: #eaf2f6;
-  --text-color: #d5dee4;
-  --text-strong: #eaf2f6;
-  --text-heading: #f6fbff;
-  --text-muted: #aac0cb;
-  --text-faint: rgba(213, 222, 228, 0.76);
-  --link-color: #74d3c3;
-  --logo-text-color: #86ddd0;
-  --primary-alt-color: #f5a187;
-  --secondary-alt-color: #ffd6a7;
-  --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.22);
-  --shadow-medium: 0 14px 30px rgba(0, 0, 0, 0.28);
-  --shadow-strong: 0 18px 38px rgba(0, 0, 0, 0.34);
-  --selection-background: #d9edf2;
-  --selection-color: #081219;
+  --bg: #131311;
+  --surface: #1b1a17;
+  --surface-2: #232019;
+  --line: #2f2c26;
+  --line-2: #3a372e;
+  --ink: #eceae4;
+  --ink-2: #cac6bc;
+  --muted: #a29c91;
+  --faint: #9c958a;
+  --faint-2: #7d766b;
+  --accent: #4fbb9c;
+  --accent-hover: #7fd3b7;
+  --accent-deep: #63c6a8;
+  --accent-tint: #16302a;
+  --accent-tint-2: #1e483c;
+  --amber: #d99a4a;
+  --amber-bg: #241f16;
+  --amber-line: #3a3226;
+  --amber-stripe: #33291c;
+  --blue: #86aec2;
+  --blue-bg: #171b1f;
+  --blue-line: #2a3138;
+  --blue-stripe: #232a30;
+  --blue-faint: #4b565e;
+  --plum: #b088bd;
+  --selection-background: #1e483c;
+  --surface-overlay: rgb(8 8 7 / 80%);
+  --shadow-soft: 0 10px 24px rgb(0 0 0 / 22%);
+  --shadow-medium: 0 14px 30px rgb(0 0 0 / 28%);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  // Anchors from the contents list should not land under the sticky header.
+  scroll-padding-top: #{$header-height + 24px};
 }
 
 body {
-  background: var(--body-background);
-  color: var(--text-color);
-  font-family: $font-family-sans;
-  font-weight: $weight-light;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: $font-serif;
+  font-size: 17px;
+  line-height: 1.6;
   overflow-x: hidden;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #___gatsby,
@@ -97,8 +123,18 @@ body {
   overflow-x: hidden;
 }
 
+::selection {
+  background: var(--selection-background);
+}
+
 a {
-  color: var(--link-color);
+  color: var(--accent);
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--accent-hover);
+  }
 }
 
 button,
@@ -106,65 +142,129 @@ input,
 select,
 textarea {
   font-family: inherit;
-}
-
-.box {
-  background: var(--surface-base);
-  color: var(--text-color);
-}
-
-.title,
-.content h1,
-.content h2,
-.content h3,
-.content h4,
-.content h5,
-.content h6 {
-  color: var(--text-heading);
-}
-
-.content,
-.content p,
-.content li,
-.content td,
-.content th {
+  font-size: inherit;
   color: inherit;
 }
 
-.content blockquote,
-.content pre,
-.content table {
-  color: inherit;
+img {
+  max-width: 100%;
 }
 
-.content ul.link-list {
-  list-style: none;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  line-height: 1.25;
+  text-wrap: pretty;
+}
+
+p {
   margin: 0;
 }
 
-footer.footer {
-  padding: 1rem 1.5rem;
+ul,
+ol {
+  margin: 0;
 }
 
-.button {
-  font-weight: $weight-semibold;
+hr {
+  height: 1px;
+  margin: 32px 0;
+  border: 0;
+  background: var(--line);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .no-html-scroll {
   overflow: hidden;
 }
 
-blockquote {
-  overflow: auto;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/**
+ * Shared page furniture: the centred shell every screen sits in, and the
+ * small-caps section rules used on the home page and listings.
+ */
+.shell {
+  max-width: $shell-max;
+  margin: 0 auto;
+  padding: 0 32px;
+
+  @include mid {
+    padding: 0 24px;
+  }
+
+  @include narrow {
+    padding: 0 18px;
+  }
+}
+
+.sectionRule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+
+  &__line {
+    flex: 1;
+    height: 1px;
+    background: var(--line-2);
+  }
+
+  &__badge {
+    flex: none;
+    margin: 0;
+    padding: 4px 8px;
+    background: var(--accent);
+    color: var(--bg);
+    @include label(10px, 0.2em);
+
+    font-weight: 500;
+  }
+
+  &__link {
+    flex: none;
+    @include label(10px, 0.16em);
+  }
+}
+
+.eyebrow {
+  @include label(10px, 0.2em);
+
+  color: var(--accent);
+}
+
+.railHeading {
+  @include label(10px, 0.18em);
+
+  color: var(--faint);
 }
 
 .videoEmbed {
   position: relative;
-  margin: 1.5rem 0;
+  margin: 26px 0;
   padding-top: 56.25%;
   overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--line);
 }
 
 .videoEmbed iframe {

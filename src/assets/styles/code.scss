@@ -1,58 +1,84 @@
 @use "./tokens" as *;
 
-pre {
-  border: 1px solid var(--surface-border);
-  border-left: 6px solid #227c71;
-}
-
-.content :not(pre) > code {
-  display: inline-block;
-  padding: 0.08rem 0.4rem;
-  border: 1px solid var(--surface-border);
-  border-radius: 0.45rem;
-  background: var(--surface-code-plain);
-  color: var(--link-color);
-  font-size: 0.92em;
-  line-height: 1.4;
-  vertical-align: baseline;
-}
-
+/**
+ * Code listings. A ruled head carries the language and the copy control, and
+ * the block itself is bounded rather than tinted so it reads as a plate set
+ * into the page.
+ */
 .codeWrapper {
   position: relative;
-  overflow-x: auto;
-  margin: 0.5rem 0;
+  max-width: 100%;
+  margin: 0 0 26px;
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  font-family: $font-mono;
+  font-size: 13.5px;
+}
+
+.codeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 8px 7px 10px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line-2);
+}
+
+.codeLanguage {
+  padding: 3px 7px;
+  background: var(--bg);
+  border: 1px solid var(--line-2);
+  color: var(--ink-2);
+  @include label(10px, 0.16em);
+}
+
+.codeCopyButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 9px;
+  background: var(--bg);
+  border: 1px solid var(--line-2);
+  color: var(--ink-2);
+  cursor: pointer;
+  @include label(10px, 0.16em);
+
+  &:hover {
+    border-color: var(--accent-tint-2);
+    background: var(--accent-tint);
+    color: var(--accent);
+  }
+
+  svg {
+    flex: none;
+  }
 }
 
 .codeWrapper pre {
+  margin: 0 !important;
+  padding: 15px 18px !important;
   overflow-x: auto;
+  background: transparent !important;
+  border: 0;
+  font-family: $font-mono !important;
+  font-size: 13.5px !important;
+  line-height: 1.85 !important;
   white-space: pre;
   word-break: normal;
   overflow-wrap: normal;
   tab-size: 2;
-  padding-right: 3.5rem !important;
 }
 
 .codeWrapper code {
+  font-family: $font-mono !important;
   word-break: normal;
   overflow-wrap: normal;
 }
 
 .codeWrapper[data-language='plain'] pre,
 .codeWrapper[data-language='text'] pre {
-  background: var(--surface-code-plain) !important;
-  color: var(--text-color) !important;
-}
-
-.codeCopyButton {
-  position: absolute !important;
-  right: 0;
-  top: 0;
-  opacity: 25%;
-  z-index: 1;
-}
-
-.codeCopyButton:hover {
-  opacity: 100%;
+  color: var(--ink) !important;
 }
 
 .mermaidWrapper {
@@ -164,9 +190,9 @@ pre {
 }
 
 .mermaidViewerTitle {
-  color: $secondary-color;
+  color: var(--ink);
   font-size: 1.35rem;
-  font-weight: $weight-semibold;
+  font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.1;
   margin-bottom: 0.25rem !important;

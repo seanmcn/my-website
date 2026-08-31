@@ -3,6 +3,16 @@ import fs from 'fs';
 import {createFilePath} from 'gatsby-source-filesystem';
 import {paginate} from 'gatsby-awesome-pagination';
 
+const ITEMS_PER_PAGE = 12;
+
+const ITEM_TYPES = ['post', 'note', 'find'];
+
+const TYPE_ROUTES = {
+  post: 'posts',
+  note: 'notes',
+  find: 'finds',
+};
+
 const TECHNICAL_CATEGORIES = new Set([
   'ai',
   'programming',
@@ -11,7 +21,7 @@ const TECHNICAL_CATEGORIES = new Set([
 ]);
 
 const CATEGORY_REDIRECTS = {
-  AI: 'ai',
+  'AI': 'ai',
   'devops': 'systems',
   'game-development': 'programming',
   'linux': 'systems',
@@ -24,29 +34,95 @@ const CATEGORY_REDIRECTS = {
   'workflow': 'productivity',
 };
 
+/*
+ * Every /blog/… address the site has ever served now lives under /library/.
+ * The permanent redirects below are the whole reason the move is safe, so they
+ * cover the item pages, the paginated index, and both taxonomies.
+ */
+function createRedirectPair(createRedirect, fromPath, toPath) {
+  const withoutSlash = fromPath.replace(/\/$/, '');
+
+  [withoutSlash, `${withoutSlash}/`].forEach((candidate) => {
+    createRedirect({
+      fromPath: candidate,
+      toPath,
+      isPermanent: true,
+      redirectInBrowser: true,
+    });
+  });
+}
+
+function createLegacyBlogRedirects(createRedirect, postNodes) {
+  createRedirectPair(createRedirect, '/blog', '/library/');
+  createRedirect({
+    fromPath: '/blog/page/:page',
+    toPath: '/library/page/:page',
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
+
+  postNodes.forEach(({frontmatter}) => {
+    createRedirectPair(
+        createRedirect,
+        `/blog/${frontmatter.slug}`,
+        `/library/${frontmatter.slug}/`,
+    );
+  });
+}
+
+function createTaxonomyRedirects(createRedirect, categoryList, tagList) {
+  categoryList.forEach((category) => {
+    createRedirectPair(
+        createRedirect,
+        `/blog/categories/${category}`,
+        `/library/categories/${category}/`,
+    );
+    createRedirect({
+      fromPath: `/blog/categories/${category}/page/:page`,
+      toPath: `/library/categories/${category}/page/:page`,
+      isPermanent: true,
+      redirectInBrowser: true,
+    });
+  });
+
+  tagList.forEach((tag) => {
+    const tagLower = normaliseValue(tag);
+
+    createRedirectPair(
+        createRedirect,
+        `/blog/tags/${tagLower}`,
+        `/library/tags/${tagLower}/`,
+    );
+    createRedirect({
+      fromPath: `/blog/tags/${tagLower}/page/:page`,
+      toPath: `/library/tags/${tagLower}/page/:page`,
+      isPermanent: true,
+      redirectInBrowser: true,
+    });
+  });
+}
+
 function createCategoryRedirects(createRedirect) {
   Object.entries(CATEGORY_REDIRECTS).forEach(([fromCategory, toCategory]) => {
     if (normaliseValue(fromCategory) === normaliseValue(toCategory)) {
       return;
     }
 
-    createRedirect({
-      fromPath: `/blog/categories/${fromCategory}`,
-      toPath: `/blog/categories/${toCategory}/`,
-      isPermanent: true,
-      redirectInBrowser: true,
-    });
-    createRedirect({
-      fromPath: `/blog/categories/${fromCategory}/`,
-      toPath: `/blog/categories/${toCategory}/`,
-      isPermanent: true,
-      redirectInBrowser: true,
-    });
-    createRedirect({
-      fromPath: `/blog/categories/${fromCategory}/page/:page`,
-      toPath: `/blog/categories/${toCategory}/page/:page`,
-      isPermanent: true,
-      redirectInBrowser: true,
+    [
+      `/blog/categories/${fromCategory}`,
+      `/library/categories/${fromCategory}`,
+    ].forEach((fromPath) => {
+      createRedirectPair(
+          createRedirect,
+          fromPath,
+          `/library/categories/${toCategory}/`,
+      );
+      createRedirect({
+        fromPath: `${fromPath}/page/:page`,
+        toPath: `/library/categories/${toCategory}/page/:page`,
+        isPermanent: true,
+        redirectInBrowser: true,
+      });
     });
   });
 }
@@ -83,6 +159,28 @@ function extractHeadings(markdown = '') {
       .filter(line => /^#{1,6}\s+/.test(line))
       .map(line => line.replace(/^#{1,6}\s+/, '').trim())
       .filter(Boolean);
+}
+
+/*
+ * Mirrors the ids rehype-slug puts on rendered headings, so the "On this page"
+ * links built here land on the right anchor.
+ */
+function slugifyHeading(text = '') {
+  return text
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\- ]+/g, '')
+      .replace(/\s+/g, '-');
+}
+
+/* Top-level sections only: the rail's contents list, not every subheading. */
+function buildTableOfContents(markdown = '') {
+  return markdown
+      .split('\n')
+      .filter(line => /^##\s+/.test(line))
+      .map(line => line.replace(/^##\s+/, '').trim())
+      .filter(Boolean)
+      .map(text => ({text, href: `#${slugifyHeading(text)}`}));
 }
 
 function scoreRelatedPost(currentPost, candidatePost) {
@@ -161,6 +259,7 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
       .map(post => ({
         title: post.frontmatter.title,
         slug: post.frontmatter.slug,
+        type: post.fields?.itemType || 'post',
         date: post.frontmatter.dateDisplay,
         category: post.frontmatter.category,
         tags: post.frontmatter.tags || [],
@@ -169,7 +268,7 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
       }));
 
   const scoredPosts = Array.from(allPostsBySlug.values())
-      .map(candidatePost => {
+      .map((candidatePost) => {
         const scoredPost = scoreRelatedPost(currentPost, candidatePost);
         if (!scoredPost || scoredPost.score <= 0) {
           return null;
@@ -178,6 +277,7 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
         return {
           title: candidatePost.frontmatter.title,
           slug: candidatePost.frontmatter.slug,
+          type: candidatePost.fields?.itemType || 'post',
           date: candidatePost.frontmatter.dateDisplay,
           category: candidatePost.frontmatter.category,
           tags: candidatePost.frontmatter.tags || [],
@@ -205,6 +305,7 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
       .map(candidatePost => ({
         title: candidatePost.frontmatter.title,
         slug: candidatePost.frontmatter.slug,
+        type: candidatePost.fields?.itemType || 'post',
         date: candidatePost.frontmatter.dateDisplay,
         category: candidatePost.frontmatter.category,
         tags: candidatePost.frontmatter.tags || [],
@@ -220,6 +321,7 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
       .map(candidatePost => ({
         title: candidatePost.frontmatter.title,
         slug: candidatePost.frontmatter.slug,
+        type: candidatePost.fields?.itemType || 'post',
         date: candidatePost.frontmatter.dateDisplay,
         category: candidatePost.frontmatter.category,
         tags: candidatePost.frontmatter.tags || [],
@@ -236,7 +338,7 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
     ...recentFallback,
   ];
 
-  candidates.forEach(candidatePost => {
+  candidates.forEach((candidatePost) => {
     if (seenSlugs.has(candidatePost.slug) || mergedPosts.length >= 3) {
       return;
     }
@@ -338,7 +440,7 @@ function validatePostMetadata(posts) {
   const tagVariants = new Map();
   const postSlugs = new Set(posts.map(({frontmatter}) => frontmatter.slug));
 
-  posts.forEach(post => {
+  posts.forEach((post) => {
     const {frontmatter} = post;
     const rawCategory = frontmatter.category;
     const normalisedCategory = normaliseValue(rawCategory);
@@ -349,7 +451,7 @@ function validatePostMetadata(posts) {
 
     categoryVariants.get(normalisedCategory).add(rawCategory);
 
-    (frontmatter.tags || []).forEach(rawTag => {
+    (frontmatter.tags || []).forEach((rawTag) => {
       const normalisedTag = normaliseValue(rawTag);
 
       if (!tagVariants.has(normalisedTag)) {
@@ -366,7 +468,7 @@ function validatePostMetadata(posts) {
       );
     }
 
-    (frontmatter.related || []).forEach(relatedSlug => {
+    (frontmatter.related || []).forEach((relatedSlug) => {
       if (!postSlugs.has(relatedSlug)) {
         console.warn(
             `[related] "${frontmatter.slug}" references missing post "${relatedSlug}".`,
@@ -398,20 +500,8 @@ function validatePostMetadata(posts) {
 
 export const createPages = async function({actions, graphql}) {
   const {createPage, createRedirect} = actions;
-  const itemsPerPage = 9;
 
-  createCategoryRedirects(createRedirect);
-
-  /**
-   * Homepage
-   * */
-  const indexTemplate = path.resolve('./src/templates/index.js');
-  createPage({
-    path: '/',
-    component: indexTemplate,
-  });
-
-  /**
+  /*
    * Projects
    * */
   const projectsResult = await graphql(
@@ -455,19 +545,26 @@ export const createPages = async function({actions, graphql}) {
     });
   });
 
-  /**
-   * Blog
+  /*
+   * Library items: posts, notes and finds share one collection, one set of
+   * taxonomy pages and one address space under /library/.
    * */
-  const blogPosts = await graphql(
+  const libraryResult = await graphql(
       `{
       allMdx(
         sort: {frontmatter: {date: DESC}}
         limit: 1000
-        filter: {fields: {sourceInstanceName: {eq: "blog"}}}
+        filter: {
+          fields: {sourceInstanceName: {eq: "blog"}, visible: {eq: true}}
+        }
       ) {
         edges {
           node {
             id
+            fields {
+              itemType
+              readingTime
+            }
             frontmatter {
               title
               slug
@@ -478,11 +575,22 @@ export const createPages = async function({actions, graphql}) {
               series
               seriesOrder
               related
+              source
+              summary
             }
             body
-            excerpt(pruneLength: 140)
+            excerpt(pruneLength: 200)
             internal {
               contentFilePath
+            }
+            frontmatterThumb: frontmatter {
+              featured {
+                childImageSharp {
+                  resize(width: 260, height: 260, cropFocus: NORTH) {
+                    src
+                  }
+                }
+              }
             }
           }
         }
@@ -490,12 +598,12 @@ export const createPages = async function({actions, graphql}) {
     }`,
   );
 
-  if (blogPosts.errors) {
-    throw blogPosts.errors;
+  if (libraryResult.errors) {
+    throw libraryResult.errors;
   }
 
-  const posts = blogPosts.data.allMdx.edges;
-  const postNodes = posts.map(({node}) => ({
+  const items = libraryResult.data.allMdx.edges;
+  const itemNodes = items.map(({node}) => ({
     ...node,
     frontmatter: {
       ...node.frontmatter,
@@ -505,211 +613,241 @@ export const createPages = async function({actions, graphql}) {
       ),
     },
   }));
-  const postsBySlug = new Map(
-      postNodes.map(post => [post.frontmatter.slug, post]),
+  const postNodes = itemNodes.filter(
+      node => (node.fields?.itemType || 'post') === 'post',
+  );
+  const itemsBySlug = new Map(
+      itemNodes.map(item => [item.frontmatter.slug, item]),
   );
   const postsBySeries = new Map();
 
-  postNodes.forEach((post) => {
-    const seriesKey = normaliseValue(post.frontmatter.series);
+  itemNodes.forEach((item) => {
+    const seriesKey = normaliseValue(item.frontmatter.series);
     if (!seriesKey) {
       return;
     }
 
     const existingPosts = postsBySeries.get(seriesKey) || [];
-    existingPosts.push(post);
+    existingPosts.push(item);
     postsBySeries.set(seriesKey, existingPosts);
   });
 
-  validatePostMetadata(postNodes);
-  const postTemplate = path.resolve('./src/templates/post.js');
-  const blogPostPromises = postNodes.map(async (post, index) => {
-    const previous = index === postNodes.length - 1 ?
-      null :
-      postNodes[index + 1];
-    const next = index === 0 ? null : postNodes[index - 1];
-    const seriesContext = buildSeriesContext(post, postsBySeries);
+  validatePostMetadata(itemNodes);
+
+  const itemTemplate = path.resolve('./src/templates/item.js');
+  itemNodes.forEach((item) => {
+    const seriesContext = buildSeriesContext(item, postsBySeries);
+
     createPage({
-      path: `/blog/${post.frontmatter.slug}/`,
+      path: `/library/${item.frontmatter.slug}/`,
       // eslint-disable-next-line max-len
-      component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
+      component: `${itemTemplate}?__contentFilePath=${item.internal.contentFilePath}`,
       context: {
-        id: post.id,
-        slug: post.frontmatter.slug,
-        previous,
-        next,
-        relatedPosts: buildRelatedPosts(post, postsBySlug),
+        id: item.id,
+        slug: item.frontmatter.slug,
+        itemType: item.fields?.itemType || 'post',
+        headings: buildTableOfContents(item.body),
+        relatedPosts: buildRelatedPosts(item, itemsBySlug),
         ...seriesContext,
       },
     });
   });
 
-  await Promise.all(blogPostPromises);
+  createLegacyBlogRedirects(createRedirect, itemNodes);
 
-  // Create a paginated blog, e.g., /, /page/2, /page/3
-  const blogTemplate = path.resolve('./src/templates/blog.js');
+  /*
+   * Library index, plus one paginated view per type.
+   * */
+  const libraryTemplate = path.resolve('./src/templates/library.js');
+
   paginate({
     createPage,
-    items: posts,
-    itemsPerPage,
+    items,
+    itemsPerPage: ITEMS_PER_PAGE,
     pathPrefix: ({pageNumber}) => (pageNumber === 0 ?
-      '/blog' :
-      '/blog/page'),
-    component: blogTemplate,
+      '/library' :
+      '/library/page'),
+    component: libraryTemplate,
     context: {
-      paginate_link: '/blog',
+      activeFilter: 'all',
+      itemTypes: ITEM_TYPES,
+      paginate_link: '/library',
     },
   });
 
-  /**
-   * Tag pages + pagination
+  ITEM_TYPES.forEach((itemType) => {
+    const route = TYPE_ROUTES[itemType];
+    const typedItems = items.filter(
+        ({node}) => (node.fields?.itemType || 'post') === itemType,
+    );
+
+    // A type with nothing in it still gets a page, so the filter bar never
+    // links into a 404 while a kind of writing is waiting for its first entry.
+    if (typedItems.length === 0) {
+      createPage({
+        path: `/library/${route}/`,
+        component: libraryTemplate,
+        context: {
+          activeFilter: itemType,
+          itemTypes: [itemType],
+          isEmpty: true,
+          limit: 1,
+          skip: 0,
+          humanPageNumber: 1,
+          numberOfPages: 1,
+          paginate_link: `/library/${route}`,
+        },
+      });
+
+      return;
+    }
+
+    paginate({
+      createPage,
+      items: typedItems,
+      itemsPerPage: ITEMS_PER_PAGE,
+      pathPrefix: ({pageNumber}) => (pageNumber === 0 ?
+        `/library/${route}` :
+        `/library/${route}/page`),
+      component: libraryTemplate,
+      context: {
+        activeFilter: itemType,
+        itemTypes: [itemType],
+        paginate_link: `/library/${route}`,
+      },
+    });
+  });
+
+  /*
+   * Tag pages + the tag index
    * */
   const distinctTags = await graphql(
       `{
-          allMdx(filter: {fields: {sourceInstanceName: {eq: "blog"}}}) {
+          allMdx(filter: {
+            fields: {sourceInstanceName: {eq: "blog"}, visible: {eq: true}}
+          }) {
             distinct(field: {frontmatter: {tags: SELECT}})
           }
         }`,
   );
-  const tagList = distinctTags.data.allMdx.distinct;
+  const tagList = distinctTags.data.allMdx.distinct.filter(Boolean);
   const tagsTemplate = path.resolve('./src/templates/tag.js');
-  const tagPromises = tagList.map(async (tag) => {
-    await graphql(
-        `
-        {
-          allMdx(
-            filter: {
-              fields: {sourceInstanceName: {eq: "blog"}}
-              frontmatter: {tags: {in: "${tag}"}}
-            }
-          ) {
-            edges {
-              node {
-                id
-                frontmatter {
-                  title
-                  slug
-                }
-                body
-              }
-            }
-          }
-        }
-        `,
-    ).then((tagPosts) => {
-      if (tagPosts.errors) {
-        throw tagPosts.errors;
-      }
-      const tagLower = tag.toLowerCase();
-      paginate({
-        createPage,
-        items: tagPosts.data.allMdx.edges,
-        itemsPerPage,
-        pathPrefix: ({pageNumber}) => (pageNumber === 0 ?
-          `/blog/tags/${tagLower}` :
-          `/blog/tags/${tagLower}/page`),
-        component: tagsTemplate,
-        context: {
-          name: tag,
-          slug: tagLower,
-          paginate_link: `/blog/tags/${tagLower}`,
-        },
-      });
+
+  tagList.forEach((tag) => {
+    const tagLower = normaliseValue(tag);
+    const taggedItems = items.filter(
+        ({node}) => (node.frontmatter.tags || []).includes(tag),
+    );
+
+    paginate({
+      createPage,
+      items: taggedItems,
+      itemsPerPage: ITEMS_PER_PAGE,
+      pathPrefix: ({pageNumber}) => (pageNumber === 0 ?
+        `/library/tags/${tagLower}` :
+        `/library/tags/${tagLower}/page`),
+      component: tagsTemplate,
+      context: {
+        name: tag,
+        slug: tagLower,
+        paginate_link: `/library/tags/${tagLower}`,
+      },
     });
   });
 
-  await Promise.all(tagPromises);
+  createPage({
+    path: '/library/tags/',
+    component: path.resolve('./src/templates/tags.js'),
+  });
 
-  /**
+  /*
    * Category pages + pagination
    * */
   const distinctCategories = await graphql(
       `{
-          allMdx(filter: {fields: {sourceInstanceName: {eq: "blog"}}}) {
+          allMdx(filter: {
+            fields: {sourceInstanceName: {eq: "blog"}, visible: {eq: true}}
+          }) {
             distinct(field: {frontmatter: {category: SELECT}})
           }
         }`,
   );
 
-  const categoryList = distinctCategories.data.allMdx.distinct;
+  const categoryList = distinctCategories.data.allMdx.distinct.filter(Boolean);
   const categoriesTemplate = path.resolve('./src/templates/category.js');
-  const categoryPromises = categoryList.map(async (category) => {
-    await graphql(
-        `
-        {
-          allMdx(
-            filter: {
-              fields: {sourceInstanceName: {eq: "blog"}}
-              frontmatter: {category: {eq: "${category}"}}
-            }
-          ) {
-            edges {
-              node {
-                id
-                frontmatter {
-                  title
-                  slug
-                }
-                body
-              }
-            }
-          }
-        }
-        `,
-    ).then((categoryPosts) => {
-      if (categoryPosts.errors) {
-        throw categoryPosts.errors;
-      }
-      paginate({
-        createPage,
-        items: categoryPosts.data.allMdx.edges,
-        itemsPerPage,
-        pathPrefix: ({pageNumber}) => (pageNumber === 0 ?
-          `/blog/categories/${category}` :
-          `/blog/categories/${category}/page`),
-        component: categoriesTemplate,
-        context: {
-          name: category,
-          slug: category,
-          paginate_link: `/blog/categories/${category}`,
-        },
-      });
+
+  categoryList.forEach((category) => {
+    const categoryItems = items.filter(
+        ({node}) => node.frontmatter.category === category,
+    );
+
+    paginate({
+      createPage,
+      items: categoryItems,
+      itemsPerPage: ITEMS_PER_PAGE,
+      pathPrefix: ({pageNumber}) => (pageNumber === 0 ?
+        `/library/categories/${category}` :
+        `/library/categories/${category}/page`),
+      component: categoriesTemplate,
+      context: {
+        name: category,
+        slug: category,
+        paginate_link: `/library/categories/${category}`,
+      },
     });
   });
 
-  await Promise.all(categoryPromises);
+  createTaxonomyRedirects(createRedirect, categoryList, tagList);
+  createCategoryRedirects(createRedirect);
 
-  /**
-   * Search index
+  /*
+   * Homepage. Created last so the aggregate counts in its rail can be handed
+   * over as context rather than recomputed in the browser.
    * */
-  const searchData = await graphql(`
-    {
-      allMdx(
-        sort: {frontmatter: {date: DESC}}
-        filter: {fields: {sourceInstanceName: {eq: "blog"}}}
-      ) {
-        nodes {
-          frontmatter {
-            title
-            slug
-            date(formatString: "MMMM DD, YYYY")
-            category
-            tags
-            keywords
-          }
-          body
-          excerpt(pruneLength: 200)
-        }
-      }
-    }
-  `);
+  const readMinutes = itemNodes
+      .filter(node => (node.fields?.itemType || 'post') !== 'find')
+      .reduce((total, node) => total + (node.fields?.readingTime || 0), 0);
+  const years = itemNodes
+      .map(node => new Date(node.frontmatter.date).getUTCFullYear())
+      .filter(year => !Number.isNaN(year))
+      .sort((left, right) => left - right);
 
-  const searchIndex = searchData.data.allMdx.nodes.map(node => ({
+  createPage({
+    path: '/',
+    component: path.resolve('./src/templates/index.js'),
+    context: {
+      counts: {
+        all: itemNodes.length,
+        post: postNodes.length,
+        note: itemNodes.filter(
+            node => node.fields?.itemType === 'note',
+        ).length,
+        find: itemNodes.filter(
+            node => node.fields?.itemType === 'find',
+        ).length,
+      },
+      readMinutes,
+      yearRange: years.length ?
+        `${years[0]}–${years[years.length - 1]}` :
+        '',
+    },
+  });
+
+  /*
+   * Search index. Covers the whole library plus the projects, because the
+   * search screen faceted by type treats a project as a fourth kind of result.
+   * */
+  const searchIndex = itemNodes.map(node => ({
     title: node.frontmatter.title,
     normalizedTitle: normaliseValue(node.frontmatter.title),
+    kind: node.fields?.itemType || 'post',
     slug: node.frontmatter.slug,
-    path: `/blog/${node.frontmatter.slug}/`,
+    path: `/library/${node.frontmatter.slug}/`,
     date: node.frontmatter.date,
+    dateDisplay: node.frontmatter.dateDisplay,
+    readingTime: node.fields?.readingTime || 0,
+    source: node.frontmatter.source || '',
+    thumb: node.frontmatterThumb?.featured?.childImageSharp?.resize?.src || '',
     category: node.frontmatter.category,
     normalizedCategory: normaliseValue(node.frontmatter.category),
     tags: node.frontmatter.tags || [],
@@ -718,13 +856,159 @@ export const createPages = async function({actions, graphql}) {
     normalizedKeywords: normaliseList(node.frontmatter.keywords),
     headings: extractHeadings(node.body),
     bodyPlainText: stripMarkdown(node.body).slice(0, 2000),
-    excerpt: node.excerpt,
+    excerpt: node.frontmatter.summary || node.excerpt,
   }));
+
+  const projectSearchResult = await graphql(
+      `{
+        allFile(
+          filter: {sourceInstanceName: {eq: "projects"}, childMdx: {id: {ne: null}}}
+          sort: {childMdx: {frontmatter: {date: DESC}}}
+        ) {
+          nodes {
+            childMdx {
+              excerpt(pruneLength: 200)
+              body
+              frontmatter {
+                title
+                slug
+                summary
+                language
+                techStack
+                tags
+                date(formatString: "D MMMM YYYY")
+                featured {
+                  childImageSharp {
+                    resize(width: 260, height: 260, cropFocus: NORTH) {
+                      src
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }`,
+  );
+
+  const projectIndex = projectSearchResult.data.allFile.nodes
+      .map(({childMdx}) => childMdx)
+      .filter(Boolean)
+      .map(node => ({
+        title: node.frontmatter.title,
+        normalizedTitle: normaliseValue(node.frontmatter.title),
+        kind: 'project',
+        slug: node.frontmatter.slug,
+        path: `/projects/${node.frontmatter.slug}/`,
+        date: node.frontmatter.date,
+        dateDisplay: node.frontmatter.date,
+        readingTime: 0,
+        source: '',
+        thumb:
+          node.frontmatter.featured?.childImageSharp?.resize?.src || '',
+        category: (node.frontmatter.techStack ||
+          [node.frontmatter.language]).filter(Boolean).join(' · '),
+        normalizedCategory: '',
+        tags: node.frontmatter.tags || [],
+        normalizedTags: normaliseList(node.frontmatter.tags),
+        keywords: [],
+        normalizedKeywords: [],
+        headings: [],
+        bodyPlainText: stripMarkdown(node.body || '').slice(0, 2000),
+        excerpt: node.frontmatter.summary || node.excerpt,
+      }));
 
   fs.mkdirSync(path.resolve('./public'), {recursive: true});
   fs.writeFileSync(
       path.resolve('./public/search-index.json'),
-      JSON.stringify(searchIndex),
+      JSON.stringify(searchIndex.concat(projectIndex)),
+  );
+};
+
+/*
+ * Words per minute for the read-time estimate. Deliberately unhurried: the
+ * posts are technical, and an over-confident "3 min" on a thousand-word piece
+ * reads as a lie.
+ */
+const WORDS_PER_MINUTE = 200;
+
+function readingTimeFromFile(contentFilePath) {
+  if (!contentFilePath || !fs.existsSync(contentFilePath)) {
+    return 1;
+  }
+
+  const words = stripMarkdown(fs.readFileSync(contentFilePath, 'utf8'))
+      .split(/\s+/)
+      .filter(Boolean).length;
+
+  return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+}
+
+function redirectHtml(toPath) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<link rel="canonical" href="${toPath}">
+<meta http-equiv="refresh" content="0; url=${toPath}">
+<meta name="robots" content="noindex">
+<script>window.location.replace(${JSON.stringify(toPath)}
+ + window.location.search + window.location.hash);</script>
+</head>
+<body><p>This page has moved to <a href="${toPath}">${toPath}</a>.</p></body>
+</html>
+`;
+}
+
+/*
+ * Gatsby records redirects but only an adapter emits them, and Amplify's
+ * customHttp.yml covers headers only. So write a real page at every old
+ * address — canonical tag, meta refresh and a scripted replace that carries
+ * the query string and hash across — and drop a rules file next to it that can
+ * be pasted into Amplify's console if proper 301s are wanted later.
+ */
+export const onPostBuild = ({store}) => {
+  const {redirects} = store.getState();
+  const publicDir = path.resolve('./public');
+  const rules = [];
+  let written = 0;
+
+  redirects.forEach(({fromPath, toPath}) => {
+    rules.push({
+      source: fromPath,
+      status: '301',
+      target: toPath,
+    });
+
+    // Wildcards can only be expressed as host rules, not as a file on disk.
+    if (fromPath.includes(':') || fromPath.includes('*')) {
+      return;
+    }
+
+    const target = path.join(
+        publicDir,
+        fromPath.replace(/^\//, ''),
+        'index.html',
+    );
+
+    if (fs.existsSync(target)) {
+      return;
+    }
+
+    fs.mkdirSync(path.dirname(target), {recursive: true});
+    fs.writeFileSync(target, redirectHtml(toPath));
+    written += 1;
+  });
+
+  fs.writeFileSync(
+      path.join(publicDir, 'amplify-redirects.json'),
+      JSON.stringify(rules, null, 2),
+  );
+
+  console.info(
+      `[redirects] wrote ${written} redirect pages and ` +
+      `${rules.length} rules to public/amplify-redirects.json`,
   );
 };
 
@@ -734,6 +1018,10 @@ export const onCreateNode = ({node, actions, getNode}) => {
   if (node.internal.type === 'Mdx') {
     const value = createFilePath({node, getNode});
     const parentNode = getNode(node.parent);
+    const sourceInstanceName = parentNode?.sourceInstanceName || '';
+    const rawType = normaliseValue(node.frontmatter?.type);
+    const itemType = ITEM_TYPES.includes(rawType) ? rawType : 'post';
+
     createNodeField({
       name: 'slug',
       node,
@@ -742,7 +1030,36 @@ export const onCreateNode = ({node, actions, getNode}) => {
     createNodeField({
       name: 'sourceInstanceName',
       node,
-      value: parentNode?.sourceInstanceName || '',
+      value: sourceInstanceName,
+    });
+
+    if (sourceInstanceName !== 'blog') {
+      return;
+    }
+
+    createNodeField({
+      name: 'itemType',
+      node,
+      value: itemType,
+    });
+    createNodeField({
+      name: 'itemPath',
+      node,
+      value: `/library/${node.frontmatter?.slug}/`,
+    });
+    createNodeField({
+      name: 'readingTime',
+      node,
+      value: readingTimeFromFile(node.internal?.contentFilePath),
+    });
+    // Drafts stay visible while writing and disappear from the built site, so
+    // a half-finished note can sit in the repo without being published.
+    createNodeField({
+      name: 'visible',
+      node,
+      value: process.env.NODE_ENV !== 'production' ||
+        process.env.GATSBY_SHOW_DRAFTS === 'true' ||
+        node.frontmatter?.draft !== true,
     });
   }
 };
@@ -760,26 +1077,39 @@ export const createSchemaCustomization = ({actions, schema}) => {
     `type MdxFrontmatter @infer {
             category: String
             demo: String
+            draft: Boolean
             featured: File @fileByRelativePath,
             gallery: [ProjectGalleryImage!]
             keywords: [String!]
             language: String
+            margins: [ItemMargin!]
             related: [String!]
             repo: String
             series: String
             seriesOrder: Int
+            source: String
+            sourceTitle: String
             summary: String
             tags: [String!]
             techStack: [String!]
+            type: String
         }`,
     `type ProjectGalleryImage {
             image: File @fileByRelativePath
             alt: String!
             caption: String
         }`,
+    `type ItemMargin {
+            label: String!
+            text: String!
+        }`,
     `type MdxFields {
+            itemPath: String
+            itemType: String
+            readingTime: Int
             slug: String
             sourceInstanceName: String
+            visible: Boolean
         }`,
   ];
 

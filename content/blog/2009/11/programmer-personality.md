@@ -1,5 +1,6 @@
 ---
 title: "Programmer Personality: 2009"
+type: 'post'
 date: '2009-11-09T01:39:03.284Z'
 slug: '2009/11/programmer-personality'
 category: 'personal'

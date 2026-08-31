@@ -1,5 +1,6 @@
 ---
 title: "Goodbye Vancouver, Hello London"
+type: 'post'
 date: '2016-05-26T19:39:03.284Z'
 slug: '2016/05/goodbye-vancouver-london'
 category: 'personal'

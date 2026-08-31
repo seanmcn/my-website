@@ -1,0 +1,395 @@
+@use "../assets/styles/tokens" as *;
+
+.itemPage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 244px;
+  gap: 44px;
+  align-items: start;
+  padding-top: 26px;
+
+  @include mid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  @include narrow {
+    padding-top: 14px;
+  }
+
+  &__article {
+    min-width: 0;
+  }
+
+  /**
+   * Notes and finds are short. Holding them to a single measure and centring
+   * them stops three paragraphs looking marooned in a full-width column.
+   */
+  &__body--narrow {
+    max-width: 660px;
+    margin: 0 auto;
+  }
+
+  &__inlineMargins {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0 0 24px;
+    padding: 15px 16px;
+    background: var(--surface-2);
+
+    @include mid {
+      display: flex;
+    }
+  }
+
+  &__marginLabel {
+    color: var(--faint);
+
+    @include label(10px, 0.16em);
+  }
+
+  &__marginText {
+    margin: 6px 0 0;
+    color: var(--ink-2);
+    font-size: 17px;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  /** A find is mostly its link, so the link is set like a headline. */
+  &__source {
+    display: block;
+    margin: 0 0 26px;
+    padding: 4px 0 4px 18px;
+    border-left: 2px solid var(--accent);
+  }
+
+  &__sourceLabel {
+    display: block;
+    color: var(--faint);
+
+    @include label(10px, 0.18em);
+  }
+
+  &__sourceLink {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    margin-top: 5px;
+    color: var(--accent);
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: -0.016em;
+    overflow-wrap: anywhere;
+
+    span {
+      font-size: 15px;
+    }
+  }
+
+  &__end {
+    clear: both;
+    margin-top: 46px;
+  }
+
+  &__ornament {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 0 24px;
+  }
+
+  &__rule {
+    flex: 1;
+    height: 1px;
+    background: var(--line-2);
+  }
+
+  &__diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    transform: rotate(45deg);
+  }
+
+  &__endRow {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: var(--faint);
+
+    @include label(10.5px, 0.14em);
+
+    @include narrow {
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  }
+
+  &__endLeft {
+    display: inline-flex;
+    flex: 1;
+    align-items: center;
+  }
+
+  &__endRight {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  &__categoryLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-2);
+
+    svg {
+      color: var(--accent);
+    }
+  }
+
+  &__kind {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 22px;
+  }
+
+  &__tag {
+    padding: 4px 9px;
+    border: 1px solid var(--line-2);
+    color: var(--ink-2);
+
+    @include label(10px, 0.14em);
+
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+  }
+}
+
+
+/**
+ * Sticky bar carrying the title. Wide, the title is the page's h1 sitting
+ * between the back link and the date, shrinking as you scroll. Narrow, the bar
+ * stops sticking and the title drops onto its own line beneath it.
+ */
+.itemBar {
+  position: sticky;
+  top: $header-height;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  margin: 0 0 22px;
+  padding: 8px 0 20px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  color: var(--faint);
+  white-space: nowrap;
+  transition: padding 0.2s ease;
+
+  @include label(10px, 0.14em);
+
+  &.is-condensed {
+    align-items: center;
+    padding: 6px 0 10px;
+  }
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--faint);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  &__title {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0 24px;
+    color: var(--ink);
+    font-family: $font-serif;
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.024em;
+    line-height: 1.15;
+    text-align: center;
+    text-transform: none;
+    text-wrap: balance;
+    white-space: normal;
+    transition: font-size 0.2s ease, letter-spacing 0.2s ease;
+
+    .is-condensed & {
+      font-size: 17px;
+      letter-spacing: -0.01em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  &__date {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-left: auto;
+
+    svg {
+      color: var(--faint-2);
+    }
+  }
+
+  @include narrow {
+    position: static;
+    display: grid;
+    grid-template-areas:
+      "back  date"
+      "title title";
+    grid-template-columns: auto auto;
+    align-items: center;
+    padding: 8px 0 16px;
+
+    &__back {
+      grid-area: back;
+    }
+
+    &__date {
+      grid-area: date;
+      justify-content: flex-end;
+    }
+
+    &__title {
+      grid-area: title;
+      margin: 14px 0 0;
+      padding: 0;
+      font-size: 30px;
+      letter-spacing: -0.022em;
+      line-height: 1.16;
+      text-align: left;
+      text-wrap: pretty;
+    }
+  }
+}
+
+
+.typeDot {
+  display: inline-block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+
+  &--post {
+    border-radius: 50%;
+  }
+
+  &--note {
+    transform: rotate(45deg);
+  }
+}
+
+/* --------------------------------------------------------------- the rail */
+
+.itemRail {
+  position: sticky;
+  top: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  max-height: calc(100vh - 130px);
+  margin-top: 10px;
+  padding-left: 24px;
+  overflow-y: auto;
+  border-left: 1px solid var(--line);
+
+  @include mid {
+    position: static;
+    gap: 24px;
+    max-height: none;
+    margin-top: 34px;
+    padding-top: 22px;
+    padding-left: 0;
+    overflow: visible;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  /** Margin notes appear inline on mobile instead, so hide the rail copy. */
+  &__margins {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+
+    @include mid {
+      display: none;
+    }
+  }
+
+  &__marginText {
+    margin: 7px 0 0;
+    color: var(--ink-2);
+    font-size: 16px;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  &__readTime {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 7px;
+    color: var(--ink-2);
+    font-size: 16px;
+
+    svg {
+      color: var(--faint-2);
+    }
+  }
+
+  &__tocLink {
+    display: block;
+    margin-top: 10px;
+    color: var(--ink-2);
+    font-size: 16px;
+    line-height: 1.4;
+    text-decoration: underline dotted var(--faint-2);
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+  }
+
+  &__related {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  &__glyph {
+    flex: none;
+    font-size: 13px;
+  }
+}

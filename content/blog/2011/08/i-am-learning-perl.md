@@ -1,5 +1,6 @@
 ---
 title: "Why I am learning Perl"
+type: 'post'
 date: '2011-08-19T01:39:03.284Z'
 slug: '2011/08/why-im-learning-perl'
 category: 'programming'

@@ -59,8 +59,6 @@ const visitWithThemeStub = (matches, options = {}) => {
   });
 };
 
-const getDesktopThemeButton = () => cy.get('.siteNavbarMenu .siteThemeButton');
-
 describe('Theme selection', () => {
   beforeEach(() => {
     cy.clearLocalStorage();
@@ -78,39 +76,29 @@ describe('Theme selection', () => {
     cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
   });
 
-  it('persists an explicit theme selection across reloads', () => {
+  it('flips between light and dark and persists the choice', () => {
     visitWithThemeStub(false);
 
-    getDesktopThemeButton()
-        .should('have.attr', 'data-theme-label', 'System');
-    getDesktopThemeButton().click();
-    cy.document().its('documentElement.dataset.themePreference')
-        .should('eq', 'light');
     cy.document().its('documentElement.dataset.theme').should('eq', 'light');
+    cy.get('.themeToggle').should('have.attr', 'aria-label')
+        .and('contain', 'dark');
 
-    getDesktopThemeButton().click();
-    cy.document().its('documentElement.dataset.themePreference')
-        .should('eq', 'dark');
+    cy.get('.themeToggle').click();
     cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
     cy.window().its('localStorage').invoke('getItem', THEME_STORAGE_KEY)
         .should('eq', 'dark');
 
-    visitWithThemeStub(false);
+    cy.get('.themeToggle').click();
+    cy.document().its('documentElement.dataset.theme').should('eq', 'light');
 
-    getDesktopThemeButton()
-        .should('have.attr', 'data-theme-label', 'Dark');
-    cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
+    visitWithThemeStub(false);
+    cy.document().its('documentElement.dataset.theme').should('eq', 'light');
   });
 
-  it('reacts to system appearance changes while system is selected', () => {
+  it('follows system appearance changes until a choice is made', () => {
     visitWithThemeStub(false);
 
-    getDesktopThemeButton().click();
-    getDesktopThemeButton().click();
-    getDesktopThemeButton().click();
     cy.document().its('documentElement.dataset.theme').should('eq', 'light');
-    cy.document().its('documentElement.dataset.themePreference')
-        .should('eq', 'system');
 
     cy.window().then((win) => {
       win.__themeMediaQuery.dispatch(true);
@@ -119,15 +107,12 @@ describe('Theme selection', () => {
     cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
   });
 
-  it('keeps the theme selector usable inside the mobile menu', () => {
+  it('keeps a theme control inside the mobile menu', () => {
     cy.viewport('iphone-x');
     visitWithThemeStub(false);
 
-    cy.get('.navbar-brand > .button').click();
-    cy.get('.siteNavbarDrawer .siteThemeButton')
-        .should('be.visible')
-        .click()
-        .click();
+    cy.get('.siteHeader__burger').click();
+    cy.get('.mobileMenu__theme').should('be.visible').click();
     cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
   });
 });

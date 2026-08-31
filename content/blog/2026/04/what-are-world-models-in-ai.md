@@ -1,11 +1,16 @@
 ---
 title: "What Are World Models in AI?"
+type: 'post'
 date: "2026-04-01T17:17:17.522Z"
 slug: "2026/04/what-are-world-models-in-ai"
 category: 'ai'
 tags: ['ai', 'world-model']
 keywords: ['AI']
 featured: 'images/what-are-world-models-in-ai.png'
+summary: 'Working out what people actually mean when they say a model has a world model, and why the phrase gets used for two quite different things.'
+margins:
+  - label: 'In one line'
+    text: 'A world model is a prediction of what happens next, not a picture of what is.'
 ---
 
 I’ve been seeing “world models” come up a lot recently and finally spent a bit of time trying to understand what people actually mean by it.

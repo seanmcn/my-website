@@ -1,7 +1,13 @@
 ---
 title: "{{title}}"
+type: '{{itemType}}'
 date: "{{date}}"
 slug: "{{slug}}"
-category: '{{{category}}}'
-tags: {{{tags}}}
+{{#if isFind}}source: '{{{source}}}'
+{{else}}category: '{{{category}}}'
+{{/if}}tags: {{{tags}}}
+summary: "{{summary}}"
+margins:
+  - label: 'In one line'
+    text: ''
 ---
