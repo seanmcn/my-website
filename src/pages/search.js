@@ -76,7 +76,15 @@ const SearchPage = ({data, location}) => {
       setRecents([]);
     }
 
-    inputRef.current?.focus();
+    /*
+     * Gatsby moves focus to its route wrapper after a client-side navigation,
+     * and that lands after this effect - taking the caret straight back off
+     * the input for anyone arriving from the header. Claiming it a frame later
+     * wins the race; a direct visit behaves the same either way.
+     */
+    const frame = requestAnimationFrame(() => inputRef.current?.focus());
+
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   // ?q= lets a search be linked to, and survives a reload.

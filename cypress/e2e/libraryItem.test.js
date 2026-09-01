@@ -250,24 +250,25 @@ describe('Library item pages', () => {
           cy.get('.mermaidViewerRendered')
               .should('contain.text', 'Current state')
               .and('contain.text', 'Choose action');
+          // The attributes land before the diagram has finished sizing, so
+          // the centring is asserted in a retrying should() rather than a
+          // one-shot then() that samples mid-layout.
           cy.get('.mermaidViewerCanvas')
               .should('have.attr', 'data-rotated', 'false')
-              .and('have.attr', 'data-zoom', '100')
-              .then(($canvas) => {
-                expect($canvas[0].scrollLeft).to.equal(0);
-                expect($canvas[0].scrollTop).to.equal(0);
+              .and('have.attr', 'data-zoom', '100');
+          cy.get('.mermaidViewerCanvas').should(($canvas) => {
+            const canvas = $canvas[0];
+            const stage = canvas.querySelector('.mermaidViewerStage');
+            const canvasRect = canvas.getBoundingClientRect();
+            const stageRect = stage.getBoundingClientRect();
 
-                const canvasRect = $canvas[0].getBoundingClientRect();
-
-                cy.get('.mermaidViewerStage').then(($stage) => {
-                  const stageRect = $stage[0].getBoundingClientRect();
-
-                  expect(stageRect.left + stageRect.width / 2)
-                      .to.be.closeTo(canvasRect.left + canvasRect.width / 2, 4);
-                  expect(stageRect.top + stageRect.height / 2)
-                      .to.be.closeTo(canvasRect.top + canvasRect.height / 2, 4);
-                });
-              });
+            expect(canvas.scrollLeft).to.equal(0);
+            expect(canvas.scrollTop).to.equal(0);
+            expect(stageRect.left + stageRect.width / 2)
+                .to.be.closeTo(canvasRect.left + canvasRect.width / 2, 4);
+            expect(stageRect.top + stageRect.height / 2)
+                .to.be.closeTo(canvasRect.top + canvasRect.height / 2, 4);
+          });
 
           cy.get(MERMAID_VIEWER_ZOOM_IN_BUTTON).click();
           cy.get('.mermaidViewerCanvas')

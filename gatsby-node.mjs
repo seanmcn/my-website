@@ -1017,6 +1017,43 @@ export const onPostBuild = ({store}) => {
   );
 };
 
+/*
+ * The redirects above only become real files in onPostBuild, so under
+ * `gatsby develop` every old address 404s - including in CI, which runs the
+ * e2e suite against the dev server. Serve the same page the build writes, so
+ * development and production answer an old URL identically.
+ */
+export const onCreateDevServer = ({app, store}) => {
+  const {pages, redirects} = store.getState();
+  let served = 0;
+
+  redirects.forEach(({fromPath, toPath}) => {
+    // Wildcards are host rules, and a real page always outranks a redirect.
+    if (fromPath.includes(':') || fromPath.includes('*')) {
+      return;
+    }
+
+    /*
+     * Page paths always carry a trailing slash and createRedirectPair registers
+     * both forms, so check both - express matches a slashless route against the
+     * slashed request too, and would otherwise shadow a real page.
+     */
+    const slashed = fromPath.endsWith('/') ? fromPath : `${fromPath}/`;
+
+    if (pages.has(slashed) || pages.has(slashed.replace(/\/$/, ''))) {
+      return;
+    }
+
+    app.get(fromPath, (req, res) => {
+      res.type('html').send(redirectHtml(toPath));
+    });
+
+    served += 1;
+  });
+
+  console.info(`[redirects] serving ${served} redirect pages in development`);
+};
+
 export const onCreateNode = ({node, actions, getNode}) => {
   const {createNodeField} = actions;
 
