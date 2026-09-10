@@ -29,7 +29,27 @@
             "problemMatcher": []
         },
         {
-            "label": "Generate Featured Image",
+            "label": "Generate Featured Image (Auto)",
+            "type": "process",
+            "command": "node",
+            "args": [
+                "scripts/auto-featured-image.mjs",
+                "--file",
+                "${file}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Generate Featured Image (Manual)",
             "type": "process",
             "command": "node",
             "args": [

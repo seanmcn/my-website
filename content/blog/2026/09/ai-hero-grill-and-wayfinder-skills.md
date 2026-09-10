@@ -3,9 +3,13 @@ title: "AI Hero's Grill and Wayfinder Skills"
 type: 'note'
 date: "2026-09-10T09:30:00.000Z"
 slug: "2026/09/ai-hero-grill-and-wayfinder-skills"
-category: 'reviews'
+category: 'ai'
 tags: ['ai', 'developer-tools', 'claude-code', 'documentation']
 keywords: ['grill-me', 'grill-with-docs', 'wayfinder', 'adr', 'architecture decision records', 'ai hero']
+featured: 'images/featured-ai-hero-grill-and-wayfinder-skills.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'At a grill, a hazy idea cloud cooks into blank cards slipping into a binder, while a corkboard strings matching cards into a winding path'
 ---
 
 My friend Anton put me onto [grill-me](https://www.aihero.dev/skills-grill-me), and it's turned out to be genuinely handy — I've used it a handful of times now to turn a loose idea into something I can actually commit to. It needs no repo and creates no files, just a structured interview that keeps going in rounds until the vague parts get pinned down.
