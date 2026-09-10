@@ -1,6 +1,6 @@
 ---
 title: "Programmer Personality: 2020"
-type: 'post'
+type: 'note'
 date: '2020-08-09T16:39:03.284Z'
 slug: '2020/08/programmer-personality'
 category: 'personal'
