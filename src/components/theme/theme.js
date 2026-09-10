@@ -89,27 +89,63 @@ const persistThemePreference = (themePreference, hasStoredPreference) => {
 export const ThemeProvider = ({children}) => {
   // Initialise with SSR-safe defaults so the first client render matches the
   // server-rendered HTML (avoids React #418/#423 hydration mismatches). The
-  // real values from localStorage / <html> dataset are picked up in the effect
-  // below.
+  // real values from localStorage / <html> dataset are picked up below, in
+  // the same effect that applies/persists theme state, so that pass never
+  // runs the "apply/persist" effect with these stale defaults - see the
+  // isHydrating ref below.
   const [themePreference, setThemePreferenceState] = React.useState('system');
   const [hasStoredPreference, setHasStoredPreference] = React.useState(false);
   const [systemTheme, setSystemTheme] = React.useState('light');
 
-  React.useEffect(() => {
-    const initialPreference = getInitialThemePreference();
-    if (initialPreference !== 'system') {
-      setThemePreferenceState(initialPreference);
-    }
-    if (getInitialHasStoredPreference()) {
-      setHasStoredPreference(true);
-    }
-    setSystemTheme(getSystemTheme());
-  }, []);
-
   const resolvedTheme = themePreference === 'system' ? systemTheme :
     themePreference;
 
+  // Guards the very first run of the effect below, which otherwise sees the
+  // SSR-safe defaults above rather than the real localStorage/dataset
+  // values. A prior version split "sync real values into state" and
+  // "apply + persist" into two separate effects; both ran, in order, within
+  // the *same* initial commit, so the persist effect's first run still saw
+  // the stale defaults (state updates from the sync effect aren't visible
+  // until the next render) and wrote 'system'/unset - wiping any real
+  // stored preference - a moment before a second, corrected run put it
+  // back. That gap is enough to lose the preference for real if anything
+  // interrupts it (slow devices, a tab closed mid-load). Merging both into
+  // one effect lets the first run resync state and bail out *before*
+  // persisting, so the destructive write never happens.
+  const isHydrating = React.useRef(true);
+
   React.useEffect(() => {
+    if (isHydrating.current) {
+      const initialPreference = getInitialThemePreference();
+      const initialHasStoredPreference = getInitialHasStoredPreference();
+      const initialSystemTheme = getSystemTheme();
+      const needsResync = initialPreference !== themePreference ||
+        initialHasStoredPreference !== hasStoredPreference ||
+        initialSystemTheme !== systemTheme;
+
+      if (needsResync) {
+        if (initialPreference !== themePreference) {
+          setThemePreferenceState(initialPreference);
+        }
+        if (initialHasStoredPreference !== hasStoredPreference) {
+          setHasStoredPreference(initialHasStoredPreference);
+        }
+        if (initialSystemTheme !== systemTheme) {
+          setSystemTheme(initialSystemTheme);
+        }
+
+        // Keep the DOM in sync immediately (idempotent - the boot script
+        // already applied this), but don't persist yet: this effect runs
+        // again once the corrected state above commits, and persists then.
+        const initialResolvedTheme = initialPreference === 'system' ?
+          initialSystemTheme : initialPreference;
+        applyThemeToDocument(initialPreference, initialResolvedTheme);
+
+        return;
+      }
+    }
+
+    isHydrating.current = false;
     applyThemeToDocument(themePreference, resolvedTheme);
     persistThemePreference(themePreference, hasStoredPreference);
     document.documentElement.dataset.themePersisted = hasStoredPreference ?

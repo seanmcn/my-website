@@ -95,6 +95,28 @@ describe('Theme selection', () => {
     cy.document().its('documentElement.dataset.theme').should('eq', 'light');
   });
 
+  it('never wipes a stored non-default preference while syncing', () => {
+    // Regression test: ThemeProvider used to sync its hydration-safe default
+    // state into localStorage before correcting itself a render later,
+    // transiently wiping any real stored preference via removeItem. That
+    // self-healed too fast for a normal assertion to catch (Cypress retries
+    // until the corrected value shows up), so this spies on every call
+    // instead of just checking the final value.
+    visitWithThemeStub(false, {
+      onBeforeLoad: (win) => {
+        win.localStorage.setItem(THEME_STORAGE_KEY, 'dark');
+        cy.spy(win.localStorage, 'removeItem').as('removeItem');
+      },
+    });
+
+    cy.document().its('documentElement.dataset.theme').should('eq', 'dark');
+    cy.document().its('documentElement.dataset.themePersisted')
+        .should('eq', 'true');
+    cy.window().its('localStorage').invoke('getItem', THEME_STORAGE_KEY)
+        .should('eq', 'dark');
+    cy.get('@removeItem').should('not.have.been.calledWith', THEME_STORAGE_KEY);
+  });
+
   it('follows system appearance changes until a choice is made', () => {
     visitWithThemeStub(false);
 
