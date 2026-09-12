@@ -155,7 +155,7 @@
   }
 
   table {
-    display: block;
+    display: table;
     max-width: 82ch;
     margin: 2px 0 28px;
     overflow-x: auto;
@@ -246,10 +246,6 @@
       float: none;
       width: 100%;
       margin: 0 0 18px;
-    }
-
-    .gatsby-image-wrapper {
-      border: 1px solid var(--line);
     }
   }
 }
