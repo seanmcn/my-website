@@ -165,20 +165,28 @@
   &__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 7px;
-    margin-top: 22px;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 28px;
   }
 
   &__tag {
-    padding: 4px 9px;
-    border: 1px solid var(--line-2);
-    color: var(--ink-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    color: var(--accent);
 
-    @include label(10px, 0.14em);
+    @include label(10px, 0.16em);
+
+    svg {
+      color: var(--accent);
+    }
 
     &:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      background: var(--accent-tint);
     }
   }
 }

@@ -12,6 +12,7 @@ import {
   CategoryIcon,
   ClockIcon,
   ReplyIcon,
+  TagIcon,
 } from '../components/icons/icons';
 import useCondensedHeader from '../hooks/useCondensedHeader';
 import {
@@ -132,6 +133,21 @@ const ItemPage = ({children, data, location, pageContext}) => {
           </div>
 
           <div className="itemPage__end">
+            {frontmatter.tags && frontmatter.tags.length > 0 && (
+              <div className="itemPage__tags">
+                {frontmatter.tags.map(tag => (
+                  <Link
+                    className="itemPage__tag"
+                    key={tag}
+                    to={`/library/tags/${tag}/`}
+                  >
+                    <TagIcon size={11} />
+                    {slugToTitle(tag)}
+                  </Link>
+                ))}
+              </div>
+            )}
+
             <div className="itemPage__ornament">
               <span className="itemPage__rule" />
               <span className="itemPage__diamond" />
@@ -164,20 +180,6 @@ const ItemPage = ({children, data, location, pageContext}) => {
               </span>
             </div>
           </div>
-
-          {frontmatter.tags && frontmatter.tags.length > 0 && (
-            <div className="itemPage__tags">
-              {frontmatter.tags.map(tag => (
-                <Link
-                  className="itemPage__tag"
-                  key={tag}
-                  to={`/library/tags/${tag}/`}
-                >
-                  {slugToTitle(tag)}
-                </Link>
-              ))}
-            </div>
-          )}
         </article>
 
         <aside className="itemRail" id="postSidebarColumn">
