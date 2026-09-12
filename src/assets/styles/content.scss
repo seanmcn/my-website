@@ -189,18 +189,47 @@
     background: var(--surface);
   }
 
-  /** Keyboard shortcuts printed in a table read as keycaps. */
-  td:first-child code,
-  th:first-child code {
-    display: inline-block;
-    padding: 3px 7px;
+  /** Keyboard shortcuts read as keycaps, in tables and in running prose. */
+  .shortcut code {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    height: 26px;
+    padding: 0 7px;
     background: var(--surface);
     border: 1px solid var(--line-2);
     box-shadow: 0 1px 0 var(--line-2);
-    color: var(--ink);
+    color: var(--accent);
     font-size: 12px;
-    line-height: 1.5;
+    line-height: 1;
     white-space: nowrap;
+  }
+
+  /* An icon key (Cmd, Shift, Control, arrows, ...) is always a square,
+     matching the height a text key like Tab or T already sits at. */
+  .shortcut code:has(svg) {
+    width: 26px;
+    padding: 0;
+  }
+
+  .shortcut code svg {
+    width: 15px;
+    height: 15px;
+    flex: none;
+  }
+
+  .shortcut {
+    white-space: nowrap;
+  }
+
+  .shortcut .keySep {
+    display: inline-block;
+    margin: 0 1px;
+    vertical-align: middle;
+    color: var(--muted);
+    font-family: $font-mono;
+    font-size: 12px;
   }
 
   hr {

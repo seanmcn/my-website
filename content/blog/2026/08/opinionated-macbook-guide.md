@@ -35,7 +35,7 @@ Do this one first. It's the single biggest change on the list.
 
 Go to System Settings > Spotlight (or just type "Spotlight" into the Settings search box) and untick everything in the search results list **except Applications**.
 
-Now press **Cmd + Space**, type the first three or four letters of an app, press Enter. That's how you open things on a Mac. It's the first shortcut worth learning.
+Now press <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>Space</code></span>, type the first three or four letters of an app, press <span class="shortcut"><code><Key name="return" /></code></span>. That's how you open things on a Mac. It's the first shortcut worth learning.
 
 Turning everything else off looks like the wrong move. Surely you want more results, not fewer? In practice it's the opposite. Leave it all on, type three letters, and you get:
 
@@ -44,7 +44,7 @@ Turning everything else off looks like the wrong move. Surely you want more resu
 - an App Store suggestion
 - somebody's phone number
 
-The app you actually wanted is fourth in the list, so you can't hit Enter without stopping to look. Turn it all off and it becomes instant and completely predictable. Type, Enter, app opens, you never look at the screen.
+The app you actually wanted is fourth in the list, so you can't hit <span class="shortcut"><code><Key name="return" /></code></span> without stopping to look. Turn it all off and it becomes instant and completely predictable. Type, <span class="shortcut"><code><Key name="return" /></code></span>, app opens, you never look at the screen.
 
 You can switch a category back on if you find you miss it. I never have.
 
@@ -56,7 +56,7 @@ System Settings > Desktop & Dock > tick **Automatically hide and show the Dock**
 
 This feels wrong for about a day. Then you have all that screen back, and when you do want the Dock you flick the cursor to the bottom and it's there.
 
-The reason it works is the previous section. On Windows the taskbar is how you find things, so hiding it is madness. On a Mac you find things with Cmd + Space, so the Dock only needs the handful of apps you're in constantly. Mine has about five things on it.
+The reason it works is the previous section. On Windows the taskbar is how you find things, so hiding it is madness. On a Mac you find things with <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>Space</code></span>, so the Dock only needs the handful of apps you're in constantly. Mine has about five things on it.
 
 While you're in that panel, turn off **Show suggested and recent apps in Dock**, otherwise it slowly fills with things you opened once by accident.
 
@@ -90,10 +90,10 @@ A four-item sidebar you can hit without reading beats a fifteen-item one you sca
 
 A few things behave differently enough to catch you out on day one:
 
-- **Enter renames a file.** It doesn't open it. This one gets everybody.
-- **Cmd + down** opens the thing you've selected.
-- **Cmd + Delete** sends it to the Bin. There's no Delete key that does it.
-- **Cmd + Shift + .** shows and hides hidden files.
+- <span class="shortcut"><code><Key name="return" /></code></span> renames a file. It doesn't open it. This one gets everybody.
+- <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="down" /></code></span> opens the thing you've selected.
+- <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>Del</code></span> sends it to the Bin. There's no Delete key that does it.
+- <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>.</code></span> shows and hides hidden files.
 
 > That last one is, without competition, my least favourite shortcut on the entire system. I have looked it up more times than I've looked up anything else on this list, it is nowhere in any menu, and I resent it every single time.
 
@@ -101,27 +101,27 @@ A few things behave differently enough to catch you out on day one:
 
 There's no Print Screen key, and this is the thing people ask me most often.
 
-- **Cmd + Shift + 4** gives you crosshairs to drag a box around whatever you want. The screenshot lands on your desktop.
-- **Cmd + Shift + 5** opens a small toolbar with all the options: whole screen, one window, a region, and screen recording if you need to capture a video.
+- <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>4</code></span> gives you crosshairs to drag a box around whatever you want. The screenshot lands on your desktop.
+- <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>5</code></span> opens a small toolbar with all the options: whole screen, one window, a region, and screen recording if you need to capture a video.
 
-If you only learn one, learn Cmd + Shift + 4.
+If you only learn one, learn <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>4</code></span>.
 
 ### The Cmd key, and how to have Ctrl back if you'd rather
 
-On a Mac, **Cmd** does what Ctrl used to. Copy, paste, save, undo, all exactly the same, just one key further in. Ctrl still exists and does other things, so pressing it out of habit doesn't break anything, it just quietly does nothing.
+On a Mac, <span class="shortcut"><code><Key name="cmd" /></code></span> does what <span class="shortcut"><code><Key name="control" /></code></span> used to. Copy, paste, save, undo, all exactly the same, just one key further in. Ctrl still exists and does other things, so pressing it out of habit doesn't break anything, it just quietly does nothing.
 
-Most people adapt within a week and never think about it again. But if you've got twenty years of Ctrl + C living in your left thumb and you resent being made to relearn it, you don't have to. You can just swap the two keys over:
+Most people adapt within a week and never think about it again. But if you've got twenty years of <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code>C</code></span> living in your left thumb and you resent being made to relearn it, you don't have to. You can just swap the two keys over:
 
 1. **System Settings > Keyboard > Keyboard Shortcuts...**
 2. **Modifier Keys**
-3. Set **Control** to Command, and **Command** to Control
+3. Set <span class="shortcut"><code><Key name="control" /></code></span> to <span class="shortcut"><code><Key name="cmd" /></code></span>, and <span class="shortcut"><code><Key name="cmd" /></code></span> to <span class="shortcut"><code><Key name="control" /></code></span>
 4. Done
 
-Now Ctrl + C copies exactly like it always did, and the whole machine feels a good deal more like a PC.
+Now <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code>C</code></span> copies exactly like it always did, and the whole machine feels a good deal more like a PC.
 
 One thing to know before you do it. macOS stores this **per keyboard**, so if you later plug in a USB keyboard you'll need to set it again for that one. Same panel, but use the dropdown at the top to pick which keyboard you're configuring first.
 
-> **Windows habit, not the Mac way.** I do this because I'm on a Windows machine regularly and I'd rather not relearn the same shortcuts twice. If you're only ever on a Mac, don't bother, just learn Cmd and it'll be second nature in a week.
+> **Windows habit, not the Mac way.** I do this because I'm on a Windows machine regularly and I'd rather not relearn the same shortcuts twice. If you're only ever on a Mac, don't bother, just learn <span class="shortcut"><code><Key name="cmd" /></code></span> and it'll be second nature in a week.
 
 ## Part 2: The next level up
 
@@ -129,7 +129,7 @@ This is what I'd do next if you're on the machine most of the day. Most of the u
 
 ### Spaces: making one screen feel like three
 
-Any app can go full screen with the green button top left, or **Ctrl + Cmd + F**. When it does it gets its own **space**, which behaves like its own monitor. You slide between spaces by swiping left and right on the trackpad with three or four fingers depending on how yours is set (System Settings > Trackpad > More Gestures), or **Ctrl + left/right arrow** from the keyboard.
+Any app can go full screen with the green button top left, or <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code><Key name="cmd" /></code><span class="keySep">+</span><code>F</code></span>. When it does it gets its own **space**, which behaves like its own monitor. You slide between spaces by swiping left and right on the trackpad with three or four fingers depending on how yours is set (System Settings > Trackpad > More Gestures), or <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code><Key name="left" /></code><span class="keySep">/</span><code><Key name="right" /></code></span> from the keyboard.
 
 On the laptop with nothing plugged in, I'll typically have:
 
@@ -143,18 +143,18 @@ On the laptop I mostly use full-screen apps and rarely create extra desktops by 
 
 ### Apps, windows and Mission Control
 
-**Cmd + Tab** cycles through open apps, much like Alt + Tab on Windows. The important difference is that it switches between *apps*, not windows. If you've got three Word documents open, that's one entry in the list, not three. For windows within the same app, use **Cmd + \`** (the backtick above Tab), so those three documents are one Cmd + Tab entry and three presses of Cmd + \`.
+<span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="tab" /></code></span> cycles through open apps, much like Alt + Tab on Windows. The important difference is that it switches between *apps*, not windows. If you've got three Word documents open, that's one entry in the list, not three. For windows within the same app, use <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>\`</code></span> (the backtick above Tab), so those three documents are one Cmd + Tab entry and three presses of Cmd + \`.
 
 | Shortcut | What it does |
 |---|---|
-| `Cmd + Tab` | Cycle through open apps |
-| `` Cmd + ` `` | Cycle windows within the current app |
-| `Cmd + W` | Close the window |
-| `Cmd + Q` | Quit the app |
-| `Cmd + Shift + T` | Reopen a closed tab or window in Chrome or Firefox |
-| `Ctrl + up arrow` | Mission Control, as does the F3 key on most MacBooks or a three or four-finger swipe up |
+| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="tab" /></code></span> | Cycle through open apps |
+| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>\`</code></span> | Cycle windows within the current app |
+| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>W</code></span> | Close the window |
+| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>Q</code></span> | Quit the app |
+| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>T</code></span> | Reopen a closed tab or window in Chrome or Firefox |
+| <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code><Key name="up" /></code></span> | Mission Control, as does the F3 key on most MacBooks or a three or four-finger swipe up |
 
-An app with no windows open is still running, which is why its Dock icon keeps a dot under it and why it's still sat there in Cmd + Tab. And shutting a browser window by accident is almost never the disaster it feels like, because Cmd + Shift + T keeps stepping back if you press it again.
+An app with no windows open is still running, which is why its Dock icon keeps a dot under it and why it's still sat there in <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="tab" /></code></span>. And shutting a browser window by accident is almost never the disaster it feels like, because <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>T</code></span> keeps stepping back if you press it again.
 
 Mission Control shows every window across all your displays, laid out so you can see what each one actually is.
 
@@ -162,7 +162,7 @@ This is what I use instead of Alt-Tab, and it's the thing I miss most when I'm b
 
 The catch is that it only stays useful if you're a bit disciplined about what's open. Thirty windows and every one of them is a tiny unreadable rectangle. So I minimise anything I'm not actively working in and pull it back off the Dock when I want it again. That keeps the Mission Control view down to a handful of windows I can identify at a glance, which is the whole point of it.
 
-> You can also trigger Mission Control with a hot corner. I don't. Once you move between the laptop and external monitors, the corners stop being where your hands expect them. Ctrl + up works from anywhere.
+> You can also trigger Mission Control with a hot corner. I don't. Once you move between the laptop and external monitors, the corners stop being where your hands expect them. <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code><Key name="up" /></code></span> works from anywhere.
 
 ### Moving around text
 
@@ -170,14 +170,14 @@ This is the set I'd actually learn, because you use it constantly and Home and E
 
 | Shortcut | What it does |
 |---|---|
-| `Cmd + left / right` | Start and end of the line |
-| `Cmd + up / down` | Top and bottom of the document |
-| `Option + left / right` | Jump a word at a time |
-| `Option + Delete` | Delete the previous whole word |
-| `Cmd + Delete` | Delete back to the start of the line |
-| `Fn + Delete` | Forward delete, the key Mac keyboards don't have |
+| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="left" /></code><span class="keySep">/</span><code><Key name="right" /></code></span> | Start and end of the line |
+| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="up" /></code><span class="keySep">/</span><code><Key name="down" /></code></span> | Top and bottom of the document |
+| <span class="shortcut"><code><Key name="option" /></code><span class="keySep">+</span><code><Key name="left" /></code><span class="keySep">/</span><code><Key name="right" /></code></span> | Jump a word at a time |
+| <span class="shortcut"><code><Key name="option" /></code><span class="keySep">+</span><code>Del</code></span> | Delete the previous whole word |
+| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>Del</code></span> | Delete back to the start of the line |
+| <span class="shortcut"><code>Fn</code><span class="keySep">+</span><code>Del</code></span> | Forward delete, the key Mac keyboards don't have |
 
-Hold **Shift** with any of those and you select instead of just moving. That's the bit that makes it click. Option + Shift + right selects the next word, Cmd + Shift + left selects back to the start of the line.
+Hold <span class="shortcut"><code><Key name="shift" /></code></span> with any of those and you select instead of just moving. That's the bit that makes it click. <span class="shortcut"><code><Key name="option" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code><Key name="right" /></code></span> selects the next word, <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code><Key name="left" /></code></span> selects back to the start of the line.
 
 ### Apps worth installing
 
