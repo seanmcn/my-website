@@ -83,6 +83,26 @@
   color: var(--ink) !important;
 }
 
+/**
+ * At dark, --surface/--surface-2/--line-2 read as visibly brown once they're
+ * filling an area this large rather than a hairline border, same as the
+ * shortcut tables, so code blocks get the same neutral graphite there.
+ */
+html[data-theme='dark'] .codeWrapper {
+  background: #1a1a1a;
+  border-color: #2c2c2c;
+}
+
+html[data-theme='dark'] .codeHeader {
+  background: #242424;
+  border-bottom-color: #242424;
+}
+
+html[data-theme='dark'] .codeLanguage,
+html[data-theme='dark'] .codeCopyButton {
+  border-color: #3a3a3a;
+}
+
 .mermaidWrapper {
   overflow-x: auto;
   padding: 1.5rem 1.25rem;

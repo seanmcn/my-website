@@ -189,6 +189,29 @@
     background: var(--surface);
   }
 
+  /**
+   * At dark, the site's warm surface/line tokens read as visibly brown once
+   * they're filling an area this large rather than a hairline border, so the
+   * whole table breaks from the warm palette for a neutral graphite instead.
+   */
+  html[data-theme='dark'] & table {
+    background: #1a1a1a;
+    border-color: #2c2c2c;
+  }
+
+  html[data-theme='dark'] & th {
+    background: #242424;
+    border-bottom-color: #242424;
+  }
+
+  html[data-theme='dark'] & td {
+    border-top-color: #242424;
+  }
+
+  html[data-theme='dark'] & tbody tr:nth-child(even) {
+    background: #1a1a1a;
+  }
+
   /** Keyboard shortcuts read as keycaps, in tables and in running prose. */
   .shortcut code {
     display: inline-flex;
@@ -217,6 +240,14 @@
     width: 15px;
     height: 15px;
     flex: none;
+  }
+
+  /* Same reasoning as the table: --surface barely lifts off the dark page
+     ground, so the chip gets the same neutral graphite as the header. */
+  html[data-theme='dark'] & .shortcut code {
+    background: #242424;
+    border-color: #3a3a3a;
+    box-shadow: 0 1px 0 #3a3a3a;
   }
 
   .shortcut {
