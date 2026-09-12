@@ -8,6 +8,7 @@
 .codeWrapper {
   position: relative;
   width: fit-content;
+  min-width: min(68ch, 100%);
   max-width: 100%;
   margin: 0 0 26px;
   background: var(--surface);

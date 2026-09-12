@@ -156,7 +156,8 @@
 
   table {
     display: table;
-    max-width: 82ch;
+    min-width: min(68ch, 100%);
+    max-width: 74ch;
     margin: 2px 0 28px;
     overflow-x: auto;
     background: var(--surface);
