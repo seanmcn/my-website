@@ -147,12 +147,12 @@ On the laptop I mostly use full-screen apps and rarely create extra desktops by 
 
 | Shortcut | What it does |
 |---|---|
-| **Cmd + Tab** | Cycle through open apps |
-| **Cmd + \`** | Cycle windows within the current app |
-| **Cmd + W** | Close the window |
-| **Cmd + Q** | Quit the app |
-| **Cmd + Shift + T** | Reopen a closed tab or window in Chrome or Firefox |
-| **Ctrl + up arrow** | Mission Control, as does the F3 key on most MacBooks or a three or four-finger swipe up |
+| `Cmd + Tab` | Cycle through open apps |
+| `` Cmd + ` `` | Cycle windows within the current app |
+| `Cmd + W` | Close the window |
+| `Cmd + Q` | Quit the app |
+| `Cmd + Shift + T` | Reopen a closed tab or window in Chrome or Firefox |
+| `Ctrl + up arrow` | Mission Control, as does the F3 key on most MacBooks or a three or four-finger swipe up |
 
 An app with no windows open is still running, which is why its Dock icon keeps a dot under it and why it's still sat there in Cmd + Tab. And shutting a browser window by accident is almost never the disaster it feels like, because Cmd + Shift + T keeps stepping back if you press it again.
 
@@ -170,12 +170,12 @@ This is the set I'd actually learn, because you use it constantly and Home and E
 
 | Shortcut | What it does |
 |---|---|
-| **Cmd + left / right** | Start and end of the line |
-| **Cmd + up / down** | Top and bottom of the document |
-| **Option + left / right** | Jump a word at a time |
-| **Option + Delete** | Delete the previous whole word |
-| **Cmd + Delete** | Delete back to the start of the line |
-| **Fn + Delete** | Forward delete, the key Mac keyboards don't have |
+| `Cmd + left / right` | Start and end of the line |
+| `Cmd + up / down` | Top and bottom of the document |
+| `Option + left / right` | Jump a word at a time |
+| `Option + Delete` | Delete the previous whole word |
+| `Cmd + Delete` | Delete back to the start of the line |
+| `Fn + Delete` | Forward delete, the key Mac keyboards don't have |
 
 Hold **Shift** with any of those and you select instead of just moving. That's the bit that makes it click. Option + Shift + right selects the next word, Cmd + Shift + left selects back to the start of the line.
 
