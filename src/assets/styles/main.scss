@@ -35,6 +35,15 @@
   --selection-background: #d8e8df;
 
   /**
+   * Shared surfaces for content that fills an area rather than tracing a
+   * hairline — shortcut tables and code blocks both use these instead of
+   * --surface/--surface-2/--line-2, which read as visibly brown at that size.
+   */
+  --tbl-surface: #ffffff;
+  --tbl-surface-2: #f2efe7;
+  --tbl-line-2: #ded8cd;
+
+  /**
    * Aliases kept for the Mermaid diagram viewer, which is the one component
    * carried over intact from the previous design. Mapping them here means the
    * viewer follows the new palette without being rewritten.
@@ -86,6 +95,9 @@ html[data-theme='dark'] {
   --blue-faint: #4b565e;
   --plum: #b088bd;
   --selection-background: #1e483c;
+  --tbl-surface: #1a1a19;
+  --tbl-surface-2: #242423;
+  --tbl-line-2: #3b3a37;
   --surface-overlay: rgb(8 8 7 / 80%);
   --shadow-soft: 0 10px 24px rgb(0 0 0 / 22%);
   --shadow-medium: 0 14px 30px rgb(0 0 0 / 28%);

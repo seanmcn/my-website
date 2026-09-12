@@ -2,8 +2,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {PrismAsyncLight as SyntaxHighlighter} from 'react-syntax-highlighter';
-import {oneLight} from 'react-syntax-highlighter/dist/esm/styles/prism';
-import {oneDark} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Modal from 'react-modal';
@@ -31,6 +29,79 @@ const SHELL_LANGUAGE_ALIASES = new Set([
   'terminal',
   'zsh',
 ]);
+
+// Colors reference CSS custom properties, so this one object covers both
+// light and dark without needing a resolvedTheme switch.
+const codeSyntaxTheme = {
+  'code[class*="language-"]': {
+    color: 'var(--ink)',
+    background: 'none',
+    fontFamily: 'inherit',
+    fontSize: 'inherit',
+    lineHeight: 'inherit',
+    textShadow: 'none',
+  },
+  'pre[class*="language-"]': {
+    color: 'var(--ink)',
+    background: 'none',
+    fontFamily: 'inherit',
+    fontSize: 'inherit',
+    lineHeight: 'inherit',
+    textShadow: 'none',
+  },
+  'comment': {color: 'var(--faint)', fontStyle: 'italic'},
+  'prolog': {color: 'var(--faint)', fontStyle: 'italic'},
+  'doctype': {color: 'var(--faint)', fontStyle: 'italic'},
+  'cdata': {color: 'var(--faint)', fontStyle: 'italic'},
+  'punctuation': {color: 'var(--ink-2)'},
+  'operator': {color: 'var(--ink-2)'},
+  'entity': {color: 'var(--ink-2)'},
+  'url': {color: 'var(--ink-2)'},
+  'variable': {color: 'var(--ink-2)'},
+  'deleted': {color: 'var(--ink-2)'},
+  'symbol': {color: 'var(--ink-2)'},
+  'string': {color: 'var(--amber)'},
+  'char': {color: 'var(--amber)'},
+  'attr-value': {color: 'var(--amber)'},
+  'regex': {color: 'var(--amber)'},
+  'inserted': {color: 'var(--amber)'},
+  'number': {color: 'var(--amber)'},
+  'boolean': {color: 'var(--accent)'},
+  'function': {color: 'var(--accent)'},
+  'function-name': {color: 'var(--accent)'},
+  'builtin': {color: 'var(--accent)'},
+  'keyword': {color: 'var(--accent)'},
+  'tag': {color: 'var(--accent)'},
+  'selector': {color: 'var(--accent)'},
+  'atrule': {color: 'var(--accent)'},
+  'important': {color: 'var(--plum)', fontWeight: 'normal'},
+  'class-name': {color: 'var(--plum)'},
+  'attr-name': {color: 'var(--plum)'},
+  'property': {color: 'var(--plum)'},
+  'constant': {color: 'var(--plum)'},
+  'parameter': {color: 'var(--plum)'},
+};
+
+// Prism's bundled bash grammar doesn't tokenize flags, so command-line
+// options render as plain text. Give `-x` / `--long-flag` their own token.
+// refractor's register() requires the grammar function to carry the
+// original's displayName, so it has to be copied onto the wrapper.
+const withFlagHighlighting = (language) => {
+  const wrapped = (Prism) => {
+    language(Prism);
+    Prism.languages.insertBefore('bash', 'operator', {
+      parameter: {
+        pattern: /(^|\s)-{1,2}[a-zA-Z][\w-]*/,
+        lookbehind: true,
+      },
+    });
+  };
+
+  wrapped.displayName = language.displayName;
+  wrapped.aliases = language.aliases;
+
+  return wrapped;
+};
 
 const buildMermaidTheme = resolvedTheme => ({
   startOnLoad: false,
@@ -696,11 +767,11 @@ const MermaidDiagram = ({codeString, resolvedTheme}) => {
 SyntaxHighlighter.registerLanguage('js', js);
 SyntaxHighlighter.registerLanguage('javascript', js);
 SyntaxHighlighter.registerLanguage('php', php);
-SyntaxHighlighter.registerLanguage('bash', bash);
-SyntaxHighlighter.registerLanguage('sh', bash);
-SyntaxHighlighter.registerLanguage('zsh', bash);
-SyntaxHighlighter.registerLanguage('console', bash);
-SyntaxHighlighter.registerLanguage('terminal', bash);
+SyntaxHighlighter.registerLanguage('bash', withFlagHighlighting(bash));
+SyntaxHighlighter.registerLanguage('sh', withFlagHighlighting(bash));
+SyntaxHighlighter.registerLanguage('zsh', withFlagHighlighting(bash));
+SyntaxHighlighter.registerLanguage('console', withFlagHighlighting(bash));
+SyntaxHighlighter.registerLanguage('terminal', withFlagHighlighting(bash));
 SyntaxHighlighter.registerLanguage('css', css);
 SyntaxHighlighter.registerLanguage('dart', dart);
 SyntaxHighlighter.registerLanguage('diff', diff);
@@ -744,7 +815,10 @@ export const Code = ({codeString, language}) => {
       <div className="codeHeader">
         <span className="codeLanguage">{resolvedLanguage || 'text'}</span>
         <CopyToClipboard onCopy={onCopied} text={codeString}>
-          <button className="codeCopyButton" type="button">
+          <button
+            className={`codeCopyButton${copied ? ' isCopied' : ''}`}
+            type="button"
+          >
             <svg
               aria-hidden="true"
               fill="none"
@@ -768,7 +842,7 @@ export const Code = ({codeString, language}) => {
       ) : (
         <SyntaxHighlighter
           language={resolvedLanguage}
-          style={resolvedTheme === 'dark' ? oneDark : oneLight}
+          style={codeSyntaxTheme}
           wrapLongLines={false}
         >
           {codeString}
