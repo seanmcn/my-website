@@ -137,13 +137,13 @@ On the laptop with nothing plugged in, I'll typically have:
 - my main desktop in the middle, with Notion in an ordinary window
 - Slack and email full screen off to the right
 
-I move between them with a flick of the trackpad. No Alt-Tabbing, no hunting the Dock, no resizing anything to fit next to anything else.
+I move between them with a flick of the trackpad. No <span class="shortcut"><code>Alt</code><span class="keySep">+</span><code><Key name="tab" /></code></span>, no hunting the Dock, no resizing anything to fit next to anything else.
 
 On the laptop I mostly use full-screen apps and rarely create extra desktops by hand. Plugged into monitors, I do the opposite because one app swallowing a whole display is usually a waste. This is where the MacBook is particularly good. My 14-inch screen effectively becomes three screens, and the setup still works when I unplug the monitors.
 
 ### Apps, windows and Mission Control
 
-<span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="tab" /></code></span> cycles through open apps, much like Alt + Tab on Windows. The important difference is that it switches between *apps*, not windows. If you've got three Word documents open, that's one entry in the list, not three. For windows within the same app, use <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>\`</code></span> (the backtick above Tab), so those three documents are one Cmd + Tab entry and three presses of Cmd + \`.
+<span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="tab" /></code></span> cycles through open apps, much like <span class="shortcut"><code>Alt</code><span class="keySep">+</span><code><Key name="tab" /></code></span> on Windows. The important difference is that it switches between *apps*, not windows. If you've got three Word documents open, that's one entry in the list, not three. For windows within the same app, use <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>\`</code></span> (the backtick above Tab), so those three documents are one <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="tab" /></code></span> entry and three presses of <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>\`</code></span>.
 
 | Shortcut | What it does |
 |---|---|
@@ -158,7 +158,7 @@ An app with no windows open is still running, which is why its Dock icon keeps a
 
 Mission Control shows every window across all your displays, laid out so you can see what each one actually is.
 
-This is what I use instead of Alt-Tab, and it's the thing I miss most when I'm back on Windows. You're looking at the actual windows rather than a row of near-identical app icons, so three windows of the same application are three separate things you can pick between, instead of one entry you cycle through and hope.
+This is what I use instead of <span class="shortcut"><code>Alt</code><span class="keySep">+</span><code><Key name="tab" /></code></span>, and it's the thing I miss most when I'm back on Windows. You're looking at the actual windows rather than a row of near-identical app icons, so three windows of the same application are three separate things you can pick between, instead of one entry you cycle through and hope.
 
 The catch is that it only stays useful if you're a bit disciplined about what's open. Thirty windows and every one of them is a tiny unreadable rectangle. So I minimise anything I'm not actively working in and pull it back off the Dock when I want it again. That keeps the Mission Control view down to a handful of windows I can identify at a glance, which is the whole point of it.
 
