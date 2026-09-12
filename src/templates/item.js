@@ -91,6 +91,16 @@ const ItemPage = ({children, data, location, pageContext}) => {
               </div>
             )}
 
+            {featured && (
+              <figure className="prose__floatFigure">
+                <GatsbyImage
+                  alt={frontmatter.title}
+                  className="featuredImage"
+                  image={featured}
+                />
+              </figure>
+            )}
+
             {isFind && frontmatter.source && (
               <a
                 className="itemPage__source"
@@ -117,15 +127,6 @@ const ItemPage = ({children, data, location, pageContext}) => {
             />
 
             <div className="prose">
-              {featured && (
-                <figure className="prose__floatFigure">
-                  <GatsbyImage
-                    alt={frontmatter.title}
-                    className="featuredImage"
-                    image={featured}
-                  />
-                </figure>
-              )}
               {children}
             </div>
           </div>

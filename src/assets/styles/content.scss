@@ -254,9 +254,3 @@
   }
 }
 
-/** Notes and finds sit in a centred single column; nothing should float. */
-.itemPage__body--narrow .prose__floatFigure {
-  float: none;
-  width: 100%;
-  margin: 0 0 24px;
-}
