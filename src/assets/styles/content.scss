@@ -263,6 +263,67 @@
     font-size: 12px;
   }
 
+  /**
+   * A settings path as an ordered [verb, target] list rather than one
+   * chevron-joined line. The verb gutter is fixed width so targets line up
+   * regardless of "Open" vs "Tick", and the connector between verbs draws a
+   * single rule down the gutter, broken only before the final step.
+   */
+  .steps {
+    display: grid;
+    grid-template-columns: 68px minmax(0, 1fr);
+    align-items: stretch;
+    max-width: 64ch;
+    margin: 0 0 26px;
+    padding: 0;
+    list-style: none;
+    gap: 10px 16px;
+  }
+
+  .steps__row {
+    display: contents;
+  }
+
+  .steps__verb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+    color: var(--faint);
+    text-align: center;
+
+    @include label(12px, 0.13em);
+
+    line-height: 1.55;
+  }
+
+  .steps__connector {
+    flex: 1;
+    width: 1px;
+    min-height: 12px;
+    margin-top: 5px;
+    background: var(--line-2);
+  }
+
+  .steps__target {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+
+  .steps__row:last-child .steps__verb {
+    color: var(--accent);
+  }
+
+  .steps__row:last-child .steps__connector {
+    display: none;
+  }
+
+  .steps__row:last-child .steps__target {
+    font-weight: 600;
+  }
+
   hr {
     max-width: 74ch;
     margin: 34px 0;

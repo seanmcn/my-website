@@ -2,6 +2,7 @@ import React from 'react';
 import {MDXProvider} from '@mdx-js/react';
 import {Code} from './src/components/code/code';
 import Key from './src/components/icons/keycapKey';
+import {Step, Steps} from './src/components/steps/steps';
 import {ThemeProvider} from './src/components/theme/theme';
 
 function preToCodeBlock(preProps) {
@@ -39,6 +40,8 @@ const components = {
     return <pre {...preProps} />;
   },
   Key,
+  Step,
+  Steps,
 };
 export const wrapRootElement = ({element}) => (
   <ThemeProvider>

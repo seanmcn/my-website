@@ -33,7 +33,13 @@ Half an hour of settings, done once, and the machine stops fighting you.
 
 Do this one first. It's the single biggest change on the list.
 
-Go to System Settings > Spotlight (or just type "Spotlight" into the Settings search box) and untick everything in the search results list **except Applications**.
+<Steps>
+  <Step verb="Open">System Settings</Step>
+  <Step verb="Click">Spotlight</Step>
+  <Step verb="Untick">Everything in the search results list, except Applications</Step>
+</Steps>
+
+You can also just type "Spotlight" into the Settings search box to jump straight to that pane.
 
 Now press <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>Space</code></span>, type the first three or four letters of an app, press <span class="shortcut"><code><Key name="return" /></code></span>. That's how you open things on a Mac. It's the first shortcut worth learning.
 
@@ -52,7 +58,11 @@ You can switch a category back on if you find you miss it. I never have.
 
 ### Hide the Dock
 
-System Settings > Desktop & Dock > tick **Automatically hide and show the Dock**.
+<Steps>
+  <Step verb="Open">System Settings</Step>
+  <Step verb="Click">Desktop & Dock</Step>
+  <Step verb="Tick">Automatically hide and show the Dock</Step>
+</Steps>
 
 This feels wrong for about a day. Then you have all that screen back, and when you do want the Dock you flick the cursor to the bottom and it's there.
 
@@ -64,7 +74,11 @@ While you're in that panel, turn off **Show suggested and recent apps in Dock**,
 
 macOS hides scrollbars until you actually start scrolling, so you often can't tell whether there's more content below without flicking the trackpad to find out. I find it properly irritating and it's one of the first things I change on a new machine.
 
-**System Settings > Appearance > Show scroll bars > Always.**
+<Steps>
+  <Step verb="Open">System Settings</Step>
+  <Step verb="Click">Appearance</Step>
+  <Step verb="Set">Show scroll bars to Always</Step>
+</Steps>
 
 The default is "Automatically based on mouse or trackpad", which is also why they seem to behave inconsistently: plug a mouse in and they turn up, unplug it and they don't. Set it to Always and you can see how far down a page you are at a glance, and drag them about like a normal person.
 
@@ -112,10 +126,12 @@ On a Mac, <span class="shortcut"><code><Key name="cmd" /></code></span> does wha
 
 Most people adapt within a week and never think about it again. But if you've got twenty years of <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code>C</code></span> living in your left thumb and you resent being made to relearn it, you don't have to. You can just swap the two keys over:
 
-1. **System Settings > Keyboard > Keyboard Shortcuts...**
-2. **Modifier Keys**
-3. Set <span class="shortcut"><code><Key name="control" /></code></span> to <span class="shortcut"><code><Key name="cmd" /></code></span>, and <span class="shortcut"><code><Key name="cmd" /></code></span> to <span class="shortcut"><code><Key name="control" /></code></span>
-4. Done
+<Steps>
+  <Step verb="Open">System Settings</Step>
+  <Step verb="Click">Keyboard</Step>
+  <Step verb="Click">Keyboard Shortcuts... > Modifier Keys</Step>
+  <Step verb="Set"><span class="shortcut"><code><Key name="control" /></code></span> to <span class="shortcut"><code><Key name="cmd" /></code></span>, and <span class="shortcut"><code><Key name="cmd" /></code></span> to <span class="shortcut"><code><Key name="control" /></code></span></Step>
+</Steps>
 
 Now <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code>C</code></span> copies exactly like it always did, and the whole machine feels a good deal more like a PC.
 
