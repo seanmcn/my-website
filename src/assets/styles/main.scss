@@ -111,8 +111,16 @@ html[data-theme='dark'] {
   box-sizing: border-box;
 }
 
+/**
+ * `overflow-x: hidden` (here and on body, and previously on the Gatsby
+ * wrapper divs below) turns the element into a scroll container, which
+ * breaks `position: sticky` for every descendant (the header, rails,
+ * itemBar...) throughout the site. `clip` still stops horizontal overflow
+ * from creating a scrollbar, but doesn't establish a scroll container, so
+ * sticky descendants keep working.
+ */
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
   scroll-behavior: smooth;
   // Anchors from the contents list should not land under the sticky header.
   scroll-padding-top: #{$header-height + 24px};
@@ -125,15 +133,15 @@ body {
   font-family: $font-serif;
   font-size: 17px;
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#___gatsby,
-#gatsby-focus-wrapper {
-  overflow-x: hidden;
-}
+/**
+ * These Gatsby wrapper divs intentionally carry no overflow rule of their
+ * own, for the same reason as above.
+ */
 
 ::selection {
   background: var(--selection-background);
