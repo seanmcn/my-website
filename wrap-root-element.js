@@ -2,7 +2,13 @@ import React from 'react';
 import {MDXProvider} from '@mdx-js/react';
 import {Code} from './src/components/code/code';
 import Key from './src/components/icons/keycapKey';
+import {Note} from './src/components/note/note';
 import {Step, Steps} from './src/components/steps/steps';
+import {
+  StickyNote,
+  StickyRef,
+  StickyStack,
+} from './src/components/stickyNote/stickyNote';
 import {ThemeProvider} from './src/components/theme/theme';
 
 function preToCodeBlock(preProps) {
@@ -40,8 +46,12 @@ const components = {
     return <pre {...preProps} />;
   },
   Key,
+  Note,
   Step,
   Steps,
+  StickyNote,
+  StickyRef,
+  StickyStack,
 };
 export const wrapRootElement = ({element}) => (
   <ThemeProvider>

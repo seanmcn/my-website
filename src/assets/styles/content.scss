@@ -225,6 +225,7 @@
     box-shadow: 0 1px 0 var(--line-2);
     color: var(--accent);
     font-size: 12px;
+    font-weight: 500;
     line-height: 1;
     white-space: nowrap;
   }
@@ -322,6 +323,244 @@
 
   .steps__row:last-child .steps__target {
     font-weight: 600;
+  }
+
+  /**
+   * A correction or caveat, framed apart from the running text with a
+   * tab-style label on the top edge so it reads as an interruption rather
+   * than another paragraph.
+   */
+  .noteAside {
+    position: relative;
+    max-width: 70ch;
+    margin: 14px 0 30px;
+    padding: 28px 24px 24px;
+    background: var(--note-bg);
+    border: 1px solid var(--line-2);
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .noteAside__label {
+    position: absolute;
+    top: -11px;
+    left: -1px;
+    padding: 4px 10px;
+    background: var(--ink);
+    color: var(--bg);
+
+    @include label(10px, 0.18em);
+  }
+
+  /**
+   * A footnote-style aside pinned beside the paragraph it annotates: a
+   * scrap of coloured paper, tilted and taped on, rather than another framed
+   * box. Two or more stack with older notes peeking out from behind the
+   * active one (see StickyStack in src/components/stickyNote). Paper
+   * colours are fixed regardless of site theme, the way real paper doesn't
+   * change with dark mode.
+   */
+  .stickyNote,
+  .stickyStack__ghost,
+  .stickyStack__note {
+    padding: 20px 20px 22px;
+  }
+
+  .stickyNote,
+  .stickyStack {
+    float: right;
+    clear: right;
+    width: 250px;
+    margin: 14px 0 22px 30px;
+
+    @include mid {
+      width: 220px;
+    }
+
+    @include narrow {
+      float: none;
+      clear: none;
+      width: 100%;
+      margin: 10px 0 28px;
+    }
+  }
+
+  .stickyNote,
+  .stickyStack__note {
+    position: relative;
+    box-shadow: 0 8px 20px rgb(26 31 30 / 16%);
+    transform: rotate(var(--stickyTilt, 1.6deg));
+
+    @include narrow {
+      transform: none;
+    }
+  }
+
+  .stickyStack {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stickyStack__ghost {
+    grid-area: 1 / 1;
+    align-self: start;
+    visibility: hidden;
+  }
+
+  .stickyStack__wrap {
+    position: relative;
+    grid-area: 1 / 1;
+    align-self: start;
+  }
+
+  .stickyStack__rear {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: 0 3px 10px rgb(26 31 30 / 10%);
+    transform:
+      translate(calc(var(--stickyRearDepth) * 7px), calc(var(--stickyRearDepth) * 9px))
+      rotate(var(--stickyTilt, 1.6deg));
+
+    @include narrow {
+      transform: translate(
+        calc(var(--stickyRearDepth) * 4px),
+        calc(var(--stickyRearDepth) * 6px)
+      );
+    }
+  }
+
+  .stickyNote__tape {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 78px;
+    height: 19px;
+    background: rgb(246 244 239 / 72%);
+    border-right: 1px solid rgb(26 31 30 / 6%);
+    border-left: 1px solid rgb(26 31 30 / 6%);
+    transform: translateX(-50%) rotate(-3deg);
+  }
+
+  .stickyNote__label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 10px;
+
+    @include label(10px, 0.18em);
+  }
+
+  .stickyNote__marker {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 17px;
+    font-family: $font-mono;
+    font-size: 10px;
+    line-height: 1;
+  }
+
+  .stickyNote__text {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  .stickyStack__counter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 12px;
+
+    @include label(10px, 0.16em);
+  }
+
+  .stickyStack__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 22px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font-family: $font-mono;
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  /**
+   * The in-text footnote marker a StickyNote's `marker` prop points back
+   * at (see StickyRef). Coloured to match the note it jumps to, so the
+   * connection reads before you've clicked it.
+   */
+  .stickyRef {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 17px;
+    margin: 0 3px 0 6px;
+    vertical-align: 1px;
+    font-family: $font-mono;
+    font-size: 10px;
+    line-height: 1;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      filter: brightness(1.15);
+    }
+  }
+
+  $sticky-papers:
+    "amber" #f2e4c4 #3a3020 #8a6a2a,
+    "blue" #dde5ea #23323a #3f5a68,
+    "plum" #e8dfee #2f2435 #6f4a7a,
+    "rose" #f3ddd8 #3c2823 #a2594a,
+    "sky" #d6e6ea #1f3236 #2f6470,
+    "moss" #e4e7cf #2c3120 #5f6b32,
+    "green" #d8e8df #1f342c #0b5b4a;
+
+  @each $name, $fill, $ink, $label in $sticky-papers {
+    .stickyNote--#{$name},
+    .stickyStack__note--#{$name},
+    .stickyStack__rear--#{$name} {
+      background: $fill;
+    }
+
+    .stickyNote--#{$name},
+    .stickyStack__note--#{$name} {
+      color: $ink;
+    }
+
+    .stickyNote--#{$name} .stickyNote__label,
+    .stickyStack__note--#{$name} .stickyNote__label {
+      color: $label;
+    }
+
+    .stickyStack__note--#{$name} .stickyStack__counter {
+      border-top: 1px solid rgba($label, 0.25);
+      color: $label;
+    }
+
+    .stickyNote--#{$name} .stickyNote__marker,
+    .stickyStack__note--#{$name} .stickyNote__marker,
+    .stickyRef--#{$name} {
+      background: $label;
+      color: $fill;
+    }
   }
 
   hr {
