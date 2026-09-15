@@ -371,9 +371,11 @@
    * A footnote-style aside pinned beside the paragraph it annotates: a
    * scrap of coloured paper, tilted and taped on, rather than another framed
    * box. Two or more stack with older notes peeking out from behind the
-   * active one (see StickyStack in src/components/stickyNote). Paper
-   * colours are fixed regardless of site theme, the way real paper doesn't
-   * change with dark mode.
+   * active one (see StickyStack in src/components/stickyNote). Each colour
+   * gets its own light and dark paper (see $sticky-papers /
+   * $sticky-papers-dark below) rather than one fixed palette across themes -
+   * the light pastel fills would otherwise be the brightest thing on a dark
+   * page, and the tape/shadow tuned for light paper would read as artefacts.
    */
   .stickyNote,
   .stickyStack__ghost,
@@ -411,6 +413,15 @@
     }
   }
 
+  /* Light mode's shadow all but disappears against a dark page, and the
+     card needs a hairline of its own to still read as raised rather than a
+     flat rectangle sitting on the ground. */
+  html[data-theme='dark'] & .stickyNote,
+  html[data-theme='dark'] & .stickyStack__note {
+    box-shadow: 0 10px 26px rgb(0 0 0 / 50%);
+    border: 1px solid rgb(255 255 255 / 5%);
+  }
+
   .stickyStack {
     position: relative;
     display: grid;
@@ -446,6 +457,10 @@
     }
   }
 
+  html[data-theme='dark'] & .stickyStack__rear {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 40%);
+  }
+
   .stickyNote__tape {
     position: absolute;
     top: -10px;
@@ -456,6 +471,14 @@
     border-right: 1px solid rgb(26 31 30 / 6%);
     border-left: 1px solid rgb(26 31 30 / 6%);
     transform: translateX(-50%) rotate(-3deg);
+  }
+
+  /* Opaque tape tuned for light paper reads as a stray white bar once the
+     paper underneath goes dark, so it turns translucent instead. */
+  html[data-theme='dark'] & .stickyNote__tape {
+    background: rgb(230 226 216 / 14%);
+    border-right-color: rgb(255 255 255 / 6%);
+    border-left-color: rgb(255 255 255 / 6%);
   }
 
   .stickyNote__label {
@@ -583,18 +606,74 @@
 
     /* A keycap's plain white chip reads as a hole punched in this paper, so
        tint it toward the paper's own colour instead of the page's neutral
-       --surface. The dark-mode variant is repeated explicitly (not just
-       inherited) because html[data-theme='dark'] & .shortcut code above
-       matches "html" as an extra element, which otherwise out-specifies
-       this rule despite its extra .stickyNote--#{$name} class. Sticky paper
-       colours are fixed regardless of theme, so the values are identical. */
+       --surface. */
     .stickyNote--#{$name} .shortcut code,
-    .stickyStack__note--#{$name} .shortcut code,
-    html[data-theme='dark'] & .stickyNote--#{$name} .shortcut code,
-    html[data-theme='dark'] & .stickyStack__note--#{$name} .shortcut code {
+    .stickyStack__note--#{$name} .shortcut code {
       background: color.mix($fill, white, 35%);
       border-color: color.mix($fill, white, 65%);
       box-shadow: 0 1px 0 color.mix($fill, white, 65%);
+    }
+  }
+
+  /**
+   * Dark paper for the same seven colours: a deep, desaturated tinted fill
+   * rather than the light pastel above (which would be the brightest thing
+   * on a dark page), a light tinted ink so body text still reads, and a
+   * brighter, more saturated label carrying the colour identity for the
+   * eyebrow, marker and counter. `rear` is the same hue a step darker, for
+   * the stacked notes behind the active one, so the stack still separates
+   * against a dark page instead of against light paper.
+   */
+  $sticky-papers-dark:
+    "amber" #332a1b #2a2216 #e8dcc3 #d99a4a,
+    "blue" #1d262b #171e22 #d3dee4 #86aec2,
+    "plum" #2a2130 #221a27 #ded2e5 #b088bd,
+    "rose" #33211d #2a1b18 #e7d6d0 #d9897a,
+    "sky" #1b2b2e #152224 #cfe0e3 #6fb3bf,
+    "moss" #272a1c #1f2216 #dde0c9 #a8b46a,
+    "green" #1a2b25 #14221d #cfe2d8 #4fbb9c;
+
+  @each $name, $fill, $rear, $ink, $label in $sticky-papers-dark {
+    html[data-theme='dark'] & {
+      .stickyNote--#{$name},
+      .stickyStack__note--#{$name} {
+        background: $fill;
+        color: $ink;
+      }
+
+      /* The rear (peeking, inactive) notes in a stack carry both
+         .stickyStack__rear and .stickyNote--#{$name} (see StickyStack in
+         src/components/stickyNote), so this compound selector is what wins
+         over the single-class fill rule just above. */
+      .stickyStack__rear.stickyNote--#{$name} {
+        background: $rear;
+      }
+
+      .stickyNote--#{$name} .stickyNote__label,
+      .stickyStack__note--#{$name} .stickyNote__label {
+        color: $label;
+      }
+
+      .stickyStack__note--#{$name} .stickyStack__counter {
+        border-top: 1px solid rgba($label, 0.25);
+        color: $label;
+      }
+
+      .stickyNote--#{$name} .stickyNote__marker,
+      .stickyStack__note--#{$name} .stickyNote__marker,
+      .stickyRef--#{$name} {
+        background: $label;
+        color: $fill;
+      }
+
+      /* Same reasoning as the light keycap tint above, but lifting off an
+         already-dark fill calls for a much smaller step toward white. */
+      .stickyNote--#{$name} .shortcut code,
+      .stickyStack__note--#{$name} .shortcut code {
+        background: color.mix($fill, white, 14%);
+        border-color: color.mix($fill, white, 30%);
+        box-shadow: 0 1px 0 color.mix($fill, white, 30%);
+      }
     }
   }
 
