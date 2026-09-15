@@ -666,13 +666,18 @@
         color: $fill;
       }
 
-      /* Same reasoning as the light keycap tint above, but lifting off an
-         already-dark fill calls for a much smaller step toward white. */
+      /* Same reasoning as the light keycap tint above, but color.mix's
+         weight is "how much of $fill survives" - the light rule below uses
+         a LOW weight (mostly white, since the light fills are pastels
+         already near white) which would wash this dark fill out to a
+         near-white chip at the same weight. A dark fill needs a HIGH
+         weight instead, so it stays mostly $fill with just a slight lift
+         toward white. */
       .stickyNote--#{$name} .shortcut code,
       .stickyStack__note--#{$name} .shortcut code {
-        background: color.mix($fill, white, 14%);
-        border-color: color.mix($fill, white, 30%);
-        box-shadow: 0 1px 0 color.mix($fill, white, 30%);
+        background: color.mix($fill, white, 85%);
+        border-color: color.mix($fill, white, 70%);
+        box-shadow: 0 1px 0 color.mix($fill, white, 70%);
       }
     }
   }
