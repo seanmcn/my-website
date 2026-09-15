@@ -453,8 +453,36 @@
 
   .stickyNote,
   .stickyStack__note {
+    /* z-index (any value, not just auto) makes this its own stacking
+       context, so .stickyNote__paper's z-index: -1 below stays contained
+       here - behind this note's own text, not leaking behind unrelated
+       content elsewhere on the page. */
     position: relative;
+    z-index: 0;
+  }
+
+  /* The paper look (fill, shadow, tilt) lives on this decorative backdrop
+     rather than on .stickyNote/.stickyStack__note itself, so it can carry
+     the card's tilt independently of .stickyNote__content below - both
+     read the same --stickyTilt, so they move together. Rotating the text
+     does cost it some sharpness (the browser has to resample it, the way
+     rotating a bitmap in an image editor softens it) and makes
+     drag-to-select unreliable - both accepted here in favour of the note
+     actually looking tilted. */
+  .stickyNote__paper {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
     box-shadow: 0 8px 20px rgb(26 31 30 / 16%);
+    transform: rotate(var(--stickyTilt, 1.6deg));
+
+    @include narrow {
+      transform: none;
+    }
+  }
+
+  .stickyNote__content {
     transform: rotate(var(--stickyTilt, 1.6deg));
 
     @include narrow {
@@ -465,8 +493,7 @@
   /* Light mode's shadow all but disappears against a dark page, and the
      card needs a hairline of its own to still read as raised rather than a
      flat rectangle sitting on the ground. */
-  html[data-theme='dark'] & .stickyNote,
-  html[data-theme='dark'] & .stickyStack__note {
+  html[data-theme='dark'] & .stickyNote__paper {
     box-shadow: 0 10px 26px rgb(0 0 0 / 50%);
     border: 1px solid rgb(255 255 255 / 5%);
   }
@@ -558,8 +585,10 @@
 
   .stickyNote__text {
     margin: 0;
-    font-size: 15px;
-    line-height: 1.6;
+    font-family: $font-hand;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
     text-wrap: pretty;
 
     // Content is usually MDX-authored, which hands it over already wrapped
@@ -630,9 +659,9 @@
     "green" #d8e8df #1f342c #0b5b4a;
 
   @each $name, $fill, $ink, $label in $sticky-papers {
-    .stickyNote--#{$name},
-    .stickyStack__note--#{$name},
-    .stickyStack__rear--#{$name} {
+    .stickyNote--#{$name} .stickyNote__paper,
+    .stickyStack__note--#{$name} .stickyNote__paper,
+    .stickyStack__rear.stickyNote--#{$name} {
       background: $fill;
     }
 
@@ -694,8 +723,12 @@
     html[data-theme='dark'] & {
       .stickyNote--#{$name},
       .stickyStack__note--#{$name} {
-        background: $fill;
         color: $ink;
+      }
+
+      .stickyNote--#{$name} .stickyNote__paper,
+      .stickyStack__note--#{$name} .stickyNote__paper {
+        background: $fill;
       }
 
       /* The rear (peeking, inactive) notes in a stack carry both

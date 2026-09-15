@@ -52,8 +52,11 @@ export const StickyNote = ({children, color, label, marker, tilt}) => (
     id={marker ? `sticky-${marker}` : undefined}
     style={{'--stickyTilt': `${tilt ?? tiltFor(0)}deg`}}
   >
+    <span aria-hidden="true" className="stickyNote__paper" />
     <span aria-hidden="true" className="stickyNote__tape" />
-    <NoteBody label={label} marker={marker}>{children}</NoteBody>
+    <div className="stickyNote__content">
+      <NoteBody label={label} marker={marker}>{children}</NoteBody>
+    </div>
   </aside>
 );
 
@@ -206,31 +209,34 @@ export const StickyStack = ({children}) => {
             undefined}
           style={{'--stickyTilt': `${tiltFor(active)}deg`}}
         >
+          <span aria-hidden="true" className="stickyNote__paper" />
           <span aria-hidden="true" className="stickyNote__tape" />
-          <NoteBody
-            label={activeNote.props.label}
-            marker={activeNote.props.marker}
-          >
-            {activeNote.props.children}
-          </NoteBody>
-          <div className="stickyStack__counter">
-            <button
-              aria-label="Previous note"
-              className="stickyStack__arrow"
-              onClick={() => goTo(active - 1)}
-              type="button"
+          <div className="stickyNote__content">
+            <NoteBody
+              label={activeNote.props.label}
+              marker={activeNote.props.marker}
             >
-              &#8592;
-            </button>
-            <span>{active + 1} / {count}</span>
-            <button
-              aria-label="Next note"
-              className="stickyStack__arrow"
-              onClick={() => goTo(active + 1)}
-              type="button"
-            >
-              &#8594;
-            </button>
+              {activeNote.props.children}
+            </NoteBody>
+            <div className="stickyStack__counter">
+              <button
+                aria-label="Previous note"
+                className="stickyStack__arrow"
+                onClick={() => goTo(active - 1)}
+                type="button"
+              >
+                &#8592;
+              </button>
+              <span>{active + 1} / {count}</span>
+              <button
+                aria-label="Next note"
+                className="stickyStack__arrow"
+                onClick={() => goTo(active + 1)}
+                type="button"
+              >
+                &#8594;
+              </button>
+            </div>
           </div>
         </div>
       </div>
