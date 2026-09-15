@@ -11,6 +11,13 @@ function tiltFor(index) {
   return TILTS[index % TILTS.length];
 }
 
+// Maps a marker (StickyNote's `marker` prop) to the StickyStack currently
+// holding it, so a StickyRef elsewhere on the page can flip that stack to
+// the right note before scrolling to it. Populated by StickyStack on mount
+// and only ever touched from the browser (effects, click handlers), so
+// module-level state is safe here despite this being an SSR'd site.
+const stackRegistry = new Map();
+
 function NoteBody({children, label, marker}) {
   return (
     <>
@@ -18,7 +25,11 @@ function NoteBody({children, label, marker}) {
         {marker && <span className="stickyNote__marker">{marker}</span>}
         {label}
       </div>
-      <p className="stickyNote__text">{children}</p>
+      {/* div, not p: children is often already a <p> (MDX wraps a
+          blank-line-separated block in one), and nesting <p> inside <p> is
+          invalid HTML that also picks up the browser's own default
+          paragraph margin. */}
+      <div className="stickyNote__text">{children}</div>
     </>
   );
 }
@@ -63,20 +74,34 @@ StickyNote.defaultProps = {
  * An inline, footnote-style marker dropped into running text, matching the
  * colour of the StickyNote it points at (give that note the same `n` as its
  * `marker` prop, so it carries a matching numbered badge and a landing id).
- * Deliberately just an anchor link rather than a click-to-select control:
- * a standalone note has nothing to select between, and wiring it into
- * StickyStack's active-note state isn't worth the coupling for what is,
- * on this site, a footnote pointing at one specific note.
+ * If `n` belongs to a note currently grouped in a StickyStack, clicking
+ * flips that stack to the right note and scrolls to it via stackRegistry;
+ * otherwise it falls through to a plain anchor jump to a standalone
+ * StickyNote's id.
  */
-export const StickyRef = ({color, n}) => (
-  <a
-    aria-label={`Jump to note ${n}`}
-    className={`stickyRef stickyRef--${color}`}
-    href={`#sticky-${n}`}
-  >
-    {n}
-  </a>
-);
+export const StickyRef = ({color, n}) => {
+  const handleClick = (event) => {
+    const entry = stackRegistry.get(n);
+    if (!entry) {
+      return;
+    }
+
+    event.preventDefault();
+    entry.activate();
+    entry.getNode()?.scrollIntoView({behavior: 'smooth', block: 'center'});
+  };
+
+  return (
+    <a
+      aria-label={`Jump to note ${n}`}
+      className={`stickyRef stickyRef--${color}`}
+      href={`#sticky-${n}`}
+      onClick={handleClick}
+    >
+      {n}
+    </a>
+  );
+};
 
 StickyRef.propTypes = {
   color: PropTypes.oneOf(COLORS),
@@ -99,6 +124,36 @@ export const StickyStack = ({children}) => {
   const notes = React.Children.toArray(children).filter(React.isValidElement);
   const count = notes.length;
   const [active, setActive] = React.useState(0);
+  const containerRef = React.useRef(null);
+  const markerKey = notes.map(note => note.props.marker || '').join(',');
+
+  React.useEffect(() => {
+    if (count <= 1) {
+      return undefined;
+    }
+
+    notes.forEach((note, i) => {
+      const {marker} = note.props;
+      if (!marker) {
+        return;
+      }
+      stackRegistry.set(marker, {
+        activate: () => setActive(i),
+        getNode: () => containerRef.current,
+      });
+    });
+
+    return () => {
+      notes.forEach((note) => {
+        if (note.props.marker) {
+          stackRegistry.delete(note.props.marker);
+        }
+      });
+    };
+    // notes is rebuilt every render; markerKey is its stable identity, and
+    // setActive is a stable state-setter reference, so neither needs to be
+    // a dependency here.
+  }, [count, markerKey]);
 
   if (count <= 1) {
     return notes[0] || null;
@@ -109,7 +164,7 @@ export const StickyStack = ({children}) => {
   const activeColor = activeNote.props.color || 'amber';
 
   return (
-    <div className="stickyStack">
+    <div className="stickyStack" ref={containerRef}>
       {notes.map((note, i) => (
         <div
           aria-hidden="true"
@@ -146,6 +201,9 @@ export const StickyStack = ({children}) => {
 
         <div
           className={`stickyStack__note stickyNote--${activeColor}`}
+          id={activeNote.props.marker ?
+            `sticky-${activeNote.props.marker}` :
+            undefined}
           style={{'--stickyTilt': `${tiltFor(active)}deg`}}
         >
           <span aria-hidden="true" className="stickyNote__tape" />

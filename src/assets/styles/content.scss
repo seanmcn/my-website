@@ -471,6 +471,12 @@
     font-size: 15px;
     line-height: 1.6;
     text-wrap: pretty;
+
+    // Content is usually MDX-authored, which hands it over already wrapped
+    // in a <p>, so the actual margin to zero out lives one level down.
+    > p {
+      margin: 0;
+    }
   }
 
   .stickyStack__counter {
