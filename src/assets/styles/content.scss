@@ -346,8 +346,13 @@
 
   /* A keycap's plain white chip reads as a hole punched in this warm tan
      paper, so lift it off --surface-2 (the site's next tier up) instead of
-     --surface, which is tuned for the page ground, not this note's ground. */
-  .noteAside .shortcut code {
+     --surface, which is tuned for the page ground, not this note's ground.
+     The dark-mode variant is repeated explicitly (not just inherited)
+     because html[data-theme='dark'] & .shortcut code above matches "html" as
+     an extra element, which otherwise out-specifies this rule despite its
+     extra .noteAside class. */
+  .noteAside .shortcut code,
+  html[data-theme='dark'] & .noteAside .shortcut code {
     background: var(--surface-2);
   }
 
@@ -578,9 +583,15 @@
 
     /* A keycap's plain white chip reads as a hole punched in this paper, so
        tint it toward the paper's own colour instead of the page's neutral
-       --surface. */
+       --surface. The dark-mode variant is repeated explicitly (not just
+       inherited) because html[data-theme='dark'] & .shortcut code above
+       matches "html" as an extra element, which otherwise out-specifies
+       this rule despite its extra .stickyNote--#{$name} class. Sticky paper
+       colours are fixed regardless of theme, so the values are identical. */
     .stickyNote--#{$name} .shortcut code,
-    .stickyStack__note--#{$name} .shortcut code {
+    .stickyStack__note--#{$name} .shortcut code,
+    html[data-theme='dark'] & .stickyNote--#{$name} .shortcut code,
+    html[data-theme='dark'] & .stickyStack__note--#{$name} .shortcut code {
       background: color.mix($fill, white, 35%);
       border-color: color.mix($fill, white, 65%);
       box-shadow: 0 1px 0 color.mix($fill, white, 65%);
