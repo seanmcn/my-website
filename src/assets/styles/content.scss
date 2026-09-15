@@ -500,6 +500,11 @@
     font-family: $font-mono;
     font-size: 10px;
     line-height: 1;
+    /* .stickyNote__label (the flex row this sits in) sets a wide
+       letter-spacing for its own "TIP"-style text. Inherited onto this
+       single digit, the trailing space it adds after the character throws
+       flexbox's centering off, visibly shifting the digit up and left. */
+    letter-spacing: normal;
   }
 
   .stickyNote__text {
@@ -597,11 +602,14 @@
       color: $label;
     }
 
+    /* $fill (the pastel paper colour) as text here reads as a washed-out
+       grey against the $label background - white is crisper and still
+       clearly "this note's colour" via the background alone. */
     .stickyNote--#{$name} .stickyNote__marker,
     .stickyStack__note--#{$name} .stickyNote__marker,
     .stickyRef--#{$name} {
       background: $label;
-      color: $fill;
+      color: white;
     }
 
     /* A keycap's plain white chip reads as a hole punched in this paper, so
