@@ -6,22 +6,22 @@
   }
 
   &__blurb {
-    margin: 9px 0 0;
+    margin: 0.5625rem 0 0;
     color: var(--faint);
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.6;
     text-wrap: pretty;
   }
 
   &__heading {
-    padding-bottom: 4px;
+    padding-bottom: 0.25rem;
   }
 
   &__stack {
     display: block;
     width: 100%;
-    margin: 0 -8px;
-    padding: 9px 8px 10px;
+    margin: 0 -0.5rem;
+    padding: 0.5625rem 0.5rem 0.625rem;
     background: none;
     border: 0;
     border-bottom: 1px solid var(--line);
@@ -38,27 +38,27 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   &__stackName {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
+    gap: 0.5625rem;
   }
 
   &__dot {
     display: inline-block;
     flex: none;
-    width: 9px;
-    height: 9px;
-    border-radius: 1px;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 0.0625rem;
   }
 
   &__stackTail {
     color: var(--faint);
     font-family: $font-mono;
-    font-size: 11px;
+    font-size: 0.6875rem;
 
     .is-active & {
       color: var(--accent);
@@ -67,8 +67,8 @@
 
   &__bar {
     display: block;
-    height: 2px;
-    margin-top: 7px;
+    height: 0.125rem;
+    margin-top: 0.4375rem;
     background: var(--line-2);
 
     .is-active & {
@@ -79,14 +79,14 @@
   &__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 7px;
+    gap: 0.4375rem;
   }
 
   &__tag {
-    padding: 4px 9px;
+    padding: 0.25rem 0.5625rem;
     border: 1px solid var(--line-2);
     color: var(--ink-2);
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 }
 
@@ -106,7 +106,7 @@
     color: var(--accent);
     cursor: pointer;
 
-    @include label(11px, 0.14em);
+    @include label(0.6875rem, 0.14em);
   }
 
   &__order {
@@ -117,26 +117,26 @@
 }
 
 .projectsYear {
-  padding-top: 26px;
+  padding-top: 1.625rem;
 
   &__head {
     display: flex;
     align-items: baseline;
-    gap: 14px;
-    padding-bottom: 6px;
+    gap: 0.875rem;
+    padding-bottom: 0.375rem;
   }
 
   &__label {
     flex: none;
     color: var(--ink);
     font-family: $font-mono;
-    font-size: 13px;
+    font-size: 0.8125rem;
     letter-spacing: 0.14em;
   }
 
   &__line {
     flex: 1;
-    height: 1px;
+    height: 0.0625rem;
     background: var(--line-2);
   }
 
@@ -144,17 +144,17 @@
     flex: none;
     color: var(--faint);
 
-    @include label(10px, 0.14em);
+    @include label(0.625rem, 0.14em);
   }
 }
 
 .projectRow {
   display: grid;
-  grid-template-columns: 104px minmax(0, 1fr);
-  gap: 20px;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 1.25rem;
   align-items: start;
-  margin: 0 -8px;
-  padding: 18px 8px;
+  margin: 0 -0.5rem;
+  padding: 1.125rem 0.5rem;
   border-bottom: 1px solid var(--line);
   color: var(--ink);
 
@@ -164,21 +164,21 @@
   }
 
   @include narrow {
-    grid-template-columns: 74px minmax(0, 1fr);
-    gap: 14px;
+    grid-template-columns: 4.625rem minmax(0, 1fr);
+    gap: 0.875rem;
   }
 
   &__thumb {
     display: block;
-    width: 104px;
-    height: 88px;
+    width: 6.5rem;
+    height: 5.5rem;
     overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--line);
 
     @include narrow {
-      width: 74px;
-      height: 64px;
+      width: 4.625rem;
+      height: 4rem;
     }
 
     .gatsby-image-wrapper {
@@ -195,11 +195,11 @@
   &__body {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem;
   }
 
   &__name {
-    font-size: 21px;
+    font-size: 1.3125rem;
     font-weight: 600;
     letter-spacing: -0.012em;
     line-height: 1.35;
@@ -207,41 +207,41 @@
 
   &__blurb {
     color: var(--muted);
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 1.5;
 
     @include narrow {
-      font-size: 16px;
+      font-size: 1rem;
     }
   }
 
   &__foot {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
   }
 
   &__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 7px;
+    gap: 0.4375rem;
     color: var(--faint);
 
-    @include label(10px, 0.14em);
+    @include label(0.625rem, 0.14em);
   }
 
   &__tag {
-    padding: 3px 7px;
+    padding: 0.1875rem 0.4375rem;
     border: 1px solid var(--line);
   }
 
   &__stack {
     flex: none;
     margin-left: auto;
-    padding: 4px 8px;
+    padding: 0.25rem 0.5rem;
     color: var(--bg);
     white-space: nowrap;
 
-    @include label(10px, 0.16em);
+    @include label(0.625rem, 0.16em);
   }
 }

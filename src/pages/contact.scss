@@ -3,21 +3,21 @@
 .contactPage {
   &__cols {
     display: grid;
-    grid-template-columns: $rail-width minmax(0, 1fr) 200px;
-    gap: 44px;
+    grid-template-columns: $rail-width minmax(0, 1fr) 12.5rem;
+    gap: 2.75rem;
     align-items: start;
-    padding-top: 24px;
+    padding-top: 1.5rem;
 
     @include mid {
       grid-template-columns: $rail-width-mid minmax(0, 1fr);
-      gap: 30px;
+      gap: 1.875rem;
     }
 
     @include narrow {
       display: flex;
       flex-direction: column;
       gap: 0;
-      padding-top: 8px;
+      padding-top: 0.5rem;
     }
   }
 
@@ -33,7 +33,7 @@
     flex: none;
     color: var(--faint);
     font-family: $font-mono;
-    font-size: 11px;
+    font-size: 0.6875rem;
     font-weight: 400;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -47,9 +47,9 @@
 
   &__lead {
     max-width: 60ch;
-    margin: 22px 0 0;
+    margin: 1.375rem 0 0;
     color: var(--muted);
-    font-size: 17px;
+    font-size: 1.0625rem;
     line-height: 1.6;
     text-wrap: pretty;
   }
@@ -78,20 +78,20 @@
 
   &__intro {
     display: block;
-    margin-top: 9px;
+    margin-top: 0.5625rem;
 
     @include narrow {
       display: flex;
       flex-direction: row;
       align-items: flex-start;
-      gap: 16px;
+      gap: 1rem;
     }
   }
 
   &__blurb {
     margin: 0;
     color: var(--faint);
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.6;
     text-wrap: pretty;
   }
@@ -102,7 +102,7 @@
     @include narrow {
       display: block;
       flex: none;
-      width: 62px;
+      width: 3.875rem;
       overflow: hidden;
       aspect-ratio: 1 / 1;
     }
@@ -118,19 +118,19 @@
   &__row {
     display: flex;
     align-items: baseline;
-    gap: 10px;
-    padding: 8px 0;
+    gap: 0.625rem;
+    padding: 0.5rem 0;
     border-top: 1px solid var(--line);
     color: var(--faint);
 
-    @include label(10px, 0.14em);
+    @include label(0.625rem, 0.14em);
   }
 
   &__value {
     flex: none;
     margin-left: auto;
     color: var(--ink);
-    font-size: 13px;
+    font-size: 0.8125rem;
     letter-spacing: 0.02em;
     white-space: nowrap;
   }
@@ -139,30 +139,30 @@
 .contactReply {
   display: flex;
   align-items: baseline;
-  gap: 14px;
-  margin: 26px 0 0;
-  padding: 13px 16px;
+  gap: 0.875rem;
+  margin: 1.625rem 0 0;
+  padding: 0.8125rem 1rem;
   background: var(--surface-2);
   border-left: 2px solid var(--accent);
 
   &__eyebrow {
     color: var(--accent);
 
-    @include label(10px, 0.16em);
+    @include label(0.625rem, 0.16em);
   }
 
   &__title {
     display: block;
-    margin-top: 4px;
+    margin-top: 0.25rem;
     color: var(--ink);
-    font-size: 17px;
+    font-size: 1.0625rem;
     line-height: 1.4;
   }
 
   &__note {
-    margin-top: 4px;
+    margin-top: 0.25rem;
     color: var(--muted);
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   &__remove {
@@ -173,12 +173,12 @@
     color: var(--faint);
     cursor: pointer;
 
-    @include label(10px, 0.14em);
+    @include label(0.625rem, 0.14em);
   }
 }
 
 .contactElsewhere {
   @include narrow {
-    margin-top: 34px;
+    margin-top: 2.125rem;
   }
 }

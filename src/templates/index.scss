@@ -4,20 +4,20 @@
   &__row {
     display: grid;
     grid-template-columns: $rail-width minmax(0, 1fr);
-    gap: 44px;
+    gap: 2.75rem;
     align-items: start;
-    padding: 44px 0 0;
+    padding: 2.75rem 0 0;
 
     @include mid {
       grid-template-columns: $rail-width-mid minmax(0, 1fr);
-      gap: 30px;
+      gap: 1.875rem;
     }
 
     @include narrow {
       display: flex;
       flex-direction: column;
       gap: 0;
-      padding: 10px 0 0;
+      padding: 0.625rem 0 0;
     }
   }
 
@@ -25,7 +25,7 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 44px;
+    gap: 2.75rem;
     min-width: 0;
   }
 
@@ -33,13 +33,13 @@
   &__split {
     display: grid;
     grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.8fr);
-    gap: 36px;
+    gap: 2.25rem;
     align-items: start;
 
     @include mid {
       display: flex;
       flex-direction: column;
-      gap: 36px;
+      gap: 2.25rem;
     }
   }
 }
@@ -50,12 +50,12 @@
   &__top {
     display: flex;
     flex-direction: column;
-    gap: 26px;
+    gap: 1.625rem;
 
     @include narrow {
       flex-flow: row wrap;
       align-items: center;
-      gap: 16px;
+      gap: 1rem;
     }
   }
 
@@ -63,7 +63,7 @@
     order: 2;
     flex: none;
     margin: 0;
-    font-size: 20px;
+    font-size: 1.25rem;
     letter-spacing: -0.012em;
     line-height: 1.35;
     text-wrap: pretty;
@@ -71,7 +71,7 @@
     @include narrow {
       order: 1;
       flex: 1 1 0;
-      font-size: 19px;
+      font-size: 1.1875rem;
     }
   }
 
@@ -84,7 +84,7 @@
     @include narrow {
       order: 2;
       flex: none;
-      width: 82px;
+      width: 5.125rem;
       border-bottom: 0;
     }
   }
@@ -110,36 +110,36 @@
     }
 
     @include narrow {
-      width: 82px;
+      width: 5.125rem;
       margin: 0;
 
       &.is-condensed {
-        width: 82px;
+        width: 5.125rem;
       }
     }
   }
 
   &__body {
-    margin-top: -17px;
+    margin-top: -1.0625rem;
 
     @include narrow {
-      margin-top: -6px;
+      margin-top: -0.375rem;
     }
   }
 
   &__blurb {
-    margin: 9px 0 0;
+    margin: 0.5625rem 0 0;
     color: var(--faint);
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.6;
     text-wrap: pretty;
   }
 
   &__aboutLink {
-    margin-top: 12px;
+    margin-top: 0.75rem;
     text-align: right;
 
-    @include label(10px, 0.16em);
+    @include label(0.625rem, 0.16em);
 
     @include narrow {
       display: none;
@@ -149,13 +149,13 @@
   &__role {
     display: flex;
     align-items: baseline;
-    gap: 8px;
-    margin: 16px 0 0;
-    padding-top: 14px;
+    gap: 0.5rem;
+    margin: 1rem 0 0;
+    padding-top: 0.875rem;
     border-top: 1px solid var(--line);
     color: var(--ink-2);
     font-family: $font-mono;
-    font-size: 11px;
+    font-size: 0.6875rem;
     letter-spacing: 0.02em;
 
     @include narrow {
@@ -165,8 +165,8 @@
 
   &__roleDot {
     flex: none;
-    width: 5px;
-    height: 5px;
+    width: 0.3125rem;
+    height: 0.3125rem;
     background: var(--accent);
     transform: translateY(-2px);
   }
@@ -184,19 +184,19 @@
   &__stat {
     display: flex;
     align-items: baseline;
-    gap: 10px;
-    padding: 8px 0;
+    gap: 0.625rem;
+    padding: 0.5rem 0;
     border-top: 1px solid var(--line);
     color: var(--faint);
 
-    @include label(10px, 0.14em);
+    @include label(0.625rem, 0.14em);
   }
 
   &__statValue {
     flex: none;
     margin-left: auto;
     color: var(--ink);
-    font-size: 13px;
+    font-size: 0.8125rem;
     letter-spacing: 0.02em;
     white-space: nowrap;
   }
@@ -207,7 +207,7 @@
 .homeLead {
   display: flex;
   flex-direction: column;
-  margin-top: -12px;
+  margin-top: -0.75rem;
 
   &__card {
     display: grid;
@@ -216,11 +216,11 @@
       "title img"
       "body  img"
       "time  img";
-    grid-template-columns: minmax(0, 1fr) clamp(104px, 24%, 160px);
-    column-gap: 24px;
+    grid-template-columns: minmax(0, 1fr) clamp(6.5rem, 24%, 10rem);
+    column-gap: 1.5rem;
     align-items: start;
-    margin: 0 -8px;
-    padding: 22px 8px;
+    margin: 0 -0.5rem;
+    padding: 1.375rem 0.5rem;
     border-bottom: 1px solid var(--line);
     color: var(--ink);
 
@@ -240,7 +240,7 @@
         "body  img"
         "time  time";
       grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-      column-gap: 16px;
+      column-gap: 1rem;
     }
   }
 
@@ -249,18 +249,18 @@
     flex-wrap: wrap;
     grid-area: meta;
     align-items: center;
-    gap: 6px 14px;
+    gap: 0.375rem 0.875rem;
     min-width: 0;
     color: var(--faint);
 
-    @include label(10px, 0.14em);
+    @include label(0.625rem, 0.14em);
   }
 
   &__metaCat {
     display: inline-flex;
     order: 2;
     align-items: center;
-    gap: 6px;
+    gap: 0.375rem;
 
     svg {
       color: var(--accent);
@@ -275,7 +275,7 @@
     display: inline-flex;
     order: 1;
     align-items: center;
-    gap: 6px;
+    gap: 0.375rem;
 
     svg {
       color: var(--faint-2);
@@ -291,7 +291,7 @@
     display: inline-flex;
     order: 3;
     align-items: center;
-    gap: 6px;
+    gap: 0.375rem;
 
     svg {
       color: var(--faint-2);
@@ -306,15 +306,15 @@
     display: block;
     grid-area: title;
     min-width: 0;
-    margin-top: 6px;
-    font-size: 28px;
+    margin-top: 0.375rem;
+    font-size: 1.75rem;
     font-weight: 600;
     letter-spacing: -0.022em;
     line-height: 1.16;
     text-wrap: pretty;
 
     @include narrow {
-      font-size: 24px;
+      font-size: 1.5rem;
     }
   }
 
@@ -322,14 +322,14 @@
     display: block;
     grid-area: body;
     min-width: 0;
-    margin-top: 8px;
+    margin-top: 0.5rem;
     color: var(--muted);
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 1.55;
     text-wrap: pretty;
 
     @include narrow {
-      font-size: 16px;
+      font-size: 1rem;
     }
   }
 
@@ -339,17 +339,17 @@
     align-self: center;
     align-items: center;
     justify-content: center;
-    padding-left: 22px;
+    padding-left: 1.375rem;
     border-left: 1px solid var(--line);
 
     @include narrow {
       align-self: start;
-      margin-top: 10px;
-      padding-left: 14px;
+      margin-top: 0.625rem;
+      padding-left: 0.875rem;
     }
 
     .gatsby-image-wrapper {
-      max-height: 150px;
+      max-height: 9.375rem;
     }
   }
 
@@ -358,11 +358,11 @@
     grid-area: time;
     align-items: center;
     justify-content: flex-end;
-    gap: 6px;
-    margin-top: 12px;
+    gap: 0.375rem;
+    margin-top: 0.75rem;
     color: var(--faint);
 
-    @include label(10px, 0.14em);
+    @include label(0.625rem, 0.14em);
 
     svg {
       color: var(--faint-2);
@@ -379,13 +379,13 @@
 .homeAside {
   display: flex;
   flex-direction: column;
-  gap: 34px;
-  padding: 22px 20px 24px;
+  gap: 2.125rem;
+  padding: 1.375rem 1.25rem 1.5rem;
   background: var(--surface-2);
 
   &__empty {
     color: var(--muted);
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.5;
     text-wrap: pretty;
   }
@@ -393,13 +393,13 @@
   &__finds {
     display: flex;
     flex-direction: column;
-    gap: 13px;
+    gap: 0.8125rem;
   }
 
   &__find {
     display: grid;
-    grid-template-columns: 44px minmax(0, 1fr);
-    gap: 10px;
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    gap: 0.625rem;
     align-items: baseline;
     color: var(--ink);
 
@@ -411,11 +411,11 @@
   &__findDate {
     color: var(--blue);
 
-    @include label(10px, 0.08em);
+    @include label(0.625rem, 0.08em);
   }
 
   &__findTitle {
-    font-size: 17px;
+    font-size: 1.0625rem;
     font-weight: 600;
     letter-spacing: -0.01em;
     line-height: 1.35;
@@ -425,7 +425,7 @@
   &__notes {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 1.125rem;
   }
 
   &__note {
@@ -441,13 +441,13 @@
     display: block;
     color: var(--amber);
 
-    @include label(10px, 0.08em);
+    @include label(0.625rem, 0.08em);
   }
 
   &__noteTitle {
     display: block;
-    margin-top: 3px;
-    font-size: 18px;
+    margin-top: 0.1875rem;
+    font-size: 1.125rem;
     font-weight: 600;
     letter-spacing: -0.012em;
     line-height: 1.35;
@@ -456,9 +456,9 @@
 
   &__noteExcerpt {
     display: block;
-    margin-top: 4px;
+    margin-top: 0.25rem;
     color: var(--muted);
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.5;
     text-wrap: pretty;
   }
@@ -469,12 +469,12 @@
 .homeProjects {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
 
   &__row {
     display: grid;
-    grid-template-columns: 87px minmax(0, 1fr);
-    gap: 22px;
+    grid-template-columns: 5.4375rem minmax(0, 1fr);
+    gap: 1.375rem;
     align-items: center;
     color: var(--ink);
 
@@ -485,8 +485,8 @@
 
   &__thumb {
     display: block;
-    width: 87px;
-    height: 65px;
+    width: 5.4375rem;
+    height: 4.0625rem;
     overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--line);
@@ -506,23 +506,23 @@
     display: block;
     color: var(--accent);
 
-    @include label(10px, 0.16em);
+    @include label(0.625rem, 0.16em);
   }
 
   &__line {
     display: block;
-    margin-top: 4px;
+    margin-top: 0.25rem;
   }
 
   &__name {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
     letter-spacing: -0.014em;
   }
 
   &__blurb {
     color: var(--muted);
-    font-size: 17px;
+    font-size: 1.0625rem;
     line-height: 1.5;
   }
 }

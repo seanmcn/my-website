@@ -125,7 +125,7 @@ html {
   overflow-x: clip;
   scroll-behavior: smooth;
   // Anchors from the contents list should not land under the sticky header.
-  scroll-padding-top: #{$header-height + 24px};
+  scroll-padding-top: #{$header-height + 1.5rem};
 }
 
 body {
@@ -133,7 +133,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: $font-serif;
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.6;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
@@ -195,8 +195,8 @@ ol {
 }
 
 hr {
-  height: 1px;
-  margin: 32px 0;
+  height: 0.0625rem;
+  margin: 2rem 0;
   border: 0;
   background: var(--line);
 }
@@ -212,9 +212,9 @@ hr {
 
 .visually-hidden {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
   padding: 0;
   overflow: hidden;
   clip: rect(0 0 0 0);
@@ -229,61 +229,61 @@ hr {
 .shell {
   max-width: $shell-max;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 2rem;
 
   @include mid {
-    padding: 0 24px;
+    padding: 0 1.5rem;
   }
 
   @include narrow {
-    padding: 0 18px;
+    padding: 0 1.125rem;
   }
 }
 
 .sectionRule {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
+  gap: 0.625rem;
+  margin-bottom: 0.875rem;
 
   &__line {
     flex: 1;
-    height: 1px;
+    height: 0.0625rem;
     background: var(--line-2);
   }
 
   &__badge {
     flex: none;
     margin: 0;
-    padding: 4px 8px;
+    padding: 0.25rem 0.5rem;
     background: var(--accent);
     color: var(--bg);
-    @include label(10px, 0.2em);
+    @include label(0.625rem, 0.2em);
 
     font-weight: 500;
   }
 
   &__link {
     flex: none;
-    @include label(10px, 0.16em);
+    @include label(0.625rem, 0.16em);
   }
 }
 
 .eyebrow {
-  @include label(10px, 0.2em);
+  @include label(0.625rem, 0.2em);
 
   color: var(--accent);
 }
 
 .railHeading {
-  @include label(10px, 0.18em);
+  @include label(0.625rem, 0.18em);
 
   color: var(--faint);
 }
 
 .videoEmbed {
   position: relative;
-  margin: 26px 0;
+  margin: 1.625rem 0;
   padding-top: 56.25%;
   overflow: hidden;
   border: 1px solid var(--line);

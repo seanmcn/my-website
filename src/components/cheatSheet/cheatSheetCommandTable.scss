@@ -13,17 +13,17 @@ only screen and (max-width: 500px) {
     border: none;
     border-bottom: 1px solid #ccc;
     position: relative;
-    padding-left: 100px;
-    margin-left: 100px;
+    padding-left: 6.25rem;
+    margin-left: 6.25rem;
   }
   td:before {
     position: absolute;
-    top: 12px;
-    left: 6px;
-    width: 100px;
-    padding-right: 10px;
+    top: 0.75rem;
+    left: 0.375rem;
+    width: 6.25rem;
+    padding-right: 0.625rem;
     white-space: nowrap;
-    margin-left: -100px;
+    margin-left: -6.25rem;
   }
   td:nth-of-type(1):before { content: "Command:"; font-weight: bold; }
   td:nth-of-type(2):before { content: "Category:"; font-weight: bold; }

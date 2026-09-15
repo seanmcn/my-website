@@ -41,14 +41,14 @@ $font-mono: 'IBM Plex Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
 // stays mono too, matching the rest of the site's small-caps labels.
 $font-hand: 'Kalam', cursive;
 
-$shell-max: 1180px;
-$rail-width: 262px;
-$rail-width-mid: 224px;
-$header-height: 66px;
+$shell-max: 73.75rem;
+$rail-width: 16.375rem;
+$rail-width-mid: 14rem;
+$header-height: 4.125rem;
 
 // Small caps label used everywhere in the design: eyebrows, meta rows,
 // filter bars, badges.
-@mixin label($size: 10px, $tracking: 0.16em) {
+@mixin label($size: 0.625rem, $tracking: 0.16em) {
   font-family: $font-mono;
   font-size: $size;
   font-weight: 400;

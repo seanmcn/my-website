@@ -2,17 +2,17 @@
 
 .contactForm {
   display: block;
-  max-width: 640px;
-  margin-top: 34px;
+  max-width: 40rem;
+  margin-top: 2.125rem;
 
   &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 26px;
+    gap: 1.625rem;
 
     @include narrow {
       grid-template-columns: minmax(0, 1fr);
-      gap: 20px;
+      gap: 1.25rem;
     }
   }
 
@@ -20,22 +20,22 @@
     display: block;
     color: var(--muted);
 
-    @include label(10px, 0.14em);
+    @include label(0.625rem, 0.14em);
 
     &--block {
-      margin-top: 26px;
+      margin-top: 1.625rem;
     }
   }
 
   &__input {
     width: 100%;
-    margin-top: 8px;
-    padding: 12px;
+    margin-top: 0.5rem;
+    padding: 0.75rem;
     background: var(--surface);
     border: 1px solid var(--line-2);
     color: var(--ink);
     font-family: $font-serif;
-    font-size: 18px;
+    font-size: 1.125rem;
     outline: none;
 
     &:focus {
@@ -56,18 +56,18 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 18px;
-    margin-top: 22px;
+    gap: 1.125rem;
+    margin-top: 1.375rem;
   }
 
   &__submit {
-    padding: 13px 26px;
+    padding: 0.8125rem 1.625rem;
     background: var(--accent);
     border: none;
     color: var(--bg);
     cursor: pointer;
 
-    @include label(11px, 0.16em);
+    @include label(0.6875rem, 0.16em);
 
     &:hover {
       background: var(--accent-hover);
@@ -76,12 +76,12 @@
 
   &__hint {
     color: var(--faint);
-    font-size: 15px;
+    font-size: 0.9375rem;
 
     /* The address sits mid-sentence, so colour alone will not mark it. */
     a {
       text-decoration: underline;
-      text-underline-offset: 3px;
+      text-underline-offset: 0.1875rem;
     }
   }
 }
