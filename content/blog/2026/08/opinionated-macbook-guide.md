@@ -19,13 +19,14 @@ I started out developing on Windows, spent a while messing around with Linux, an
 
 This is just a guide to how I like to set up a MacBook, including a few choices that make switching between the two a bit less annoying.
 
-I've split it into three parts:
+I've split it into four parts:
 
-- **[Part 1](#part-1-for-everybody)** is what I'd change on anyone's machine, whatever they use it for. Settings that are wrong out of the box, and a few basics nobody tells you, like how to take a screenshot.
-- **[Part 2](#part-2-the-next-level-up)** is for people who are on the machine most of the day and want it quicker to drive. Multitasking, moving around text, a couple of apps.
-- **[Part 3](#part-3-if-you-write-code)** is for developers.
+- **[Part 1](#part-1-the-basics)** covers the things I'd change on pretty much any MacBook.
+- **[Part 2](#part-2-if-youre-coming-from-windows)** covers the bits that feel strange if you've spent years on Windows.
+- **[Part 3](#part-3-getting-more-out-of-macos)** is the stuff worth learning once you're using the machine every day.
+- **[Part 4](#part-4-development)** is the developer-specific setup.
 
-## Part 1: Everyone
+## Part 1: The basics
 
 These are settings/options I think everyone will find useful, but it is a matter of opinion, so decide as you want! :smile:
 
@@ -58,8 +59,8 @@ Sometimes these settings don't initially stick, and you'll still see files and w
 <Steps>
   <Step>Open: System Settings</Step>
   <Step>Type: "Spotlight" into settings search box</Step>
-  <Step>Click: Search Prviacy (at very bottom)</Step>
-  <Step>Click: Add <Kbd>+</Kbd></Step>
+  <Step>Click: Search Privacy _(located at very bottom)_</Step>
+  <Step>Click: the add button: <Kbd>+</Kbd></Step>
   <Step>Add: Macintosh HD</Step>
   <Step>Wait: a few seconds</Step>
   <Step>Remove: Macintosh HD</Step>
@@ -162,24 +163,17 @@ A few things behave differently enough to catch you out on day one:
 - <Kbd>cmd-shift-.</Kbd> shows and hides hidden files. <StickyRef color="amber" n="4" />
 
 <StickyStack>
-
-<StickyNote color="sky" label="Tip" marker="3">
-
-Cmd + Shift + Delete empties the Bin, and it will ask first unless you tell it not to. I leave the warning on.
-
-</StickyNote>
-
-<StickyNote color="amber" label="Gripe" marker="4">
-
-That last one is, without competition, my least favourite shortcut on the entire system. I have looked it up more times than I've looked up anything else on this list, it is nowhere in any menu, and I resent it every single time.
-
-</StickyNote>
-
+  <StickyNote color="sky" label="Tip" marker="3">
+    <Kbd>cmd-shift-delete</Kbd> empties the Bin, it will ask first unless you tell it not to.
+  </StickyNote>
+  <StickyNote color="amber" label="Gripe" marker="4">
+    This is my least favourite shortcut. I have looked it up more than anything else, its not in any menu, and I resent it every single time. :laughing: 
+  </StickyNote>
 </StickyStack>
 
 ### Taking a screenshot
 
-There's no Print Screen key, and this is the thing people ask me most often.
+There's no Print Screen key, so you can either remember these shortcuts, or (like me) just use <Kbd>cmd-space</Kbd>, type "screenshot" and press <Kbd>Enter</Kbd>. 
 
 - <Kbd>cmd-shift-4</Kbd> gives you crosshairs to drag a box around whatever you want. The screenshot lands on your desktop.
 - <Kbd>cmd-shift-5</Kbd> opens a small toolbar with all the options: whole screen, one window, a region, and screen recording if you need to capture a video.
@@ -192,7 +186,7 @@ If you only learn one, learn <Kbd>cmd-shift-4</Kbd>.
 
 **[The Unarchiver](https://theunarchiver.com/)** handles the archive formats macOS won't. The built-in tool really only does zip properly, so the first time someone sends you a .rar or a .7z and nothing happens when you double-click it, this is the answer. Free, install it once, forget it exists.
 
-## Part 2: Windows users
+## Part 2: If you're coming from Windows
 
 ### The Cmd key, and how to have Ctrl back if you'd rather
 
@@ -213,7 +207,7 @@ One thing to know before you do it. macOS stores this **per keyboard**, so if yo
 
 > **Windows habit, not the Mac way.** I do this because I'm on a Windows machine regularly and I'd rather not relearn the same shortcuts twice. If you're only ever on a Mac, don't bother, just learn <Kbd>cmd</Kbd> and it'll be second nature in a week.
 
-## Part 4: Power users 
+## Part 3: Getting more out of macOS
 
 This is what I'd do next if you're on the machine most of the day. Most of the useful bits are hidden until somebody tells you they exist.
 
@@ -273,7 +267,7 @@ Hold <Kbd>shift</Kbd> with any of those and you select instead of just moving. T
 
 **[Rectangle](https://rectangleapp.com/)** snaps windows to halves, thirds and quarters with keyboard shortcuts. Recent macOS versions have some tiling built in, but Rectangle is faster and behaves more sensibly across multiple monitors. I use full screen for the apps I swipe between and Rectangle when I want an editor and terminal side by side.
 
-## Part 4: Coding
+## Part 4: Development
 
 This is the part where the Mac stops being a nice laptop and starts being the reason people put up with the price.
 
