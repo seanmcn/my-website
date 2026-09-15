@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "./tokens" as *;
 
 /**
@@ -343,6 +344,13 @@
     }
   }
 
+  /* A keycap's plain white chip reads as a hole punched in this warm tan
+     paper, so lift it off --surface-2 (the site's next tier up) instead of
+     --surface, which is tuned for the page ground, not this note's ground. */
+  .noteAside .shortcut code {
+    background: var(--surface-2);
+  }
+
   .noteAside__label {
     position: absolute;
     top: -11px;
@@ -566,6 +574,16 @@
     .stickyRef--#{$name} {
       background: $label;
       color: $fill;
+    }
+
+    /* A keycap's plain white chip reads as a hole punched in this paper, so
+       tint it toward the paper's own colour instead of the page's neutral
+       --surface. */
+    .stickyNote--#{$name} .shortcut code,
+    .stickyStack__note--#{$name} .shortcut code {
+      background: color.mix($fill, white, 35%);
+      border-color: color.mix($fill, white, 65%);
+      box-shadow: 0 1px 0 color.mix($fill, white, 65%);
     }
   }
 
