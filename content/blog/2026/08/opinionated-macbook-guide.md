@@ -10,14 +10,14 @@ featured: 'images/featured-opinionated-macbook-guide.png'
 summary: "Everything I change on a fresh machine, in three parts: the settings anyone benefits from, the next level up, and the bits that only matter if you write code."
 margins:
   - label: 'In one line'
-    text: 'Twenty changes, written down once, so the next machine takes an hour instead of a week.'
-  - label: 'Where to start'
-    text: 'Strip Spotlight back to applications only. Everything else on the list is smaller than that one.'
+    text: 'The Mac setup guide I wish I’d had when I switched from Windows.'
+  - label: 'Who it’s for'
+    text: 'Windows converts, new Mac owners, and developers who suspect the defaults could be better.'
 ---
 
-I moved to a Mac for development after years on Windows, and I've not gone back. I still have a Windows PC, but that's for gaming. There are Mac games. They aren't the reason you'd buy one.
+I started out developing on Windows, spent a while messing around with Linux, and eventually ended up on macOS. These days I do most of my development on a MacBook, although I still use Windows regularly for gaming.
 
-I'm on both most weeks, so a few of these choices are really about keeping the same muscle memory across them. I've marked those. The rest is simply how I think a MacBook should be set up, and the guide I wish I'd had when I switched.
+This is just a guide to how I like to set up a MacBook, including a few choices that make switching between the two a bit less annoying.
 
 I've split it into three parts:
 
@@ -25,38 +25,53 @@ I've split it into three parts:
 - **[Part 2](#part-2-the-next-level-up)** is for people who are on the machine most of the day and want it quicker to drive. Multitasking, moving around text, a couple of apps.
 - **[Part 3](#part-3-if-you-write-code)** is for developers.
 
-## Part 1: For everybody
+## Part 1: Everyone
 
-Half an hour of settings, done once, and the machine stops fighting you.
+These are settings/options I think everyone will find useful, but it is a matter of opinion, so decide as you want! :smile:
 
 ### Strip Spotlight back to apps only
 
-Do this one first. It's the single biggest change on the list.
+Spotlight is OSX's system-wide search and launcher, you access it by pressing <Kbd>cmd-Space</Kbd> and you can just start typing. _It's the first shortcut worth learning._
+
+<StickyNote color="sky" label="Tip">
+I know [Raycast](https://www.raycast.com/) and [Alfred](https://www.alfredapp.com/) are popular, but I don't use either. Once Spotlight is stripped back to applications, it already does exactly what I want, worth checking out though if you want some more complex behaviour.
+</StickyNote>
+
+By default, Spotlight searches across a lot of different sources, which can make the results a little noisy. Thankfully, you can customise exactly what it includes by doing the following:
 
 <Steps>
   <Step verb="Open">System Settings</Step>
-  <Step verb="Click">Spotlight</Step>
-  <Step verb="Untick">Everything in the search results list, except Applications</Step>
+  <Step verb="Type">"Spotlight" into settings search box</Step>
+  <Step verb="Review">Results from Apps & Results from System</Step>
 </Steps>
 
-You can also just type "Spotlight" into the Settings search box to jump straight to that pane.
-
-Now press <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>Space</code></span>, type the first three or four letters of an app, press <span class="shortcut"><code><Key name="return" /></code></span>. That's how you open things on a Mac. It's the first shortcut worth learning.
-
-Turning everything else off looks like the wrong move. Surely you want more results, not fewer? In practice it's the opposite. Leave it all on, type three letters, and you get:
-
-- a dictionary definition
-- a website nobody asked for
-- an App Store suggestion
-- somebody's phone number
-
-The app you actually wanted is fourth in the list, so you can't hit <span class="shortcut"><code><Key name="return" /></code></span> without stopping to look. Turn it all off and it becomes instant and completely predictable. Type, <span class="shortcut"><code><Key name="return" /></code></span>, app opens, you never look at the screen.
+What you want enabled is a matter of personal preference, but I'd suggest starting with as little as possible enabled, I only leave the following enabled:
+- Results from Apps: Calculator
+- Results from System: Apps
 
 You can switch a category back on if you find you miss it. I never have.
 
-> I know Raycast and Alfred are popular, but I don't use either. Once Spotlight is stripped back to applications, it already does exactly what I want.
+<Note>
+
+Sometimes these settings don't initially stick, and you'll still see files and what not in your search resutls, you need to rebuild the Spotlight index, to do this:
+
+<Steps>
+  <Step verb="Open">System Settings</Step>
+  <Step verb="Type">"Spotlight" into settings search box</Step>
+  <Step verb="Click">Search Prviacy (at very bottom)</Step>
+  <Step verb="Click">Add <Kbd>+</Kbd></Step>
+  <Step verb="Add">Macintosh HD</Step>
+  <Step verb="Wait">a few seconds</Step>
+  <Step verb="Remove">Macintosh HD</Step>
+</Steps>
+
+</Note>
 
 ### Hide the Dock
+
+This is one of the things I always end up changing when I use someone else's MacBook :laughing: It feels a bit strange for the first day, but you quickly get used to it and get a little more screen space back.
+
+I rarely use the Dock to launch apps anyway, since <Kbd>cmd-Space</Kbd> is much quicker.
 
 <Steps>
   <Step verb="Open">System Settings</Step>
@@ -64,11 +79,9 @@ You can switch a category back on if you find you miss it. I never have.
   <Step verb="Tick">Automatically hide and show the Dock</Step>
 </Steps>
 
-This feels wrong for about a day. Then you have all that screen back, and when you do want the Dock you flick the cursor to the bottom and it's there.
+While you're here, I'd also turn off **Show suggested and recent apps in Dock**, otherwise it slowly fills up with things you opened once and probably don't need there.
 
-The reason it works is the previous section. On Windows the taskbar is how you find things, so hiding it is madness. On a Mac you find things with <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>Space</code></span>, so the Dock only needs the handful of apps you're in constantly. Mine has about five things on it.
-
-While you're in that panel, turn off **Show suggested and recent apps in Dock**, otherwise it slowly fills with things you opened once by accident.
+I'd also remove anything else from the Dock that you don't use regularly.
 
 ### Turn the scrollbars back on
 
@@ -82,118 +95,96 @@ macOS hides scrollbars until you actually start scrolling, so you often can't te
 
 The default is "Automatically based on mouse or trackpad", which is also why they seem to behave inconsistently: plug a mouse in and they turn up, unplug it and they don't. Set it to Always and you can see how far down a page you are at a glance, and drag them about like a normal person.
 
-### Fix Finder
+### Improvements to Finder
 
-Finder hides useful information by default, and makes a couple of odd guesses about what you probably wanted.
+Finder is perfectly usable out of the box, but a few of its defaults make little sense. You can fix all of them from:
+<Steps>
+  <Step verb="Open">Finder</Step>
+  <Step verb="Click">"Finder" in the menu bar</Step>
+  <Step verb="Click">Settings</Step>
+</Steps>
 
-**Finder > Settings > General:** set **New Finder windows show** to your home folder, the one with your name on it. It defaults to Recents, which I've never got any use out of. Home is a predictable place to start from every time, where Recents is a pile of whatever you happened to touch last.
+#### Start in Home folder
+By default launching finder starts in the Recents folder, which I've never got any use out of. I find Home to be a better place to start from, to switch this do the following:
 
-**Finder > Settings > Advanced:**
+<Steps>
+  <Step verb="Click">General</Step>
+  <Step verb="Set">"New Finder windows show" to your home folder</Step>
+</Steps>
 
-- Tick **Show all filename extensions**
-- Under "Keep folders on top", tick **In windows when sorting by name**. That's the one that matters, it stops folders being scattered in amongst your files. The "On Desktop" option underneath only affects desktop icons, take it or leave it.
-- Set **When performing a search** to **Search the Current Folder**. It defaults to searching the entire Mac, which is almost never what you meant. If you've navigated to a folder and then typed in the search box, that folder is what you're looking in.
+#### Show filename extensions
+This is more a matter of personal preference, but I prefer being able to see the file extension of files, lets you rename it easier.
+<Steps>
+  <Step verb="Click">Advanced</Step>
+  <Step verb="Tick">Show all filename extensions</Step>
+</Steps>
 
-**In the View menu:** turn on **Show Path Bar** and **Show Status Bar**. You get a breadcrumb trail along the bottom telling you where you actually are, and a count of what's in the folder.
+#### Don't mix folders/files in sorting
+This stops folders being scattered in amongst your files. The "On Desktop" option underneath only affects desktop icons, take it or leave it.
 
-While you're there, open **Finder > Settings > Sidebar** and turn off anything you never click, including the iCloud entries if you don't use them. Mine is basically Documents, Downloads, Pictures and Applications.
+<Steps>
+  <Step verb="Click">Advanced</Step>
+  <Step verb="Tick">Both options under "Keep folders on top"</Step>
+</Steps>
 
-A four-item sidebar you can hit without reading beats a fifteen-item one you scan every single time.
+#### Search current folder
+It defaults to searching the entire Mac, which is almost never what you meant. If you've navigated to a folder and then typed in the search box, that folder is what you're looking in.
+<Steps>
+  <Step verb="Click">Advanced</Step>
+  <Step verb="Set">"When performing a search" to "Search the Current Folder"</Step>
+</Steps>
+
+#### Customise the Sidebar
+Get rid of options you don't use here, including the iCloud entries if you don't use them. Mine is basically Documents, Downloads, Pictures and Applications.
+
+A four-item sidebar you can hit without reading is a nice time saver.
+
+<Steps>
+  <Step verb="Click">Sidebar</Step>
+  <Step verb="Disable">Anything you never click</Step>
+</Steps>
+
+#### Show path & status bar
+You get a breadcrumb trail along the bottom telling you where you actually are, and a count of what's in the folder.
+<Steps>
+  <Step verb="Open">Finder</Step>
+  <Step verb="Click">"View" in the menu bar</Step>
+  <Step verb="Click">Show Path Bar & Show Status Bar</Step>
+</Steps>
 
 ### Working with files in Finder
 
 A few things behave differently enough to catch you out on day one:
 
-- <span class="shortcut"><code><Key name="return" /></code></span> renames a file. It doesn't open it. This one gets everybody.
-- <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="down" /></code></span> opens the thing you've selected.
-- <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>Del</code></span> sends it to the Bin. There's no Delete key that does it.
-- <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>.</code></span> shows and hides hidden files.
+- <Kbd>return</Kbd> renames a file. It doesn't open it. This one gets everybody.
+- <Kbd>cmd-down</Kbd> opens the thing you've selected.
+- <Kbd>cmd-Del</Kbd> sends it to the Bin. There's no Delete key that does it. <StickyRef color="sky" n="3" />
+- <Kbd>cmd-shift-.</Kbd> shows and hides hidden files. <StickyRef color="amber" n="4" />
 
-> That last one is, without competition, my least favourite shortcut on the entire system. I have looked it up more times than I've looked up anything else on this list, it is nowhere in any menu, and I resent it every single time.
+<StickyStack>
+
+<StickyNote color="sky" label="Tip" marker="3">
+
+Cmd + Shift + Delete empties the Bin, and it will ask first unless you tell it not to. I leave the warning on.
+
+</StickyNote>
+
+<StickyNote color="amber" label="Gripe" marker="4">
+
+That last one is, without competition, my least favourite shortcut on the entire system. I have looked it up more times than I've looked up anything else on this list, it is nowhere in any menu, and I resent it every single time.
+
+</StickyNote>
+
+</StickyStack>
 
 ### Taking a screenshot
 
 There's no Print Screen key, and this is the thing people ask me most often.
 
-- <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>4</code></span> gives you crosshairs to drag a box around whatever you want. The screenshot lands on your desktop.
-- <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>5</code></span> opens a small toolbar with all the options: whole screen, one window, a region, and screen recording if you need to capture a video.
+- <Kbd>cmd-shift-4</Kbd> gives you crosshairs to drag a box around whatever you want. The screenshot lands on your desktop.
+- <Kbd>cmd-shift-5</Kbd> opens a small toolbar with all the options: whole screen, one window, a region, and screen recording if you need to capture a video.
 
-If you only learn one, learn <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>4</code></span>.
-
-### The Cmd key, and how to have Ctrl back if you'd rather
-
-On a Mac, <span class="shortcut"><code><Key name="cmd" /></code></span> does what <span class="shortcut"><code><Key name="control" /></code></span> used to. Copy, paste, save, undo, all exactly the same, just one key further in. Ctrl still exists and does other things, so pressing it out of habit doesn't break anything, it just quietly does nothing.
-
-Most people adapt within a week and never think about it again. But if you've got twenty years of <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code>C</code></span> living in your left thumb and you resent being made to relearn it, you don't have to. You can just swap the two keys over:
-
-<Steps>
-  <Step verb="Open">System Settings</Step>
-  <Step verb="Click">Keyboard</Step>
-  <Step verb="Click">Keyboard Shortcuts... > Modifier Keys</Step>
-  <Step verb="Set"><span class="shortcut"><code><Key name="control" /></code></span> to <span class="shortcut"><code><Key name="cmd" /></code></span>, and <span class="shortcut"><code><Key name="cmd" /></code></span> to <span class="shortcut"><code><Key name="control" /></code></span></Step>
-</Steps>
-
-Now <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code>C</code></span> copies exactly like it always did, and the whole machine feels a good deal more like a PC.
-
-One thing to know before you do it. macOS stores this **per keyboard**, so if you later plug in a USB keyboard you'll need to set it again for that one. Same panel, but use the dropdown at the top to pick which keyboard you're configuring first.
-
-> **Windows habit, not the Mac way.** I do this because I'm on a Windows machine regularly and I'd rather not relearn the same shortcuts twice. If you're only ever on a Mac, don't bother, just learn <span class="shortcut"><code><Key name="cmd" /></code></span> and it'll be second nature in a week.
-
-## Part 2: The next level up
-
-This is what I'd do next if you're on the machine most of the day. Most of the useful bits are hidden until somebody tells you they exist.
-
-### Spaces: making one screen feel like three
-
-Any app can go full screen with the green button top left, or <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code><Key name="cmd" /></code><span class="keySep">+</span><code>F</code></span>. When it does it gets its own **space**, which behaves like its own monitor. You slide between spaces by swiping left and right on the trackpad with three or four fingers depending on how yours is set (System Settings > Trackpad > More Gestures), or <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code><Key name="left" /></code><span class="keySep">/</span><code><Key name="right" /></code></span> from the keyboard.
-
-On the laptop with nothing plugged in, I'll typically have:
-
-- a terminal full screen off to the left
-- my main desktop in the middle, with Notion in an ordinary window
-- Slack and email full screen off to the right
-
-I move between them with a flick of the trackpad. No <span class="shortcut"><code>Alt</code><span class="keySep">+</span><code><Key name="tab" /></code></span>, no hunting the Dock, no resizing anything to fit next to anything else.
-
-On the laptop I mostly use full-screen apps and rarely create extra desktops by hand. Plugged into monitors, I do the opposite because one app swallowing a whole display is usually a waste. This is where the MacBook is particularly good. My 14-inch screen effectively becomes three screens, and the setup still works when I unplug the monitors.
-
-### Apps, windows and Mission Control
-
-<span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="tab" /></code></span> cycles through open apps, much like <span class="shortcut"><code>Alt</code><span class="keySep">+</span><code><Key name="tab" /></code></span> on Windows. The important difference is that it switches between *apps*, not windows. If you've got three Word documents open, that's one entry in the list, not three. For windows within the same app, use <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>\`</code></span> (the backtick above Tab), so those three documents are one <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="tab" /></code></span> entry and three presses of <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>\`</code></span>.
-
-| Shortcut | What it does |
-|---|---|
-| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="tab" /></code></span> | Cycle through open apps |
-| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>\`</code></span> | Cycle windows within the current app |
-| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>W</code></span> | Close the window |
-| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>Q</code></span> | Quit the app |
-| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>T</code></span> | Reopen a closed tab or window in Chrome or Firefox |
-| <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code><Key name="up" /></code></span> | Mission Control, as does the F3 key on most MacBooks or a three or four-finger swipe up |
-
-An app with no windows open is still running, which is why its Dock icon keeps a dot under it and why it's still sat there in <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="tab" /></code></span>. And shutting a browser window by accident is almost never the disaster it feels like, because <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code>T</code></span> keeps stepping back if you press it again.
-
-Mission Control shows every window across all your displays, laid out so you can see what each one actually is.
-
-This is what I use instead of <span class="shortcut"><code>Alt</code><span class="keySep">+</span><code><Key name="tab" /></code></span>, and it's the thing I miss most when I'm back on Windows. You're looking at the actual windows rather than a row of near-identical app icons, so three windows of the same application are three separate things you can pick between, instead of one entry you cycle through and hope.
-
-The catch is that it only stays useful if you're a bit disciplined about what's open. Thirty windows and every one of them is a tiny unreadable rectangle. So I minimise anything I'm not actively working in and pull it back off the Dock when I want it again. That keeps the Mission Control view down to a handful of windows I can identify at a glance, which is the whole point of it.
-
-> You can also trigger Mission Control with a hot corner. I don't. Once you move between the laptop and external monitors, the corners stop being where your hands expect them. <span class="shortcut"><code><Key name="control" /></code><span class="keySep">+</span><code><Key name="up" /></code></span> works from anywhere.
-
-### Moving around text
-
-This is the set I'd actually learn, because you use it constantly and Home and End don't do what you expect.
-
-| Shortcut | What it does |
-|---|---|
-| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="left" /></code><span class="keySep">/</span><code><Key name="right" /></code></span> | Start and end of the line |
-| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="up" /></code><span class="keySep">/</span><code><Key name="down" /></code></span> | Top and bottom of the document |
-| <span class="shortcut"><code><Key name="option" /></code><span class="keySep">+</span><code><Key name="left" /></code><span class="keySep">/</span><code><Key name="right" /></code></span> | Jump a word at a time |
-| <span class="shortcut"><code><Key name="option" /></code><span class="keySep">+</span><code>Del</code></span> | Delete the previous whole word |
-| <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code>Del</code></span> | Delete back to the start of the line |
-| <span class="shortcut"><code>Fn</code><span class="keySep">+</span><code>Del</code></span> | Forward delete, the key Mac keyboards don't have |
-
-Hold <span class="shortcut"><code><Key name="shift" /></code></span> with any of those and you select instead of just moving. That's the bit that makes it click. <span class="shortcut"><code><Key name="option" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code><Key name="right" /></code></span> selects the next word, <span class="shortcut"><code><Key name="cmd" /></code><span class="keySep">+</span><code><Key name="shift" /></code><span class="keySep">+</span><code><Key name="left" /></code></span> selects back to the start of the line.
+If you only learn one, learn <Kbd>cmd-shift-4</Kbd>.
 
 ### Apps worth installing
 
@@ -201,9 +192,88 @@ Hold <span class="shortcut"><code><Key name="shift" /></code></span> with any of
 
 **[The Unarchiver](https://theunarchiver.com/)** handles the archive formats macOS won't. The built-in tool really only does zip properly, so the first time someone sends you a .rar or a .7z and nothing happens when you double-click it, this is the answer. Free, install it once, forget it exists.
 
+## Part 2: Windows users
+
+### The Cmd key, and how to have Ctrl back if you'd rather
+
+On a Mac, <Kbd>cmd</Kbd> does what <Kbd>control</Kbd> used to. Copy, paste, save, undo, all exactly the same, just one key further in. Ctrl still exists and does other things, so pressing it out of habit doesn't break anything, it just quietly does nothing.
+
+Most people adapt within a week and never think about it again. But if you've got twenty years of <Kbd>control-C</Kbd> living in your left thumb and you resent being made to relearn it, you don't have to. You can just swap the two keys over:
+
+<Steps>
+  <Step verb="Open">System Settings</Step>
+  <Step verb="Click">Keyboard</Step>
+  <Step verb="Click">Keyboard Shortcuts... > Modifier Keys</Step>
+  <Step verb="Set"><Kbd>control</Kbd> to <Kbd>cmd</Kbd>, and <Kbd>cmd</Kbd> to <Kbd>control</Kbd></Step>
+</Steps>
+
+Now <Kbd>control-C</Kbd> copies exactly like it always did, and the whole machine feels a good deal more like a PC.
+
+One thing to know before you do it. macOS stores this **per keyboard**, so if you later plug in a USB keyboard you'll need to set it again for that one. Same panel, but use the dropdown at the top to pick which keyboard you're configuring first.
+
+> **Windows habit, not the Mac way.** I do this because I'm on a Windows machine regularly and I'd rather not relearn the same shortcuts twice. If you're only ever on a Mac, don't bother, just learn <Kbd>cmd</Kbd> and it'll be second nature in a week.
+
+## Part 4: Power users 
+
+This is what I'd do next if you're on the machine most of the day. Most of the useful bits are hidden until somebody tells you they exist.
+
+### Spaces: making one screen feel like three
+
+Any app can go full screen with the green button top left, or <Kbd>control-cmd-F</Kbd>. When it does it gets its own **space**, which behaves like its own monitor. You slide between spaces by swiping left and right on the trackpad with three or four fingers depending on how yours is set (System Settings > Trackpad > More Gestures), or <Kbd>control-left/right</Kbd> from the keyboard.
+
+On the laptop with nothing plugged in, I'll typically have:
+
+- a terminal full screen off to the left
+- my main desktop in the middle, with Notion in an ordinary window
+- Slack and email full screen off to the right
+
+I move between them with a flick of the trackpad. No <Kbd>Alt-tab</Kbd>, no hunting the Dock, no resizing anything to fit next to anything else.
+
+On the laptop I mostly use full-screen apps and rarely create extra desktops by hand. Plugged into monitors, I do the opposite because one app swallowing a whole display is usually a waste. This is where the MacBook is particularly good. My 14-inch screen effectively becomes three screens, and the setup still works when I unplug the monitors.
+
+### Apps, windows and Mission Control
+
+<Kbd>cmd-tab</Kbd> cycles through open apps, much like <Kbd>Alt-tab</Kbd> on Windows. The important difference is that it switches between *apps*, not windows. If you've got three Word documents open, that's one entry in the list, not three. For windows within the same app, use <Kbd>cmd-\`</Kbd> (the backtick above Tab), so those three documents are one <Kbd>cmd-tab</Kbd> entry and three presses of <Kbd>cmd-\`</Kbd>.
+
+| Shortcut | What it does |
+|---|---|
+| <Kbd>cmd-tab</Kbd> | Cycle through open apps |
+| <Kbd>cmd-\`</Kbd> | Cycle windows within the current app |
+| <Kbd>cmd-W</Kbd> | Close the window |
+| <Kbd>cmd-Q</Kbd> | Quit the app |
+| <Kbd>cmd-shift-T</Kbd> | Reopen a closed tab or window in Chrome or Firefox |
+| <Kbd>control-up</Kbd> | Mission Control, as does the F3 key on most MacBooks or a three or four-finger swipe up |
+
+An app with no windows open is still running, which is why its Dock icon keeps a dot under it and why it's still sat there in <Kbd>cmd-tab</Kbd>. And shutting a browser window by accident is almost never the disaster it feels like, because <Kbd>cmd-shift-T</Kbd> keeps stepping back if you press it again.
+
+Mission Control shows every window across all your displays, laid out so you can see what each one actually is.
+
+This is what I use instead of <Kbd>Alt-tab</Kbd>, and it's the thing I miss most when I'm back on Windows. You're looking at the actual windows rather than a row of near-identical app icons, so three windows of the same application are three separate things you can pick between, instead of one entry you cycle through and hope.
+
+The catch is that it only stays useful if you're a bit disciplined about what's open. Thirty windows and every one of them is a tiny unreadable rectangle. So I minimise anything I'm not actively working in and pull it back off the Dock when I want it again. That keeps the Mission Control view down to a handful of windows I can identify at a glance, which is the whole point of it.
+
+> You can also trigger Mission Control with a hot corner. I don't. Once you move between the laptop and external monitors, the corners stop being where your hands expect them. <Kbd>control-up</Kbd> works from anywhere.
+
+### Moving around text
+
+This is the set I'd actually learn, because you use it constantly and Home and End don't do what you expect.
+
+| Shortcut | What it does |
+|---|---|
+| <Kbd>cmd-left/right</Kbd> | Start and end of the line |
+| <Kbd>cmd-up/down</Kbd> | Top and bottom of the document |
+| <Kbd>option-left/right</Kbd> | Jump a word at a time |
+| <Kbd>option-Del</Kbd> | Delete the previous whole word |
+| <Kbd>cmd-Del</Kbd> | Delete back to the start of the line |
+| <Kbd>Fn-Del</Kbd> | Forward delete, the key Mac keyboards don't have |
+
+Hold <Kbd>shift</Kbd> with any of those and you select instead of just moving. That's the bit that makes it click. <Kbd>option-shift-right</Kbd> selects the next word, <Kbd>cmd-shift-left</Kbd> selects back to the start of the line.
+
+### Apps worth installing
+
 **[Rectangle](https://rectangleapp.com/)** snaps windows to halves, thirds and quarters with keyboard shortcuts. Recent macOS versions have some tiling built in, but Rectangle is faster and behaves more sensibly across multiple monitors. I use full screen for the apps I swipe between and Rectangle when I want an editor and terminal side by side.
 
-## Part 3: If you write code
+## Part 4: Coding
 
 This is the part where the Mac stops being a nice laptop and starts being the reason people put up with the price.
 
@@ -267,11 +337,3 @@ alias ll='eza -la --git'
 ```
 
 Put them in `~/.zshrc` and they're there in every shell you open. I've got a few dozen now and I'd be slower without them. Keep `.zshrc` in your dotfiles and the aliases will follow you to the next machine.
-
-## Closing thoughts
-
-Give it a couple of weeks. The shortcuts stop being a fight, you stop reaching for the Dock, and eventually you'll try to swipe on a Windows laptop and get annoyed when nothing happens.
-
-Almost none of this is on by default, which is the only reason I bothered writing it down. If there's something you've set up that I've missed, let me know.
-
-I still wouldn't buy the desktop.
