@@ -1,0 +1,7 @@
+<!--
+  Code calls Modal.setAppElement('#___gatsby') at module load time (react-modal's
+  accessibility requirement), matching the real site's Gatsby root wrapper. That
+  runs before anything React renders, so the element has to exist in the static
+  HTML shell rather than anything a decorator renders.
+-->
+<div id="___gatsby"></div>

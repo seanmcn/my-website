@@ -4,6 +4,7 @@ node_modules
 # Build directory
 public/
 static/admin/*.bundle.*
+storybook-static/
 .DS_Store
 yarn-error.log
 # IDE ignores
