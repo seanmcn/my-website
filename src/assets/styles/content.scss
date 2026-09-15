@@ -10,6 +10,9 @@
   font-size: 19px;
   line-height: 1.75;
   color: var(--ink);
+  /* Numbers h2s (01, 02, ...) for the section marker below - reset once
+     here so it counts per article rather than per heading. */
+  counter-reset: section;
 
   > p,
   > .gatsby-highlight + p {
@@ -23,20 +26,66 @@
     text-wrap: pretty;
   }
 
+  /* Both headings are their own position: relative container so the
+     hanging marker in the left margin (the section number, the diamond)
+     can be absolutely positioned against them directly, without a wrapper
+     element that would have to duplicate the heading's slug id. */
   h2 {
-    max-width: 38ch;
-    margin: 44px 0 16px;
-    font-size: 29px;
-    letter-spacing: -0.022em;
-    line-height: 1.25;
+    position: relative;
+    max-width: 34ch;
+    margin: 58px 0 14px;
+    /* html's scroll-padding-top only clears the site's own sticky header -
+       post pages stack a second sticky bar (.itemBar, the post title)
+       underneath it, so anchor jumps here need extra clearance for that
+       too, on top of the site header's own. */
+    scroll-margin-top: 76px;
+    font-size: 35px;
+    font-weight: 600;
+    letter-spacing: -0.028em;
+    line-height: 1.16;
+    counter-increment: section;
+
+    &::before {
+      content: counter(section, decimal-leading-zero);
+      position: absolute;
+      top: 13px;
+      left: -52px;
+      color: var(--plum);
+      font-family: $font-mono;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+    }
   }
 
   h3 {
-    max-width: 48ch;
-    margin: 34px 0 12px;
-    font-size: 21px;
-    letter-spacing: -0.012em;
-    line-height: 1.35;
+    position: relative;
+    max-width: 46ch;
+    margin: 42px 0 10px;
+    scroll-margin-top: 76px;
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: -0.016em;
+    line-height: 1.3;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 13px;
+      left: -48px;
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      transform: rotate(45deg);
+    }
+  }
+
+  /* No gutter to hang the markers in at this width (see .itemPage__body in
+     item.scss, which only opens one up from 760px). */
+  @include narrow {
+    h2::before,
+    h3::before {
+      display: none;
+    }
   }
 
   h4 {

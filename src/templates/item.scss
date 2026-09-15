@@ -21,13 +21,25 @@
     min-width: 0;
   }
 
+  /* Opens a gutter for h2/h3's hanging section number/diamond markers (see
+     .prose in content.scss) to sit in, rather than overflowing the column.
+     No gutter at narrow, where those markers are hidden anyway. */
+  &__body {
+    @include not-narrow {
+      padding-left: 52px;
+    }
+  }
+
   /**
    * Notes and finds are short. Holding them to a single measure and centring
    * them stops three paragraphs looking marooned in a full-width column.
+   * Un-does the gutter above - a centred 660px column has no left margin
+   * of its own for a marker to hang in.
    */
   &__body--narrow {
     max-width: 660px;
     margin: 0 auto;
+    padding-left: 0;
   }
 
   &__inlineMargins {
@@ -236,10 +248,10 @@
     padding: 0 24px;
     color: var(--ink);
     font-family: $font-serif;
-    font-size: 34px;
+    font-size: 40px;
     font-weight: 600;
-    letter-spacing: -0.024em;
-    line-height: 1.15;
+    letter-spacing: -0.026em;
+    line-height: 1.13;
     text-align: center;
     text-transform: none;
     text-wrap: balance;
@@ -288,9 +300,9 @@
       grid-area: title;
       margin: 14px 0 0;
       padding: 0;
-      font-size: 30px;
-      letter-spacing: -0.022em;
-      line-height: 1.16;
+      font-size: 36px;
+      letter-spacing: -0.026em;
+      line-height: 1.14;
       text-align: left;
       text-wrap: pretty;
     }
