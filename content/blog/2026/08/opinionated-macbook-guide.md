@@ -40,9 +40,9 @@ I know [Raycast](https://www.raycast.com/) and [Alfred](https://www.alfredapp.co
 By default, Spotlight searches across a lot of different sources, which can make the results a little noisy. Thankfully, you can customise exactly what it includes by doing the following:
 
 <Steps>
-  <Step verb="Open">System Settings</Step>
-  <Step verb="Type">"Spotlight" into settings search box</Step>
-  <Step verb="Review">Results from Apps & Results from System</Step>
+  <Step>Open: System Settings</Step>
+  <Step>Type: "Spotlight" into settings search box</Step>
+  <Step>Review: Results from Apps & Results from System</Step>
 </Steps>
 
 What you want enabled is a matter of personal preference, but I'd suggest starting with as little as possible enabled, I only leave the following enabled:
@@ -56,13 +56,13 @@ You can switch a category back on if you find you miss it. I never have.
 Sometimes these settings don't initially stick, and you'll still see files and what not in your search resutls, you need to rebuild the Spotlight index, to do this:
 
 <Steps>
-  <Step verb="Open">System Settings</Step>
-  <Step verb="Type">"Spotlight" into settings search box</Step>
-  <Step verb="Click">Search Prviacy (at very bottom)</Step>
-  <Step verb="Click">Add <Kbd>+</Kbd></Step>
-  <Step verb="Add">Macintosh HD</Step>
-  <Step verb="Wait">a few seconds</Step>
-  <Step verb="Remove">Macintosh HD</Step>
+  <Step>Open: System Settings</Step>
+  <Step>Type: "Spotlight" into settings search box</Step>
+  <Step>Click: Search Prviacy (at very bottom)</Step>
+  <Step>Click: Add <Kbd>+</Kbd></Step>
+  <Step>Add: Macintosh HD</Step>
+  <Step>Wait: a few seconds</Step>
+  <Step>Remove: Macintosh HD</Step>
 </Steps>
 
 </Note>
@@ -74,9 +74,9 @@ This is one of the things I always end up changing when I use someone else's Mac
 I rarely use the Dock to launch apps anyway, since <Kbd>cmd-Space</Kbd> is much quicker.
 
 <Steps>
-  <Step verb="Open">System Settings</Step>
-  <Step verb="Click">Desktop & Dock</Step>
-  <Step verb="Tick">Automatically hide and show the Dock</Step>
+  <Step>Open: System Settings</Step>
+  <Step>Click: Desktop & Dock</Step>
+  <Step>Tick: Automatically hide and show the Dock</Step>
 </Steps>
 
 While you're here, I'd also turn off **Show suggested and recent apps in Dock**, otherwise it slowly fills up with things you opened once and probably don't need there.
@@ -88,9 +88,9 @@ I'd also remove anything else from the Dock that you don't use regularly.
 macOS hides scrollbars until you actually start scrolling, so you often can't tell whether there's more content below without flicking the trackpad to find out. I find it properly irritating and it's one of the first things I change on a new machine.
 
 <Steps>
-  <Step verb="Open">System Settings</Step>
-  <Step verb="Click">Appearance</Step>
-  <Step verb="Set">Show scroll bars to Always</Step>
+  <Step>Open: System Settings</Step>
+  <Step>Click: Appearance</Step>
+  <Step>Set: Show scroll bars to Always</Step>
 </Steps>
 
 The default is "Automatically based on mouse or trackpad", which is also why they seem to behave inconsistently: plug a mouse in and they turn up, unplug it and they don't. Set it to Always and you can see how far down a page you are at a glance, and drag them about like a normal person.
@@ -99,39 +99,39 @@ The default is "Automatically based on mouse or trackpad", which is also why the
 
 Finder is perfectly usable out of the box, but a few of its defaults make little sense. You can fix all of them from:
 <Steps>
-  <Step verb="Open">Finder</Step>
-  <Step verb="Click">"Finder" in the menu bar</Step>
-  <Step verb="Click">Settings</Step>
+  <Step>Open: Finder</Step>
+  <Step>Click: "Finder" in the menu bar</Step>
+  <Step>Click: Settings</Step>
 </Steps>
 
 #### Start in Home folder
 By default launching finder starts in the Recents folder, which I've never got any use out of. I find Home to be a better place to start from, to switch this do the following:
 
 <Steps>
-  <Step verb="Click">General</Step>
-  <Step verb="Set">"New Finder windows show" to your home folder</Step>
+  <Step>Click: General</Step>
+  <Step>Set: "New Finder windows show" to your home folder</Step>
 </Steps>
 
 #### Show filename extensions
 This is more a matter of personal preference, but I prefer being able to see the file extension of files, lets you rename it easier.
 <Steps>
-  <Step verb="Click">Advanced</Step>
-  <Step verb="Tick">Show all filename extensions</Step>
+  <Step>Click: Advanced</Step>
+  <Step>Tick: Show all filename extensions</Step>
 </Steps>
 
 #### Don't mix folders/files in sorting
 This stops folders being scattered in amongst your files. The "On Desktop" option underneath only affects desktop icons, take it or leave it.
 
 <Steps>
-  <Step verb="Click">Advanced</Step>
-  <Step verb="Tick">Both options under "Keep folders on top"</Step>
+  <Step>Click: Advanced</Step>
+  <Step>Tick: Both options under "Keep folders on top"</Step>
 </Steps>
 
 #### Search current folder
 It defaults to searching the entire Mac, which is almost never what you meant. If you've navigated to a folder and then typed in the search box, that folder is what you're looking in.
 <Steps>
-  <Step verb="Click">Advanced</Step>
-  <Step verb="Set">"When performing a search" to "Search the Current Folder"</Step>
+  <Step>Click: Advanced</Step>
+  <Step>Set: "When performing a search" to "Search the Current Folder"</Step>
 </Steps>
 
 #### Customise the Sidebar
@@ -140,16 +140,16 @@ Get rid of options you don't use here, including the iCloud entries if you don't
 A four-item sidebar you can hit without reading is a nice time saver.
 
 <Steps>
-  <Step verb="Click">Sidebar</Step>
-  <Step verb="Disable">Anything you never click</Step>
+  <Step>Click: Sidebar</Step>
+  <Step>Disable: Anything you never click</Step>
 </Steps>
 
 #### Show path & status bar
 You get a breadcrumb trail along the bottom telling you where you actually are, and a count of what's in the folder.
 <Steps>
-  <Step verb="Open">Finder</Step>
-  <Step verb="Click">"View" in the menu bar</Step>
-  <Step verb="Click">Show Path Bar & Show Status Bar</Step>
+  <Step>Open: Finder</Step>
+  <Step>Click: "View" in the menu bar</Step>
+  <Step>Click: Show Path Bar & Show Status Bar</Step>
 </Steps>
 
 ### Working with files in Finder
@@ -201,10 +201,10 @@ On a Mac, <Kbd>cmd</Kbd> does what <Kbd>control</Kbd> used to. Copy, paste, save
 Most people adapt within a week and never think about it again. But if you've got twenty years of <Kbd>control-C</Kbd> living in your left thumb and you resent being made to relearn it, you don't have to. You can just swap the two keys over:
 
 <Steps>
-  <Step verb="Open">System Settings</Step>
-  <Step verb="Click">Keyboard</Step>
-  <Step verb="Click">Keyboard Shortcuts... > Modifier Keys</Step>
-  <Step verb="Set"><Kbd>control</Kbd> to <Kbd>cmd</Kbd>, and <Kbd>cmd</Kbd> to <Kbd>control</Kbd></Step>
+  <Step>Open: System Settings</Step>
+  <Step>Click: Keyboard</Step>
+  <Step>Click: Keyboard Shortcuts... > Modifier Keys</Step>
+  <Step>Set: <Kbd>control</Kbd> to <Kbd>cmd</Kbd>, and <Kbd>cmd</Kbd> to <Kbd>control</Kbd></Step>
 </Steps>
 
 Now <Kbd>control-C</Kbd> copies exactly like it always did, and the whole machine feels a good deal more like a PC.
