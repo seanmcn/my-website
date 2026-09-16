@@ -268,6 +268,8 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
         category: post.frontmatter.category,
         tags: post.frontmatter.tags || [],
         excerpt: post.excerpt,
+        thumb: post.frontmatterThumb?.featured?.childImageSharp?.resize?.src ||
+          '',
         reason: 'Hand-picked',
       }));
 
@@ -286,6 +288,8 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
           category: candidatePost.frontmatter.category,
           tags: candidatePost.frontmatter.tags || [],
           excerpt: candidatePost.excerpt,
+          thumb: candidatePost.frontmatterThumb?.featured?.childImageSharp
+              ?.resize?.src || '',
           reason: scoredPost.reason,
           score: scoredPost.score,
         };
@@ -314,6 +318,8 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
         category: candidatePost.frontmatter.category,
         tags: candidatePost.frontmatter.tags || [],
         excerpt: candidatePost.excerpt,
+        thumb: candidatePost.frontmatterThumb?.featured?.childImageSharp
+            ?.resize?.src || '',
         reason: 'Same category',
       }));
 
@@ -330,6 +336,8 @@ function buildRelatedPosts(currentPost, allPostsBySlug) {
         category: candidatePost.frontmatter.category,
         tags: candidatePost.frontmatter.tags || [],
         excerpt: candidatePost.excerpt,
+        thumb: candidatePost.frontmatterThumb?.featured?.childImageSharp
+            ?.resize?.src || '',
         reason: 'Recent post',
       }));
 

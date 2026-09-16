@@ -80,15 +80,50 @@ const ItemPage = ({children, data, location, pageContext}) => {
           <div className={`itemPage__body ${
             isFind || type === 'note' ? 'itemPage__body--narrow' : ''
           }`}>
-            {/* On mobile the margin notes have nowhere to go, so they lead. */}
-            {margins.length > 0 && (
-              <div className="itemPage__inlineMargins">
-                {margins.map(margin => (
-                  <div key={margin.label}>
-                    <div className="itemPage__marginLabel">{margin.label}</div>
-                    <p className="itemPage__marginText">{margin.text}</p>
-                  </div>
-                ))}
+            {/* Read time, the contents list, and the margin notes sit in the
+                sticky rail on wide screens; once that rail drops below the
+                article there's no good reason to make a reader scroll past
+                the whole post to see them, so they're repeated here,
+                side by side, for stacked layouts. */}
+            {!isFind && readTime && (
+              <div className="itemPage__readTime">
+                <ClockIcon size={13} />
+                {readTime}
+              </div>
+            )}
+
+            {(showToc || margins.length > 0) && (
+              <div className="itemPage__topMeta">
+                <div className="itemPage__topMetaGrid">
+                  {showToc && (
+                    <div className="itemPage__topMetaToc">
+                      <div className="railBlock__label">On this page</div>
+                      {headings.map(heading => (
+                        <a
+                          className="itemRail__tocLink"
+                          href={heading.href}
+                          key={heading.href}
+                        >
+                          {heading.text}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                  {margins.length > 0 && (
+                    <div className="itemPage__topMetaMargins">
+                      {margins.map(margin => (
+                        <div key={margin.label}>
+                          <div className="itemPage__marginLabel">
+                            {margin.label}
+                          </div>
+                          <p className="itemPage__marginText">
+                            {margin.text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             )}
 
@@ -195,7 +230,7 @@ const ItemPage = ({children, data, location, pageContext}) => {
           )}
 
           {!isFind && readTime && (
-            <div>
+            <div className="itemRail__readTimeBlock">
               <div className="railBlock__label">Read time</div>
               <div className="itemRail__readTime">
                 <ClockIcon size={13} />
@@ -220,7 +255,7 @@ const ItemPage = ({children, data, location, pageContext}) => {
           )}
 
           {showToc && (
-            <div className="railBlock">
+            <div className="railBlock itemRail__tocBlock">
               <div className="railBlock__label">On this page</div>
               {headings.map(heading => (
                 <a
@@ -237,23 +272,34 @@ const ItemPage = ({children, data, location, pageContext}) => {
           {relatedPosts.length > 0 && (
             <div className="railBlock">
               <div className="railBlock__label">Related</div>
-              {relatedPosts.map(related => (
-                <Link
-                  className="itemRail__related"
-                  key={related.slug}
-                  to={itemPath(related.slug)}
-                >
-                  <span
-                    className="itemRail__glyph"
-                    style={{
-                      color: typeMeta(related.type).colour,
-                    }}
+              <div className="itemRail__relatedGrid">
+                {relatedPosts.map(related => (
+                  <Link
+                    className="itemRail__relatedCard"
+                    key={related.slug}
+                    to={itemPath(related.slug)}
                   >
-                    {TYPE_GLYPH[normaliseType(related.type)]}
-                  </span>
-                  <span>{related.title}</span>
-                </Link>
-              ))}
+                    {related.thumb ? (
+                      <span className="itemRail__relatedThumb">
+                        <img alt="" loading="lazy" src={related.thumb} />
+                      </span>
+                    ) : (
+                      <span
+                        // eslint-disable-next-line max-len
+                        className="itemRail__relatedThumb itemRail__relatedThumb--glyph"
+                        style={{
+                          color: typeMeta(related.type).colour,
+                        }}
+                      >
+                        {TYPE_GLYPH[normaliseType(related.type)]}
+                      </span>
+                    )}
+                    <span className="itemRail__relatedTitle">
+                      {related.title}
+                    </span>
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
         </aside>

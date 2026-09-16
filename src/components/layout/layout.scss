@@ -338,6 +338,19 @@
     gap: 1.5rem;
     align-items: start;
 
+    /**
+     * The fixed 16.375rem right column only leaves the prose a bit over
+     * 400px through this range, too tight for the second sentence to land
+     * on one line - it wraps with an orphaned word or two even though the
+     * line above still has visible room. The copyright itself only ever
+     * needs its own content width, so let this column shrink to that
+     * instead of reserving the full desktop width, keeping the two side by
+     * side rather than dropping the copyright onto its own row.
+     */
+    @include mid {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
     @include narrow {
       grid-template-columns: 1fr;
       gap: 0.875rem;

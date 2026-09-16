@@ -10,6 +10,7 @@
   @include mid {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 0;
   }
 
@@ -42,16 +43,78 @@
     padding-left: 0;
   }
 
-  &__inlineMargins {
+  /** Self-explanatory as "15 min read", so it gets no label and no box of
+      its own - just a quiet line sitting above the contents/margins panel. */
+  &__readTime {
     display: none;
-    flex-direction: column;
-    gap: 0.875rem;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.4375rem;
+    margin-bottom: 0.5rem;
+    color: var(--faint);
+    font-size: 0.8125rem;
+
+    svg {
+      color: var(--faint-2);
+    }
+
+    @include mid {
+      display: flex;
+    }
+  }
+
+  /**
+   * The contents list and the margin notes, repeated at the top of the
+   * article for stacked layouts (see .itemRail below, which is where these
+   * live on wide screens and where they stay hidden once this copy takes
+   * over). They run side by side rather than stacking - there's enough
+   * width at this breakpoint to afford it, and stacking them burns a lot of
+   * vertical space before the post even starts.
+   */
+  &__topMeta {
+    display: none;
     margin: 0 0 1.5rem;
     padding: 0.9375rem 1rem;
     background: var(--surface-2);
 
     @include mid {
-      display: flex;
+      display: block;
+    }
+  }
+
+  &__topMetaGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    @include narrow {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  &__topMetaToc {
+    display: flex;
+    flex-direction: column;
+    counter-reset: toc;
+
+    .railBlock__label {
+      margin-bottom: 0.125rem;
+    }
+  }
+
+  &__topMetaMargins {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--line-2);
+
+    @include narrow {
+      padding-left: 0;
+      padding-top: 1.125rem;
+      border-top: 1px solid var(--line-2);
+      border-left: 0;
     }
   }
 
@@ -363,6 +426,19 @@
     }
   }
 
+  /**
+   * Read time and the contents list move to the top of the article on
+   * stacked layouts (see .itemPage__readTime and .itemPage__topMeta above),
+   * so hide the rail copy there rather than repeating it after the whole
+   * article.
+   */
+  &__readTimeBlock,
+  &__tocBlock {
+    @include mid {
+      display: none;
+    }
+  }
+
   &__marginText {
     margin: 0.4375rem 0 0;
     color: var(--ink-2);
@@ -413,17 +489,62 @@
     }
   }
 
-  &__related {
-    display: flex;
-    gap: 0.625rem;
-    align-items: baseline;
+  &__relatedGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
     margin-top: 0.75rem;
-    font-size: 1rem;
-    line-height: 1.45;
+
+    /**
+     * auto-fit (not auto-fill) so the three-or-so cards stretch to fill the
+     * row themselves rather than leaving empty trailing tracks that read as
+     * dead space down the right side.
+     */
+    @include mid {
+      grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+      gap: 1.125rem;
+    }
   }
 
-  &__glyph {
-    flex: none;
-    font-size: 0.8125rem;
+  &__relatedCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5625rem;
+    color: var(--ink-2);
+    text-align: center;
+
+    &:hover .itemRail__relatedTitle {
+      color: var(--accent);
+    }
+  }
+
+  &__relatedThumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &--glyph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.375rem;
+    }
+  }
+
+  &__relatedTitle {
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    text-wrap: pretty;
   }
 }
