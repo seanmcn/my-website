@@ -18,11 +18,6 @@ const Layout = ({children}) => (
     <footer className="siteFooter">
       <div className="siteFooter__inner shell">
         <div className="siteFooter__colophon">
-          <p className="siteFooter__copyright">
-            © 2009–{currentYear}
-            <br />
-            Seán McNamara
-          </p>
           <div className="siteFooter__text">
             <p>
               Words, code, and questionable opinions are mine unless licensed
@@ -33,6 +28,11 @@ const Layout = ({children}) => (
               something, link back.
             </p>
           </div>
+          <p className="siteFooter__copyright">
+            © 2009–{currentYear}
+            <br />
+            Seán McNamara
+          </p>
         </div>
       </div>
     </footer>
