@@ -325,18 +325,49 @@
 /* ------------------------------------------------------------------ footer */
 
 .siteFooter {
-  display: flex;
-  align-items: baseline;
-  gap: 1.5rem;
   margin-top: 2.125rem;
-  padding-top: 2.125rem;
   border-top: 1px solid var(--line-2);
-  color: var(--faint);
 
-  @include label(0.625rem, 0.14em);
+  &__inner {
+    padding-top: 1.75rem;
+  }
 
-  &__years {
-    margin-left: auto;
+  &__colophon {
+    display: grid;
+    grid-template-columns: 16.375rem minmax(0, 1fr);
+    gap: 2.75rem;
+    align-items: start;
+
+    @include narrow {
+      grid-template-columns: 1fr;
+      gap: 0.875rem;
+    }
+  }
+
+  &__copyright {
+    margin: 0;
+    color: var(--footer-copyright);
+    font-family: $font-mono;
+    font-size: 0.625rem;
+    font-weight: 400;
+    line-height: 1.9;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    color: var(--footer-text);
+    font-family: $font-serif;
+    font-size: 0.8125rem;
+    line-height: 1.75;
+
+    p {
+      margin: 0;
+      text-wrap: pretty;
+    }
   }
 }
 
@@ -483,6 +514,9 @@
 .railBlock {
   padding-top: 1.125rem;
   border-top: 1px solid var(--line);
+  /* Numbers the "on this page" links below (1, 2, ...) - reset once here
+     so it counts per rail block rather than per link. */
+  counter-reset: toc;
 
   &:first-child {
     padding-top: 0;

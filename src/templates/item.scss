@@ -385,13 +385,27 @@
   }
 
   &__tocLink {
+    position: relative;
     display: block;
     margin-top: 0.625rem;
+    padding-left: 1.375rem;
     color: var(--ink-2);
     font-size: 1rem;
     line-height: 1.4;
     text-decoration: underline dotted var(--faint-2);
     text-underline-offset: 0.1875rem;
+    counter-increment: toc;
+
+    &::before {
+      content: counter(toc, decimal);
+      position: absolute;
+      top: 0.0625rem;
+      left: 0;
+      color: var(--plum);
+      font-family: $font-mono;
+      font-size: 0.6875rem;
+      letter-spacing: 0.02em;
+    }
 
     &:hover {
       color: var(--accent);

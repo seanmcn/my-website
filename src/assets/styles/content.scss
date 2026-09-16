@@ -10,7 +10,7 @@
   font-size: 1.1875rem;
   line-height: 1.75;
   color: var(--ink);
-  /* Numbers h2s (01, 02, ...) for the section marker below - reset once
+  /* Numbers h2s (1, 2, ...) for the section marker below - reset once
      here so it counts per article rather than per heading. */
   counter-reset: section;
 
@@ -33,12 +33,8 @@
   h2 {
     position: relative;
     max-width: 34ch;
-    margin: 3.625rem 0 0.875rem;
-    /* html's scroll-padding-top only clears the site's own sticky header -
-       post pages stack a second sticky bar (.itemBar, the post title)
-       underneath it, so anchor jumps here need extra clearance for that
-       too, on top of the site header's own. */
-    scroll-margin-top: 4.75rem;
+    margin: 2.5rem 0 0.5rem;
+    scroll-margin-top: 1.75rem;
     font-size: 2.1875rem;
     font-weight: 600;
     letter-spacing: -0.028em;
@@ -46,22 +42,22 @@
     counter-increment: section;
 
     &::before {
-      content: counter(section, decimal-leading-zero);
+      content: counter(section, decimal);
       position: absolute;
-      top: 0.8125rem;
+      top: 0.6875rem;
       left: -3.25rem;
       color: var(--plum);
       font-family: $font-mono;
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
+      font-size: 1.25rem;
+      letter-spacing: 0.1em;
     }
   }
 
   h3 {
     position: relative;
     max-width: 46ch;
-    margin: 2.625rem 0 0.625rem;
-    scroll-margin-top: 4.75rem;
+    margin: 1.5rem 0 0.5rem;
+    scroll-margin-top: 1.5rem;
     font-size: 1.4375rem;
     font-weight: 600;
     letter-spacing: -0.016em;
@@ -72,8 +68,8 @@
       position: absolute;
       top: 0.8125rem;
       left: -3rem;
-      width: 0.4375rem;
-      height: 0.4375rem;
+      width: 0.4rem;
+      height: 0.4rem;
       background: var(--accent);
       transform: rotate(45deg);
     }
