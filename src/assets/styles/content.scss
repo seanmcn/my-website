@@ -96,6 +96,20 @@
 
   a {
     border-bottom: 1px solid var(--accent-tint-2);
+
+    &.externalLink {
+      white-space: nowrap;
+    }
+  }
+
+  .externalLink__icon {
+    display: inline;
+    width: 0.875rem;
+    height: 0.875rem;
+    margin: 0 0.25rem 0 0;
+    border: 0;
+    border-radius: 0.1875rem;
+    vertical-align: -0.0625rem;
   }
 
   strong {

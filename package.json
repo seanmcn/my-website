@@ -72,6 +72,7 @@
         "cy:run:record": "cypress run --record",
         "develop": "rimraf public && mkdir -p .cache && detect-port 8000 | xargs -I {} env NODE_OPTIONS=--disable-warning=DEP0040 GATSBY_FEEDBACK_DISABLED=1 GATSBY_TELEMETRY_DISABLED=1 gatsby develop -p {}",
         "develop:lan": "rimraf public && mkdir -p .cache && detect-port 8000 | xargs -I {} env NODE_OPTIONS=--disable-warning=DEP0040 GATSBY_FEEDBACK_DISABLED=1 GATSBY_TELEMETRY_DISABLED=1 gatsby develop -H 0.0.0.0 -p {}",
+        "favicons": "node scripts/fetch-favicons.mjs",
         "format": "eslint src --fix",
         "serve": "NODE_OPTIONS=--disable-warning=DEP0040 GATSBY_FEEDBACK_DISABLED=1 GATSBY_TELEMETRY_DISABLED=1 gatsby serve",
         "taxonomy": "node scripts/list-taxonomy.mjs",

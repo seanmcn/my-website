@@ -1,6 +1,7 @@
 import React from 'react';
 import {MDXProvider} from '@mdx-js/react';
 import {Code} from './src/components/code/code';
+import {ExternalLink} from './src/components/externalLink/externalLink';
 import Key from './src/components/icons/keycapKey';
 import {Kbd} from './src/components/kbd/kbd';
 import {Note} from './src/components/note/note';
@@ -46,6 +47,7 @@ const components = {
     // eslint-disable-next-line react/jsx-props-no-spreading
     return <pre {...preProps} />;
   },
+  a: ExternalLink,
   Key,
   Kbd,
   Note,
