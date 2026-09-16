@@ -272,6 +272,31 @@ const ItemPage = ({children, data, location, pageContext}) => {
           {relatedPosts.length > 0 && (
             <div className="railBlock">
               <div className="railBlock__label">Related</div>
+
+              {/* Plain text list on wide screens, where the rail is a
+                  narrow sidebar column with no room for a thumbnail. */}
+              <div className="itemRail__relatedList">
+                {relatedPosts.map(related => (
+                  <Link
+                    className="itemRail__related"
+                    key={related.slug}
+                    to={itemPath(related.slug)}
+                  >
+                    <span
+                      className="itemRail__glyph"
+                      style={{
+                        color: typeMeta(related.type).colour,
+                      }}
+                    >
+                      {TYPE_GLYPH[normaliseType(related.type)]}
+                    </span>
+                    <span>{related.title}</span>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Thumbnail card grid once the rail drops below the article
+                  and has the article's full width to work with. */}
               <div className="itemRail__relatedGrid">
                 {relatedPosts.map(related => (
                   <Link

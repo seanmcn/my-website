@@ -489,11 +489,31 @@
     }
   }
 
-  &__relatedGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  /** Plain text list, the original treatment - shown on wide screens (the
+      narrow sidebar column) and narrow ones (no room for a thumbnail
+      grid), with the thumbnail cards below taking over only at mid. */
+  &__relatedList {
+    @include mid {
+      display: none;
+    }
+  }
+
+  &__related {
+    display: flex;
+    gap: 0.625rem;
+    align-items: baseline;
     margin-top: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  &__glyph {
+    flex: none;
+    font-size: 0.8125rem;
+  }
+
+  &__relatedGrid {
+    display: none;
 
     /**
      * auto-fit (not auto-fill) so the three-or-so cards stretch to fill the
@@ -501,8 +521,10 @@
      * dead space down the right side.
      */
     @include mid {
+      display: grid;
       grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
       gap: 1.125rem;
+      margin-top: 0.75rem;
     }
   }
 
