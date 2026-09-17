@@ -3,7 +3,7 @@
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fseanmcn.com&style=for-the-badge&label=seanmcn.com)](https://seanmcn.com)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Seanmcn/my-website?style=for-the-badge)](https://github.com/Seanmcn/my-website/commits/main)
 [![Node.js](https://img.shields.io/badge/node-22.x-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Cypress Test Runs](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/m1uz2r&style=for-the-badge&logo=cypress)](https://dashboard.cypress.io/projects/m1uz2r/runs)
+[![Playwright](https://github.com/Seanmcn/my-website/actions/workflows/playwright.yml/badge.svg)](https://github.com/Seanmcn/my-website/actions/workflows/playwright.yml)
 
 The codebase for [seanmcn.com](https://seanmcn.com), a Gatsby-powered personal site and blog built with React, MDX, and Bulma.
 
@@ -12,7 +12,7 @@ The codebase for [seanmcn.com](https://seanmcn.com), a Gatsby-powered personal s
 - Blog content is sourced from Markdown and MDX files in `content/blog`.
 - Pages are statically generated with Gatsby and deployed via AWS Amplify.
 - Search is powered client-side with Fuse.js and `match-sorter`.
-- End-to-end coverage is handled with Cypress.
+- End-to-end coverage is handled with Playwright and axe.
 
 ## Live Environments
 
@@ -26,7 +26,7 @@ The codebase for [seanmcn.com](https://seanmcn.com), a Gatsby-powered personal s
 - MDX
 - Bulma + Sass
 - AWS Amplify
-- Cypress
+- Playwright
 
 ## Getting Started
 
@@ -58,10 +58,43 @@ npm run build       # Create a production build
 npm run serve       # Serve the production build locally
 npm run clean       # Remove Gatsby caches and build output
 npm run post:create # Scaffold a new post
-npm run test:e2e    # Open Cypress against a local Gatsby instance
-npm run test:e2e:ci # Run Cypress headlessly
-npm run test:e2e:record # Run Cypress headlessly and record to the dashboard
+npm test            # Run Playwright headlessly
+npm run test:e2e:ui  # Open the interactive Playwright runner
+npm run test:e2e:report # View the last HTML test report
 ```
+
+## End-to-End Tests
+
+After installing dependencies, install the test browser once:
+
+```bash
+npx playwright install chromium
+npm test
+```
+
+Playwright builds the site, starts a production server at `http://127.0.0.1:8001`,
+and stops it when finished. Keep that port free and stop any Gatsby development
+server before running tests, since Gatsby shares its build output and cache.
+Use Node.js 22 (`nvm use`) for both installation and tests.
+
+The initial Chromium suite in `tests/e2e/` covers:
+
+- Responsive navigation, mobile menus, collapsible filters, and horizontal
+  overflow across phone, tablet, and desktop widths, including the 760px breakpoint.
+- Full-page axe accessibility scans on ten representative routes in light and
+  dark themes at mobile and desktop widths, plus open menus and filters.
+- System appearance, manual theme changes, keyboard activation, persistence
+  across navigation/reloads, and saved preferences during hydration.
+
+Automated axe checks complement manual keyboard and screen-reader testing.
+YouTube players are excluded from axe because their content is controlled by
+YouTube; the site's iframe titles are checked separately.
+The broader content-feature tests are outside this initial suite.
+
+`npm run test:e2e` and `npm run test:e2e:ci` also run the headless suite.
+To run one area, use `npm run test:e2e -- tests/e2e/theme.spec.js`.
+Failures retain screenshots and Playwright traces; axe results are attached to
+the HTML report. Generated reports and results are ignored by Git.
 
 ## VS Code Image Generation
 
@@ -103,11 +136,12 @@ Branch mapping:
 
 ## CI
 
-GitHub Actions runs Cypress on pushes to `main` and `develop`, and on pull requests.
-
-To keep the Cypress Dashboard badge accurate, add `CYPRESS_RECORD_KEY` as a GitHub Actions repository secret.
+GitHub Actions installs Chromium and runs Playwright on pushes to `main` and
+`develop`, and on pull requests. Reports and failure artifacts are retained for
+seven days. No test-dashboard account or recording secret is required.
 
 ## Notes
 
-- Some Gatsby config changes depend on environment variables used in CI and E2E runs.
-- Cypress is included for test runs, but its binary download is skipped during Amplify deployment.
+- The test server sets `E2E_TESTING=true` so archive content remains available
+  if the development-only archive shortcut is enabled in Gatsby's config.
+- Playwright browsers are installed explicitly for testing, not during Amplify deployment.

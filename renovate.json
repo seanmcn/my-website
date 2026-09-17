@@ -46,8 +46,8 @@
         {
             "matchPackageNames": [
                 "/^@?eslint/",
-                "/^@testing-library//",
-                "cypress"
+                "@playwright/test",
+                "@axe-core/playwright"
             ],
             "groupName": "linting and testing"
         }

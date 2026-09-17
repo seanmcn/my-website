@@ -130,7 +130,11 @@ const SiteHeader = () => {
               <span className="siteHeader__shortcut">Esc</span>
             </button>
           ) : (
-            <Link className="siteHeader__search" to="/search/">
+            <Link
+              aria-label="Search"
+              className="siteHeader__search"
+              to="/search/"
+            >
               <span aria-hidden="true" className="siteHeader__searchGlyph">
                 ⌕
               </span>

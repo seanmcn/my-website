@@ -1,7 +1,10 @@
-import { wrapRootElement as wrap } from './wrap-root-element';
+import {
+  wrapRootElement as wrap,
+  wrapPageElement as wrapPage,
+} from './wrap-root-element';
 
-// eslint-disable-next-line import/prefer-default-export
 export const wrapRootElement = wrap;
+export const wrapPageElement = wrapPage;
 
 function syncDocumentTitle() {
   if (typeof document === 'undefined') {

@@ -1,7 +1,11 @@
 import React from 'react';
-import {wrapRootElement as wrap} from './wrap-root-element';
+import {
+  wrapRootElement as wrap,
+  wrapPageElement as wrapPage,
+} from './wrap-root-element';
 
 export const wrapRootElement = wrap;
+export const wrapPageElement = wrapPage;
 
 const themeBootScript = `
   (function() {

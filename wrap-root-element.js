@@ -58,7 +58,12 @@ const components = {
   StickyStack,
 };
 export const wrapRootElement = ({element}) => (
-  <ThemeProvider>
-    <MDXProvider components={components}>{element}</MDXProvider>
-  </ThemeProvider>
+  <MDXProvider components={components}>{element}</MDXProvider>
+);
+
+// Gatsby also mounts wrapRootElement for Head exports. Keep the stateful theme
+// provider around the page only, so a second instance cannot overwrite a manual
+// preference when the system appearance changes. This wrapper survives routing.
+export const wrapPageElement = ({element}) => (
+  <ThemeProvider>{element}</ThemeProvider>
 );

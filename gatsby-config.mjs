@@ -8,7 +8,7 @@ import remarkGfm from 'remark-gfm';
 import remarkYouTubeEmbed from './src/utils/remark-youtube-embed.mjs';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
-const isTesting = process.env.CYPRESS_TESTING === 'true';
+const isTesting = process.env.E2E_TESTING === 'true';
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // Setup `gatsby-source-filesystem` for blog gatsbySourceFileSystemBlogPosts
