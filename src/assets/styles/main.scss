@@ -124,8 +124,28 @@ html[data-theme='dark'] {
  * sticky descendants keep working.
  */
 html {
+  /**
+   * Fluid root size: 16px up to a 1080px viewport, a straight line up to 18px
+   * at 1920px, held there beyond. Every length in the design system is rem
+   * (type, $shell-max, the rails, the gutters) or ch (the prose measures), so
+   * this one declaration scales the whole layout together instead of leaving
+   * a fixed 1180px column adrift on a large display. 1080px is the `wide`
+   * breakpoint, so the scale starts exactly where the three-column layout
+   * does and nothing jumps at the boundary; the slope is just the line
+   * through those two points, 2px across 840px of viewport.
+   *
+   * Expressed in rem rather than px so the root still derives from the
+   * browser's own default - a reader who sets 20px in their browser settings
+   * shifts the entire scale up with it, and page zoom keeps enlarging text
+   * because the floor is rem-based rather than viewport-based.
+   */
+  font-size: clamp(1rem, 0.84rem + 0.238vw, 1.125rem);
   overflow-x: clip;
   scroll-behavior: smooth;
+  /* Inflating text on rotation is iOS second-guessing a layout that already
+     has a narrow breakpoint of its own. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   // Anchors from the contents list should not land under the sticky header.
   scroll-padding-top: #{$header-height + 1.5rem};
 }
