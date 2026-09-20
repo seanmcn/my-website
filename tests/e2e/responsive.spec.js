@@ -4,7 +4,10 @@ const {
 } = require('./helpers');
 
 // Exercise phones, tablet/desktop layouts, and both sides of the 760px cutoff.
-for (const width of [320, 375, 414, 759, 760, 1024, 1440]) {
+// The three widest cover the root font size's three regimes, since every rem
+// length in the design system grows with it: still interpolating at 1440,
+// exactly at the 1920 ceiling, and held flat beyond it at 2560.
+for (const width of [320, 375, 414, 759, 760, 1024, 1440, 1920, 2560]) {
   test.describe(`${width}px viewport`, () => {
     test.use({viewport: {width, height: 900}});
 
@@ -65,7 +68,9 @@ for (const width of [320, 375, 414, 759, 760, 1024, 1440]) {
   });
 }
 
-for (const width of [375, 1024, 1440]) {
+// One narrow, one mid, and the two wide widths where the scaled root pushes
+// the shell, the rails and the gutters out with it.
+for (const width of [375, 1024, 1440, 1920, 2560]) {
   test.describe(`page layout at ${width}px`, () => {
     test.use({viewport: {width, height: 900}});
     for (const {label, path} of pages) {
