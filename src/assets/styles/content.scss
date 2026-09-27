@@ -45,7 +45,7 @@
       content: counter(section, decimal);
       position: absolute;
       top: 0.6875rem;
-      left: -3.25rem;
+      left: calc(-1 * var(--prose-gutter, 3.25rem));
       color: var(--plum);
       font-family: $font-mono;
       font-size: 1.25rem;
@@ -67,7 +67,7 @@
       content: '';
       position: absolute;
       top: 0.8125rem;
-      left: -3rem;
+      left: calc(0.25rem - var(--prose-gutter, 3.25rem));
       width: 0.4rem;
       height: 0.4rem;
       background: var(--accent);

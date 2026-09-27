@@ -20,10 +20,19 @@
 
   /* Opens a gutter for h2/h3's hanging section number/diamond markers (see
      .prose in content.scss) to sit in, rather than overflowing the column.
-     No gutter at narrow, where those markers are hidden anyway. */
+     The markers read its width from --prose-gutter. Tighter on a tablet,
+     where the full desktop gutter left the markers adrift from their
+     headings in a column that has little width to give away. No gutter at
+     narrow, where those markers are hidden anyway. */
   &__body {
     @include not-narrow {
-      padding-left: 3.25rem;
+      --prose-gutter: 3.25rem;
+
+      padding-left: var(--prose-gutter);
+
+      @include mid {
+        --prose-gutter: 2rem;
+      }
     }
   }
 
