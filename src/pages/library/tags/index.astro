@@ -1,0 +1,61 @@
+---
+/*
+ * Every tag at once, ranked by how much has been filed under it, with a bar so
+ * the shape of the archive is legible before you read a single label.
+ */
+import Icon from '../../../components/icons/Icon.astro';
+import Layout from '../../../layouts/Layout.astro';
+import {getLibraryMeta} from '../../../lib/library.js';
+import {slugToTitle, tagPath} from '../../../utils/content.js';
+
+const BLURB = 'The tools, platforms and themes that run through the Library.';
+const {tags} = await getLibraryMeta();
+const maxCount = tags.length ? tags[0].count : 1;
+---
+<Layout
+  title="Tags - Seán McNamara"
+  description="The tools, platforms and themes that run through the library."
+>
+  <div class="pageWrap tagsPage">
+    <div class="tagsPage__head">
+      <h1 class="tagsPage__title">
+        <Icon name="tag" size={19} style="color: var(--accent)" />
+        Tags
+      </h1>
+      <p class="tagsPage__blurb">{BLURB}</p>
+    </div>
+
+    <div class="stickyBar tagsPage__bar">
+      <a class="tagsPage__back" href="/library/">
+        <Icon name="arrowLeft" />
+        Back to library
+      </a>
+      <span class="tagsPage__stickyTitle">{BLURB}</span>
+      <span class="tagsPage__count">
+        <Icon name="tag" size={14} style="color: var(--accent)" />
+        {tags.length} tags
+      </span>
+    </div>
+
+    <div class="tagsPage__grid">
+      {tags.map(tag => (
+        <a class="tagsPage__row" href={tagPath(tag.name)}>
+          <span class="tagsPage__name">{slugToTitle(tag.name)}</span>
+          <span class="tagsPage__track">
+            <span
+              class:list={['tagsPage__bar-fill', {'is-strong': tag.count >= 3}]}
+              style={`width: ${Math.round((tag.count / maxCount) * 100)}%`}
+            ></span>
+          </span>
+          <span class="tagsPage__tally">{tag.count}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import {condenseOnScroll} from '../../../scripts/condensed.js';
+
+  condenseOnScroll('.tagsPage__head, .tagsPage__bar');
+</script>

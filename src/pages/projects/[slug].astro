@@ -1,0 +1,123 @@
+---
+import {render} from 'astro:content';
+import Icon from '../../components/icons/Icon.astro';
+import Layout from '../../layouts/Layout.astro';
+import ProjectGallery from '../../components/project/ProjectGallery.astro';
+import Prose from '../../components/Prose.astro';
+import {excerpt, getProjects} from '../../lib/library.js';
+import {formatLongDate} from '../../utils/content.js';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+
+  return projects.map(project => ({
+    params: {slug: project.data.slug},
+    props: {
+      project,
+      others: projects
+          .filter(other => other.id !== project.id)
+          .slice(0, 4)
+          .map(({data}) => data),
+    },
+  }));
+}
+
+const {project, others} = Astro.props;
+const {data} = project;
+const {Content} = await render(project);
+---
+<Layout
+  title={`${data.title} - Projects - Seán McNamara`}
+  description={data.summary || excerpt(project, 180)}
+>
+  <div class="pageWrap projectPage">
+    <article class="projectPage__article">
+      <div class="itemBar">
+        <a class="itemBar__back" href="/projects/">
+          <Icon name="arrowLeft" />
+          Projects
+        </a>
+        <h1 class="itemBar__title">{data.title}</h1>
+        <span class="itemBar__date">
+          <Icon name="calendar" />
+          {formatLongDate(data.date)}
+        </span>
+      </div>
+
+      {data.summary && <p class="projectPage__lead">{data.summary}</p>}
+
+      <ProjectGallery
+        featured={data.featured}
+        gallery={data.gallery}
+        title={data.title}
+      />
+
+      <div class="projectPage__divider"></div>
+      <Prose><Content /></Prose>
+    </article>
+
+    <aside class="rightRail projectRail">
+      {data.repo && (
+        <a
+          class="projectRail__cta"
+          href={data.repo}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          View repository ↗
+        </a>
+      )}
+      {data.demo && (
+        <a
+          class="projectRail__cta projectRail__cta--secondary"
+          href={data.demo}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          View website ↗
+        </a>
+      )}
+
+      <div>
+        <div class="railBlock__label">Started</div>
+        <div class="projectRail__value">{formatLongDate(data.date)}</div>
+      </div>
+
+      {data.techStack.length > 0 && (
+        <div class="railBlock">
+          <div class="railBlock__label">Tech stack</div>
+          <div class="projectRail__chips">
+            {data.techStack.map(item => <span class="projectRail__chip">{item}</span>)}
+          </div>
+        </div>
+      )}
+
+      {data.tags.length > 0 && (
+        <div class="railBlock">
+          <div class="railBlock__label">Tags</div>
+          <div class="projectRail__chips">
+            {data.tags.map(tag => <span class="projectRail__tag">#{tag}</span>)}
+          </div>
+        </div>
+      )}
+
+      {others.length > 0 && (
+        <div class="railBlock">
+          <div class="railBlock__label">Other projects</div>
+          {others.map(other => (
+            <a class="projectRail__other" href={`/projects/${other.slug}/`}>
+              {other.title}{' '}
+              <span class="projectRail__otherStack">{other.language}</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </aside>
+  </div>
+</Layout>
+
+<script>
+  import {condenseOnScroll} from '../../scripts/condensed.js';
+
+  condenseOnScroll('.itemBar');
+</script>

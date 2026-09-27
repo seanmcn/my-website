@@ -1,0 +1,84 @@
+---
+/*
+ * The left rail on every library screen: what the current view is, then the
+ * two ways in — category, or tag. The active facet is pulled out of the list
+ * with a tinted row so the rail also acts as a breadcrumb.
+ */
+import Icon from '../icons/Icon.astro';
+import {getLibraryMeta} from '../../lib/library.js';
+import {categoryPath, slugToTitle, tagPath} from '../../utils/content.js';
+
+const TOP_TAG_COUNT = 6;
+
+const {activeCategory = null, activeTag = null, blurb = '', count = 0,
+  title = 'Library'} = Astro.props;
+const {categories, tags} = await getLibraryMeta();
+const rankedTags = tags.slice(0, TOP_TAG_COUNT);
+const activeOutsideTop = activeTag &&
+  !rankedTags.some(tag => tag.name === activeTag);
+const shownTags = activeOutsideTop ?
+  [
+    {...tags.find(tag => tag.name === activeTag), outsideTop: true},
+    ...rankedTags,
+  ].filter(tag => tag.name) :
+  rankedTags;
+const maxTagCount = tags.length ? tags[0].count : 1;
+---
+<aside class="rail rail--collapsible">
+  <div class="rail__intro">
+    <div class="libraryRail__eyebrow">{title} &middot; {count}</div>
+    <p class="libraryRail__blurb">{blurb}</p>
+  </div>
+
+  <div>
+    <div class="railHeading">Categories</div>
+    {categories.map((category) => {
+      const active = activeCategory === category.name;
+
+      return (
+        <a
+          class:list={['facetRow', {'is-active': active}]}
+          href={active ? '/library/' : categoryPath(category.name)}
+        >
+          <span class="facetRow__name">
+            <Icon name="category" size={14} />
+            {slugToTitle(category.name)}
+          </span>
+          <span class="facetRow__tail">{active ? '✕' : category.count}</span>
+        </a>
+      );
+    })}
+  </div>
+
+  <div>
+    <div class="railHeading libraryRail__tagsHeading">Most used tags</div>
+    {shownTags.map((tag) => {
+      const active = activeTag === tag.name;
+
+      return (
+        <a
+          class:list={['tagRow', {'is-active': active, 'is-outside': tag.outsideTop}]}
+          href={active ? '/library/' : tagPath(tag.name)}
+        >
+          <span class="tagRow__head">
+            <span class="tagRow__name">
+              <Icon name="tag" size={14} />
+              {slugToTitle(tag.name)}
+            </span>
+            <span class="tagRow__tail">{active ? '✕' : tag.count}</span>
+          </span>
+          <span
+            class="tagRow__bar"
+            style={`width: ${Math.max(8, Math.round((tag.count / maxTagCount) * 100))}%`}
+          ></span>
+          {tag.outsideTop && (
+            <span class="tagRow__note">Outside the top six</span>
+          )}
+        </a>
+      );
+    })}
+    <a class="libraryRail__allTags" href="/library/tags/">
+      All {tags.length} tags →
+    </a>
+  </div>
+</aside>

@@ -1,0 +1,204 @@
+---
+import {Image} from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import {getProjects} from '../../lib/library.js';
+import {stackColour} from '../../utils/projects.js';
+
+const BLURB = 'Side projects, experiments, and tools I\'ve enjoyed working ' +
+  'on over the years.';
+
+const projects = await getProjects();
+
+const stackCounts = projects.reduce((counts, {data}) => {
+  const language = data.language || 'Other';
+
+  return {...counts, [language]: (counts[language] || 0) + 1};
+}, {});
+const stacks = Object.keys(stackCounts)
+    .sort((left, right) => stackCounts[right] - stackCounts[left]);
+const maxStackCount = Math.max(...Object.values(stackCounts), 1);
+const allTags = [...new Set(projects.flatMap(({data}) => data.tags))];
+
+// Grouped by year, newest first — the archive reads as a career, not a grid.
+const years = projects.reduce((groups, project) => {
+  const year = String(project.data.date.getUTCFullYear());
+  const group = groups.find(candidate => candidate.year === year);
+
+  if (group) {
+    group.items.push(project);
+  } else {
+    groups.push({year, items: [project]});
+  }
+
+  return groups;
+}, []);
+
+const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
+---
+<Layout title="Projects - Seán McNamara" description={BLURB}>
+  <div class="pageWrap projectsPage">
+    <div class="twoCol twoCol--padded">
+      <div class="mobileIntro">
+        <div class="eyebrow">Projects &middot; {projects.length}</div>
+        <p>{BLURB}</p>
+      </div>
+
+      <aside class="rail projectsRail">
+        <div class="rail__intro">
+          <div class="eyebrow">Projects &middot; {projects.length}</div>
+          <p class="projectsRail__blurb">{BLURB}</p>
+        </div>
+
+        <div>
+          <div class="railHeading projectsRail__heading">Stacks</div>
+          {stacks.map(name => (
+            <button
+              class="projectsRail__stack"
+              data-stack={name}
+              type="button"
+            >
+              <span class="projectsRail__stackHead">
+                <span class="projectsRail__stackName">
+                  <span
+                    class="projectsRail__dot"
+                    style={`background: ${stackColour(name)}`}
+                  ></span>
+                  {name}
+                </span>
+                <span class="projectsRail__stackTail" data-count={stackCounts[name]}>
+                  {stackCounts[name]}
+                </span>
+              </span>
+              <span
+                class="projectsRail__bar"
+                style={`width: ${Math.round((stackCounts[name] / maxStackCount) * 100)}%`}
+              ></span>
+            </button>
+          ))}
+        </div>
+
+        {allTags.length > 0 && (
+          <div>
+            <div class="railHeading projectsRail__heading">Tags</div>
+            <div class="projectsRail__tags">
+              {allTags.map(tag => <span class="projectsRail__tag">#{tag}</span>)}
+            </div>
+          </div>
+        )}
+      </aside>
+
+      <div>
+        <h1 class="visually-hidden">Projects</h1>
+        <div class="stickyBar projectsBar">
+          <span class="projectsBar__results">{projects.length} projects</span>
+          <button class="projectsBar__clear" hidden type="button">
+            Clear filter &times;
+          </button>
+          <span class="projectsBar__order">Newest first</span>
+        </div>
+
+        {years.map(group => (
+          <div class="projectsYear">
+            <div class="projectsYear__head">
+              <span class="projectsYear__label">{group.year}</span>
+              <span class="projectsYear__line"></span>
+              <span class="projectsYear__count">{plural(group.items.length)}</span>
+            </div>
+
+            {group.items.map(({data}) => (
+              <a
+                class="projectRow"
+                data-stack={data.language}
+                href={`/projects/${data.slug}/`}
+              >
+                {data.featured ? (
+                  <span class="projectRow__thumb">
+                    <Image
+                      alt=""
+                      fit="cover"
+                      height={176}
+                      position="top"
+                      src={data.featured}
+                      width={208}
+                    />
+                  </span>
+                ) : (
+                  <span class="projectRow__thumb projectRow__thumb--blank"></span>
+                )}
+                <span class="projectRow__body">
+                  <span>
+                    <span class="projectRow__name">{data.title}</span>
+                    <span class="projectRow__blurb"> &mdash; {data.summary}</span>
+                  </span>
+                  <span class="projectRow__foot">
+                    {data.tags.length > 0 && (
+                      <span class="projectRow__tags">
+                        {data.tags.map(tag => <span class="projectRow__tag">{tag}</span>)}
+                      </span>
+                    )}
+                    <span
+                      class="projectRow__stack"
+                      style={`background: ${stackColour(data.language)}`}
+                    >
+                      {data.language}
+                    </span>
+                  </span>
+                </span>
+              </a>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  /*
+   * The stack filter. Rows are all in the page; choosing a stack hides the
+   * rest, and years left with nothing in them, and says what's showing.
+   */
+  const buttons = [...document.querySelectorAll('.projectsRail__stack')];
+  const rows = [...document.querySelectorAll('.projectRow')];
+  const years = [...document.querySelectorAll('.projectsYear')];
+  const results = document.querySelector('.projectsBar__results');
+  const clear = document.querySelector('.projectsBar__clear');
+  const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
+  let active = null;
+
+  function apply() {
+    buttons.forEach((button) => {
+      const isActive = button.dataset.stack === active;
+      const tail = button.querySelector('.projectsRail__stackTail');
+      button.classList.toggle('is-active', isActive);
+      tail.textContent = isActive ? '✕' : tail.dataset.count;
+    });
+
+    rows.forEach((row) => {
+      row.hidden = Boolean(active) && row.dataset.stack !== active;
+    });
+
+    years.forEach((year) => {
+      const shown = year.querySelectorAll('.projectRow:not([hidden])').length;
+      year.hidden = shown === 0;
+      year.querySelector('.projectsYear__count').textContent = plural(shown);
+    });
+
+    const count = rows.filter(row => !row.hidden).length;
+    results.textContent = active ?
+      `${count} in ${active}` :
+      `${count} projects`;
+    clear.hidden = !active;
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      active = active === button.dataset.stack ? null : button.dataset.stack;
+      apply();
+    });
+  });
+  clear.addEventListener('click', () => {
+    active = null;
+    apply();
+  });
+</script>

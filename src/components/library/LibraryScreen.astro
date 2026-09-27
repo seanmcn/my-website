@@ -1,0 +1,70 @@
+---
+/*
+ * The library index, its per-type views and both taxonomy listings are the
+ * same screen with a different rail selection and a different set of rows, so
+ * they share one component. `page` comes from paginate() in lib/library.js.
+ */
+import ItemRow from './ItemRow.astro';
+import LibraryFilters from './LibraryFilters.astro';
+import LibraryPagination from './LibraryPagination.astro';
+import LibraryRail from './LibraryRail.astro';
+
+const {
+  activeCategory = null,
+  activeFilter = 'all',
+  activeTag = null,
+  blurb = '',
+  page,
+  title,
+} = Astro.props;
+const count = page.totalCount;
+const resultLine = `${count} ${count === 1 ? 'item' : 'items'}`;
+---
+<div class="pageWrap">
+  <!--
+    Every library view names itself in the rail and the filter bar rather than
+    in a page title, so the h1 is held for assistive tech only.
+  -->
+  <h1 class="visually-hidden">{title}</h1>
+  <div class="twoCol twoCol--padded">
+    <div class="mobileIntro">
+      <div class="libraryRail__eyebrow">{title} &middot; {count}</div>
+      <p>{blurb}</p>
+    </div>
+    <button aria-expanded="false" class="railToggle" type="button">
+      Filters ▾
+    </button>
+
+    <LibraryRail
+      activeCategory={activeCategory}
+      activeTag={activeTag}
+      blurb={blurb}
+      count={count}
+      title={title}
+    />
+
+    <div>
+      <LibraryFilters active={activeFilter} resultLine={resultLine} />
+
+      {page.items.map(item => <ItemRow item={item} />)}
+
+      {page.items.length === 0 && (
+        <div class="libraryEmpty">
+          <div class="libraryEmpty__title">Nothing here yet</div>
+          <p class="libraryEmpty__body">
+            No items match that combination of filters.
+          </p>
+          <a class="libraryEmpty__action" href="/library/">Clear filters ✕</a>
+        </div>
+      )}
+
+      {page.items.length > 0 && <LibraryPagination page={page} />}
+    </div>
+  </div>
+</div>
+
+<script>
+  import {bindRailToggle} from '../../scripts/rail-toggle.js';
+
+  bindRailToggle();
+</script>

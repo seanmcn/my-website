@@ -1,0 +1,142 @@
+---
+/*
+ * Every page's shell: the head (theme boot script, fonts, SEO and feed tags),
+ * the site header and the footer.
+ */
+import SiteHeader from '../components/layout/SiteHeader.astro';
+/*
+ * Every stylesheet, on every page, in one fixed order. Pages lean on each
+ * other's rules (the project page's title bar is the item page's), as they
+ * could under Gatsby, which bundled them all together in this order.
+ */
+import '../assets/styles/main.scss';
+import '../assets/styles/content.scss';
+import '../assets/styles/code.scss';
+import '../components/layout/layout.scss';
+import '../styles/pages/404.scss';
+import '../styles/pages/about.scss';
+import '../components/contactForm/contactForm.scss';
+import '../styles/pages/contact.scss';
+import '../styles/pages/projects.scss';
+import '../styles/pages/search.scss';
+import '../components/library/itemRow.scss';
+import '../components/library/libraryRail.scss';
+import '../styles/pages/home.scss';
+import '../components/item/seriesNavigator.scss';
+import '../styles/pages/item.scss';
+import '../styles/pages/project.scss';
+import '../styles/pages/tags.scss';
+
+import {ICON_SIZES as APPLE_TOUCH_SIZES} from '../lib/site-icons.js';
+
+const SITE_TITLE = 'Seán McNamara';
+const SITE_DESCRIPTION = 'Seán McNamara\'s personal website, containing ' +
+  'articles surrounding programming, technology, games & reviews.';
+
+const {title, description, type = 'website', noIndex = false} =
+  Astro.props;
+const resolvedDescription = (description || SITE_DESCRIPTION)
+    .replace(/\s+/g, ' ')
+    .trim();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const currentYear = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b6b57" />
+    <script is:inline>
+      (function() {
+        var storageKey = 'site-theme-preference';
+        var root = document.documentElement;
+        var stored = null;
+
+        try {
+          stored = window.localStorage.getItem(storageKey);
+        } catch (error) {}
+
+        if (stored !== 'light' && stored !== 'dark' && stored !== 'system') {
+          stored = null;
+        }
+
+        var preference = stored || 'system';
+        var dark = preference === 'system' ?
+          window.matchMedia('(prefers-color-scheme: dark)').matches :
+          preference === 'dark';
+        var resolved = dark ? 'dark' : 'light';
+
+        root.dataset.themePreference = preference;
+        root.dataset.theme = resolved;
+        root.dataset.themePersisted = stored ? 'true' : 'false';
+        root.style.colorScheme = resolved;
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500&family=Kalam:wght@400&display=swap"
+    />
+
+    <title>{title}</title>
+    <meta name="description" content={resolvedDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={resolvedDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={resolvedDescription} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" />
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous" />
+    {APPLE_TOUCH_SIZES.map(size => (
+      <link
+        rel="apple-touch-icon"
+        sizes={`${size}x${size}`}
+        href={`/icons/icon-${size}x${size}.png`}
+      />
+    ))}
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Seanmcn.com RSS feed"
+      href="/rss.xml"
+    />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+  </head>
+  <body>
+    <div class="siteShell">
+      <SiteHeader />
+      <main id="mainSection" role="main">
+        <slot />
+      </main>
+      <footer class="siteFooter">
+        <div class="siteFooter__inner shell">
+          <div class="siteFooter__colophon">
+            <div class="siteFooter__text">
+              <p>
+                Words, code, and questionable opinions are mine unless
+                licensed otherwise.
+              </p>
+              <p>
+                Views are my own, not my employer’s or the robots’. If you use
+                something, link back.
+              </p>
+            </div>
+            <p class="siteFooter__copyright">
+              © 2009–{currentYear}
+              <br />
+              Seán McNamara
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

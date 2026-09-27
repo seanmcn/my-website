@@ -3,7 +3,7 @@ import path from 'path';
 
 const CONTENT_DIRS = ['content/blog', 'content/projects'];
 const SUPPORTED_EXTENSIONS = new Set(['.md', '.mdx']);
-const FAVICON_DIR = path.resolve('static/favicons');
+const FAVICON_DIR = path.resolve('public/favicons');
 const SITE_HOSTNAME = 'seanmcn.com';
 const CONCURRENCY = 8;
 

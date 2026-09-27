@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import notFoundImage from '../assets/images/emojis/250/confused.png';
+---
+<Layout
+  title="404 - Not Found"
+  description="The page you were looking for could not be found."
+  noIndex
+>
+  <div class="pageWrap notFound">
+    <div class="notFound__inner">
+      <div class="eyebrow">404</div>
+      <h1 class="notFound__title">This one isn&apos;t here</h1>
+      <p class="notFound__body">
+        The address doesn&apos;t match anything on the site. It may have moved
+        when the library was reorganised, or it may never have existed.
+      </p>
+      <div class="notFound__links">
+        <a class="notFound__link" href="/library/">Browse the library →</a>
+        <a class="notFound__link" href="/search/">Search everything →</a>
+      </div>
+    </div>
+    <img alt="" class="notFound__image" src={notFoundImage.src} />
+  </div>
+</Layout>

@@ -1,0 +1,57 @@
+---
+/*
+ * Previous / page indicator / next, with the page number itself acting as a
+ * disclosure for the full jump grid. Keeps the long tail of the archive
+ * reachable without printing nine numbers under every listing.
+ */
+const {page} = Astro.props;
+const {number, total, base, previousPath, nextPath} = page;
+const pagePath = n => (n === 1 ? `${base}/` : `${base}/page/${n}/`);
+---
+{total > 1 && (
+  <nav aria-label="Pagination" class="libraryPagination">
+    <div class="libraryPagination__row">
+      {previousPath ?
+        <a class="libraryPagination__step" rel="prev" href={previousPath}>‹ Previous</a> :
+        <span class="libraryPagination__step is-disabled">‹ Previous</span>}
+
+      <button
+        aria-expanded="false"
+        class="libraryPagination__status"
+        type="button"
+      >
+        Page {number} of {total}
+      </button>
+
+      {nextPath ?
+        <a class="libraryPagination__step" rel="next" href={nextPath}>Next ›</a> :
+        <span class="libraryPagination__step is-disabled">Next ›</span>}
+    </div>
+
+    <div class="libraryPagination__jump" hidden>
+      {Array.from({length: total}, (_, index) => index + 1).map(n => (
+        <a
+          aria-label={`Go to page ${n}`}
+          class:list={['libraryPagination__page', {'is-current': n === number}]}
+          href={pagePath(n)}
+        >
+          {n}
+        </a>
+      ))}
+    </div>
+  </nav>
+)}
+
+<script>
+  document.querySelectorAll('.libraryPagination').forEach((nav) => {
+    const toggle = nav.querySelector('.libraryPagination__status');
+    const jump = nav.querySelector('.libraryPagination__jump');
+
+    toggle.addEventListener('click', () => {
+      const open = jump.hidden;
+      jump.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.classList.toggle('is-open', open);
+    });
+  });
+</script>

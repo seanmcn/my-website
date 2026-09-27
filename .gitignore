@@ -1,15 +1,12 @@
 # Project dependencies
 node_modules
-.cache/
-# Build directory
-public/
-static/admin/*.bundle.*
-storybook-static/
+# Build output and Astro's generated types and content cache
+dist/
+.astro/
 .DS_Store
 yarn-error.log
 # IDE ignores
 .idea
-project_schema.graphql
 .env
 # Playwright
 playwright-report/

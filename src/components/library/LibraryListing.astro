@@ -1,0 +1,13 @@
+---
+/*
+ * A whole listing page: the layout plus the library screen, titled for
+ * whichever view it is. Shared by the index, type, tag and category routes.
+ */
+import Layout from '../../layouts/Layout.astro';
+import LibraryScreen from './LibraryScreen.astro';
+
+const {description, pageTitle, ...screen} = Astro.props;
+---
+<Layout title={pageTitle} description={description}>
+  <LibraryScreen {...screen} />
+</Layout>

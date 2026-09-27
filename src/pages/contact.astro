@@ -1,0 +1,117 @@
+---
+import ContactForm from '../components/contactForm/ContactForm.astro';
+import ElsewhereLinks from '../components/elsewhere/ElsewhereLinks.astro';
+import Layout from '../layouts/Layout.astro';
+import avatar from '../assets/images/emojis/250/wave.png';
+import {getLibraryItems} from '../lib/library.js';
+
+const DESCRIPTION = 'Get in touch with Seán McNamara about software ' +
+  'engineering roles, project ideas, collaborations, or questions about the ' +
+  'articles published on this site.';
+
+const EMAIL = 'me@seanmcn.com';
+
+const RAIL = [
+  {label: 'Based in', value: 'London'},
+  {label: 'Timezone', value: 'GMT / BST'},
+];
+
+// For resolving ?about=<slug> in the browser, since the page itself is static.
+const titles = Object.fromEntries((await getLibraryItems())
+    .map(({data}) => [data.slug, data.title]));
+---
+<Layout title="Contact Me - Seán McNamara" description={DESCRIPTION}>
+  <div class="pageWrap contactPage">
+    <div class="contactPage__cols">
+      <aside aria-label="Profile" class="rail rail--bio contactBio">
+        <span class="contactBio__portrait">
+          <img alt="Seán McNamara" src={avatar.src} />
+        </span>
+
+        <div>
+          <div class="eyebrow">Contact</div>
+          <div class="contactBio__intro">
+            <p class="contactBio__blurb">
+              Everything reaches me. Email is the surest route, but any of
+              these work.
+            </p>
+            <span class="contactBio__avatarSmall">
+              <img alt="" src={avatar.src} />
+            </span>
+          </div>
+        </div>
+
+        <div>
+          {RAIL.map(row => (
+            <div class="contactBio__row">
+              <span>{row.label}</span>
+              <span class="contactBio__value">{row.value}</span>
+            </div>
+          ))}
+        </div>
+      </aside>
+
+      <div class="contactPage__main">
+        <div class="stickyBar contactPage__bar">
+          <h1 class="contactPage__title">Let&apos;s talk</h1>
+          <span class="contactPage__email">{EMAIL}</span>
+        </div>
+
+        <p class="contactPage__lead">
+          A question about something I&apos;ve written, an idea you&apos;d like
+          to collaborate on, or just a general hello. This is the best place to
+          reach me. For roles and recruiting, LinkedIn is better.
+        </p>
+
+        <div class="contactReply" hidden>
+          <div>
+            <div class="contactReply__eyebrow">Replying about</div>
+            <a class="contactReply__title" href="/library/"></a>
+            <div class="contactReply__note">
+              A link to this post will be included with your message.
+            </div>
+          </div>
+          <button class="contactReply__remove" type="button">Remove ✕</button>
+        </div>
+
+        <ContactForm email={EMAIL} />
+      </div>
+
+      <aside aria-label="Elsewhere" class="rightRail contactElsewhere">
+        <div class="railHeading">Elsewhere</div>
+        <ElsewhereLinks />
+      </aside>
+    </div>
+  </div>
+</Layout>
+
+<script type="application/json" id="contact-titles" set:html={JSON.stringify(titles)} />
+
+<script>
+  /*
+   * Articles end with "Get in touch about this", which arrives here as
+   * ?about=<slug>. Resolving it to a title lets the form say what it is a
+   * reply to, and passes the link along with the message.
+   */
+  const titles = JSON.parse(
+      document.getElementById('contact-titles').textContent,
+  );
+  const slug = new URLSearchParams(window.location.search).get('about');
+  const title = slug && titles[slug];
+  const reply = document.querySelector('.contactReply');
+  const field = document.querySelector('.contactForm input[name="about"]');
+
+  if (title) {
+    const link = reply.querySelector('.contactReply__title');
+    link.href = `/library/${slug}/`;
+    link.textContent = title;
+    field.value = `${title} — /library/${slug}/`;
+    field.disabled = false;
+    reply.hidden = false;
+  }
+
+  reply.querySelector('.contactReply__remove').addEventListener('click', () => {
+    reply.hidden = true;
+    field.disabled = true;
+  });
+</script>

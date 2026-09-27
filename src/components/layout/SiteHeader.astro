@@ -1,0 +1,98 @@
+---
+/*
+ * SiteHeader and MobileMenu from the Gatsby site, rendered once at build
+ * time. Active links come from the URL here rather than reach-router, and the
+ * menu, theme and search behaviour lives in two small scripts, so the header
+ * ships no framework runtime at all.
+ */
+import avatar from '../../assets/images/emojis/250/wave.png';
+
+const NAV_LINKS = [
+  {label: 'Index', to: '/', match: pathname => pathname === '/'},
+  {label: 'Library', to: '/library/', match: p => p.startsWith('/library')},
+  {label: 'Projects', to: '/projects/', match: p => p.startsWith('/projects')},
+  {label: 'About', to: '/about/', match: p => p.startsWith('/about')},
+  {label: 'Contact', to: '/contact/', match: p => p.startsWith('/contact')},
+];
+
+const {pathname} = Astro.url;
+---
+<header class="siteHeader">
+  <div class="siteHeader__inner shell">
+    <a class="siteHeader__logo" href="/">
+      <span class="siteHeader__avatar">
+        <img src={avatar.src} alt="" width="34" height="34" />
+      </span>
+      <span>
+        <span class="siteHeader__wordmark">Seán McNamara</span>
+        <span class="siteHeader__tagline">
+          Software engineering &amp; other rabbit holes
+        </span>
+      </span>
+    </a>
+
+    <nav class="siteHeader__nav" aria-label="Primary">
+      {NAV_LINKS.map(link => (
+        <a
+          class:list={['siteHeader__navLink', {'is-active': link.match(pathname)}]}
+          href={link.to}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <button
+      aria-expanded="false"
+      aria-label="Menu"
+      class="siteHeader__burger"
+      type="button"
+    >
+      ☰
+    </button>
+
+    <button aria-label="Switch to dark mode" class="themeToggle" type="button">
+      <span aria-hidden="true">◐</span>
+    </button>
+
+    <a aria-label="Search" class="siteHeader__search" href="/search/">
+      <span aria-hidden="true" class="siteHeader__searchGlyph">⌕</span>
+      <span class="siteHeader__searchLabel">Search</span>
+      <span aria-hidden="true" class="siteHeader__shortcut">/</span>
+    </a>
+  </div>
+</header>
+
+<div class="mobileMenu" role="dialog" aria-label="Menu" hidden>
+  <div class="mobileMenu__head">
+    <span class="mobileMenu__eyebrow">Menu</span>
+    <button aria-label="Close menu" class="mobileMenu__close" type="button">
+      ✕
+    </button>
+  </div>
+
+  <nav class="mobileMenu__nav">
+    {NAV_LINKS.map(link => (
+      <a
+        class:list={['mobileMenu__link', {'is-active': link.match(pathname)}]}
+        href={link.to}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+
+  <div class="mobileMenu__actions">
+    <a class="mobileMenu__search" href="/search/">
+      <span aria-hidden="true">⌕</span>
+      Search
+    </a>
+    <button class="mobileMenu__theme" type="button">
+      <span aria-hidden="true">◐</span>Dark</button>
+  </div>
+</div>
+
+<script>
+  import '../../scripts/theme.js';
+  import '../../scripts/header.js';
+</script>

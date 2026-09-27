@@ -1,0 +1,8 @@
+---
+import LibraryListing from '../../components/library/LibraryListing.astro';
+import {listingPaths} from '../../lib/listings.js';
+
+// A static route gets no getStaticPaths, so take its one page directly.
+const [{props}] = await listingPaths('all');
+---
+<LibraryListing {...props} />

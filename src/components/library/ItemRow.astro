@@ -1,0 +1,82 @@
+---
+/*
+ * One row in any listing. The thumbnail column always carries a coloured
+ * spine in the item's type colour; where there is no image the space is filled
+ * with a hatched plate rather than left blank, so a column of notes and finds
+ * still reads as a column.
+ */
+import Icon from '../icons/Icon.astro';
+import {Image} from 'astro:assets';
+import {
+  formatItemDate,
+  itemPath,
+  readTimeLabel,
+  slugToTitle,
+  sourceHost,
+  typeMeta,
+} from '../../utils/content.js';
+import {excerpt, readingTimeMinutes} from '../../lib/library.js';
+
+const {item} = Astro.props;
+const {data} = item;
+const type = data.type;
+const meta = typeMeta(type);
+const isFind = type === 'find';
+const readTime = readTimeLabel(readingTimeMinutes(item.body));
+const summary = data.summary || excerpt(item, 190);
+const host = sourceHost(data.source);
+---
+<a class="itemRow" data-type={type} href={itemPath(data.slug)}>
+  <span class="itemRow__thumbCol">
+    <span class="itemRow__spine" style={`background: ${meta.colour}`}></span>
+    {data.featured ? (
+      <span class="itemRow__thumb">
+        <Image
+          alt=""
+          fit="cover"
+          height={260}
+          position="top"
+          src={data.featured}
+          width={260}
+       />
+      </span>
+    ) : (
+      <span class={`itemRow__plate itemRow__plate--${type}`}>
+        <span class="itemRow__plateNote">
+          {isFind ? host || 'Link' : 'No image'}
+        </span>
+      </span>
+    )}
+    <span class="itemRow__pill" style={`background: ${meta.colour}`}>
+      {meta.label}
+    </span>
+  </span>
+
+  {isFind ? (
+    host && (
+      <span class="itemRow__category itemRow__category--source">{host}</span>
+    )
+  ) : (
+    data.category && (
+      <span class="itemRow__category">
+        <Icon name="category" />
+        {slugToTitle(data.category)}
+      </span>
+    )
+  )}
+
+  <span class="itemRow__title">{data.title}</span>
+  <span class="itemRow__excerpt">{summary}</span>
+  <span class="itemRow__date">{formatItemDate(data.date)}</span>
+
+  {isFind ? (
+    <span class="itemRow__time">Link ↗</span>
+  ) : (
+    readTime && (
+      <span class="itemRow__time">
+        <Icon name="clock" size={11} />
+        {readTime.replace(' read', '')}
+      </span>
+    )
+  )}
+</a>

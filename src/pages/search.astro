@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SearchScreen from '../components/search/SearchScreen.jsx';
+---
+<Layout
+  title="Search - Seán McNamara"
+  description="Search posts, notes, finds and projects."
+  noIndex
+>
+  <SearchScreen client:load />
+</Layout>

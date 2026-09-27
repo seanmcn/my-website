@@ -1,0 +1,220 @@
+---
+/*
+ * A project's screenshots: one on the stage, a rail of thumbnails to switch
+ * between them, and a fullscreen lightbox. With no gallery, the featured
+ * image stands alone. Every shot is in the page; the script only switches
+ * which one shows.
+ */
+import {Image} from 'astro:assets';
+
+const {featured, gallery = [], title} = Astro.props;
+const shots = gallery.length ?
+  gallery :
+  (featured ? [{image: featured, alt: title}] : []);
+const hasGallery = gallery.length > 0;
+const pad = number => String(number).padStart(2, '0');
+const counter = index => (hasGallery ? `${pad(index + 1)} / ${pad(shots.length)}` : '');
+---
+{shots.length > 0 && (
+  <figure class="projectShots" data-gallery>
+    <figcaption class="projectShots__head">
+      <span data-counter>{counter(0) || 'Featured'}</span>
+      <span data-alt>{shots[0].alt || title}</span>
+    </figcaption>
+    <button
+      aria-label="Expand image"
+      class="projectShots__stage"
+      data-open
+      type="button"
+    >
+      {shots.map((shot, index) => (
+        <Image
+          alt={shot.alt || title}
+          data-shot={index}
+          hidden={index !== 0}
+          src={shot.image}
+          width={1400}
+        />
+      ))}
+      <span class="projectShots__expand">Expand ⤢</span>
+    </button>
+
+    {shots.length > 1 && (
+      <div class="projectShots__rail">
+        {shots.map((shot, index) => (
+          <button
+            aria-label={`Show image ${index + 1}: ${shot.alt}`}
+            class:list={['projectShots__thumb', {'is-active': index === 0}]}
+            data-select={index}
+            type="button"
+          >
+            <Image alt={shot.alt} fit="cover" height={136} src={shot.image} width={208} />
+            <span class="projectShots__num">{pad(index + 1)}</span>
+          </button>
+        ))}
+      </div>
+    )}
+
+    {(shots[0].caption || hasGallery) && (
+      <p class="projectShots__caption" data-caption>
+        {shots[0].caption || shots[0].alt}
+      </p>
+    )}
+  </figure>
+
+  <div class="lightbox__overlay" data-lightbox hidden>
+    <div
+      aria-label={`${title} gallery image`}
+      aria-modal="true"
+      class="lightbox"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div class="lightbox__head">
+        <span class="lightbox__counter" data-counter>{counter(0)}</span>
+        <span data-alt>{shots[0].alt || title}</span>
+        <button class="lightbox__close" data-close type="button">Close ✕</button>
+      </div>
+      <div class="lightbox__stage">
+        {shots.length > 1 && (
+          <button
+            aria-label="Previous image"
+            class="lightbox__nav lightbox__nav--prev"
+            data-step="-1"
+            type="button"
+          >‹</button>
+        )}
+        {shots.map((shot, index) => (
+          <Image
+            alt={shot.alt || title}
+            class="lightbox__image"
+            data-shot={index}
+            hidden={index !== 0}
+            loading="lazy"
+            src={shot.image}
+            width={1400}
+          />
+        ))}
+        {shots.length > 1 && (
+          <button
+            aria-label="Next image"
+            class="lightbox__nav lightbox__nav--next"
+            data-step="1"
+            type="button"
+          >›</button>
+        )}
+      </div>
+      {(shots[0].caption || hasGallery) && (
+        <p class="lightbox__caption" data-caption>
+          {shots[0].caption || shots[0].alt}
+        </p>
+      )}
+      {shots.length > 1 && (
+        <div class="lightbox__rail">
+          {shots.map((shot, index) => (
+            <button
+              aria-label={`Show image ${index + 1}`}
+              class:list={['lightbox__thumb', {'is-active': index === 0}]}
+              data-select={index}
+              type="button"
+            >
+              <Image alt={shot.alt} fit="cover" height={136} loading="lazy" src={shot.image} width={208} />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+
+  <script
+    type="application/json"
+    data-shots
+    set:html={JSON.stringify(shots.map(shot => ({
+      alt: shot.alt || title,
+      caption: shot.caption || shot.alt || '',
+    })))}
+  />
+)}
+
+<script>
+  const figure = document.querySelector('[data-gallery]');
+
+  if (figure) {
+    const overlay = document.querySelector('[data-lightbox]');
+    const dialog = overlay.querySelector('[role="dialog"]');
+    const shots = JSON.parse(
+        document.querySelector('script[data-shots]').textContent,
+    );
+    const hasGallery = figure.querySelector('.projectShots__rail') !== null;
+    const pad = number => String(number).padStart(2, '0');
+    let active = 0;
+    let returnFocus = null;
+
+    const show = (index) => {
+      active = (index + shots.length) % shots.length;
+      const shot = shots[active];
+      const counter = hasGallery ?
+        `${pad(active + 1)} / ${pad(shots.length)}` :
+        '';
+
+      [figure, overlay].forEach((root) => {
+        root.querySelectorAll('[data-shot]').forEach((image) => {
+          image.hidden = Number(image.dataset.shot) !== active;
+        });
+        root.querySelectorAll('[data-select]').forEach((thumb) => {
+          thumb.classList.toggle('is-active',
+              Number(thumb.dataset.select) === active);
+        });
+        root.querySelectorAll('[data-alt]').forEach((node) => {
+          node.textContent = shot.alt;
+        });
+        root.querySelectorAll('[data-caption]').forEach((node) => {
+          node.textContent = shot.caption;
+        });
+      });
+      figure.querySelector('[data-counter]').textContent =
+        counter || 'Featured';
+      overlay.querySelector('[data-counter]').textContent = counter;
+    };
+
+    const onKey = (event) => {
+      if (event.key === 'Escape') {
+        close();
+      } else if (event.key === 'ArrowLeft') {
+        show(active - 1);
+      } else if (event.key === 'ArrowRight') {
+        show(active + 1);
+      }
+    };
+
+    const open = () => {
+      returnFocus = document.activeElement;
+      overlay.hidden = false;
+      document.documentElement.classList.add('no-html-scroll');
+      document.addEventListener('keydown', onKey);
+      dialog.focus();
+    };
+
+    function close() {
+      overlay.hidden = true;
+      document.documentElement.classList.remove('no-html-scroll');
+      document.removeEventListener('keydown', onKey);
+      returnFocus?.focus();
+    }
+
+    figure.querySelector('[data-open]').addEventListener('click', open);
+    overlay.querySelector('[data-close]').addEventListener('click', close);
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) {
+        close();
+      }
+    });
+    document.querySelectorAll('[data-select]').forEach((thumb) => {
+      thumb.addEventListener('click', () => show(Number(thumb.dataset.select)));
+    });
+    overlay.querySelectorAll('[data-step]').forEach((button) => {
+      button.addEventListener('click',
+          () => show(active + Number(button.dataset.step)));
+    });
+  }
+</script>

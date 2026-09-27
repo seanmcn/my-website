@@ -1,0 +1,9 @@
+---
+import LibraryListing from '../../../../../components/library/LibraryListing.astro';
+import {listingPaths} from '../../../../../lib/listings.js';
+
+export function getStaticPaths() {
+  return listingPaths('tag', {laterPages: true});
+}
+---
+<LibraryListing {...Astro.props} />

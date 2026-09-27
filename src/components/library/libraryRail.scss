@@ -282,9 +282,15 @@
     padding: 0.75rem 0.875rem;
     background: var(--surface);
     border: 1px solid var(--line);
+
   }
 
+  // Links rather than buttons, so each page is a real address.
   &__page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
     min-width: 2rem;
     height: 2rem;
     padding: 0 0.5rem;

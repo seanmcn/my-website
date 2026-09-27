@@ -1,0 +1,66 @@
+---
+/*
+ * Posts to Getform, with reCAPTCHA v3 loaded alongside as before. When the
+ * page was reached from an article's "Get in touch about this", the contact
+ * page's script fills the hidden `about` field so the reference travels with
+ * the message.
+ */
+
+const RECAPTCHA_KEY = '6LfhyvsUAAAAAK0VwkKfGF8YfWeTkD2lCeiLAvJ4';
+const GETFORM_URL = 'https://getform.io/f/d25c4df8-c821-4e9b-8e2f-94e08526caa0';
+
+const {email = 'me@seanmcn.com'} = Astro.props;
+---
+<form action={GETFORM_URL} class="contactForm" method="POST">
+  <input disabled name="about" type="hidden" value="" />
+
+  <div class="contactForm__grid">
+    <div class="contactForm__field">
+      <label class="contactForm__label" for="name">Name</label>
+      <input
+        class="contactForm__input"
+        id="name"
+        name="name"
+        placeholder="Your name"
+        required
+        type="text"
+      />
+    </div>
+    <div class="contactForm__field">
+      <label class="contactForm__label" for="email">Email</label>
+      <input
+        class="contactForm__input"
+        id="email"
+        name="email"
+        placeholder="you@example.com"
+        required
+        type="email"
+      />
+    </div>
+  </div>
+
+  <label class="contactForm__label contactForm__label--block" for="message">
+    Message
+  </label>
+  <textarea
+    class="contactForm__input contactForm__textarea"
+    id="message"
+    name="message"
+    placeholder="Your message"
+    required
+    rows="6"
+  ></textarea>
+
+  <div class="contactForm__actions">
+    <button class="contactForm__submit" type="submit">Send message</button>
+    <span class="contactForm__hint">
+      Or email <a href={`mailto:${email}`}>{email}</a> directly.
+    </span>
+  </div>
+</form>
+
+<script
+  is:inline
+  async
+  src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_KEY}`}
+></script>

@@ -1,0 +1,43 @@
+---
+/* components/item/seriesNavigator.js with plain links in place of Gatsby's. */
+import {itemPath, slugToTitle} from '../../utils/content.js';
+
+const {
+  currentSlug,
+  nextInSeries,
+  previousInSeries,
+  seriesCount,
+  seriesIndex,
+  seriesPosts,
+  seriesTitle,
+} = Astro.props;
+
+const show = seriesCount >= 2 && seriesTitle && seriesPosts.length;
+const displayTitle = show ? slugToTitle(seriesTitle) : '';
+---
+{show && (
+  <section class="series" aria-label={`${displayTitle} series`}>
+    <div class="series__eyebrow">Series</div>
+    <h2 class="series__title">
+      Part {seriesIndex} of {seriesCount} in {displayTitle}
+    </h2>
+    <ol class="series__list">
+      {seriesPosts.map((post, index) => (
+        <li class:list={['series__item', {'is-current': post.slug === currentSlug}]}>
+          <span class="series__order">Part {post.seriesOrder || index + 1}</span>
+          {post.slug === currentSlug ?
+            <span aria-current="true">{post.title}</span> :
+            <a href={itemPath(post.slug)}>{post.title}</a>}
+        </li>
+      ))}
+    </ol>
+    <div class="series__footer">
+      {previousInSeries ?
+        <a rel="prev" href={itemPath(previousInSeries.slug)}>‹ {previousInSeries.title}</a> :
+        <span class="is-disabled">This is the first part</span>}
+      {nextInSeries ?
+        <a rel="next" href={itemPath(nextInSeries.slug)}>{nextInSeries.title} ›</a> :
+        <span class="is-disabled">This is the latest part</span>}
+    </div>
+  </section>
+)}

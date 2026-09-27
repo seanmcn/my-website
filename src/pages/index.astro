@@ -1,0 +1,288 @@
+---
+import {Image} from 'astro:assets';
+import Icon from '../components/icons/Icon.astro';
+import Layout from '../layouts/Layout.astro';
+import avatar from '../assets/images/emojis/250/wave.png';
+import {
+  excerpt,
+  getLibraryItems,
+  getLibraryMeta,
+  getProjects,
+  readingTimeMinutes,
+} from '../lib/library.js';
+import {
+  formatDayMonth,
+  formatItemDate,
+  itemPath,
+  readTimeLabel,
+  slugToTitle,
+} from '../utils/content.js';
+
+const DESCRIPTION = 'Seán McNamara\'s personal website, containing ' +
+  'articles surrounding programming, technology, games & reviews.';
+
+function formatReadMinutes(minutes) {
+  if (minutes >= 60) {
+    return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
+  }
+
+  return `${minutes}m`;
+}
+
+/* A post's one-liner: its first margin note if it has one, else its summary. */
+function oneLine(item) {
+  const {data} = item;
+
+  return data.margins[0]?.text || data.summary || excerpt(item, 160);
+}
+
+const items = await getLibraryItems();
+const {counts, readMinutes} = await getLibraryMeta();
+const ofType = type => items.filter(item => item.data.type === type);
+const posts = ofType('post').slice(0, 3);
+const notes = ofType('note').slice(0, 3);
+const finds = ofType('find').slice(0, 5);
+const projects = (await getProjects()).slice(0, 3);
+
+const stats = [
+  {label: 'Read time', value: formatReadMinutes(readMinutes)},
+  {label: 'Posts', value: counts.post},
+  {label: 'Notes', value: counts.note},
+  {label: 'Finds', value: counts.find},
+];
+---
+<Layout title="Home - Seán McNamara" description={DESCRIPTION}>
+  <div class="pageWrap homePage">
+    <!--
+      The design opens on the bio rather than a page title, so the h1 is
+      carried for screen readers and skipped visually.
+    -->
+    <h1 class="visually-hidden">Seán McNamara</h1>
+    <div class="homePage__row">
+      <aside class="rail rail--bio homeBio">
+        <div class="homeBio__top">
+          <p class="homeBio__headline">
+            I build things, pull them apart, and try to make them better.
+          </p>
+          <span class="homeBio__avatarOuter">
+            <span class="homeBio__avatar">
+              <img alt="Seán McNamara" src={avatar.src} />
+            </span>
+          </span>
+        </div>
+
+        <div class="homeBio__body">
+          <p class="homeBio__blurb">
+            Usually software. Increasingly AI. Mostly me thinking out loud
+            about what I&rsquo;m building, learning, or getting unnecessarily
+            interested in.
+          </p>
+          <div class="homeBio__aboutLink">
+            <a href="/about/">More about me →</a>
+          </div>
+          <div class="homeBio__role">
+            <span class="homeBio__roleDot"></span>
+            <span>
+              Head of Engineering,{' '}
+              <span class="homeBio__roleOrg">Axiom Maths</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="homeBio__stats">
+          {stats.map(stat => (
+            <div class="homeBio__stat">
+              <span>{stat.label}</span>
+              <span class="homeBio__statValue">{stat.value}</span>
+            </div>
+          ))}
+        </div>
+      </aside>
+
+      <div class="homePage__main">
+        <div class="homePage__split">
+          <div>
+            <div class="sectionRule">
+              <h2 class="sectionRule__badge" style="background: var(--plum)">
+                Latest posts
+              </h2>
+              <span class="sectionRule__line"></span>
+              <a
+                class="sectionRule__link"
+                style="color: var(--plum)"
+                href="/library/posts/"
+              >
+                All posts →
+              </a>
+            </div>
+
+            <div class="homeLead">
+              {posts.map((post) => {
+                const {data} = post;
+                const readTime = readTimeLabel(readingTimeMinutes(post.body));
+
+                return (
+                  <a class="homeLead__card" href={itemPath(data.slug)}>
+                    <span class="homeLead__meta">
+                      {data.category && (
+                        <span class="homeLead__metaCat">
+                          <Icon name="category" size={11} />
+                          {slugToTitle(data.category)}
+                        </span>
+                      )}
+                      <span class="homeLead__metaDate">
+                        <Icon name="calendar" size={11} />
+                        {formatItemDate(data.date)}
+                      </span>
+                      {readTime && (
+                        <span class="homeLead__metaTime">
+                          <Icon name="clock" size={11} />
+                          {readTime}
+                        </span>
+                      )}
+                    </span>
+                    <span class="homeLead__title">{data.title}</span>
+                    <span class="homeLead__body">{oneLine(post)}</span>
+                    {data.featured && (
+                      <span class="homeLead__image">
+                        <Image alt="" src={data.featured} width={320} />
+                      </span>
+                    )}
+                    {readTime && (
+                      <span class="homeLead__timeRow">
+                        <Icon name="clock" size={11} />
+                        {readTime}
+                      </span>
+                    )}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+
+          <div class="homeAside">
+            <div>
+              <div class="sectionRule">
+                <span class="sectionRule__badge" style="background: var(--blue)">
+                  Finds
+                </span>
+                <span class="sectionRule__line"></span>
+                <a
+                  class="sectionRule__link"
+                  style="color: var(--blue)"
+                  href="/library/finds/"
+                >
+                  All finds →
+                </a>
+              </div>
+              <div class="homeAside__finds">
+                {finds.length === 0 && (
+                  <p class="homeAside__empty">
+                    Nothing filed yet. Links worth passing on will land here.
+                  </p>
+                )}
+                {finds.map(({data}) => {
+                  const {day, monthShort} = formatDayMonth(data.date);
+
+                  return (
+                    <a class="homeAside__find" href={itemPath(data.slug)}>
+                      <span class="homeAside__findDate">
+                        {day} {monthShort}
+                      </span>
+                      <span class="homeAside__findTitle">{data.title}</span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div>
+              <div class="sectionRule">
+                <span
+                  class="sectionRule__badge"
+                  style="background: var(--amber); color: var(--amber-bg)"
+                >
+                  Notes
+                </span>
+                <span class="sectionRule__line"></span>
+                <a
+                  class="sectionRule__link"
+                  style="color: var(--amber)"
+                  href="/library/notes/"
+                >
+                  All notes →
+                </a>
+              </div>
+              <div class="homeAside__notes">
+                {notes.length === 0 && (
+                  <p class="homeAside__empty">
+                    Nothing filed yet. Shorter thoughts will land here.
+                  </p>
+                )}
+                {notes.map((note) => {
+                  const {data} = note;
+                  const {day, monthShort} = formatDayMonth(data.date);
+
+                  return (
+                    <a class="homeAside__note" href={itemPath(data.slug)}>
+                      <span class="homeAside__noteDate">
+                        {day} {monthShort}
+                      </span>
+                      <span class="homeAside__noteTitle">{data.title}</span>
+                      <span class="homeAside__noteExcerpt">
+                        {data.summary || excerpt(note, 130)}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section>
+          <div class="sectionRule">
+            <h2 class="sectionRule__badge">Things I&apos;ve built</h2>
+            <span class="sectionRule__line"></span>
+            <a class="sectionRule__link" href="/projects/">All projects →</a>
+          </div>
+          <div class="homeProjects">
+            {projects.map(({data}) => (
+              <a class="homeProjects__row" href={`/projects/${data.slug}/`}>
+                {data.featured ? (
+                  <span class="homeProjects__thumb">
+                    <Image
+                      alt=""
+                      fit="cover"
+                      height={130}
+                      position="top"
+                      src={data.featured}
+                      width={174}
+                    />
+                  </span>
+                ) : (
+                  <span class="homeProjects__thumb homeProjects__thumb--blank"></span>
+                )}
+                <span>
+                  <span class="homeProjects__meta">
+                    {data.language} · {data.date.getUTCFullYear()}
+                  </span>
+                  <span class="homeProjects__line">
+                    <span class="homeProjects__name">{data.title}</span>
+                    <span class="homeProjects__blurb"> — {data.summary}</span>
+                  </span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import {condenseOnScroll} from '../scripts/condensed.js';
+
+  condenseOnScroll('.homeBio__avatar');
+</script>

@@ -115,13 +115,21 @@ html[data-theme='dark'] {
   box-sizing: border-box;
 }
 
+/*
+ * The hidden attribute always wins. Scripts toggle it on elements whose own
+ * rules set a display (the mobile menu, the reply box, the pagination grid),
+ * which would otherwise override the browser's display: none.
+ */
+[hidden] {
+  display: none !important;
+}
+
 /**
- * `overflow-x: hidden` (here and on body, and previously on the Gatsby
- * wrapper divs below) turns the element into a scroll container, which
- * breaks `position: sticky` for every descendant (the header, rails,
- * itemBar...) throughout the site. `clip` still stops horizontal overflow
- * from creating a scrollbar, but doesn't establish a scroll container, so
- * sticky descendants keep working.
+ * `overflow-x: hidden` (here and on body) turns the element into a scroll
+ * container, which breaks `position: sticky` for every descendant (the
+ * header, rails, itemBar...) throughout the site. `clip` still stops
+ * horizontal overflow from creating a scrollbar, but doesn't establish a
+ * scroll container, so sticky descendants keep working.
  */
 html {
   /**
@@ -161,11 +169,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-/**
- * These Gatsby wrapper divs intentionally carry no overflow rule of their
- * own, for the same reason as above.
- */
 
 ::selection {
   background: var(--selection-background);
