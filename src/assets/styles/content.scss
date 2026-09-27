@@ -456,8 +456,44 @@
     @include narrow {
       float: none;
       clear: none;
-      width: 100%;
-      margin: 0.625rem 0 1.75rem;
+      width: 80%;
+      margin: 0.625rem auto 1.75rem;
+    }
+  }
+
+  /* A note and the block it annotates, grouped at build time (see
+     src/utils/remark-sticky-pairs.mjs). Wide, the group steps out of the
+     layout and the note floats beside the block as usual. On a phone the
+     note has no room beside it, so it moves below the block instead of
+     sitting above something the reader hasn't reached yet. Flex children's
+     margins don't collapse, so the spacing moves onto the gap and the
+     group's own margin, which still collapses with what follows. */
+  .stickyPair {
+    /* The same measure .prose > p gets, which no longer reaches a paragraph
+       once it's grouped in here. */
+    > p {
+      max-width: 74ch;
+    }
+
+    @include not-narrow {
+      display: contents;
+    }
+
+    @include narrow {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.5rem;
+      margin: 0 0 1.75rem;
+
+      > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      > .stickyNote,
+      > .stickyStack {
+        order: 1;
+      }
     }
   }
 

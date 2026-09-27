@@ -5,6 +5,7 @@ import {fileURLToPath} from "url"
 import rehypeSlug from 'rehype-slug';
 import remarkEmoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
+import remarkStickyPairs from './src/utils/remark-sticky-pairs.mjs';
 import remarkYouTubeEmbed from './src/utils/remark-youtube-embed.mjs';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -108,6 +109,7 @@ const config = {
                     remarkPlugins: [
                             remarkGfm,
                             remarkYouTubeEmbed,
+                            remarkStickyPairs,
                             remarkEmoji,
                     ],
                     rehypePlugins: [
