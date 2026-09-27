@@ -1,0 +1,25 @@
+---
+/*
+ * A reference for the components posts can use, rendered with the site's own
+ * CSS and header, so the theme toggle works on every example. Only exists
+ * under `astro dev` (see src/integrations/dev-pages.mjs); never built.
+ */
+import Layout from '../layouts/Layout.astro';
+import Prose from '../components/Prose.astro';
+import {MDX_COMPONENTS} from '../components/mdx/index.js';
+import {Content} from './components.mdx';
+---
+<Layout title="Components - Seán McNamara" noIndex>
+  <div class="pageWrap itemPage">
+    <article class="itemPage__article">
+      <div class="itemBar">
+        <h1 class="itemBar__title">Post components</h1>
+      </div>
+      <div class="itemPage__body">
+        <Prose>
+          <Content components={MDX_COMPONENTS} />
+        </Prose>
+      </div>
+    </article>
+  </div>
+</Layout>
