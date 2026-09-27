@@ -20,8 +20,7 @@ ratings:
     - "**.scss"
 
 exclude_paths:
-- static/**/*
+- public/**/*
 - content/**/*
 - tests/e2e/**/*
-- gatsby-config.mjs
-- gatsby-node.mjs
+- astro.config.mjs

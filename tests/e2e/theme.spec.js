@@ -57,7 +57,9 @@ test('follows system changes until a theme is chosen', async ({page}) => {
       .toBe('light');
 });
 
-test('never erases a saved preference during hydration', async ({page}) => {
+// The boot script reads the saved preference before first paint and nothing
+// rewrites it afterwards, so loading a page must leave storage untouched.
+test('never writes the saved preference on load', async ({page}) => {
   await page.addInitScript((key) => {
     localStorage.setItem(key, 'dark');
     window.themeStorageWrites = [];
@@ -73,14 +75,7 @@ test('never erases a saved preference during hydration', async ({page}) => {
   }, THEME_STORAGE_KEY);
   await visitPage(page, '/');
   await expectTheme(page, 'dark');
-  // Wait for the provider's persistence effect, not just the SSR boot script.
-  await expect.poll(() => page.evaluate(() => window.themeStorageWrites.length))
-      .toBeGreaterThan(0);
-  const writes = await page.evaluate(() => window.themeStorageWrites);
-  for (const {method, args} of writes) {
-    expect(method).toBe('setItem');
-    expect(args).toEqual([THEME_STORAGE_KEY, 'dark']);
-  }
+  expect(await page.evaluate(() => window.themeStorageWrites)).toEqual([]);
   expect(await page.evaluate(
       key => localStorage.getItem(key), THEME_STORAGE_KEY))
       .toBe('dark');

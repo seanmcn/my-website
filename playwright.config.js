@@ -18,12 +18,15 @@ module.exports = defineConfig({
   },
   projects: [{name: 'chromium', use: {browserName: 'chromium'}}],
   webServer: {
-    command: 'npm run build && npm run serve -- --host 127.0.0.1 --port 8001',
+    // --ignore-lock keeps astro preview in the foreground; without it, it
+    // backgrounds itself when run by a coding agent, which Playwright would
+    // read as the server exiting.
+    command: 'npm run build && ' +
+      'npm run preview -- --host 127.0.0.1 --port 8001 --ignore-lock',
     url: 'http://127.0.0.1:8001',
-    // Always test a fresh production build, including SSR and hydration.
+    // Always test a fresh production build.
     reuseExistingServer: false,
     timeout: 300_000,
     stdout: 'pipe',
-    env: {E2E_TESTING: 'true'},
   },
 });

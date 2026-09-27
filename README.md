@@ -5,13 +5,18 @@
 [![Node.js](https://img.shields.io/badge/node-22.x-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Playwright](https://github.com/Seanmcn/my-website/actions/workflows/playwright.yml/badge.svg)](https://github.com/Seanmcn/my-website/actions/workflows/playwright.yml)
 
-The codebase for [seanmcn.com](https://seanmcn.com), a Gatsby-powered personal site and blog built with React, MDX, and Bulma.
+The codebase for [seanmcn.com](https://seanmcn.com), a personal site and blog built with Astro, Markdown and MDX.
 
 ## Overview
 
-- Blog content is sourced from Markdown and MDX files in `content/blog`.
-- Pages are statically generated with Gatsby and deployed via AWS Amplify.
-- Search is powered client-side with Fuse.js and `match-sorter`.
+- Library content (posts, notes and finds) is Markdown and MDX in `content/blog`,
+  projects are Markdown in `content/projects`; both are Astro content collections
+  with their frontmatter validated in `src/content.config.js`.
+- Pages are statically generated with Astro and deployed via AWS Amplify. They
+  ship no framework JavaScript; the only React islands are search and the
+  cheat sheet table.
+- Search runs client-side with Fuse.js over `/search-index.json`, built with the
+  site.
 - End-to-end coverage is handled with Playwright and axe.
 
 ## Live Environments
@@ -21,10 +26,10 @@ The codebase for [seanmcn.com](https://seanmcn.com), a Gatsby-powered personal s
 
 ## Tech Stack
 
-- Gatsby 5
-- React 18
+- Astro 7, with Sätteri (its default Markdown processor) and Shiki
 - MDX
-- Bulma + Sass
+- React 18, for the two islands
+- Sass
 - AWS Amplify
 - Playwright
 
@@ -38,25 +43,31 @@ The codebase for [seanmcn.com](https://seanmcn.com), a Gatsby-powered personal s
 ### Install
 
 ```bash
-nvm use
+fnm use   # or nvm use; both read .nvmrc
 npm ci
 ```
 
 ### Run Locally
 
 ```bash
-npm run develop
+npm run dev
 ```
 
-The site will start on port `8000`, or the next available port if `8000` is already in use.
+The site starts on port `4321`, or the next free port. The components posts can
+use (Kbd, Steps, Note, sticky notes, code listings, diagrams) are laid out at
+`/dev/components/`, which only exists under the dev server; edit
+`src/dev/components.mdx` to try things out.
+
+Drafts (`draft: true` in frontmatter) show under the dev server and are left out
+of builds, unless the build runs with `SHOW_DRAFTS=true`.
 
 ## Useful Scripts
 
 ```bash
-npm run develop     # Start the Gatsby dev server
-npm run build       # Create a production build
-npm run serve       # Serve the production build locally
-npm run clean       # Remove Gatsby caches and build output
+npm run dev         # Start the Astro dev server
+npm run build       # Create a production build in dist/
+npm run preview     # Serve the production build locally
+npm run clean       # Remove the build output and Astro's caches
 npm run post:create # Scaffold a new post
 npm test            # Run Playwright headlessly
 npm run test:e2e:ui  # Open the interactive Playwright runner
@@ -73,9 +84,8 @@ npm test
 ```
 
 Playwright builds the site, starts a production server at `http://127.0.0.1:8001`,
-and stops it when finished. Keep that port free and stop any Gatsby development
-server before running tests, since Gatsby shares its build output and cache.
-Use Node.js 22 (`nvm use`) for both installation and tests.
+and stops it when finished. Keep that port free. Use Node.js 22 for both
+installation and tests.
 
 The initial Chromium suite in `tests/e2e/` covers:
 
@@ -84,12 +94,15 @@ The initial Chromium suite in `tests/e2e/` covers:
 - Full-page axe accessibility scans on ten representative routes in light and
   dark themes at mobile and desktop widths, plus open menus and filters.
 - System appearance, manual theme changes, keyboard activation, persistence
-  across navigation/reloads, and saved preferences during hydration.
+  across navigation/reloads, and saved preferences left untouched on load.
+- Content behaviour in `content.spec.js`: sticky note stacks, code copy
+  buttons, Mermaid diagrams and their viewer, the cheat sheet filter, project
+  galleries and filters, contact replies, search, and the old `/blog/`
+  redirects.
 
 Automated axe checks complement manual keyboard and screen-reader testing.
 YouTube players are excluded from axe because their content is controlled by
 YouTube; the site's iframe titles are checked separately.
-The broader content-feature tests are outside this initial suite.
 
 `npm run test:e2e` and `npm run test:e2e:ci` also run the headless suite.
 To run one area, use `npm run test:e2e -- tests/e2e/theme.spec.js`.
@@ -117,12 +130,17 @@ image into `content/blog/2026/04/images/`.
 ## Project Structure
 
 ```text
-content/blog/   Blog posts and MDX content
-src/components/ Reusable UI components
-src/pages/      Route-level pages
-src/templates/  Gatsby page templates
-gatsby-*.mjs    Gatsby config and build hooks
-amplify.yml     AWS Amplify build configuration
+content/blog/        Library items (Markdown and MDX)
+content/projects/    Project pages
+public/              Files served as-is (favicons, robots.txt, sw.js)
+src/pages/           Routes
+src/components/      Astro components, plus the two React islands
+src/lib/             Content queries: listings, related posts, search index
+src/plugins/         The Markdown plugins and code listing theme
+src/integrations/    Build hooks: legacy redirects, dev-only pages
+src/scripts/         Browser scripts (theme, header, prose, diagrams)
+astro.config.mjs     Astro config
+amplify.yml          AWS Amplify build configuration
 ```
 
 ## Deployment
@@ -142,6 +160,13 @@ seven days. No test-dashboard account or recording secret is required.
 
 ## Notes
 
-- The test server sets `E2E_TESTING=true` so archive content remains available
-  if the development-only archive shortcut is enabled in Gatsby's config.
+- Old `/blog/…` addresses and merged categories are redirected by
+  `src/integrations/redirects.mjs`, which writes a redirect page at each old
+  address and `dist/amplify-redirects.json` with the same rules, ready to paste
+  into Amplify as real 301s.
+- `public/sw.js` replaces the Gatsby site's offline service worker: returning
+  visitors who still have that installed pick this one up, and it clears its
+  caches and unregisters itself.
+- Astro caches rendered Markdown. After changing a plugin in `src/plugins/`,
+  run `npm run clean` so every post is rendered again.
 - Playwright browsers are installed explicitly for testing, not during Amplify deployment.

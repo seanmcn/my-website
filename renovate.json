@@ -33,9 +33,10 @@
         },
         {
             "matchPackageNames": [
-                "/^gatsby/"
+                "astro",
+                "/^@astrojs//"
             ],
-            "groupName": "gatsby"
+            "groupName": "astro"
         },
         {
             "matchManagers": [

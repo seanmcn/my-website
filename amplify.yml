@@ -8,13 +8,13 @@ frontend:
                 - nvm install --no-progress 22
                 - nvm use 22
                 - export CI=true
-                - export GATSBY_TELEMETRY_DISABLED=1
+                - export ASTRO_TELEMETRY_DISABLED=1
                 - npm ci --no-audit --no-fund
         build:
             commands:
                 - npm run build
     artifacts:
-        baseDirectory: public
+        baseDirectory: dist
         files:
             - '**/*'
     cache:
