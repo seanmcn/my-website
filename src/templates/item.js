@@ -68,9 +68,15 @@ const ItemPage = ({children, data, location, pageContext}) => {
           <div className={`itemBar ${condensed ? 'is-condensed' : ''}`}>
             <Link className="itemBar__back" to="/library/">
               <ArrowLeftIcon />
-              Library
+              <span className="itemBar__backLabel">Library</span>
             </Link>
             <h1 className="itemBar__title">{frontmatter.title}</h1>
+            {!isFind && readTime && (
+              <span className="itemBar__readTime">
+                <ClockIcon />
+                {readTime}
+              </span>
+            )}
             <span className="itemBar__date">
               <CalendarIcon />
               {formatItemDate(frontmatter.date)}
