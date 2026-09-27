@@ -1,0 +1,14 @@
+---
+/*
+ * One icon from icons.js. `name` is an ICONS key, or pass `keycap` for a
+ * <Kbd> keycap glyph, which always carries its accessible label.
+ */
+import {ICONS, KEYS, iconParts} from './icons.js';
+
+const {name, keycap, size = 12, title, class: className, style} = Astro.props;
+const icon = keycap ? KEYS[keycap] : ICONS[name];
+const {attrs, body} = icon ?
+  iconParts(icon, {size, title: keycap ? icon.label : title}) :
+  {};
+---
+{icon && <svg {...attrs} class={className} style={style} set:html={body} />}

@@ -1,6 +1,5 @@
 import React from 'react';
-import {icon} from '@fortawesome/fontawesome-svg-core/import.macro';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {SearchIcon} from '../icons/icons.jsx';
 
 function GlobalFilter({
   preGlobalFilteredRows,
@@ -20,7 +19,7 @@ function GlobalFilter({
         className="input is-medium"
       />
       <span className="icon is-right">
-        <FontAwesomeIcon icon={icon({name: 'search'})} />
+        <SearchIcon size={14} />
       </span>
     </div>
   );
