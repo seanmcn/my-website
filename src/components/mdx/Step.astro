@@ -1,0 +1,17 @@
+---
+/*
+ * One "Verb: target" action. React split the verb off the first string
+ * child; here it is split off the rendered HTML, but only when the colon
+ * comes before any markup, so a colon inside a <Kbd> is left alone.
+ */
+const html = (await Astro.slots.render('default')).trim();
+const colon = html.indexOf(':');
+const tag = html.indexOf('<');
+const hasVerb = colon !== -1 && (tag === -1 || colon < tag);
+const verb = hasVerb ? html.slice(0, colon).trim() : '';
+const target = hasVerb ? html.slice(colon + 1).trimStart() : html;
+---
+<li class="steps__row">
+  <span class="steps__verb"><Fragment set:html={verb} /><span aria-hidden="true" class="steps__connector"></span></span>
+  <span class="steps__target"><Fragment set:html={target} /></span>
+</li>

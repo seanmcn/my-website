@@ -1,0 +1,122 @@
+---
+/*
+ * Two or more StickyNotes stacked like paper, cycled with arrows. The notes
+ * are server-rendered as ordinary StickyNotes (which is also what a reader
+ * without JavaScript sees), and the script below rearranges them into the
+ * same ghost / rear / active structure the React version rendered, so the
+ * existing stickyStack styles apply unchanged.
+ */
+---
+<div class="stickyStack" data-sticky-stack><slot /></div>
+
+<script>
+  const TILTS = [1.6, -1.6, 2.2, -2.2];
+  const tiltFor = index => TILTS[index % TILTS.length];
+
+  function noteBody(note) {
+    const fragment = document.createDocumentFragment();
+    fragment.append(
+        note.querySelector('.stickyNote__label').cloneNode(true),
+        note.querySelector('.stickyNote__text').cloneNode(true),
+    );
+    return fragment;
+  }
+
+  function el(tag, className, attributes = {}) {
+    const node = document.createElement(tag);
+    node.className = className;
+    Object.entries(attributes).forEach(([key, value]) => {
+      node.setAttribute(key, value);
+    });
+    return node;
+  }
+
+  document.querySelectorAll('[data-sticky-stack]').forEach((stack) => {
+    const notes = [...stack.querySelectorAll(':scope > .stickyNote')];
+    const count = notes.length;
+
+    if (count <= 1) {
+      return;
+    }
+
+    let active = 0;
+    const wrap = el('div', 'stickyStack__wrap');
+    const ghosts = notes.map((note) => {
+      const ghost = el('div', 'stickyStack__ghost', {'aria-hidden': 'true'});
+      ghost.append(noteBody(note));
+      return ghost;
+    });
+
+    function render() {
+      const note = notes[active];
+      const color = note.dataset.color;
+      const rears = notes.map((rear, i) => {
+        const depth = (i - active + count) % count;
+        if (depth === 0) {
+          return null;
+        }
+        const div = el(
+            'div',
+            `stickyStack__rear stickyNote--${rear.dataset.color}`,
+        );
+        div.style.setProperty('--stickyRearDepth', depth);
+        div.style.setProperty('--stickyTilt', `${tiltFor(i)}deg`);
+        return div;
+      }).filter(Boolean);
+
+      const front = el('div', `stickyStack__note stickyNote--${color}`);
+      if (note.dataset.marker) {
+        front.id = `sticky-${note.dataset.marker}`;
+      }
+      front.style.setProperty('--stickyTilt', `${tiltFor(active)}deg`);
+
+      const content = el('div', 'stickyNote__content');
+      const counter = el('div', 'stickyStack__counter');
+      const previous = el('button', 'stickyStack__arrow', {
+        'aria-label': 'Previous note', 'type': 'button',
+      });
+      const next = el('button', 'stickyStack__arrow', {
+        'aria-label': 'Next note', 'type': 'button',
+      });
+      const position = document.createElement('span');
+
+      previous.textContent = '←';
+      next.textContent = '→';
+      position.textContent = `${active + 1} / ${count}`;
+      previous.addEventListener('click', () => goTo(active - 1));
+      next.addEventListener('click', () => goTo(active + 1));
+      counter.append(previous, position, next);
+      content.append(noteBody(note), counter);
+      front.append(
+          el('span', 'stickyNote__paper', {'aria-hidden': 'true'}),
+          el('span', 'stickyNote__tape', {'aria-hidden': 'true'}),
+          content,
+      );
+      wrap.replaceChildren(...rears, front);
+    }
+
+    function goTo(index) {
+      active = ((index % count) + count) % count;
+      render();
+    }
+
+    // Let a StickyRef flip the stack to its note before scrolling to it.
+    notes.forEach((note, i) => {
+      const marker = note.dataset.marker;
+      if (!marker) {
+        return;
+      }
+      document.querySelectorAll(`[data-sticky-ref="${marker}"]`)
+          .forEach((ref) => {
+            ref.addEventListener('click', (event) => {
+              event.preventDefault();
+              goTo(i);
+              stack.scrollIntoView({behavior: 'smooth', block: 'center'});
+            });
+          });
+    });
+
+    render();
+    stack.replaceChildren(...ghosts, wrap);
+  });
+</script>

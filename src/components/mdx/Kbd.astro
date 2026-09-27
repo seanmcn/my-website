@@ -1,0 +1,20 @@
+---
+/*
+ * A shortcut written as plain text, e.g. `cmd-shift-.` or `control-left/right`
+ * for alternates. Hyphens separate keys (rendered as +, matching how the keys
+ * are actually pressed) and slashes separate alternates (rendered as /). Keys
+ * with a glyph in icons.js render as that glyph; anything else is a literal
+ * keycap, e.g. Space, Del, 4, `. The slot arrives as rendered HTML, so it is
+ * split as text and passed back through set:html to keep its entities.
+ */
+import Icon from '../icons/Icon.astro';
+import {KEYS} from '../icons/icons.js';
+
+const text = (await Astro.slots.render('default')).trim();
+const chunks = text.split(/([-/])/);
+---
+<span class="shortcut">{chunks.map((chunk, i) => i % 2 === 1 ?
+  <span class="keySep">{chunk === '-' ? '+' : '/'}</span> :
+  <code>{chunk.toLowerCase() in KEYS ?
+    <Icon keycap={chunk.toLowerCase()} /> :
+    <Fragment set:html={chunk} />}</code>)}</span>

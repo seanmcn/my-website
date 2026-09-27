@@ -14,8 +14,7 @@
      here so it counts per article rather than per heading. */
   counter-reset: section;
 
-  > p,
-  > .gatsby-highlight + p {
+  > p {
     max-width: 74ch;
     margin: 0 0 1.375rem;
     text-wrap: pretty;
@@ -834,15 +833,30 @@
     @include label(0.625rem, 0.12em);
   }
 
-  img,
-  .gatsby-resp-image-wrapper {
+  img {
     display: block;
+    width: 100%;
+    height: auto;
     margin: 0 0 1.75rem;
     border: 1px solid var(--line);
   }
 
-  .gatsby-resp-image-wrapper {
-    max-width: 100% !important;
+  // Transparent screenshots and sprites sit on white, as they did under
+  // gatsby-remark-images, rather than on the paper ground.
+  > img,
+  .proseImageLink img {
+    background: #fff;
+  }
+
+  // Each image links to its full-size file (src/scripts/prose.js), as
+  // gatsby-remark-images' linkImagesToOriginal did.
+  .proseImageLink {
+    display: block;
+    margin: 0 0 1.75rem;
+
+    img {
+      margin: 0;
+    }
   }
 
   /**
@@ -853,6 +867,13 @@
     float: right;
     width: 40%;
     margin: 0 -2.75rem 0.75rem 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+    }
 
     @include mid {
       width: 30%;

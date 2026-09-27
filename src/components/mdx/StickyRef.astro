@@ -1,0 +1,10 @@
+---
+/* A footnote-style marker pointing at the StickyNote with the same marker. */
+const {color = 'amber', n} = Astro.props;
+---
+<a
+  aria-label={`Jump to note ${n}`}
+  class={`stickyRef stickyRef--${color}`}
+  href={`#sticky-${n}`}
+  data-sticky-ref={n}
+>{n}</a>
