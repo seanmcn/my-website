@@ -5,8 +5,8 @@ frontend:
             commands:
                 - export NVM_DIR="$HOME/.nvm"
                 - . "$NVM_DIR/nvm.sh"
-                - nvm install --no-progress 22
-                - nvm use 22
+                - nvm install --no-progress 24
+                - nvm use 24
                 - export CI=true
                 - export GATSBY_TELEMETRY_DISABLED=1
                 - npm ci --no-audit --no-fund
