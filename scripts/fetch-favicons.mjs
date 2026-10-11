@@ -66,7 +66,7 @@ async function alreadyCached(hostname) {
 
 async function fetchFavicon(hostname) {
   const res = await fetch(
-    `https://www.google.com/s2/favicons?sz=64&domain=${encodeURIComponent(hostname)}`,
+      `https://www.google.com/s2/favicons?sz=64&domain=${encodeURIComponent(hostname)}`,
   );
   if (!res.ok) {
     throw new Error(`HTTP ${res.status}`);

@@ -147,7 +147,7 @@ export function normaliseSlugSegment(input) {
 export function parseDotEnv(contents) {
   const env = {};
 
-  contents.split(/\r?\n/).forEach(line => {
+  contents.split(/\r?\n/).forEach((line) => {
     const trimmed = line.trim();
 
     if (!trimmed || trimmed.startsWith('#')) {
@@ -209,7 +209,9 @@ export function buildVariationKey(postPath, postBaseName, userPrompt) {
   return `${postPath}::${postBaseName}::${userPrompt.trim().toLowerCase()}`;
 }
 
-export function buildImagePrompt(userPrompt, variationKey, paletteMode, internalStyle) {
+export function buildImagePrompt(
+    userPrompt, variationKey, paletteMode, internalStyle,
+) {
   const variation = pickAutoStyle(variationKey, paletteMode);
   const stylePrompt = STYLE_PROMPTS[internalStyle];
 
@@ -279,7 +281,7 @@ function buildFrontmatterLine(key, value) {
   return `${key}: '${escapeYamlSingleQuoted(value)}'`;
 }
 
-// fields: ordered array of [key, value] to set/replace in the frontmatter block.
+// fields: ordered array of [key, value] to set or replace in the frontmatter.
 export async function updateFrontmatterFields(postPath, fields) {
   const contents = await fs.readFile(postPath, 'utf8');
   const frontmatterMatch = contents.match(/^---\r?\n([\s\S]*?)\r?\n---/);

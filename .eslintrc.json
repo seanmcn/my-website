@@ -1,4 +1,5 @@
 {
+    "root": true,
     "env": {
         "browser": true,
         "es2021": true
@@ -26,6 +27,20 @@
         "require-jsdoc": "off",
         "arrow-parens":  ["error", "as-needed", { "requireForBlockBody": true }]
     },
+    "overrides": [
+        {
+            "files": ["scripts/**/*.mjs", "scripts/**/*.js"],
+            "env": {"browser": false, "node": true},
+            "rules": {
+                "max-len": ["error", {
+                    "code": 80,
+                    "ignoreStrings": true,
+                    "ignoreTemplateLiterals": true,
+                    "ignoreUrls": true
+                }]
+            }
+        }
+    ],
     "settings": {
         "react": {
             "version" : "detect"

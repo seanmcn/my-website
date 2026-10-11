@@ -7,7 +7,7 @@ const BLOG_DIR = path.resolve('content/blog');
 const SUPPORTED_EXTENSIONS = new Set(['.md', '.mdx']);
 
 async function collectPostFiles(dir) {
-  const entries = await fs.readdir(dir, { withFileTypes: true });
+  const entries = await fs.readdir(dir, {withFileTypes: true});
   const files = [];
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
@@ -27,12 +27,14 @@ function tally(map, value) {
 
 function formatCounts(map) {
   const sorted = [...map.entries()].sort(
-    (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
+      (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
   );
-  const width = sorted.reduce((max, [, count]) => Math.max(max, String(count).length), 0);
+  const width = sorted.reduce(
+      (max, [, count]) => Math.max(max, String(count).length), 0,
+  );
   return sorted
-    .map(([name, count]) => `  ${String(count).padStart(width)}  ${name}`)
-    .join('\n');
+      .map(([name, count]) => `  ${String(count).padStart(width)}  ${name}`)
+      .join('\n');
 }
 
 async function main() {
@@ -42,16 +44,17 @@ async function main() {
 
   for (const file of files) {
     const raw = await fs.readFile(file, 'utf8');
-    const { data } = matter(raw);
+    const {data} = matter(raw);
     tally(categories, data.category);
     for (const tag of data.tags ?? []) tally(tags, tag);
   }
 
   const asJson = process.argv.includes('--json');
   if (asJson) {
-    const toObject = (map) =>
-      Object.fromEntries([...map.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])));
-    console.log(JSON.stringify({ categories: toObject(categories), tags: toObject(tags) }, null, 2));
+    const toObject = map => Object.fromEntries([...map.entries()]
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])));
+    const taxonomy = {categories: toObject(categories), tags: toObject(tags)};
+    console.log(JSON.stringify(taxonomy, null, 2));
     return;
   }
 

@@ -79,7 +79,9 @@ async function loadRecentPosts(repoRoot, excludePostPath) {
   return posts.slice(0, RECENT_POST_LIMIT);
 }
 
-async function buildConceptPrompt(apiKey, targetFrontmatter, bodyExcerpt, recentConcepts) {
+async function buildConceptPrompt(
+    apiKey, targetFrontmatter, bodyExcerpt, recentConcepts,
+) {
   const recentConceptsBlock = recentConcepts.length > 0 ?
     recentConcepts.map(concept => `- ${concept}`).join('\n') :
     '- (no recent history yet)';
@@ -169,13 +171,17 @@ async function main() {
   const bodyExcerpt = excerptBody(stripFrontmatter(contents));
   const recentPosts = await loadRecentPosts(repoRoot, postPath);
 
-  const lastStyle = recentPosts.find(post => AUTO_STYLES.includes(post.frontmatter.featuredStyle))
+  const lastStyle = recentPosts
+      .find(post => AUTO_STYLES.includes(post.frontmatter.featuredStyle))
       ?.frontmatter.featuredStyle;
-  const lastPalette = recentPosts.find(post => AUTO_PALETTES.includes(post.frontmatter.featuredPalette))
+  const lastPalette = recentPosts
+      .find(post => AUTO_PALETTES.includes(post.frontmatter.featuredPalette))
       ?.frontmatter.featuredPalette;
 
-  const internalStyle = lastStyle ? otherOf(AUTO_STYLES, lastStyle) : AUTO_STYLES[0];
-  const paletteMode = lastPalette ? otherOf(AUTO_PALETTES, lastPalette) : AUTO_PALETTES[0];
+  const internalStyle =
+    lastStyle ? otherOf(AUTO_STYLES, lastStyle) : AUTO_STYLES[0];
+  const paletteMode =
+    lastPalette ? otherOf(AUTO_PALETTES, lastPalette) : AUTO_PALETTES[0];
 
   const recentConcepts = recentPosts
       .map(post => post.frontmatter.featuredPrompt)
@@ -186,14 +192,21 @@ async function main() {
   console.log(`Auto style: ${internalStyle} (previous: ${lastStyle || 'none'})`);
   console.log(`Auto palette: ${paletteMode} (previous: ${lastPalette || 'none'})`);
 
-  const prompt = await buildConceptPrompt(apiKey, targetFrontmatter, bodyExcerpt, recentConcepts);
+  const prompt = await buildConceptPrompt(
+      apiKey, targetFrontmatter, bodyExcerpt, recentConcepts,
+  );
   console.log(`Generated concept prompt: ${prompt}`);
 
   const postBaseName = path.basename(postPath, path.extname(postPath));
-  const variationKey = buildVariationKey(normalizedPostPath, postBaseName, prompt);
-  const imageBuffer = await generateImage(apiKey, buildImagePrompt(prompt, variationKey, paletteMode, internalStyle));
+  const variationKey =
+    buildVariationKey(normalizedPostPath, postBaseName, prompt);
+  const imageBuffer = await generateImage(
+      apiKey,
+      buildImagePrompt(prompt, variationKey, paletteMode, internalStyle),
+  );
 
-  const {outputFilePath, featuredValue} = await saveGeneratedImage(repoRoot, postPath, imageBuffer);
+  const {outputFilePath, featuredValue} =
+    await saveGeneratedImage(repoRoot, postPath, imageBuffer);
 
   await updateFrontmatterFields(postPath, [
     ['featured', featuredValue],
@@ -206,7 +219,7 @@ async function main() {
   console.log(`Updated featured frontmatter to '${featuredValue}'`);
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error(`Error: ${error.message}`);
   process.exitCode = 1;
 });

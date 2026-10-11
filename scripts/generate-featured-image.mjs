@@ -51,10 +51,15 @@ async function main() {
   console.log(`Palette: ${paletteMode}`);
 
   const postBaseName = path.basename(postPath, path.extname(postPath));
-  const variationKey = buildVariationKey(normalizedPostPath, postBaseName, prompt);
-  const imageBuffer = await generateImage(apiKey, buildImagePrompt(prompt, variationKey, paletteMode, internalStyle));
+  const variationKey =
+    buildVariationKey(normalizedPostPath, postBaseName, prompt);
+  const imageBuffer = await generateImage(
+      apiKey,
+      buildImagePrompt(prompt, variationKey, paletteMode, internalStyle),
+  );
 
-  const {outputFilePath, featuredValue} = await saveGeneratedImage(repoRoot, postPath, imageBuffer);
+  const {outputFilePath, featuredValue} =
+    await saveGeneratedImage(repoRoot, postPath, imageBuffer);
 
   await updateFrontmatterFields(postPath, [
     ['featured', featuredValue],
@@ -67,7 +72,7 @@ async function main() {
   console.log(`Updated featured frontmatter to '${featuredValue}'`);
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error(`Error: ${error.message}`);
   process.exitCode = 1;
 });
