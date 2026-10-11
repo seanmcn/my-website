@@ -153,6 +153,21 @@ Branch mapping:
 - `main` -> production
 - `develop` -> development
 
+Cache and security headers live in `customHttp.yml`. Redirects live in the
+Amplify console (Hosting → Rewrites and redirects), in this order:
+
+| Source                    | Target                | Type          |
+| ------------------------- | --------------------- | ------------- |
+| `/sw.js`                  | `/sw.js`              | 200 (rewrite) |
+| `https://www.seanmcn.com` | `https://seanmcn.com` | 301           |
+| `/feed/`                  | `/rss.xml`            | 301           |
+| `/<*>`                    | `/404.html`           | 404 (rewrite) |
+
+Amplify applies the first rule that matches. The `/sw.js` rule has to stay
+above the `www` redirect: browsers won't follow a redirect when they check a
+service worker for updates, so without it the Gatsby service worker on `www`
+would never be replaced.
+
 ## CI
 
 GitHub Actions runs `npm run lint`, then installs Chromium and runs Playwright
@@ -167,7 +182,8 @@ seven days. No test-dashboard account or recording secret is required.
   address. Anything else gets the 404 page, which suggests the closest pages.
 - `public/sw.js` replaces the Gatsby site's offline service worker: returning
   visitors who still have that installed pick this one up, and it clears its
-  caches and unregisters itself.
+  caches and unregisters itself. The `/sw.js` rule under Deployment keeps it
+  reachable on `www`.
 - Astro caches rendered Markdown. After changing a plugin in `src/plugins/`,
   run `npm run clean` so every post is rendered again.
 - Playwright browsers are installed explicitly for testing, not during Amplify deployment.
