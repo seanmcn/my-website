@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: npm ci --include=optional
 
+      - name: Lint
+        run: npm run lint
+
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 

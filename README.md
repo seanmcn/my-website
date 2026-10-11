@@ -68,6 +68,7 @@ npm run dev         # Start the Astro dev server
 npm run build       # Create a production build in dist/
 npm run preview     # Serve the production build locally
 npm run clean       # Remove the build output and Astro's caches
+npm run lint        # Run ESLint and Stylelint
 npm run post:create # Scaffold a new post
 npm test            # Run Playwright headlessly
 npm run test:e2e:ui  # Open the interactive Playwright runner
@@ -154,8 +155,8 @@ Branch mapping:
 
 ## CI
 
-GitHub Actions installs Chromium and runs Playwright on pushes to `main` and
-`develop`, and on pull requests. Reports and failure artifacts are retained for
+GitHub Actions runs `npm run lint`, then installs Chromium and runs Playwright
+on pushes to `main` and `develop`, and on pull requests. Reports and failure artifacts are retained for
 seven days. No test-dashboard account or recording secret is required.
 
 ## Notes
