@@ -115,3 +115,20 @@ for (const [from, to] of [
     await expect(page).toHaveURL(`${to}?from=test#top`);
   });
 }
+
+test('a missing page answers 404 and suggests the closest', async ({page}) => {
+  const missing = '/library/2026/08/opinionated-macbok-guide/';
+  const response = await page.goto(missing);
+  expect(response.status()).toBe(404);
+  const terminal = page.locator('[data-not-found]');
+  await expect(terminal).toContainText(`'${missing}' is not a page`);
+  await expect(terminal.getByRole('link', {name: MACBOOK_GUIDE})).toBeVisible();
+});
+
+test('a 404 with nothing close offers search instead', async ({page}) => {
+  await page.goto('/zzqx/');
+  const terminal = page.locator('[data-not-found]');
+  await expect(terminal.getByRole('link', {name: 'seanmcn search'}))
+      .toBeVisible();
+  await expect(terminal.locator('[data-suggestions]')).toBeHidden();
+});
