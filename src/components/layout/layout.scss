@@ -529,6 +529,7 @@
 .rail-block {
   padding-top: 1.125rem;
   border-top: 1px solid var(--line);
+
   /* Numbers the "on this page" links below (1, 2, ...) - reset once here
      so it counts per rail block rather than per link. */
   counter-reset: toc;

@@ -10,6 +10,7 @@
   font-size: 1.1875rem;
   line-height: 1.75;
   color: var(--ink);
+
   /* Numbers h2s (1, 2, ...) for the section marker below - reset once
      here so it counts per article rather than per heading. */
   counter-reset: section;
@@ -621,6 +622,7 @@
     font-family: $font-mono;
     font-size: 0.625rem;
     line-height: 1;
+
     /* .sticky-note__label (the flex row this sits in) sets a wide
        letter-spacing for its own "TIP"-style text. Inherited onto this
        single digit, the trailing space it adds after the character throws

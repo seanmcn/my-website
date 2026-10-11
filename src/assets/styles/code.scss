@@ -32,6 +32,7 @@
   background: var(--bg);
   border: 1px solid var(--tbl-line-2);
   color: var(--ink-2);
+
   @include label(0.625rem, 0.16em);
 }
 
@@ -44,6 +45,7 @@
   border: 1px solid var(--tbl-line-2);
   color: var(--ink-2);
   cursor: pointer;
+
   @include label(0.625rem, 0.16em);
 
   &:hover,
@@ -91,7 +93,7 @@
   border-radius: 1rem;
   position: relative;
   background:
-    radial-gradient(circle at top left, rgba(34, 124, 113, 0.08), transparent 35%),
+    radial-gradient(circle at top left, rgb(34 124 113 / 8%), transparent 35%),
     var(--surface-panel-gradient);
   box-shadow: var(--shadow-medium);
 }
@@ -261,7 +263,7 @@
 .mermaid-viewer-body {
   align-items: stretch;
   background:
-    radial-gradient(circle at top left, rgba(34, 124, 113, 0.12), transparent 38%),
+    radial-gradient(circle at top left, rgb(34 124 113 / 12%), transparent 38%),
     var(--surface-panel-gradient);
   border: 1px solid var(--surface-border);
   border-radius: 1rem;
@@ -395,7 +397,7 @@
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (width >= 1024px) {
   .mermaid-viewer-modal {
     padding: 1.4rem;
   }
