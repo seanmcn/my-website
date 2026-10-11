@@ -41,7 +41,7 @@ const ENTITIES = {amp: '&', lt: '<', gt: '>', quot: '"', apos: '\'', nbsp: ' '};
 /* Rendered HTML to plain text, minus the code listings' chrome. */
 function htmlText(html) {
   return html
-      .replace(/<div class="codeHeader">[\s\S]*?<\/div>/g, ' ')
+      .replace(/<div class="code-header">[\s\S]*?<\/div>/g, ' ')
       .replace(/<[^>]+>/g, ' ')
       .replace(/&(#x?[0-9a-f]+|\w+);/gi, (entity, code) => {
         if (code[0] === '#') {

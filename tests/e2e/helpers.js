@@ -23,7 +23,7 @@ async function visitPage(page, path) {
   await expect(page.getByRole('main')).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
   // Scan rendered content, including asynchronously generated diagrams.
-  for (const diagram of await page.locator('.mermaidWrapper').all()) {
+  for (const diagram of await page.locator('.mermaid-wrapper').all()) {
     await expect(diagram).toHaveAttribute('data-mermaid-state', 'rendered');
   }
 }
@@ -34,7 +34,7 @@ async function expectTheme(page, theme, preference = theme) {
       .toHaveAttribute('data-theme-preference', preference);
   await expect(page.locator('html')).toHaveCSS('color-scheme', theme);
   // The header toggle is hidden on mobile, where the menu has its own control.
-  await expect(page.locator('.themeToggle')).toHaveAttribute(
+  await expect(page.locator('.theme-toggle')).toHaveAttribute(
       'aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
 }
 

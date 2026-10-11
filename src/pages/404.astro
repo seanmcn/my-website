@@ -7,37 +7,37 @@ import notFoundImage from '../assets/images/emojis/250/confused.png';
   description="The page you were looking for could not be found."
   noIndex
 >
-  <div class="pageWrap notFound">
-    <div class="notFound__inner">
+  <div class="page-wrap not-found">
+    <div class="not-found__inner">
       <div class="eyebrow">404 · Not found</div>
-      <h1 class="notFound__title">This one isn&apos;t here</h1>
-      <p class="notFound__body">
+      <h1 class="not-found__title">This one isn&apos;t here</h1>
+      <p class="not-found__body">
         The address doesn&apos;t match anything on the site. Either it never
         existed, or it moved and I missed a redirect. If it&apos;s the
         second, <a href="/contact/">let me know</a>.
       </p>
 
-      <figure class="codeWrapper notFound__terminal" data-not-found>
-        <figcaption class="codeHeader">
-          <span class="codeLanguage">zsh</span>
-          <span class="notFound__status">exit 404</span>
+      <figure class="code-wrapper not-found__terminal" data-not-found>
+        <figcaption class="code-header">
+          <span class="code-language">zsh</span>
+          <span class="not-found__status">exit 404</span>
         </figcaption>
-        <pre><code><span class="notFound__prompt">$</span> curl -sI https://seanmcn.com<span data-path>/this-page/</span>
-<span class="notFound__error">HTTP/2 404</span>
-<span class="notFound__prompt">$</span> seanmcn open <span data-path>/this-page/</span>
-<span class="notFound__error">seanmcn: &apos;<span data-path>/this-page/</span>&apos; is not a page. See &apos;<a href="/library/">seanmcn library</a>&apos;.</span>
+        <pre><code><span class="not-found__prompt">$</span> curl -sI https://seanmcn.com<span data-path>/this-page/</span>
+<span class="not-found__error">HTTP/2 404</span>
+<span class="not-found__prompt">$</span> seanmcn open <span data-path>/this-page/</span>
+<span class="not-found__error">seanmcn: &apos;<span data-path>/this-page/</span>&apos; is not a page. See &apos;<a href="/library/">seanmcn library</a>&apos;.</span>
 <span data-suggestions hidden>
 The most similar pages are<span data-suggestion-list></span></span><span data-hint>
 hint: try &apos;<a href="/search/">seanmcn search</a>&apos; or go <a href="/">home</a></span>
-<span class="notFound__prompt">$</span> <span class="notFound__cursor" aria-hidden="true"></span></code></pre>
+<span class="not-found__prompt">$</span> <span class="not-found__cursor" aria-hidden="true"></span></code></pre>
       </figure>
 
-      <div class="notFound__links">
-        <a class="notFound__link" href="/library/">Browse the library →</a>
-        <a class="notFound__link" href="/search/">Search everything →</a>
+      <div class="not-found__links">
+        <a class="not-found__link" href="/library/">Browse the library →</a>
+        <a class="not-found__link" href="/search/">Search everything →</a>
       </div>
     </div>
-    <img alt="" class="notFound__image" src={notFoundImage.src} />
+    <img alt="" class="not-found__image" src={notFoundImage.src} />
   </div>
 </Layout>
 

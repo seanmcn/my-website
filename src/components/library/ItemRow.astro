@@ -26,11 +26,11 @@ const readTime = readTimeLabel(readingTimeMinutes(item.body));
 const summary = data.summary || excerpt(item, 190);
 const host = sourceHost(data.source);
 ---
-<a class="itemRow" data-type={type} href={itemPath(data.slug)}>
-  <span class="itemRow__thumbCol">
-    <span class="itemRow__spine" style={`background: ${meta.colour}`}></span>
+<a class="item-row" data-type={type} href={itemPath(data.slug)}>
+  <span class="item-row__thumb-col">
+    <span class="item-row__spine" style={`background: ${meta.colour}`}></span>
     {data.featured ? (
-      <span class="itemRow__thumb">
+      <span class="item-row__thumb">
         <Image
           alt=""
           fit="cover"
@@ -41,39 +41,39 @@ const host = sourceHost(data.source);
        />
       </span>
     ) : (
-      <span class={`itemRow__plate itemRow__plate--${type}`}>
-        <span class="itemRow__plateNote">
+      <span class={`item-row__plate item-row__plate--${type}`}>
+        <span class="item-row__plate-note">
           {isFind ? host || 'Link' : 'No image'}
         </span>
       </span>
     )}
-    <span class="itemRow__pill" style={`background: ${meta.colour}`}>
+    <span class="item-row__pill" style={`background: ${meta.colour}`}>
       {meta.label}
     </span>
   </span>
 
   {isFind ? (
     host && (
-      <span class="itemRow__category itemRow__category--source">{host}</span>
+      <span class="item-row__category item-row__category--source">{host}</span>
     )
   ) : (
     data.category && (
-      <span class="itemRow__category">
+      <span class="item-row__category">
         <Icon name="category" />
         {slugToTitle(data.category)}
       </span>
     )
   )}
 
-  <span class="itemRow__title">{data.title}</span>
-  <span class="itemRow__excerpt">{summary}</span>
-  <span class="itemRow__date">{formatItemDate(data.date)}</span>
+  <span class="item-row__title">{data.title}</span>
+  <span class="item-row__excerpt">{summary}</span>
+  <span class="item-row__date">{formatItemDate(data.date)}</span>
 
   {isFind ? (
-    <span class="itemRow__time">Link ↗</span>
+    <span class="item-row__time">Link ↗</span>
   ) : (
     readTime && (
-      <span class="itemRow__time">
+      <span class="item-row__time">
         <Icon name="clock" size={11} />
         {readTime.replace(' read', '')}
       </span>

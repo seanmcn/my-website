@@ -20,18 +20,18 @@ const {
 const count = page.totalCount;
 const resultLine = `${count} ${count === 1 ? 'item' : 'items'}`;
 ---
-<div class="pageWrap">
+<div class="page-wrap">
   <!--
     Every library view names itself in the rail and the filter bar rather than
     in a page title, so the h1 is held for assistive tech only.
   -->
   <h1 class="visually-hidden">{title}</h1>
-  <div class="twoCol twoCol--padded">
-    <div class="mobileIntro">
-      <div class="libraryRail__eyebrow">{title} &middot; {count}</div>
+  <div class="two-col two-col--padded">
+    <div class="mobile-intro">
+      <div class="library-rail__eyebrow">{title} &middot; {count}</div>
       <p>{blurb}</p>
     </div>
-    <button aria-expanded="false" class="railToggle" type="button">
+    <button aria-expanded="false" class="rail-toggle" type="button">
       Filters ▾
     </button>
 
@@ -49,12 +49,12 @@ const resultLine = `${count} ${count === 1 ? 'item' : 'items'}`;
       {page.items.map(item => <ItemRow item={item} />)}
 
       {page.items.length === 0 && (
-        <div class="libraryEmpty">
-          <div class="libraryEmpty__title">Nothing here yet</div>
-          <p class="libraryEmpty__body">
+        <div class="library-empty">
+          <div class="library-empty__title">Nothing here yet</div>
+          <p class="library-empty__body">
             No items match that combination of filters.
           </p>
-          <a class="libraryEmpty__action" href="/library/">Clear filters ✕</a>
+          <a class="library-empty__action" href="/library/">Clear filters ✕</a>
         </div>
       )}
 

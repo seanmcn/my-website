@@ -265,7 +265,7 @@ hr {
   }
 }
 
-.sectionRule {
+.section-rule {
   display: flex;
   align-items: center;
   gap: 0.625rem;
@@ -300,13 +300,13 @@ hr {
   color: var(--accent);
 }
 
-.railHeading {
+.rail-heading {
   @include label(0.625rem, 0.18em);
 
   color: var(--faint);
 }
 
-.videoEmbed {
+.video-embed {
   position: relative;
   margin: 1.625rem 0;
   padding-top: 56.25%;
@@ -314,7 +314,7 @@ hr {
   border: 1px solid var(--line);
 }
 
-.videoEmbed iframe {
+.video-embed iframe {
   position: absolute;
   inset: 0;
   width: 100%;

@@ -1,6 +1,6 @@
 @use "../../assets/styles/tokens" as *;
 
-.projectPage {
+.project-page {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 15.25rem;
   gap: 2.75rem;
@@ -37,7 +37,7 @@
   }
 }
 
-.projectShots {
+.project-shots {
   margin: 1.875rem 0 0;
 
   &__head {
@@ -146,7 +146,7 @@
   }
 }
 
-.projectRail {
+.project-rail {
   &__cta {
     display: flex;
     align-items: center;
@@ -207,7 +207,7 @@
     line-height: 1.4;
   }
 
-  &__otherStack {
+  &__other-stack {
     color: var(--faint);
 
     @include label(0.625rem, 0.12em);

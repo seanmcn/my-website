@@ -26,58 +26,58 @@ const maxTagCount = tags.length ? tags[0].count : 1;
 ---
 <aside class="rail rail--collapsible">
   <div class="rail__intro">
-    <div class="libraryRail__eyebrow">{title} &middot; {count}</div>
-    <p class="libraryRail__blurb">{blurb}</p>
+    <div class="library-rail__eyebrow">{title} &middot; {count}</div>
+    <p class="library-rail__blurb">{blurb}</p>
   </div>
 
   <div>
-    <div class="railHeading">Categories</div>
+    <div class="rail-heading">Categories</div>
     {categories.map((category) => {
       const active = activeCategory === category.name;
 
       return (
         <a
-          class:list={['facetRow', {'is-active': active}]}
+          class:list={['facet-row', {'is-active': active}]}
           href={active ? '/library/' : categoryPath(category.name)}
         >
-          <span class="facetRow__name">
+          <span class="facet-row__name">
             <Icon name="category" size={14} />
             {slugToTitle(category.name)}
           </span>
-          <span class="facetRow__tail">{active ? '✕' : category.count}</span>
+          <span class="facet-row__tail">{active ? '✕' : category.count}</span>
         </a>
       );
     })}
   </div>
 
   <div>
-    <div class="railHeading libraryRail__tagsHeading">Most used tags</div>
+    <div class="rail-heading library-rail__tags-heading">Most used tags</div>
     {shownTags.map((tag) => {
       const active = activeTag === tag.name;
 
       return (
         <a
-          class:list={['tagRow', {'is-active': active, 'is-outside': tag.outsideTop}]}
+          class:list={['tag-row', {'is-active': active, 'is-outside': tag.outsideTop}]}
           href={active ? '/library/' : tagPath(tag.name)}
         >
-          <span class="tagRow__head">
-            <span class="tagRow__name">
+          <span class="tag-row__head">
+            <span class="tag-row__name">
               <Icon name="tag" size={14} />
               {slugToTitle(tag.name)}
             </span>
-            <span class="tagRow__tail">{active ? '✕' : tag.count}</span>
+            <span class="tag-row__tail">{active ? '✕' : tag.count}</span>
           </span>
           <span
-            class="tagRow__bar"
+            class="tag-row__bar"
             style={`width: ${Math.max(8, Math.round((tag.count / maxTagCount) * 100))}%`}
           ></span>
           {tag.outsideTop && (
-            <span class="tagRow__note">Outside the top six</span>
+            <span class="tag-row__note">Outside the top six</span>
           )}
         </a>
       );
     })}
-    <a class="libraryRail__allTags" href="/library/tags/">
+    <a class="library-rail__all-tags" href="/library/tags/">
       All {tags.length} tags →
     </a>
   </div>

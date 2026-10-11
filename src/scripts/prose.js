@@ -6,13 +6,13 @@
  */
 const COPIED_FOR_MS = 1600;
 
-document.querySelectorAll('.codeCopyButton').forEach((button) => {
+document.querySelectorAll('.code-copy-button').forEach((button) => {
   let timer;
   const label = [...button.childNodes]
       .find(node => node.nodeType === Node.TEXT_NODE);
 
   button.addEventListener('click', async () => {
-    const code = button.closest('.codeWrapper').querySelector('pre code');
+    const code = button.closest('.code-wrapper').querySelector('pre code');
 
     try {
       await navigator.clipboard.writeText(code.innerText);
@@ -20,11 +20,11 @@ document.querySelectorAll('.codeCopyButton').forEach((button) => {
       return;
     }
 
-    button.classList.add('isCopied');
+    button.classList.add('is-copied');
     label.textContent = 'Copied';
     clearTimeout(timer);
     timer = setTimeout(() => {
-      button.classList.remove('isCopied');
+      button.classList.remove('is-copied');
       label.textContent = 'Copy';
     }, COPIED_FOR_MS);
   });
@@ -33,12 +33,12 @@ document.querySelectorAll('.codeCopyButton').forEach((button) => {
 // Astro serves Markdown images at their own size, so the file the page shows
 // is also the full-size one worth opening on its own.
 document.querySelectorAll('.prose img').forEach((image) => {
-  if (image.closest('a, figure, .stickyNote, .stickyStack')) {
+  if (image.closest('a, figure, .sticky-note, .sticky-stack')) {
     return;
   }
 
   const link = document.createElement('a');
-  link.className = 'proseImageLink';
+  link.className = 'prose-image-link';
   link.href = image.currentSrc || image.src;
   link.target = '_blank';
   link.rel = 'noopener';

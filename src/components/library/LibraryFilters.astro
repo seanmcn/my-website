@@ -10,21 +10,21 @@ const {active = 'all', resultLine = ''} = Astro.props;
 const {counts} = await getLibraryMeta();
 const DOT = {post: 'plum', note: 'amber', find: 'blue'};
 ---
-<div class="stickyBar libraryFilters">
+<div class="sticky-bar library-filters">
   {LIBRARY_FILTERS.map(filter => (
     <a
-      class:list={['libraryFilters__link', {'is-active': active === filter.key}]}
+      class:list={['library-filters__link', {'is-active': active === filter.key}]}
       href={filter.path}
     >
       {filter.key !== 'all' && (
         <span
-          class={`libraryFilters__dot libraryFilters__dot--${filter.key}`}
+          class={`library-filters__dot library-filters__dot--${filter.key}`}
           style={`background: var(--${DOT[filter.key]})`}
         ></span>
       )}
       {filter.label}
-      <span class="libraryFilters__count">{counts[filter.key] || 0}</span>
+      <span class="library-filters__count">{counts[filter.key] || 0}</span>
     </a>
   ))}
-  {resultLine && <span class="libraryFilters__results">{resultLine}</span>}
+  {resultLine && <span class="library-filters__results">{resultLine}</span>}
 </div>

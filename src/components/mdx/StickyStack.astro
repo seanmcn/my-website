@@ -7,7 +7,7 @@
  * existing stickyStack styles apply unchanged.
  */
 ---
-<div class="stickyStack" data-sticky-stack><slot /></div>
+<div class="sticky-stack" data-sticky-stack><slot /></div>
 
 <script>
   const TILTS = [1.6, -1.6, 2.2, -2.2];
@@ -16,8 +16,8 @@
   function noteBody(note) {
     const fragment = document.createDocumentFragment();
     fragment.append(
-        note.querySelector('.stickyNote__label').cloneNode(true),
-        note.querySelector('.stickyNote__text').cloneNode(true),
+        note.querySelector('.sticky-note__label').cloneNode(true),
+        note.querySelector('.sticky-note__text').cloneNode(true),
     );
     return fragment;
   }
@@ -32,7 +32,7 @@
   }
 
   document.querySelectorAll('[data-sticky-stack]').forEach((stack) => {
-    const notes = [...stack.querySelectorAll(':scope > .stickyNote')];
+    const notes = [...stack.querySelectorAll(':scope > .sticky-note')];
     const count = notes.length;
 
     if (count <= 1) {
@@ -40,9 +40,9 @@
     }
 
     let active = 0;
-    const wrap = el('div', 'stickyStack__wrap');
+    const wrap = el('div', 'sticky-stack__wrap');
     const ghosts = notes.map((note) => {
-      const ghost = el('div', 'stickyStack__ghost', {'aria-hidden': 'true'});
+      const ghost = el('div', 'sticky-stack__ghost', {'aria-hidden': 'true'});
       ghost.append(noteBody(note));
       return ghost;
     });
@@ -57,25 +57,25 @@
         }
         const div = el(
             'div',
-            `stickyStack__rear stickyNote--${rear.dataset.color}`,
+            `sticky-stack__rear sticky-note--${rear.dataset.color}`,
         );
-        div.style.setProperty('--stickyRearDepth', depth);
-        div.style.setProperty('--stickyTilt', `${tiltFor(i)}deg`);
+        div.style.setProperty('--sticky-rear-depth', depth);
+        div.style.setProperty('--sticky-tilt', `${tiltFor(i)}deg`);
         return div;
       }).filter(Boolean);
 
-      const front = el('div', `stickyStack__note stickyNote--${color}`);
+      const front = el('div', `sticky-stack__note sticky-note--${color}`);
       if (note.dataset.marker) {
         front.id = `sticky-${note.dataset.marker}`;
       }
-      front.style.setProperty('--stickyTilt', `${tiltFor(active)}deg`);
+      front.style.setProperty('--sticky-tilt', `${tiltFor(active)}deg`);
 
-      const content = el('div', 'stickyNote__content');
-      const counter = el('div', 'stickyStack__counter');
-      const previous = el('button', 'stickyStack__arrow', {
+      const content = el('div', 'sticky-note__content');
+      const counter = el('div', 'sticky-stack__counter');
+      const previous = el('button', 'sticky-stack__arrow', {
         'aria-label': 'Previous note', 'type': 'button',
       });
-      const next = el('button', 'stickyStack__arrow', {
+      const next = el('button', 'sticky-stack__arrow', {
         'aria-label': 'Next note', 'type': 'button',
       });
       const position = document.createElement('span');
@@ -88,8 +88,8 @@
       counter.append(previous, position, next);
       content.append(noteBody(note), counter);
       front.append(
-          el('span', 'stickyNote__paper', {'aria-hidden': 'true'}),
-          el('span', 'stickyNote__tape', {'aria-hidden': 'true'}),
+          el('span', 'sticky-note__paper', {'aria-hidden': 'true'}),
+          el('span', 'sticky-note__tape', {'aria-hidden': 'true'}),
           content,
       );
       wrap.replaceChildren(...rears, front);

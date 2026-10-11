@@ -9,30 +9,30 @@ const {number, total, base, previousPath, nextPath} = page;
 const pagePath = n => (n === 1 ? `${base}/` : `${base}/page/${n}/`);
 ---
 {total > 1 && (
-  <nav aria-label="Pagination" class="libraryPagination">
-    <div class="libraryPagination__row">
+  <nav aria-label="Pagination" class="library-pagination">
+    <div class="library-pagination__row">
       {previousPath ?
-        <a class="libraryPagination__step" rel="prev" href={previousPath}>‹ Previous</a> :
-        <span class="libraryPagination__step is-disabled">‹ Previous</span>}
+        <a class="library-pagination__step" rel="prev" href={previousPath}>‹ Previous</a> :
+        <span class="library-pagination__step is-disabled">‹ Previous</span>}
 
       <button
         aria-expanded="false"
-        class="libraryPagination__status"
+        class="library-pagination__status"
         type="button"
       >
         Page {number} of {total}
       </button>
 
       {nextPath ?
-        <a class="libraryPagination__step" rel="next" href={nextPath}>Next ›</a> :
-        <span class="libraryPagination__step is-disabled">Next ›</span>}
+        <a class="library-pagination__step" rel="next" href={nextPath}>Next ›</a> :
+        <span class="library-pagination__step is-disabled">Next ›</span>}
     </div>
 
-    <div class="libraryPagination__jump" hidden>
+    <div class="library-pagination__jump" hidden>
       {Array.from({length: total}, (_, index) => index + 1).map(n => (
         <a
           aria-label={`Go to page ${n}`}
-          class:list={['libraryPagination__page', {'is-current': n === number}]}
+          class:list={['library-pagination__page', {'is-current': n === number}]}
           href={pagePath(n)}
         >
           {n}
@@ -43,9 +43,9 @@ const pagePath = n => (n === 1 ? `${base}/` : `${base}/page/${n}/`);
 )}
 
 <script>
-  document.querySelectorAll('.libraryPagination').forEach((nav) => {
-    const toggle = nav.querySelector('.libraryPagination__status');
-    const jump = nav.querySelector('.libraryPagination__jump');
+  document.querySelectorAll('.library-pagination').forEach((nav) => {
+    const toggle = nav.querySelector('.library-pagination__status');
+    const jump = nav.querySelector('.library-pagination__jump');
 
     toggle.addEventListener('click', () => {
       const open = jump.hidden;

@@ -1,6 +1,6 @@
 @use "../../assets/styles/tokens" as *;
 
-.tagsPage {
+.tags-page {
   padding-top: 1.625rem;
 
   @include narrow {
@@ -63,7 +63,7 @@
     color: var(--accent);
   }
 
-  &__stickyTitle {
+  &__sticky-title {
     flex: 1 1 auto;
     min-width: 0;
     overflow: hidden;

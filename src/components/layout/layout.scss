@@ -1,19 +1,19 @@
 @use "../../assets/styles/tokens" as *;
 
-.siteShell {
+.site-shell {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   padding-bottom: 1.125rem;
 }
 
-.siteShell > main {
+.site-shell > main {
   flex: 1;
 }
 
 /* ------------------------------------------------------------------ header */
 
-.siteHeader {
+.site-header {
   position: sticky;
   top: 0;
   z-index: 20;
@@ -106,7 +106,7 @@
     }
   }
 
-  &__navLink {
+  &__nav-link {
     color: var(--muted);
 
     &.is-active {
@@ -136,7 +136,7 @@
   }
 
   &__search,
-  &__searchClose {
+  &__search-close {
     display: flex;
     flex: none;
     align-items: center;
@@ -155,7 +155,7 @@
     }
   }
 
-  &__searchClose {
+  &__search-close {
     background: var(--surface);
     color: var(--ink-2);
 
@@ -164,7 +164,7 @@
     }
   }
 
-  &__closeGlyph {
+  &__close-glyph {
     font-size: 0.75rem;
     line-height: 1;
   }
@@ -180,7 +180,7 @@
     }
   }
 
-  &__searchGlyph {
+  &__search-glyph {
     font-size: 0.8125rem;
     line-height: 1;
 
@@ -189,7 +189,7 @@
     }
   }
 
-  &__searchLabel {
+  &__search-label {
     @include narrow {
       display: none;
     }
@@ -204,7 +204,7 @@
   }
 }
 
-.themeToggle {
+.theme-toggle {
   display: flex;
   flex: none;
   align-items: center;
@@ -230,7 +230,7 @@
 
 /* ------------------------------------------------------------- mobile menu */
 
-.mobileMenu {
+.mobile-menu {
   position: fixed;
   inset: 0;
   z-index: 40;
@@ -324,7 +324,7 @@
 
 /* ------------------------------------------------------------------ footer */
 
-.siteFooter {
+.site-footer {
   margin-top: 2.125rem;
   border-top: 1px solid var(--line-2);
 
@@ -388,7 +388,7 @@
 
 /* --------------------------------------------- shared page-level scaffolds */
 
-.pageWrap {
+.page-wrap {
   max-width: $shell-max;
   margin: 0 auto;
   padding: 0 2rem 5.625rem;
@@ -403,7 +403,7 @@
 }
 
 /** Rail + content. The rail becomes a stacked, collapsible block on mobile. */
-.twoCol {
+.two-col {
   display: grid;
   grid-template-columns: $rail-width minmax(0, 1fr);
   gap: 2.75rem;
@@ -479,7 +479,7 @@
   }
 }
 
-.railToggle {
+.rail-toggle {
   display: none;
   align-items: center;
   justify-content: space-between;
@@ -503,7 +503,7 @@
   }
 }
 
-.rightRail {
+.right-rail {
   position: sticky;
   top: 6rem;
   display: flex;
@@ -526,7 +526,7 @@
   }
 }
 
-.railBlock {
+.rail-block {
   padding-top: 1.125rem;
   border-top: 1px solid var(--line);
   /* Numbers the "on this page" links below (1, 2, ...) - reset once here
@@ -539,14 +539,14 @@
   }
 }
 
-.railBlock__label {
+.rail-block__label {
   color: var(--faint);
 
   @include label(0.625rem, 0.16em);
 }
 
 /** Sticky bar sitting under the header on listings and article pages. */
-.stickyBar {
+.sticky-bar {
   position: sticky;
   top: $header-height;
   z-index: 10;
@@ -565,7 +565,7 @@
   }
 }
 
-.mobileIntro {
+.mobile-intro {
   display: none;
   margin-bottom: 0.5rem;
 
@@ -584,14 +584,14 @@
 
 /* --------------------------------------------------------------- elsewhere */
 
-.elsewhereLinks {
+.elsewhere-links {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 0.75rem;
 }
 
-.elsewhereLink {
+.elsewhere-link {
   display: flex;
   align-items: center;
   gap: 0.5rem;

@@ -18,12 +18,12 @@ function apply(preference) {
   root.dataset.themePreference = preference;
   root.style.colorScheme = resolved;
 
-  document.querySelectorAll('.themeToggle').forEach((button) => {
+  document.querySelectorAll('.theme-toggle').forEach((button) => {
     button.setAttribute('aria-label', `Switch to ${next} mode`);
     button.title = `Switch to ${next} mode`;
     button.querySelector('span').textContent = resolved === 'dark' ? '☀︎' : '◐';
   });
-  document.querySelectorAll('.mobileMenu__theme').forEach((button) => {
+  document.querySelectorAll('.mobile-menu__theme').forEach((button) => {
     button.querySelector('span').textContent = resolved === 'dark' ? '☀︎' : '◐';
     button.lastChild.textContent = resolved === 'dark' ? 'Light' : 'Dark';
   });
@@ -40,7 +40,7 @@ function choose(preference) {
 }
 
 document.addEventListener('click', (event) => {
-  if (event.target.closest('.themeToggle, .mobileMenu__theme')) {
+  if (event.target.closest('.theme-toggle, .mobile-menu__theme')) {
     choose(root.dataset.theme === 'dark' ? 'light' : 'dark');
   }
 });

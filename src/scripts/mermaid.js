@@ -107,14 +107,14 @@ function element(tag, className, attributes = {}) {
 
 function controlButton(iconName, label, ariaLabel) {
   const button = element('button',
-      'mermaidActionButton mermaidViewerControlButton button', {
+      'mermaid-action-button mermaid-viewer-control-button button', {
         'type': 'button',
         'aria-label': ariaLabel,
         'title': label,
       });
   button.innerHTML = `<span class="icon is-small" aria-hidden="true">${
     iconSvg(iconName, {size: 14})}</span>` +
-    `<span class="mermaidViewerControlLabel">${label}</span>`;
+    `<span class="mermaid-viewer-control-label">${label}</span>`;
   return button;
 }
 
@@ -124,27 +124,28 @@ function controlButton(iconName, label, ariaLabel) {
  * code.scss applies unchanged.
  */
 function createViewer() {
-  const overlay = element('div', 'mermaidViewerOverlay');
-  const modal = element('div', 'mermaidViewerModal', {
+  const overlay = element('div', 'mermaid-viewer-overlay');
+  const modal = element('div', 'mermaid-viewer-modal', {
     'role': 'dialog',
     'aria-modal': 'true',
     'aria-label': 'Fullscreen Mermaid diagram',
     'tabindex': '-1',
   });
-  const header = element('div', 'mermaidViewerHeader');
-  header.innerHTML = '<div><h2 class="mermaidViewerTitle">Diagram viewer</h2>' +
-    '<p class="mermaidViewerSubtitle">Rotate for a wider layout on narrow ' +
+  const header = element('div', 'mermaid-viewer-header');
+  header.innerHTML = '<div>' +
+    '<h2 class="mermaid-viewer-title">Diagram viewer</h2>' +
+    '<p class="mermaid-viewer-subtitle">Rotate for a wider layout on narrow ' +
     'screens.</p></div>';
 
-  const actions = element('div', 'mermaidViewerActions');
-  const zoomControls = element('div', 'mermaidZoomControls', {
+  const actions = element('div', 'mermaid-viewer-actions');
+  const zoomControls = element('div', 'mermaid-zoom-controls', {
     'role': 'group',
     'aria-label': 'Diagram zoom controls',
   });
   const zoomOut = controlButton('minus', 'Zoom out',
       'Zoom out Mermaid diagram');
   const zoomStatus = element('button',
-      'mermaidActionButton mermaidZoomStatus button', {
+      'mermaid-action-button mermaid-zoom-status button', {
         'type': 'button',
         'aria-label': 'Reset Mermaid diagram zoom',
         'title': 'Reset zoom',
@@ -157,12 +158,12 @@ function createViewer() {
   actions.append(zoomControls, rotate, close);
   header.append(actions);
 
-  const body = element('div', 'mermaidViewerBody');
-  const canvas = element('div', 'mermaidViewerCanvas');
-  const positioner = element('div', 'mermaidViewerPositioner');
-  const stage = element('div', 'mermaidViewerStage');
-  const transform = element('div', 'mermaidViewerTransform');
-  const rendered = element('div', 'mermaidRendered mermaidViewerRendered');
+  const body = element('div', 'mermaid-viewer-body');
+  const canvas = element('div', 'mermaid-viewer-canvas');
+  const positioner = element('div', 'mermaid-viewer-positioner');
+  const stage = element('div', 'mermaid-viewer-stage');
+  const transform = element('div', 'mermaid-viewer-transform');
+  const rendered = element('div', 'mermaid-rendered mermaid-viewer-rendered');
   transform.append(rendered);
   stage.append(transform);
   positioner.append(stage);
@@ -242,7 +243,7 @@ function createViewer() {
     rotate.setAttribute('aria-label', state.rotated ?
       'Show Mermaid diagram without rotation' :
       'Rotate Mermaid diagram within fullscreen viewer');
-    rotate.querySelector('.mermaidViewerControlLabel').textContent =
+    rotate.querySelector('.mermaid-viewer-control-label').textContent =
       state.rotated ? 'Unrotate' : 'Rotate';
 
     if (state.zoom === 1) {
@@ -396,7 +397,7 @@ async function draw(diagram) {
     diagram.svg = await render(source, `mermaid-diagram-${idCounter}`);
     inline.innerHTML = diagram.svg;
     wrapper.dataset.mermaidState = 'rendered';
-    wrapper.querySelector('.mermaidFallback').setAttribute('aria-hidden',
+    wrapper.querySelector('.mermaid-fallback').setAttribute('aria-hidden',
         'true');
     diagram.expand.hidden = false;
   } catch (error) {
@@ -411,20 +412,20 @@ export function renderDiagrams(blocks) {
   const diagrams = [...blocks].map((block) => {
     const pre = block.closest('pre');
     const source = pre.textContent;
-    const wrapper = element('div', 'codeWrapper mermaidWrapper', {
+    const wrapper = element('div', 'code-wrapper mermaid-wrapper', {
       'data-language': 'mermaid',
       'data-mermaid-state': 'pending',
     });
     const expand = element('button',
-        'mermaidActionButton mermaidExpandButton button is-small', {
+        'mermaid-action-button mermaid-expand-button button is-small', {
           'type': 'button',
           'aria-label': 'Open Mermaid diagram in fullscreen viewer',
         });
     expand.innerHTML = `<span class="icon is-small" aria-hidden="true">${
       iconSvg('expand', {size: 14})}</span><span>Fullscreen</span>`;
     expand.hidden = true;
-    const inline = element('div', 'mermaidRendered');
-    const fallback = element('pre', 'mermaidFallback',
+    const inline = element('div', 'mermaid-rendered');
+    const fallback = element('pre', 'mermaid-fallback',
         {'aria-hidden': 'false'});
     const code = document.createElement('code');
     code.textContent = source;

@@ -17,24 +17,24 @@ const NAV_LINKS = [
 
 const {pathname} = Astro.url;
 ---
-<header class="siteHeader">
-  <div class="siteHeader__inner shell">
-    <a class="siteHeader__logo" href="/">
-      <span class="siteHeader__avatar">
+<header class="site-header">
+  <div class="site-header__inner shell">
+    <a class="site-header__logo" href="/">
+      <span class="site-header__avatar">
         <img src={avatar.src} alt="" width="34" height="34" />
       </span>
       <span>
-        <span class="siteHeader__wordmark">Seán McNamara</span>
-        <span class="siteHeader__tagline">
+        <span class="site-header__wordmark">Seán McNamara</span>
+        <span class="site-header__tagline">
           Software engineering &amp; other rabbit holes
         </span>
       </span>
     </a>
 
-    <nav class="siteHeader__nav" aria-label="Primary">
+    <nav class="site-header__nav" aria-label="Primary">
       {NAV_LINKS.map(link => (
         <a
-          class:list={['siteHeader__navLink', {'is-active': link.match(pathname)}]}
+          class:list={['site-header__nav-link', {'is-active': link.match(pathname)}]}
           href={link.to}
         >
           {link.label}
@@ -45,36 +45,36 @@ const {pathname} = Astro.url;
     <button
       aria-expanded="false"
       aria-label="Menu"
-      class="siteHeader__burger"
+      class="site-header__burger"
       type="button"
     >
       ☰
     </button>
 
-    <button aria-label="Switch to dark mode" class="themeToggle" type="button">
+    <button aria-label="Switch to dark mode" class="theme-toggle" type="button">
       <span aria-hidden="true">◐</span>
     </button>
 
-    <a aria-label="Search" class="siteHeader__search" href="/search/">
-      <span aria-hidden="true" class="siteHeader__searchGlyph">⌕</span>
-      <span class="siteHeader__searchLabel">Search</span>
-      <span aria-hidden="true" class="siteHeader__shortcut">/</span>
+    <a aria-label="Search" class="site-header__search" href="/search/">
+      <span aria-hidden="true" class="site-header__search-glyph">⌕</span>
+      <span class="site-header__search-label">Search</span>
+      <span aria-hidden="true" class="site-header__shortcut">/</span>
     </a>
   </div>
 </header>
 
-<div class="mobileMenu" role="dialog" aria-label="Menu" hidden>
-  <div class="mobileMenu__head">
-    <span class="mobileMenu__eyebrow">Menu</span>
-    <button aria-label="Close menu" class="mobileMenu__close" type="button">
+<div class="mobile-menu" role="dialog" aria-label="Menu" hidden>
+  <div class="mobile-menu__head">
+    <span class="mobile-menu__eyebrow">Menu</span>
+    <button aria-label="Close menu" class="mobile-menu__close" type="button">
       ✕
     </button>
   </div>
 
-  <nav class="mobileMenu__nav">
+  <nav class="mobile-menu__nav">
     {NAV_LINKS.map(link => (
       <a
-        class:list={['mobileMenu__link', {'is-active': link.match(pathname)}]}
+        class:list={['mobile-menu__link', {'is-active': link.match(pathname)}]}
         href={link.to}
       >
         {link.label}
@@ -82,12 +82,12 @@ const {pathname} = Astro.url;
     ))}
   </nav>
 
-  <div class="mobileMenu__actions">
-    <a class="mobileMenu__search" href="/search/">
+  <div class="mobile-menu__actions">
+    <a class="mobile-menu__search" href="/search/">
       <span aria-hidden="true">⌕</span>
       Search
     </a>
-    <button class="mobileMenu__theme" type="button">
+    <button class="mobile-menu__theme" type="button">
       <span aria-hidden="true">◐</span>Dark</button>
   </div>
 </div>

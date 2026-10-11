@@ -78,7 +78,7 @@ export const youTubeEmbeds = defineMdastPlugin({
       return {
         type: 'mdxJsxFlowElement',
         name: 'div',
-        attributes: [attribute('className', 'videoEmbed')],
+        attributes: [attribute('className', 'video-embed')],
         children: [{
           type: 'mdxJsxFlowElement',
           name: 'iframe',
@@ -98,7 +98,7 @@ export const youTubeEmbeds = defineMdastPlugin({
 
     return {
       type: 'html',
-      value: `<div class="videoEmbed"><iframe ${attributes} allowfullscreen>` +
+      value: `<div class="video-embed"><iframe ${attributes} allowfullscreen>` +
         '</iframe></div>',
     };
   },
@@ -175,8 +175,8 @@ function stickyPairsPlugin() {
         }
 
         children.push({
-          type: 'stickyPair',
-          data: {hName: 'div', hProperties: {className: ['stickyPair']}},
+          type: 'sticky-pair',
+          data: {hName: 'div', hProperties: {className: ['sticky-pair']}},
           children: parent.children.slice(index, end + 1),
         });
         index = end + 1;
@@ -255,7 +255,7 @@ export const externalLinks = defineHastPlugin({
       }
 
       const classes = [].concat(node.properties.className || []);
-      ctx.setProperty(node, 'className', [...classes, 'externalLink']);
+      ctx.setProperty(node, 'className', [...classes, 'external-link']);
       ctx.setProperty(node, 'rel', ['nofollow']);
       ctx.setProperty(node, 'target', '_self');
       ctx.prependChild(node, {
@@ -263,7 +263,7 @@ export const externalLinks = defineHastPlugin({
         tagName: 'img',
         properties: {
           alt: '',
-          className: ['externalLink__icon'],
+          className: ['external-link__icon'],
           height: 16,
           loading: 'lazy',
           onError: 'this.remove()',

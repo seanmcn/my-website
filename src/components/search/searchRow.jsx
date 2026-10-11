@@ -31,7 +31,7 @@ const SearchRow = ({highlight, item, onOpen}) => {
 
   return (
     <a
-      className="itemRow"
+      className="item-row"
       data-type={kind}
       onClick={(event) => {
         if (onOpen) {
@@ -41,45 +41,45 @@ const SearchRow = ({highlight, item, onOpen}) => {
       }}
       href={item.path}
     >
-      <span className="itemRow__thumbCol">
-        <span className="itemRow__spine" style={{background: colour}} />
+      <span className="item-row__thumb-col">
+        <span className="item-row__spine" style={{background: colour}} />
         {item.thumb ? (
-          <span className="itemRow__thumb">
+          <span className="item-row__thumb">
             <img alt="" src={item.thumb} />
           </span>
         ) : (
           <span
-            className={`itemRow__plate itemRow__plate--${
+            className={`item-row__plate item-row__plate--${
               isFind ? 'find' : 'note'
             }`}
           >
-            <span className="itemRow__plateNote">
+            <span className="item-row__plate-note">
               {isFind ? host || 'Link' : 'No image'}
             </span>
           </span>
         )}
-        <span className="itemRow__pill" style={{background: colour}}>
+        <span className="item-row__pill" style={{background: colour}}>
           {KIND_LABEL[kind]}
         </span>
       </span>
 
       {item.category && (
-        <span className="itemRow__category">
+        <span className="item-row__category">
           <CategoryIcon size={12} />
           {isProject ? item.category : slugToTitle(item.category)}
         </span>
       )}
 
-      <span className="itemRow__title">{highlight(item.title)}</span>
-      <span className="itemRow__excerpt">{highlight(item.excerpt)}</span>
-      <span className="itemRow__date">
+      <span className="item-row__title">{highlight(item.title)}</span>
+      <span className="item-row__excerpt">{highlight(item.excerpt)}</span>
+      <span className="item-row__date">
         {item.dateDisplay || formatItemDate(item.date)}
       </span>
 
-      {isFind && <span className="itemRow__time">Link ↗</span>}
-      {isProject && <span className="itemRow__time">Project ↗</span>}
+      {isFind && <span className="item-row__time">Link ↗</span>}
+      {isProject && <span className="item-row__time">Project ↗</span>}
       {!isFind && !isProject && item.readingTime > 0 && (
-        <span className="itemRow__time">
+        <span className="item-row__time">
           <ClockIcon size={11} />
           {item.readingTime} min
         </span>

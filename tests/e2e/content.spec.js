@@ -10,7 +10,7 @@ const MACBOOK_GUIDE = '/library/2026/08/opinionated-macbook-guide/';
 
 test('a sticky stack cycles, and a StickyRef flips it', async ({page}) => {
   await visitPage(page, MACBOOK_GUIDE);
-  const counter = page.locator('.stickyStack .stickyStack__counter');
+  const counter = page.locator('.sticky-stack .sticky-stack__counter');
   await expect(counter).toContainText('1 / 2');
   await page.getByRole('button', {name: 'Next note'}).click();
   await expect(counter).toContainText('2 / 2');
@@ -21,8 +21,8 @@ test('a sticky stack cycles, and a StickyRef flips it', async ({page}) => {
 test('code listings copy their source', async ({page, context}) => {
   await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   await visitPage(page, MACBOOK_GUIDE);
-  const listing = page.locator('.codeWrapper').first();
-  await expect(listing.locator('.codeLanguage')).toHaveText('bash');
+  const listing = page.locator('.code-wrapper').first();
+  await expect(listing.locator('.code-language')).toHaveText('bash');
   await listing.getByRole('button', {name: 'Copy'}).click();
   await expect(listing.getByRole('button', {name: 'Copied'})).toBeVisible();
   const copied = await page.evaluate(() => navigator.clipboard.readText());
@@ -31,9 +31,9 @@ test('code listings copy their source', async ({page, context}) => {
 
 test('mermaid diagrams draw and open in the viewer', async ({page}) => {
   await visitPage(page, '/library/2026/04/what-are-world-models-in-ai/');
-  const diagram = page.locator('.mermaidWrapper').first();
+  const diagram = page.locator('.mermaid-wrapper').first();
   await expect(diagram).toHaveAttribute('data-mermaid-state', 'rendered');
-  await expect(diagram.locator('.mermaidRendered svg')).toBeVisible();
+  await expect(diagram.locator('.mermaid-rendered svg')).toBeVisible();
   await diagram.getByRole('button', {name: /fullscreen viewer/}).click();
   const viewer = page.getByRole('dialog', {name: 'Fullscreen Mermaid diagram'});
   await expect(viewer.locator('svg').first()).toBeVisible();
@@ -55,9 +55,9 @@ test('a project gallery switches shots and opens a lightbox', async ({
   page,
 }) => {
   await visitPage(page, '/projects/chinwag/');
-  const stage = page.locator('.projectShots__stage');
+  const stage = page.locator('.project-shots__stage');
   await page.getByRole('button', {name: 'Show image 2: Conversation'}).click();
-  await expect(page.locator('.projectShots__head')).toContainText('02 / 04');
+  await expect(page.locator('.project-shots__head')).toContainText('02 / 04');
   await expect(stage.locator('img:not([hidden])')).toHaveAttribute('alt',
       'Conversation');
   await stage.click();
@@ -71,10 +71,10 @@ test('a project gallery switches shots and opens a lightbox', async ({
 
 test('the projects stack filter narrows the list', async ({page}) => {
   await visitPage(page, '/projects/');
-  const rows = page.locator('.projectRow:visible');
+  const rows = page.locator('.project-row:visible');
   const all = await rows.count();
-  await page.locator('.projectsRail__stack', {hasText: 'Go'}).click();
-  await expect(page.locator('.projectsBar__results')).toHaveText(/in Go$/);
+  await page.locator('.projects-rail__stack', {hasText: 'Go'}).click();
+  await expect(page.locator('.projects-bar__results')).toHaveText(/in Go$/);
   expect(await rows.count()).toBeLessThan(all);
   await page.getByRole('button', {name: /Clear filter/}).click();
   await expect(rows).toHaveCount(all);
@@ -82,12 +82,12 @@ test('the projects stack filter narrows the list', async ({page}) => {
 
 test('a contact link from a post says what it is about', async ({page}) => {
   await visitPage(page, `/contact/?about=2026/08/opinionated-macbook-guide`);
-  await expect(page.locator('.contactReply')).toContainText(
+  await expect(page.locator('.contact-reply')).toContainText(
       'My Opinionated MacBook Setup');
   await expect(page.locator('input[name="about"]')).toHaveValue(
       /opinionated-macbook-guide/);
   await page.getByRole('button', {name: 'Remove ✕'}).click();
-  await expect(page.locator('.contactReply')).toBeHidden();
+  await expect(page.locator('.contact-reply')).toBeHidden();
   await expect(page.locator('input[name="about"]')).toBeDisabled();
 });
 
@@ -95,7 +95,7 @@ test('search finds a post and links to it', async ({page}) => {
   await visitPage(page, '/search/');
   await page.getByLabel('Search posts, notes, finds and projects')
       .fill('macbook');
-  const result = page.locator('.searchPage__results .itemRow').first();
+  const result = page.locator('.search-page__results .item-row').first();
   await expect(result).toContainText('MacBook');
   await expect(result).toHaveAttribute('href', MACBOOK_GUIDE);
 });

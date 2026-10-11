@@ -4,7 +4,7 @@ const {color = 'amber', n} = Astro.props;
 ---
 <a
   aria-label={`Jump to note ${n}`}
-  class={`stickyRef stickyRef--${color}`}
+  class={`sticky-ref sticky-ref--${color}`}
   href={`#sticky-${n}`}
   data-sticky-ref={n}
 >{n}</a>

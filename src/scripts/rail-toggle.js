@@ -3,7 +3,7 @@
  * shared by the library screens and search.
  */
 export function bindRailToggle() {
-  const toggle = document.querySelector('.railToggle');
+  const toggle = document.querySelector('.rail-toggle');
   const rail = document.querySelector('.rail--collapsible');
 
   if (!toggle || !rail) {

@@ -1,7 +1,7 @@
 @use "../../assets/styles/tokens" as *;
 
-.searchPage {
-  &__facetHeading {
+.search-page {
+  &__facet-heading {
     padding-bottom: 0.5rem;
   }
 
@@ -73,7 +73,7 @@
     @include label(0.625rem, 0.14em);
   }
 
-  &__scopesLabel {
+  &__scopes-label {
     color: var(--faint);
   }
 
@@ -142,7 +142,7 @@
   }
 }
 
-.searchFacet {
+.search-facet {
   display: flex;
   align-items: baseline;
   justify-content: space-between;

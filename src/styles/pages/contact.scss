@@ -1,6 +1,6 @@
 @use "../../assets/styles/tokens" as *;
 
-.contactPage {
+.contact-page {
   &__cols {
     display: grid;
     grid-template-columns: $rail-width minmax(0, 1fr) 12.5rem;
@@ -55,7 +55,7 @@
   }
 }
 
-.contactBio {
+.contact-bio {
   &__portrait {
     display: block;
     width: 80%;
@@ -96,7 +96,7 @@
     text-wrap: pretty;
   }
 
-  &__avatarSmall {
+  &__avatar-small {
     display: none;
 
     @include narrow {
@@ -136,7 +136,7 @@
   }
 }
 
-.contactReply {
+.contact-reply {
   display: flex;
   align-items: baseline;
   gap: 0.875rem;
@@ -177,7 +177,7 @@
   }
 }
 
-.contactElsewhere {
+.contact-elsewhere {
   @include narrow {
     margin-top: 2.125rem;
   }

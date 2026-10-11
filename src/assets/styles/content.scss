@@ -74,7 +74,7 @@
     }
   }
 
-  /* No gutter to hang the markers in at this width (see .itemPage__body in
+  /* No gutter to hang the markers in at this width (see .item-page__body in
      item.scss, which only opens one up from 760px). */
   @include narrow {
     h2::before,
@@ -92,12 +92,12 @@
   a {
     border-bottom: 1px solid var(--accent-tint-2);
 
-    &.externalLink {
+    &.external-link {
       white-space: nowrap;
     }
   }
 
-  .externalLink__icon {
+  .external-link__icon {
     display: inline;
     width: 0.875rem;
     height: 0.875rem;
@@ -314,7 +314,7 @@
     white-space: nowrap;
   }
 
-  .shortcut .keySep {
+  .shortcut .key-sep {
     display: inline-block;
     margin: 0 0.0625rem;
     vertical-align: middle;
@@ -389,7 +389,7 @@
    * tab-style label on the top edge so it reads as an interruption rather
    * than another paragraph.
    */
-  .noteAside {
+  .note-aside {
     position: relative;
     max-width: 70ch;
     margin: 0.875rem 0 1.875rem;
@@ -408,13 +408,13 @@
      The dark-mode variant is repeated explicitly (not just inherited)
      because html[data-theme='dark'] & .shortcut code above matches "html" as
      an extra element, which otherwise out-specifies this rule despite its
-     extra .noteAside class. */
-  .noteAside .shortcut code,
-  html[data-theme='dark'] & .noteAside .shortcut code {
+     extra .note-aside class. */
+  .note-aside .shortcut code,
+  html[data-theme='dark'] & .note-aside .shortcut code {
     background: var(--surface-2);
   }
 
-  .noteAside__label {
+  .note-aside__label {
     position: absolute;
     top: -0.6875rem;
     left: -0.0625rem;
@@ -435,14 +435,14 @@
    * the light pastel fills would otherwise be the brightest thing on a dark
    * page, and the tape/shadow tuned for light paper would read as artefacts.
    */
-  .stickyNote,
-  .stickyStack__ghost,
-  .stickyStack__note {
+  .sticky-note,
+  .sticky-stack__ghost,
+  .sticky-stack__note {
     padding: 1.25rem 1.25rem 1.375rem;
   }
 
-  .stickyNote,
-  .stickyStack {
+  .sticky-note,
+  .sticky-stack {
     float: right;
     clear: right;
     width: 15.625rem;
@@ -467,7 +467,7 @@
      sitting above something the reader hasn't reached yet. Flex children's
      margins don't collapse, so the spacing moves onto the gap and the
      group's own margin, which still collapses with what follows. */
-  .stickyPair {
+  .sticky-pair {
     /* The same measure .prose > p gets, which no longer reaches a paragraph
        once it's grouped in here. */
     > p {
@@ -489,17 +489,17 @@
         margin-bottom: 0;
       }
 
-      > .stickyNote,
-      > .stickyStack {
+      > .sticky-note,
+      > .sticky-stack {
         order: 1;
       }
     }
   }
 
-  .stickyNote,
-  .stickyStack__note {
+  .sticky-note,
+  .sticky-stack__note {
     /* z-index (any value, not just auto) makes this its own stacking
-       context, so .stickyNote__paper's z-index: -1 below stays contained
+       context, so .sticky-note__paper's z-index: -1 below stays contained
        here - behind this note's own text, not leaking behind unrelated
        content elsewhere on the page. */
     position: relative;
@@ -507,28 +507,28 @@
   }
 
   /* The paper look (fill, shadow, tilt) lives on this decorative backdrop
-     rather than on .stickyNote/.stickyStack__note itself, so it can carry
-     the card's tilt independently of .stickyNote__content below - both
-     read the same --stickyTilt, so they move together. Rotating the text
+     rather than on .sticky-note/.sticky-stack__note itself, so it can carry
+     the card's tilt independently of .sticky-note__content below - both
+     read the same --sticky-tilt, so they move together. Rotating the text
      does cost it some sharpness (the browser has to resample it, the way
      rotating a bitmap in an image editor softens it) and makes
      drag-to-select unreliable - both accepted here in favour of the note
      actually looking tilted. */
-  .stickyNote__paper {
+  .sticky-note__paper {
     position: absolute;
     inset: 0;
     z-index: -1;
     pointer-events: none;
     box-shadow: 0 8px 20px rgb(26 31 30 / 16%);
-    transform: rotate(var(--stickyTilt, 1.6deg));
+    transform: rotate(var(--sticky-tilt, 1.6deg));
 
     @include narrow {
       transform: none;
     }
   }
 
-  .stickyNote__content {
-    transform: rotate(var(--stickyTilt, 1.6deg));
+  .sticky-note__content {
+    transform: rotate(var(--sticky-tilt, 1.6deg));
 
     @include narrow {
       transform: none;
@@ -538,51 +538,51 @@
   /* Light mode's shadow all but disappears against a dark page, and the
      card needs a hairline of its own to still read as raised rather than a
      flat rectangle sitting on the ground. */
-  html[data-theme='dark'] & .stickyNote__paper {
+  html[data-theme='dark'] & .sticky-note__paper {
     box-shadow: 0 10px 26px rgb(0 0 0 / 50%);
     border: 1px solid rgb(255 255 255 / 5%);
   }
 
-  .stickyStack {
+  .sticky-stack {
     position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .stickyStack__ghost {
+  .sticky-stack__ghost {
     grid-area: 1 / 1;
     align-self: start;
     visibility: hidden;
   }
 
-  .stickyStack__wrap {
+  .sticky-stack__wrap {
     position: relative;
     grid-area: 1 / 1;
     align-self: start;
   }
 
-  .stickyStack__rear {
+  .sticky-stack__rear {
     position: absolute;
     inset: 0;
     pointer-events: none;
     box-shadow: 0 3px 10px rgb(26 31 30 / 10%);
     transform:
-      translate(calc(var(--stickyRearDepth) * 7px), calc(var(--stickyRearDepth) * 9px))
-      rotate(var(--stickyTilt, 1.6deg));
+      translate(calc(var(--sticky-rear-depth) * 7px), calc(var(--sticky-rear-depth) * 9px))
+      rotate(var(--sticky-tilt, 1.6deg));
 
     @include narrow {
       transform: translate(
-        calc(var(--stickyRearDepth) * 4px),
-        calc(var(--stickyRearDepth) * 6px)
+        calc(var(--sticky-rear-depth) * 4px),
+        calc(var(--sticky-rear-depth) * 6px)
       );
     }
   }
 
-  html[data-theme='dark'] & .stickyStack__rear {
+  html[data-theme='dark'] & .sticky-stack__rear {
     box-shadow: 0 3px 10px rgb(0 0 0 / 40%);
   }
 
-  .stickyNote__tape {
+  .sticky-note__tape {
     position: absolute;
     top: -0.625rem;
     left: 50%;
@@ -596,13 +596,13 @@
 
   /* Opaque tape tuned for light paper reads as a stray white bar once the
      paper underneath goes dark, so it turns translucent instead. */
-  html[data-theme='dark'] & .stickyNote__tape {
+  html[data-theme='dark'] & .sticky-note__tape {
     background: rgb(230 226 216 / 14%);
     border-right-color: rgb(255 255 255 / 6%);
     border-left-color: rgb(255 255 255 / 6%);
   }
 
-  .stickyNote__label {
+  .sticky-note__label {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -611,7 +611,7 @@
     @include label(0.625rem, 0.18em);
   }
 
-  .stickyNote__marker {
+  .sticky-note__marker {
     display: inline-flex;
     flex: none;
     align-items: center;
@@ -621,14 +621,14 @@
     font-family: $font-mono;
     font-size: 0.625rem;
     line-height: 1;
-    /* .stickyNote__label (the flex row this sits in) sets a wide
+    /* .sticky-note__label (the flex row this sits in) sets a wide
        letter-spacing for its own "TIP"-style text. Inherited onto this
        single digit, the trailing space it adds after the character throws
        flexbox's centering off, visibly shifting the digit up and left. */
     letter-spacing: normal;
   }
 
-  .stickyNote__text {
+  .sticky-note__text {
     margin: 0;
     font-family: $font-hand;
     font-size: 1rem;
@@ -643,7 +643,7 @@
     }
   }
 
-  .stickyStack__counter {
+  .sticky-stack__counter {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -654,7 +654,7 @@
     @include label(0.625rem, 0.16em);
   }
 
-  .stickyStack__arrow {
+  .sticky-stack__arrow {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -675,7 +675,7 @@
    * at (see StickyRef). Coloured to match the note it jumps to, so the
    * connection reads before you've clicked it.
    */
-  .stickyRef {
+  .sticky-ref {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -704,23 +704,23 @@
     "green" #d8e8df #1f342c #0b5b4a;
 
   @each $name, $fill, $ink, $label in $sticky-papers {
-    .stickyNote--#{$name} .stickyNote__paper,
-    .stickyStack__note--#{$name} .stickyNote__paper,
-    .stickyStack__rear.stickyNote--#{$name} {
+    .sticky-note--#{$name} .sticky-note__paper,
+    .sticky-stack__note--#{$name} .sticky-note__paper,
+    .sticky-stack__rear.sticky-note--#{$name} {
       background: $fill;
     }
 
-    .stickyNote--#{$name},
-    .stickyStack__note--#{$name} {
+    .sticky-note--#{$name},
+    .sticky-stack__note--#{$name} {
       color: $ink;
     }
 
-    .stickyNote--#{$name} .stickyNote__label,
-    .stickyStack__note--#{$name} .stickyNote__label {
+    .sticky-note--#{$name} .sticky-note__label,
+    .sticky-stack__note--#{$name} .sticky-note__label {
       color: $label;
     }
 
-    .stickyStack__note--#{$name} .stickyStack__counter {
+    .sticky-stack__note--#{$name} .sticky-stack__counter {
       border-top: 1px solid rgba($label, 0.25);
       color: $label;
     }
@@ -728,9 +728,9 @@
     /* $fill (the pastel paper colour) as text here reads as a washed-out
        grey against the $label background - white is crisper and still
        clearly "this note's colour" via the background alone. */
-    .stickyNote--#{$name} .stickyNote__marker,
-    .stickyStack__note--#{$name} .stickyNote__marker,
-    .stickyRef--#{$name} {
+    .sticky-note--#{$name} .sticky-note__marker,
+    .sticky-stack__note--#{$name} .sticky-note__marker,
+    .sticky-ref--#{$name} {
       background: $label;
       color: white;
     }
@@ -738,8 +738,8 @@
     /* A keycap's plain white chip reads as a hole punched in this paper, so
        tint it toward the paper's own colour instead of the page's neutral
        --surface. */
-    .stickyNote--#{$name} .shortcut code,
-    .stickyStack__note--#{$name} .shortcut code {
+    .sticky-note--#{$name} .shortcut code,
+    .sticky-stack__note--#{$name} .shortcut code {
       background: color.mix($fill, white, 35%);
       border-color: color.mix($fill, white, 65%);
       box-shadow: 0 1px 0 color.mix($fill, white, 65%);
@@ -766,37 +766,37 @@
 
   @each $name, $fill, $rear, $ink, $label in $sticky-papers-dark {
     html[data-theme='dark'] & {
-      .stickyNote--#{$name},
-      .stickyStack__note--#{$name} {
+      .sticky-note--#{$name},
+      .sticky-stack__note--#{$name} {
         color: $ink;
       }
 
-      .stickyNote--#{$name} .stickyNote__paper,
-      .stickyStack__note--#{$name} .stickyNote__paper {
+      .sticky-note--#{$name} .sticky-note__paper,
+      .sticky-stack__note--#{$name} .sticky-note__paper {
         background: $fill;
       }
 
       /* The rear (peeking, inactive) notes in a stack carry both
-         .stickyStack__rear and .stickyNote--#{$name} (see StickyStack in
+         .sticky-stack__rear and .sticky-note--#{$name} (see StickyStack in
          src/components/stickyNote), so this compound selector is what wins
          over the single-class fill rule just above. */
-      .stickyStack__rear.stickyNote--#{$name} {
+      .sticky-stack__rear.sticky-note--#{$name} {
         background: $rear;
       }
 
-      .stickyNote--#{$name} .stickyNote__label,
-      .stickyStack__note--#{$name} .stickyNote__label {
+      .sticky-note--#{$name} .sticky-note__label,
+      .sticky-stack__note--#{$name} .sticky-note__label {
         color: $label;
       }
 
-      .stickyStack__note--#{$name} .stickyStack__counter {
+      .sticky-stack__note--#{$name} .sticky-stack__counter {
         border-top: 1px solid rgba($label, 0.25);
         color: $label;
       }
 
-      .stickyNote--#{$name} .stickyNote__marker,
-      .stickyStack__note--#{$name} .stickyNote__marker,
-      .stickyRef--#{$name} {
+      .sticky-note--#{$name} .sticky-note__marker,
+      .sticky-stack__note--#{$name} .sticky-note__marker,
+      .sticky-ref--#{$name} {
         background: $label;
         color: $fill;
       }
@@ -808,8 +808,8 @@
          near-white chip at the same weight. A dark fill needs a HIGH
          weight instead, so it stays mostly $fill with just a slight lift
          toward white. */
-      .stickyNote--#{$name} .shortcut code,
-      .stickyStack__note--#{$name} .shortcut code {
+      .sticky-note--#{$name} .shortcut code,
+      .sticky-stack__note--#{$name} .shortcut code {
         background: color.mix($fill, white, 85%);
         border-color: color.mix($fill, white, 70%);
         box-shadow: 0 1px 0 color.mix($fill, white, 70%);
@@ -844,13 +844,13 @@
   // Transparent screenshots and sprites sit on white, as they did under
   // gatsby-remark-images, rather than on the paper ground.
   > img,
-  .proseImageLink img {
+  .prose-image-link img {
     background: #fff;
   }
 
   // Each image links to its full-size file (src/scripts/prose.js), as
   // gatsby-remark-images' linkImagesToOriginal did.
-  .proseImageLink {
+  .prose-image-link {
     display: block;
     margin: 0 0 1.75rem;
 
@@ -863,7 +863,7 @@
    * The featured image floats into the article's right margin on wide screens,
    * the way a plate would sit beside body copy in print.
    */
-  &__floatFigure {
+  &__float-figure {
     float: right;
     width: 40%;
     margin: 0 -2.75rem 0.75rem 0;

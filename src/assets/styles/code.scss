@@ -5,7 +5,7 @@
  * the block itself is bounded rather than tinted so it reads as a plate set
  * into the page.
  */
-.codeWrapper {
+.code-wrapper {
   position: relative;
   width: fit-content;
   min-width: min(68ch, 100%);
@@ -17,7 +17,7 @@
   font-size: 0.84375rem;
 }
 
-.codeHeader {
+.code-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,7 +27,7 @@
   border-bottom: 1px solid var(--tbl-line-2);
 }
 
-.codeLanguage {
+.code-language {
   padding: 0.1875rem 0.4375rem;
   background: var(--bg);
   border: 1px solid var(--tbl-line-2);
@@ -35,7 +35,7 @@
   @include label(0.625rem, 0.16em);
 }
 
-.codeCopyButton {
+.code-copy-button {
   display: inline-flex;
   align-items: center;
   gap: 0.4375rem;
@@ -47,7 +47,7 @@
   @include label(0.625rem, 0.16em);
 
   &:hover,
-  &.isCopied {
+  &.is-copied {
     border-color: var(--accent-tint-2);
     background: var(--accent-tint);
     color: var(--accent);
@@ -58,7 +58,7 @@
   }
 }
 
-.codeWrapper pre {
+.code-wrapper pre {
   margin: 0 !important;
   padding: 0.9375rem 1.125rem !important;
   overflow-x: auto;
@@ -73,18 +73,18 @@
   tab-size: 2;
 }
 
-.codeWrapper code {
+.code-wrapper code {
   font-family: $font-mono !important;
   word-break: normal;
   overflow-wrap: normal;
 }
 
-.codeWrapper[data-language='plain'] pre,
-.codeWrapper[data-language='text'] pre {
+.code-wrapper[data-language='plain'] pre,
+.code-wrapper[data-language='text'] pre {
   color: var(--ink) !important;
 }
 
-.mermaidWrapper {
+.mermaid-wrapper {
   overflow-x: auto;
   padding: 1.5rem 1.25rem;
   border: 1px solid var(--surface-border);
@@ -96,7 +96,7 @@
   box-shadow: var(--shadow-medium);
 }
 
-.mermaidActionButton {
+.mermaid-action-button {
   align-items: center;
   background: var(--surface-elevated) !important;
   border: 1px solid var(--surface-border) !important;
@@ -109,14 +109,14 @@
   padding: 0.55rem 0.9rem !important;
 }
 
-.mermaidExpandButton {
+.mermaid-expand-button {
   position: absolute !important;
   right: 0.85rem;
   top: 0.85rem;
   z-index: 1;
 }
 
-.mermaidWrapper .mermaidFallback {
+.mermaid-wrapper .mermaid-fallback {
   margin: 0;
   border: 0;
   background: transparent;
@@ -127,18 +127,18 @@
   color: var(--text-color);
 }
 
-.mermaidWrapper[data-mermaid-state='rendered'] .mermaidFallback {
+.mermaid-wrapper[data-mermaid-state='rendered'] .mermaid-fallback {
   display: none;
 }
 
-.mermaidRendered {
+.mermaid-rendered {
   display: flex;
   justify-content: center;
   min-width: min-content;
   padding: 0.5rem 0.25rem;
 }
 
-.mermaidRendered svg {
+.mermaid-rendered svg {
   display: block;
   height: auto;
   width: auto;
@@ -146,7 +146,7 @@
   max-width: none;
 }
 
-.mermaidViewerOverlay {
+.mermaid-viewer-overlay {
   position: fixed;
   inset: 0;
   background: var(--surface-overlay);
@@ -158,7 +158,7 @@
   z-index: 100;
 }
 
-.mermaidViewerModal {
+.mermaid-viewer-modal {
   background: var(--surface-elevated-strong);
   border: 0;
   box-shadow: none;
@@ -179,7 +179,7 @@
   width: 100vw;
 }
 
-.mermaidViewerHeader {
+.mermaid-viewer-header {
   align-items: flex-start;
   display: flex;
   gap: 1rem;
@@ -187,12 +187,12 @@
   padding-bottom: 0.9rem;
 }
 
-.mermaidViewerHeader > :first-child {
+.mermaid-viewer-header > :first-child {
   flex: 1 1 auto;
   min-width: 0;
 }
 
-.mermaidViewerTitle {
+.mermaid-viewer-title {
   color: var(--ink);
   font-size: 1.35rem;
   font-weight: 600;
@@ -201,13 +201,13 @@
   margin-bottom: 0.25rem !important;
 }
 
-.mermaidViewerSubtitle {
+.mermaid-viewer-subtitle {
   color: var(--text-faint);
   line-height: 1.45;
   margin: 0;
 }
 
-.mermaidViewerActions {
+.mermaid-viewer-actions {
   align-items: center;
   display: flex;
   flex-shrink: 0;
@@ -216,12 +216,12 @@
   justify-content: flex-end;
 }
 
-.mermaidZoomControls {
+.mermaid-zoom-controls {
   display: flex;
   gap: 0.5rem;
 }
 
-.mermaidViewerControlButton {
+.mermaid-viewer-control-button {
   gap: 0;
   line-height: 1;
   justify-content: center;
@@ -231,7 +231,7 @@
   width: 2.65rem;
 }
 
-.mermaidViewerControlButton .icon {
+.mermaid-viewer-control-button .icon {
   align-items: center;
   display: inline-flex;
   height: 1rem;
@@ -240,17 +240,17 @@
   width: 1rem;
 }
 
-.mermaidViewerControlButton .icon:first-child:not(:last-child),
-.mermaidViewerControlButton .icon:last-child:not(:first-child) {
+.mermaid-viewer-control-button .icon:first-child:not(:last-child),
+.mermaid-viewer-control-button .icon:last-child:not(:first-child) {
   margin-left: 0;
   margin-right: 0;
 }
 
-.mermaidViewerControlLabel {
+.mermaid-viewer-control-label {
   display: none;
 }
 
-.mermaidZoomStatus {
+.mermaid-zoom-status {
   font-variant-numeric: tabular-nums;
   justify-content: center;
   min-height: 2.65rem;
@@ -258,7 +258,7 @@
   padding: 0 0.85rem !important;
 }
 
-.mermaidViewerBody {
+.mermaid-viewer-body {
   align-items: stretch;
   background:
     radial-gradient(circle at top left, rgba(34, 124, 113, 0.12), transparent 38%),
@@ -271,7 +271,7 @@
   overflow: auto;
 }
 
-.mermaidViewerCanvas {
+.mermaid-viewer-canvas {
   flex: 1 1 auto;
   min-height: 100%;
   min-width: 100%;
@@ -280,131 +280,131 @@
   touch-action: pinch-zoom pan-x pan-y;
 }
 
-.mermaidViewerCanvas[data-pannable='true'] {
+.mermaid-viewer-canvas[data-pannable='true'] {
   cursor: grab;
 }
 
-.mermaidViewerCanvas[data-panning='true'] {
+.mermaid-viewer-canvas[data-panning='true'] {
   cursor: grabbing;
   user-select: none;
 }
 
-.mermaidViewerPositioner {
+.mermaid-viewer-positioner {
   min-height: 100%;
   min-width: 100%;
   position: relative;
 }
 
-.mermaidViewerStage {
+.mermaid-viewer-stage {
   overflow: hidden;
   position: absolute;
 }
 
-.mermaidViewerTransform {
+.mermaid-viewer-transform {
   height: 100%;
   transform-origin: top left;
   width: 100%;
 }
 
-.mermaidViewerRendered {
+.mermaid-viewer-rendered {
   min-height: min-content;
   min-width: min-content;
   padding: 0;
   transform-origin: top left;
 }
 
-.mermaidViewerRendered svg {
+.mermaid-viewer-rendered svg {
   height: 100%;
   max-width: none;
   width: 100%;
 }
 
 @media screen and (max-width: $touch-max) {
-  .mermaidWrapper {
+  .mermaid-wrapper {
     padding: 1rem;
   }
 
-  .mermaidExpandButton {
+  .mermaid-expand-button {
     right: 0.65rem;
     top: 0.65rem;
   }
 
-  .mermaidRendered svg {
+  .mermaid-rendered svg {
     min-width: 100%;
   }
 
-  .mermaidViewerHeader {
+  .mermaid-viewer-header {
     flex-direction: column;
     gap: 0.75rem;
   }
 
-  .mermaidViewerActions {
+  .mermaid-viewer-actions {
     gap: 0.45rem;
     justify-content: flex-start;
     width: 100%;
   }
 
-  .mermaidZoomControls {
+  .mermaid-zoom-controls {
     gap: 0.45rem;
     width: auto;
   }
 
-  .mermaidActionButton {
+  .mermaid-action-button {
     justify-content: center;
   }
 
-  .mermaidViewerControlButton {
+  .mermaid-viewer-control-button {
     min-height: 2.35rem;
     min-width: 2.35rem;
     width: 2.35rem;
   }
 
-  .mermaidZoomStatus {
+  .mermaid-zoom-status {
     min-height: 2.35rem;
     min-width: 4rem;
     padding: 0 0.7rem !important;
   }
 
-  .mermaidViewerTitle {
+  .mermaid-viewer-title {
     font-size: 1.2rem;
   }
 
-  .mermaidViewerSubtitle {
+  .mermaid-viewer-subtitle {
     font-size: 0.95rem;
   }
 
-  .mermaidViewerCanvas {
+  .mermaid-viewer-canvas {
     padding: 0.75rem;
   }
 }
 
 @media screen and (max-width: $touch-max) and (orientation: landscape) {
-  .mermaidViewerHeader {
+  .mermaid-viewer-header {
     align-items: flex-start;
     flex-direction: row;
   }
 
-  .mermaidViewerActions {
+  .mermaid-viewer-actions {
     flex-wrap: nowrap;
     justify-content: flex-end;
     width: auto;
   }
 
-  .mermaidZoomControls {
+  .mermaid-zoom-controls {
     flex-shrink: 0;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .mermaidViewerModal {
+  .mermaid-viewer-modal {
     padding: 1.4rem;
   }
 
-  .mermaidViewerHeader {
+  .mermaid-viewer-header {
     align-items: center;
   }
 
-  .mermaidViewerBody {
+  .mermaid-viewer-body {
     max-width: min(96vw, 84rem);
     margin: 0 auto;
     width: 100%;

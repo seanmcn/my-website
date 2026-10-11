@@ -3,20 +3,20 @@
  * did with React state. The menu is server-rendered and hidden, so this only
  * toggles it.
  */
-const menu = document.querySelector('.mobileMenu');
-const burger = document.querySelector('.siteHeader__burger');
+const menu = document.querySelector('.mobile-menu');
+const burger = document.querySelector('.site-header__burger');
 
 function setMenu(open) {
   menu.hidden = !open;
   burger.setAttribute('aria-expanded', String(open));
   document.documentElement.classList.toggle('no-html-scroll', open);
   if (open) {
-    menu.querySelector('.mobileMenu__close').focus();
+    menu.querySelector('.mobile-menu__close').focus();
   }
 }
 
 burger.addEventListener('click', () => setMenu(menu.hidden));
-menu.querySelector('.mobileMenu__close')
+menu.querySelector('.mobile-menu__close')
     .addEventListener('click', () => setMenu(false));
 
 document.addEventListener('keydown', (event) => {

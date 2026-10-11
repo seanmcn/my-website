@@ -68,48 +68,48 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
   description={data.summary || excerpt(item)}
   type="article"
 >
-  <div class="pageWrap itemPage" data-type={type}>
-    <article class="itemPage__article" id="postMainColumn">
-      <div class="itemBar">
-        <a class="itemBar__back" href="/library/">
+  <div class="page-wrap item-page" data-type={type}>
+    <article class="item-page__article" id="postMainColumn">
+      <div class="item-bar">
+        <a class="item-bar__back" href="/library/">
           <Icon name="arrowLeft" />
-          <span class="itemBar__backLabel">Library</span>
+          <span class="item-bar__back-label">Library</span>
         </a>
-        <h1 class="itemBar__title">{data.title}</h1>
+        <h1 class="item-bar__title">{data.title}</h1>
         {!isFind && readTime && (
-          <span class="itemBar__readTime"><Icon name="clock" />{readTime}</span>
+          <span class="item-bar__read-time"><Icon name="clock" />{readTime}</span>
         )}
-        <span class="itemBar__date">
+        <span class="item-bar__date">
           <Icon name="calendar" />
           {formatItemDate(data.date)}
         </span>
       </div>
 
       <div class:list={[
-        'itemPage__body',
-        {'itemPage__body--narrow': isFind || type === 'note'},
+        'item-page__body',
+        {'item-page__body--narrow': isFind || type === 'note'},
       ]}>
         {!isFind && readTime && (
-          <div class="itemPage__readTime"><Icon name="clock" size={13} />{readTime}</div>
+          <div class="item-page__read-time"><Icon name="clock" size={13} />{readTime}</div>
         )}
 
         {(showToc || margins.length > 0) && (
-          <div class="itemPage__topMeta">
-            <div class="itemPage__topMetaGrid">
+          <div class="item-page__top-meta">
+            <div class="item-page__top-meta-grid">
               {showToc && (
-                <div class="itemPage__topMetaToc">
-                  <div class="railBlock__label">On this page</div>
+                <div class="item-page__top-meta-toc">
+                  <div class="rail-block__label">On this page</div>
                   {toc.map(heading => (
-                    <a class="itemRail__tocLink" href={heading.href}>{heading.text}</a>
+                    <a class="item-rail__toc-link" href={heading.href}>{heading.text}</a>
                   ))}
                 </div>
               )}
               {margins.length > 0 && (
-                <div class="itemPage__topMetaMargins">
+                <div class="item-page__top-meta-margins">
                   {margins.map(margin => (
                     <div>
-                      <div class="itemPage__marginLabel">{margin.label}</div>
-                      <p class="itemPage__marginText">{margin.text}</p>
+                      <div class="item-page__margin-label">{margin.label}</div>
+                      <p class="item-page__margin-text">{margin.text}</p>
                     </div>
                   ))}
                 </div>
@@ -119,10 +119,10 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
         )}
 
         {data.featured && (
-          <figure class="prose__floatFigure">
+          <figure class="prose__float-figure">
             <Picture
               alt={data.title}
-              class="featuredImage"
+              class="featured-image"
               formats={['avif', 'webp']}
               src={data.featured}
               width={720}
@@ -132,13 +132,13 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
 
         {isFind && data.source && (
           <a
-            class="itemPage__source"
+            class="item-page__source"
             href={data.source}
             rel="noopener noreferrer"
             target="_blank"
           >
-            <span class="itemPage__sourceLabel">Source</span>
-            <span class="itemPage__sourceLink">
+            <span class="item-page__source-label">Source</span>
+            <span class="item-page__source-link">
               {data.sourceTitle || host}
               <span aria-hidden="true">↗</span>
             </span>
@@ -152,11 +152,11 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
         </Prose>
       </div>
 
-      <div class="itemPage__end">
+      <div class="item-page__end">
         {data.tags.length > 0 && (
-          <div class="itemPage__tags">
+          <div class="item-page__tags">
             {data.tags.map(tag => (
-              <a class="itemPage__tag" href={`/library/tags/${tag}/`}>
+              <a class="item-page__tag" href={`/library/tags/${tag}/`}>
                 <Icon name="tag" size={11} />
                 {slugToTitle(tag)}
               </a>
@@ -164,28 +164,28 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
           </div>
         )}
 
-        <div class="itemPage__ornament">
-          <span class="itemPage__rule"></span>
-          <span class="itemPage__diamond"></span>
-          <span class="itemPage__rule"></span>
+        <div class="item-page__ornament">
+          <span class="item-page__rule"></span>
+          <span class="item-page__diamond"></span>
+          <span class="item-page__rule"></span>
         </div>
-        <div class="itemPage__endRow">
-          <span class="itemPage__endLeft">
+        <div class="item-page__end-row">
+          <span class="item-page__end-left">
             {data.category && (
-              <a class="itemPage__categoryLink" href={categoryPath(data.category)}>
+              <a class="item-page__category-link" href={categoryPath(data.category)}>
                 <Icon name="category" size={13} />
                 {slugToTitle(data.category)}
               </a>
             )}
           </span>
-          <span class="itemPage__kind">
+          <span class="item-page__kind">
             <span
-              class={`typeDot typeDot--${type}`}
+              class={`type-dot type-dot--${type}`}
               style={`background: ${meta.colour}`}
             ></span>
             {meta.label}
           </span>
-          <span class="itemPage__endRight">
+          <span class="item-page__end-right">
             <a href={`/contact/?about=${data.slug}`}>
               <Icon name="reply" size={13} />
               Get in touch about this →
@@ -195,29 +195,29 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
       </div>
     </article>
 
-    <aside class="itemRail" id="postSidebarColumn">
+    <aside class="item-rail" id="postSidebarColumn">
       {margins.length > 0 && (
-        <div class="itemRail__margins">
+        <div class="item-rail__margins">
           {margins.map(margin => (
             <div>
-              <div class="railBlock__label">{margin.label}</div>
-              <p class="itemRail__marginText">{margin.text}</p>
+              <div class="rail-block__label">{margin.label}</div>
+              <p class="item-rail__margin-text">{margin.text}</p>
             </div>
           ))}
         </div>
       )}
 
       {!isFind && readTime && (
-        <div class="itemRail__readTimeBlock">
-          <div class="railBlock__label">Read time</div>
-          <div class="itemRail__readTime"><Icon name="clock" size={13} />{readTime}</div>
+        <div class="item-rail__read-time-block">
+          <div class="rail-block__label">Read time</div>
+          <div class="item-rail__read-time"><Icon name="clock" size={13} />{readTime}</div>
         </div>
       )}
 
       {isFind && host && (
         <div>
-          <div class="railBlock__label">Source</div>
-          <div class="itemRail__readTime">
+          <div class="rail-block__label">Source</div>
+          <div class="item-rail__read-time">
             <a href={data.source} rel="noopener noreferrer" target="_blank">
               {host} ↗
             </a>
@@ -226,23 +226,23 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
       )}
 
       {showToc && (
-        <div class="railBlock itemRail__tocBlock">
-          <div class="railBlock__label">On this page</div>
+        <div class="rail-block item-rail__toc-block">
+          <div class="rail-block__label">On this page</div>
           {toc.map(heading => (
-            <a class="itemRail__tocLink" href={heading.href}>{heading.text}</a>
+            <a class="item-rail__toc-link" href={heading.href}>{heading.text}</a>
           ))}
         </div>
       )}
 
       {relatedPosts.length > 0 && (
-        <div class="railBlock">
-          <div class="railBlock__label">Related</div>
+        <div class="rail-block">
+          <div class="rail-block__label">Related</div>
 
-          <div class="itemRail__relatedList">
+          <div class="item-rail__related-list">
             {relatedPosts.map(related => (
-              <a class="itemRail__related" href={itemPath(related.slug)}>
+              <a class="item-rail__related" href={itemPath(related.slug)}>
                 <span
-                  class="itemRail__glyph"
+                  class="item-rail__glyph"
                   style={`color: ${typeMeta(related.type).colour}`}
                 >
                   {TYPE_GLYPH[related.type]}
@@ -252,22 +252,22 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
             ))}
           </div>
 
-          <div class="itemRail__relatedGrid">
+          <div class="item-rail__related-grid">
             {relatedPosts.map(related => (
-              <a class="itemRail__relatedCard" href={itemPath(related.slug)}>
+              <a class="item-rail__related-card" href={itemPath(related.slug)}>
                 {related.thumb ? (
-                  <span class="itemRail__relatedThumb">
+                  <span class="item-rail__related-thumb">
                     <img alt="" loading="lazy" src={related.thumb} />
                   </span>
                 ) : (
                   <span
-                    class="itemRail__relatedThumb itemRail__relatedThumb--glyph"
+                    class="item-rail__related-thumb item-rail__related-thumb--glyph"
                     style={`color: ${typeMeta(related.type).colour}`}
                   >
                     {TYPE_GLYPH[related.type]}
                   </span>
                 )}
-                <span class="itemRail__relatedTitle">{related.title}</span>
+                <span class="item-rail__related-title">{related.title}</span>
               </a>
             ))}
           </div>
@@ -280,5 +280,5 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
 <script>
   import {condenseOnScroll} from '../../scripts/condensed.js';
 
-  condenseOnScroll('.itemBar');
+  condenseOnScroll('.item-bar');
 </script>

@@ -30,21 +30,21 @@ const {Content} = await render(project);
   title={`${data.title} - Projects - Seán McNamara`}
   description={data.summary || excerpt(project, 180)}
 >
-  <div class="pageWrap projectPage">
-    <article class="projectPage__article">
-      <div class="itemBar">
-        <a class="itemBar__back" href="/projects/">
+  <div class="page-wrap project-page">
+    <article class="project-page__article">
+      <div class="item-bar">
+        <a class="item-bar__back" href="/projects/">
           <Icon name="arrowLeft" />
           Projects
         </a>
-        <h1 class="itemBar__title">{data.title}</h1>
-        <span class="itemBar__date">
+        <h1 class="item-bar__title">{data.title}</h1>
+        <span class="item-bar__date">
           <Icon name="calendar" />
           {formatLongDate(data.date)}
         </span>
       </div>
 
-      {data.summary && <p class="projectPage__lead">{data.summary}</p>}
+      {data.summary && <p class="project-page__lead">{data.summary}</p>}
 
       <ProjectGallery
         featured={data.featured}
@@ -52,14 +52,14 @@ const {Content} = await render(project);
         title={data.title}
       />
 
-      <div class="projectPage__divider"></div>
+      <div class="project-page__divider"></div>
       <Prose><Content /></Prose>
     </article>
 
-    <aside class="rightRail projectRail">
+    <aside class="right-rail project-rail">
       {data.repo && (
         <a
-          class="projectRail__cta"
+          class="project-rail__cta"
           href={data.repo}
           rel="noopener noreferrer"
           target="_blank"
@@ -69,7 +69,7 @@ const {Content} = await render(project);
       )}
       {data.demo && (
         <a
-          class="projectRail__cta projectRail__cta--secondary"
+          class="project-rail__cta project-rail__cta--secondary"
           href={data.demo}
           rel="noopener noreferrer"
           target="_blank"
@@ -79,35 +79,35 @@ const {Content} = await render(project);
       )}
 
       <div>
-        <div class="railBlock__label">Started</div>
-        <div class="projectRail__value">{formatLongDate(data.date)}</div>
+        <div class="rail-block__label">Started</div>
+        <div class="project-rail__value">{formatLongDate(data.date)}</div>
       </div>
 
       {data.techStack.length > 0 && (
-        <div class="railBlock">
-          <div class="railBlock__label">Tech stack</div>
-          <div class="projectRail__chips">
-            {data.techStack.map(item => <span class="projectRail__chip">{item}</span>)}
+        <div class="rail-block">
+          <div class="rail-block__label">Tech stack</div>
+          <div class="project-rail__chips">
+            {data.techStack.map(item => <span class="project-rail__chip">{item}</span>)}
           </div>
         </div>
       )}
 
       {data.tags.length > 0 && (
-        <div class="railBlock">
-          <div class="railBlock__label">Tags</div>
-          <div class="projectRail__chips">
-            {data.tags.map(tag => <span class="projectRail__tag">#{tag}</span>)}
+        <div class="rail-block">
+          <div class="rail-block__label">Tags</div>
+          <div class="project-rail__chips">
+            {data.tags.map(tag => <span class="project-rail__tag">#{tag}</span>)}
           </div>
         </div>
       )}
 
       {others.length > 0 && (
-        <div class="railBlock">
-          <div class="railBlock__label">Other projects</div>
+        <div class="rail-block">
+          <div class="rail-block__label">Other projects</div>
           {others.map(other => (
-            <a class="projectRail__other" href={`/projects/${other.slug}/`}>
+            <a class="project-rail__other" href={`/projects/${other.slug}/`}>
               {other.title}{' '}
-              <span class="projectRail__otherStack">{other.language}</span>
+              <span class="project-rail__other-stack">{other.language}</span>
             </a>
           ))}
         </div>
@@ -119,5 +119,5 @@ const {Content} = await render(project);
 <script>
   import {condenseOnScroll} from '../../scripts/condensed.js';
 
-  condenseOnScroll('.itemBar');
+  condenseOnScroll('.item-bar');
 </script>

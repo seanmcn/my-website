@@ -100,23 +100,23 @@ export const codeFrame = {
     root.children = [{
       type: 'element',
       tagName: 'div',
-      properties: {className: ['codeWrapper'], dataLanguage: label},
+      properties: {className: ['code-wrapper'], dataLanguage: label},
       children: [
         {
           type: 'element',
           tagName: 'div',
-          properties: {className: ['codeHeader']},
+          properties: {className: ['code-header']},
           children: [
             {
               type: 'element',
               tagName: 'span',
-              properties: {className: ['codeLanguage']},
+              properties: {className: ['code-language']},
               children: [{type: 'text', value: label}],
             },
             {
               type: 'element',
               tagName: 'button',
-              properties: {className: ['codeCopyButton'], type: 'button'},
+              properties: {className: ['code-copy-button'], type: 'button'},
               children: [copyIcon, {type: 'text', value: 'Copy'}],
             },
           ],

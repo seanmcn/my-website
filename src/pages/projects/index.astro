@@ -36,41 +36,41 @@ const years = projects.reduce((groups, project) => {
 const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
 ---
 <Layout title="Projects - Seán McNamara" description={BLURB}>
-  <div class="pageWrap projectsPage">
-    <div class="twoCol twoCol--padded">
-      <div class="mobileIntro">
+  <div class="page-wrap projects-page">
+    <div class="two-col two-col--padded">
+      <div class="mobile-intro">
         <div class="eyebrow">Projects &middot; {projects.length}</div>
         <p>{BLURB}</p>
       </div>
 
-      <aside class="rail projectsRail">
+      <aside class="rail projects-rail">
         <div class="rail__intro">
           <div class="eyebrow">Projects &middot; {projects.length}</div>
-          <p class="projectsRail__blurb">{BLURB}</p>
+          <p class="projects-rail__blurb">{BLURB}</p>
         </div>
 
         <div>
-          <div class="railHeading projectsRail__heading">Stacks</div>
+          <div class="rail-heading projects-rail__heading">Stacks</div>
           {stacks.map(name => (
             <button
-              class="projectsRail__stack"
+              class="projects-rail__stack"
               data-stack={name}
               type="button"
             >
-              <span class="projectsRail__stackHead">
-                <span class="projectsRail__stackName">
+              <span class="projects-rail__stack-head">
+                <span class="projects-rail__stack-name">
                   <span
-                    class="projectsRail__dot"
+                    class="projects-rail__dot"
                     style={`background: ${stackColour(name)}`}
                   ></span>
                   {name}
                 </span>
-                <span class="projectsRail__stackTail" data-count={stackCounts[name]}>
+                <span class="projects-rail__stack-tail" data-count={stackCounts[name]}>
                   {stackCounts[name]}
                 </span>
               </span>
               <span
-                class="projectsRail__bar"
+                class="projects-rail__bar"
                 style={`width: ${Math.round((stackCounts[name] / maxStackCount) * 100)}%`}
               ></span>
             </button>
@@ -79,9 +79,9 @@ const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
 
         {allTags.length > 0 && (
           <div>
-            <div class="railHeading projectsRail__heading">Tags</div>
-            <div class="projectsRail__tags">
-              {allTags.map(tag => <span class="projectsRail__tag">#{tag}</span>)}
+            <div class="rail-heading projects-rail__heading">Tags</div>
+            <div class="projects-rail__tags">
+              {allTags.map(tag => <span class="projects-rail__tag">#{tag}</span>)}
             </div>
           </div>
         )}
@@ -89,30 +89,30 @@ const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
 
       <div>
         <h1 class="visually-hidden">Projects</h1>
-        <div class="stickyBar projectsBar">
-          <span class="projectsBar__results">{projects.length} projects</span>
-          <button class="projectsBar__clear" hidden type="button">
+        <div class="sticky-bar projects-bar">
+          <span class="projects-bar__results">{projects.length} projects</span>
+          <button class="projects-bar__clear" hidden type="button">
             Clear filter &times;
           </button>
-          <span class="projectsBar__order">Newest first</span>
+          <span class="projects-bar__order">Newest first</span>
         </div>
 
         {years.map(group => (
-          <div class="projectsYear">
-            <div class="projectsYear__head">
-              <span class="projectsYear__label">{group.year}</span>
-              <span class="projectsYear__line"></span>
-              <span class="projectsYear__count">{plural(group.items.length)}</span>
+          <div class="projects-year">
+            <div class="projects-year__head">
+              <span class="projects-year__label">{group.year}</span>
+              <span class="projects-year__line"></span>
+              <span class="projects-year__count">{plural(group.items.length)}</span>
             </div>
 
             {group.items.map(({data}) => (
               <a
-                class="projectRow"
+                class="project-row"
                 data-stack={data.language}
                 href={`/projects/${data.slug}/`}
               >
                 {data.featured ? (
-                  <span class="projectRow__thumb">
+                  <span class="project-row__thumb">
                     <Image
                       alt=""
                       fit="cover"
@@ -123,21 +123,21 @@ const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
                     />
                   </span>
                 ) : (
-                  <span class="projectRow__thumb projectRow__thumb--blank"></span>
+                  <span class="project-row__thumb project-row__thumb--blank"></span>
                 )}
-                <span class="projectRow__body">
+                <span class="project-row__body">
                   <span>
-                    <span class="projectRow__name">{data.title}</span>
-                    <span class="projectRow__blurb"> &mdash; {data.summary}</span>
+                    <span class="project-row__name">{data.title}</span>
+                    <span class="project-row__blurb"> &mdash; {data.summary}</span>
                   </span>
-                  <span class="projectRow__foot">
+                  <span class="project-row__foot">
                     {data.tags.length > 0 && (
-                      <span class="projectRow__tags">
-                        {data.tags.map(tag => <span class="projectRow__tag">{tag}</span>)}
+                      <span class="project-row__tags">
+                        {data.tags.map(tag => <span class="project-row__tag">{tag}</span>)}
                       </span>
                     )}
                     <span
-                      class="projectRow__stack"
+                      class="project-row__stack"
                       style={`background: ${stackColour(data.language)}`}
                     >
                       {data.language}
@@ -158,18 +158,18 @@ const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
    * The stack filter. Rows are all in the page; choosing a stack hides the
    * rest, and years left with nothing in them, and says what's showing.
    */
-  const buttons = [...document.querySelectorAll('.projectsRail__stack')];
-  const rows = [...document.querySelectorAll('.projectRow')];
-  const years = [...document.querySelectorAll('.projectsYear')];
-  const results = document.querySelector('.projectsBar__results');
-  const clear = document.querySelector('.projectsBar__clear');
+  const buttons = [...document.querySelectorAll('.projects-rail__stack')];
+  const rows = [...document.querySelectorAll('.project-row')];
+  const years = [...document.querySelectorAll('.projects-year')];
+  const results = document.querySelector('.projects-bar__results');
+  const clear = document.querySelector('.projects-bar__clear');
   const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
   let active = null;
 
   function apply() {
     buttons.forEach((button) => {
       const isActive = button.dataset.stack === active;
-      const tail = button.querySelector('.projectsRail__stackTail');
+      const tail = button.querySelector('.projects-rail__stack-tail');
       button.classList.toggle('is-active', isActive);
       tail.textContent = isActive ? '✕' : tail.dataset.count;
     });
@@ -179,9 +179,9 @@ const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
     });
 
     years.forEach((year) => {
-      const shown = year.querySelectorAll('.projectRow:not([hidden])').length;
+      const shown = year.querySelectorAll('.project-row:not([hidden])').length;
       year.hidden = shown === 0;
-      year.querySelector('.projectsYear__count').textContent = plural(shown);
+      year.querySelector('.projects-year__count').textContent = plural(shown);
     });
 
     const count = rows.filter(row => !row.hidden).length;

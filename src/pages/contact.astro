@@ -21,21 +21,21 @@ const titles = Object.fromEntries((await getLibraryItems())
     .map(({data}) => [data.slug, data.title]));
 ---
 <Layout title="Contact Me - Seán McNamara" description={DESCRIPTION}>
-  <div class="pageWrap contactPage">
-    <div class="contactPage__cols">
-      <aside aria-label="Profile" class="rail rail--bio contactBio">
-        <span class="contactBio__portrait">
+  <div class="page-wrap contact-page">
+    <div class="contact-page__cols">
+      <aside aria-label="Profile" class="rail rail--bio contact-bio">
+        <span class="contact-bio__portrait">
           <img alt="Seán McNamara" src={avatar.src} />
         </span>
 
         <div>
           <div class="eyebrow">Contact</div>
-          <div class="contactBio__intro">
-            <p class="contactBio__blurb">
+          <div class="contact-bio__intro">
+            <p class="contact-bio__blurb">
               Everything reaches me. Email is the surest route, but any of
               these work.
             </p>
-            <span class="contactBio__avatarSmall">
+            <span class="contact-bio__avatar-small">
               <img alt="" src={avatar.src} />
             </span>
           </div>
@@ -43,42 +43,42 @@ const titles = Object.fromEntries((await getLibraryItems())
 
         <div>
           {RAIL.map(row => (
-            <div class="contactBio__row">
+            <div class="contact-bio__row">
               <span>{row.label}</span>
-              <span class="contactBio__value">{row.value}</span>
+              <span class="contact-bio__value">{row.value}</span>
             </div>
           ))}
         </div>
       </aside>
 
-      <div class="contactPage__main">
-        <div class="stickyBar contactPage__bar">
-          <h1 class="contactPage__title">Let&apos;s talk</h1>
-          <span class="contactPage__email">{EMAIL}</span>
+      <div class="contact-page__main">
+        <div class="sticky-bar contact-page__bar">
+          <h1 class="contact-page__title">Let&apos;s talk</h1>
+          <span class="contact-page__email">{EMAIL}</span>
         </div>
 
-        <p class="contactPage__lead">
+        <p class="contact-page__lead">
           A question about something I&apos;ve written, an idea you&apos;d like
           to collaborate on, or just a general hello. This is the best place to
           reach me. For roles and recruiting, LinkedIn is better.
         </p>
 
-        <div class="contactReply" hidden>
+        <div class="contact-reply" hidden>
           <div>
-            <div class="contactReply__eyebrow">Replying about</div>
-            <a class="contactReply__title" href="/library/"></a>
-            <div class="contactReply__note">
+            <div class="contact-reply__eyebrow">Replying about</div>
+            <a class="contact-reply__title" href="/library/"></a>
+            <div class="contact-reply__note">
               A link to this post will be included with your message.
             </div>
           </div>
-          <button class="contactReply__remove" type="button">Remove ✕</button>
+          <button class="contact-reply__remove" type="button">Remove ✕</button>
         </div>
 
         <ContactForm email={EMAIL} />
       </div>
 
-      <aside aria-label="Elsewhere" class="rightRail contactElsewhere">
-        <div class="railHeading">Elsewhere</div>
+      <aside aria-label="Elsewhere" class="right-rail contact-elsewhere">
+        <div class="rail-heading">Elsewhere</div>
         <ElsewhereLinks />
       </aside>
     </div>
@@ -98,11 +98,11 @@ const titles = Object.fromEntries((await getLibraryItems())
   );
   const slug = new URLSearchParams(window.location.search).get('about');
   const title = slug && titles[slug];
-  const reply = document.querySelector('.contactReply');
-  const field = document.querySelector('.contactForm input[name="about"]');
+  const reply = document.querySelector('.contact-reply');
+  const field = document.querySelector('.contact-form input[name="about"]');
 
   if (title) {
-    const link = reply.querySelector('.contactReply__title');
+    const link = reply.querySelector('.contact-reply__title');
     link.href = `/library/${slug}/`;
     link.textContent = title;
     field.value = `${title} — /library/${slug}/`;
@@ -110,7 +110,7 @@ const titles = Object.fromEntries((await getLibraryItems())
     reply.hidden = false;
   }
 
-  reply.querySelector('.contactReply__remove').addEventListener('click', () => {
+  reply.querySelector('.contact-reply__remove').addEventListener('click', () => {
     reply.hidden = true;
     field.disabled = true;
   });

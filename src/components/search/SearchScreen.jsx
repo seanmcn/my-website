@@ -179,7 +179,7 @@ const SearchScreen = () => {
     return (
       <>
         {text.slice(0, at)}
-        <mark className="searchPage__hit">
+        <mark className="search-page__hit">
           {text.slice(at, at + trimmed.length)}
         </mark>
         {text.slice(at + trimmed.length)}
@@ -188,12 +188,12 @@ const SearchScreen = () => {
   };
 
   return (
-    <div className="pageWrap searchPage">
+    <div className="page-wrap search-page">
       <h1 className="visually-hidden">Search</h1>
-      <div className="twoCol">
+      <div className="two-col">
         <button
           aria-expanded={filtersOpen}
-          className={`railToggle ${filtersOpen ? 'is-open' : ''}`}
+          className={`rail-toggle ${filtersOpen ? 'is-open' : ''}`}
           onClick={() => setFiltersOpen(open => !open)}
           type="button"
         >
@@ -204,7 +204,7 @@ const SearchScreen = () => {
           className={`rail rail--collapsible ${filtersOpen ? 'is-open' : ''}`}
         >
           <div>
-            <div className="railHeading searchPage__facetHeading">Type</div>
+            <div className="rail-heading search-page__facet-heading">Type</div>
             {TYPE_FACETS.map((facet) => {
               const count = facet.key === 'everything' ?
                   typePool.length :
@@ -213,17 +213,17 @@ const SearchScreen = () => {
 
               return (
                 <button
-                  className={`searchFacet ${active ? 'is-active' : ''}`}
+                  className={`search-facet ${active ? 'is-active' : ''}`}
                   key={facet.key}
                   onClick={() =>
                     setType(active ? 'everything' : facet.key)
                   }
                   type="button"
                 >
-                  <span className="searchFacet__name">
+                  <span className="search-facet__name">
                     {facet.key !== 'everything' && (
                       <span
-                        className="searchFacet__dot"
+                        className="search-facet__dot"
                         style={{
                           background: facet.key === 'project' ?
                               'var(--accent)' :
@@ -233,7 +233,7 @@ const SearchScreen = () => {
                     )}
                     {facet.label}
                   </span>
-                  <span className="searchFacet__count">{count}</span>
+                  <span className="search-facet__count">{count}</span>
                 </button>
               );
             })}
@@ -241,12 +241,12 @@ const SearchScreen = () => {
 
           {Object.keys(categoryCounts).length > 0 && (
             <div>
-              <div className="railHeading searchPage__facetHeading">
+              <div className="rail-heading search-page__facet-heading">
                   Category
               </div>
               {Object.keys(categoryCounts).sort().map(name => (
                 <button
-                  className={`searchFacet searchFacet--bordered ${
+                  className={`search-facet search-facet--bordered ${
                       category === name ? 'is-active' : ''
                   }`}
                   key={name}
@@ -255,11 +255,11 @@ const SearchScreen = () => {
                   }
                   type="button"
                 >
-                  <span className="searchFacet__name">
+                  <span className="search-facet__name">
                     <CategoryIcon size={13} />
                     {slugToTitle(name)}
                   </span>
-                  <span className="searchFacet__count">
+                  <span className="search-facet__count">
                     {categoryCounts[name]}
                   </span>
                 </button>
@@ -268,14 +268,14 @@ const SearchScreen = () => {
           )}
 
           {topTags.length > 0 && (
-            <div className="railBlock">
-              <div className="railBlock__label searchPage__facetHeading">
+            <div className="rail-block">
+              <div className="rail-block__label search-page__facet-heading">
                   Related tags
               </div>
-              <div className="searchPage__tags">
+              <div className="search-page__tags">
                 {topTags.map(tag => (
                   <button
-                    className="searchPage__tag"
+                    className="search-page__tag"
                     key={tag}
                     onClick={() => setQuery(tag)}
                     type="button"
@@ -289,13 +289,13 @@ const SearchScreen = () => {
 
           {recents.length > 0 && (
             <div>
-              <div className="railHeading searchPage__facetHeading">
+              <div className="rail-heading search-page__facet-heading">
                   Recent searches
               </div>
-              <div className="searchPage__recents">
+              <div className="search-page__recents">
                 {recents.map(recent => (
                   <button
-                    className="searchPage__recent"
+                    className="search-page__recent"
                     key={recent}
                     onClick={() => setQuery(recent)}
                     type="button"
@@ -309,14 +309,14 @@ const SearchScreen = () => {
         </aside>
 
         <div>
-          <div className="searchPage__field">
-            <span aria-hidden="true" className="searchPage__glyph">⌕</span>
+          <div className="search-page__field">
+            <span aria-hidden="true" className="search-page__glyph">⌕</span>
             <label className="visually-hidden" htmlFor="search-input">
                 Search posts, notes, finds and projects
             </label>
             <input
               autoComplete="off"
-              className="searchPage__input"
+              className="search-page__input"
               id="search-input"
               onChange={event => setQuery(event.target.value)}
               onKeyDown={(event) => {
@@ -330,12 +330,12 @@ const SearchScreen = () => {
               type="search"
               value={query}
             />
-            <span className="searchPage__count">
+            <span className="search-page__count">
               {rows.length} {rows.length === 1 ? 'result' : 'results'}
             </span>
             {query && (
               <button
-                className="searchPage__clear"
+                className="search-page__clear"
                 onClick={() => {
                   setQuery('');
                   setType('everything');
@@ -349,11 +349,11 @@ const SearchScreen = () => {
             )}
           </div>
 
-          <div className="searchPage__scopes">
-            <span className="searchPage__scopesLabel">Match in</span>
+          <div className="search-page__scopes">
+            <span className="search-page__scopes-label">Match in</span>
             {SCOPES.map(candidate => (
               <button
-                className={`searchPage__scope ${
+                className={`search-page__scope ${
                     scope[candidate.key] ? 'is-active' : ''
                 }`}
                 key={candidate.key}
@@ -365,7 +365,7 @@ const SearchScreen = () => {
             ))}
           </div>
 
-          <div className="searchPage__results">
+          <div className="search-page__results">
             {rows.map(item => (
               <SearchRow
                 highlight={highlight}
@@ -379,11 +379,11 @@ const SearchScreen = () => {
             ))}
 
             {rows.length === 0 && (
-              <div className="libraryEmpty">
-                <div className="libraryEmpty__title">
+              <div className="library-empty">
+                <div className="library-empty__title">
                     Nothing matched that
                 </div>
-                <p className="libraryEmpty__body">
+                <p className="library-empty__body">
                     Try a shorter word, widen the type filter, or turn on full
                     text under Match in.
                 </p>

@@ -14,7 +14,7 @@ const text = (await Astro.slots.render('default')).trim();
 const chunks = text.split(/([-/])/);
 ---
 <span class="shortcut">{chunks.map((chunk, i) => i % 2 === 1 ?
-  <span class="keySep">{chunk === '-' ? '+' : '/'}</span> :
+  <span class="key-sep">{chunk === '-' ? '+' : '/'}</span> :
   <code>{chunk.toLowerCase() in KEYS ?
     <Icon keycap={chunk.toLowerCase()} /> :
     <Fragment set:html={chunk} />}</code>)}</span>

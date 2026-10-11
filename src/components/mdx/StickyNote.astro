@@ -8,20 +8,20 @@ const TILTS = [1.6, -1.6, 2.2, -2.2];
 const {color = 'amber', label = 'Note', marker, tilt = TILTS[0]} = Astro.props;
 ---
 <aside
-  class={`stickyNote stickyNote--${color}`}
+  class={`sticky-note sticky-note--${color}`}
   id={marker ? `sticky-${marker}` : undefined}
-  style={`--stickyTilt: ${tilt}deg`}
+  style={`--sticky-tilt: ${tilt}deg`}
   data-color={color}
   data-label={label}
   data-marker={marker}
 >
-  <span aria-hidden="true" class="stickyNote__paper"></span>
-  <span aria-hidden="true" class="stickyNote__tape"></span>
-  <div class="stickyNote__content">
-    <div class="stickyNote__label">
-      {marker && <span class="stickyNote__marker">{marker}</span>}
+  <span aria-hidden="true" class="sticky-note__paper"></span>
+  <span aria-hidden="true" class="sticky-note__tape"></span>
+  <div class="sticky-note__content">
+    <div class="sticky-note__label">
+      {marker && <span class="sticky-note__marker">{marker}</span>}
       {label}
     </div>
-    <div class="stickyNote__text"><slot /></div>
+    <div class="sticky-note__text"><slot /></div>
   </div>
 </aside>

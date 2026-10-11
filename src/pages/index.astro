@@ -52,63 +52,63 @@ const stats = [
 ];
 ---
 <Layout title="Home - Seán McNamara" description={DESCRIPTION}>
-  <div class="pageWrap homePage">
+  <div class="page-wrap home-page">
     <!--
       The design opens on the bio rather than a page title, so the h1 is
       carried for screen readers and skipped visually.
     -->
     <h1 class="visually-hidden">Seán McNamara</h1>
-    <div class="homePage__row">
-      <aside class="rail rail--bio homeBio">
-        <div class="homeBio__top">
-          <p class="homeBio__headline">
+    <div class="home-page__row">
+      <aside class="rail rail--bio home-bio">
+        <div class="home-bio__top">
+          <p class="home-bio__headline">
             I build things, pull them apart, and try to make them better.
           </p>
-          <span class="homeBio__avatarOuter">
-            <span class="homeBio__avatar">
+          <span class="home-bio__avatar-outer">
+            <span class="home-bio__avatar">
               <img alt="Seán McNamara" src={avatar.src} />
             </span>
           </span>
         </div>
 
-        <div class="homeBio__body">
-          <p class="homeBio__blurb">
+        <div class="home-bio__body">
+          <p class="home-bio__blurb">
             Usually software. Increasingly AI. Mostly me thinking out loud
             about what I&rsquo;m building, learning, or getting unnecessarily
             interested in.
           </p>
-          <div class="homeBio__aboutLink">
+          <div class="home-bio__about-link">
             <a href="/about/">More about me →</a>
           </div>
-          <div class="homeBio__role">
-            <span class="homeBio__roleDot"></span>
+          <div class="home-bio__role">
+            <span class="home-bio__role-dot"></span>
             <span>
               Head of Engineering,{' '}
-              <span class="homeBio__roleOrg">Axiom Maths</span>
+              <span class="home-bio__role-org">Axiom Maths</span>
             </span>
           </div>
         </div>
 
-        <div class="homeBio__stats">
+        <div class="home-bio__stats">
           {stats.map(stat => (
-            <div class="homeBio__stat">
+            <div class="home-bio__stat">
               <span>{stat.label}</span>
-              <span class="homeBio__statValue">{stat.value}</span>
+              <span class="home-bio__stat-value">{stat.value}</span>
             </div>
           ))}
         </div>
       </aside>
 
-      <div class="homePage__main">
-        <div class="homePage__split">
+      <div class="home-page__main">
+        <div class="home-page__split">
           <div>
-            <div class="sectionRule">
-              <h2 class="sectionRule__badge" style="background: var(--plum)">
+            <div class="section-rule">
+              <h2 class="section-rule__badge" style="background: var(--plum)">
                 Latest posts
               </h2>
-              <span class="sectionRule__line"></span>
+              <span class="section-rule__line"></span>
               <a
-                class="sectionRule__link"
+                class="section-rule__link"
                 style="color: var(--plum)"
                 href="/library/posts/"
               >
@@ -116,40 +116,40 @@ const stats = [
               </a>
             </div>
 
-            <div class="homeLead">
+            <div class="home-lead">
               {posts.map((post) => {
                 const {data} = post;
                 const readTime = readTimeLabel(readingTimeMinutes(post.body));
 
                 return (
-                  <a class="homeLead__card" href={itemPath(data.slug)}>
-                    <span class="homeLead__meta">
+                  <a class="home-lead__card" href={itemPath(data.slug)}>
+                    <span class="home-lead__meta">
                       {data.category && (
-                        <span class="homeLead__metaCat">
+                        <span class="home-lead__meta-cat">
                           <Icon name="category" size={11} />
                           {slugToTitle(data.category)}
                         </span>
                       )}
-                      <span class="homeLead__metaDate">
+                      <span class="home-lead__meta-date">
                         <Icon name="calendar" size={11} />
                         {formatItemDate(data.date)}
                       </span>
                       {readTime && (
-                        <span class="homeLead__metaTime">
+                        <span class="home-lead__meta-time">
                           <Icon name="clock" size={11} />
                           {readTime}
                         </span>
                       )}
                     </span>
-                    <span class="homeLead__title">{data.title}</span>
-                    <span class="homeLead__body">{oneLine(post)}</span>
+                    <span class="home-lead__title">{data.title}</span>
+                    <span class="home-lead__body">{oneLine(post)}</span>
                     {data.featured && (
-                      <span class="homeLead__image">
+                      <span class="home-lead__image">
                         <Image alt="" src={data.featured} width={320} />
                       </span>
                     )}
                     {readTime && (
-                      <span class="homeLead__timeRow">
+                      <span class="home-lead__time-row">
                         <Icon name="clock" size={11} />
                         {readTime}
                       </span>
@@ -160,24 +160,24 @@ const stats = [
             </div>
           </div>
 
-          <div class="homeAside">
+          <div class="home-aside">
             <div>
-              <div class="sectionRule">
-                <span class="sectionRule__badge" style="background: var(--blue)">
+              <div class="section-rule">
+                <span class="section-rule__badge" style="background: var(--blue)">
                   Finds
                 </span>
-                <span class="sectionRule__line"></span>
+                <span class="section-rule__line"></span>
                 <a
-                  class="sectionRule__link"
+                  class="section-rule__link"
                   style="color: var(--blue)"
                   href="/library/finds/"
                 >
                   All finds →
                 </a>
               </div>
-              <div class="homeAside__finds">
+              <div class="home-aside__finds">
                 {finds.length === 0 && (
-                  <p class="homeAside__empty">
+                  <p class="home-aside__empty">
                     Nothing filed yet. Links worth passing on will land here.
                   </p>
                 )}
@@ -185,11 +185,11 @@ const stats = [
                   const {day, monthShort} = formatDayMonth(data.date);
 
                   return (
-                    <a class="homeAside__find" href={itemPath(data.slug)}>
-                      <span class="homeAside__findDate">
+                    <a class="home-aside__find" href={itemPath(data.slug)}>
+                      <span class="home-aside__find-date">
                         {day} {monthShort}
                       </span>
-                      <span class="homeAside__findTitle">{data.title}</span>
+                      <span class="home-aside__find-title">{data.title}</span>
                     </a>
                   );
                 })}
@@ -197,25 +197,25 @@ const stats = [
             </div>
 
             <div>
-              <div class="sectionRule">
+              <div class="section-rule">
                 <span
-                  class="sectionRule__badge"
+                  class="section-rule__badge"
                   style="background: var(--amber); color: var(--amber-bg)"
                 >
                   Notes
                 </span>
-                <span class="sectionRule__line"></span>
+                <span class="section-rule__line"></span>
                 <a
-                  class="sectionRule__link"
+                  class="section-rule__link"
                   style="color: var(--amber)"
                   href="/library/notes/"
                 >
                   All notes →
                 </a>
               </div>
-              <div class="homeAside__notes">
+              <div class="home-aside__notes">
                 {notes.length === 0 && (
-                  <p class="homeAside__empty">
+                  <p class="home-aside__empty">
                     Nothing filed yet. Shorter thoughts will land here.
                   </p>
                 )}
@@ -224,12 +224,12 @@ const stats = [
                   const {day, monthShort} = formatDayMonth(data.date);
 
                   return (
-                    <a class="homeAside__note" href={itemPath(data.slug)}>
-                      <span class="homeAside__noteDate">
+                    <a class="home-aside__note" href={itemPath(data.slug)}>
+                      <span class="home-aside__note-date">
                         {day} {monthShort}
                       </span>
-                      <span class="homeAside__noteTitle">{data.title}</span>
-                      <span class="homeAside__noteExcerpt">
+                      <span class="home-aside__note-title">{data.title}</span>
+                      <span class="home-aside__note-excerpt">
                         {data.summary || excerpt(note, 130)}
                       </span>
                     </a>
@@ -241,16 +241,16 @@ const stats = [
         </div>
 
         <section>
-          <div class="sectionRule">
-            <h2 class="sectionRule__badge">Things I&apos;ve built</h2>
-            <span class="sectionRule__line"></span>
-            <a class="sectionRule__link" href="/projects/">All projects →</a>
+          <div class="section-rule">
+            <h2 class="section-rule__badge">Things I&apos;ve built</h2>
+            <span class="section-rule__line"></span>
+            <a class="section-rule__link" href="/projects/">All projects →</a>
           </div>
-          <div class="homeProjects">
+          <div class="home-projects">
             {projects.map(({data}) => (
-              <a class="homeProjects__row" href={`/projects/${data.slug}/`}>
+              <a class="home-projects__row" href={`/projects/${data.slug}/`}>
                 {data.featured ? (
-                  <span class="homeProjects__thumb">
+                  <span class="home-projects__thumb">
                     <Image
                       alt=""
                       fit="cover"
@@ -261,15 +261,15 @@ const stats = [
                     />
                   </span>
                 ) : (
-                  <span class="homeProjects__thumb homeProjects__thumb--blank"></span>
+                  <span class="home-projects__thumb home-projects__thumb--blank"></span>
                 )}
                 <span>
-                  <span class="homeProjects__meta">
+                  <span class="home-projects__meta">
                     {data.language} · {data.date.getUTCFullYear()}
                   </span>
-                  <span class="homeProjects__line">
-                    <span class="homeProjects__name">{data.title}</span>
-                    <span class="homeProjects__blurb"> — {data.summary}</span>
+                  <span class="home-projects__line">
+                    <span class="home-projects__name">{data.title}</span>
+                    <span class="home-projects__blurb"> — {data.summary}</span>
                   </span>
                 </span>
               </a>
@@ -284,5 +284,5 @@ const stats = [
 <script>
   import {condenseOnScroll} from '../scripts/condensed.js';
 
-  condenseOnScroll('.homeBio__avatar');
+  condenseOnScroll('.home-bio__avatar');
 </script>

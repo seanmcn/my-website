@@ -16,38 +16,38 @@ const maxCount = tags.length ? tags[0].count : 1;
   title="Tags - Seán McNamara"
   description="The tools, platforms and themes that run through the library."
 >
-  <div class="pageWrap tagsPage">
-    <div class="tagsPage__head">
-      <h1 class="tagsPage__title">
+  <div class="page-wrap tags-page">
+    <div class="tags-page__head">
+      <h1 class="tags-page__title">
         <Icon name="tag" size={19} style="color: var(--accent)" />
         Tags
       </h1>
-      <p class="tagsPage__blurb">{BLURB}</p>
+      <p class="tags-page__blurb">{BLURB}</p>
     </div>
 
-    <div class="stickyBar tagsPage__bar">
-      <a class="tagsPage__back" href="/library/">
+    <div class="sticky-bar tags-page__bar">
+      <a class="tags-page__back" href="/library/">
         <Icon name="arrowLeft" />
         Back to library
       </a>
-      <span class="tagsPage__stickyTitle">{BLURB}</span>
-      <span class="tagsPage__count">
+      <span class="tags-page__sticky-title">{BLURB}</span>
+      <span class="tags-page__count">
         <Icon name="tag" size={14} style="color: var(--accent)" />
         {tags.length} tags
       </span>
     </div>
 
-    <div class="tagsPage__grid">
+    <div class="tags-page__grid">
       {tags.map(tag => (
-        <a class="tagsPage__row" href={tagPath(tag.name)}>
-          <span class="tagsPage__name">{slugToTitle(tag.name)}</span>
-          <span class="tagsPage__track">
+        <a class="tags-page__row" href={tagPath(tag.name)}>
+          <span class="tags-page__name">{slugToTitle(tag.name)}</span>
+          <span class="tags-page__track">
             <span
-              class:list={['tagsPage__bar-fill', {'is-strong': tag.count >= 3}]}
+              class:list={['tags-page__bar-fill', {'is-strong': tag.count >= 3}]}
               style={`width: ${Math.round((tag.count / maxCount) * 100)}%`}
             ></span>
           </span>
-          <span class="tagsPage__tally">{tag.count}</span>
+          <span class="tags-page__tally">{tag.count}</span>
         </a>
       ))}
     </div>
@@ -57,5 +57,5 @@ const maxCount = tags.length ? tags[0].count : 1;
 <script>
   import {condenseOnScroll} from '../../../scripts/condensed.js';
 
-  condenseOnScroll('.tagsPage__head, .tagsPage__bar');
+  condenseOnScroll('.tags-page__head, .tags-page__bar');
 </script>

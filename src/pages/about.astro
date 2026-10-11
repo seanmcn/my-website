@@ -138,65 +138,65 @@ const TIMELINE = [
 ];
 ---
 <Layout title="About Me - Seán McNamara" description={DESCRIPTION}>
-  <div class="pageWrap aboutPage">
-    <div class="aboutPage__cols">
-      <aside aria-label="Profile" class="rail rail--bio aboutBio">
-        <span class="aboutBio__portraitFrame">
-          <span class="aboutBio__portrait">
+  <div class="page-wrap about-page">
+    <div class="about-page__cols">
+      <aside aria-label="Profile" class="rail rail--bio about-bio">
+        <span class="about-bio__portrait-frame">
+          <span class="about-bio__portrait">
             <img alt="Seán McNamara" src={portrait.src} />
           </span>
         </span>
 
         <div>
           <div class="eyebrow">About</div>
-          <p class="aboutBio__blurb">
+          <p class="about-bio__blurb">
             Backend engineer, now leading engineering at a maths charity.
           </p>
         </div>
 
         <div>
           {SNAPSHOT.map(row => (
-            <div class="aboutBio__snapshot">
-              <span class="aboutBio__snapshotLabel">{row.label}</span>
-              <span class="aboutBio__snapshotValue">{row.value}</span>
+            <div class="about-bio__snapshot">
+              <span class="about-bio__snapshot-label">{row.label}</span>
+              <span class="about-bio__snapshot-value">{row.value}</span>
             </div>
           ))}
         </div>
 
         <div>
-          <div class="railHeading aboutBio__toolsHeading">
+          <div class="rail-heading about-bio__tools-heading">
             Languages &amp; tools
           </div>
-          <div class="aboutBio__tools">
+          <div class="about-bio__tools">
             {TOOLS.map(tool => (
-              <span class={`aboutBio__tool aboutBio__tool--${tool.level}`}>
+              <span class={`about-bio__tool about-bio__tool--${tool.level}`}>
                 {tool.name}
               </span>
             ))}
           </div>
-          <div class="aboutBio__key">
-            <span class="aboutBio__keyItem">
-              <span class="aboutBio__swatch aboutBio__swatch--daily"></span>
+          <div class="about-bio__key">
+            <span class="about-bio__key-item">
+              <span class="about-bio__swatch about-bio__swatch--daily"></span>
               Daily
             </span>
-            <span class="aboutBio__keyItem">
-              <span class="aboutBio__swatch aboutBio__swatch--often"></span>
+            <span class="about-bio__key-item">
+              <span class="about-bio__swatch about-bio__swatch--often"></span>
               Often
             </span>
-            <span class="aboutBio__keyItem">
-              <span class="aboutBio__swatch aboutBio__swatch--shipped"></span>
+            <span class="about-bio__key-item">
+              <span class="about-bio__swatch about-bio__swatch--shipped"></span>
               Have shipped
             </span>
           </div>
         </div>
       </aside>
 
-      <div class="aboutPage__main">
-        <div class="stickyBar aboutPage__bar">
-          <h1 class="aboutPage__title">A peek into my journey</h1>
+      <div class="about-page__main">
+        <div class="sticky-bar about-page__bar">
+          <h1 class="about-page__title">A peek into my journey</h1>
         </div>
 
-        <p class="aboutPage__lead">
+        <p class="about-page__lead">
           I&apos;m Head of Engineering at{' '}
           <a
             href="https://axiommaths.com"
@@ -211,33 +211,33 @@ const TIMELINE = [
         </p>
 
         {SECTIONS.map((section, index) => (
-          <section class="aboutSection">
-            <div class="aboutSection__head">
-              <span class="aboutSection__num">
+          <section class="about-section">
+            <div class="about-section__head">
+              <span class="about-section__num">
                 {String(index + 1).padStart(2, '0')}
               </span>
-              <h2 class="aboutSection__heading">{section.heading}</h2>
+              <h2 class="about-section__heading">{section.heading}</h2>
             </div>
             {section.paras.map(para => (
-              <p class="aboutSection__para">{para}</p>
+              <p class="about-section__para">{para}</p>
             ))}
             {index < SECTIONS.length - 1 && (
-              <div class="aboutSection__divider"></div>
+              <div class="about-section__divider"></div>
             )}
           </section>
         ))}
       </div>
 
-      <aside aria-label="Career timeline" class="rightRail aboutTimeline">
+      <aside aria-label="Career timeline" class="right-rail about-timeline">
         <div>
-          <div class="railHeading aboutTimeline__heading">
+          <div class="rail-heading about-timeline__heading">
             Where I&apos;ve worked
           </div>
           {TIMELINE.map(entry => (
-            <div class="aboutTimeline__entry">
-              <div class="aboutTimeline__years">{entry.years}</div>
-              <div class="aboutTimeline__role">{entry.role}</div>
-              <div class="aboutTimeline__org">{entry.org}</div>
+            <div class="about-timeline__entry">
+              <div class="about-timeline__years">{entry.years}</div>
+              <div class="about-timeline__role">{entry.role}</div>
+              <div class="about-timeline__org">{entry.org}</div>
             </div>
           ))}
         </div>
@@ -250,5 +250,5 @@ const TIMELINE = [
 <script>
   import {condenseOnScroll} from '../scripts/condensed.js';
 
-  condenseOnScroll('.aboutBio__portrait');
+  condenseOnScroll('.about-bio__portrait');
 </script>

@@ -1,6 +1,6 @@
 @use "../../assets/styles/tokens" as *;
 
-.homePage {
+.home-page {
   &__row {
     display: grid;
     grid-template-columns: $rail-width minmax(0, 1fr);
@@ -46,7 +46,7 @@
 
 /* -------------------------------------------------------------- bio rail */
 
-.homeBio {
+.home-bio {
   &__top {
     display: flex;
     flex-direction: column;
@@ -75,7 +75,7 @@
     }
   }
 
-  &__avatarOuter {
+  &__avatar-outer {
     display: block;
     order: 1;
     width: 100%;
@@ -135,7 +135,7 @@
     text-wrap: pretty;
   }
 
-  &__aboutLink {
+  &__about-link {
     margin-top: 0.75rem;
     text-align: right;
 
@@ -163,7 +163,7 @@
     }
   }
 
-  &__roleDot {
+  &__role-dot {
     flex: none;
     width: 0.3125rem;
     height: 0.3125rem;
@@ -171,7 +171,7 @@
     transform: translateY(-2px);
   }
 
-  &__roleOrg {
+  &__role-org {
     color: var(--ink);
   }
 
@@ -192,7 +192,7 @@
     @include label(0.625rem, 0.14em);
   }
 
-  &__statValue {
+  &__stat-value {
     flex: none;
     margin-left: auto;
     color: var(--ink);
@@ -204,7 +204,7 @@
 
 /* ------------------------------------------------------------ lead posts */
 
-.homeLead {
+.home-lead {
   display: flex;
   flex-direction: column;
   margin-top: -0.75rem;
@@ -256,7 +256,7 @@
     @include label(0.625rem, 0.14em);
   }
 
-  &__metaCat {
+  &__meta-cat {
     display: inline-flex;
     order: 2;
     align-items: center;
@@ -271,7 +271,7 @@
     }
   }
 
-  &__metaDate {
+  &__meta-date {
     display: inline-flex;
     order: 1;
     align-items: center;
@@ -287,7 +287,7 @@
     }
   }
 
-  &__metaTime {
+  &__meta-time {
     display: inline-flex;
     order: 3;
     align-items: center;
@@ -357,7 +357,7 @@
     }
   }
 
-  &__timeRow {
+  &__time-row {
     display: none;
     grid-area: time;
     align-items: center;
@@ -400,7 +400,7 @@
   }
 }
 
-.homeAside {
+.home-aside {
   display: flex;
   flex-direction: column;
   gap: 2.125rem;
@@ -456,7 +456,7 @@
     }
   }
 
-  &__findDate {
+  &__find-date {
     color: var(--blue);
 
     @include label(0.625rem, 0.08em);
@@ -467,7 +467,7 @@
     }
   }
 
-  &__findTitle {
+  &__find-title {
     font-size: 1.0625rem;
     font-weight: 600;
     letter-spacing: -0.01em;
@@ -506,7 +506,7 @@
     }
   }
 
-  &__noteDate {
+  &__note-date {
     display: block;
     color: var(--amber);
 
@@ -517,7 +517,7 @@
     }
   }
 
-  &__noteTitle {
+  &__note-title {
     display: block;
     margin-top: 0.1875rem;
     font-size: 1.125rem;
@@ -534,7 +534,7 @@
     }
   }
 
-  &__noteExcerpt {
+  &__note-excerpt {
     display: block;
     margin-top: 0.25rem;
     color: var(--muted);
@@ -552,7 +552,7 @@
 
 /* -------------------------------------------------------------- projects */
 
-.homeProjects {
+.home-projects {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
