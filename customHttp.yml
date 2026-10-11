@@ -11,27 +11,16 @@ customHeaders:
             -   key: 'X-Content-Type-Options'
                 value: 'nosniff'
     # Cache-Control headers
-    -   pattern: '**/**.html'
-        headers:
-            -   key: 'Cache-Control'
-                value: 'public, max-age=0, must-revalidate'
+    #
+    # Everything not matched here (pages, the search index, the manifest,
+    # sw.js, the feed and the unhashed images in public/) keeps Amplify's
+    # default of 'public, max-age=0, s-maxage=31536000': browsers revalidate
+    # on every visit, and the CDN holds a copy until the next deploy clears
+    # it. Don't add max-age=0 rules for those files: without s-maxage they
+    # make the CDN go back to the origin on every request.
+    #
     # Built JS, CSS and images; every filename carries a content hash.
     -   pattern: '_astro/**'
         headers:
             -   key: 'Cache-Control'
                 value: 'public, max-age=31536000, immutable'
-    # Unhashed files the build regenerates: the search index and manifest.
-    -   pattern: '**/**.json'
-        headers:
-            -   key: 'Cache-Control'
-                value: 'public, max-age=0, must-revalidate'
-    -   pattern: 'manifest.webmanifest'
-        headers:
-            -   key: 'Cache-Control'
-                value: 'public, max-age=0, must-revalidate'
-    # The self-removing replacement for Gatsby's service worker; browsers
-    # must always see the current one.
-    -   pattern: 'sw.js'
-        headers:
-            -   key: 'Cache-Control'
-                value: 'public, max-age=0, must-revalidate'
