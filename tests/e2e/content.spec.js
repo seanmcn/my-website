@@ -51,7 +51,9 @@ test('the cheat sheet table filters as you type', async ({page}) => {
   await expect.poll(() => rows.count()).toBeLessThan(before);
 });
 
-test('a project gallery switches shots and opens a lightbox', async ({page}) => {
+test('a project gallery switches shots and opens a lightbox', async ({
+  page,
+}) => {
   await visitPage(page, '/projects/chinwag/');
   const stage = page.locator('.projectShots__stage');
   await page.getByRole('button', {name: 'Show image 2: Conversation'}).click();
@@ -91,7 +93,8 @@ test('a contact link from a post says what it is about', async ({page}) => {
 
 test('search finds a post and links to it', async ({page}) => {
   await visitPage(page, '/search/');
-  await page.getByLabel('Search posts, notes, finds and projects').fill('macbook');
+  await page.getByLabel('Search posts, notes, finds and projects')
+      .fill('macbook');
   const result = page.locator('.searchPage__results .itemRow').first();
   await expect(result).toContainText('MacBook');
   await expect(result).toHaveAttribute('href', MACBOOK_GUIDE);

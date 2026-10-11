@@ -17,8 +17,8 @@ const KIND_LABEL = {
 
 /*
  * Search results reuse the library row's shape but are built from the flat
- * JSON index rather than collection entries, so they carry no image and lean on the
- * hatched plate instead.
+ * JSON index rather than collection entries, so they carry no image and lean
+ * on the hatched plate instead.
  */
 const SearchRow = ({highlight, item, onOpen}) => {
   const kind = item.kind || 'post';
