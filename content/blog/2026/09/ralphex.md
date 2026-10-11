@@ -1,7 +1,7 @@
 ---
 title: "Ralphex Orchestrates AI Coding Agents"
 type: 'find'
-date: "2026-09-10T09:00:00.000Z"
+date: "2026-09-05T09:00:00.000Z"
 slug: "2026/09/ralphex"
 category: 'ai'
 tags: ['ai', 'developer-tools', 'automation']
@@ -18,4 +18,4 @@ featuredPalette: 'bright'
 featuredPrompt: 'A baton guides five transparent pods—magnifying glass, wrench, beaker, scissors, and open book—each refining identical blank blocks that flow into a tidy, tabbed paper stack'
 ---
 
-My friend Anton mentioned this to me, and it looks genuinely interesting. Ralphex is a CLI that orchestrates AI coding agents like Claude Code and codex through structured plans rather than writing code itself, running each task in a fresh session to keep context clean. It deploys five specialised reviewers in parallel - covering quality, implementation, testing, simplification and documentation - and can optionally cross-check against GPT-5 via codex. Plans get git-tracked automatically with per-task commits and a real-time web dashboard, aiming for disciplined, reviewable autonomy rather than unsupervised agent activity.
+My friend Anton mentioned this to me. I haven't used it yet, but it looks genuinely interesting. Ralphex is a CLI that orchestrates AI coding agents like Claude Code and codex through structured plans rather than writing code itself, running each task in a fresh session to keep context clean. It deploys five specialised reviewers in parallel - covering quality, implementation, testing, simplification and documentation - and can optionally cross-check against GPT-5 via codex. Plans get git-tracked automatically with per-task commits and a real-time web dashboard, aiming for disciplined, reviewable autonomy rather than unsupervised agent activity.

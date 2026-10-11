@@ -12,7 +12,7 @@ featuredPalette: 'balanced'
 featuredPrompt: 'At a grill, a hazy idea cloud cooks into blank cards slipping into a binder, while a corkboard strings matching cards into a winding path'
 ---
 
-My friend Anton put me onto [grill-me](https://www.aihero.dev/skills-grill-me), and it's turned out to be genuinely handy — I've used it a handful of times now to turn a loose idea into something I can actually commit to. It needs no repo and creates no files, just a structured interview that keeps going in rounds until the vague parts get pinned down.
+[grill-me](https://www.aihero.dev/skills-grill-me) has turned out to be genuinely handy — I've used it a handful of times now to turn a loose idea into something I can actually commit to. It needs no repo and creates no files, just a structured interview that keeps going in rounds until the vague parts get pinned down.
 
 [grill-with-docs](https://www.aihero.dev/skills-grill-with-docs) is the one I reach for most, though. Same interview format, but it writes what you agree on straight into the repo: a `CONTEXT.md` glossary as terms resolve, and an ADR under `docs/adr/` for anything hard to reverse or worth explaining later. I was already writing ADRs by hand, so this slotted straight into that habit, and now it keeps the format consistent across every repo I touch at work.
 
