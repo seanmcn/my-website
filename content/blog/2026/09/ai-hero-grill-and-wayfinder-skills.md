@@ -12,8 +12,8 @@ featuredPalette: 'balanced'
 featuredPrompt: 'At a grill, a hazy idea cloud cooks into blank cards slipping into a binder, while a corkboard strings matching cards into a winding path'
 ---
 
-[grill-me](https://www.aihero.dev/skills-grill-me) has turned out to be genuinely handy — I've used it a handful of times now to turn a loose idea into something I can actually commit to. It needs no repo and creates no files, just a structured interview that keeps going in rounds until the vague parts get pinned down.
+[grill-me](https://www.aihero.dev/skills-grill-me) has turned out to be handy. I've used it a handful of times now to turn a loose idea into something I can commit to. It's a structured interview that keeps going in rounds until the vague parts are pinned down, and it doesn't need a repo or write any files.
 
-[grill-with-docs](https://www.aihero.dev/skills-grill-with-docs) is the one I reach for most, though. Same interview format, but it writes what you agree on straight into the repo: a `CONTEXT.md` glossary as terms resolve, and an ADR under `docs/adr/` for anything hard to reverse or worth explaining later. I was already writing ADRs by hand, so this slotted straight into that habit, and now it keeps the format consistent across every repo I touch at work.
+I reach for [grill-with-docs](https://www.aihero.dev/skills-grill-with-docs) most, though. It runs the same interview but writes what you agree on into the repo as you go: a `CONTEXT.md` glossary as terms are resolved, and an ADR under `docs/adr/` for anything hard to reverse or worth explaining later. I was already writing ADRs by hand, so it fitted straight into that habit, and now the format is consistent across every repo I touch at work.
 
-I haven't tried [wayfinder](https://www.aihero.dev/skills-wayfinder) yet, but it looks like the natural next step for anything too big for a single grilling session. Instead of a conversation, it charts a multi-session effort as a map of decision tickets on the issue tracker, so nothing gets built until the open questions are actually resolved.
+I haven't tried [wayfinder](https://www.aihero.dev/skills-wayfinder) yet. It looks like the next step for anything too big for one grilling session: it charts a multi-session effort as a map of decision tickets on the issue tracker, so nothing gets built until the open questions are resolved.
