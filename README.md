@@ -97,8 +97,8 @@ The initial Chromium suite in `tests/e2e/` covers:
   across navigation/reloads, and saved preferences left untouched on load.
 - Content behaviour in `content.spec.js`: sticky note stacks, code copy
   buttons, Mermaid diagrams and their viewer, the cheat sheet filter, project
-  galleries and filters, contact replies, search, and the old `/blog/`
-  redirects.
+  galleries and filters, contact replies, search, the old-address redirects
+  and the 404 page.
 
 Automated axe checks complement manual keyboard and screen-reader testing.
 YouTube players are excluded from axe because their content is controlled by
@@ -160,10 +160,10 @@ seven days. No test-dashboard account or recording secret is required.
 
 ## Notes
 
-- Old `/blog/…` addresses and merged categories are redirected by
+- Every address the site has used since its WordPress days (`/YYYY/MM/slug/`,
+  `/blog/…`, paged lists, merged categories) is redirected by
   `src/integrations/redirects.mjs`, which writes a redirect page at each old
-  address and `dist/amplify-redirects.json` with the same rules, ready to paste
-  into Amplify as real 301s.
+  address. Anything else gets the 404 page, which suggests the closest pages.
 - `public/sw.js` replaces the Gatsby site's offline service worker: returning
   visitors who still have that installed pick this one up, and it clears its
   caches and unregisters itself.

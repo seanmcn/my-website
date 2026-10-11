@@ -103,7 +103,12 @@ test('search finds a post and links to it', async ({page}) => {
 for (const [from, to] of [
   ['/blog/2026/08/opinionated-macbook-guide/', MACBOOK_GUIDE],
   ['/blog/', '/library/'],
+  ['/blog/page/2/', '/library/'],
+  ['/blog/categories/devops/page/2/', '/library/categories/systems/'],
   ['/library/categories/linux/', '/library/categories/systems/'],
+  ['/2026/08/opinionated-macbook-guide/', MACBOOK_GUIDE],
+  ['/blog/opinionated-macbook-guide/', MACBOOK_GUIDE],
+  ['/portfolio/', '/projects/'],
 ]) {
   test(`${from} redirects to ${to}`, async ({page}) => {
     await page.goto(`${from}?from=test#top`);

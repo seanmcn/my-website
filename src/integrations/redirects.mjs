@@ -3,13 +3,20 @@ import path from 'node:path';
 import matter from 'gray-matter';
 
 /*
- * Every /blog/… address the site has ever served now lives under /library/,
- * and a few categories were merged. Amplify's customHttp.yml covers headers
- * only, so the build writes a real page at every old address (canonical tag,
- * meta refresh, and a scripted replace that carries the query string and hash
- * across) plus a rules file next to it that can be pasted into Amplify's
- * console if proper 301s are wanted later. The dev server answers the same
- * addresses (with their trailing slash) with the same page.
+ * Every address the site has served since 2009 that has since moved gets a
+ * real page at the old address: canonical tag, meta refresh, and a scripted
+ * replace that carries the query string and hash across. Amplify's
+ * customHttp.yml covers headers only, so this needs nothing set up in the
+ * console. Posts that were deleted are left to the 404 page. The dev server
+ * answers the same addresses (with their trailing slash) with the same page.
+ *
+ * The addresses, oldest first:
+ * - WordPress, until 2020: posts at /YYYY/MM/slug/, which is where the slugs'
+ *   date prefix comes from, with lists at /category/… and /tag/…
+ * - Gatsby reading WordPress, 2020: posts at /blog/slug/ without the date,
+ *   and the projects page at /portfolio/.
+ * - Gatsby reading Markdown, 2020 to 2026: everything under /blog/, with list
+ *   pages at …/page/N/.
  */
 
 const CATEGORY_REDIRECTS = {
@@ -46,39 +53,72 @@ function publishedItems(root, includeDrafts) {
       .filter(data => includeDrafts || data.draft !== true);
 }
 
-/* [fromPath, toPath] pairs; ":page" marks a host-rule-only wildcard. */
+// List pages have been cut into pages of 5, 9 and 10 items over the years,
+// so no list ever ran past ceil(items / 5) pages.
+const SMALLEST_PAGE_SIZE = 5;
+
+const laterPages = count => Array.from(
+    {length: Math.max(0, Math.ceil(count / SMALLEST_PAGE_SIZE) - 1)},
+    (_, index) => index + 2,
+);
+
+const countBy = values => values.reduce(
+    (counts, value) => counts.set(value, (counts.get(value) || 0) + 1),
+    new Map(),
+);
+
+/* [fromPath, toPath] pairs, each in its bare and trailing-slash form. */
 export function buildRedirects(items) {
   const rules = [];
   const pair = (from, to) => {
     const bare = from.replace(/\/$/, '');
     rules.push([bare, to], [`${bare}/`, to]);
   };
+  // Page numbers don't line up across page sizes, so every page of an old
+  // list goes to the start of its new one.
+  const list = (from, to, count) => {
+    pair(from, to);
+    laterPages(count).forEach(page => pair(`${from}/page/${page}`, to));
+  };
 
-  pair('/blog', '/library/');
-  rules.push(['/blog/page/:page', '/library/page/:page']);
+  const categoryCounts = countBy(items.map(item => item.category)
+      .filter(Boolean));
+  const tagCounts = countBy(items.flatMap(item => item.tags || [])
+      .map(normalise).filter(Boolean));
 
-  items.forEach(({slug}) => pair(`/blog/${slug}`, `/library/${slug}/`));
+  list('/blog', '/library/', items.length);
+  pair('/portfolio', '/projects/');
 
-  const categories = [...new Set(items.map(item => item.category))]
-      .filter(Boolean);
-  const tags = [...new Set(items.flatMap(item => item.tags || []))]
-      .filter(Boolean);
+  items.forEach(({slug}) => {
+    pair(`/blog/${slug}`, `/library/${slug}/`);
 
-  categories.forEach((category) => {
-    pair(`/blog/categories/${category}`, `/library/categories/${category}/`);
-    rules.push([
-      `/blog/categories/${category}/page/:page`,
-      `/library/categories/${category}/page/:page`,
-    ]);
+    if (/^\d{4}\/\d{2}\//.test(slug)) {
+      pair(`/${slug}`, `/library/${slug}/`);
+    }
   });
 
-  tags.forEach((tag) => {
-    const lower = normalise(tag);
-    pair(`/blog/tags/${lower}`, `/library/tags/${lower}/`);
-    rules.push([
-      `/blog/tags/${lower}/page/:page`,
-      `/library/tags/${lower}/page/:page`,
-    ]);
+  // Undated /blog/slug/ addresses, where the name is unambiguous and can't
+  // be mistaken for one of /blog/'s own sections.
+  const reserved = new Set(['categories', 'tags', 'page']);
+  const names = countBy(items.map(({slug}) => slug.split('/').pop()));
+  items.forEach(({slug}) => {
+    const name = slug.split('/').pop();
+
+    if (name !== slug && names.get(name) === 1 && !reserved.has(name)) {
+      pair(`/blog/${name}`, `/library/${slug}/`);
+    }
+  });
+
+  categoryCounts.forEach((count, category) => {
+    const to = `/library/categories/${category}/`;
+    list(`/blog/categories/${category}`, to, count);
+    pair(`/category/${category}`, to);
+  });
+
+  tagCounts.forEach((count, tag) => {
+    const to = `/library/tags/${tag}/`;
+    list(`/blog/tags/${tag}`, to, count);
+    pair(`/tag/${tag}`, to);
   });
 
   Object.entries(CATEGORY_REDIRECTS).forEach(([from, to]) => {
@@ -86,14 +126,11 @@ export function buildRedirects(items) {
       return;
     }
 
-    [`/blog/categories/${from}`, `/library/categories/${from}`]
-        .forEach((fromPath) => {
-          pair(fromPath, `/library/categories/${to}/`);
-          rules.push([
-            `${fromPath}/page/:page`,
-            `/library/categories/${to}/page/:page`,
-          ]);
-        });
+    const target = `/library/categories/${to}/`;
+    const count = categoryCounts.get(to) || 0;
+    list(`/blog/categories/${from}`, target, count);
+    list(`/library/categories/${from}`, target, count);
+    pair(`/category/${from}`, target);
   });
 
   return rules;
@@ -116,8 +153,6 @@ export function redirectHtml(toPath) {
 `;
 }
 
-const isWildcard = from => from.includes(':') || from.includes('*');
-
 export default function redirects() {
   let root;
 
@@ -136,10 +171,7 @@ export default function redirects() {
         updateConfig({vite: {plugins: [{
           name: 'site-redirects-dev',
           configureServer(server) {
-            const table = new Map(
-                buildRedirects(publishedItems(root, true))
-                    .filter(([from]) => !isWildcard(from)),
-            );
+            const table = new Map(buildRedirects(publishedItems(root, true)));
 
             server.middlewares.use((request, response, next) => {
               const pathname = decodeURI(request.url.split('?')[0]);
@@ -165,8 +197,7 @@ export default function redirects() {
         let written = 0;
 
         rules.forEach(([from, to]) => {
-          // Wildcards can only be expressed as host rules, not as a file.
-          if (isWildcard(from) || from.endsWith('/')) {
+          if (from.endsWith('/')) {
             return;
           }
 
@@ -182,17 +213,15 @@ export default function redirects() {
           written += 1;
         });
 
-        fs.writeFileSync(
-            path.join(outDir, 'amplify-redirects.json'),
-            JSON.stringify(rules.map(([source, target]) => ({
-              source,
-              status: '301',
-              target,
-            })), null, 2),
-        );
+        // Gatsby's first sitemap plugin wrote /sitemap.xml, and search
+        // engines may still ask for it.
+        const sitemapIndex = path.join(outDir, 'sitemap-index.xml');
 
-        logger.info(`wrote ${written} redirect pages and ${rules.length} ` +
-          'rules to amplify-redirects.json');
+        if (fs.existsSync(sitemapIndex)) {
+          fs.copyFileSync(sitemapIndex, path.join(outDir, 'sitemap.xml'));
+        }
+
+        logger.info(`wrote ${written} redirect pages`);
       },
     },
   };
