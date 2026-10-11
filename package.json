@@ -6,7 +6,7 @@
     "private": true,
     "engines": {
         "npm": ">=10.9.0",
-        "node": ">=22.12 <23"
+        "node": ">=24 <25"
     },
     "scripts": {
         "build": "astro build",

@@ -2,7 +2,7 @@
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fseanmcn.com&style=for-the-badge&label=seanmcn.com)](https://seanmcn.com)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Seanmcn/my-website?style=for-the-badge)](https://github.com/Seanmcn/my-website/commits/main)
-[![Node.js](https://img.shields.io/badge/node-22.x-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/node-24.x-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Playwright](https://github.com/Seanmcn/my-website/actions/workflows/playwright.yml/badge.svg)](https://github.com/Seanmcn/my-website/actions/workflows/playwright.yml)
 
 The codebase for [seanmcn.com](https://seanmcn.com), a personal site and blog built with Astro, Markdown and MDX.
@@ -37,7 +37,7 @@ The codebase for [seanmcn.com](https://seanmcn.com), a personal site and blog bu
 
 ### Requirements
 
-- Node.js 22
+- Node.js 24
 - npm 10+
 
 ### Install
@@ -85,7 +85,7 @@ npm test
 ```
 
 Playwright builds the site, starts a production server at `http://127.0.0.1:8001`,
-and stops it when finished. Keep that port free. Use Node.js 22 for both
+and stops it when finished. Keep that port free. Use Node.js 24 for both
 installation and tests.
 
 The initial Chromium suite in `tests/e2e/` covers:
