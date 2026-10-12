@@ -8,7 +8,7 @@ const STACK_COLOURS = {
   Swift: 'var(--amber)',
   TypeScript: 'var(--blue)',
   JavaScript: 'var(--blue)',
-  React: 'var(--plum)',
+  Astro: 'var(--plum)',
   Python: 'var(--faint)',
 };
 
