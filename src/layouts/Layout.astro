@@ -3,6 +3,7 @@
  * Every page's shell: the head (theme boot script, fonts, SEO and feed tags),
  * the site header and the footer.
  */
+import {Font} from 'astro:assets';
 import SiteHeader from '../components/layout/SiteHeader.astro';
 /*
  * Every stylesheet, on every page, in one fixed order. Pages lean on each
@@ -73,12 +74,9 @@ const currentYear = new Date().getFullYear();
         root.style.colorScheme = resolved;
       })();
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500&family=Kalam:wght@400&display=swap"
-    />
+    <Font cssVariable="--font-serif" preload />
+    <Font cssVariable="--font-mono" preload={[{weight: 400}]} />
+    <Font cssVariable="--font-hand" />
 
     <title>{title}</title>
     <meta name="description" content={resolvedDescription} />

@@ -33,15 +33,16 @@ $touch-max: 1023px;
   }
 }
 
-$font-serif: 'Source Serif 4', georgia, 'Times New Roman', serif;
-$font-mono: 'IBM Plex Mono', 'SFMono-Regular', menlo, consolas, monospace;
+// The font stacks, fallbacks included, come from the fonts in astro.config.mjs.
+$font-serif: var(--font-serif);
+$font-mono: var(--font-mono);
 
 // Sticky note body text only - reads as an actual handwritten note rather
 // than another typeset block. Keycaps inside notes stay mono regardless
 // (browsers default <code> to monospace directly, which beats an
 // ancestor's inherited font-family), and the note's own eyebrow label
 // stays mono too, matching the rest of the site's small-caps labels.
-$font-hand: 'Kalam', cursive;
+$font-hand: var(--font-hand);
 $shell-max: 73.75rem;
 $rail-width: 16.375rem;
 $rail-width-mid: 14rem;
