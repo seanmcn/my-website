@@ -1,6 +1,11 @@
 @use "sass:color";
 @use "./tokens" as *;
 
+// Blocks with a frame or tint of their own, which can't wrap around the
+// featured image the way plain text does.
+$framed-blocks: "blockquote", "table", ".code-wrapper", ".mermaid-wrapper",
+  ".video-embed", ".prose-image-link";
+
 /**
  * Rendered markdown. The measure is deliberately wide for a serif at 19px
  * (74ch) because the articles are technical and lean on code and lists; the
@@ -862,6 +867,16 @@
   }
 
   /**
+   * Framed blocks start below the featured image rather than beside it, as
+   * sticky notes do: beside it a quote shrinks into a narrow column and a code
+   * listing's frame runs under the image.
+   */
+  #{$framed-blocks},
+  > img {
+    clear: right;
+  }
+
+  /**
    * The featured image floats into the article's right margin on wide screens,
    * the way a plate would sit beside body copy in print.
    */
@@ -886,6 +901,15 @@
       float: none;
       width: 100%;
       margin: 0 0 1.125rem;
+    }
+
+    // A post that opens with a framed block has no text to sit beside, so
+    // the image centres above it instead of leaving an empty column.
+    &:has(~ .prose > :first-child:is(#{$framed-blocks}, img)) {
+      @include not-narrow {
+        float: none;
+        margin: 0 auto 1.75rem;
+      }
     }
   }
 }

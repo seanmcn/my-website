@@ -82,3 +82,37 @@ for (const width of [375, 1024, 1440, 1920, 2560]) {
     }
   });
 }
+
+// A framed block (quote, code, table, image) never sits beside a post's
+// featured image, whether a short intro comes first or the post opens with
+// one: beside it, a quote squeezes into a column and a code listing's frame
+// runs under the image.
+const FEATURED_BESIDE_BLOCK = [
+  '/library/2009/11/programmer-personality/',
+  '/library/2010/12/installing-pear-in-wamp/',
+  '/library/2009/09/ubuntu-cheat-sheets/',
+  '/library/2015/02/perfect-web-server/',
+];
+
+for (const width of [375, 1024, 1440]) {
+  test.describe(`featured image at ${width}px`, () => {
+    test.use({viewport: {width, height: 900}});
+    for (const path of FEATURED_BESIDE_BLOCK) {
+      test(`${path} starts its framed blocks below the image`, async ({
+        page,
+      }) => {
+        await visitPage(page, path);
+        const image = await page.locator('.prose__float-figure').boundingBox();
+        const blocks = page.locator(
+            '.prose :is(blockquote, table, .code-wrapper, .mermaid-wrapper, ' +
+            '.video-embed, .prose-image-link), .prose > img',
+        );
+        expect(await blocks.count()).toBeGreaterThan(0);
+        for (const block of await blocks.all()) {
+          const box = await block.boundingBox();
+          expect(box.y).toBeGreaterThanOrEqual(image.y + image.height);
+        }
+      });
+    }
+  });
+}
