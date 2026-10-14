@@ -66,7 +66,13 @@ const stats = [
           </p>
           <span class="home-bio__avatar-outer">
             <span class="home-bio__avatar">
-              <img alt="Seán McNamara" src={avatar.src} />
+              <Image
+                alt="Seán McNamara"
+                fetchpriority="high"
+                loading="eager"
+                src={avatar}
+                width={400}
+              />
             </span>
           </span>
         </div>
@@ -145,7 +151,12 @@ const stats = [
                     <span class="home-lead__body">{oneLine(post)}</span>
                     {data.featured && (
                       <span class="home-lead__image">
-                        <Image alt="" src={data.featured} width={320} />
+                        <Image
+                          alt=""
+                          loading="eager"
+                          src={data.featured}
+                          width={320}
+                        />
                       </span>
                     )}
                     {readTime && (

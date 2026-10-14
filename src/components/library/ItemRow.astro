@@ -17,7 +17,8 @@ import {
 } from '../../utils/content.js';
 import {excerpt, readingTimeMinutes} from '../../lib/library.js';
 
-const {item} = Astro.props;
+// Rows near the top of a listing load straight away; the rest wait to scroll.
+const {eager = false, item} = Astro.props;
 const {data} = item;
 const type = data.type;
 const meta = typeMeta(type);
@@ -35,6 +36,7 @@ const host = sourceHost(data.source);
           alt=""
           fit="cover"
           height={260}
+          loading={eager ? 'eager' : 'lazy'}
           position="top"
           src={data.featured}
           width={260}

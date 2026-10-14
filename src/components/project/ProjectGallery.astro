@@ -31,7 +31,9 @@ const counter = index => (hasGallery ? `${pad(index + 1)} / ${pad(shots.length)}
         <Image
           alt={shot.alt || title}
           data-shot={index}
+          fetchpriority={index === 0 ? 'high' : undefined}
           hidden={index !== 0}
+          loading={index === 0 ? 'eager' : 'lazy'}
           src={shot.image}
           width={1400}
         />
@@ -48,7 +50,14 @@ const counter = index => (hasGallery ? `${pad(index + 1)} / ${pad(shots.length)}
             data-select={index}
             type="button"
           >
-            <Image alt={shot.alt} fit="cover" height={136} src={shot.image} width={208} />
+            <Image
+              alt={shot.alt}
+              fit="cover"
+              height={136}
+              loading="eager"
+              src={shot.image}
+              width={208}
+            />
             <span class="project-shots__num">{pad(index + 1)}</span>
           </button>
         ))}

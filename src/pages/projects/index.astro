@@ -8,6 +8,8 @@ const BLURB = 'Side projects, experiments, and tools I\'ve enjoyed working ' +
   'on over the years.';
 
 const projects = await getProjects();
+// The first rows' thumbnails load straight away; the rest wait to scroll.
+const eagerThumbs = new Set(projects.slice(0, 6).map(({data}) => data));
 
 const stackCounts = projects.reduce((counts, {data}) => {
   const language = data.language || 'Other';
@@ -117,6 +119,7 @@ const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
                       alt=""
                       fit="cover"
                       height={176}
+                      loading={eagerThumbs.has(data) ? 'eager' : 'lazy'}
                       position="top"
                       src={data.featured}
                       width={208}

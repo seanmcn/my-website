@@ -123,7 +123,9 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
             <Picture
               alt={data.title}
               class="featured-image"
+              fetchpriority="high"
               formats={['avif', 'webp']}
+              loading="eager"
               src={data.featured}
               width={720}
            />

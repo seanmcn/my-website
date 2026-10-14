@@ -1,4 +1,5 @@
 ---
+import {Picture} from 'astro:assets';
 import ElsewhereLinks from '../components/elsewhere/ElsewhereLinks.astro';
 import Layout from '../layouts/Layout.astro';
 import portrait from '../assets/images/portrait-transparent.png';
@@ -143,7 +144,15 @@ const TIMELINE = [
       <aside aria-label="Profile" class="rail rail--bio about-bio">
         <span class="about-bio__portrait-frame">
           <span class="about-bio__portrait">
-            <img alt="Seán McNamara" src={portrait.src} />
+            {/* The rail is about 250px wide; 520 covers it on 2x screens. */}
+            <Picture
+              alt="Seán McNamara"
+              fetchpriority="high"
+              formats={['avif', 'webp']}
+              loading="eager"
+              src={portrait}
+              width={520}
+            />
           </span>
         </span>
 

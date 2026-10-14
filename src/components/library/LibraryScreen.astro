@@ -19,6 +19,9 @@ const {
 } = Astro.props;
 const count = page.totalCount;
 const resultLine = `${count} ${count === 1 ? 'item' : 'items'}`;
+// About this many rows show on a laptop screen before scrolling; their
+// thumbnails load straight away rather than lazily.
+const ABOVE_THE_FOLD = 4;
 ---
 <div class="page-wrap">
   <!--
@@ -46,7 +49,9 @@ const resultLine = `${count} ${count === 1 ? 'item' : 'items'}`;
     <div>
       <LibraryFilters active={activeFilter} resultLine={resultLine} />
 
-      {page.items.map(item => <ItemRow item={item} />)}
+      {page.items.map((item, index) => (
+        <ItemRow eager={index < ABOVE_THE_FOLD} item={item} />
+      ))}
 
       {page.items.length === 0 && (
         <div class="library-empty">

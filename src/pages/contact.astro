@@ -1,4 +1,5 @@
 ---
+import {Image} from 'astro:assets';
 import ContactForm from '../components/contactForm/ContactForm.astro';
 import ElsewhereLinks from '../components/elsewhere/ElsewhereLinks.astro';
 import Layout from '../layouts/Layout.astro';
@@ -25,7 +26,13 @@ const titles = Object.fromEntries((await getLibraryItems())
     <div class="contact-page__cols">
       <aside aria-label="Profile" class="rail rail--bio contact-bio">
         <span class="contact-bio__portrait">
-          <img alt="Seán McNamara" src={avatar.src} />
+          <Image
+            alt="Seán McNamara"
+            fetchpriority="high"
+            loading="eager"
+            src={avatar}
+            width={400}
+          />
         </span>
 
         <div>
@@ -36,7 +43,8 @@ const titles = Object.fromEntries((await getLibraryItems())
               these work.
             </p>
             <span class="contact-bio__avatar-small">
-              <img alt="" src={avatar.src} />
+              {/* Same size as the portrait, so it's the same cached file. */}
+              <Image alt="" loading="eager" src={avatar} width={400} />
             </span>
           </div>
         </div>
