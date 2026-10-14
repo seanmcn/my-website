@@ -113,16 +113,31 @@ the HTML report. Generated reports and results are ignored by Git.
 ## VS Code Image Generation
 
 Add `OPENAI_API_KEY=...` to a repo-root `.env` file, open a post under
-`content/blog`, then run the `Generate Featured Image` VS Code task.
+`content/blog`, then run one of the two VS Code tasks.
 
-The task will:
+`Generate Featured Image (Auto)` asks nothing. It:
 
-- ask for an internal illustration style (`basic-cartoon`, `mascot-cartoon`, `chibi-cartoon`, or `cozy-cartoon-scene`)
-- ask for the image concept prompt
-- ask for a palette mode (`pastel`, `balanced`, or `bright`)
+- has `gpt-5` read the post and write a one-sentence concept around one cute
+  character: a person for posts about people, otherwise the scene's main
+  object brought to life with a face and limbs
+- uses `chibi-cartoon` for a person and `mascot-cartoon` for an object
+- alternates the palette (`balanced`, `bright`) against the most recently
+  generated image, and avoids repeating recent concepts
+
+`Generate Featured Image (Manual)` asks for an illustration style
+(`basic-cartoon`, `mascot-cartoon`, `chibi-cartoon`, or
+`cozy-cartoon-scene`), the concept prompt, and a palette mode (`pastel`,
+`balanced`, or `bright`).
+
+Both then:
+
 - generate a square OpenAI image using the built-in cartoon editorial style prompt, with automatic variation in palette emphasis, character treatment, and finish
 - save the PNG into the post's sibling `images/` directory
-- update the post's `featured:` frontmatter automatically
+- update the post's `featured`, `featuredStyle`, `featuredPalette` and
+  `featuredPrompt` frontmatter automatically
+
+To see the concept and full image prompt without generating anything, run
+`node scripts/auto-featured-image.mjs --file <post> --dry-run`.
 
 For example, running it from
 `content/blog/2026/04/world-models-(trying-to-understand-them).md` writes the

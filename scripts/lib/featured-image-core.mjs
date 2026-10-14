@@ -45,12 +45,40 @@ const BRIGHT_PALETTE_VARIATIONS = [
   'Bright palette led by emerald and aqua with coral accents. Fresh and lively, while staying controlled and not loud.',
   'Bright palette led by blue and coral with lilac accents. Punchier than balanced, but still polished and restrained.',
 ];
-const CHARACTER_VARIATIONS = [
-  'Use no character unless a character clearly improves the concept. Prefer objects or symbolic elements when they tell the story better.',
+const NO_CHARACTER_VARIATION =
+  'Use no character unless a character clearly improves the concept. Prefer objects or symbolic elements when they tell the story better.';
+const PERSON_CHARACTER_VARIATIONS = [
   'Include a stylised cartoon character only if it helps communicate the concept. The character should feel contemporary and expressive, not mascot-like. Default to a male-presenting character unless the prompt explicitly asks for a woman or feminine presentation.',
   'Use a cartoon character as the main subject, with a confident pose and clearer anatomy than a toy-like chibi figure. Default to a male-presenting character unless the prompt explicitly asks for a woman or feminine presentation.',
   'Use a softer, friendlier cartoon character with a slightly cute expression, but avoid babyish proportions. Default to a male-presenting character unless the prompt explicitly asks for a woman or feminine presentation.',
 ];
+const OBJECT_CHARACTER_VARIATION =
+  'The only character is the anthropomorphised object named in the concept: give it a simple cute face and small limbs. No humans, human hands, or human figures anywhere in the image.';
+const PERSON_CHARACTER_RULES = [
+  'When a human character is used, default to male-presenting unless the prompt explicitly requests female or another presentation',
+  'Vary face shape, hairstyle, body proportions, pose, and clothing when characters are used',
+];
+
+// What kind of character each style carries. A 'person' style puts a human
+// in the image; an 'object' style brings the concept's main object to life
+// instead. Styles not listed here may use either, or none.
+export const STYLE_CHARACTERS = {
+  'chibi-cartoon': 'person',
+  'cozy-cartoon-scene': 'person',
+  'mascot-cartoon': 'object',
+};
+
+function characterVariations(character) {
+  if (character === 'person') {
+    return PERSON_CHARACTER_VARIATIONS;
+  }
+
+  if (character === 'object') {
+    return [OBJECT_CHARACTER_VARIATION];
+  }
+
+  return [NO_CHARACTER_VARIATION, ...PERSON_CHARACTER_VARIATIONS];
+}
 const FINISH_VARIATIONS = [
   'Render as crisp cartoon illustration with subtle depth, limited gloss, and clean shapes.',
   'Render as soft matte illustration with gentle gradients, but avoid a clay toy appearance.',
@@ -101,16 +129,17 @@ export function hashString(value) {
   return Math.abs(hash);
 }
 
-export function pickAutoStyle(variationKey, paletteMode) {
+export function pickAutoStyle(variationKey, paletteMode, character) {
   const palettes = paletteMode === 'bright' ?
     BRIGHT_PALETTE_VARIATIONS :
     paletteMode === 'balanced' ?
       BALANCED_PALETTE_VARIATIONS :
       PASTEL_PALETTE_VARIATIONS;
+  const characters = characterVariations(character);
 
   return {
     palette: palettes[hashString(`${variationKey}:palette`) % palettes.length],
-    character: CHARACTER_VARIATIONS[hashString(`${variationKey}:character`) % CHARACTER_VARIATIONS.length],
+    character: characters[hashString(`${variationKey}:character`) % characters.length],
     finish: FINISH_VARIATIONS[hashString(`${variationKey}:finish`) % FINISH_VARIATIONS.length],
     composition: COMPOSITION_VARIATIONS[hashString(`${variationKey}:composition`) % COMPOSITION_VARIATIONS.length],
   };
@@ -126,7 +155,15 @@ export function parseArgs(argv) {
       continue;
     }
 
-    args[arg.slice(2)] = argv[i + 1];
+    const value = argv[i + 1];
+
+    // A flag with no value after it, like --dry-run, is a boolean switch.
+    if (value === undefined || value.startsWith('--')) {
+      args[arg.slice(2)] = true;
+      continue;
+    }
+
+    args[arg.slice(2)] = value;
     i += 1;
   }
 
@@ -212,23 +249,26 @@ export function buildVariationKey(postPath, postBaseName, userPrompt) {
 export function buildImagePrompt(
     userPrompt, variationKey, paletteMode, internalStyle,
 ) {
-  const variation = pickAutoStyle(variationKey, paletteMode);
+  const character = STYLE_CHARACTERS[internalStyle];
+  const variation = pickAutoStyle(variationKey, paletteMode, character);
   const stylePrompt = STYLE_PROMPTS[internalStyle];
+  const characterRules = character === 'object' ? [] : PERSON_CHARACTER_RULES;
 
   return `${BASE_STYLE_PROMPT}
 
 ${stylePrompt}
 
 Style variation:
-- Internal style: ${internalStyle}
-- Palette mode: ${paletteMode}
-- ${variation.palette}
-- ${variation.character}
-- ${variation.finish}
-- ${variation.composition}
-- Avoid recurring generic motifs like floating spheres, cubes, or dashboard panels unless the concept explicitly calls for them
-- When a human character is used, default to male-presenting unless the prompt explicitly requests female or another presentation
-- Vary face shape, hairstyle, body proportions, pose, and clothing when characters are used
+${[
+    `Internal style: ${internalStyle}`,
+    `Palette mode: ${paletteMode}`,
+    variation.palette,
+    variation.character,
+    variation.finish,
+    variation.composition,
+    'Avoid recurring generic motifs like floating spheres, cubes, or dashboard panels unless the concept explicitly calls for them',
+    ...characterRules,
+  ].map(line => `- ${line}`).join('\n')}
 
 Image concept:
 ${userPrompt.trim()}`;
