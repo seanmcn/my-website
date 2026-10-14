@@ -3,6 +3,7 @@ import {Image} from 'astro:assets';
 import Icon from '../components/icons/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import avatar from '../assets/images/emojis/250/wave.png';
+import {IMAGE_SIZES} from '../lib/image-sizes.js';
 import {
   excerpt,
   getLibraryItems,
@@ -156,6 +157,7 @@ const stats = [
                           loading="eager"
                           src={data.featured}
                           width={320}
+                          {...IMAGE_SIZES.homeLead}
                         />
                       </span>
                     )}
@@ -269,6 +271,7 @@ const stats = [
                       position="top"
                       src={data.featured}
                       width={174}
+                      {...IMAGE_SIZES.homeProject}
                     />
                   </span>
                 ) : (

@@ -19,6 +19,7 @@ import {
   sourceHost,
   typeMeta,
 } from '../../utils/content.js';
+import {IMAGE_SIZES} from '../../lib/image-sizes.js';
 import {excerpt, getLibraryItems, itemContext} from '../../lib/library.js';
 
 export async function getStaticPaths() {
@@ -58,8 +59,9 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
           height: 260,
           fit: 'cover',
           position: 'top',
-        })).src :
-        '',
+          ...IMAGE_SIZES.related,
+        })) :
+        null,
     }),
 ));
 ---
@@ -120,14 +122,21 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
 
         {data.featured && (
           <figure class="prose__float-figure">
+            {/*
+              AVIF where the browser takes it, WebP otherwise. A PNG
+              fallback would only serve browsers too old for WebP, at
+              megabytes a file in every build.
+            */}
             <Picture
               alt={data.title}
               class="featured-image"
+              fallbackFormat="webp"
               fetchpriority="high"
-              formats={['avif', 'webp']}
+              formats={['avif']}
               loading="eager"
               src={data.featured}
               width={720}
+              {...IMAGE_SIZES.featured}
            />
           </figure>
         )}
@@ -259,7 +268,13 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
               <a class="item-rail__related-card" href={itemPath(related.slug)}>
                 {related.thumb ? (
                   <span class="item-rail__related-thumb">
-                    <img alt="" loading="lazy" src={related.thumb} />
+                    <img
+                      alt=""
+                      loading="lazy"
+                      sizes={related.thumb.attributes.sizes}
+                      src={related.thumb.src}
+                      srcset={related.thumb.srcSet.attribute}
+                    />
                   </span>
                 ) : (
                   <span

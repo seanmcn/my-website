@@ -1,5 +1,6 @@
 import {defineHastPlugin, defineMdastPlugin} from 'satteri';
 import * as emoji from 'node-emoji';
+import {IMAGE_SIZES} from '../lib/image-sizes.js';
 
 /*
  * The site's own Markdown plugins, written for Sätteri, the processor Astro
@@ -272,6 +273,30 @@ export const externalLinks = defineHastPlugin({
         },
         children: [],
       });
+    },
+  },
+});
+
+/*
+ * A post's own images get a set of widths and a sizes hint, so a phone
+ * fetches a smaller file than a wide screen does. Astro reads both when it
+ * optimises the image, which happens after these plugins, and keeps the
+ * full-size file as the plain src. Remote images and the favicons added
+ * above are left alone.
+ */
+export const responsiveImages = defineHastPlugin({
+  name: 'responsive-images',
+  element: {
+    filter: ['img'],
+    visit(node, ctx) {
+      const src = node.properties?.src;
+
+      if (typeof src !== 'string' || /^([a-z][a-z0-9+.-]*:|\/)/i.test(src)) {
+        return;
+      }
+
+      ctx.setProperty(node, 'widths', IMAGE_SIZES.prose.widths);
+      ctx.setProperty(node, 'sizes', IMAGE_SIZES.prose.sizes);
     },
   },
 });

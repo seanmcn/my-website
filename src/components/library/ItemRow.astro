@@ -15,6 +15,7 @@ import {
   sourceHost,
   typeMeta,
 } from '../../utils/content.js';
+import {IMAGE_SIZES} from '../../lib/image-sizes.js';
 import {excerpt, readingTimeMinutes} from '../../lib/library.js';
 
 // Rows near the top of a listing load straight away; the rest wait to scroll.
@@ -40,6 +41,7 @@ const host = sourceHost(data.source);
           position="top"
           src={data.featured}
           width={260}
+          {...IMAGE_SIZES.libraryRow}
        />
       </span>
     ) : (

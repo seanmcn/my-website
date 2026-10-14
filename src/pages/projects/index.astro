@@ -1,6 +1,7 @@
 ---
 import {Image} from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
+import {IMAGE_SIZES} from '../../lib/image-sizes.js';
 import {getProjects} from '../../lib/library.js';
 import {stackColour} from '../../utils/projects.js';
 
@@ -123,6 +124,7 @@ const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
                       position="top"
                       src={data.featured}
                       width={208}
+                      {...IMAGE_SIZES.projectRow}
                     />
                   </span>
                 ) : (

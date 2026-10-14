@@ -6,6 +6,7 @@
  * which one shows.
  */
 import {Image} from 'astro:assets';
+import {IMAGE_SIZES, projectStageSizes} from '../../lib/image-sizes.js';
 
 const {featured, gallery = [], title} = Astro.props;
 const shots = gallery.length ?
@@ -36,6 +37,7 @@ const counter = index => (hasGallery ? `${pad(index + 1)} / ${pad(shots.length)}
           loading={index === 0 ? 'eager' : 'lazy'}
           src={shot.image}
           width={1400}
+          {...projectStageSizes(shot.image)}
         />
       ))}
       <span class="project-shots__expand">Expand ⤢</span>
@@ -57,6 +59,7 @@ const counter = index => (hasGallery ? `${pad(index + 1)} / ${pad(shots.length)}
               loading="eager"
               src={shot.image}
               width={208}
+              {...IMAGE_SIZES.projectStrip}
             />
             <span class="project-shots__num">{pad(index + 1)}</span>
           </button>

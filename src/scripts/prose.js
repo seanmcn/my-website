@@ -30,8 +30,8 @@ document.querySelectorAll('.code-copy-button').forEach((button) => {
   });
 });
 
-// Astro serves Markdown images at their own size, so the file the page shows
-// is also the full-size one worth opening on its own.
+// A Markdown image's src is its full-size file; the page itself may show a
+// smaller one from its srcset (src/plugins/markdown.mjs).
 document.querySelectorAll('.prose img').forEach((image) => {
   if (image.closest('a, figure, .sticky-note, .sticky-stack')) {
     return;
@@ -39,7 +39,7 @@ document.querySelectorAll('.prose img').forEach((image) => {
 
   const link = document.createElement('a');
   link.className = 'prose-image-link';
-  link.href = image.currentSrc || image.src;
+  link.href = image.src;
   link.target = '_blank';
   link.rel = 'noopener';
   image.replaceWith(link);

@@ -7,6 +7,7 @@ import {codeFrame, siteTheme} from './src/plugins/code-blocks.mjs';
 import {
   emojiShortcodes,
   externalLinks,
+  responsiveImages,
   stickyPairs,
   unwrapImages,
   youTubeEmbeds,
@@ -59,7 +60,7 @@ export default defineConfig({
       mdastPlugins: [
         youTubeEmbeds, unwrapImages, stickyPairs, emojiShortcodes,
       ],
-      hastPlugins: [externalLinks],
+      hastPlugins: [externalLinks, responsiveImages],
     }),
     shikiConfig: {
       theme: siteTheme,
