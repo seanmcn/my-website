@@ -12,20 +12,30 @@ const pagePath = n => (n === 1 ? `${base}/` : `${base}/page/${n}/`);
   <nav aria-label="Pagination" class="library-pagination">
     <div class="library-pagination__row">
       {previousPath ?
-        <a class="library-pagination__step" rel="prev" href={previousPath}>‹ Previous</a> :
-        <span class="library-pagination__step is-disabled">‹ Previous</span>}
+        <a class="library-pagination__step" rel="prev" href={previousPath}>
+          <span aria-hidden="true" class="library-pagination__arrow">←</span> Previous
+        </a> :
+        <span class="library-pagination__step is-disabled">
+          <span aria-hidden="true" class="library-pagination__arrow">←</span> Previous
+        </span>}
 
       <button
         aria-expanded="false"
         class="library-pagination__status"
         type="button"
       >
-        Page {number} of {total}
+        <span class="library-pagination__page-word">Page</span>
+        <strong>{number}</strong> of {total}
+        <span aria-hidden="true" class="library-pagination__caret">▾</span>
       </button>
 
       {nextPath ?
-        <a class="library-pagination__step" rel="next" href={nextPath}>Next ›</a> :
-        <span class="library-pagination__step is-disabled">Next ›</span>}
+        <a class="library-pagination__step" rel="next" href={nextPath}>
+          Next <span aria-hidden="true" class="library-pagination__arrow">→</span>
+        </a> :
+        <span class="library-pagination__step is-disabled">
+          Next <span aria-hidden="true" class="library-pagination__arrow">→</span>
+        </span>}
     </div>
 
     <div class="library-pagination__jump" hidden>
