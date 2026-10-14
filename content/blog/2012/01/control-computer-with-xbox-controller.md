@@ -6,7 +6,10 @@ slug: '2012/01/control-your-pc-with-xbox-controller'
 category: 'systems'
 tags: ['how-to', 'windows', 'xbox']
 keywords: ['how', 'guide']
-featured: images/cartoon-xbox-pc.png
+featured: 'images/featured-control-computer-with-xbox-controller.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cute Xbox controller with a face holds taut reins tied to a big cursor arrow, mouse, and blank-key keyboard, steering them confidently across a desk.'
 ---
 
 Today I’m going to walk you through setting up an xbox controller to work on your computer and control the mouse / keyboard.

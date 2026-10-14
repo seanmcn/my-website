@@ -6,7 +6,10 @@ slug: '2014/10/we-are-back-moving-forward'
 category: 'personal'
 tags: []
 keywords: ['update', 'goals']
-featured: images/cartoon-programmer-start.png
+featured: 'images/featured-we-are-back-moving-forward.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A smiling cartoon person strides toward a mountain city, juggling a laptop, a gamepad, poker chips, and a water bottle, while a crushed cigarette lies left behind.'
 ---
 So I've truly neglected here, my original space on the internet.. It's been almost two years since my last post, which was really just a code snippet.
 

@@ -6,7 +6,10 @@ slug: '2016/06/honest-review-surface-pro-3'
 category: 'reviews'
 tags: ['review', 'surface', 'windows']
 keywords: ['pro', 'surface', '3', 'honest']
-featured: images/cartoon-tablet-review.png
+featured: 'images/featured-honest-review-surface-pro-3.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cute Surface Pro 3 with a face sits with its keyboard half-detached, sweating under a desk fan as its bent charger wobbles and a router hides behind a plant.'
 ---
 
 I bought a Surface Pro 3 in November 2014, I haven’t wrote anything at all about my thoughts on it since purchasing it, I figured it was better to wait until I had actually been using it for a significant amount of time and give it an honest review. A year and a half I figure to be more than enough time.

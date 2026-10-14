@@ -6,7 +6,10 @@ slug: '2009/09/ubuntu-cheat-sheets'
 category: 'systems'
 tags: ['linux', 'ubuntu', 'cheat-sheet']
 keywords: ['manual', 'cheat', 'sheet']
-featured: images/cartoon-programmer-stickers.png
+featured: 'images/featured-ubuntu-cheat-sheet.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cute cheat sheet paper with a simple face and tiny arms sticks to the wall above a desk, pointing to a twin beside a PC, to guide Ubuntu newcomers.'
 ---
 > Somehow I lost the original files of these, I've updated to use cheat sheets [provided by Gary Woodfine](https://garywoodfine.com/linux-terminal-command-cheat-sheets/).
 

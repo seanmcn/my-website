@@ -6,7 +6,10 @@ slug: '2016/05/goodbye-vancouver-london'
 category: 'personal'
 tags: []
 keywords: ['vancouver', 'london', 'updates', 'life']
-featured: images/cartoon-programmer-london.png
+featured: 'images/featured-goodbye-vancouver-london.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A yawning traveler with a suitcase and coffee trudges past London landmarks, a looping plane path trailing from distant mountains behind, while they juggle blank papers for upcoming interviews.'
 ---
 
 So I have left beautiful British Columbia and I’m back in Europe, in London of all places. I’ve gone full circle it seems!

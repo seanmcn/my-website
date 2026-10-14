@@ -6,7 +6,10 @@ slug: '2011/08/pyrocms-cms-on-the-codeignitor-framework'
 category: 'programming'
 tags: ['cms', 'php', 'pyrocms']
 keywords: ['pyro', 'content', 'management', 'system']
-featured: images/cartoon-computer-pyro.png
+featured: 'images/featured-pyrocms-cms-codeignitor.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cute CMS box with a simple face and small arms snaps plugin bricks on a framework scaffold, while a shield and motion lines orbit to suggest security and caching.'
 ---
 > Update as of August 2020 - PyroCMS now relies upon Laravel.
 

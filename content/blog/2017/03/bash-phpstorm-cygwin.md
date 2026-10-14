@@ -6,7 +6,10 @@ slug: '2017/03/bash-phpstorm-cygwin'
 category: 'systems'
 tags: ['bash', 'cygwin', 'windows', 'phpstorm']
 keywords: ['guide']
-featured: images/cartoon-programmer-app.png
+featured: 'images/featured-bash-phpstorm-cygwin.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cute Cygwin bash terminal with tiny arms slots into a blank IDE panel, nudging out a drab shell block and clipping a cable to the project folder.'
 ---
 I’ve been meaning to post about this for a while, but it seems hard lately to make time to post here.
 

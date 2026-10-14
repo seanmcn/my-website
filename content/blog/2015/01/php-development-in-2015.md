@@ -6,7 +6,10 @@ slug: '2015/01/being-a-php-developer'
 category: 'programming'
 tags: ['php', 'javascript', 'linux']
 keywords: ['thoughts', 'update', '2015']
-featured: images/cartoon-programmer-journal.png
+featured: 'images/featured-php-development-in-2015.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A developer connects mismatched tool blocks—package box, task drum, framework arch, and a server cube—into an assembly line that pops out an app box, while a dusty block sits aside.'
 ---
 
 This is just some thoughts on being a PHP developer in 2015.

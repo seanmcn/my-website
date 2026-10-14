@@ -8,7 +8,10 @@ tags: ['javascript', 'game-development', 'rts']
 keywords: ['rts', 'game', 'development', 'phaser', 'socket', 'planning', 'project', 'hobby', 'series']
 series: 'simple-rts-game'
 seriesOrder: 3
-featured: images/cartoon-programmer-game-3.png
+featured: 'images/featured-making-simple-rts-game-week-three.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A grinning developer steers two toy spaceships across a starry playmat, as the worker ship spirals in a goofy loop while the fighter patiently waits at a glowing waypoint.'
 ---
 So week two of making an RTS was September 2nd – 9th. Almost three months later I’ve managed to spend most of my weekend on it. This is pretty typical timeline of any of my personal side-project’s. *sigh*
 

@@ -6,7 +6,10 @@ slug: '2010/06/the-sony-ericsson-elm'
 category: 'reviews'
 tags: ['review', 'phone']
 keywords: ['sony', 'ericsson', 'phone', 'greenheart']
-featured: images/cartoon-eco-friendly-phone.png
+featured: 'images/featured-sony-ericsson-elm.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cute Sony Ericsson Elm phone with a simple face and tiny arms hikes a leafy trail, watering a sapling, checking a compass, and snapping a bird photo.'
 ---
 
 So I’ve finally gotten a new phone, the Sony Ericsson Elm which is a part of Sony Ericsson’s “Greenheart” family. So far I’ve been using the phone a week I am extremely pleased with it. It’s made from recycled plastics and is free from hazardous chemicals – and comes with a low power consumption charger, reduced packaging, some eco-aware apps and an e-manual on the phone instead of a printed guide.

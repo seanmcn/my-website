@@ -6,7 +6,10 @@ slug: '2009/09/e-ggtimer-com-online-timer'
 category: 'reviews'
 tags: ['review', 'timer']
 keywords: ['egg', 'timer', 'browser', 'review']
-featured: images/cartoon-egg-timer.png
+featured: 'images/featured-egg-timer.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'An egg-shaped hourglass dripping sand behind a translucent curtain, with a looped chain tethering it back to itself'
 ---
 
 This website is a little gem I came across last night. 

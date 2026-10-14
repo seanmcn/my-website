@@ -6,7 +6,10 @@ slug: '2018/01/helpful-linux-commands'
 category: 'systems'
 tags: ['linux', 'commands', 'screen']
 keywords: ['bash', 'command', 'sudo', 'history']
-featured: images/cartoon-penguin-computer.png
+featured: 'images/featured-helpful-linux-commands.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cute bash history scroll with a simple face and tiny arms holds a magnifying glass, shield, and magnet, calmly herding plain terminal windows into tidy, detachable stacks.'
 ---
 So this is just going to be a bit of knowledge dump of things I’ve picked up lately / don’t want to forget.
 ## Bang Cash !$

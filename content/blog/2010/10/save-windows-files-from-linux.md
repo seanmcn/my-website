@@ -6,7 +6,10 @@ slug: '2010/10/saving-your-windows-pc-from-virus-infections-with-linux'
 category: 'systems'
 tags: ['how-to', 'linux', 'windows', 'security']
 keywords: ['pc', 'virus', 'save', 'wipe', 'files']
-featured: images/cartoon-computer-virus.png
+featured: 'images/featured-save-windows-files-from-linux.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cute Linux live CD with tiny arms pops from a PC’s disc tray, whisking blank file sheets into an external drive while bouncy germs splat harmlessly against its glow.'
 ---
 
 Often you get a friend or other times a client who has gotten themselves locked out of their system by a virus. I’m talking about the seriously nasty virus’s out there that will just corrupt every .dll file they can get their hands on so the minute you try to open any program, your reopening the virus.

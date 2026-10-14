@@ -6,7 +6,10 @@ slug: '2016/07/first-month-at-kobas'
 category: 'personal'
 tags: ['kobas']
 keywords: ['updates', 'work', 'life', 'epos', 'programming']
-featured: images/cartoon-olive-young.png
+featured: 'images/featured-first-month-at-kobas.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cartoon person fits coin, card, voucher ticket, a bow-tied deposit jar, and a takeaway bag token into a smiling EPoS till, while a tiny safety net beneath suggests testing.'
 ---
 
 So I’ve been working for roughly a month at [Kobas](http://www.kobas.co.uk/) now, I think things have been going very well and I wanted to highlight what I’ve been working on for the last couple of weeks.

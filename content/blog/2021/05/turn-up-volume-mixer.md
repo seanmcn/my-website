@@ -6,7 +6,10 @@ slug: "2021/05/turn-up-volume-mixer"
 category: 'reviews'
 tags: ['review', 'hardware']
 keywords: ['turn up', 'volume', 'mixer']
-featured: images/cartoon-man-laptop.png
+featured: 'images/featured-turn-up-volume-mixer.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A hand turns one of five knobs on a desk mixer as a game controller, headset, speaker, turntable, and microphone feed cables into it'
 ---
 Last week my brother Kieran told me to expect a delivery, I love surprise gifts :laughing:, after opening the package I realised it was a volume mixer by [TurnUp software](https://www.turnup.tech/), a Kickstarter project.
 

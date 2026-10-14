@@ -6,7 +6,10 @@ slug: '2011/09/wordpress-shortcode-in-php-files'
 category: 'programming'
 tags: ['wordpress', 'php', 'how-to']
 keywords: ['plugin', 'shortcode']
-featured: images/cartoon-computer-code.png
+featured: 'images/featured-wordpress-shortcodes-in-php-files.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cute PHP theme file with a face stands outside a looping track, dropping a glowing shortcode token into a webpage frame that instantly fills with tidy photo thumbnails.'
 ---
 So in WordPress with plugins etc. you end up using shortcode in posts to keep things simple, an example would be if you want to display a gallery you would just use:
 ```

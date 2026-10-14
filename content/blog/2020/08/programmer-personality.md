@@ -6,7 +6,10 @@ slug: '2020/08/programmer-personality'
 category: 'personal'
 tags: ['funny', 'personality']
 keywords: ['type', 'personality', 'personal', 'quiz', 'fun']
-featured: images/cartoon-survey.png
+featured: 'images/featured-programmer-personality.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A thoughtful programmer arranges roomy, interlocking component blocks on a floor blueprint, sprinkling blank sticky notes as comments and planning with an hourglass beside a ring of empty chairs.'
 ---
 
 While converting over [my previous post](/blog/2009/11/programmer-personality) of my Programmer Personality, I decided to do it again and see whats changed, as expected it has.

@@ -6,7 +6,10 @@ slug: "2021/06/demi-decade-at-kobas"
 category: "personal"  
 tags: ['kobas']
 keywords: ["epos", "hospitality", "demi-decade", "remote work", "kobas"]
-featured: images/cartoon-olive-working.png
+featured: 'images/featured-demi-decade-at-kobas.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cute but old cartoon olive sitting working at a desk, reminiscing that he has worked for a decade on this laptop. eyes should be solid color'
 ---
 
 As of last Sunday, I've been working at [Kobas](https://www.kobas.co.uk/) for five years (a demi-decade :sweat_smile:) , reading [my post from a month in](https://seanmcn.com/blog/2016/07/first-month-at-kobas/) reminds me how much has changed and prompted me to provide an update.

@@ -6,7 +6,10 @@ slug: '2011/08/why-im-learning-perl'
 category: 'programming'
 tags: ['perl']
 keywords: ['languages', 'pros', 'cons']
-featured: images/cartoon-perl.png
+featured: 'images/featured-i-am-learning-perl.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cheerful coder snaps puzzle‑piece modules from a toolbox into a contraption that funnels messy pages into tidy stacks, as a stopwatch ticks and a laptop and desktop cheer.'
 ---
 
 So this post may not be to everyone's taste, its more a post to remind myself why I've decided to learn Perl. If anyone doesn't know I already know PHP and Java.

@@ -6,7 +6,10 @@ slug: '2018/09/devops-at-kobas'
 category: 'personal'
 tags: ['kobas', 'devops', 'jenkins', 'puppet']
 keywords: ['updates', 'ci', 'testing', 'tests']
-featured: images/cartoon-olive-computer.png
+featured: 'images/featured-devops-at-kobas.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A focused engineer at a console launches crates along a conveyor into server clusters, while browser carts loop a test track and marionette strings keep distant server boxes in sync.'
 ---
 I’ve been at Kobas two years now, I previously wrote about [my experiences in my first month](/blog/2016/07/first-month-at-kobas) , so it seemed fitting to do an overview of my experiences since then surrounding the software we use for DevOps.
 

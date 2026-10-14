@@ -6,7 +6,10 @@ slug: '2016/08/thoughts-management-time-tracking'
 category: 'productivity'
 tags: ['management', 'time-tracking']
 keywords: ['time', 'tracking', 'opinion']
-featured: images/cartoon-programmer-time.png
+featured: 'images/featured-thoughts-management-time-tracking.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A focused programmer at their desk reaches toward a tall hourglass, while a swarm of tiny blank clipboards and fussy mini-hourglasses tug their sleeve and scatter their stacked blocks.'
 ---
 So I’ve talked about [time tracking before](/blog/2015/03/software-to-track-time), however that was much more a "keep yourself on track / how to know what to bill per hour as a freelancer/contractor" post. Today I’d like to share some thoughts on bigger companies and my feelings toward management and time tracking there.
 

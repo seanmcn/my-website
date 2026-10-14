@@ -8,7 +8,10 @@ tags: ['javascript', 'game-development', 'rts']
 keywords: ['rts', 'game', 'development', 'phaser', 'socket', 'planning', 'project', 'hobby', 'series']
 series: 'simple-rts-game'
 seriesOrder: 1
-featured: images/cartoon-programmer-game-1.png
+featured: 'images/featured-making-simple-rts-game-week-one.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cheerful developer nudges tiny sphere units on a bare tiled battlefield, slides a toy camera on wheels along the edge, and feeds coins into a little resource box.'
 ---
 So I’ve decided I want to make a game again, nothing crazy just a simple RTS game, browser based (mainly for speed of development and that I’m interested to see what it’s like),  I’ve decided I may as well blog along the journey to keep myself motivated and prevent quitting mid-way through.
 

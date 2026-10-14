@@ -8,7 +8,10 @@ tags: ['javascript', 'game-development', 'rts']
 keywords: ['rts', 'game', 'development', 'phaser', 'socket', 'planning', 'project', 'hobby', 'series']
 series: 'simple-rts-game'
 seriesOrder: 2
-featured: images/cartoon-programmer-game-2.png
+featured: 'images/featured-making-simple-rts-game-week-two.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A tired developer leans over a sprawling tiled battlefield, wrestling a stretchy selection rectangle that keeps sliding as the table map scrolls whenever their computer mouse hovers near the edge.'
 ---
 So week two has gone relatively well, I didn’t spend as much time working on the game as I would have liked, it’s hard going from programming at work to programming at home every day. However I persevered and at least made some progress.
 

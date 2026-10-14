@@ -6,7 +6,10 @@ slug: '2012/02/populating-a-form-with-a-dropdown-jquery'
 category: 'programming'
 tags: ['javascript', 'jquery', 'how-to']
 keywords: ['dropdown', 'input', 'js']
-featured: images/cartoon-programmer-form.png
+featured: 'images/featured-populate-dropdown-using-jquery.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cute dropdown menu with a face tugs its little arrow, and that many smiling input boxes pop into place across a blank form panel like a tidy parade.'
 ---
 I thought I’d share this, maybe it’ll help somebody else. Basically this will take the value of the drop down (select) and `show()` that many input fields.
 

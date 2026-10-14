@@ -6,7 +6,10 @@ slug: '2016/03/letsencrypt-ajenti-v'
 category: 'systems'
 tags: ['how-to', 'letsencrypt', 'nginx', 'ajenti']
 keywords: ['ssl', 'ajenti-v', 'setup', 'guide']
-featured: images/cartoon-server-secured.png
+featured: 'images/featured-ssl-certs-with-letsencrypt-and-ajenti.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cute padlock snaps a tiny key piece and certificate scroll into an Ajenti server panel, as an inanimate Nginx box guides paper-airplane requests into a little website house.'
 ---
 This is a quick post on how to use [LetsEncrypt](https://letsencrypt.org/) SSL certificates on your [Ajenti-v setup](/blog/2015/02/perfect-web-server) .
 

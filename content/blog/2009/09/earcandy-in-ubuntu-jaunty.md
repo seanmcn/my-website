@@ -6,7 +6,10 @@ slug: '2009/09/earcandy-in-ubuntu-jaunty'
 category: 'systems'
 tags: ['how-to', 'linux', 'ubuntu']
 keywords: ['jaunty', 'volume', 'manager']
-featured: images/cartoon-penguin-music.png
+featured: 'images/featured-earcandy-in-ubuntu-jaunty.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'An ear-shaped candy turns a big volume knob, dimming a vinyl record’s speaker while a film clapperboard’s sound waves grow from another speaker'
 ---
 [EarCandy](https://launchpad.net/earcandy) is a volume manager for PulseAudio that fades applications in and out based on your current activity. Meaning it can do handy things like muting your music playing when you decide to turn on a youtube video. [EarCandy](https://launchpad.net/earcandy) can sniff out applications to tell what kind of application they are
 

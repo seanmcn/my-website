@@ -6,7 +6,10 @@ slug: '2010/04/programmer-personality'
 category: 'reviews'
 tags: ['review', 'sms']
 keywords: ['jellysms', 'text', 'software']
-featured: images/cartoon-phone-connected.png
+featured: 'images/featured-jelly-sms.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cute desktop computer with tiny arms launches a smiling SMS bubble like a paper airplane toward a happy mobile phone, capturing web texts flying straight from the desktop.'
 ---
 >JellySMS is now abandoned, I've removed any links to it.
 

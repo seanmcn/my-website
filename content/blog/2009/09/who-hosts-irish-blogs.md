@@ -6,7 +6,10 @@ slug: '2009/09/who-hosts-irish-blogs'
 category: 'explainers'
 tags: ['hosting', 'blogging', 'ireland']
 keywords: ['ireland', 'blogging', 'history']
-featured: images/cartoon-programmer-research.png
+featured: 'images/featured-who-hosts-irish-blogs.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'Over a silhouette of Ireland, a pie chart built from server rack slices shows uneven wedges, symbolizing the host share behind Irish blogs in 2009'
 ---
 
 I was interested to see what web hosts are hosting Irish blogs in 2009, so here are the stats.

@@ -6,7 +6,10 @@ slug: '2020/10/website-revitalised-gatsby'
 category: 'personal'
 tags: ['gatsby', 'javascript']
 keywords: ['gatsby', 'reactjs', 'js', 'javascript']
-featured: images/cartoon-web-design.png
+featured: 'images/featured-website-revitalised.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A robotic arm assembles a house-shaped website—snapping on a sidebar panel and mail-slot door—while a speech bubble and magnifying glass rest unused beside a conveyor'
 ---
 This year, one of my personal goals was to revitalise this website and get the source code onto Github.
 

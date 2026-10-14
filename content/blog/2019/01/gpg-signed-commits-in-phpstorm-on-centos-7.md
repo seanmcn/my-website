@@ -6,7 +6,10 @@ slug: '2019/01/gpg-signed-commits-in-phpstorm-on-centos-7'
 category: 'programming'
 tags: ['how-to', 'git', 'gpg', 'phpstorm']
 keywords: ['centos', 'commits', 'signed', 'commit']
-featured: images/cartoon-programmer-signing-commit.png
+featured: 'images/featured-gpg-signed-commits-in-phpstorm-on-centos-7.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cute GPG key with a simple face and tiny arms stamps wax seals onto plain envelopes emerging from a closed IDE toolbox, symbolizing automatically signed commits.'
 ---
 
 Having the functionality of automatically being prompted to sign your commits while still using PHPStorms Git GUI means you’ll never forget to sign commits again.

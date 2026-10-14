@@ -6,7 +6,10 @@ slug: '2011/10/css-code-for-wrapping-long-urls-and-text'
 category: 'programming'
 tags: ['css', 'how-to']
 keywords: ['break', 'word', 'white', 'space']
-featured: images/cartoon-programmer-text.png
+featured: 'images/featured-css-wrap-long-text.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cute browser window with a simple face and small arms accordion-folds an endless link ribbon to tuck it neatly into a tiny phone frame without overflowing.'
 ---
 
 Ran into a problem last night where a long email was messing up a design in smaller screen resolutions.

@@ -6,7 +6,10 @@ slug: '2014/10/what-programmers-say-vs-what-they-mean'
 category: 'personal'
 tags: ['funny']
 keywords: ['programmers', 'comic']
-featured: images/cartoon-programmers-laughing.png
+featured: 'images/featured-what-programmers-say-vs-what-they-mean.png'
+featuredStyle: 'chibi-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cheerful programmer at their desk flashes a thumbs-up while, behind their back, they hurriedly duct-tape a tangle of wires and sweep tiny bug icons under a little rug.'
 ---
 
 This was something going around the internet in 2014, I'm not sure on the original source. There does seem to be an updated version [here](https://www.smart-jokes.org/programmers-say-vs-what-they-mean.html) now.

@@ -6,7 +6,10 @@ slug: '2015/03/tracking-time'
 category: 'productivity'
 tags: ['time-tracking', 'toggl', 'wakatime']
 keywords: ['trello', 'jira', 'github', 'todoist', 'toggl', 'wakatime']
-featured: images/cartoon-programmer-time-2.png
+featured: 'images/featured-software-to-track-time.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cute stopwatch with a face and tiny arms links a task card, a bug ticket, and a laptop with cables, then arranges small time blocks into a tidy timeline.'
 ---
 So lately I’ve been trying to manage my time better, with countless personal projects and legacy applications to support I find not properly tracking what I’m doing to surprisingly be more of a waste of time than tracking my time, even when you take in the time lost by tracking said time.
 

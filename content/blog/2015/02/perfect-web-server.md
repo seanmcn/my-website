@@ -6,7 +6,10 @@ slug: '2015/02/perfect-web-server'
 category: 'systems'
 tags: ['ajenti', 'linux', 'nginx', 'ubuntu']
 keywords: ['perfect', 'web', 'server', 'setup', 'guide']
-featured: images/cartoon-web-server.png
+featured: 'images/featured-perfect-web-server.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cute Ajenti control‑panel box with a smile flips a big switch, snapping tidy arrow‑streams through an inanimate Nginx gate toward tiny website boxes stacked on a sturdy Ubuntu server block.'
 ---
 ![ajenti-dashboard.png](images/ajenti-dashboard.png)
 

@@ -6,7 +6,10 @@ slug: '2009/09/create-a-url-shortener-with-your-domain'
 category: 'programming'
 tags: ['how-to', 'php', 'url-shortener']
 keywords: [ 'url', 'shortener', 'packages', 'open', 'source']
-featured: images/cartoon-programmer-url.png
+featured: 'images/featured-php-url-shortener.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A cute house-shaped domain character with a simple face and tiny arms runs a press, squeezing a tangled chain of links into a neat short loop, then pockets it.'
 ---
 
 If you use URL shortening services like [TinyURL](https://tinyurl.com/) , it may be worth your while to setup a domain shortening service on your own domain. This is quiet easily done with a WordPress plugin now.

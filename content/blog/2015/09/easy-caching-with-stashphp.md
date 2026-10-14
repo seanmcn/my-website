@@ -6,7 +6,10 @@ slug: '2015/09/stash-php'
 category: 'programming'
 tags: ['php', 'caching', 'stashphp']
 keywords: ['cache', 'stash', 'apc', 'redis', 'guide']
-featured: images/cartoon-server-cache.png
+featured: 'images/featured-easy-caching-with-stashphp.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cute cache box with a face snaps in driver cartridges: a folder, a tiny database cylinder, a microchip, and a memory module, easily switching where data dots go.'
 ---
 
 Frequently with PHP you are going to need to cache things, mostly expensive SQL queries, but also data you aren't going to want to be inserting into the database on every page hit, for instance website statistics.

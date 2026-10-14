@@ -6,7 +6,10 @@ slug: '2014/11/apache-localhost-rendering-slowly'
 category: 'programming'
 tags: ['apache', 'how-to']
 keywords: ['localhost', 'slow', 'render']
-featured: images/cartoon-server-unhealthy.png
+featured: 'images/featured-apache-localhost-rendering-slowly.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'bright'
+featuredPrompt: 'A cute server tower plugs its network cable into a tiny house-shaped port on its own back, then zips ahead with speed lines while a dull hourglass wobbles behind.'
 ---
 Is your localhost taking longer than expected to load?
 
