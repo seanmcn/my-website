@@ -40,6 +40,7 @@
     display: flex;
     flex: 0 1 auto;
     align-items: center;
+    align-self: stretch;
     gap: 0.6875rem;
     min-width: 0;
     overflow: hidden;
@@ -50,19 +51,30 @@
     }
   }
 
+  // Stands on the header's bottom line rather than floating mid-bar.
   &__avatar {
     flex: none;
-    width: 2.125rem;
-    height: 2.125rem;
-    overflow: hidden;
-    background: var(--surface-2);
-    border-radius: 50%;
+    align-self: flex-end;
+    width: 4rem;
+    height: 4rem;
 
     img {
-      display: block;
+      display: none;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+    }
+
+    // SiteHeader's inline script picks one avatar per page; the first shows
+    // when it hasn't run.
+    &:not([data-avatar]) img:first-of-type {
+      display: block;
+    }
+
+    @for $i from 1 through 4 {
+      &[data-avatar='#{$i}'] img:nth-of-type(#{$i}) {
+        display: block;
+      }
     }
   }
 

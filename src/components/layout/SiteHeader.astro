@@ -5,7 +5,21 @@
  * menu, theme and search behaviour lives in two small scripts, so the header
  * ships no framework runtime at all.
  */
-import avatar from '../../assets/images/emojis/250/wave.png';
+import {Image} from 'astro:assets';
+import beer from '../../assets/images/emojis/250/beer.png';
+import cheer from '../../assets/images/emojis/250/cheer.png';
+import santa from '../../assets/images/emojis/250/santa.png';
+import thumbsUp from '../../assets/images/emojis/250/thumbs-up.png';
+
+/*
+ * The header avatar changes on every page. All of them are in the markup and
+ * load eagerly, so after the first page each one comes from the cache and the
+ * switch never waits on the network. The index's big bio avatar stays the wave.
+ * Santa joins the mix from 15 to 25 December, so he comes last and isn't
+ * counted in the everyday set.
+ */
+const AVATARS = [beer, cheer, thumbsUp];
+const FESTIVE_AVATAR = santa;
 
 const NAV_LINKS = [
   {label: 'Index', to: '/', match: pathname => pathname === '/'},
@@ -20,8 +34,51 @@ const {pathname} = Astro.url;
 <header class="site-header">
   <div class="site-header__inner shell">
     <a class="site-header__logo" href="/">
-      <span class="site-header__avatar">
-        <img src={avatar.src} alt="" width="34" height="34" />
+      <span class="site-header__avatar" data-avatar-count={AVATARS.length}>
+        {/*
+          Runs as the parser reaches it, before the images below exist, so
+          the CSS shows the right one from the first paint. It never repeats
+          the avatar of the page just left. Without JS the first one shows.
+          The date is the visitor's own, since the site is built ahead of time.
+        */}
+        <script is:inline>
+          (function() {
+            var avatar = document.currentScript.parentElement;
+            var now = new Date();
+            var festive = now.getMonth() === 11 &&
+              now.getDate() >= 15 && now.getDate() <= 25;
+            var count = Number(avatar.dataset.avatarCount) + (festive ? 1 : 0);
+            var storageKey = 'site-header-avatar';
+            var last = 0;
+
+            try {
+              last = Number(window.sessionStorage.getItem(storageKey)) || 0;
+            } catch (error) {}
+            if (last > count) {
+              last = 0;
+            }
+
+            var pick = 1 + Math.floor(Math.random() * (last ? count - 1 : count));
+            if (last && pick >= last) {
+              pick += 1;
+            }
+            avatar.dataset.avatar = String(pick);
+
+            try {
+              window.sessionStorage.setItem(storageKey, String(pick));
+            } catch (error) {}
+          })();
+        </script>
+        {[...AVATARS, FESTIVE_AVATAR].map(src => (
+          <Image
+            alt=""
+            decoding="sync"
+            height={128}
+            loading="eager"
+            src={src}
+            width={128}
+          />
+        ))}
       </span>
       <span>
         <span class="site-header__wordmark">Seán McNamara</span>
