@@ -120,6 +120,12 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
           </div>
         )}
 
+        {/*
+          The series box comes before the featured image, so the image floats
+          beside the post's opening text rather than beside the box.
+        */}
+        <SeriesNavigator currentSlug={data.slug} {...context} />
+
         {data.featured && (
           <figure class="prose__float-figure">
             {/*
@@ -155,8 +161,6 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
             </span>
           </a>
         )}
-
-        <SeriesNavigator currentSlug={data.slug} {...context} />
 
         <Prose>
           <Content components={MDX_COMPONENTS} />

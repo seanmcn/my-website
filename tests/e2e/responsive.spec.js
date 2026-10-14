@@ -114,5 +114,16 @@ for (const width of [375, 1024, 1440]) {
         }
       });
     }
+
+    // The series box is navigation, not part of the post, so it sits above
+    // the image rather than having its frame run under it.
+    test('a series box comes before the featured image', async ({page}) => {
+      await visitPage(
+          page, '/library/2016/11/making-simple-rts-game-week-three/',
+      );
+      const image = await page.locator('.prose__float-figure').boundingBox();
+      const series = await page.locator('.series').boundingBox();
+      expect(series.y + series.height).toBeLessThanOrEqual(image.y);
+    });
   });
 }
