@@ -160,6 +160,28 @@ html {
   scroll-padding-top: #{$header-height + 1.5rem};
 }
 
+/**
+ * Crossfade between pages with the browser's own cross-document view
+ * transitions rather than Astro's <ClientRouter />. Every navigation stays a
+ * full page load, so the theme, header and diagram scripts run as they always
+ * have; browsers without support simply change page with no animation.
+ */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(root) {
+  animation-duration: 180ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none;
+  }
+}
+
 body {
   margin: 0;
   background: var(--bg);
