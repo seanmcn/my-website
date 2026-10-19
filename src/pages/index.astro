@@ -238,12 +238,12 @@ const stats = [
                 )}
                 {notes.map((note) => {
                   const {data} = note;
-                  const {day, monthShort} = formatDayMonth(data.date);
+                  const {day, monthShort, year} = formatDayMonth(data.date);
 
                   return (
                     <a class="home-aside__note" href={itemPath(data.slug)}>
                       <span class="home-aside__note-date">
-                        {day} {monthShort}
+                        {day} {monthShort} {year}
                       </span>
                       <span class="home-aside__note-title">{data.title}</span>
                       <span class="home-aside__note-excerpt">

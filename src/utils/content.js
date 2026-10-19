@@ -144,17 +144,18 @@ export function formatMonthYear(value) {
   return `${MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
 }
 
-/* {day: "07", monthShort: "Aug"} for the home page's dated rails. */
+/* {day: "07", monthShort: "Aug", year: 2026} for the home page's date rails. */
 export function formatDayMonth(value) {
   const date = toDate(value);
 
   if (!date) {
-    return {day: '', monthShort: ''};
+    return {day: '', monthShort: '', year: ''};
   }
 
   return {
     day: String(date.getUTCDate()).padStart(2, '0'),
     monthShort: MONTHS_SHORT[date.getUTCMonth()],
+    year: date.getUTCFullYear(),
   };
 }
 
