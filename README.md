@@ -69,7 +69,6 @@ npm run build       # Create a production build in dist/
 npm run preview     # Serve the production build locally
 npm run clean       # Remove the build output and Astro's caches
 npm run lint        # Run ESLint and Stylelint
-npm run post:create # Scaffold a new post
 npm test            # Run Playwright headlessly
 npm run test:e2e:ui  # Open the interactive Playwright runner
 npm run test:e2e:report # View the last HTML test report

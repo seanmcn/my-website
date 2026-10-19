@@ -19,7 +19,6 @@
         "lint:css": "stylelint \"src/**/*.scss\"",
         "lint:js": "eslint src tests scripts astro.config.mjs playwright.config.js --ext .js,.jsx,.mjs",
         "format": "eslint src --ext .js,.jsx,.mjs --fix",
-        "post:create": "plop --plopfile .plop/plopfile.js",
         "preview": "astro preview",
         "start": "npm run dev",
         "taxonomy": "node scripts/list-taxonomy.mjs",
@@ -59,9 +58,7 @@
         "eslint-plugin-jsx-a11y": "^6.7.1",
         "eslint-plugin-react": "^7.33.1",
         "eslint-plugin-react-hooks": "^4.6.0",
-        "plop": "^3.1.2",
         "rimraf": "^5.0.1",
-        "slugify": "^1.6.6",
         "stylelint": "^17.16.0",
         "stylelint-config-standard-scss": "^17.0.0"
     },
