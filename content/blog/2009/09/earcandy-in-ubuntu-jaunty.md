@@ -5,7 +5,6 @@ date: '2009-09-28T21:39:03.284Z'
 slug: '2009/09/earcandy-in-ubuntu-jaunty'
 category: 'systems'
 tags: ['how-to', 'linux', 'ubuntu']
-keywords: ['jaunty', 'volume', 'manager']
 featured: 'images/featured-earcandy-in-ubuntu-jaunty.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

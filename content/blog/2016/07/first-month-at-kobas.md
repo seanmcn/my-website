@@ -5,7 +5,6 @@ date: '2016-07-03T15:39:03.284Z'
 slug: '2016/07/first-month-at-kobas'
 category: 'personal'
 tags: ['kobas']
-keywords: ['updates', 'work', 'life', 'epos', 'programming']
 featured: 'images/featured-first-month-at-kobas.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

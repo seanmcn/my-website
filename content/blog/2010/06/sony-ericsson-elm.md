@@ -5,7 +5,6 @@ date: '2010-06-06T00:39:03.284Z'
 slug: '2010/06/the-sony-ericsson-elm'
 category: 'reviews'
 tags: ['review', 'phone']
-keywords: ['sony', 'ericsson', 'phone', 'greenheart']
 featured: 'images/featured-sony-ericsson-elm.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

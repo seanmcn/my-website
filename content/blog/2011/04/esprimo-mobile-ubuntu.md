@@ -5,7 +5,6 @@ date: '2011-02-04T20:39:03.284Z'
 slug: '2011/02/esprimo-mobile-v5535-and-ubuntu-10-10'
 category: 'reviews'
 tags: ['review', 'esprimo', 'ubuntu']
-keywords: ['fujitsu', 'siemens', 'mobile', 'v5505', 'v5545', 'laptop']
 featured: 'images/featured-esprimo-mobile-ubuntu.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

@@ -5,7 +5,6 @@ date: '2016-03-21T08:39:03.284Z'
 slug: '2016/03/letsencrypt-ajenti-v'
 category: 'systems'
 tags: ['how-to', 'letsencrypt', 'nginx', 'ajenti']
-keywords: ['ssl', 'ajenti-v', 'setup', 'guide']
 featured: 'images/featured-ssl-certs-with-letsencrypt-and-ajenti.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

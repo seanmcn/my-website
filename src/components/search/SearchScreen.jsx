@@ -22,7 +22,6 @@ const FUSE_KEYS = {
   title: [{name: 'title', weight: 5}],
   summary: [
     {name: 'excerpt', weight: 3},
-    {name: 'keywords', weight: 2.5},
     {name: 'tags', weight: 2},
     {name: 'category', weight: 1.5},
   ],

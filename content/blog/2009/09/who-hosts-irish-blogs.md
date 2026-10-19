@@ -5,7 +5,6 @@ date: '2009-09-09T20:39:03.284Z'
 slug: '2009/09/who-hosts-irish-blogs'
 category: 'explainers'
 tags: ['hosting', 'blogging', 'ireland']
-keywords: ['ireland', 'blogging', 'history']
 featured: 'images/featured-who-hosts-irish-blogs.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

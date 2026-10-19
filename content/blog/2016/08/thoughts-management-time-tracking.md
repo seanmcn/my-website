@@ -5,7 +5,6 @@ date: '2016-08-29T15:39:03.284Z'
 slug: '2016/08/thoughts-management-time-tracking'
 category: 'productivity'
 tags: ['management', 'time-tracking']
-keywords: ['time', 'tracking', 'opinion']
 featured: 'images/featured-thoughts-management-time-tracking.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'balanced'

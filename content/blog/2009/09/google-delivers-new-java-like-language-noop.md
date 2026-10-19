@@ -5,7 +5,6 @@ date: '2009-09-23T01:39:03.284Z'
 slug: '2009/09/google-delivers-new-java-like-language-noop'
 category: 'programming'
 tags: ['google', 'java', 'noop']
-keywords: ['new', 'language']
 featured: 'images/featured-google-delivers-new-java-like-language-noop.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

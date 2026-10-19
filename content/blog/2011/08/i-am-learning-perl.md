@@ -5,7 +5,6 @@ date: '2011-08-19T01:39:03.284Z'
 slug: '2011/08/why-im-learning-perl'
 category: 'programming'
 tags: ['perl']
-keywords: ['languages', 'pros', 'cons']
 featured: 'images/featured-i-am-learning-perl.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'balanced'

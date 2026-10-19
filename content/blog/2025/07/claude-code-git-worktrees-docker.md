@@ -5,7 +5,6 @@ date: '2025-07-23T14:30:00.000Z'
 slug: '2025/07/claude-code-git-worktrees-docker'
 category: 'productivity'
 tags: ['ai', 'claude-code', 'git-worktrees', 'docker']
-keywords: ['claude code', 'git worktrees', 'docker', 'multitasking', 'development workflow', 'ai coding']
 featured: 'images/featured-claude-code-git-worktrees-docker.png'
 summary: 'Running several Claude Code sessions at once by giving each one its own worktree and its own container, so nothing has to be stashed.'
 margins:

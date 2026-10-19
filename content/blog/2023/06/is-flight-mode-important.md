@@ -5,7 +5,6 @@ date: '2023-06-11T16:00:00.000Z'
 slug: '2023/06/whats-the-point-of-flight-mode'
 category: 'explainers'
 tags: ['flight-mode', 'aviation']
-keywords: ['flight', 'mode', 'pointless', 'important', 'required']
 summary: "Why we still switch to flight mode when we fly, and when that might change."
 featured: 'images/featured-is-flight-mode-important.png'
 ---

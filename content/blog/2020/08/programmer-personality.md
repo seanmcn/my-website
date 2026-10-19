@@ -5,7 +5,6 @@ date: '2020-08-09T16:39:03.284Z'
 slug: '2020/08/programmer-personality'
 category: 'personal'
 tags: ['funny', 'personality']
-keywords: ['type', 'personality', 'personal', 'quiz', 'fun']
 summary: "Retaking the same programmer personality test 11 years on, and going from DLSB to PHTB."
 featured: 'images/featured-programmer-personality.png'
 featuredStyle: 'chibi-cartoon'

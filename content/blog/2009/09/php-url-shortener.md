@@ -5,7 +5,6 @@ date: '2009-09-24T01:39:03.284Z'
 slug: '2009/09/create-a-url-shortener-with-your-domain'
 category: 'programming'
 tags: ['how-to', 'php', 'url-shortener']
-keywords: [ 'url', 'shortener', 'packages', 'open', 'source']
 featured: 'images/featured-php-url-shortener.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

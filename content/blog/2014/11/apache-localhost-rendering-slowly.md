@@ -5,7 +5,6 @@ date: '2014-11-03T19:39:03.284Z'
 slug: '2014/11/apache-localhost-rendering-slowly'
 category: 'programming'
 tags: ['apache', 'how-to']
-keywords: ['localhost', 'slow', 'render']
 featured: 'images/featured-apache-localhost-rendering-slowly.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

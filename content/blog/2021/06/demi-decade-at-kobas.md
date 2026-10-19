@@ -5,7 +5,6 @@ date: "2021-06-08T19:39:19.327Z"
 slug: "2021/06/demi-decade-at-kobas"  
 category: "personal"  
 tags: ['kobas']
-keywords: ["epos", "hospitality", "demi-decade", "remote work", "kobas"]
 featured: 'images/featured-demi-decade-at-kobas.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

@@ -4,8 +4,7 @@ type: 'find'
 date: "2026-09-05T09:00:00.000Z"
 slug: "2026/09/ralphex"
 category: 'ai'
-tags: ['ai', 'developer-tools', 'automation']
-keywords: ['ralphex', 'ai agents', 'claude code', 'codex', 'orchestration']
+tags: ['ai', 'developer-tools', 'automation', 'claude-code']
 source: 'https://ralphex.com/'
 sourceTitle: 'ralphex.com'
 summary: 'A CLI that runs Claude Code or Codex through a plan you write, one fresh session per task, then reviews the result in several rounds.'

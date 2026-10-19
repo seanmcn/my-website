@@ -5,7 +5,6 @@ date: '2015-02-18T08:39:03.284Z'
 slug: '2015/02/perfect-web-server'
 category: 'systems'
 tags: ['ajenti', 'linux', 'nginx', 'ubuntu']
-keywords: ['perfect', 'web', 'server', 'setup', 'guide']
 featured: 'images/featured-perfect-web-server.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

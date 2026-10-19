@@ -5,7 +5,6 @@ date: '2016-09-01T15:39:03.284Z'
 slug: '2016/09/making-simple-rts-game-week-one'
 category: 'programming'
 tags: ['javascript', 'game-development', 'rts']
-keywords: ['rts', 'game', 'development', 'phaser', 'socket', 'planning', 'project', 'hobby', 'series']
 series: 'simple-rts-game'
 seriesOrder: 1
 featured: 'images/featured-making-simple-rts-game-week-one.png'

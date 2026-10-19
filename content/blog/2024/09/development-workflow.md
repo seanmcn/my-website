@@ -4,8 +4,7 @@ type: 'post'
 date: '2024-11-09T13:21:42.341Z'
 slug: '2024/11/my-development-workflow'
 category: 'productivity'
-tags: ['ai', 'phpstorm', 'developer-tools']
-keywords: ['developer', 'workflow', 'cursor', 'ai coding', 'hosting', 'chat gpt']
+tags: ['ai', 'phpstorm', 'developer-tools', 'hosting']
 featured: 'images/featured-development-workflow.png'
 ---
 

@@ -5,7 +5,6 @@ date: '2016-05-26T19:39:03.284Z'
 slug: '2016/05/goodbye-vancouver-london'
 category: 'personal'
 tags: []
-keywords: ['vancouver', 'london', 'updates', 'life']
 featured: 'images/featured-goodbye-vancouver-london.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

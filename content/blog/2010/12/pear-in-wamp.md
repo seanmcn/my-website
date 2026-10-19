@@ -5,7 +5,6 @@ date: '2010-12-27T20:39:03.284Z'
 slug: '2010/12/installing-pear-in-wamp'
 category: 'systems'
 tags: ['how-to', 'pear', 'php', 'windows']
-keywords: ['guide', 'install']
 featured: 'images/featured-pear-in-wamp.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

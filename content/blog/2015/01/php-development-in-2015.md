@@ -5,7 +5,6 @@ date: '2015-01-27T08:39:03.284Z'
 slug: '2015/01/being-a-php-developer'
 category: 'programming'
 tags: ['php', 'javascript', 'linux']
-keywords: ['thoughts', 'update', '2015']
 featured: 'images/featured-php-development-in-2015.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'balanced'

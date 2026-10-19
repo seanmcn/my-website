@@ -5,7 +5,6 @@ date: '2010-04-08T01:39:03.284Z'
 slug: '2010/04/programmer-personality'
 category: 'reviews'
 tags: ['review', 'sms']
-keywords: ['jellysms', 'text', 'software']
 featured: 'images/featured-jelly-sms.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

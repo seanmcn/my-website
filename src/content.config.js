@@ -22,7 +22,6 @@ const library = defineCollection({
     // Finds are filed by source rather than category, so it can be absent.
     category: z.string().optional(),
     tags: z.array(z.string()).default([]),
-    keywords: z.array(z.string()).default([]),
     // Relative to the entry; a missing file fails the build.
     featured: image().optional(),
     summary: z.string().optional(),

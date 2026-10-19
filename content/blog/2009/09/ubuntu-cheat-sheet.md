@@ -5,7 +5,6 @@ date: '2009-09-12T03:39:03.284Z'
 slug: '2009/09/ubuntu-cheat-sheets'
 category: 'systems'
 tags: ['linux', 'ubuntu', 'cheat-sheet']
-keywords: ['manual', 'cheat', 'sheet']
 featured: 'images/featured-ubuntu-cheat-sheet.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

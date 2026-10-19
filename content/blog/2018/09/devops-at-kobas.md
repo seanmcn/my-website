@@ -4,8 +4,7 @@ type: 'post'
 date: '2018-09-23T17:39:03.284Z'
 slug: '2018/09/devops-at-kobas'
 category: 'personal'
-tags: ['kobas', 'devops', 'jenkins', 'puppet']
-keywords: ['updates', 'ci', 'testing', 'tests']
+tags: ['kobas', 'devops', 'jenkins', 'puppet', 'ci']
 featured: 'images/featured-devops-at-kobas.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'balanced'

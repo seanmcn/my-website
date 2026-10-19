@@ -5,7 +5,6 @@ date: '2017-03-14T15:39:03.284Z'
 slug: '2017/03/bash-phpstorm-cygwin'
 category: 'systems'
 tags: ['bash', 'cygwin', 'windows', 'phpstorm']
-keywords: ['guide']
 featured: 'images/featured-bash-phpstorm-cygwin.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

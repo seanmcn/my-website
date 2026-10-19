@@ -5,7 +5,6 @@ date: '2016-06-11T15:39:03.284Z'
 slug: '2016/06/honest-review-surface-pro-3'
 category: 'reviews'
 tags: ['review', 'surface', 'windows']
-keywords: ['pro', 'surface', '3', 'honest']
 featured: 'images/featured-honest-review-surface-pro-3.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

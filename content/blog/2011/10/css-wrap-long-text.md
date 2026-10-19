@@ -5,7 +5,6 @@ date: '2011-10-04T20:39:03.284Z'
 slug: '2011/10/css-code-for-wrapping-long-urls-and-text'
 category: 'programming'
 tags: ['css', 'how-to']
-keywords: ['break', 'word', 'white', 'space']
 summary: "The CSS that stops a long URL or email address breaking a layout on small screens."
 featured: 'images/featured-css-wrap-long-text.png'
 featuredStyle: 'mascot-cartoon'

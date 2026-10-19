@@ -4,8 +4,7 @@ type: 'post'
 date: '2018-01-14T15:39:03.284Z'
 slug: '2018/01/helpful-linux-commands'
 category: 'systems'
-tags: ['linux', 'commands', 'screen']
-keywords: ['bash', 'command', 'sudo', 'history']
+tags: ['linux', 'commands', 'screen', 'bash']
 featured: 'images/featured-helpful-linux-commands.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

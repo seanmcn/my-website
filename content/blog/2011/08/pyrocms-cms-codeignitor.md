@@ -5,7 +5,6 @@ date: '2011-08-14T20:39:03.284Z'
 slug: '2011/08/pyrocms-cms-on-the-codeignitor-framework'
 category: 'programming'
 tags: ['cms', 'php', 'pyrocms']
-keywords: ['pyro', 'content', 'management', 'system']
 featured: 'images/featured-pyrocms-cms-codeignitor.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

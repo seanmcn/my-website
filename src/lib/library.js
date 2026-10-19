@@ -96,8 +96,6 @@ function scoreRelatedPost(current, candidate) {
   const candidateSeries = normaliseValue(candidate.data.series);
   const currentTags = new Set(normaliseList(current.data.tags));
   const candidateTags = normaliseList(candidate.data.tags);
-  const currentKeywords = new Set(normaliseList(current.data.keywords));
-  const candidateKeywords = normaliseList(candidate.data.keywords);
   const currentCategory = normaliseValue(current.data.category);
   const candidateCategory = normaliseValue(candidate.data.category);
   const currentTitleTokens = new Set(
@@ -127,16 +125,6 @@ function scoreRelatedPost(current, candidate) {
     score += 14;
     if (reason === 'Recent post') {
       reason = 'Same category';
-    }
-  }
-
-  const sharedKeywords = candidateKeywords.filter(
-      keyword => currentKeywords.has(keyword),
-  );
-  if (sharedKeywords.length > 0) {
-    score += sharedKeywords.length * 8;
-    if (reason === 'Recent post') {
-      reason = 'Shared keywords';
     }
   }
 
@@ -463,8 +451,6 @@ export async function searchIndexEntries() {
       normalizedCategory: normaliseValue(data.category),
       tags: data.tags,
       normalizedTags: normaliseList(data.tags),
-      keywords: data.keywords,
-      normalizedKeywords: normaliseList(data.keywords),
       headings: extractHeadings(body),
       bodyPlainText: stripMarkdown(body).slice(0, 2000),
       excerpt: data.summary || excerpt({body, ...entry}, 200),
@@ -485,8 +471,6 @@ export async function searchIndexEntries() {
       normalizedCategory: '',
       tags: data.tags,
       normalizedTags: normaliseList(data.tags),
-      keywords: [],
-      normalizedKeywords: [],
       headings: [],
       bodyPlainText: stripMarkdown(body).slice(0, 2000),
       excerpt: data.summary || excerpt({body, ...entry}, 200),

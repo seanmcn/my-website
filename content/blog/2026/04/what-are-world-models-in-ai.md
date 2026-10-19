@@ -5,7 +5,6 @@ date: "2026-04-01T17:17:17.522Z"
 slug: "2026/04/what-are-world-models-in-ai"
 category: 'ai'
 tags: ['ai', 'world-model']
-keywords: ['AI']
 featured: 'images/what-are-world-models-in-ai.png'
 summary: 'Working out what people actually mean when they say a model has a world model, and why the phrase gets used for two quite different things.'
 margins:

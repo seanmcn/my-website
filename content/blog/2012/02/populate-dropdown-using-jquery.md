@@ -5,7 +5,6 @@ date: '2012-02-05T18:39:03.284Z'
 slug: '2012/02/populating-a-form-with-a-dropdown-jquery'
 category: 'programming'
 tags: ['javascript', 'jquery', 'how-to']
-keywords: ['dropdown', 'input', 'js']
 summary: "A bit of jQuery that shows as many input fields as the number picked in a dropdown."
 featured: 'images/featured-populate-dropdown-using-jquery.png'
 featuredStyle: 'mascot-cartoon'
