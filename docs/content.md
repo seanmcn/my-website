@@ -29,7 +29,7 @@ host where a post or note shows its read time.
 | --- | --- | --- | --- | --- |
 | `title` | required | required | required | Page title, listings, RSS, search |
 | `type` | required | required | required | `post`, `note` or `find` |
-| `date` | required | required | required | ISO date. Sorting and display |
+| `date` | required | required | required | The day as `YYYY-MM-DD`, with no time. Sorting and display |
 | `slug` | required | required | required | The URL under `/library/` and the entry id |
 | `category` | required | required | required | One category page per value, e.g. `programming`, `ai` |
 | `tags` | at least one | at least one | optional | Tag pages, search, related posts |
@@ -71,7 +71,7 @@ Create `content/blog/YYYY/MM/name.md` (or `.mdx` for components):
 ---
 title: "The title"
 type: 'post'
-date: "2026-10-19T09:00:00.000Z"
+date: '2026-10-19'
 slug: "2026/10/name"
 category: 'programming'
 tags: ['php']

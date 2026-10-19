@@ -9,13 +9,18 @@ import {z} from 'astro/zod';
  *
  * `image` is Astro's image() helper; outside Astro, pass a plain string.
  */
+const DAY_MS = 24 * 60 * 60 * 1000;
+
 export function libraryFrontmatter({image}) {
   const shared = {
     title: z.string().min(1),
     slug: z.string().min(1)
         .describe('The URL under /library/ and the entry id. ' +
           'Usually YYYY/MM/name; older posts keep their original URLs.'),
-    date: z.coerce.date(),
+    date: z.coerce.date()
+        .refine(date => date.getTime() % DAY_MS === 0,
+            'date takes no time: use YYYY-MM-DD')
+        .describe('The day it was published, as YYYY-MM-DD.'),
     category: z.string().min(1)
         .describe('One lowercase category, e.g. programming or ai.'),
     margins: z.array(z.strictObject({
@@ -78,7 +83,7 @@ export function libraryFrontmatterJSONSchema() {
     override: (ctx) => {
       if (ctx.zodSchema._zod.def.type === 'date') {
         ctx.jsonSchema.type = 'string';
-        ctx.jsonSchema.format = 'date-time';
+        ctx.jsonSchema.format = 'date';
       }
     },
   });

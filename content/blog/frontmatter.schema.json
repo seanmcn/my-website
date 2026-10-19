@@ -19,8 +19,9 @@
           "description": "The URL under /library/ and the entry id. Usually YYYY/MM/name; older posts keep their original URLs."
         },
         "date": {
+          "description": "The day it was published, as YYYY-MM-DD.",
           "type": "string",
-          "format": "date-time"
+          "format": "date"
         },
         "category": {
           "type": "string",
@@ -129,8 +130,9 @@
           "description": "The URL under /library/ and the entry id. Usually YYYY/MM/name; older posts keep their original URLs."
         },
         "date": {
+          "description": "The day it was published, as YYYY-MM-DD.",
           "type": "string",
-          "format": "date-time"
+          "format": "date"
         },
         "category": {
           "type": "string",
@@ -239,8 +241,9 @@
           "description": "The URL under /library/ and the entry id. Usually YYYY/MM/name; older posts keep their original URLs."
         },
         "date": {
+          "description": "The day it was published, as YYYY-MM-DD.",
           "type": "string",
-          "format": "date-time"
+          "format": "date"
         },
         "category": {
           "type": "string",

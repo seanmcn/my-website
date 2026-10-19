@@ -31,7 +31,7 @@ const entries = contentFiles().map(file => ({
 const post = {
   title: 'A post',
   type: 'post',
-  date: '2026-10-19T09:00:00.000Z',
+  date: '2026-10-19',
   slug: '2026/10/a-post',
   category: 'programming',
   tags: ['php'],
@@ -41,7 +41,7 @@ const post = {
 const find = {
   title: 'A find',
   type: 'find',
-  date: '2026-10-19T09:00:00.000Z',
+  date: '2026-10-19',
   slug: '2026/10/a-find',
   category: 'ai',
   source: 'https://example.com/',
@@ -152,6 +152,13 @@ describe('every type', () => {
   test('unknown fields fail, so typos and retired fields are caught', () => {
     assert.deepEqual(failures({...post, keywords: ['php']}), ['']);
     assert.deepEqual(failures({...post, sumary: 'Typo.'}), ['']);
+  });
+
+  test('date is a day, with no time', () => {
+    assert.deepEqual(failures({...post, date: new Date('2026-10-19')}), []);
+    assert.deepEqual(
+        failures({...post, date: '2026-10-19T09:00:00.000Z'}), ['date']);
+    assert.deepEqual(failures({...post, date: 'yesterday'}), ['date']);
   });
 
   for (const key of ['title', 'slug', 'date']) {
