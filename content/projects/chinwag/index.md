@@ -33,4 +33,4 @@ The output is available both as a desktop app and as a CLI. The desktop app give
 
 I built Chinwag because I liked the idea of taking messy conversational data and turning it into something that feels legible without compromising privacy. Everything runs locally, the runtime stays simple, and the analysis remains fast enough to feel lightweight rather than academic.
 
-I've written more about the motivation and design in [this blog post](/blog/2026/04/chinwag/).
+I've written more about why I built it and how the scoring works in [Building Chinwag, a WhatsApp Chat Analyser](/library/2026/04/chinwag/).

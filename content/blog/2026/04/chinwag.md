@@ -1,9 +1,10 @@
 ---
-title: "Building Chinwag: Local-First WhatsApp Chat Analysis in Go"
+title: "Building Chinwag, a WhatsApp Chat Analyser"
 type: 'post'
 date: "2026-04-07"
 slug: "2026/04/chinwag"
 category: 'programming'
+project: 'chinwag'
 tags: ['text-analysis', 'go', 'whatsapp', 'open-source']
 featured: 'images/featured-chinwag.png'
 summary: 'Parsing WhatsApp exports into a timeline, running lexicon-based sentiment over it, and keeping every byte on your own machine.'
@@ -14,71 +15,56 @@ margins:
     text: 'Lexicons and heuristics instead of models: VADER-style sentiment, TF-IDF topics, NRC emotion.'
 ---
 
-Recently, I have been working on [Chinwag](https://github.com/seanmcn/chinwag), a local-first tool for analysing exported WhatsApp chats and turning them into an interactive breakdown of how two people actually communicate.
 
-What interested me about this is that chat apps give you plenty of history, but very little structure. You can scroll through years of messages and still not get a clear picture of the patterns underneath the conversation. Who usually starts things? Who replies faster? Who carries the exchange when energy drops? Which words or moods show up more for one person than the other?
+[Chinwag](/projects/chinwag/) is a tool I've built for analysing exported WhatsApp chats. You give it the export file and it shows you how the two people in the chat actually talk to each other: who usually starts conversations, who replies faster, who keeps things going when the energy drops, and which words and moods show up more for one person than the other.
 
-That is the sort of thing I wanted Chinwag to surface.
+It's [open source](https://github.com/seanmcn/chinwag), runs as a desktop app on macOS and Windows (there's a CLI too), and never sends your messages anywhere. There are no machine learning models or external APIs involved either. The analysis is all word lists and heuristics, which I've found is enough to get results that feel right on casual chat.
 
-## What Chinwag Does
+## Why I built it
 
-At its core, Chinwag is a Go application that parses the raw WhatsApp export file and converts it into a structured timeline of messages. Once it has that timeline, it runs a series of lightweight analysis passes over the data to surface patterns and behaviours.
+Chat apps keep years of history but give you almost no structure. You can scroll back through all of it and still not see the patterns underneath the conversation.
 
-It looks at things like:
+I was partly inspired by [Mimoto Messages Analyzer](https://apps.apple.com/us/app/mimoto-messages-analyzer/id6739403565?mt=12), a Mac app along the same lines, but I wanted something more transparent about how it works and closer to the kind of software I enjoy making.
 
-- conversation dynamics, such as who starts, who replies, and who lets threads die
-- response times and latency patterns, including averages, streaks, and burstiness
+Back when I worked at UBC, I did some [basic text analysis](/projects/open-collections-ipython-notebooks/) on their Open Collections archives, and I liked the idea of pointing that sort of thinking at something much more personal. WhatsApp exports are messy, informal and full of small behavioural tells, which makes them a fun thing to analyse.
+
+I also gave myself a constraint: build something useful on messy conversational text without reaching for heavyweight models or someone else's service.
+
+## What it measures
+
+Chinwag is written in Go. It parses the raw export into a timeline of messages, then runs a series of lightweight analysis passes over it. Between them, those passes look at:
+
+- conversation dynamics, like who starts, who replies, and who lets threads die
+- response times, including averages, streaks, and burstiness (how much the replies come in quick clusters)
 - message balance and reciprocity
-- topic extraction using a TF-IDF-style approach to highlight distinctive words per person
-- sentiment and emotional tone using lexicon-based scoring
+- the words each person uses more than the other
+- sentiment and emotional tone
 - behavioural signals like questions, encouragement, apologies, and laughter
 
-The goal is not just to dump out metrics. I wanted to build a lightweight analysis pipeline that turns chat logs into something human-readable and a bit more revealing. Rather than simply saying one person sent 53% of the messages, Chinwag tries to show what that means in practice.
+I wanted the result to say more than a pile of metrics would. Knowing one person sent 53% of the messages doesn't tell you much by itself, so Chinwag tries to show what that looks like in practice: who's starting the conversations, who's answering them, and how the tone differs between the two of you.
 
-Under the hood, the NLP side is still deliberately pragmatic. Topic extraction uses a simple term-frequency style approach with stopword filtering rather than anything model-based. The stopword base comes from [NLTK's English stopwords corpus](https://www.nltk.org/howto/corpus.html), with some chat-specific additions layered on top. For sentiment, I moved away from a tiny hand-rolled positive and negative word list and toward a [VADER](https://github.com/cjhutto/vaderSentiment) style scorer implemented directly in Go. That means the tone is not just based on word matches, but also on things like negation, degree modifiers, capitalised emphasis, and punctuation.
+## How the scoring works
 
-On top of that, Chinwag now uses the [NRC emotion lexicons](https://nrc.canada.ca/en/research-development/products-services/technical-advisory-services/sentiment-emotion-lexicons) for emotion, intensity, and VAD scoring. So instead of only asking whether a message is broadly positive or negative, it can also look at whether the chat leans more toward joy, anger, trust, fear, or surprise, how emotionally intense a stretch of conversation is, and whether the overall tone feels calmer or more high-energy.
+First the parser normalises the export, so every message has an author, a timestamp, a message kind and its body text. Chinwag then tokenises each message (splits it into words) and runs a few separate scoring passes over the same text.
 
-## Why I Built It
+Topics use a TF-IDF-style approach, with no model involved. TF-IDF scores a word higher the more one person uses it, and lower the more common it is across the whole chat, so each person's distinctive words float to the top. Before that, it filters out stopwords (filler like "the" and "and") using [NLTK's English stopwords list](https://www.nltk.org/howto/corpus.html), with some chat-specific additions of my own.
 
-I was partly inspired by [Mimoto Messages Analyzer](https://apps.apple.com/us/app/mimoto-messages-analyzer/id6739403565?mt=12), but I also wanted to build something that was a bit more transparent in how it worked and more in line with the kind of software I enjoy making.
+Sentiment started out as a tiny hand-rolled list of positive and negative words. I replaced it with a [VADER](https://github.com/cjhutto/vaderSentiment)-style scorer written directly in Go. VADER is a rule-based sentiment scorer designed for social media text, so as well as matching words it accounts for negation ("not good"), degree modifiers ("very good"), capitalised emphasis and punctuation. Each message gets a compound score between -1 and +1.
 
-Back when I was at UBC, I did some basic text analysis work, and I liked the idea of applying that sort of thinking to something much more personal and conversational. WhatsApp exports are messy, informal, and full of small behavioural tells, which makes them a fun input for lightweight analysis.
+Emotion comes from the [NRC emotion lexicons](https://nrc.canada.ca/en/research-development/products-services/technical-advisory-services/sentiment-emotion-lexicons), word lists published by the National Research Council of Canada. One maps words to emotions such as joy, sadness, anger, fear, trust, surprise and anticipation. Another adds intensity weighting, and the VAD lexicon gives a rough read on valence (how pleasant), arousal (how energetic) and dominance (how in control). With those, Chinwag can tell you whether a chat leans towards joy or anger, how intense a stretch of conversation got, and whether the overall tone is calm or high-energy, where VADER on its own only gets you positive or negative.
 
-It also turned into a useful engineering constraint. I wanted to build something practical on messy conversational text without defaulting to heavyweight models or external services.
+Those message-level scores are then added up per person and over time. That's where the average tone, emotional distribution, intensity peaks and energy levels come from.
 
-## Local-First by Design
+I like this setup because it gets a lot of mileage out of small building blocks. It isn't academic NLP, and it definitely doesn't "understand" a relationship in any deep sense. It's a fast local pipeline that takes messy text and produces results that feel useful, and you can always see why it scored something the way it did.
 
-One of the main constraints I set from the beginning was that everything had to run locally.
+## Keeping it local
 
-Chinwag does not use heavy machine learning models or external APIs. Instead, it relies on simple heuristics, precomputed lexicons, and fast scoring passes that can run directly on your own machine. The lexicon data is bundled with the app as local assets, loaded into Go maps at runtime, and then reused across the analysis pipeline. That keeps it quick, cheap, and private.
+Everything had to run locally from the start. You export the chat from WhatsApp, point Chinwag at it, and the analysis happens on your machine. Your messages don't get uploaded or fed into anyone else's service, and there's no account, database or tracking.
 
-Your chat data does not need to be uploaded anywhere, indexed by a third party, or fed into someone else's service. You export the chat, point Chinwag at it, and it generates the analysis locally.
+That constraint shaped most of the project. The lexicons ship with the app as compact JSON files or embedded assets, get loaded into Go maps at runtime, and are reused across every pass. The runtime is pure Go with no Python dependency in production, which keeps it quick and easy to distribute. It also pushed me towards methods that are fast and easy to reason about, and I think that suits this kind of tool far better than throwing a giant model at it.
 
-That local-first approach shaped the whole project. It pushed me toward methods that are understandable, fast, and easy to reason about, which I think suits this kind of tool far better than throwing a giant model at it.
+## What you get
 
-It also forced a few design decisions I am quite happy with. The runtime stays pure Go, there is no Python dependency in production, and all of the NLP resources can be shipped as compact JSON files or embedded assets. That keeps the whole thing straightforward to distribute while still being expressive enough to produce results that feel right on casual chat data.
+Once a chat's processed, the desktop app shows a dashboard that looks at the conversation from a few angles: volume, pacing, tone, topics and conversation flow. Some of it is deliberately simple (who starts more conversations, who replies faster, who asks more questions). The rest leans on the scoring above, like emotional intensity, joy versus anger, trust signals and overall energy. The CLI is there if you'd rather script against it or dig through the raw output.
 
-## A Bit More on the Tech
-
-The analysis pipeline works message by message. First the parser normalises the chat export into a timeline with authors, timestamps, message kinds, and body text. From there, Chinwag tokenises each message and runs a few separate scoring passes over the same text.
-
-One pass computes [VADER](https://github.com/cjhutto/vaderSentiment) style sentiment and produces a compound score between -1 and +1. Another maps words into [NRC](https://nrc.canada.ca/en/research-development/products-services/technical-advisory-services/sentiment-emotion-lexicons) emotion categories such as joy, sadness, anger, trust, and anticipation. Another layer adds intensity weighting, while the VAD lexicon provides a rough read on valence, arousal, and dominance.
-
-Those message-level scores are then aggregated per participant and over time. That is how Chinwag can surface things like average tone, emotional distribution, intensity peaks, energy level, and broader relationship patterns instead of stopping at raw counts.
-
-I like this setup because it gives a lot of mileage from relatively small building blocks. It is not trying to be academic NLP, and it is definitely not pretending to "understand" a relationship in any deep sense. It is just a fast local pipeline that can take messy conversational text and produce results that feel useful without being expensive or opaque.
-
-## The Output
-
-Chinwag is available as a desktop app for macOS and Windows, with a CLI as well for anyone who wants to script against it or inspect the raw output.
-
-Once a chat has been processed, you get a dashboard showing the relationship from a few different angles: volume, pacing, tone, topic signals, and conversation flow. The interesting part, to me at least, is seeing how quickly raw text can be normalised, scored, aggregated, and turned into something legible.
-
-There is no account system, no database, and no tracking layer bolted on top. It is just a tool that reads your export, computes insights, and presents them back to you in a form that is easy to explore. Some of those insights are deliberately simple, who starts more conversations, who replies faster, who asks more questions, while others now lean more on the upgraded scoring layer, such as emotional intensity, joy versus anger, trust signals, and overall chat energy.
-
-## Closing Thoughts
-
-I like projects like this because they sit in a nice middle ground between engineering and curiosity. The technical work is enjoyable, parsing exports, building scoring passes, shaping the UI, but the more interesting part is what falls out when you run those systems over real communication data.
-
-Chinwag is open source, and if you want to take a look or try it yourself, the code is on [GitHub](https://github.com/seanmcn/chinwag).
+I enjoy projects like this because they sit somewhere between engineering and curiosity. Parsing exports, building scoring passes and shaping the UI was fun, but the more interesting part is what falls out when you run them over real conversations. The code is on [GitHub](https://github.com/seanmcn/chinwag) if you want to try it on your own chats.
