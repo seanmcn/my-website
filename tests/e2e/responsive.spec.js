@@ -83,35 +83,57 @@ for (const width of [375, 1024, 1440, 1920, 2560]) {
   });
 }
 
-// A framed block (quote, code, table, image) never sits beside a post's
-// featured image, whether a short intro comes first or the post opens with
-// one: beside it, a quote squeezes into a column and a code listing's frame
-// runs under the image.
+// A framed block never runs its frame under a post's featured image, whether
+// a short intro comes first or the post opens with one. Code, tables and
+// media start below the image; a quote or note may sit beside it instead.
 const FEATURED_BESIDE_BLOCK = [
   '/library/2009/11/programmer-personality/',
   '/library/2010/12/installing-pear-in-wamp/',
   '/library/2009/09/ubuntu-cheat-sheets/',
   '/library/2015/02/perfect-web-server/',
+  '/library/2026/04/what-are-world-models-in-ai/',
+  '/library/2026/09/ai-hero-grill-and-wayfinder-skills/',
 ];
 
 for (const width of [375, 1024, 1440]) {
   test.describe(`featured image at ${width}px`, () => {
     test.use({viewport: {width, height: 900}});
     for (const path of FEATURED_BESIDE_BLOCK) {
-      test(`${path} starts its framed blocks below the image`, async ({
+      test(`${path} keeps its framed blocks clear of the image`, async ({
         page,
       }) => {
         await visitPage(page, path);
         const image = await page.locator('.prose__float-figure').boundingBox();
-        const blocks = page.locator(
-            '.prose :is(blockquote, table, .code-wrapper, .mermaid-wrapper, ' +
+        const below = image.y + image.height;
+        const wide = page.locator(
+            '.prose :is(table, .code-wrapper, .mermaid-wrapper, ' +
             '.video-embed, .prose-image-link), .prose > img',
         );
-        expect(await blocks.count()).toBeGreaterThan(0);
-        for (const block of await blocks.all()) {
-          const box = await block.boundingBox();
-          expect(box.y).toBeGreaterThanOrEqual(image.y + image.height);
+        const beside = page.locator('.prose :is(blockquote, .note-aside)');
+        expect(await wide.count() + await beside.count()).toBeGreaterThan(0);
+        for (const block of await wide.all()) {
+          expect((await block.boundingBox()).y).toBeGreaterThanOrEqual(below);
         }
+        for (const block of await beside.all()) {
+          const box = await block.boundingBox();
+          if (box.y < below) {
+            expect(box.x + box.width).toBeLessThanOrEqual(image.x);
+          }
+        }
+      });
+    }
+
+    // A note at the top of a post fills the space beside the image rather
+    // than pushing the image above it.
+    if (width > 375) {
+      test('an opening note sits beside the featured image', async ({page}) => {
+        await visitPage(
+            page, '/library/2026/09/ai-hero-grill-and-wayfinder-skills/',
+        );
+        const image = await page.locator('.prose__float-figure').boundingBox();
+        const note = await page.locator('.note-aside').boundingBox();
+        expect(note.y).toBeLessThan(image.y + image.height);
+        expect(note.x + note.width).toBeLessThanOrEqual(image.x);
       });
     }
 

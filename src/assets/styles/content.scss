@@ -2,9 +2,11 @@
 @use "./tokens" as *;
 
 // Blocks with a frame or tint of their own, which can't wrap around the
-// featured image the way plain text does.
-$framed-blocks: "blockquote", "table", ".code-wrapper", ".mermaid-wrapper",
-  ".video-embed", ".prose-image-link";
+// featured image the way plain text does. Short ones sit beside it; wide ones
+// start below it.
+$beside-blocks: "blockquote", ".note-aside";
+$wide-blocks: "table", ".code-wrapper", ".mermaid-wrapper", ".video-embed",
+  ".prose-image-link";
 
 /**
  * Rendered markdown. The measure is deliberately wide for a serif at 19px
@@ -867,11 +869,21 @@ $framed-blocks: "blockquote", "table", ".code-wrapper", ".mermaid-wrapper",
   }
 
   /**
-   * Framed blocks start below the featured image rather than beside it, as
-   * sticky notes do: beside it a quote shrinks into a narrow column and a code
-   * listing's frame runs under the image.
+   * A quote or note fills the space beside the featured image instead of
+   * running its frame under it (a quote's grid already does; flow-root does it
+   * for a note). Where that space is narrower than its min-width, it drops
+   * below the image on its own rather than squeezing into a thin column.
    */
-  #{$framed-blocks},
+  #{$beside-blocks} {
+    min-width: min(100%, 24rem);
+  }
+
+  .note-aside {
+    display: flow-root;
+  }
+
+  // Code, tables and media need the full measure, so they start below it.
+  #{$wide-blocks},
   > img {
     clear: right;
   }
@@ -883,7 +895,7 @@ $framed-blocks: "blockquote", "table", ".code-wrapper", ".mermaid-wrapper",
   &__float-figure {
     float: right;
     width: 40%;
-    margin: 0 -2.75rem 0.75rem 0;
+    margin: 0 -2.75rem 0.75rem 1.5rem;
 
     img {
       display: block;
@@ -903,9 +915,9 @@ $framed-blocks: "blockquote", "table", ".code-wrapper", ".mermaid-wrapper",
       margin: 0 0 1.125rem;
     }
 
-    // A post that opens with a framed block has no text to sit beside, so
-    // the image centres above it instead of leaving an empty column.
-    &:has(~ .prose > :first-child:is(#{$framed-blocks}, img)) {
+    // A post that opens with a wide block has no text to sit beside, so the
+    // image centres above it instead of leaving an empty column.
+    &:has(~ .prose > :first-child:is(#{$wide-blocks}, img)) {
       @include not-narrow {
         float: none;
         margin: 0 auto 1.75rem;
