@@ -6,6 +6,7 @@ slug: '2009/11/programmer-personality'
 category: 'personal'
 tags: ['funny', 'personality']
 keywords: ['personality', 'programmer']
+summary: "I took a Myers-Briggs style programmer personality test and came out as a DLSB."
 featured: 'images/featured-programmer-personality.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

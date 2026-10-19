@@ -6,6 +6,7 @@ slug: '2012/01/control-your-pc-with-xbox-controller'
 category: 'systems'
 tags: ['how-to', 'windows', 'xbox']
 keywords: ['how', 'guide']
+summary: "Using an Xbox controller as a mouse and keyboard on Windows with JoyToKey."
 featured: 'images/featured-control-computer-with-xbox-controller.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

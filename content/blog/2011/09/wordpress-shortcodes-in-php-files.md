@@ -6,6 +6,7 @@ slug: '2011/09/wordpress-shortcode-in-php-files'
 category: 'programming'
 tags: ['wordpress', 'php', 'how-to']
 keywords: ['plugin', 'shortcode']
+summary: "Getting a WordPress shortcode to render from a theme file, outside the Loop."
 featured: 'images/featured-wordpress-shortcodes-in-php-files.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'
