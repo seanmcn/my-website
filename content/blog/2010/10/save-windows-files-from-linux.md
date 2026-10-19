@@ -5,6 +5,7 @@ date: '2010-10-30T19:39:03.284Z'
 slug: '2010/10/saving-your-windows-pc-from-virus-infections-with-linux'
 category: 'systems'
 tags: ['how-to', 'linux', 'windows', 'security']
+summary: "Backing up files from a virus-infected Windows PC with an Ubuntu Live CD before wiping it, so the virus never gets a chance to load."
 featured: 'images/featured-save-windows-files-from-linux.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

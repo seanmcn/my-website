@@ -5,6 +5,7 @@ date: '2016-09-09T15:39:03.284Z'
 slug: '2016/09/making-simple-rts-game-week-two'
 category: 'programming'
 tags: ['javascript', 'game-development', 'rts']
+summary: "Week two of my Phaser RTS game, with a Tiled map using free Kenney assets, a scrolling camera and a mouse selection box."
 series: 'simple-rts-game'
 seriesOrder: 2
 featured: 'images/featured-making-simple-rts-game-week-two.png'

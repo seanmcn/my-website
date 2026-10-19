@@ -5,6 +5,7 @@ date: '2014-10-31T01:39:03.284Z'
 slug: '2014/10/what-programmers-say-vs-what-they-mean'
 category: 'personal'
 tags: ['funny']
+summary: "A joke table that did the rounds in 2014, pairing what programmers say with what they actually mean."
 featured: 'images/featured-what-programmers-say-vs-what-they-mean.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'balanced'

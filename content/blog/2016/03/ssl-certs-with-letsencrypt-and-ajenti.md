@@ -5,6 +5,7 @@ date: '2016-03-21T08:39:03.284Z'
 slug: '2016/03/letsencrypt-ajenti-v'
 category: 'systems'
 tags: ['how-to', 'letsencrypt', 'nginx', 'ajenti']
+summary: "Getting a free LetsEncrypt SSL certificate with the certonly option and adding it to a website in Ajenti-v with an HTTPS redirect."
 featured: 'images/featured-ssl-certs-with-letsencrypt-and-ajenti.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

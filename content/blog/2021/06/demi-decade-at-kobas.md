@@ -5,6 +5,7 @@ date: "2021-06-08T19:39:19.327Z"
 slug: "2021/06/demi-decade-at-kobas"  
 category: "personal"  
 tags: ['kobas']
+summary: "What's changed in my five years at Kobas, including a move into technical product management and going fully remote."
 featured: 'images/featured-demi-decade-at-kobas.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

@@ -5,6 +5,7 @@ date: "2021-08-28T15:50:19.327Z"
 slug: "2021/08/open-source-projects-i-use-for-development"
 category: "productivity"
 tags: ['open-source', 'developer-tools']
+summary: "Five open-source tools I use day to day for development, such as Pandoc for converting docs and ScreenToGif for quick demos."
 featured: 'images/featured-open-source-projects-i-use.png'
 ---
 I love open source software, and I try to use it whenever possible. The ability to be able to fork the codebase and add (or fix) functionality you need means you're not reliant on a third party for a bug fix.

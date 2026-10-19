@@ -5,6 +5,7 @@ date: '2009-09-24T01:39:03.284Z'
 slug: '2009/09/create-a-url-shortener-with-your-domain'
 category: 'programming'
 tags: ['how-to', 'php', 'url-shortener']
+summary: "Running your own TinyURL-style link shortener on your own domain with YOURLS, a free PHP script with stats and custom links."
 featured: 'images/featured-php-url-shortener.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

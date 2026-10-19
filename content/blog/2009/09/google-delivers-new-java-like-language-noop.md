@@ -5,6 +5,7 @@ date: '2009-09-23T01:39:03.284Z'
 slug: '2009/09/google-delivers-new-java-like-language-noop'
 category: 'programming'
 tags: ['google', 'java', 'noop']
+summary: "Google's Noop, a new language for the Java Virtual Machine that bans statics and subclassing and builds dependency injection into the language."
 featured: 'images/featured-google-delivers-new-java-like-language-noop.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

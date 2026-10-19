@@ -5,6 +5,7 @@ date: '2019-01-23T15:39:03.284Z'
 slug: '2019/01/gpg-signed-commits-in-phpstorm-on-centos-7'
 category: 'programming'
 tags: ['how-to', 'git', 'gpg', 'phpstorm']
+summary: "Setting up Git on CentOS 7 so PHPStorm's commit dialog prompts for your GPG key and signs every commit."
 featured: 'images/featured-gpg-signed-commits-in-phpstorm-on-centos-7.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

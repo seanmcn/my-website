@@ -5,6 +5,7 @@ date: '2017-03-14T15:39:03.284Z'
 slug: '2017/03/bash-phpstorm-cygwin'
 category: 'systems'
 tags: ['bash', 'cygwin', 'windows', 'phpstorm']
+summary: "Swapping PHPStorm's built-in Windows terminal for Cygwin's bash, and making it open in the project directory."
 featured: 'images/featured-bash-phpstorm-cygwin.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

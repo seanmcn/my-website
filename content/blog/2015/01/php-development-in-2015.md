@@ -5,6 +5,7 @@ date: '2015-01-27T08:39:03.284Z'
 slug: '2015/01/being-a-php-developer'
 category: 'programming'
 tags: ['php', 'javascript', 'linux']
+summary: "How PHP development had changed by 2015 with tools like Composer and Laravel, and why I swapped ISPConfig for Ajenti to manage my servers."
 featured: 'images/featured-php-development-in-2015.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'balanced'

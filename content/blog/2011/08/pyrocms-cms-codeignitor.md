@@ -5,6 +5,7 @@ date: '2011-08-14T20:39:03.284Z'
 slug: '2011/08/pyrocms-cms-on-the-codeignitor-framework'
 category: 'programming'
 tags: ['cms', 'php', 'pyrocms']
+summary: "PyroCMS, an open-source CMS built on CodeIgniter that gives clients a simple place to update their own sites, with permissions so they can't break anything."
 featured: 'images/featured-pyrocms-cms-codeignitor.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

@@ -5,6 +5,7 @@ date: '2016-11-27T15:39:03.284Z'
 slug: '2016/11/making-simple-rts-game-week-three'
 category: 'programming'
 tags: ['javascript', 'game-development', 'rts']
+summary: "Back on my Phaser RTS game three months later, switching to a space theme with bought sprites and getting units to move where I click."
 series: 'simple-rts-game'
 seriesOrder: 3
 featured: 'images/featured-making-simple-rts-game-week-three.png'

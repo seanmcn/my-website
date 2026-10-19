@@ -5,6 +5,7 @@ date: '2015-03-29T08:39:03.284Z'
 slug: '2015/03/tracking-time'
 category: 'productivity'
 tags: ['time-tracking', 'toggl', 'wakatime']
+summary: "How I track tasks in Trello, JIRA and Todoist, and track my time with Toggl's browser plugin and WakaTime's IDE plugin."
 featured: 'images/featured-software-to-track-time.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

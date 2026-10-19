@@ -5,6 +5,7 @@ date: '2011-02-04T20:39:03.284Z'
 slug: '2011/02/esprimo-mobile-v5535-and-ubuntu-10-10'
 category: 'reviews'
 tags: ['review', 'esprimo', 'ubuntu']
+summary: "Putting Ubuntu 10.10 on a cheap Esprimo Mobile v5535, and fixing its SiS graphics from a terminal to get a 1280x800 resolution."
 featured: 'images/featured-esprimo-mobile-ubuntu.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

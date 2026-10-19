@@ -5,6 +5,7 @@ date: '2016-05-26T19:39:03.284Z'
 slug: '2016/05/goodbye-vancouver-london'
 category: 'personal'
 tags: []
+summary: "Leaving Vancouver when my two-year working holiday visa ran out, flying to London via Toronto and Saint Johns, and starting the job hunt."
 featured: 'images/featured-goodbye-vancouver-london.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

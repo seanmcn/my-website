@@ -5,6 +5,7 @@ date: '2010-06-06T00:39:03.284Z'
 slug: '2010/06/the-sony-ericsson-elm'
 category: 'reviews'
 tags: ['review', 'phone']
+summary: "Reviewing the Sony Ericsson Elm, a Wi-Fi phone made from recycled plastics that I got for €169 on O2 pre-pay and love."
 featured: 'images/featured-sony-ericsson-elm.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

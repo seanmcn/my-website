@@ -5,6 +5,7 @@ date: '2014-11-03T19:39:03.284Z'
 slug: '2014/11/apache-localhost-rendering-slowly'
 category: 'programming'
 tags: ['apache', 'how-to']
+summary: "Setting ServerName to 127.0.0.1:80 in httpd.conf can fix an Apache localhost that loads slowly."
 featured: 'images/featured-apache-localhost-rendering-slowly.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

@@ -5,6 +5,7 @@ date: '2020-10-29T02:09:03.284Z'
 slug: '2020/10/website-revitalised-gatsby'
 category: 'personal'
 tags: ['gatsby', 'javascript']
+summary: "Why I rebuilt this site from WordPress to Gatsby on AWS Amplify, and what made the cut for the first version."
 featured: 'images/featured-website-revitalised.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

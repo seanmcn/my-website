@@ -5,6 +5,7 @@ date: '2016-07-03T15:39:03.284Z'
 slug: '2016/07/first-month-at-kobas'
 category: 'personal'
 tags: ['kobas']
+summary: "My first month at Kobas, spent adding deposits and other payment types to its EPoS tills without breaking the tax calculations."
 featured: 'images/featured-first-month-at-kobas.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

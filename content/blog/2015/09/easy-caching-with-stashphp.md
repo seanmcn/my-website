@@ -5,6 +5,7 @@ date: '2015-09-08T00:39:03.284Z'
 slug: '2015/09/stash-php'
 category: 'programming'
 tags: ['php', 'caching', 'stashphp']
+summary: "Comparing PHP caching options from the file system to Redis, and using StashPHP so you can switch cache drivers without rewriting your code."
 featured: 'images/featured-easy-caching-with-stashphp.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

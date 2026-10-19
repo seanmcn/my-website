@@ -5,6 +5,7 @@ date: '2010-04-08T01:39:03.284Z'
 slug: '2010/04/programmer-personality'
 category: 'reviews'
 tags: ['review', 'sms']
+summary: "Jelly SMS, a now-abandoned Java app I used to send web texts from my desktop without logging in to my network's website."
 featured: 'images/featured-jelly-sms.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

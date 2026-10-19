@@ -5,6 +5,7 @@ date: "2023-05-13T22:15:10.429Z"
 slug: "2023/05/using-chat-gpt"
 category: "ai"
 tags: ['ai', 'chatgpt']
+summary: "How I use ChatGPT for programming, from answering questions that used to send me to Stack Overflow to parsing web pages."
 featured: 'images/featured-using-chat-gpt.png'
 ---
 I've been using Open AI's [ChatGPT](https://chat.openai.com/) for a couple of months now, it feels game changing in terms of search & handling remedial tasks. I wanted to share some ways that I've been finding it useful in enhancing my workflow day-to-day.

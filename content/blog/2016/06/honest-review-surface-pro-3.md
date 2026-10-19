@@ -5,6 +5,7 @@ date: '2016-06-11T15:39:03.284Z'
 slug: '2016/06/honest-review-surface-pro-3'
 category: 'reviews'
 tags: ['review', 'surface', 'windows']
+summary: "A year and a half with a Surface Pro 3, which is very portable, but flaky WiFi and a fragile charger mean I won't buy another."
 featured: 'images/featured-honest-review-surface-pro-3.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

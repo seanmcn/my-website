@@ -5,6 +5,7 @@ date: '2009-09-21T07:39:03.284Z'
 slug: '2009/09/e-ggtimer-com-online-timer'
 category: 'reviews'
 tags: ['review', 'timer']
+summary: "E.ggtimer.com, an online countdown timer that takes the time from its URL so you can open the same timer again."
 featured: 'images/featured-egg-timer.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

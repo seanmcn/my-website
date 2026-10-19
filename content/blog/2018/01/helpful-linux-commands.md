@@ -5,6 +5,7 @@ date: '2018-01-14T15:39:03.284Z'
 slug: '2018/01/helpful-linux-commands'
 category: 'systems'
 tags: ['linux', 'commands', 'screen', 'bash']
+summary: "Linux shortcuts I don't want to forget, from !$ and sudo !! to screen's key bindings and settings for a more useful bash history."
 featured: 'images/featured-helpful-linux-commands.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

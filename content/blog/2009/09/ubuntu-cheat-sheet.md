@@ -5,6 +5,7 @@ date: '2009-09-12T03:39:03.284Z'
 slug: '2009/09/ubuntu-cheat-sheets'
 category: 'systems'
 tags: ['linux', 'ubuntu', 'cheat-sheet']
+summary: "Two printable cheat sheets for Linux and Ubuntu, from Gary Woodfine, to put on your wall while you get used to Ubuntu."
 featured: 'images/featured-ubuntu-cheat-sheet.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'

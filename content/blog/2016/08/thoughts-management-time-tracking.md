@@ -5,6 +5,7 @@ date: '2016-08-29T15:39:03.284Z'
 slug: '2016/08/thoughts-management-time-tracking'
 category: 'productivity'
 tags: ['management', 'time-tracking']
+summary: "Why I think detailed time tracking at large companies interrupts programmers more than it helps, and how Kobas manages without it."
 featured: 'images/featured-thoughts-management-time-tracking.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'balanced'

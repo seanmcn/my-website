@@ -5,6 +5,7 @@ date: '2015-02-18T08:39:03.284Z'
 slug: '2015/02/perfect-web-server'
 category: 'systems'
 tags: ['ajenti', 'linux', 'nginx', 'ubuntu']
+summary: "My setup for an Ubuntu web server running Nginx, managed through the Ajenti control panel and its Ajenti V plugin for websites."
 featured: 'images/featured-perfect-web-server.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

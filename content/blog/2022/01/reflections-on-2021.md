@@ -5,6 +5,7 @@ date: "2022-01-31T11:39:19.327Z"
 slug: "2022/01/reflections-on-2021"  
 category: "personal"  
 tags: ['crypto']
+summary: "What I got into in 2021, mainly Flutter app development and crypto, and why I'm learning Solidity to contribute to Klima DAO."
 featured: 'images/featured-reflections-on-2021.png'
 ---
 

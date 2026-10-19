@@ -5,6 +5,7 @@ date: '2024-11-09T13:21:42.341Z'
 slug: '2024/11/my-development-workflow'
 category: 'productivity'
 tags: ['ai', 'phpstorm', 'developer-tools', 'hosting']
+summary: "How I develop in 2024, from Docker for PHP and Go to why I still host on DigitalOcean rather than AWS."
 featured: 'images/featured-development-workflow.png'
 ---
 

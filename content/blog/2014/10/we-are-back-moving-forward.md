@@ -5,6 +5,7 @@ date: '2014-10-22T18:39:03.284Z'
 slug: '2014/10/we-are-back-moving-forward'
 category: 'personal'
 tags: []
+summary: "Returning to the blog after two years, now living in Vancouver and working at Motbot, with plans to make a 2D game in Unity."
 featured: 'images/featured-we-are-back-moving-forward.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

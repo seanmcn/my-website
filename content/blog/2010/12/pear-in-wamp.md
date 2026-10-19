@@ -5,6 +5,7 @@ date: '2010-12-27T20:39:03.284Z'
 slug: '2010/12/installing-pear-in-wamp'
 category: 'systems'
 tags: ['how-to', 'pear', 'php', 'windows']
+summary: "Fixing the \"go-pear.phar does not have a signature\" error when installing PEAR in WAMP, by running it with phar.require_hash=0."
 featured: 'images/featured-pear-in-wamp.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'bright'

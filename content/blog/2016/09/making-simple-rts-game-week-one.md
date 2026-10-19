@@ -5,6 +5,7 @@ date: '2016-09-01T15:39:03.284Z'
 slug: '2016/09/making-simple-rts-game-week-one'
 category: 'programming'
 tags: ['javascript', 'game-development', 'rts']
+summary: "Starting a simple browser RTS game with Phaser and Socket.io, and the order I plan to build it in."
 series: 'simple-rts-game'
 seriesOrder: 1
 featured: 'images/featured-making-simple-rts-game-week-one.png'

@@ -5,6 +5,7 @@ date: '2009-09-09T20:39:03.284Z'
 slug: '2009/09/who-hosts-irish-blogs'
 category: 'explainers'
 tags: ['hosting', 'blogging', 'ireland']
+summary: "Which web hosts hosted Irish blogs in 2009, with Blacknight top on 46 blogs and Blogger next on 30."
 featured: 'images/featured-who-hosts-irish-blogs.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'bright'

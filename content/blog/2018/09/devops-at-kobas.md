@@ -5,6 +5,7 @@ date: '2018-09-23T17:39:03.284Z'
 slug: '2018/09/devops-at-kobas'
 category: 'personal'
 tags: ['kobas', 'devops', 'jenkins', 'puppet', 'ci']
+summary: "Two years into Kobas, how we use Jenkins for one-click releases and Puppet to keep 170+ on-site EPoS servers configured."
 featured: 'images/featured-devops-at-kobas.png'
 featuredStyle: 'chibi-cartoon'
 featuredPalette: 'balanced'
