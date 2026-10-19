@@ -1,17 +1,17 @@
 ---
-title: "AI's Environmental Impact: Training vs. Inference"
+title: "AI's Environmental Impact"
 type: 'post'
 date: "2026-10-19T19:00:00.000Z"
 slug: "2026/10/ai-environmental-impact"
 category: 'ai'
 tags: ['ai', 'environment', 'energy']
 keywords: ['ai energy use', 'chatgpt energy per prompt', 'ai carbon footprint', 'training vs inference', 'gpt-3 training energy', 'data centre water use', 'epoch ai', 'mit']
-summary: "Training a model has a huge one-off energy cost and a single prompt barely registers, but billions of prompts a day can still outweigh the training. With a calculator to try out your own usage."
+summary: "Training a model has a huge one-off energy cost and a single prompt barely registers, but billions of prompts a day can still outweigh the training. There's a calculator to try your own usage too."
 margins:
   - label: 'In one line'
-    text: 'One prompt is tiny. Billions of them a day are not.'
+    text: 'Each prompt is tiny, but billions a day can outweigh the cost of training.'
   - label: 'Numbers from'
-    text: 'MIT News and Epoch AI, both early 2025, plus Ember for the grids.'
+    text: 'MIT News, Epoch AI, Google, OpenAI, Ember and the IEA, from 2025 and 2026.'
 featured: 'images/featured-ai-environmental-impact.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'
@@ -23,12 +23,12 @@ The short version: training a model has a huge environmental cost compared with 
 
 I first wrote this up for work, to get my thoughts straight on AI, energy and the environment. This version adds a calculator so you can try out your own usage.
 
-Two easy-to-read pieces from 2025 shaped most of my thinking: MIT's [Explained: Generative AI's environmental impact](https://news.mit.edu/2025/explained-generative-ai-environmental-impact-0117) and Epoch AI's [How much energy does ChatGPT use?](https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use)
+Two easy-to-read pieces from 2025 shaped most of my thinking: MIT's [Explained: Generative AI's environmental impact](https://news.mit.edu/2025/explained-generative-ai-environmental-impact-0117) and Epoch AI's [How much energy does ChatGPT use?](https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use).
 
 ## Training uses a huge amount of energy
 
 <StickyNote color="amber" label="Why GPT-3?">
-It's from 2020, ancient in AI terms, but it's one of the last big models with published training figures. Labs don't share them any more.
+It's from 2020, ancient in AI terms, but it's one of the few big models with published training figures. The big closed labs don't share them any more.
 </StickyNote>
 
 MIT cites an estimate of **1,287 MWh** to train GPT-3, producing around **552 tonnes of CO₂**. That's the yearly electricity of about 120 US homes, or nearly 500 UK ones.
@@ -43,7 +43,9 @@ You'll still see 3 Wh per query quoted, from a 2023 estimate. Epoch thinks it wa
 
 Epoch estimates a typical GPT-4o query uses around **0.3 Wh**, about a 10W LED bulb running for two minutes.
 
-It climbs quickly with longer input, because the model has to work through everything you give it. Input is measured in tokens, chunks of text that average out at roughly three quarters of a word each:
+Google has since [measured its own](https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference): about 0.24 Wh for a typical Gemini text prompt, counting idle machines and cooling as well as the chips. It also says that figure fell 33 times over the year to May 2025. Nobody outside Google has checked the numbers, but they land close to Epoch's.
+
+Energy per query climbs quickly with longer input, because the model has to work through everything you give it. Input is measured in tokens, chunks of text that average out at roughly three quarters of a word each:
 
 | Query | Energy | Same as a 10W LED for |
 | ----- | ------ | --------------------- |
@@ -56,7 +58,7 @@ Reasoning models and agents push it further. In Epoch's testing, o1 produced aro
 ## Inference never stops
 
 <StickyNote color="sky" label="Rough maths">
-2.5 billion × 0.3 Wh = 750 MWh a day. 1,287 MWh ÷ 750 MWh ≈ 1.7 days. Treat it as a floor: it ignores long inputs, reasoning, images, and every AI service that isn't ChatGPT.
+2.5 billion × 0.3 Wh = 750 MWh a day. 1,287 MWh ÷ 750 MWh ≈ 1.7 days. Treat 750 MWh as a floor: it ignores long inputs, reasoning, images, and every AI service that isn't ChatGPT.
 </StickyNote>
 
 Training is a one-off. Inference runs continuously across millions of users for as long as the model is in service, and MIT notes it's a growing share of AI's energy use.
@@ -71,18 +73,18 @@ Set how many prompts a day, how heavy they are and whose grid they run on. The p
 
 ## Electricity isn't the whole cost
 
-MIT also covers what a per-prompt figure misses. Cooling uses roughly two litres of water for every kWh. Making GPUs and building data centres has its own footprint too: GPU shipments to data centres rose from 2.67 million in 2022 to 3.85 million in 2023.
+MIT also covers what a per-prompt figure misses. Cooling uses roughly two litres of water for every kWh. Making GPUs and building data centres has its own footprint too, and there's more hardware every year: GPU shipments to data centres rose from 2.67 million in 2022 to 3.85 million in 2023.
 
 Where the power comes from matters as well. Going by [Ember's grid data](https://ember-energy.org/data/yearly-electricity-data/), the same kWh on France's mostly nuclear grid produces about a tenth of the CO₂ it would in the US.
 
-MIT's early-2025 article also cites a projection that data centres could use around 1,050 TWh in 2026, which is this year. That now looks well off. The IEA's [2026 report](https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary) puts 2025 at about 485 TWh, up 17% on the year before, and doesn't expect data centres to reach 950 TWh until 2030. The AI-focused part is growing much faster, though: up 50% in 2025.
+MIT's early-2025 article also cites a projection that data centres could use around 1,050 TWh in 2026, which is this year. That now looks far too high. The IEA's [2026 report](https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary) puts 2025 at about 485 TWh, up 17% on the year before, and doesn't expect data centres to reach 950 TWh until 2030. The AI-focused part is growing much faster, though: up 50% in 2025.
 
 ## My takeaway
 
-The energy per task keeps falling as chips, models and data centres improve. Epoch's 0.3 Wh is a tenth of the old 3 Wh figure, partly because the old estimate was too high and partly because of those gains. Cleaner grids also mean each kWh costs less CO₂. Total use is still climbing because demand is growing faster, but I only see the cost per task going one way.
+Total use is still climbing, but I only see the cost per task going down: chips, models and data centres keep getting more efficient, and cleaner grids make each kWh cost less CO₂.
 
 So it isn't something I go out of my way to cut back on. AI is a big part of my day-to-day work now, and I think it's worth the energy it uses. Most people don't weigh up the carbon cost of jumping on a flight for a holiday, and even if you do, you're nowhere near the worst offender (looking at you, Taylor Swift :airplane:).
 
-It does have an impact, and it's worth making good choices about your environmental impact overall. But I think the "AI is bad for the environment" story is overblown. A year of 100 short prompts a day comes out at about the same CO₂ as driving 26 km. Oil spills, single-use plastics and companies like Shell do far more damage.
+It does have an impact, and it's worth making good choices for the environment overall. But I think the "AI is bad for the environment" story is overblown. A year of 100 short prompts a day comes out at about the same CO₂ as driving 26 km. Oil spills, single-use plastics and companies like Shell do far more damage.
 
 A lot of this gets framed as personal responsibility, but what one person does with their prompts barely moves the needle. The big companies and governments are the ones who can actually fix it.
