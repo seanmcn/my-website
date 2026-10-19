@@ -40,7 +40,13 @@ const {counts, readMinutes} = await getLibraryMeta();
 const ofType = type => items.filter(item => item.data.type === type);
 const posts = ofType('post').slice(0, 3);
 const notes = ofType('note').slice(0, 3);
-const finds = ofType('find').slice(0, 5);
+// A find is only news for a while, so the home page shows the last year's.
+// The cut-off is the build date, as the page is static.
+const findsSince = new Date();
+findsSince.setFullYear(findsSince.getFullYear() - 1);
+const finds = ofType('find')
+    .filter(item => item.data.date >= findsSince)
+    .slice(0, 5);
 const projects = (await getProjects()).slice(0, 3);
 
 const stats = [
@@ -189,7 +195,7 @@ const stats = [
               <div class="home-aside__finds">
                 {finds.length === 0 && (
                   <p class="home-aside__empty">
-                    Nothing filed yet. Links worth passing on will land here.
+                    Nothing passed on lately. Older finds are under All finds.
                   </p>
                 )}
                 {finds.map(({data}) => {
