@@ -1,13 +1,18 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const CONTENT_DIRS = ['content/blog', 'content/projects'];
-const SUPPORTED_EXTENSIONS = new Set(['.md', '.mdx']);
+// src/pages for the about page's links, which carry favicons too.
+const CONTENT_DIRS = ['content/blog', 'content/projects', 'src/pages'];
+const SUPPORTED_EXTENSIONS = new Set(['.md', '.mdx', '.astro']);
 const FAVICON_DIR = path.resolve('public/favicons');
 const SITE_HOSTNAME = 'seanmcn.com';
 const CONCURRENCY = 8;
 
-const LINK_RE = /\]\(https?:\/\/[^)\s]+\)/g;
+// Markdown links, and hrefs in page markup or data.
+const LINK_RES = [
+  /\]\((https?:\/\/[^)\s]+)\)/g,
+  /href[=:]\s*['"](https?:\/\/[^'"\s]+)['"]/g,
+];
 
 async function collectFiles(dir) {
   let entries;
@@ -28,8 +33,7 @@ async function collectFiles(dir) {
   return files;
 }
 
-function hostnameFromLink(match) {
-  const url = match.slice(2, -1);
+function hostnameFromLink(url) {
   try {
     return new URL(url).hostname.replace(/^www\./, '');
   } catch {
@@ -43,9 +47,10 @@ async function collectHostnames() {
     const files = await collectFiles(path.resolve(dir));
     for (const file of files) {
       const raw = await fs.readFile(file, 'utf8');
-      const matches = raw.match(LINK_RE) ?? [];
-      for (const match of matches) {
-        const hostname = hostnameFromLink(match);
+      const urls = LINK_RES.flatMap(re => [...raw.matchAll(re)])
+          .map(match => match[1]);
+      for (const url of urls) {
+        const hostname = hostnameFromLink(url);
         if (hostname && hostname !== SITE_HOSTNAME) {
           hostnames.add(hostname);
         }
