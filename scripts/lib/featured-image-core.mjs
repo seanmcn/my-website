@@ -1,6 +1,12 @@
 import fs from 'fs/promises';
 import path from 'path';
+import process from 'process';
+import {fileURLToPath} from 'url';
+import {parseArgs} from 'util';
 
+// Found from this file, so the scripts run from any directory.
+export const REPO_ROOT =
+  path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 export const OPENAI_IMAGES_URL = 'https://api.openai.com/v1/images/generations';
 export const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 export const SUPPORTED_EXTENSIONS = new Set(['.md', '.mdx']);
@@ -145,29 +151,50 @@ export function pickAutoStyle(variationKey, paletteMode, character) {
   };
 }
 
-export function parseArgs(argv) {
-  const args = {};
-
-  for (let i = 0; i < argv.length; i += 1) {
-    const arg = argv[i];
-
-    if (!arg.startsWith('--')) {
-      continue;
-    }
-
-    const value = argv[i + 1];
-
-    // A flag with no value after it, like --dry-run, is a boolean switch.
-    if (value === undefined || value.startsWith('--')) {
-      args[arg.slice(2)] = true;
-      continue;
-    }
-
-    args[arg.slice(2)] = value;
-    i += 1;
+// Reads a script's command line: the post as a plain argument (or --file, as
+// the VS Code tasks pass it) plus the script's own options. A relative post
+// path resolves against the directory the command was typed in, which npm
+// passes as INIT_CWD because it runs scripts from the repo root. With no post
+// given, postPath is null and the script decides what to do.
+export function parsePostArgs(usage, options = {}) {
+  let parsed;
+  try {
+    parsed = parseArgs({
+      options: {
+        file: {type: 'string'},
+        help: {type: 'boolean', short: 'h'},
+        ...options,
+      },
+      allowPositionals: true,
+    });
+  } catch (error) {
+    throw new Error(`${error.message}\n\n${usage}`);
   }
 
-  return args;
+  const {values, positionals} = parsed;
+
+  if (values.help) {
+    console.log(usage);
+    process.exit(0);
+  }
+
+  const files = [values.file, ...positionals].filter(Boolean);
+  if (files.length > 1) {
+    throw new Error(`Give one post at most.\n\n${usage}`);
+  }
+
+  if (files.length === 0) {
+    return {values, postPath: null, normalizedPostPath: null};
+  }
+
+  const postPath =
+    path.resolve(process.env.INIT_CWD || process.cwd(), files[0]);
+
+  return {
+    values,
+    postPath,
+    normalizedPostPath: ensureBlogPostPath(postPath, REPO_ROOT),
+  };
 }
 
 export function normaliseSlugSegment(input) {
@@ -229,14 +256,14 @@ export async function loadRepoEnv(repoRoot) {
 export function ensureBlogPostPath(postPath, repoRoot) {
   const extension = path.extname(postPath).toLowerCase();
   if (!SUPPORTED_EXTENSIONS.has(extension)) {
-    throw new Error('The active file must be a Markdown or MDX blog post.');
+    throw new Error('The post must be a Markdown or MDX file.');
   }
 
   const relativePath = path.relative(repoRoot, postPath);
   const normalizedPath = relativePath.split(path.sep).join('/');
 
   if (normalizedPath.startsWith('..') || !normalizedPath.startsWith('content/blog/')) {
-    throw new Error('The active file must live under content/blog/.');
+    throw new Error('The post must live under content/blog/.');
   }
 
   return normalizedPath;

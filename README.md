@@ -112,12 +112,24 @@ To run one area, use `npm run test:e2e -- tests/e2e/theme.spec.js`.
 Failures retain screenshots and Playwright traces; axe results are attached to
 the HTML report. Generated reports and results are ignored by Git.
 
-## VS Code Image Generation
+## Featured Image Generation
 
-Add `OPENAI_API_KEY=...` to a repo-root `.env` file, open a post under
-`content/blog`, then run one of the two VS Code tasks.
+Add `OPENAI_API_KEY=...` to a repo-root `.env` file, then run one of the two
+scripts on a post under `content/blog`:
 
-`Generate Featured Image (Auto)` asks nothing. It:
+```sh
+npm run image
+npm run image -- content/blog/2026/10/pi.md
+npm run image:manual -- content/blog/2026/10/pi.md --prompt "..." --style chibi-cartoon --palette bright
+```
+
+With no post named, `npm run image` uses the newest one, drafts included, and
+asks before replacing an image it already has. A relative path resolves
+against the directory you run the command from. In
+VS Code, the `Generate Featured Image (Auto)` and `(Manual)` tasks run the
+same scripts on the open post.
+
+`npm run image` asks nothing. It:
 
 - has `gpt-5` read the post and write a one-sentence concept around one cute
   character: a person for posts about people, otherwise the scene's main
@@ -126,10 +138,10 @@ Add `OPENAI_API_KEY=...` to a repo-root `.env` file, open a post under
 - alternates the palette (`balanced`, `bright`) against the most recently
   generated image, and avoids repeating recent concepts
 
-`Generate Featured Image (Manual)` asks for an illustration style
-(`basic-cartoon`, `mascot-cartoon`, `chibi-cartoon`, or
-`cozy-cartoon-scene`), the concept prompt, and a palette mode (`pastel`,
-`balanced`, or `bright`).
+`npm run image:manual` takes the concept as `--prompt`, an illustration
+`--style` (`basic-cartoon`, the default, `mascot-cartoon`, `chibi-cartoon`,
+or `cozy-cartoon-scene`) and a `--palette` (`pastel`, the default,
+`balanced`, or `bright`). Its VS Code task asks for each.
 
 Both then:
 
@@ -139,9 +151,9 @@ Both then:
   `featuredPrompt` frontmatter automatically
 
 To see the concept and full image prompt without generating anything, run
-`node scripts/auto-featured-image.mjs --file <post> --dry-run`.
+`npm run image -- <post> --dry-run`.
 
-For example, running it from
+For example, running it on
 `content/blog/2026/04/world-models-(trying-to-understand-them).md` writes the
 image into `content/blog/2026/04/images/`.
 

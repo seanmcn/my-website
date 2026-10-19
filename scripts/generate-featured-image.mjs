@@ -3,9 +3,9 @@ import process from 'process';
 import {
   PALETTE_MODES,
   INTERNAL_STYLES,
-  parseArgs,
+  REPO_ROOT,
+  parsePostArgs,
   loadRepoEnv,
-  ensureBlogPostPath,
   buildVariationKey,
   buildImagePrompt,
   generateImage,
@@ -13,19 +13,28 @@ import {
   saveGeneratedImage,
 } from './lib/featured-image-core.mjs';
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const repoRoot = process.cwd();
-  const prompt = args.prompt?.trim();
-  const paletteMode = args.palette?.trim().toLowerCase() || 'pastel';
-  const internalStyle = args.style?.trim().toLowerCase() || 'basic-cartoon';
+const USAGE = `Usage: npm run image:manual -- <post> --prompt "<concept>" [--style <style>] [--palette <palette>]
 
-  if (!args.file) {
-    throw new Error('Missing required --file argument.');
+Styles: ${Array.from(INTERNAL_STYLES).join(', ')} (default basic-cartoon)
+Palettes: ${Array.from(PALETTE_MODES).join(', ')} (default pastel)`;
+
+async function main() {
+  const {values, postPath, normalizedPostPath} = parsePostArgs(USAGE, {
+    prompt: {type: 'string'},
+    style: {type: 'string'},
+    palette: {type: 'string'},
+  });
+  const repoRoot = REPO_ROOT;
+  const prompt = values.prompt?.trim();
+  const paletteMode = values.palette?.trim().toLowerCase() || 'pastel';
+  const internalStyle = values.style?.trim().toLowerCase() || 'basic-cartoon';
+
+  if (!postPath) {
+    throw new Error(`Missing the post.\n\n${USAGE}`);
   }
 
   if (!prompt) {
-    throw new Error('Missing required --prompt argument.');
+    throw new Error(`Missing required --prompt argument.\n\n${USAGE}`);
   }
 
   if (!PALETTE_MODES.has(paletteMode)) {
@@ -36,8 +45,6 @@ async function main() {
     throw new Error(`Invalid --style value '${internalStyle}'. Valid options: ${Array.from(INTERNAL_STYLES).join(', ')}`);
   }
 
-  const postPath = path.resolve(repoRoot, args.file);
-  const normalizedPostPath = ensureBlogPostPath(postPath, repoRoot);
   const envValues = await loadRepoEnv(repoRoot);
   const apiKey = process.env.OPENAI_API_KEY || envValues.OPENAI_API_KEY;
 

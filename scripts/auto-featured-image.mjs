@@ -1,11 +1,13 @@
 import fs from 'fs/promises';
 import path from 'path';
 import process from 'process';
+import readline from 'readline/promises';
 import {
   OPENAI_CHAT_URL,
-  parseArgs,
-  loadRepoEnv,
+  REPO_ROOT,
+  parsePostArgs,
   ensureBlogPostPath,
+  loadRepoEnv,
   buildVariationKey,
   buildImagePrompt,
   generateImage,
@@ -28,6 +30,12 @@ const RECENT_POST_LIMIT = 8;
 const RECENT_CONCEPT_LIMIT = 6;
 const BODY_EXCERPT_LIMIT = 3000;
 const TEXT_MODEL = 'gpt-5';
+const USAGE = `Usage: npm run image [-- <post>] [--dry-run]
+
+Has gpt-5 write a concept from the post, then generates the featured image
+and updates the post's frontmatter. With no post, uses the newest one and
+asks before replacing an image it already has. --dry-run prints the prompt
+only.`;
 
 function otherOf(list, current) {
   const index = list.indexOf(current);
@@ -89,6 +97,75 @@ async function loadRecentlyGenerated(repoRoot, excludePostPath) {
   posts.sort((a, b) => b.generatedAt - a.generatedAt);
 
   return posts.slice(0, RECENT_POST_LIMIT);
+}
+
+// The newest post in the site's order: by date, then by slug for posts on
+// the same day. Drafts count, since a draft is usually the post in progress.
+async function findLatestPost(repoRoot) {
+  const posts = [];
+
+  for (const postPath of await listAllBlogPosts(repoRoot)) {
+    const frontmatter =
+      parseSimpleFrontmatter(await fs.readFile(postPath, 'utf8'));
+    if (frontmatter?.date) {
+      posts.push({postPath, frontmatter});
+    }
+  }
+
+  posts.sort((a, b) =>
+    b.frontmatter.date.localeCompare(a.frontmatter.date) ||
+    (a.frontmatter.slug || '').localeCompare(b.frontmatter.slug || ''));
+
+  return posts[0];
+}
+
+async function confirm(question) {
+  if (!process.stdin.isTTY) {
+    throw new Error(`${question} Run this in a terminal to answer, or name the post.`);
+  }
+
+  const prompt =
+    readline.createInterface({input: process.stdin, output: process.stdout});
+  try {
+    const answer = await prompt.question(`${question} [y/N] `);
+    return /^y(es)?$/i.test(answer.trim());
+  } catch {
+    // Ctrl+D or Ctrl+C at the prompt counts as no.
+    console.log();
+    return false;
+  } finally {
+    prompt.close();
+  }
+}
+
+// With no post named, picks the newest one, asking before replacing an image
+// it already has. Returns null if the image should stay.
+async function chooseLatestPost(repoRoot, dryRun) {
+  const latest = await findLatestPost(repoRoot);
+  if (!latest) {
+    throw new Error('No posts with a date were found under content/blog/.');
+  }
+
+  const {postPath, frontmatter} = latest;
+  console.log(`Newest post: ${path.relative(repoRoot, postPath)} (${frontmatter.date})`);
+
+  if (!frontmatter.featured) {
+    return postPath;
+  }
+
+  const existing = `It already has a featured image (${frontmatter.featured}).`;
+  if (dryRun) {
+    console.log(existing);
+    return postPath;
+  }
+
+  const replace = await confirm(`${existing} Replace it?`);
+  if (!replace) {
+    console.log('Kept the existing image.');
+    return null;
+  }
+
+  return postPath;
 }
 
 async function buildConcept(
@@ -185,15 +262,17 @@ ${recentConceptsBlock}`;
 }
 
 async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const repoRoot = process.cwd();
-  const dryRun = args['dry-run'] === true;
+  const args = parsePostArgs(USAGE, {
+    'dry-run': {type: 'boolean'},
+  });
+  const repoRoot = REPO_ROOT;
+  const dryRun = args.values['dry-run'] === true;
+  const postPath = args.postPath ?? await chooseLatestPost(repoRoot, dryRun);
 
-  if (!args.file) {
-    throw new Error('Missing required --file argument.');
+  if (!postPath) {
+    return;
   }
 
-  const postPath = path.resolve(repoRoot, args.file);
   const normalizedPostPath = ensureBlogPostPath(postPath, repoRoot);
   const envValues = await loadRepoEnv(repoRoot);
   const apiKey = process.env.OPENAI_API_KEY || envValues.OPENAI_API_KEY;
