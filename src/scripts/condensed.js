@@ -3,15 +3,17 @@
  * header. Several pieces of chrome react to it: the sticky item bar shrinks
  * its title, and the about portrait pulls in so the rail keeps up.
  *
- * Condensing shrinks the sticky bar's own box, which shrinks the document's
- * scroll height by the same amount. On a very short page that can pull the
- * scroll position back across the threshold, un-condense, grow the page and
- * re-trigger: a flicker loop. So measure the room to scroll before anything
- * condenses and never condense when it's too close to what the shrink takes,
- * and enter high but only leave near the top, so a shrink-induced wobble near
- * the entry point can't also cross the exit line.
+ * Condensing the sticky item bar shrinks the document, by 80px on a wide
+ * screen where its title runs to two lines, and the scroll position then
+ * moves by up to that much on its own: Chrome's scroll anchoring pulls it
+ * back to hold the text still, and at the foot of a short page the browser
+ * clamps it to the new end. If that move carries it back over the exit line,
+ * the bar releases, grows, is pushed forward again and re-condenses, every
+ * frame. So measure what condensing takes out of the page, enter only once
+ * the page has scrolled past that plus the exit line, and leave near the top.
+ * The gap between the two lines is then always wider than the move. A page
+ * too short to reach the entry line never condenses.
  */
-const MIN_SCROLLABLE_FOR_CONDENSE = 100;
 const RELEASE_OFFSET = 8;
 
 export function condenseOnScroll(selector, threshold = 40) {
@@ -21,25 +23,56 @@ export function condenseOnScroll(selector, threshold = 40) {
     return;
   }
 
-  const baselineMaxScroll =
-    document.scrollingElement.scrollHeight - window.innerHeight;
+  const root = document.scrollingElement;
   let condensed = false;
+  let enterOffset = threshold;
+
+  const setCondensed = on => elements.forEach(element =>
+    element.classList.toggle('is-condensed', on));
+
+  // Both states are laid out with transitions off, so each reads at its end
+  // size rather than the start of the animation towards it. Laying them out
+  // can move the scroll position too (anchoring, or clamping at the foot of
+  // the page), so put it back once the original state is restored.
+  const measure = () => {
+    const nodes = [...elements].flatMap(element =>
+      [element, ...element.querySelectorAll('*')]);
+    const scrollTop = root.scrollTop;
+
+    nodes.forEach(node => node.style.transition = 'none');
+    setCondensed(false);
+    const fullHeight = root.scrollHeight;
+    setCondensed(true);
+    const shrink = fullHeight - root.scrollHeight;
+    setCondensed(condensed);
+    // Settle the restored layout before transitions return, or it animates.
+    root.getBoundingClientRect();
+    nodes.forEach(node => node.style.transition = '');
+    root.scrollTop = scrollTop;
+
+    enterOffset = Math.max(threshold, shrink + RELEASE_OFFSET);
+  };
 
   const onScroll = () => {
-    const offset = Math.max(
-        window.scrollY,
-        document.scrollingElement.scrollTop,
-    );
-    const next = baselineMaxScroll < MIN_SCROLLABLE_FOR_CONDENSE ? false :
-      condensed ? offset > RELEASE_OFFSET : offset > threshold;
+    const offset = Math.max(window.scrollY, root.scrollTop);
+    const next = condensed ?
+      offset > RELEASE_OFFSET : offset > enterOffset;
 
     if (next !== condensed) {
       condensed = next;
-      elements.forEach(element =>
-        element.classList.toggle('is-condensed', condensed));
+      setCondensed(condensed);
     }
   };
 
-  onScroll();
+  // The shrink depends on how the title wraps, so it changes with the width
+  // and once the web fonts arrive.
+  const remeasure = () => {
+    measure();
+    onScroll();
+  };
+
+  remeasure();
+  document.fonts.ready.then(remeasure);
+  window.addEventListener('resize', remeasure, {passive: true});
   window.addEventListener('scroll', onScroll, {passive: true});
 }
