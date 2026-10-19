@@ -17,18 +17,6 @@
             "problemMatcher": []
         },
         {
-            "label": "Create Post",
-            "type": "npm",
-            "script": "post:create",
-            "group": "none",
-            "presentation": {
-                "reveal": "always",
-                "panel": "new",
-                "focus": true
-            },
-            "problemMatcher": []
-        },
-        {
             "label": "Generate Featured Image (Auto)",
             "type": "process",
             "command": "node",
