@@ -1,0 +1,186 @@
+---
+/*
+ * A slider for prompts a day, with the prompt size and the grid as radio
+ * groups, and four cards that turn the result into kettles, driving, water
+ * and GPT-3. Rendered on the server at the starting values, then the
+ * script below recalculates on every change using the same impact.js.
+ */
+import './aiImpact.scss';
+import {
+  GRIDS,
+  LANDMARKS,
+  MAX_POSITION,
+  PRESETS,
+  PROMPT_TYPES,
+  calculate,
+  formatCount,
+  formatEnergy,
+  positionFromPrompts,
+  scalePercent,
+} from './impact.js';
+
+const {prompts = 100, type = 'short', grid = 'us'} = Astro.props;
+const result = calculate({prompts, type, grid});
+const id = `ai-impact-${Math.random().toString(36).slice(2, 8)}`;
+
+const cards = [
+  {key: 'energy', label: 'Electricity a year'},
+  {key: 'co2', label: 'CO₂ a year'},
+  {key: 'water', label: 'Cooling water a year'},
+  {key: 'gpt3', label: 'Time to match GPT-3'},
+];
+---
+<section class="ai-impact" aria-label="AI energy calculator" data-ai-impact>
+  <div class="ai-impact__head">
+    <span class="ai-impact__eyebrow">Try it</span>
+    <label class="ai-impact__question" for={`${id}-prompts`}>
+      How many prompts a day?
+    </label>
+    <output class="ai-impact__count" for={`${id}-prompts`} data-out="prompts">
+      {result.prompts}
+    </output>
+  </div>
+
+  <input
+    class="ai-impact__slider"
+    id={`${id}-prompts`}
+    type="range"
+    min="0"
+    max={Math.ceil(MAX_POSITION * 20) / 20}
+    step="0.05"
+    value={positionFromPrompts(prompts)}
+    aria-valuetext={`${result.prompts} prompts a day`}
+    data-input="prompts"
+  />
+  <div class="ai-impact__ticks" aria-hidden="true">
+    <span>1</span><span>1k</span><span>1m</span><span>1bn</span>
+  </div>
+
+  <div class="ai-impact__presets">
+    {PRESETS.map(preset => (
+      <button type="button" class="ai-impact__preset" data-preset={preset.prompts}>
+        {preset.label} <span>{formatCount(preset.prompts)}</span>
+      </button>
+    ))}
+  </div>
+
+  <div class="ai-impact__options">
+    <fieldset class="ai-impact__group">
+      <legend>What kind of prompt?</legend>
+      <div class="ai-impact__pills">
+        {Object.entries(PROMPT_TYPES).map(([key, option]) => (
+          <label class="ai-impact__pill" title={option.detail}>
+            <input type="radio" name={`${id}-type`} value={key} checked={key === type} data-input="type" />
+            <span>{option.label} <small>{option.wh} Wh</small></span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+    <fieldset class="ai-impact__group">
+      <legend>Whose grid?</legend>
+      <div class="ai-impact__pills">
+        {Object.entries(GRIDS).map(([key, option]) => (
+          <label class="ai-impact__pill">
+            <input type="radio" name={`${id}-grid`} value={key} checked={key === grid} data-input="grid" />
+            <span>{option.label} <small>{option.grams} g</small></span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="ai-impact__cards">
+    {cards.map(card => (
+      <div class="ai-impact__card">
+        <span class="ai-impact__label">{card.label}</span>
+        <span class="ai-impact__value" data-out={card.key}>{result[card.key]}</span>
+        <span class="ai-impact__line" data-out={`${card.key}Line`}>{result[`${card.key}Line`]}</span>
+      </div>
+    ))}
+  </div>
+
+  <div class="ai-impact__scale">
+    <span class="ai-impact__label">Your year of prompts, against everything else</span>
+    <div class="ai-impact__track">
+      <div class="ai-impact__fill" style={`width: ${result.scale}%`} data-out-width="scale"></div>
+      {LANDMARKS.map((landmark, index) => (
+        <div
+          class:list={['ai-impact__landmark', index % 2 ? 'is-below' : 'is-above']}
+          style={`left: ${scalePercent(landmark.kwh)}%`}
+          title={`${landmark.detail}: ${formatEnergy(landmark.kwh * 1000)}`}
+        >
+          <span>{landmark.label}</span>
+        </div>
+      ))}
+    </div>
+    <ul class="ai-impact__sr-only">
+      {LANDMARKS.map(landmark => (
+        <li>{landmark.detail}: {formatEnergy(landmark.kwh * 1000)} a year</li>
+      ))}
+    </ul>
+  </div>
+
+  <p class="ai-impact__summary" aria-live="polite" data-out="summary">
+    {result.summary}
+  </p>
+
+  <details class="ai-impact__assumptions">
+    <summary>How it's worked out</summary>
+    <ul>
+      <li>Energy per prompt from Epoch AI. Short chats only; reasoning and agents use more.</li>
+      <li>CO₂ per kWh from Ember's 2025 data, with the US's 384 g rounded to 400.</li>
+      <li>A kettle boil is 0.15 kWh, a UK home 2,700 kWh a year, a petrol car 170 g of CO₂ per km.</li>
+      <li>Cooling water is MIT's estimate of about 2 litres per kWh.</li>
+      <li>None of it includes building the hardware or the data centres.</li>
+    </ul>
+  </details>
+</section>
+
+<script>
+  import {calculate, positionFromPrompts, promptsFromPosition} from './impact.js';
+
+  document.querySelectorAll('[data-ai-impact]').forEach((root) => {
+    const slider = root.querySelector('[data-input="prompts"]');
+    const summary = root.querySelector('[data-out="summary"]');
+    let prompts = promptsFromPosition(Number(slider.value));
+
+    const checked = name =>
+      root.querySelector(`[data-input="${name}"]:checked`).value;
+
+    // The summary is the live region, so it only updates when a change is
+    // committed, not on every pixel of a drag.
+    function update({announce = false} = {}) {
+      const result = calculate({prompts, type: checked('type'), grid: checked('grid')});
+
+      root.querySelectorAll('[data-out]').forEach((node) => {
+        if (node !== summary || announce) {
+          node.textContent = result[node.dataset.out];
+        }
+      });
+      root.querySelector('[data-out-width="scale"]').style.width = `${result.scale}%`;
+      slider.setAttribute('aria-valuetext', `${result.prompts} prompts a day`);
+      root.querySelectorAll('[data-preset]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(Number(button.dataset.preset) === prompts));
+      });
+    }
+
+    slider.addEventListener('input', () => {
+      prompts = promptsFromPosition(Number(slider.value));
+      update();
+    });
+    slider.addEventListener('change', () => update({announce: true}));
+    root.querySelectorAll('input[type="radio"]').forEach((radio) => {
+      radio.addEventListener('change', () => update({announce: true}));
+    });
+    root.querySelectorAll('[data-preset]').forEach((button) => {
+      button.addEventListener('click', () => {
+        prompts = Number(button.dataset.preset);
+        slider.value = positionFromPrompts(prompts);
+        update({announce: true});
+      });
+    });
+
+    root.classList.add('is-live');
+    update();
+  });
+</script>
