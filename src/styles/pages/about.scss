@@ -87,6 +87,12 @@
     font-size: 1.125rem;
     line-height: 1.72;
     text-wrap: pretty;
+
+    /* Underlined for the same reason as the lead's link. */
+    a {
+      text-decoration: underline;
+      text-underline-offset: 0.1875rem;
+    }
   }
 
   &__divider {

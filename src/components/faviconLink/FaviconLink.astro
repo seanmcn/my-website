@@ -1,0 +1,24 @@
+---
+/*
+ * A link out with its domain's favicon in front, as Markdown links get from
+ * externalLinks in src/plugins/markdown.mjs. scripts/fetch-favicons.mjs
+ * caches the icons in public/favicons; one it hasn't fetched yet removes
+ * itself rather than showing as a broken image.
+ */
+const {href} = Astro.props;
+const hostname = new URL(href).hostname.replace(/^www\./, '');
+---
+<a
+  class="favicon-link"
+  href={href}
+  rel="noopener noreferrer"
+  target="_blank"
+><img
+  alt=""
+  class="favicon-link__icon"
+  height="16"
+  loading="lazy"
+  onerror="this.remove()"
+  src={`/favicons/${hostname}.png`}
+  width="16"
+/><slot /></a>
