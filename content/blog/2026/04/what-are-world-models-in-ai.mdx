@@ -6,44 +6,42 @@ slug: "2026/04/what-are-world-models-in-ai"
 category: 'ai'
 tags: ['ai', 'world-model']
 featured: 'images/what-are-world-models-in-ai.png'
-summary: 'Working out what people actually mean when they say a model has a world model, and why the phrase gets used for two quite different things.'
+summary: 'My notes on what people mean by "world models" in AI: models that predict what happens next, explained with chess and driving.'
 margins:
   - label: 'In one line'
-    text: 'A world model is a prediction of what happens next, not a picture of what is.'
+    text: 'A world model predicts what happens next, including what happens if the AI itself does something.'
 ---
 
-I’ve been seeing “world models” come up a lot recently and finally spent a bit of time trying to understand what people actually mean by it.
+I've been seeing "world models" come up a lot recently and finally spent a bit of time trying to understand what people actually mean by it.
 This is mostly me thinking out loud after watching a couple of talks and reading a bit.
 
 ## The short version
 
 > A world model is an AI that learns how things change over time, so it can predict what happens next
 
-The bit that helped me was realising this is not just `input -> output`. It’s more like:
+The bit that helped me was realising there's more going on than `input -> output`. It's asking:
 
-* what state are we in
-* what probably happens next
-* what happens if *I* do something
+* what state are we in?
+* what probably happens next?
+* what happens if *I* do something?
 
-So the goal is not just to answer. It’s to model the world well enough to simulate outcomes.
+If it can answer those well enough, it can simulate outcomes before doing anything.
 
 ## Why it feels different
 
 Most of the AI we use day to day is reactive. You give it something, it gives you something back.
 
-A world model is more about predicting what might happen, trying different options, then choosing an action. That’s why it feels closer to planning than autocomplete.
+A world model predicts what might happen, tries different options, then chooses an action. That's why it feels closer to planning than autocomplete.
 
 ## The mental model that helped
 
-The thing that made it click for me was games. If you’re playing chess, you’re not just reacting to the current board. 
-
-You’re thinking:
+The thing that made it click for me was games. In chess you look at the current board and then think:
 
 * if I do this
-* they’ll probably do this
+* they'll probably do this
 * then I can do this
 
-You’re simulating a few steps ahead. That’s basically the idea.
+You're simulating a few steps ahead, and that's basically the idea.
 
 ```mermaid
 flowchart LR
@@ -56,55 +54,44 @@ flowchart LR
 
 ## A more concrete example
 
-Driving is a good one. You *could* build a system that just does `camera input -> steering output`, but that’s quite brittle.
+Driving is a good one. You *could* build a system that maps `camera input -> steering output` directly, but that's quite brittle.
 
-A world model approach is more like:
+A world model approach would learn how cars, roads and movement behave, simulate where the car will be in 2 seconds if it turns here, and pick the safest option.
 
-* learn how cars, roads, and movement behave
-* simulate: if I turn here, where am I in 2 seconds?
-* pick the safest option
-
-So instead of just reacting, it’s reasoning about outcomes.
-
-## Why this matters
+## What text alone misses
 
 > predicting the next word is not the same as understanding the world
 
-If you only train on text:
-
-* you never see objects
-* you never interact with the world
-* you never experience cause and effect
-
-So you end up with something that’s very good at language, but not grounded in reality.
+If you only train on text, you never see objects, never interact with anything and never experience cause and effect. You end up with something that's very good at language but isn't grounded in reality.
 
 ## The data comparison is wild
 
 > Large language models are trained on ~10¹⁴ bytes of text, while a 4-year-old has seen ~10¹⁴ bytes of visual data
 
-The model gets good at text but a human understands the physical world. So it’s not just about scale, it’s about *what* you learn and *how* you learn it.
+<StickyNote color="sky" label="Rough maths">
+A 4-year-old has been awake for about 16,000 hours. The optic nerve has around 2 million fibres carrying roughly a byte a second each, so about 2 MB a second. 16,000 × 3,600 seconds × 2 MB ≈ 1.1 × 10¹⁴ bytes.
+</StickyNote>
 
-Another useful idea here is that you probably don’t want to predict every tiny detail of the future. You want a simplified model that keeps the bits that matter.
+That's roughly the same amount of data. The model gets good at text and the child understands the physical world, so the difference comes down to *what* you learn from and *how* you learn it.
+
+<StickyNote color="amber" label="JEPA">
+This is the idea behind JEPA (Joint Embedding Predictive Architecture), Yann LeCun's approach and a big part of the talk linked at the bottom. Instead of predicting the next video frame pixel by pixel, it predicts a compressed summary of it, so it can ignore details nobody could predict, like exactly how leaves move in the wind.
+</StickyNote>
+
+Another idea I found useful: you probably don't want to predict every tiny detail of the future, just a simplified version that keeps the bits that matter.
 
 ## Where this gets interesting (for me)
 
-The obvious applications are robotics, self-driving, and games, but the one I keep thinking about is coding. Right now AI coding tools mostly read code and predict the next change.
+The obvious applications are robotics, self-driving and games, but the one I keep thinking about is coding. Right now AI coding tools mostly read code and predict the next change.
 
-But imagine something that can simulate a system and ask:
-
-* if I change this, what breaks?
-* if I move this, what improves?
-
-That feels like a pretty big shift from autocomplete.
+Imagine one that could simulate the system and ask "if I change this, what breaks?" or "if I move this, what improves?" That would be a pretty big shift from autocomplete.
 
 ## Reality check
 
-The full version of this, proper world models plus planning plus abstraction, doesn’t really exist yet.
+The full version of this, proper world models plus planning plus abstraction, doesn't really exist yet. There are pieces of it, but the whole thing is still very much unsolved.
 
-There are pieces of it, but the full thing is still very much unsolved.
+## The talk
 
-## Videos
-
-If you want to go deeper:
+If you want to go deeper, this is Yann LeCun's talk at Harvard CMSA on self-supervised learning, JEPA and world models:
 
 https://www.youtube.com/watch?v=yUmDRxV0krg
