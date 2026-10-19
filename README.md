@@ -11,7 +11,8 @@ The codebase for [seanmcn.com](https://seanmcn.com), a personal site and blog bu
 
 - Library content (posts, notes and finds) is Markdown and MDX in `content/blog`,
   projects are Markdown in `content/projects`; both are Astro content collections
-  with their frontmatter validated in `src/content.config.js`.
+  with their frontmatter validated in `src/content.config.js`. What each kind of
+  library item needs in its frontmatter is in [docs/content.md](docs/content.md).
 - Pages are statically generated with Astro and deployed via AWS Amplify. They
   ship no framework JavaScript; the only React islands are search and the
   cheat sheet table.
@@ -69,7 +70,9 @@ npm run build       # Create a production build in dist/
 npm run preview     # Serve the production build locally
 npm run clean       # Remove the build output and Astro's caches
 npm run lint        # Run ESLint and Stylelint
-npm test            # Run Playwright headlessly
+npm test            # Run the unit tests, then Playwright headlessly
+npm run test:unit   # Check every post's frontmatter against the rules
+npm run schema      # Regenerate content/blog/frontmatter.schema.json
 npm run test:e2e:ui  # Open the interactive Playwright runner
 npm run test:e2e:report # View the last HTML test report
 ```
