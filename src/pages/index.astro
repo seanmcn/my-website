@@ -30,11 +30,9 @@ function formatReadMinutes(minutes) {
   return `${minutes}m`;
 }
 
-/* A post's one-liner: its first margin note if it has one, else its summary. */
+/* A post's one-liner: its summary, else the opening of its body. */
 function oneLine(item) {
-  const {data} = item;
-
-  return data.margins[0]?.text || data.summary || excerpt(item, 160);
+  return item.data.summary || excerpt(item, 160);
 }
 
 const items = await getLibraryItems();
