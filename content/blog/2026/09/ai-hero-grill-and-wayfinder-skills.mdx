@@ -1,12 +1,15 @@
 ---
 title: "AI Hero's Grill and Wayfinder Skills"
-type: 'note'
+type: 'post'
 date: "2026-09-10T09:30:00.000Z"
 slug: "2026/09/ai-hero-grill-and-wayfinder-skills"
 category: 'ai'
 tags: ['ai', 'developer-tools', 'claude-code', 'documentation']
 keywords: ['grill-me', 'grill-with-docs', 'wayfinder', 'adr', 'architecture decision records', 'ai hero']
 summary: "When I reach for grill-me, grill-with-docs and wayfinder, three of Matt Pocock's AI Hero skills."
+margins:
+  - label: 'In one line'
+    text: 'grill-me for a vague idea, grill-with-docs once a repo is set up, and wayfinder for work too big for one agent session.'
 featured: 'images/featured-ai-hero-grill-and-wayfinder-skills.png'
 featuredStyle: 'mascot-cartoon'
 featuredPalette: 'balanced'
@@ -19,8 +22,22 @@ I've now used wayfinder, so I've rewritten this to cover it and when I reach for
 
 </Note>
 
-[grill-me](https://www.aihero.dev/skills-grill-me) is one of Matt Pocock's AI Hero skills, a set of instructions you add to an AI coding agent like Claude Code. It has the agent interview you in rounds until the vague parts of an idea are pinned down, and it doesn't write any files. That makes it my pick for a vague plan, or for a repo I haven't set the rest of the AI Hero skills up in.
+[grill-me](https://www.aihero.dev/skills-grill-me) is one of Matt Pocock's AI Hero skills, a set of instructions you add to an AI coding agent like Claude Code. It has the agent interview you in rounds until the vague parts of an idea are pinned down, and it doesn't write any files. That makes it my pick for a vague plan, or for a repo where I haven't set up the rest of the AI Hero skills.
 
-On repos where I have run the setup ([setup-matt-pocock-skills](https://www.aihero.dev/skills-setup-matt-pocock-skills), which records where your issues and docs live), I use [grill-with-docs](https://www.aihero.dev/skills-grill-with-docs) instead. It runs the same interview but writes what you agree on into the repo as you go: a `GLOSSARY.md` as terms are resolved, and an ADR (architecture decision record, a short file saying what was decided and why) under `docs/adr/` for anything hard to reverse or worth explaining later. It really wants ADRs to already exist, and if there aren't any it starts suggesting you create one. You can make that work for you by running it first thing on a repo and getting it to write ADRs out of whatever documentation is already there, which is quite nice. I was already writing ADRs by hand, so it fitted straight into that habit, and the format is now consistent across every repo I touch at work.
+On repos where I have run the setup ([setup-matt-pocock-skills](https://www.aihero.dev/skills-setup-matt-pocock-skills), which records where your issues and docs live), I use [grill-with-docs](https://www.aihero.dev/skills-grill-with-docs) instead. It runs the same interview but writes what you agree on into the repo as you go: a `GLOSSARY.md` as terms are resolved, and an ADR (architecture decision record, a short file saying what was decided and why) under `docs/adr/` for anything hard to reverse or worth explaining later.
 
-[wayfinder](https://www.aihero.dev/skills-wayfinder) is for a big piece of work that needs splitting into tasks, and I've found it quite helpful. You tell it where you're trying to get to, and it opens a map issue on your issue tracker with a child issue for each decision still to be made. Most of those are grilling sessions with you, but some are prototypes or research an agent can go off and do on its own, and you resolve one per session. Wayfinder itself only plans. Once the map is clear, the `to-spec` and `to-tickets` skills from the same set turn it into implementation issues that you can triage and hand to agents to build. It works with GitHub, GitLab, Linear, Jira or plain markdown files, but GitHub suits it best because sub-issues and blocking links show which tickets are ready to pick up.
+<StickyNote color="sky" label="Tip">
+After running setup-matt-pocock-skills, you can get grill-with-docs to work out ADRs for how the repo already works, which is quite nice.
+</StickyNote>
+
+It really wants ADRs to exist already, and if there aren't any it starts suggesting you create one. I was already writing ADRs by hand, so it fitted straight into that habit, and the format is now consistent across every repo I touch at work.
+
+[wayfinder](https://www.aihero.dev/skills-wayfinder) is for a big piece of work that needs splitting up, and that's where I've found it useful. Agents get confused on bigger jobs, so you want to keep each one focused on a single task rather than a whole project, and wayfinder is good at breaking the work down that way.
+
+<StickyNote color="amber" label="Trackers">
+It works with GitHub, GitLab, Linear, Jira or plain markdown files. An issue tracker with blocking links suits it best, because they show which tickets are ready to pick up. The closer the tracker is to your code, the better.
+</StickyNote>
+
+You tell it where you're trying to get to, and it opens a map issue on your tracker, a parent issue with a child issue for each decision still to be made. Most of those are grilling sessions with you, but some are prototypes or research that an agent can go off and do on its own. You work through them one session at a time.
+
+Wayfinder itself only plans. Once the map is clear, the `to-spec` and `to-tickets` skills from the same set turn it into implementation issues that you can triage and hand to agents to build.
