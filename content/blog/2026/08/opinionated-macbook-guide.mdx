@@ -9,35 +9,33 @@ featured: 'images/featured-opinionated-macbook-guide.png'
 summary: "Everything I change on a fresh machine, in four parts: the settings anyone benefits from, the habits to unlearn if you're coming from Windows, the next level up, and the bits that only matter if you write code."
 margins:
   - label: 'In one line'
-    text: 'The Mac setup guide I wish I’d had when I switched from Windows.'
-  - label: 'Who it’s for'
+    text: "The Mac setup guide I wish I'd had when I switched from Windows."
+  - label: "Who it's for"
     text: 'Windows converts, new Mac owners, and developers who suspect the defaults could be better.'
 ---
 
 I started out developing on Windows, spent a while messing around with Linux, and eventually ended up on macOS. These days I do most of my development on a MacBook, although I still use Windows regularly for gaming.
 
-This is just a guide to how I like to set up a MacBook, including a few choices that make switching between the two a bit less annoying.
+This is how I like to set up a MacBook, including a few choices that make switching between the two a bit less annoying. It's in four parts:
 
-I've split it into four parts:
-
-- **[Part 1](#the-basics)** covers the things I'd change on pretty much any MacBook.
-- **[Part 2](#if-youre-coming-from-windows)** covers the bits that feel strange if you've spent years on Windows.
-- **[Part 3](#getting-more-out-of-macos)** is the stuff worth learning once you're using the machine every day.
-- **[Part 4](#development)** is the developer-specific setup.
+- [The basics](#the-basics) - things I'd change on pretty much any MacBook.
+- [If you're coming from Windows](#if-youre-coming-from-windows) - the bits that feel strange after years on Windows.
+- [Getting more out of macOS](#getting-more-out-of-macos) - worth learning once you're using the machine every day.
+- [Development](#development) - the developer-specific setup.
 
 ## The basics
 
-These are settings/options I think everyone will find useful, but it is a matter of opinion, so decide as you want! :smile:
+These are the settings I think everyone will find useful. It's all a matter of opinion though, so take what suits you. :smile:
 
 ### Strip Spotlight back to apps only
 
-Spotlight is OSX's system-wide search and launcher, you access it by pressing <Kbd>cmd-Space</Kbd> and you can just start typing. _It's the first shortcut worth learning._
+Spotlight is macOS's system-wide search and app launcher. Press <Kbd>cmd-Space</Kbd> and start typing. _It's the first shortcut worth learning._
 
 <StickyNote color="sky" label="Tip">
-I know [Raycast](https://www.raycast.com/) and [Alfred](https://www.alfredapp.com/) are popular, but I don't use either. Once Spotlight is stripped back to applications, it already does exactly what I want, worth checking out though if you want some more complex behaviour.
+I know [Raycast](https://www.raycast.com/) and [Alfred](https://www.alfredapp.com/) are popular, but I don't use either. Once Spotlight is stripped back to applications, it does exactly what I want. They're worth a look if you want something more powerful, though.
 </StickyNote>
 
-By default, Spotlight searches across a lot of different sources, which can make the results a little noisy. Thankfully, you can customise exactly what it includes by doing the following:
+By default, Spotlight searches a lot of different sources, which makes the results noisy. You can choose exactly what it includes:
 
 <Steps>
   <Step>Open: System Settings</Step>
@@ -45,7 +43,8 @@ By default, Spotlight searches across a lot of different sources, which can make
   <Step>Review: Results from Apps & Results from System</Step>
 </Steps>
 
-What you want enabled is a matter of personal preference, but I'd suggest starting with as little as possible enabled, I only leave the following enabled:
+What you leave on is up to you, but I'd start with as little as possible. I only leave these two on:
+
 - Results from Apps: Calculator
 - Results from System: Apps
 
@@ -53,12 +52,12 @@ You can switch a category back on if you find you miss it. I never have.
 
 <Note>
 
-Sometimes these settings don't initially stick, and you'll still see files and what not in your search results, you need to rebuild the Spotlight index, to do this:
+Sometimes these settings don't stick straight away, and you'll still see files and whatnot in your results. Rebuilding the Spotlight index fixes it:
 
 <Steps>
   <Step>Open: System Settings</Step>
   <Step>Type: "Spotlight" into settings search box</Step>
-  <Step>Click: Search Privacy _(located at very bottom)_</Step>
+  <Step>Click: Search Privacy _(at the very bottom)_</Step>
   <Step>Click: the add button: <Kbd>+</Kbd></Step>
   <Step>Add: Macintosh HD</Step>
   <Step>Wait: a few seconds</Step>
@@ -69,7 +68,7 @@ Sometimes these settings don't initially stick, and you'll still see files and w
 
 ### Hide the Dock
 
-This is one of the things I always end up changing when I use someone else's MacBook :laughing: It feels a bit strange for the first day, but you quickly get used to it and get a little more screen space back.
+This is one of the things I always end up changing when I use someone else's MacBook. :laughing: It feels a bit strange for the first day, but you quickly get used to it and get a little more screen space back.
 
 I rarely use the Dock to launch apps anyway, since <Kbd>cmd-Space</Kbd> is much quicker.
 
@@ -79,13 +78,11 @@ I rarely use the Dock to launch apps anyway, since <Kbd>cmd-Space</Kbd> is much 
   <Step>Tick: Automatically hide and show the Dock</Step>
 </Steps>
 
-While you're here, I'd also turn off **Show suggested and recent apps in Dock**, otherwise it slowly fills up with things you opened once and probably don't need there.
-
-I'd also remove anything else from the Dock that you don't use regularly.
+While you're there, turn off "Show suggested and recent apps in Dock", otherwise it slowly fills up with things you opened once. I'd also remove anything else from the Dock that you don't use regularly.
 
 ### Turn the scrollbars back on
 
-macOS hides scrollbars until you start scrolling, so you often can't tell whether there's more content below without flicking the trackpad to find out. I find it properly irritating and it's one of the first things I change on a new machine.
+macOS hides scrollbars until you start scrolling, so you often can't tell whether there's more content below without flicking the trackpad to find out. I find it properly irritating, and it's one of the first things I change on a new machine.
 
 <Steps>
   <Step>Open: System Settings</Step>
@@ -93,19 +90,21 @@ macOS hides scrollbars until you start scrolling, so you often can't tell whethe
   <Step>Set: Show scroll bars to Always</Step>
 </Steps>
 
-The default is "Automatically based on mouse or trackpad", which is also why they seem to behave inconsistently: plug a mouse in and they turn up, unplug it and they don't. Set it to Always and you can see how far down a page you are at a glance, and drag them about like a normal person.
+The default is "Automatically based on mouse or trackpad", which is why they seem to behave inconsistently: plug a mouse in and they turn up, unplug it and they don't. Set it to Always and you can see how far down a page you are at a glance, and drag them about like a normal person.
 
 ### Improvements to Finder
 
-Finder is perfectly usable out of the box, but a few of its defaults make little sense. You can fix all of them from:
+Finder is perfectly usable out of the box, but a few of its defaults make little sense. You can fix most of them from Finder's settings:
+
 <Steps>
   <Step>Open: Finder</Step>
   <Step>Click: "Finder" in the menu bar</Step>
   <Step>Click: Settings</Step>
 </Steps>
 
-#### Start in Home folder
-By default launching finder starts in the Recents folder, which I've never got any use out of. I find Home to be a better place to start from, to switch this do the following:
+#### Start in your Home folder
+
+A new Finder window opens on Recents by default, which I've never got any use out of. Home is a better place to start:
 
 <Steps>
   <Step>Click: General</Step>
@@ -113,39 +112,45 @@ By default launching finder starts in the Recents folder, which I've never got a
 </Steps>
 
 #### Show filename extensions
-This is more a matter of personal preference, but I prefer being able to see the file extension of files, lets you rename it easier.
+
+This one's more personal preference, but I like seeing every file's extension, and it makes renaming files easier.
+
 <Steps>
   <Step>Click: Advanced</Step>
   <Step>Tick: Show all filename extensions</Step>
 </Steps>
 
-#### Don't mix folders/files in sorting
-This stops folders being scattered in amongst your files. The "On Desktop" option underneath only affects desktop icons, take it or leave it.
+#### Keep folders on top
+
+This stops folders being scattered in amongst your files. The "On Desktop" option underneath only affects desktop icons, so take it or leave it.
 
 <Steps>
   <Step>Click: Advanced</Step>
   <Step>Tick: Both options under "Keep folders on top"</Step>
 </Steps>
 
-#### Search current folder
-It defaults to searching the entire Mac, which is almost never what you meant. If you've navigated to a folder and then typed in the search box, that folder is what you're looking in.
+#### Search the current folder
+
+Finder's search box defaults to searching the entire Mac, which is almost never what you meant. If you've gone into a folder and then typed in the search box, that folder is what you're looking in.
+
 <Steps>
   <Step>Click: Advanced</Step>
   <Step>Set: "When performing a search" to "Search the Current Folder"</Step>
 </Steps>
 
-#### Customise the Sidebar
-Get rid of options you don't use here, including the iCloud entries if you don't use them. Mine is basically Documents, Downloads, Pictures and Applications.
+#### Customise the sidebar
 
-A four-item sidebar you can hit without reading is a nice time saver.
+Get rid of anything you don't use, including the iCloud entries. Mine is basically Documents, Downloads, Pictures and Applications, and a four-item sidebar you can hit without reading saves a surprising amount of time.
 
 <Steps>
   <Step>Click: Sidebar</Step>
   <Step>Disable: Anything you never click</Step>
 </Steps>
 
-#### Show path & status bar
-You get a breadcrumb trail along the bottom telling you where you are, and a count of what's in the folder.
+#### Show the path and status bars
+
+These add a breadcrumb trail along the bottom showing where you are, and a count of what's in the folder. They live in a different menu to the rest:
+
 <Steps>
   <Step>Open: Finder</Step>
   <Step>Click: "View" in the menu bar</Step>
@@ -158,21 +163,21 @@ A few things behave differently enough to catch you out on day one:
 
 <StickyStack>
   <StickyNote color="sky" label="Tip" marker="3">
-    <Kbd>cmd-shift-delete</Kbd> empties the Bin, it will ask first unless you tell it not to.
+    <Kbd>cmd-shift-Del</Kbd> empties the Bin. It asks first unless you tell it not to.
   </StickyNote>
   <StickyNote color="amber" label="Gripe" marker="4">
-    This is my least favourite shortcut. I have looked it up more than anything else, it's not in any menu, and I resent it every single time. :laughing: 
+    My least favourite shortcut. I've looked it up more than any other, it isn't in any menu, and I resent it every single time. :laughing:
   </StickyNote>
 </StickyStack>
 
-- <Kbd>return</Kbd> renames a file. It doesn't open it. This one gets everybody.
+- <Kbd>return</Kbd> renames a file instead of opening it. This one gets everybody.
 - <Kbd>cmd-down</Kbd> opens the thing you've selected.
-- <Kbd>cmd-Del</Kbd> sends it to the Bin. There's no Delete key that does it. <StickyRef color="sky" n="3" />
+- <Kbd>cmd-Del</Kbd> sends it to the Bin. Delete on its own does nothing. <StickyRef color="sky" n="3" />
 - <Kbd>cmd-shift-.</Kbd> shows and hides hidden files. <StickyRef color="amber" n="4" />
 
 ### Taking a screenshot
 
-There's no Print Screen key, so you can either remember these shortcuts, or (like me) just use <Kbd>cmd-space</Kbd>, type "screenshot" and press <Kbd>Enter</Kbd>. 
+There's no Print Screen key, so you can either remember these shortcuts or (like me) press <Kbd>cmd-Space</Kbd>, type "screenshot" and press <Kbd>return</Kbd>.
 
 - <Kbd>cmd-shift-4</Kbd> gives you crosshairs to drag a box around whatever you want. The screenshot lands on your desktop.
 - <Kbd>cmd-shift-5</Kbd> opens a small toolbar with all the options: whole screen, one window, a region, and screen recording if you need to capture a video.
@@ -181,17 +186,17 @@ If you only learn one, learn <Kbd>cmd-shift-4</Kbd>.
 
 ### Apps worth installing
 
-**[Thaw](https://github.com/thaw-app/Thaw)** cleans up your menu bar. Once you've got a few apps running, the row of icons along the top becomes an unreadable mess, and Thaw hides the ones you don't need and brings them back on a hover or a keypress. It's free and open source, which a lot of Mac utilities aren't, and it's the one to get.
+[Thaw](https://github.com/thaw-app/Thaw) cleans up your menu bar. Once you've got a few apps running, the row of icons along the top turns into an unreadable mess. Thaw hides the ones you don't need and brings them back on a hover or a keypress. It's free and open source, which a lot of Mac utilities aren't, and it's the one to get.
 
-**[The Unarchiver](https://theunarchiver.com/)** handles the archive formats macOS won't. The built-in tool really only does zip properly, so the first time someone sends you a .rar or a .7z and nothing happens when you double-click it, this is the fix. It's free, and once it's installed you can forget it exists.
+[The Unarchiver](https://theunarchiver.com/) handles the archive formats macOS won't. The built-in tool only really does zip properly, so when someone sends you a .rar or a .7z and nothing happens on double-click, this is the fix. It's free, and once it's installed you can forget it exists.
 
 ## If you're coming from Windows
 
-### The Cmd key, and how to have Ctrl back if you'd rather
+### The Cmd key, and how to get Ctrl back
 
-On a Mac, <Kbd>cmd</Kbd> does what <Kbd>control</Kbd> used to. Copy, paste, save, undo, all exactly the same, just one key further in. Ctrl still exists and does other things, so pressing it out of habit won't break anything. Usually nothing happens at all.
+On a Mac, <Kbd>cmd</Kbd> does what <Kbd>control</Kbd> does on Windows. Copy, paste, save and undo all use the same letters, just with a different modifier key. Ctrl still exists and does other things, so pressing it out of habit won't break anything. Usually nothing happens at all.
 
-Most people adapt within a week and never think about it again. But if you've got twenty years of <Kbd>control-C</Kbd> living in your left thumb and you resent being made to relearn it, you don't have to. You can just swap the two keys over:
+Most people adapt within a week and never think about it again. But if you've got twenty years of <Kbd>control-C</Kbd> living in your left hand and you resent being made to relearn it, you don't have to. Just swap the two keys over:
 
 <Steps>
   <Step>Open: System Settings</Step>
@@ -202,17 +207,17 @@ Most people adapt within a week and never think about it again. But if you've go
 
 Now <Kbd>control-C</Kbd> copies exactly like it always did, and the whole machine feels a good deal more like a PC.
 
-macOS stores the swap per keyboard, so if you later plug in a USB keyboard you'll need to set it again for that one. It's the same panel, but pick the keyboard from the dropdown at the top first.
+macOS stores the swap per keyboard, so if you later plug in a USB keyboard you'll need to set it again for that one. It's the same panel; pick the keyboard from the dropdown at the top first.
 
 > I only do this because I'm on a Windows machine regularly and I'd rather not learn the same shortcuts twice. If you're only ever on a Mac, don't bother: learn <Kbd>cmd</Kbd> and it'll be second nature in a week.
 
 ## Getting more out of macOS
 
-This is what I'd do next if you're on the machine most of the day. Most of the useful bits are hidden until somebody tells you they exist.
+This is what I'd learn next if you're on the machine most of the day. Most of the useful bits are hidden until somebody tells you they exist.
 
 ### Spaces: making one screen feel like three
 
-Any app can go full screen with the green button top left, or <Kbd>control-cmd-F</Kbd>. When it does it gets its own **space**, which behaves like its own monitor. You slide between spaces by swiping left and right on the trackpad with three or four fingers depending on how yours is set (System Settings > Trackpad > More Gestures), or <Kbd>control-left/right</Kbd> from the keyboard.
+Any app can go full screen with the green button top left, or <Kbd>control-cmd-F</Kbd>. When it does, it gets its own _space_, which behaves like a separate monitor. You slide between spaces by swiping left and right on the trackpad with three or four fingers depending on how yours is set (System Settings > Trackpad > More Gestures), or <Kbd>control-left/right</Kbd> from the keyboard.
 
 On the laptop with nothing plugged in, I'll typically have:
 
@@ -222,7 +227,7 @@ On the laptop with nothing plugged in, I'll typically have:
 
 I move between them with a flick of the trackpad instead of <Kbd>Alt-tab</Kbd> or hunting through the Dock, and nothing needs resizing to fit next to anything else.
 
-On the laptop I mostly use full-screen apps and rarely create extra desktops by hand, and it's one of the things the MacBook does particularly well: my 14-inch screen effectively becomes three. Plugged into monitors, I do the opposite, because one app swallowing a whole display is usually a waste, and the laptop setup still works when I unplug them.
+On the laptop I mostly use full-screen apps and rarely create extra desktops by hand. It's one of the things the MacBook does particularly well: my 14-inch screen effectively becomes three. Plugged into monitors I do the opposite, because one app swallowing a whole display is usually a waste. When I unplug them, I'm straight back to the laptop setup.
 
 ### Apps, windows and Mission Control
 
@@ -235,13 +240,11 @@ On the laptop I mostly use full-screen apps and rarely create extra desktops by 
 | <Kbd>cmd-W</Kbd> | Close the window |
 | <Kbd>cmd-Q</Kbd> | Quit the app |
 | <Kbd>cmd-shift-T</Kbd> | Reopen a closed tab or window in Chrome or Firefox |
-| <Kbd>control-up</Kbd> | Mission Control, as does the F3 key on most MacBooks or a three or four-finger swipe up |
+| <Kbd>control-up</Kbd> | Mission Control (so does F3 on most MacBooks, or a three- or four-finger swipe up) |
 
-An app with no windows open is still running, which is why its Dock icon keeps a dot under it and why it's still sat there in <Kbd>cmd-tab</Kbd>. And shutting a browser window by accident is almost never the disaster it feels like, because <Kbd>cmd-shift-T</Kbd> keeps stepping back if you press it again.
+An app with no windows open is still running, which is why its Dock icon keeps a dot under it and why it's still sat there in <Kbd>cmd-tab</Kbd>. Shutting a browser window by accident is almost never the disaster it feels like, because <Kbd>cmd-shift-T</Kbd> keeps stepping back if you press it again.
 
-Mission Control shows every window across all your displays, laid out so you can see what each one is.
-
-This is what I use instead of <Kbd>Alt-tab</Kbd>, and it's the thing I miss most when I'm back on Windows. You see the windows themselves, so three windows of the same application are three separate things to pick from, where <Kbd>cmd-tab</Kbd> gives you one icon to cycle through and hope.
+Mission Control shows every window across all your displays, laid out so you can see what each one is. It's what I use instead of <Kbd>Alt-tab</Kbd>, and it's the thing I miss most when I'm back on Windows. You see the windows themselves, so three windows of the same application are three separate things to pick from, where <Kbd>cmd-tab</Kbd> gives you one icon to cycle through and hope.
 
 The catch is that it only stays useful if you're a bit disciplined about what's open. With thirty windows open, every one of them is a tiny unreadable rectangle. So I minimise anything I'm not working in and pull it back off the Dock when I want it again, which keeps Mission Control down to a handful of windows I can identify at a glance.
 
@@ -249,7 +252,7 @@ The catch is that it only stays useful if you're a bit disciplined about what's 
 
 ### Moving around text
 
-This is the set I'd learn first, because you use it constantly and Home and End don't do what you expect.
+Learn these early. You use them constantly, and Home and End don't do what you'd expect.
 
 | Shortcut | What it does |
 |---|---|
@@ -264,7 +267,7 @@ Hold <Kbd>shift</Kbd> with any of those and you select instead of moving: <Kbd>o
 
 ### Apps worth installing
 
-**[Rectangle](https://rectangleapp.com/)** snaps windows to halves, thirds and quarters with keyboard shortcuts. Recent macOS versions have some tiling built in, but Rectangle is faster and behaves more sensibly across multiple monitors. I use full screen for the apps I swipe between and Rectangle when I want an editor and terminal side by side.
+[Rectangle](https://rectangleapp.com/) snaps windows to halves, thirds and quarters with keyboard shortcuts. Recent macOS versions have some tiling built in, but Rectangle is faster and behaves more sensibly across multiple monitors. I use full screen for the apps I swipe between and Rectangle when I want an editor and terminal side by side.
 
 ## Development
 
@@ -272,17 +275,17 @@ This is the part where the Mac stops being a nice laptop and starts being the re
 
 ### It's Unix underneath
 
-macOS is a certified Unix, which means the gap between your laptop and the Linux box you deploy to is small. Tools built for servers install and run locally, with no compatibility layer or VM in between.
+macOS is a certified Unix, which means the gap between your laptop and the Linux box you deploy to is small. Most tools built for servers install and run natively. Docker is the exception: containers need Linux, so Docker on a Mac runs a small Linux VM in the background.
 
 On Windows you pick between cmd, PowerShell, WSL, Git Bash and MSYS2, each with its own idea of what a path is and none of them quite agreeing with your editor. On a Mac there's one shell, and what you install turns up in it. That's a low bar that Windows still hasn't cleared, and I don't miss the hours I used to lose to working out which terminal I was in and why the path had backslashes in it.
 
-It is Unix rather than Linux, so every so often you'll hit a command that takes slightly different flags to the one on your server. It's a minor irritation and easily worked around, but worth knowing it's a thing so you don't lose an hour wondering why a script that works fine in CI doesn't work here.
+It is Unix rather than Linux, so every so often you'll hit a command that takes slightly different flags to the one on your server. `sed -i` is the classic: on Linux it's `sed -i 's/a/b/' file`, but macOS expects a backup file extension after `-i`, so you need `sed -i '' 's/a/b/' file`, and each version fails on the other system. It's a minor irritation and easily worked around, but worth knowing it's a thing so you don't lose an hour wondering why a script that works fine in CI doesn't work here.
 
 ### Homebrew
 
-[Homebrew](https://brew.sh) is how you install software on a Mac, and I'd use it over the App Store. It's one command, instead of finding a website, downloading a .dmg, dragging an icon and then dealing with the update prompt six weeks later.
+[Homebrew](https://brew.sh) is a package manager, like winget or Chocolatey on Windows, and it's how I install pretty much everything on a Mac. I'd use it over the App Store. It's one command, instead of finding a website, downloading a .dmg, dragging an icon and then dealing with the update prompt six weeks later.
 
-Two forms:
+There are two forms:
 
 ```bash
 brew install htop          # command line tools
@@ -292,7 +295,7 @@ brew install --cask slack  # actual GUI applications
 Casks are the part people miss. You can install real desktop apps this way, including everything in this post:
 
 ```bash
-brew install thaw
+brew install --cask thaw
 brew install --cask ghostty
 brew install --cask rectangle
 brew install --cask the-unarchiver
@@ -311,11 +314,19 @@ brew bundle install # installs all of it on a new machine
 
 Terminal.app is fine. If you drop in a few times a day to run something and get out again, don't bother changing it.
 
-If you're in there most of the day, this is the one part of the Mac where I'd switch without thinking about it. I used **[iTerm2](https://iterm2.com/)** for years and it's still a perfectly good answer. These days I use **[Ghostty](https://ghostty.org/)** and I prefer it. It's quick, the defaults are sensible, and I get proper split panes without configuring anything.
+If you're in there most of the day, this is the one part of the Mac where I'd switch without thinking about it. I used [iTerm2](https://iterm2.com/) for years and it's still a perfectly good choice. These days I use [Ghostty](https://ghostty.org/) and I prefer it. It's quick, the defaults are sensible, and I get proper split panes without configuring anything.
 
-The feature I'd not want to give up now is desktop notifications. A long build finishes, or Claude Code gets to the end of a job and wants an answer, and I'm told about it while I'm reading something else, instead of tabbing back every couple of minutes to check whether it's still going.
+The feature I wouldn't give up now is desktop notifications. A long build finishes, or Claude Code gets to the end of a job and wants an answer, and I'm told about it while I'm reading something else, instead of tabbing back every couple of minutes to check whether it's still going.
 
-I mainly want the prompt to show my current Git branch and whether the working tree is dirty. Then I know the state of a repo as soon as I `cd` into it.
+The main thing I want from the prompt (the text before your cursor) is my current Git branch and whether there are uncommitted changes, so I know the state of a repo as soon as I `cd` into it. I use [Starship](https://starship.rs/) for that. It shows the branch, uncommitted and staged changes, and whether I'm ahead of or behind the remote, which saves typing `git status` all day.
+
+```bash
+brew install starship
+# then add this line to ~/.zshrc
+eval "$(starship init zsh)"
+```
+
+Its icons need a Nerd Font, a font patched with extra symbols. Ghostty already ships with one, so there was nothing else to set up.
 
 ### Aliases
 
@@ -327,4 +338,4 @@ alias gp='git pull'
 alias ll='eza -la --git'
 ```
 
-Put them in `~/.zshrc` and they're there in every shell you open. I've got a few dozen now and I'd be slower without them. Keep `.zshrc` in your dotfiles and the aliases will follow you to the next machine.
+`ll` uses [eza](https://github.com/eza-community/eza), a modern `ls` that shows each file's Git status (`brew install eza`). Put the aliases in `~/.zshrc` and they're there in every shell you open. I've got a few dozen now and I'd be slower without them. Keep `.zshrc` in your dotfiles and the aliases will follow you to the next machine.
