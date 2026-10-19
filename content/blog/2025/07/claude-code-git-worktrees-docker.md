@@ -1,133 +1,144 @@
 ---
-title: "Multitasking Like a Pro: Claude Code, Git Worktrees, and Docker"
+title: "Parallel Claude Code with Git Worktrees"
 type: 'post'
 date: '2025-07-23'
 slug: '2025/07/claude-code-git-worktrees-docker'
 category: 'productivity'
 tags: ['ai', 'claude-code', 'git-worktrees', 'docker']
 featured: 'images/featured-claude-code-git-worktrees-docker.png'
-summary: 'Running several Claude Code sessions at once by giving each one its own worktree and its own container, so nothing has to be stashed.'
+summary: 'How I run several Claude Code sessions at once, each in its own git worktree with its own Docker containers, so nothing ever needs stashing.'
 margins:
   - label: 'In one line'
-    text: 'Stop switching branches. Give every task its own directory and let them run side by side.'
+    text: 'Give each task its own worktree, containers and Claude Code session, and switching task is just a cd.'
   - label: 'The catch'
-    text: 'Ports collide the moment two containers come up. Assign them per worktree before you need to.'
+    text: "Separate worktrees still share your machine's ports, so the second one to start fails. Give each worktree its own ports up front."
 ---
 
-As developers, we've all been there, you're deep in fixing a critical bug when suddenly a urgent feature request lands on your desk. Context switching between branches, stashing changes, and trying to keep multiple workstreams in your head can be mentally exhausting. Over the past few months, I've discovered a workflow that's completely transformed how I handle multiple concurrent tasks: combining [Claude Code](https://claude.ai/code) with [git worktrees](https://git-scm.com/docs/git-worktree) and [Docker](https://www.docker.com/).
+For the last few months I've been running several [Claude Code](https://claude.ai/code) sessions at once, each on a different task in the same repository. What makes that work is [git worktrees](https://git-scm.com/docs/git-worktree) plus [Docker](https://www.docker.com/): every task gets its own directory and branch, and its own set of containers, so nothing has to be stashed when something urgent comes in.
 
-## The Problem with Traditional Branch Switching
+Before this, I'd be in the middle of one thing when something more urgent landed. I'd stash my changes, switch branches, deal with it, switch back and try to remember where I'd got to (not fun). I also had far too many terminal tabs open and regularly lost track of which branch had which changes.
 
-The traditional git workflow of switching branches works fine for sequential development, but it falls apart when you need to work on multiple features simultaneously. Stashing changes, switching contexts, and losing your mental model of what you were working on creates friction that compounds throughout the day.
+## Git worktrees
 
-I used to juggle multiple terminal tabs, trying to remember which branch had what changes, often losing track of my progress. Sound familiar?
+A worktree is an extra checkout of the same repository in another directory. Each one has its own branch, working files and index (the staging area), but they all share the original clone's `.git` folder, so every commit and branch is visible from all of them. Instead of switching branches, you switch directories.
 
-## Enter Git Worktrees
-
-Git worktrees allow you to check out multiple branches simultaneously in separate directories. Instead of switching branches, you simply switch directories. Each worktree maintains its own working directory and index, meaning you can have multiple branches checked out at once without any conflicts.
-
-Here's my typical setup:
+My usual setup keeps the original clone on `main` and adds a worktree per task:
 
 ```bash
-# Create worktrees for different features
+# Run from myproject/, which stays on main
 git worktree add ../myproject-feature-auth feature/user-authentication
 git worktree add ../myproject-hotfix-db hotfix/database-connection
-git worktree add ../myproject-main main
 ```
 
-This gives me three separate directories:
-- `myproject-main/` - for the main branch
-- `myproject-feature-auth/` - for the authentication feature
-- `myproject-hotfix-db/` - for the database hotfix
+That gives me three directories side by side:
 
-Each directory is a complete working tree with its own branch checked out.
+- `myproject/` - the main branch
+- `myproject-feature-auth/` - the authentication feature
+- `myproject-hotfix-db/` - the database hotfix
 
-## Docker: Consistent Environments Across Worktrees
+The original clone stays as the `main` one because git won't check out the same branch in two worktrees. Try to add a worktree for `main` while the original clone is on it and you get:
 
-The beauty of combining worktrees with Docker is that each worktree can run its own containerized environment. No more worrying about dependency conflicts or environment inconsistencies between different branches.
+```
+fatal: 'main' is already used by worktree at '/path/to/myproject'
+```
 
-In each worktree directory, I can spin up independent Docker containers:
+## Docker in each worktree
+
+Each worktree can run its own copy of the app's containers, so a branch that changes dependencies or the database doesn't affect the others.
+
+Docker Compose names a project after the directory you run it from, so `docker compose up -d` in `myproject-feature-auth/` and again in `myproject-hotfix-db/` gives you two separate sets of containers, networks and volumes without any extra flags. If you want a different name, `-p` (or `--project-name`) goes before `up`. Put it after and Compose fails with `unknown flag: --project-name`.
 
 ```bash
-# In myproject-feature-auth/
-docker-compose up -d
-
-# In myproject-hotfix-db/
-docker-compose up -d --project-name myproject-hotfix
+docker compose -p hotfix-db up -d
 ```
 
-The `--project-name` flag ensures Docker treats each worktree as a separate project, avoiding port conflicts and container naming issues.
+The catch is ports. A project name doesn't change the host ports in your compose file, so the second worktree to come up fails with:
 
-## Where Claude Code Fits In
+```
+Bind for 0.0.0.0:8080 failed: port is already allocated
+```
 
-This is where [Claude Code](https://claude.ai/code) becomes a game-changer. Having multiple isolated environments means I can have Claude Code assist with different tasks in parallel without losing context.
+I'd give each worktree its own ports before you hit that. The easiest way is to read the port from a variable in `compose.yaml`, with a default:
 
-### Scenario 1: Bug Fix While Feature Development
+```yaml
+services:
+  web:
+    ports:
+      - "${WEB_PORT:-8080}:80"
+```
 
-I'm working on a new authentication system in one worktree when a critical database connection issue is reported. Instead of stashing my auth work:
+Then set it when you bring a worktree up:
 
-1. Switch to the hotfix worktree: `cd ../myproject-hotfix-db`
-2. Fire up Claude Code in that directory
-3. Claude Code understands the context of the hotfix branch immediately
-4. Work with Claude to identify and fix the database issue
-5. Deploy the fix while keeping my auth feature work untouched
+```bash
+WEB_PORT=8081 docker compose up -d
+```
 
-### Scenario 2: Code Reviews and Refactoring
+## Where Claude Code fits in
 
-When reviewing a colleague's pull request, I can create a temporary worktree:
+Claude Code works on whatever directory you start it in. With a worktree per task, I can run a session in each one, and each session only sees its own branch's code.
+
+### Fixing a bug in the middle of a feature
+
+Say I'm working on a new authentication system when a database connection issue gets reported. Instead of stashing the auth work:
+
+1. `cd ../myproject-hotfix-db`
+2. Start Claude Code there with `claude`
+3. Work with Claude to find and fix the database issue
+4. Deploy the fix
+
+The auth worktree, and the Claude session running in it, are exactly where I left them.
+
+### Reviewing a pull request
+
+When I'm reviewing a colleague's pull request, I check it out in a temporary worktree:
 
 ```bash
 git worktree add ../myproject-review feature/colleague-work
 cd ../myproject-review
+claude
 ```
 
-Claude Code can help me understand the changes, suggest improvements, or even help write comprehensive review comments, all while my main development work continues uninterrupted in other worktrees.
+Claude Code helps me understand the changes, suggest improvements and write review comments, while my own work carries on in the other worktrees. Once the review's done, I remove the worktree:
 
-## My Current Workflow
-
-Here's how a typical day looks with this setup:
-
-**Morning Setup:**
 ```bash
-# Main development work
-cd ~/projects/myproject-main
-claude-code
+cd ../myproject
+git worktree remove ../myproject-review
+```
 
-# Feature branch in separate terminal
+## A typical day
+
+In the morning I start a session in each worktree I'm working in, each in its own terminal:
+
+```bash
+# Terminal 1: main
+cd ~/projects/myproject
+claude
+
+# Terminal 2: the feature I'm on
 cd ~/projects/myproject-feature-xyz
-claude-code
+claude
 ```
 
-**When a hotfix is needed:**
+When a hotfix comes in, it gets a new branch, a worktree, its own containers and a session:
+
 ```bash
-git worktree add ../myproject-hotfix-urgent hotfix/urgent-fix
+git worktree add -b hotfix/urgent-fix \
+  ../myproject-hotfix-urgent main
 cd ../myproject-hotfix-urgent
-docker-compose up -d --project-name hotfix-urgent
-claude-code
+WEB_PORT=8082 docker compose up -d
+claude
 ```
 
-Each Claude Code session maintains context for its specific worktree and branch, making recommendations that are relevant to that particular codebase state.
+Each session only knows about its own worktree, so its suggestions match the state of that branch. Claude Code also saves conversations per directory, so if I close a terminal, `claude --continue` in that worktree picks up the conversation I was having there.
 
-## Benefits I've Experienced
+The biggest difference for me is that I don't lose track of what I was doing. Each worktree keeps its own state and each Claude session keeps its own understanding of the task, so changing task is a `cd` rather than a stash, a checkout and trying to remember where I was. I can have Claude working on two features at once, and each worktree runs its own tests and containers without getting in the way of the others.
 
-**Mental Context Preservation:** No more losing track of what I was working on. Each worktree maintains its own state, and Claude Code maintains its own understanding of each context.
+## The downsides
 
-**Reduced Context Switching:** Instead of mentally switching between different features, I physically switch directories. Claude Code in each directory "remembers" what we were working on.
+Disk space is the main one. Worktrees share the repository's history, so git itself doesn't take much extra space, but every worktree has its own copy of the checked-out files plus whatever you install or build in it: `node_modules`, virtual environments, build output and Docker volumes. With a few worktrees of a big project, that adds up quickly.
 
-**Parallel Development:** I can literally work on multiple features simultaneously, with Claude Code assisting in each environment independently.
+A new worktree also only has the files git tracks. You'll need to install dependencies again, and copy or symlink anything gitignored that the app needs, like a `.env` file.
 
-**Testing Isolation:** Each worktree can run its own test suite and Docker environment without interference from other work.
+It takes a little while to get used to having several worktrees on the go, too. `git worktree list` shows what's checked out where, which helps.
 
-## Costs and Considerations
-
-The main downside is disk space, each worktree is a complete copy of your repository. For large repositories, this can add up quickly. A typical project might consume 2-3x more disk space, but storage is cheap compared to developer productivity.
-
-There's also a slight learning curve with managing multiple worktrees, but the `git worktree list` command helps you keep track of what's checked out where.
-
-## Closing Thoughts
-
-This workflow has fundamentally changed how I approach development work. The combination of git worktrees providing isolated branches, Docker ensuring consistent environments, and Claude Code maintaining context-aware assistance across multiple workstreams has eliminated much of the friction from multitasking.
-
-The setup takes a few minutes to establish, but the productivity gains are immediate. If you find yourself frequently context-switching between different features or struggling to maintain focus across multiple development streams, I highly recommend giving this workflow a try.
-
-The tools are all free (except for Claude Code's subscription), and the mental relief of not having to juggle multiple contexts in your head is worth the small investment in setup time.
+The tools are all free apart from the Claude Code subscription, and the setup only takes a few minutes. If you find yourself switching between features a lot, I'd recommend giving it a try.
