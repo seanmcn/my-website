@@ -81,9 +81,14 @@ export default defineConfig({
   ],
   vite: {
     css: {preprocessorOptions: {scss: {quietDeps: true}}},
-    // Mermaid is only imported lazily, so the dev server would otherwise
-    // find it mid-session and serve diagrams a stale bundle (504 Outdated
-    // Optimize Dep) after its next re-optimisation.
-    optimizeDeps: {include: ['mermaid']},
+    // The dev server's startup scan misses packages that are only reached
+    // lazily (mermaid) or from React islands (the rest), so it would find
+    // them mid-session and serve those pages a stale bundle (504 Outdated
+    // Optimize Dep) after its next re-optimisation. That left search dead.
+    optimizeDeps: {
+      include: [
+        'mermaid', 'fuse.js', 'prop-types', 'match-sorter', 'react-table',
+      ],
+    },
   },
 });
