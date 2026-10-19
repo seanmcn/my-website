@@ -402,6 +402,13 @@ export function getProjects() {
   return projectsPromise;
 }
 
+/* Published items whose `project` names this project, newest first. */
+export async function getItemsAboutProject(projectId) {
+  const items = await getLibraryItems();
+
+  return items.filter(item => item.data.project?.id === projectId);
+}
+
 function extractHeadings(markdown = '') {
   return markdown
       .split('\n')

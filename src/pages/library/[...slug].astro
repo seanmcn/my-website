@@ -3,8 +3,8 @@
  * A library item: post, note or find. One page per published entry, with the
  * related and series context worked out up front.
  */
-import {Picture, getImage} from 'astro:assets';
-import {render} from 'astro:content';
+import {Image, Picture, getImage} from 'astro:assets';
+import {getEntry, render} from 'astro:content';
 import Icon from '../../components/icons/Icon.astro';
 import Layout from '../../layouts/Layout.astro';
 import Prose from '../../components/Prose.astro';
@@ -48,6 +48,9 @@ const toc = headings
     .map(heading => ({text: heading.text, href: `#${heading.slug}`}));
 const showToc = toc.length > 2;
 const title = `${data.title} - Seán McNamara`;
+
+// The project this item is about, if it names one.
+const project = data.project ? (await getEntry(data.project)).data : null;
 
 const relatedPosts = await Promise.all(context.relatedPosts.map(
     async related => ({
@@ -237,6 +240,33 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
               {host} ↗
             </a>
           </div>
+        </div>
+      )}
+
+      {project && (
+        <div class="rail-block">
+          <div class="rail-block__label">The project</div>
+          <a class="item-rail__project" href={`/projects/${project.slug}/`}>
+            {project.featured && (
+              <span class="item-rail__project-thumb">
+                <Image
+                  alt=""
+                  fit="cover"
+                  height={188}
+                  position="top"
+                  src={project.featured}
+                  width={300}
+                  {...IMAGE_SIZES.projectCard}
+                />
+              </span>
+            )}
+            <span class="item-rail__project-text">
+              <span class="item-rail__project-title">{project.title}</span>
+              <span class="item-rail__project-more">
+                Screenshots and details →
+              </span>
+            </span>
+          </a>
         </div>
       )}
 

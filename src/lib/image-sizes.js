@@ -52,6 +52,11 @@ export const IMAGE_SIZES = {
     widths: [116, 140, 232],
     sizes: `${NARROW} 70px, 116px`,
   },
+  // The project card in a post's rail, a fixed 5.5rem wide.
+  projectCard: {
+    widths: [100, 200, 300],
+    sizes: '99px',
+  },
   // Related items in a post's rail, which only shows them below wide.
   related: {
     widths: [170, 340, 680],

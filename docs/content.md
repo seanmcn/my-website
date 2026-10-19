@@ -41,6 +41,7 @@ host where a post or note shows its read time.
 | `series` | optional | optional | optional | Items sharing a series get a series navigator |
 | `seriesOrder` | optional | optional | optional | Position in the series. Otherwise ordered by date |
 | `related` | optional | optional | optional | Slugs of hand-picked related items, shown before the computed ones |
+| `project` | optional | optional | optional | Slug of the project the item is about. The item shows a card linking to the project, and the project page lists the item under "Written about". A slug with no project fails the build |
 | `draft` | optional | optional | optional | `true` shows it under the dev server only |
 | `featuredPrompt`, `featuredStyle`, `featuredPalette` | optional | optional | optional | Written by the featured-image scripts. Don't edit by hand |
 

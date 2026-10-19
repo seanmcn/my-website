@@ -68,6 +68,10 @@
             "type": "string"
           }
         },
+        "project": {
+          "description": "Slug of the project this item is about. The item shows a card for it and the project page links back.",
+          "type": "string"
+        },
         "draft": {
           "default": false,
           "description": "Shown under the dev server, left out of builds.",
@@ -179,6 +183,10 @@
             "type": "string"
           }
         },
+        "project": {
+          "description": "Slug of the project this item is about. The item shows a card for it and the project page links back.",
+          "type": "string"
+        },
         "draft": {
           "default": false,
           "description": "Shown under the dev server, left out of builds.",
@@ -289,6 +297,10 @@
           "items": {
             "type": "string"
           }
+        },
+        "project": {
+          "description": "Slug of the project this item is about. The item shows a card for it and the project page links back.",
+          "type": "string"
         },
         "draft": {
           "default": false,

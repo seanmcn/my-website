@@ -4,25 +4,30 @@ import Icon from '../../components/icons/Icon.astro';
 import Layout from '../../layouts/Layout.astro';
 import ProjectGallery from '../../components/project/ProjectGallery.astro';
 import Prose from '../../components/Prose.astro';
-import {excerpt, getProjects} from '../../lib/library.js';
-import {formatLongDate} from '../../utils/content.js';
+import {
+  excerpt,
+  getItemsAboutProject,
+  getProjects,
+} from '../../lib/library.js';
+import {formatItemDate, formatLongDate, itemPath} from '../../utils/content.js';
 
 export async function getStaticPaths() {
   const projects = await getProjects();
 
-  return projects.map(project => ({
+  return Promise.all(projects.map(async project => ({
     params: {slug: project.data.slug},
     props: {
       project,
+      writing: (await getItemsAboutProject(project.id)).map(({data}) => data),
       others: projects
           .filter(other => other.id !== project.id)
           .slice(0, 4)
           .map(({data}) => data),
     },
-  }));
+  })));
 }
 
-const {project, others} = Astro.props;
+const {project, writing, others} = Astro.props;
 const {data} = project;
 const {Content} = await render(project);
 ---
@@ -78,7 +83,21 @@ const {Content} = await render(project);
         </a>
       )}
 
-      <div>
+      {writing.length > 0 && (
+        <div>
+          <div class="rail-block__label">Written about</div>
+          {writing.map(item => (
+            <a class="project-rail__writing" href={itemPath(item.slug)}>
+              <span class="project-rail__writing-title">{item.title}</span>
+              <span class="project-rail__writing-date">
+                {formatItemDate(item.date)}
+              </span>
+            </a>
+          ))}
+        </div>
+      )}
+
+      <div class:list={{'rail-block': writing.length > 0}}>
         <div class="rail-block__label">Started</div>
         <div class="project-rail__value">{formatLongDate(data.date)}</div>
       </div>

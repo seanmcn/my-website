@@ -7,11 +7,12 @@ import {z} from 'astro/zod';
  * content/blog/frontmatter.schema.json is generated from this file by
  * `npm run schema` (a unit test fails while it is out of date).
  *
- * `image` is Astro's image() helper; outside Astro, pass a plain string.
+ * `image` and `reference` are Astro's image() and reference() helpers;
+ * outside Astro, pass a plain string for image and leave reference out.
  */
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-export function libraryFrontmatter({image}) {
+export function libraryFrontmatter({image, reference = () => z.string()}) {
   const shared = {
     title: z.string().min(1),
     slug: z.string().min(1)
@@ -33,6 +34,9 @@ export function libraryFrontmatter({image}) {
     seriesOrder: z.number().int().optional(),
     related: z.array(z.string()).default([])
         .describe('Slugs of hand-picked related items, shown first.'),
+    project: reference('projects').optional()
+        .describe('Slug of the project this item is about. The item shows ' +
+          'a card for it and the project page links back.'),
     draft: z.boolean().default(false)
         .describe('Shown under the dev server, left out of builds.'),
     // Written by scripts/*-featured-image.mjs to regenerate the image.

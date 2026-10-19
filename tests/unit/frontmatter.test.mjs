@@ -84,6 +84,14 @@ describe('every library entry', () => {
         .map(({file, data}) => `${file}: ${data.featured}`);
     assert.deepEqual(missing, []);
   });
+
+  test('projects exist', () => {
+    const missing = entries
+        .filter(({data}) => data.project &&
+          !fs.existsSync(path.resolve('content/projects', data.project)))
+        .map(({file, data}) => `${file}: ${data.project}`);
+    assert.deepEqual(missing, []);
+  });
 });
 
 describe('posts and notes', () => {

@@ -18,6 +18,11 @@ const SLOTS = [
     selector: 'img.featured-image',
   },
   {
+    name: 'project card',
+    path: '/library/2026/04/chinwag/',
+    selector: '.item-rail__project-thumb img',
+  },
+  {
     name: 'related',
     path: '/library/2026/04/chinwag/',
     selector: '.item-rail__related-thumb img',

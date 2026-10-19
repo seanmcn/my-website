@@ -595,6 +595,54 @@ $item-bar-stacked-max: 599px;
     }
   }
 
+  /** The project an item is about: its screenshot beside its name. */
+  &__project {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 0.75rem;
+    color: var(--ink-2);
+
+    &:hover .item-rail__project-title {
+      color: var(--accent);
+    }
+  }
+
+  &__project-thumb {
+    flex: none;
+    width: 5.5rem;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__project-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+
+  &__project-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  &__project-more {
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
   /** Plain text list, the original treatment - shown on wide screens (the
       narrow sidebar column) and narrow ones (no room for a thumbnail
       grid), with the thumbnail cards below taking over only at mid. */

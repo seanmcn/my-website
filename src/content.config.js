@@ -1,4 +1,4 @@
-import {defineCollection} from 'astro:content';
+import {defineCollection, reference} from 'astro:content';
 import {glob} from 'astro/loaders';
 import {z} from 'astro/zod';
 import {libraryFrontmatter} from './lib/frontmatter.mjs';
@@ -11,7 +11,7 @@ import {libraryFrontmatter} from './lib/frontmatter.mjs';
  */
 const library = defineCollection({
   loader: glob({pattern: '**/*.{md,mdx}', base: './content/blog'}),
-  schema: libraryFrontmatter,
+  schema: ({image}) => libraryFrontmatter({image, reference}),
 });
 
 const projects = defineCollection({
