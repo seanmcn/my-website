@@ -1,7 +1,7 @@
 ---
 title: "WordPress – Shortcode in PHP files"
 type: 'note'
-date: '2011-09-11T20:39:03.284Z'
+date: '2011-09-11'
 slug: '2011/09/wordpress-shortcode-in-php-files'
 category: 'programming'
 tags: ['wordpress', 'php', 'how-to']

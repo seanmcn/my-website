@@ -1,7 +1,7 @@
 ---
 title: "Programmer Personality: 2020"
 type: 'note'
-date: '2020-08-09T16:39:03.284Z'
+date: '2020-08-09'
 slug: '2020/08/programmer-personality'
 category: 'personal'
 tags: ['funny', 'personality']

@@ -1,7 +1,7 @@
 ---
 title: "Saving Your Windows PC From Virus Infections with Linux"
 type: 'post'
-date: '2010-10-30T19:39:03.284Z'
+date: '2010-10-30'
 slug: '2010/10/saving-your-windows-pc-from-virus-infections-with-linux'
 category: 'systems'
 tags: ['how-to', 'linux', 'windows', 'security']

@@ -1,7 +1,7 @@
 ---
 title: "Programmer Personality: 2009"
 type: 'note'
-date: '2009-11-09T01:39:03.284Z'
+date: '2009-11-09'
 slug: '2009/11/programmer-personality'
 category: 'personal'
 tags: ['funny', 'personality']

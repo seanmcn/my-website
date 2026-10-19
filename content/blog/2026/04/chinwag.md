@@ -1,7 +1,7 @@
 ---
 title: "Building Chinwag: Local-First WhatsApp Chat Analysis in Go"
 type: 'post'
-date: "2026-04-07T09:31:11.746Z"
+date: "2026-04-07"
 slug: "2026/04/chinwag"
 category: 'programming'
 tags: ['text-analysis', 'go', 'whatsapp', 'open-source']

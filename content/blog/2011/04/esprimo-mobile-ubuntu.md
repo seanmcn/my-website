@@ -1,7 +1,7 @@
 ---
 title: "Esprimo Mobile v5535 and Ubuntu 10.10"
 type: 'post'
-date: '2011-02-04T20:39:03.284Z'
+date: '2011-02-04'
 slug: '2011/02/esprimo-mobile-v5535-and-ubuntu-10-10'
 category: 'reviews'
 tags: ['review', 'esprimo', 'ubuntu']

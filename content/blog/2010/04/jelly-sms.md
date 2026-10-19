@@ -1,7 +1,7 @@
 ---
 title: "Jelly SMS – Use your web texts from your desktop"
 type: 'post'
-date: '2010-04-08T01:39:03.284Z'
+date: '2010-04-08'
 slug: '2010/04/programmer-personality'
 category: 'reviews'
 tags: ['review', 'sms']

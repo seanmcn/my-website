@@ -1,7 +1,7 @@
 ---
 title: "The Sony Ericsson Elm"
 type: 'post'
-date: '2010-06-06T00:39:03.284Z'
+date: '2010-06-06'
 slug: '2010/06/the-sony-ericsson-elm'
 category: 'reviews'
 tags: ['review', 'phone']

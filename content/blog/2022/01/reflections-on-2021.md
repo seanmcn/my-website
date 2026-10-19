@@ -1,7 +1,7 @@
 ---
 title: "Reflections on 2021"
 type: 'post'
-date: "2022-01-31T11:39:19.327Z"  
+date: "2022-01-31"
 slug: "2022/01/reflections-on-2021"  
 category: "personal"  
 tags: ['crypto']

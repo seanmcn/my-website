@@ -1,7 +1,7 @@
 ---
 title: "MarkText - An Open Source Markdown Editor"
 type: 'note'
-date: "2020-11-30T01:07:12.603Z"
+date: "2020-11-30"
 slug: "2020/11/marktext-a-markdown-editor"
 category: "reviews"
 tags: ['review', 'markdown', 'open-source']

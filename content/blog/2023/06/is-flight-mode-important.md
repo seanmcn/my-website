@@ -1,7 +1,7 @@
 ---
 title: "What's the point of Flight Mode?"
 type: 'note'
-date: '2023-06-11T16:00:00.000Z'
+date: '2023-06-11'
 slug: '2023/06/whats-the-point-of-flight-mode'
 category: 'explainers'
 tags: ['flight-mode', 'aviation']

@@ -1,7 +1,7 @@
 ---
 title: "My thoughts on management & time tracking"
 type: 'post'
-date: '2016-08-29T15:39:03.284Z'
+date: '2016-08-29'
 slug: '2016/08/thoughts-management-time-tracking'
 category: 'productivity'
 tags: ['management', 'time-tracking']

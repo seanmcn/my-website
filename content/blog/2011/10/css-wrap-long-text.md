@@ -1,7 +1,7 @@
 ---
 title: "CSS Code for Wrapping Long URLs and Text"
 type: 'note'
-date: '2011-10-04T20:39:03.284Z'
+date: '2011-10-04'
 slug: '2011/10/css-code-for-wrapping-long-urls-and-text'
 category: 'programming'
 tags: ['css', 'how-to']

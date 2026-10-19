@@ -1,7 +1,7 @@
 ---
 title: "We're Back / Moving Forward"
 type: 'post'
-date: '2014-10-22T18:39:03.284Z'
+date: '2014-10-22'
 slug: '2014/10/we-are-back-moving-forward'
 category: 'personal'
 tags: ['blogging', 'vancouver', 'game-development']

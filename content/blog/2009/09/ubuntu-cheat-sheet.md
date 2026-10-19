@@ -1,7 +1,7 @@
 ---
 title: "Ubuntu Cheat Sheets"
 type: 'post'
-date: '2009-09-12T03:39:03.284Z'
+date: '2009-09-12'
 slug: '2009/09/ubuntu-cheat-sheets'
 category: 'systems'
 tags: ['linux', 'ubuntu', 'cheat-sheet']

@@ -1,7 +1,7 @@
 ---
 title: "Google Delivers New Java-like Language: Noop"
 type: 'post'
-date: '2009-09-23T01:39:03.284Z'
+date: '2009-09-23'
 slug: '2009/09/google-delivers-new-java-like-language-noop'
 category: 'programming'
 tags: ['google', 'java', 'noop']

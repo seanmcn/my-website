@@ -1,7 +1,7 @@
 ---
 title: "Being a PHP Developer in 2015"
 type: 'post'
-date: '2015-01-27T08:39:03.284Z'
+date: '2015-01-27'
 slug: '2015/01/being-a-php-developer'
 category: 'programming'
 tags: ['php', 'javascript', 'linux']

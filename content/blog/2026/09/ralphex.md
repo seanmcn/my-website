@@ -1,7 +1,7 @@
 ---
 title: "Ralphex"
 type: 'find'
-date: "2026-09-05T09:00:00.000Z"
+date: "2026-09-05"
 slug: "2026/09/ralphex"
 category: 'ai'
 tags: ['ai', 'developer-tools', 'automation', 'claude-code']

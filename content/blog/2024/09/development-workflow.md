@@ -1,7 +1,7 @@
 ---
 title: "My Development Workflow in 2024"
 type: 'post'
-date: '2024-11-09T13:21:42.341Z'
+date: '2024-11-09'
 slug: '2024/11/my-development-workflow'
 category: 'productivity'
 tags: ['ai', 'phpstorm', 'developer-tools', 'hosting']

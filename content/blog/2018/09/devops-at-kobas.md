@@ -1,7 +1,7 @@
 ---
 title: "DevOps at Kobas"
 type: 'post'
-date: '2018-09-23T17:39:03.284Z'
+date: '2018-09-23'
 slug: '2018/09/devops-at-kobas'
 category: 'personal'
 tags: ['kobas', 'devops', 'jenkins', 'puppet', 'ci']

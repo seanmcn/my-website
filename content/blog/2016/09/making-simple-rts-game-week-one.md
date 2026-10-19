@@ -1,7 +1,7 @@
 ---
 title: "Making a simple RTS game – Week One"
 type: 'post'
-date: '2016-09-01T15:39:03.284Z'
+date: '2016-09-01'
 slug: '2016/09/making-simple-rts-game-week-one'
 category: 'programming'
 tags: ['javascript', 'game-development', 'rts']

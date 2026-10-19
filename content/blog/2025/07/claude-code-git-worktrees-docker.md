@@ -1,7 +1,7 @@
 ---
 title: "Multitasking Like a Pro: Claude Code, Git Worktrees, and Docker"
 type: 'post'
-date: '2025-07-23T14:30:00.000Z'
+date: '2025-07-23'
 slug: '2025/07/claude-code-git-worktrees-docker'
 category: 'productivity'
 tags: ['ai', 'claude-code', 'git-worktrees', 'docker']

@@ -1,7 +1,7 @@
 ---
 title: "The Perfect Web Server - Nginx, Ajenti, Ubuntu"
 type: 'post'
-date: '2015-02-18T08:39:03.284Z'
+date: '2015-02-18'
 slug: '2015/02/perfect-web-server'
 category: 'systems'
 tags: ['ajenti', 'linux', 'nginx', 'ubuntu']
