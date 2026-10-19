@@ -300,6 +300,8 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
 
 <script>
   import {condenseOnScroll} from '../../scripts/condensed.js';
+  import {followReadingProgress} from '../../scripts/rail-progress.js';
 
   condenseOnScroll('.item-bar');
+  followReadingProgress('.item-rail');
 </script>

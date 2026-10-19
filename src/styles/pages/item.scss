@@ -488,26 +488,35 @@ $item-bar-stacked-max: 599px;
 
 /* --------------------------------------------------------------- the rail */
 
+/**
+ * A rail that fits the viewport sticks just under the header. One that's
+ * taller (a long contents list, a short window) slides up through its
+ * overflow as the reader moves through the post: top-aligned at the start,
+ * so the summary and contents list are in view, and bottom-aligned (2rem
+ * clear of the viewport's edge) by the end, so every block is reachable
+ * without a scrollbar inside the rail. --rail-h and --rail-progress come from
+ * followReadingProgress; until they arrive (or without JS) the rail just
+ * sticks at the top.
+ */
 .item-rail {
+  /* How much taller the rail is than the room between the gaps. */
+  --rail-overflow: max(0px, var(--rail-h, 0px) + 7.5rem - 100vh);
+
   position: sticky;
-  top: 5.5rem;
+  top: calc(5.5rem - var(--rail-progress, 0) * var(--rail-overflow));
   display: flex;
   flex-direction: column;
   gap: 1.625rem;
-  max-height: calc(100vh - 8.125rem);
   margin-top: 0.625rem;
   padding-left: 1.5rem;
-  overflow-y: auto;
   border-left: 1px solid var(--line);
 
   @include mid {
     position: static;
     gap: 1.5rem;
-    max-height: none;
     margin-top: 2.125rem;
     padding-top: 1.375rem;
     padding-left: 0;
-    overflow: visible;
     border-top: 1px solid var(--line);
     border-left: 0;
   }
