@@ -6,11 +6,11 @@ each one needs in its frontmatter.
 
 The rules are enforced, not just written down:
 
-- `src/lib/frontmatter.mjs` defines them. The build fails on a bad entry and
+- `src/lib/frontmatter.mjs` defines them. The build fails on a bad item and
   names the file and the field.
 - `content/blog/frontmatter.schema.json` is the same rules as JSON Schema,
   generated from that file by `npm run schema`.
-- `npm run test:unit` checks every entry against them, along with a test per
+- `npm run test:unit` checks every item against them, along with a test per
   rule. It also fails when the JSON Schema is out of date.
 
 ## Item types
@@ -30,11 +30,11 @@ host where a post or note shows its read time.
 | `title` | required | required | required | Page title, listings, RSS, search |
 | `type` | required | required | required | `post`, `note` or `find` |
 | `date` | required | required | required | The day as `YYYY-MM-DD`, with no time. Sorting and display |
-| `slug` | required | required | required | The URL under `/library/` and the entry id |
+| `slug` | required | required | required | The URL under `/library/` and the item's id |
 | `category` | required | required | required | One category page per value, e.g. `programming`, `ai` |
 | `tags` | at least one | at least one | optional | Tag pages, search, related posts |
 | `summary` | required | required | optional | One sentence: meta description, RSS text, home-page blurb, search excerpt |
-| `featured` | required | required | optional | Image path relative to the entry. Hero image and related-post thumbnail |
+| `featured` | required | required | optional | Image path relative to the item. Hero image and related-post thumbnail |
 | `source` | not allowed | not allowed | required | The URL the find passes on |
 | `sourceTitle` | not allowed | not allowed | optional | Label for the source link. Defaults to its host |
 | `margins` | optional | optional | optional | Side notes beside the post, each a `label` and `text` |
@@ -50,7 +50,7 @@ such as `keywords` is caught rather than silently ignored.
 
 ### Conventions the schema doesn't check
 
-- **slug**: new entries use `YYYY/MM/name`, matching the file's path under
+- **slug**: new items use `YYYY/MM/name`, matching the file's path under
   `content/blog/`. Older posts keep the URLs they were first published at, so
   some differ from their file names. Never change a published slug.
 - **summary**: one plain sentence, usually 60-150 characters, saying what the
@@ -60,11 +60,12 @@ such as `keywords` is caught rather than silently ignored.
   sidebar and is the takeaway, where the summary describes what's in the post.
 - **category and tags**: lowercase and hyphenated. Reuse existing ones where
   they fit; `npm run taxonomy` lists them with counts.
-- **featured**: generate it with the VS Code image tasks (see the README). They
-  read the post and fill in `featured` and the `featured*` fields. Until the
-  image exists, the build reports the missing `featured`.
+- **featured**: generate it with `npm run image` (see
+  [featured-images.md](featured-images.md)). It reads the item and fills in
+  `featured` and the `featured*` fields. Until the image exists, the build
+  reports the missing `featured`.
 
-## Starting a new entry
+## Starting a new item
 
 Create `content/blog/YYYY/MM/name.md` (or `.mdx` for components):
 
