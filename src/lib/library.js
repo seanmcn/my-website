@@ -336,7 +336,9 @@ export function getLibraryItems() {
     import.meta.env.DEV || process.env.SHOW_DRAFTS === 'true' ||
       !data.draft,
   ).then((items) => {
-    const sorted = items.sort((a, b) => b.data.date - a.data.date);
+    // Dates are days, so same-day items fall back to their slugs.
+    const sorted = items.sort((a, b) => b.data.date - a.data.date ||
+      a.data.slug.localeCompare(b.data.slug));
     validateItems(sorted);
     return sorted;
   });
