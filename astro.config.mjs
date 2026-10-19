@@ -81,5 +81,9 @@ export default defineConfig({
   ],
   vite: {
     css: {preprocessorOptions: {scss: {quietDeps: true}}},
+    // Mermaid is only imported lazily, so the dev server would otherwise
+    // find it mid-session and serve diagrams a stale bundle (504 Outdated
+    // Optimize Dep) after its next re-optimisation.
+    optimizeDeps: {include: ['mermaid']},
   },
 });
