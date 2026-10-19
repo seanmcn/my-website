@@ -1,7 +1,8 @@
 ---
 /* components/note/note.js: a correction or caveat set apart from the text. */
+const { label = 'Note' } = Astro.props;
 ---
 <aside class="note-aside">
-  <span class="note-aside__label">Note</span>
+  <span class="note-aside__label">{label}</span>
   <slot />
 </aside>
