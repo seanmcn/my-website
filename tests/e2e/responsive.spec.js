@@ -87,7 +87,6 @@ for (const width of [375, 1024, 1440, 1920, 2560]) {
 // a short intro comes first or the post opens with one. Code, tables and
 // media start below the image; a quote or note may sit beside it instead.
 const FEATURED_BESIDE_BLOCK = [
-  '/library/2009/11/programmer-personality/',
   '/library/2010/12/installing-pear-in-wamp/',
   '/library/2009/09/ubuntu-cheat-sheets/',
   '/library/2015/02/perfect-web-server/',
