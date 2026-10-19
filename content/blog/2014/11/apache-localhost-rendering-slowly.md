@@ -1,6 +1,6 @@
 ---
 title: "Apache Localhost Rendering Slowly?"
-type: 'post'
+type: 'note'
 date: '2014-11-03'
 slug: '2014/11/apache-localhost-rendering-slowly'
 category: 'programming'

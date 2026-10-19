@@ -1,10 +1,11 @@
 ---
 title: "MarkText - An Open Source Markdown Editor"
-type: 'note'
+type: 'find'
 date: "2020-11-30"
 slug: "2020/11/marktext-a-markdown-editor"
 category: "reviews"
 tags: ['review', 'markdown', 'open-source']
+source: 'https://github.com/marktext/marktext'
 summary: "The open-source markdown editor I picked because it runs on both my Windows PC and MacBook."
 featured: 'images/featured-marktext-a-markdown-editor.png'
 featuredStyle: 'chibi-cartoon'

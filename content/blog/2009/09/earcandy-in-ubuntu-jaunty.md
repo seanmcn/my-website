@@ -1,10 +1,11 @@
 ---
 title: "Earcandy in Ubuntu Jaunty"
-type: 'post'
+type: 'find'
 date: '2009-09-28'
 slug: '2009/09/earcandy-in-ubuntu-jaunty'
 category: 'systems'
 tags: ['how-to', 'linux', 'ubuntu']
+source: 'https://launchpad.net/earcandy'
 summary: "Installing EarCandy on Ubuntu Jaunty from its PPA, a PulseAudio volume manager that fades your music out when you start a YouTube video."
 featured: 'images/featured-earcandy-in-ubuntu-jaunty.png'
 featuredStyle: 'chibi-cartoon'

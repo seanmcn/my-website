@@ -1,10 +1,11 @@
 ---
 title: "PyroCMS – CMS on the CodeIgnitor Framework"
-type: 'post'
+type: 'find'
 date: '2011-08-14'
 slug: '2011/08/pyrocms-cms-on-the-codeignitor-framework'
 category: 'programming'
 tags: ['cms', 'php', 'pyrocms']
+source: 'https://pyrocms.com/'
 summary: "PyroCMS, an open-source CMS built on CodeIgniter that gives clients a simple place to update their own sites, with permissions so they can't break anything."
 featured: 'images/featured-pyrocms-cms-codeignitor.png'
 featuredStyle: 'mascot-cartoon'

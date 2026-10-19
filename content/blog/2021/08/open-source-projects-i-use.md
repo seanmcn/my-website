@@ -1,6 +1,6 @@
 ---
 title: "Open source software I use for development"
-type: 'post'
+type: 'note'
 date: "2021-08-28"
 slug: "2021/08/open-source-projects-i-use-for-development"
 category: "productivity"

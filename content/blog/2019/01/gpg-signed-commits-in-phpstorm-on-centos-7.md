@@ -1,6 +1,6 @@
 ---
 title: "GPG signed commits in PHPStorm on CentOS 7"
-type: 'post'
+type: 'note'
 date: '2019-01-23'
 slug: '2019/01/gpg-signed-commits-in-phpstorm-on-centos-7'
 category: 'programming'

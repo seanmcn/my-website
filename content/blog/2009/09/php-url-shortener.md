@@ -1,10 +1,11 @@
 ---
 title: "Create a URL Shortener With Your Domain"
-type: 'post'
+type: 'find'
 date: '2009-09-24'
 slug: '2009/09/create-a-url-shortener-with-your-domain'
 category: 'programming'
 tags: ['how-to', 'php', 'url-shortener']
+source: 'https://yourls.org/'
 summary: "Running your own TinyURL-style link shortener on your own domain with YOURLS, a free PHP script with stats and custom links."
 featured: 'images/featured-php-url-shortener.png'
 featuredStyle: 'mascot-cartoon'
