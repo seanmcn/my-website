@@ -1,0 +1,340 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "post",
+          "description": "A full article."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "slug": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The URL under /library/ and the entry id. Usually YYYY/MM/name; older posts keep their original URLs."
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "description": "One lowercase category, e.g. programming or ai."
+        },
+        "margins": {
+          "default": [],
+          "description": "Side notes shown beside the post, e.g. \"In one line\".",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "label",
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "series": {
+          "description": "Posts sharing a series get a series navigator.",
+          "type": "string"
+        },
+        "seriesOrder": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "related": {
+          "default": [],
+          "description": "Slugs of hand-picked related items, shown first.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "draft": {
+          "default": false,
+          "description": "Shown under the dev server, left out of builds.",
+          "type": "boolean"
+        },
+        "featuredPrompt": {
+          "type": "string"
+        },
+        "featuredStyle": {
+          "type": "string"
+        },
+        "featuredPalette": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "One sentence: the meta description, RSS text, home-page blurb and search excerpt."
+        },
+        "tags": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "featured": {
+          "type": "string",
+          "description": "Image path relative to the entry."
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "slug",
+        "date",
+        "category",
+        "summary",
+        "tags",
+        "featured"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "note",
+          "description": "A short piece."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "slug": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The URL under /library/ and the entry id. Usually YYYY/MM/name; older posts keep their original URLs."
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "description": "One lowercase category, e.g. programming or ai."
+        },
+        "margins": {
+          "default": [],
+          "description": "Side notes shown beside the post, e.g. \"In one line\".",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "label",
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "series": {
+          "description": "Posts sharing a series get a series navigator.",
+          "type": "string"
+        },
+        "seriesOrder": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "related": {
+          "default": [],
+          "description": "Slugs of hand-picked related items, shown first.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "draft": {
+          "default": false,
+          "description": "Shown under the dev server, left out of builds.",
+          "type": "boolean"
+        },
+        "featuredPrompt": {
+          "type": "string"
+        },
+        "featuredStyle": {
+          "type": "string"
+        },
+        "featuredPalette": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "One sentence: the meta description, RSS text, home-page blurb and search excerpt."
+        },
+        "tags": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "featured": {
+          "type": "string",
+          "description": "Image path relative to the entry."
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "slug",
+        "date",
+        "category",
+        "summary",
+        "tags",
+        "featured"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "find",
+          "description": "A link worth passing on."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "slug": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The URL under /library/ and the entry id. Usually YYYY/MM/name; older posts keep their original URLs."
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "description": "One lowercase category, e.g. programming or ai."
+        },
+        "margins": {
+          "default": [],
+          "description": "Side notes shown beside the post, e.g. \"In one line\".",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "label",
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "series": {
+          "description": "Posts sharing a series get a series navigator.",
+          "type": "string"
+        },
+        "seriesOrder": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "related": {
+          "default": [],
+          "description": "Slugs of hand-picked related items, shown first.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "draft": {
+          "default": false,
+          "description": "Shown under the dev server, left out of builds.",
+          "type": "boolean"
+        },
+        "featuredPrompt": {
+          "type": "string"
+        },
+        "featuredStyle": {
+          "type": "string"
+        },
+        "featuredPalette": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "format": "uri",
+          "description": "The link the find passes on."
+        },
+        "sourceTitle": {
+          "description": "Label for the source link; defaults to its host.",
+          "type": "string"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tags": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "featured": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "slug",
+        "date",
+        "category",
+        "source"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}
