@@ -182,20 +182,33 @@ Branch mapping:
 - `main` -> production
 - `develop` -> development
 
-Cache and security headers live in `customHttp.yml`. Redirects live in the
-Amplify console (Hosting → Rewrites and redirects), in this order:
+Cache and security headers live in `customHttp.yml` and change on deploy.
+Redirects can't be set from the repo: they live on the Amplify app (Hosting →
+Rewrites and redirects), apply to every branch, and change as soon as they're
+saved. They go in this order:
 
-| Source                    | Target                | Type          |
-| ------------------------- | --------------------- | ------------- |
-| `/sw.js`                  | `/sw.js`              | 200 (rewrite) |
-| `https://www.seanmcn.com` | `https://seanmcn.com` | 301           |
-| `/feed/`                  | `/rss.xml`            | 301           |
-| `/<*>`                    | `/404.html`           | 404 (rewrite) |
+| Source                    | Target                | Type           | JSON `status` |
+| ------------------------- | --------------------- | -------------- | ------------- |
+| `/sw.js`                  | `/sw.js`              | 200 (Rewrite)  | `"200"`       |
+| `https://www.seanmcn.com` | `https://seanmcn.com` | 301 (Redirect) | `"301"`       |
+| `/feed/`                  | `/rss.xml`            | 301 (Redirect) | `"301"`       |
+| `/<*>`                    | `/404.html`           | 404 (Rewrite)  | `"404-200"`   |
 
 Amplify applies the first rule that matches. The `/sw.js` rule has to stay
 above the `www` redirect: browsers won't follow a redirect when they check a
 service worker for updates, so without it the Gatsby service worker on `www`
 would never be replaced.
+
+The last rule must be 404 (Rewrite), `"404-200"` in the JSON editor. A plain
+`"404"` is 404 (Redirect), which answers a missing page with a 302 to
+`/404.html` instead of a 404 at the address that was asked for. Check with
+`curl -sI https://seanmcn.com/does-not-exist/`, which should return
+`HTTP/2 404` and no `location` header.
+
+The apex is the primary domain. Under Hosting → Custom domains, `www` has to
+redirect to `seanmcn.com`, not the other way round, or it loops with the `www`
+rule above. Pages are cached at the CDN until the next deploy, so a page cached
+before a redirect change keeps its old response until then.
 
 ## CI
 
