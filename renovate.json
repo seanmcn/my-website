@@ -12,6 +12,7 @@
     "automergeStrategy": "rebase",
     "lockFileMaintenance": {
         "enabled": true,
+        "automerge": true,
         "extends": [
             "schedule:weekly"
         ]
