@@ -3,7 +3,7 @@
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fseanmcn.com&style=for-the-badge&label=seanmcn.com)](https://seanmcn.com)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Seanmcn/my-website?style=for-the-badge)](https://github.com/Seanmcn/my-website/commits/main)
 [![Node.js](https://img.shields.io/badge/node-24.x-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Playwright](https://github.com/Seanmcn/my-website/actions/workflows/playwright.yml/badge.svg)](https://github.com/Seanmcn/my-website/actions/workflows/playwright.yml)
+[![Playwright](https://img.shields.io/github/actions/workflow/status/Seanmcn/my-website/playwright.yml?branch=main&style=for-the-badge&label=playwright)](https://github.com/Seanmcn/my-website/actions/workflows/playwright.yml)
 
 The codebase for [seanmcn.com](https://seanmcn.com), a personal site built
 with Astro. The library (posts, notes and finds) is Markdown and MDX in
