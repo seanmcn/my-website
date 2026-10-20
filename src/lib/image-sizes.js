@@ -27,6 +27,17 @@ export const IMAGE_SIZES = {
     widths: [360, 540, 720, 1080],
     sizes: `${NARROW} 100vw, ${MID} 28vw, 350px`,
   },
+  // The waving portrait in the home page's bio rail: beside the headline when
+  // narrow, then 80% of the rail's width. The source is only 250px.
+  homeAvatar: {
+    widths: [90, 180, 250],
+    sizes: `${NARROW} 82px, ${MID} 158px, 212px`,
+  },
+  // The avatar in the site header, 4rem square.
+  headerAvatar: {
+    widths: [64, 128, 192],
+    sizes: `${MID} 64px, 72px`,
+  },
   // Square thumbnails on the home page's latest posts.
   homeLead: {
     widths: [110, 220, 330, 440],

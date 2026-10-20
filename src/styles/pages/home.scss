@@ -349,6 +349,11 @@
       padding-left: 0.875rem;
     }
 
+    // The img inside <Picture> stays the flex item.
+    picture {
+      display: contents;
+    }
+
     img {
       display: block;
       width: 100%;

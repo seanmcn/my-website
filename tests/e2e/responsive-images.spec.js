@@ -27,6 +27,12 @@ const SLOTS = [
     path: '/library/2026/04/chinwag/',
     selector: '.item-rail__related-thumb img',
   },
+  {
+    name: 'header avatar',
+    path: '/',
+    selector: '.site-header__avatar img:visible',
+  },
+  {name: 'home avatar', path: '/', selector: '.home-bio__avatar img'},
   {name: 'home lead', path: '/', selector: '.home-lead__image img'},
   {name: 'home project', path: '/', selector: '.home-projects__thumb img'},
   {name: 'library row', path: '/library/', selector: '.item-row__thumb img'},

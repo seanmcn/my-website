@@ -1,5 +1,5 @@
 ---
-import {Image} from 'astro:assets';
+import {Image, Picture} from 'astro:assets';
 import Icon from '../components/icons/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import avatar from '../assets/images/emojis/250/wave.png';
@@ -77,7 +77,7 @@ const stats = [
                 fetchpriority="high"
                 loading="eager"
                 src={avatar}
-                width={400}
+                {...IMAGE_SIZES.homeAvatar}
               />
             </span>
           </span>
@@ -157,8 +157,15 @@ const stats = [
                     <span class="home-lead__body">{oneLine(post)}</span>
                     {data.featured && (
                       <span class="home-lead__image">
-                        <Image
+                        {/*
+                          AVIF first: the featured art has a transparent
+                          background, which WebP stores losslessly, so the
+                          WebP files run about twice the size.
+                        */}
+                        <Picture
                           alt=""
+                          fallbackFormat="webp"
+                          formats={['avif']}
                           loading="eager"
                           src={data.featured}
                           width={320}

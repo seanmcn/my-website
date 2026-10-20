@@ -10,6 +10,7 @@ import beer from '../../assets/images/emojis/250/beer.png';
 import cheer from '../../assets/images/emojis/250/cheer.png';
 import santa from '../../assets/images/emojis/250/santa.png';
 import thumbsUp from '../../assets/images/emojis/250/thumbs-up.png';
+import {IMAGE_SIZES} from '../../lib/image-sizes.js';
 
 /*
  * The header avatar changes on every page. All of them are in the markup and
@@ -77,6 +78,7 @@ const {pathname} = Astro.url;
             loading="eager"
             src={src}
             width={128}
+            {...IMAGE_SIZES.headerAvatar}
           />
         ))}
       </span>
