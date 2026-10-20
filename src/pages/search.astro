@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SearchScreen from '../components/search/SearchScreen.jsx';
+import SearchScreen from '../components/search/SearchScreen.astro';
 import '../styles/pages/search.scss';
 ---
 <Layout
@@ -8,5 +8,5 @@ import '../styles/pages/search.scss';
   description="Search posts, notes, finds and projects."
   noIndex
 >
-  <SearchScreen client:load />
+  <SearchScreen />
 </Layout>

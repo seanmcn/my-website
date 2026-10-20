@@ -1,8 +1,7 @@
 /*
  * The site's icon set, drawn on one 14x14 grid so every glyph sits at the same
  * optical weight as the text beside it. Kept as plain data so the same icons
- * render from Astro (Icon.astro), React islands (icons.jsx) and plain browser
- * scripts (iconSvg below).
+ * render from Astro (Icon.astro) and from browser scripts (iconSvg below).
  *
  * Each entry is the SVG's inner markup plus any attributes that differ from
  * the defaults (stroked, 1.2 wide, no fill).

@@ -1,0 +1,109 @@
+---
+/*
+ * A whole screen rather than a modal. Search is how the library is actually
+ * navigated once there are a few hundred items, so it gets the same rail of
+ * facets every other library view has. The page is static: the index loads
+ * from /search-index.json and scripts/search.js fills in the counts, the
+ * category and tag facets and the results.
+ */
+import {TYPE_FACETS, SCOPES, typeColour} from '../../scripts/search.js';
+---
+<div class="page-wrap search-page" data-search>
+  <h1 class="visually-hidden">Search</h1>
+  <div class="two-col">
+    <button aria-expanded="false" class="rail-toggle" type="button">
+      Filters ▾
+    </button>
+
+    <aside class="rail rail--collapsible">
+      <div>
+        <div class="rail-heading search-page__facet-heading">Type</div>
+        {TYPE_FACETS.map(facet => (
+          <button
+            class:list={['search-facet', {'is-active': facet.key === 'everything'}]}
+            data-type={facet.key}
+            type="button"
+          >
+            <span class="search-facet__name">
+              {facet.key !== 'everything' && (
+                <span
+                  class="search-facet__dot"
+                  style={`background: ${typeColour(facet.key)}`}
+                />
+              )}
+              {facet.label}
+            </span>
+            <span class="search-facet__count">0</span>
+          </button>
+        ))}
+      </div>
+
+      <div data-categories hidden>
+        <div class="rail-heading search-page__facet-heading">Category</div>
+      </div>
+
+      <div class="rail-block" data-tags hidden>
+        <div class="rail-block__label search-page__facet-heading">
+          Related tags
+        </div>
+        <div class="search-page__tags"></div>
+      </div>
+
+      <div data-recents hidden>
+        <div class="rail-heading search-page__facet-heading">
+          Recent searches
+        </div>
+        <div class="search-page__recents"></div>
+      </div>
+    </aside>
+
+    <div>
+      <div class="search-page__field">
+        <span aria-hidden="true" class="search-page__glyph">⌕</span>
+        <label class="visually-hidden" for="search-input">
+          Search posts, notes, finds and projects
+        </label>
+        <input
+          autocomplete="off"
+          class="search-page__input"
+          id="search-input"
+          placeholder="Search posts, notes, finds, projects…"
+          type="search"
+        />
+        <span class="search-page__count"></span>
+        <button class="search-page__clear" hidden type="button">Clear ✕</button>
+      </div>
+
+      <div class="search-page__scopes">
+        <span class="search-page__scopes-label">Match in</span>
+        {SCOPES.map(scope => (
+          <button
+            class:list={['search-page__scope', {'is-active': scope.on}]}
+            data-scope={scope.key}
+            type="button"
+          >
+            {scope.label}
+          </button>
+        ))}
+      </div>
+
+      <div class="search-page__results">
+        <div class="library-empty" hidden>
+          <div class="library-empty__title">Nothing matched that</div>
+          <p class="library-empty__body">
+            Try a shorter word, widen the type filter, or turn on full text
+            under Match in.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import {bindRailToggle} from '../../scripts/rail-toggle.js';
+  import {bindSearch} from '../../scripts/search.js';
+
+  bindRailToggle();
+  bindSearch(document.querySelector('[data-search]'));
+</script>
