@@ -71,6 +71,12 @@ async function render(source, id) {
     securityLevel: 'strict',
     theme: 'base',
     themeVariables: THEME_VARIABLES[theme],
+    // Mermaid 12 defaults to ELK layout, the neo look and 120px label
+    // wrapping; keep the dagre layout, classic look and 200px wrapping the
+    // diagrams were drawn for.
+    layout: 'dagre',
+    look: 'classic',
+    flowchart: {wrappingWidth: 200},
   });
 
   return (await mermaid.render(id, source.trim())).svg;
