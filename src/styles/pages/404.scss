@@ -1,4 +1,6 @@
 @use "../../assets/styles/tokens" as *;
+@use "../base";
+@use "../../assets/styles/code";
 
 .not-found {
   display: grid;

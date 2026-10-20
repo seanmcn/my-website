@@ -1,4 +1,6 @@
 @use "../../assets/styles/tokens" as *;
+@use "../base";
+@use "../../components/library/itemRow";
 
 .search-page {
   &__facet-heading {

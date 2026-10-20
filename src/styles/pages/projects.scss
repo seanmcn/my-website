@@ -1,4 +1,5 @@
 @use "../../assets/styles/tokens" as *;
+@use "../base";
 
 .projects-rail {
   @include narrow {

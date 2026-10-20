@@ -1,0 +1,11 @@
+/*
+ * The styles every page needs. Each page's stylesheet in src/styles/pages
+ * starts with `@use "../base"`, then the shared pieces it uses, then its own
+ * rules, so a page only downloads what it shows and Sass fixes the order.
+ * Layout.astro can't import these itself: Astro doesn't keep separately
+ * imported stylesheets in import order (it puts the ones small enough to
+ * inline ahead of the linked ones), so a page's rules could land before the
+ * base rules they override.
+ */
+@use "../assets/styles/main";
+@use "../components/layout/layout";

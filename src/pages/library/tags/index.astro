@@ -7,6 +7,7 @@ import Icon from '../../../components/icons/Icon.astro';
 import Layout from '../../../layouts/Layout.astro';
 import {getLibraryMeta} from '../../../lib/library.js';
 import {slugToTitle, tagPath} from '../../../utils/content.js';
+import '../../../styles/pages/tags.scss';
 
 const BLURB = 'The tools, platforms and themes that run through the Library.';
 const {tags} = await getLibraryMeta();

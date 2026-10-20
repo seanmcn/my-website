@@ -21,6 +21,7 @@ import {
 } from '../../utils/content.js';
 import {IMAGE_SIZES} from '../../lib/image-sizes.js';
 import {excerpt, getLibraryItems, itemContext} from '../../lib/library.js';
+import '../../styles/pages/item.scss';
 
 export async function getStaticPaths() {
   const items = await getLibraryItems();

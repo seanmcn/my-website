@@ -1,4 +1,8 @@
 @use "../../assets/styles/tokens" as *;
+@use "../base";
+@use "../../assets/styles/content";
+@use "../../assets/styles/code";
+@use "../itemBar";
 
 .project-page {
   display: grid;

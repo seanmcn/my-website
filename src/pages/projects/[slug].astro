@@ -10,6 +10,7 @@ import {
   getProjects,
 } from '../../lib/library.js';
 import {formatItemDate, formatLongDate, itemPath} from '../../utils/content.js';
+import '../../styles/pages/project.scss';
 
 export async function getStaticPaths() {
   const projects = await getProjects();

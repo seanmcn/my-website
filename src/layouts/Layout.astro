@@ -6,28 +6,9 @@
 import {Font} from 'astro:assets';
 import SiteHeader from '../components/layout/SiteHeader.astro';
 /*
- * Every stylesheet, on every page, in one fixed order. Pages lean on each
- * other's rules (the project page's title bar is the item page's), as they
- * could under Gatsby, which bundled them all together in this order.
+ * No stylesheets here: each page imports its own from src/styles/pages, which
+ * brings in the base styles first (see src/styles/base.scss).
  */
-import '../assets/styles/main.scss';
-import '../assets/styles/content.scss';
-import '../assets/styles/code.scss';
-import '../components/layout/layout.scss';
-import '../components/faviconLink/faviconLink.scss';
-import '../styles/pages/404.scss';
-import '../styles/pages/about.scss';
-import '../components/contactForm/contactForm.scss';
-import '../styles/pages/contact.scss';
-import '../styles/pages/projects.scss';
-import '../styles/pages/search.scss';
-import '../components/library/itemRow.scss';
-import '../components/library/libraryRail.scss';
-import '../styles/pages/home.scss';
-import '../components/item/seriesNavigator.scss';
-import '../styles/pages/item.scss';
-import '../styles/pages/project.scss';
-import '../styles/pages/tags.scss';
 
 import {ICON_SIZES as APPLE_TOUCH_SIZES} from '../lib/site-icons.js';
 
