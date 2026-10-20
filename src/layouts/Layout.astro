@@ -118,5 +118,12 @@ const currentYear = new Date().getFullYear();
         </div>
       </footer>
     </div>
+    <script>
+      import {condenseOnScroll} from '../scripts/condensed.js';
+
+      // Pages mark what condenses with data-condense. One import site keeps
+      // the script small enough for Astro to inline, so it costs no request.
+      condenseOnScroll('[data-condense]');
+    </script>
   </body>
 </html>

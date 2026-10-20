@@ -18,7 +18,7 @@ const maxCount = tags.length ? tags[0].count : 1;
   description="The tools, platforms and themes that run through the library."
 >
   <div class="page-wrap tags-page">
-    <div class="tags-page__head">
+    <div class="tags-page__head" data-condense>
       <h1 class="tags-page__title">
         <Icon name="tag" size={19} style="color: var(--accent)" />
         Tags
@@ -26,7 +26,7 @@ const maxCount = tags.length ? tags[0].count : 1;
       <p class="tags-page__blurb">{BLURB}</p>
     </div>
 
-    <div class="sticky-bar tags-page__bar">
+    <div class="sticky-bar tags-page__bar" data-condense>
       <a class="tags-page__back" href="/library/">
         <Icon name="arrowLeft" />
         Back to library
@@ -54,9 +54,3 @@ const maxCount = tags.length ? tags[0].count : 1;
     </div>
   </div>
 </Layout>
-
-<script>
-  import {condenseOnScroll} from '../../../scripts/condensed.js';
-
-  condenseOnScroll('.tags-page__head, .tags-page__bar');
-</script>

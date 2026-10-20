@@ -38,7 +38,7 @@ const {Content} = await render(project);
 >
   <div class="page-wrap project-page">
     <article class="project-page__article">
-      <div class="item-bar">
+      <div class="item-bar" data-condense>
         <a class="item-bar__back" href="/projects/">
           <Icon name="arrowLeft" />
           Projects
@@ -135,9 +135,3 @@ const {Content} = await render(project);
     </aside>
   </div>
 </Layout>
-
-<script>
-  import {condenseOnScroll} from '../../scripts/condensed.js';
-
-  condenseOnScroll('.item-bar');
-</script>

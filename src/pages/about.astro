@@ -157,7 +157,7 @@ const TIMELINE = [
     <div class="about-page__cols">
       <aside aria-label="Profile" class="rail rail--bio about-bio">
         <span class="about-bio__portrait-frame">
-          <span class="about-bio__portrait">
+          <span class="about-bio__portrait" data-condense>
             {/* The rail is about 250px wide; 520 covers it on 2x screens. */}
             <Picture
               alt="Seán McNamara"
@@ -267,9 +267,3 @@ const TIMELINE = [
     </div>
   </div>
 </Layout>
-
-<script>
-  import {condenseOnScroll} from '../scripts/condensed.js';
-
-  condenseOnScroll('.about-bio__portrait');
-</script>

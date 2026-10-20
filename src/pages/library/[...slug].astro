@@ -76,7 +76,7 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
 >
   <div class="page-wrap item-page" data-type={type}>
     <article class="item-page__article" id="postMainColumn">
-      <div class="item-bar">
+      <div class="item-bar" data-condense>
         <a class="item-bar__back" href="/library/">
           <Icon name="arrowLeft" />
           <span class="item-bar__back-label">Library</span>
@@ -330,9 +330,7 @@ const relatedPosts = await Promise.all(context.relatedPosts.map(
 </Layout>
 
 <script>
-  import {condenseOnScroll} from '../../scripts/condensed.js';
   import {followReadingProgress} from '../../scripts/rail-progress.js';
 
-  condenseOnScroll('.item-bar');
   followReadingProgress('.item-rail');
 </script>

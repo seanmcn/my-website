@@ -71,7 +71,7 @@ const stats = [
             I build things, pull them apart, and try to make them better.
           </p>
           <span class="home-bio__avatar-outer">
-            <span class="home-bio__avatar">
+            <span class="home-bio__avatar" data-condense>
               <Image
                 alt="Seán McNamara"
                 fetchpriority="high"
@@ -306,9 +306,3 @@ const stats = [
     </div>
   </div>
 </Layout>
-
-<script>
-  import {condenseOnScroll} from '../scripts/condensed.js';
-
-  condenseOnScroll('.home-bio__avatar');
-</script>
