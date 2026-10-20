@@ -18,6 +18,11 @@ import redirects from './src/integrations/redirects.mjs';
 export default defineConfig({
   site: 'https://seanmcn.com',
   trailingSlash: 'always',
+  // Each page has one stylesheet of 4-9 KB compressed (see
+  // src/styles/base.scss). Inlined, it arrives with the HTML instead of
+  // blocking the first paint on a second request. Most visits land on a
+  // single page from a search, so a shared cached file would rarely pay off.
+  build: {inlineStylesheets: 'always'},
   // Downloaded at build time and served from _astro/ with the rest of the
   // site, so pages don't wait on a stylesheet from Google before rendering.
   // optimizedFallbacks is off because the arrows and bullets in the UI
