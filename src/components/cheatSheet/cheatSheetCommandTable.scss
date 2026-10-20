@@ -1,3 +1,8 @@
+// Takes no box of its own, as the React island wrapper it replaces did.
+.cheat-sheet {
+  display: contents;
+}
+
 @media
 only screen and (width <= 500px) {
   table, thead, tbody, th, td, tr {
