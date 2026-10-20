@@ -41,7 +41,7 @@
         "astro": "^7.3.5",
         "fuse.js": "^7.1.0",
         "gray-matter": "^4.0.3",
-        "match-sorter": "^6.3.0",
+        "match-sorter": "^8.0.0",
         "mermaid": "^12.2.0",
         "node-emoji": "^2.2.0",
         "prop-types": "^15.7.2",
