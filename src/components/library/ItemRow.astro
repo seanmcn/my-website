@@ -6,7 +6,7 @@
  * still reads as a column.
  */
 import Icon from '../icons/Icon.astro';
-import {Image} from 'astro:assets';
+import {Picture} from 'astro:assets';
 import {
   formatItemDate,
   itemPath,
@@ -33,16 +33,22 @@ const host = sourceHost(data.source);
     <span class="item-row__spine" style={`background: ${meta.colour}`}></span>
     {data.featured ? (
       <span class="item-row__thumb">
-        <Image
+        {/*
+          AVIF first: the featured art has a transparent background, which
+          WebP stores losslessly, so the WebP files run about twice the size.
+        */}
+        <Picture
           alt=""
+          fallbackFormat="webp"
           fit="cover"
+          formats={['avif']}
           height={260}
           loading={eager ? 'eager' : 'lazy'}
           position="top"
           src={data.featured}
           width={260}
           {...IMAGE_SIZES.libraryRow}
-       />
+        />
       </span>
     ) : (
       <span class={`item-row__plate item-row__plate--${type}`}>
