@@ -1,7 +1,6 @@
 import {defineConfig, fontProviders} from 'astro/config';
 import {satteri} from '@astrojs/markdown-satteri';
 import mdx from '@astrojs/mdx';
-import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import {codeFrame, siteTheme} from './src/plugins/code-blocks.mjs';
 import {
@@ -77,7 +76,6 @@ export default defineConfig({
   },
   integrations: [
     mdx(),
-    react(),
     sitemap({
       filter: page => new URL(page).pathname !== '/search/',
     }),
@@ -87,13 +85,12 @@ export default defineConfig({
   vite: {
     css: {preprocessorOptions: {scss: {quietDeps: true}}},
     // The dev server's startup scan misses packages that are only reached
-    // lazily (mermaid) or from React islands (the rest), so it would find
-    // them mid-session and serve those pages a stale bundle (504 Outdated
-    // Optimize Dep) after its next re-optimisation. That left search dead.
+    // lazily (mermaid) or from a page's script (fuse.js, on search), so it
+    // would find them mid-session and serve those pages a stale bundle (504
+    // Outdated Optimize Dep) after its next re-optimisation. That left search
+    // dead.
     optimizeDeps: {
-      include: [
-        'mermaid', 'fuse.js', 'prop-types', 'match-sorter', 'react-table',
-      ],
+      include: ['mermaid', 'fuse.js'],
     },
   },
 });

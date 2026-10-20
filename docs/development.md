@@ -65,11 +65,11 @@ docs/                These docs
 public/              Files served as-is (favicons, robots.txt, sw.js)
 scripts/             Featured images, favicons, schema and taxonomy
 src/pages/           Routes
-src/components/      Astro components, plus the two React islands
+src/components/      Astro components
 src/lib/             Content queries: listings, related items, search index
 src/plugins/         The Markdown plugins and code listing theme
 src/integrations/    Build hooks: legacy redirects, dev-only pages
-src/scripts/         Browser scripts (theme, header, prose, diagrams)
+src/scripts/         Browser scripts (theme, header, prose, diagrams, search)
 tests/               Unit tests and the Playwright suite
 astro.config.mjs     Astro config
 amplify.yml          AWS Amplify build configuration

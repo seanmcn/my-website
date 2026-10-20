@@ -8,14 +8,14 @@
 The codebase for [seanmcn.com](https://seanmcn.com), a personal site built
 with Astro. The library (posts, notes and finds) is Markdown and MDX in
 `content/blog`. Projects are Markdown in `content/projects`. Pages are static
-and ship no framework JavaScript, apart from two React islands: search and the
-cheat sheet table.
+and ship no framework JavaScript: the interactive parts are small browser
+scripts.
 
 - Production: [seanmcn.com](https://seanmcn.com), from `main`
 - Development: [develop.seanmcn.com](https://develop.seanmcn.com), from `develop`
 
-Built with Astro 7 (Sätteri for Markdown, Shiki for code), MDX, Sass, React 18
-and Playwright. Search runs in the browser with Fuse.js over
+Built with Astro 7 (Sätteri for Markdown, Shiki for code), MDX, Sass and
+Playwright. Search runs in the browser with Fuse.js over
 `/search-index.json`, which is built with the site. Hosted on AWS Amplify.
 
 ## Quick start
