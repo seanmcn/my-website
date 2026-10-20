@@ -16,7 +16,7 @@ document.querySelectorAll('.code-copy-button').forEach((button) => {
 
     try {
       await navigator.clipboard.writeText(code.innerText);
-    } catch (error) {
+    } catch {
       return;
     }
 

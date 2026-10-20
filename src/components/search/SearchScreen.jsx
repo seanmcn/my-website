@@ -65,7 +65,7 @@ const SearchScreen = () => {
 
     try {
       setRecents(JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'));
-    } catch (error) {
+    } catch {
       setRecents([]);
     }
 
@@ -94,7 +94,7 @@ const SearchScreen = () => {
 
       try {
         localStorage.setItem(RECENT_KEY, JSON.stringify(next));
-      } catch (error) {
+      } catch {
         // A private window without storage is not worth failing over.
       }
 

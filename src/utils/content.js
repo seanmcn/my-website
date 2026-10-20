@@ -92,7 +92,7 @@ export function sourceHost(source) {
 
   try {
     return new URL(source).hostname.replace(/^www\./, '');
-  } catch (error) {
+  } catch {
     return source
         .replace(/^https?:\/\//, '')
         .replace(/^www\./, '')

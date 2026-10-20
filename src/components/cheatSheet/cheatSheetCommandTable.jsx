@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 // Our table component
 import React from 'react';
 import {useGlobalFilter, useTable} from 'react-table';

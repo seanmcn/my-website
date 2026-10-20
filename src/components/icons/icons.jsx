@@ -20,7 +20,6 @@ function makeIcon(name) {
     ));
 
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
       <svg {...props} dangerouslySetInnerHTML={{__html: body}} />
     );
   };
