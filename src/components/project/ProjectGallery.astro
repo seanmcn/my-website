@@ -47,7 +47,7 @@ const counter = index => (hasGallery ? `${pad(index + 1)} / ${pad(shots.length)}
       <div class="project-shots__rail">
         {shots.map((shot, index) => (
           <button
-            aria-label={`Show image ${index + 1}: ${shot.alt}`}
+            aria-label={`Show image ${pad(index + 1)}: ${shot.alt}`}
             class:list={['project-shots__thumb', {'is-active': index === 0}]}
             data-select={index}
             type="button"

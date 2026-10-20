@@ -56,7 +56,7 @@ test('a project gallery switches shots and opens a lightbox', async ({
 }) => {
   await visitPage(page, '/projects/chinwag/');
   const stage = page.locator('.project-shots__stage');
-  await page.getByRole('button', {name: 'Show image 2: Conversation'}).click();
+  await page.getByRole('button', {name: 'Show image 02: Conversation'}).click();
   await expect(page.locator('.project-shots__head')).toContainText('02 / 04');
   await expect(stage.locator('img:not([hidden])')).toHaveAttribute('alt',
       'Conversation');
