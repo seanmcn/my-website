@@ -43,7 +43,7 @@ export default defineConfig({
       name: 'IBM Plex Mono',
       cssVariable: '--font-mono',
       provider: fontProviders.google(),
-      weights: [400, 500],
+      weights: [400],
       styles: ['normal'],
       fallbacks: ['SFMono-Regular', 'menlo', 'consolas', 'monospace'],
       optimizedFallbacks: false,

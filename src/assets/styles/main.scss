@@ -309,8 +309,6 @@ hr {
     color: var(--bg);
 
     @include label(0.625rem, 0.2em);
-
-    font-weight: 500;
   }
 
   &__link {
