@@ -52,13 +52,6 @@
                 "@axe-core/playwright"
             ],
             "groupName": "linting and testing"
-        },
-        {
-            "description": "eslint-plugin-react 7.37 crashes under ESLint 10; lift once it supports it (jsx-eslint/eslint-plugin-react#3977).",
-            "matchPackageNames": [
-                "eslint"
-            ],
-            "allowedVersions": "<10"
         }
     ]
 }
