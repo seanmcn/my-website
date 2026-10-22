@@ -1,0 +1,144 @@
+---
+title: "Two AI Skills Everyone Should Use"
+type: 'post'
+date: "2026-10-22"
+slug: "2026/10/humanizer-and-i-have-adhd"
+category: 'ai'
+tags: ['ai', 'claude-code', 'developer-tools', 'writing']
+summary: 'The humanizer skill stops your writing sounding like AI slop, and i-have-adhd makes AI replies easier to digest while you iterate.'
+margins:
+  - label: 'In one line'
+    text: "Use humanizer on anything other people will read, and i-have-adhd once you're iterating and want the AI to get to the point."
+draft: true
+featured: 'images/featured-humanizer-and-i-have-adhd.png'
+featuredStyle: 'mascot-cartoon'
+featuredPalette: 'balanced'
+featuredPrompt: 'A smug cat sits contentedly in a small plain cardboard box, ignoring an enormous, elaborately gift-wrapped box with ribbons beside it.'
+---
+
+<StickyStack>
+  <StickyNote color="sky" label="What's a skill?" marker="1">
+    A skill is a markdown file of instructions you add to an AI tool, which
+    it follows when you call it. Skills are vendor agnostic, so the same
+    skill works in most AI tools.
+  </StickyNote>
+  <StickyNote color="amber" label="Tip" marker="2">
+    You can clone a skill, rename it and change it however you like.
+    `humanizer` is a good one to clone if you'd rather it wrote British spelling
+    (humanise, not humanize). I cloned it and rebranded it as `red-pen` for
+    work.
+  </StickyNote>
+</StickyStack>
+
+These are the two AI skills <StickyRef color="sky" n="1" /> I think everyone should be using right now: [`humanizer`](https://github.com/blader/humanizer) and [`i-have-adhd`](https://github.com/ayghri/i-have-adhd). `humanizer` stops your emails, messages and docs sounding like AI slop. `i-have-adhd` makes the AI's own replies much easier to digest when you're going back and forth with it.
+
+## `humanizer`, for anything someone else reads
+
+A lot of the messages people send now are obviously AI-written, and they're hard work to read. You end up pasting one into an AI to write your reply, they paste your reply into an AI to write theirs, and everyone's just burning tokens at each other.
+
+I was seeing the same problem in technical documentation. My first drafts with AI were so wordy that I'd end up doing [`humanizer`](https://github.com/blader/humanizer)'s job by hand, telling it over and over to cut the padding and to stop writing "it's not this, it's that". <StickyRef color="amber" n="2" />
+
+`humanizer` is built on [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), the guide Wikipedia editors use to catch AI-generated edits, and it checks your text against 26 patterns. The five it rewrites on sight are:
+
+1. Not X but Y: "It's not just a feature, it's a shift."
+2. One-line closers: "Let that sink in."
+3. Sayings that sound deep: "At its core, what really matters is..."
+4. A staged run-up: "Here's the thing." "Honestly?"
+5. Arguing with no one: "I'm not saying X, but..."
+
+The README's before and after has a few of them in one paragraph:
+
+<SideBySide>
+<Side label="Before" color="amber">
+
+> I'm thrilled to announce that shared drafts are finally here! 🚀 For months, our own team was drowning in files named final_v7.docx — and we knew there had to be a better way. Now two people can edit the same doc at once, with every change appearing live for both of them. It's not just a feature; it's a whole new way to collaborate. Comments stay anchored to the exact sentence they reference, even as the text around them evolves. And the best part? It's available today on every plan, completely free. Let that sink in.
+
+</Side>
+<Side label="After">
+
+> Shared drafts are out today. For months our own team passed around files named final_v7.docx, so we built a way for two people to edit the same doc at once, with each person's changes showing up live for the other. Comments stay pinned to the sentence they're about, even when the text around them changes. It's free on every plan.
+
+</Side>
+</SideBySide>
+
+<StickyNote color="moss" label="Blind test">
+  Someone ran a [blind test](https://github.com/blader/humanizer/issues/229)
+  on `humanizer`: judges preferred its rewrite over the raw AI text 16 times
+  out of 16, though the judges were AI models too. It barely moved AI
+  detection (100% flagged down to 98.6%), but the README is upfront that
+  getting past detectors isn't the goal.
+</StickyNote>
+
+It doesn't make anything up. If a sentence needs a name, number or date the original doesn't have, it asks you for it rather than inventing one. Point it at a file and it only touches the prose, leaving code, frontmatter and links alone. You can also give it two or three paragraphs of your own writing, and it'll match your rhythm and quirks.
+
+I use it a lot for documentation and for work emails and messages. It's handy for personal messages too, though I use AI a lot less there. I think AI companies should have something like this on by default.
+
+<Tabs>
+<Tab label="skills.sh (recommended)">
+
+[skills.sh](https://skills.sh) installs a skill for every coding agent it supports in one go, which is why I'd recommend it:
+
+```bash
+npx skills add blader/humanizer --global --agent '*'
+```
+
+Leave off `--global` to install it only in the current project.
+
+</Tab>
+<Tab label="Plugin">
+
+In Claude Code, you can install it as a plugin:
+
+```text
+/plugin marketplace add blader/humanizer
+/plugin install humanizer@humanizer
+```
+
+As a plugin it answers to `/humanizer:humanizer`. There's no Codex plugin for `humanizer`, so use skills.sh there.
+
+</Tab>
+<Tab label="Desktop app">
+
+In Claude Desktop or Claude.ai, download the repo as a ZIP (GitHub's green Code button, then Download ZIP) and upload it as a skill in Settings.
+
+</Tab>
+</Tabs>
+
+Then call it with `/humanizer` (Codex uses `$humanizer` instead) and paste your text, or ask it to "humanize the prose in docs/README.md".
+
+## `i-have-adhd`, for going back and forth with AI
+
+<StickyNote color="plum" label="Good news">
+  No ADHD diagnosis needed, as the README helpfully points out. :sweat_smile:
+</StickyNote>
+
+Coding with AI means reviewing a lot of its output. When I'm iterating on something, it keeps walking me through scenarios that don't matter, and I just want it to get to the point: what's the decision, or the one thing I need to know?
+
+[`i-have-adhd`](https://github.com/ayghri/i-have-adhd) reshapes replies around what you do next, like in this example from its README:
+
+<SideBySide>
+<Side label="Before" color="amber">
+
+> Great question! Let me think about this. Your auth flow has a few moving pieces: the middleware, the token verification, and the cookie handling. Looking at `src/auth.ts`, the `verifyToken` function (around lines 42-58) seems to be using an older `jsonwebtoken` API. One approach would be to update the package and rewrite that function. [...] Hope this helps! Let me know if you want to dig deeper.
+
+</Side>
+<Side label="After">
+
+> Edit `src/auth.ts:42` to update the token validation.
+>
+> 1. Open `src/auth.ts`
+> 2. Replace `verifyToken` (lines 42-58) with the snippet below
+> 3. Run `npm test -- auth.spec.ts`
+>
+> Next: paste the first failing line if any test fails.
+
+</Side>
+</SideBySide>
+
+It has ten rules, and the two that fix my problem are "lead with the next action", which puts the command, file or decision first, and "suppress tangents". It also numbers multi-step tasks and ends each reply with one concrete next step.
+
+I mostly use it for coding, but I think it'd help with any work where you go round several times, like iterating on a document.
+
+Install it the same way as `humanizer`, with `ayghri/i-have-adhd` in place of `blader/humanizer` (the plugin is `i-have-adhd@i-have-adhd`). Then call it with `/i-have-adhd` (or `$i-have-adhd` in Codex), and it stays on for the rest of the session until you say "stop adhd mode".
+
+I don't keep it always on. When I'm planning with something like [grill-me](/library/2026/09/ai-hero-grill-and-wayfinder-skills/), I want the AI to be verbose, because the reasoning is the useful part. Once it gets into implementation I turn `i-have-adhd` on, since the decisions it's making there are smaller. If you'd rather have it in every session, the Claude Code plugin has an always-on flag: `touch ~/.claude/.i-have-adhd-always`.
