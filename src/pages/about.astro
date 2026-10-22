@@ -3,6 +3,7 @@ import {Picture} from 'astro:assets';
 import ElsewhereLinks from '../components/elsewhere/ElsewhereLinks.astro';
 import FaviconLink from '../components/faviconLink/FaviconLink.astro';
 import Layout from '../layouts/Layout.astro';
+import {cardPath} from '../lib/social-cards.js';
 import portrait from '../assets/images/portrait-transparent.png';
 import '../styles/pages/about.scss';
 
@@ -152,7 +153,11 @@ const TIMELINE = [
   },
 ];
 ---
-<Layout title="About Me - Seán McNamara" description={DESCRIPTION}>
+<Layout
+  title="About Me - Seán McNamara"
+  description={DESCRIPTION}
+  image={cardPath('about')}
+>
   <div class="page-wrap about-page">
     <div class="about-page__cols">
       <aside aria-label="Profile" class="rail rail--bio about-bio">

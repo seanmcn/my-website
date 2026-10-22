@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import {cardPath} from '../lib/social-cards.js';
 import notFoundImage from '../assets/images/emojis/250/confused.png';
 import '../assets/styles/code.scss';
 import '../styles/pages/404.scss';
@@ -7,6 +8,7 @@ import '../styles/pages/404.scss';
 <Layout
   title="404 - Not Found"
   description="The page you were looking for could not be found."
+  image={cardPath('not-found')}
   noIndex
 >
   <div class="page-wrap not-found">

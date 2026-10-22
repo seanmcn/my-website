@@ -3,6 +3,7 @@ import {Image} from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import {IMAGE_SIZES} from '../../lib/image-sizes.js';
 import {getProjects} from '../../lib/library.js';
+import {cardPath} from '../../lib/social-cards.js';
 import {stackColour} from '../../utils/projects.js';
 import '../../styles/pages/projects.scss';
 
@@ -39,7 +40,11 @@ const years = projects.reduce((groups, project) => {
 
 const plural = count => `${count} ${count === 1 ? 'project' : 'projects'}`;
 ---
-<Layout title="Projects - Seán McNamara" description={BLURB}>
+<Layout
+  title="Projects - Seán McNamara"
+  description={BLURB}
+  image={cardPath('projects')}
+>
   <div class="page-wrap projects-page">
     <div class="two-col two-col--padded">
       <div class="mobile-intro">

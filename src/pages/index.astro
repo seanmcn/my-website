@@ -20,8 +20,8 @@ import {
 } from '../utils/content.js';
 import '../styles/pages/home.scss';
 
-const DESCRIPTION = 'Seán McNamara\'s personal website, containing ' +
-  'articles surrounding programming, technology, games & reviews.';
+const DESCRIPTION = 'Software engineering & other rabbit holes. I build ' +
+  'things, pull them apart, and try to make them better.';
 
 function formatReadMinutes(minutes) {
   if (minutes >= 60) {
@@ -57,7 +57,7 @@ const stats = [
   {label: 'Finds', value: counts.find},
 ];
 ---
-<Layout title="Home - Seán McNamara" description={DESCRIPTION}>
+<Layout title="Seán McNamara" description={DESCRIPTION}>
   <div class="page-wrap home-page">
     <!--
       The design opens on the bio rather than a page title, so the h1 is

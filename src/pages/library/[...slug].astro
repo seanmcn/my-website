@@ -21,6 +21,7 @@ import {
 } from '../../utils/content.js';
 import {IMAGE_SIZES} from '../../lib/image-sizes.js';
 import {excerpt, getLibraryItems, itemContext} from '../../lib/library.js';
+import {cardPath} from '../../lib/social-cards.js';
 import '../../styles/pages/item.scss';
 
 export async function getStaticPaths() {
@@ -59,6 +60,7 @@ const {relatedPosts} = context;
   title={title}
   description={data.summary || excerpt(item)}
   type="article"
+  image={cardPath(`library/${data.slug}`)}
 >
   <div class="page-wrap item-page" data-type={type}>
     <article class="item-page__article" id="postMainColumn">

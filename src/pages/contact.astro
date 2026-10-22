@@ -5,6 +5,7 @@ import ElsewhereLinks from '../components/elsewhere/ElsewhereLinks.astro';
 import Layout from '../layouts/Layout.astro';
 import avatar from '../assets/images/emojis/250/wave.png';
 import {getLibraryItems} from '../lib/library.js';
+import {cardPath} from '../lib/social-cards.js';
 import '../styles/pages/contact.scss';
 
 const DESCRIPTION = 'Get in touch with Seán McNamara about software ' +
@@ -22,7 +23,11 @@ const RAIL = [
 const titles = Object.fromEntries((await getLibraryItems())
     .map(({data}) => [data.slug, data.title]));
 ---
-<Layout title="Contact Me - Seán McNamara" description={DESCRIPTION}>
+<Layout
+  title="Contact Me - Seán McNamara"
+  description={DESCRIPTION}
+  image={cardPath('contact')}
+>
   <div class="page-wrap contact-page">
     <div class="contact-page__cols">
       <aside aria-label="Profile" class="rail rail--bio contact-bio">

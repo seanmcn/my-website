@@ -6,6 +6,7 @@
 import Icon from '../../../components/icons/Icon.astro';
 import Layout from '../../../layouts/Layout.astro';
 import {getLibraryMeta} from '../../../lib/library.js';
+import {cardPath} from '../../../lib/social-cards.js';
 import {slugToTitle, tagPath} from '../../../utils/content.js';
 import '../../../styles/pages/tags.scss';
 
@@ -16,6 +17,7 @@ const maxCount = tags.length ? tags[0].count : 1;
 <Layout
   title="Tags - Seán McNamara"
   description="The tools, platforms and themes that run through the library."
+  image={cardPath('library')}
 >
   <div class="page-wrap tags-page">
     <div class="tags-page__head" data-condense>

@@ -9,6 +9,7 @@ import {
   getItemsAboutProject,
   getProjects,
 } from '../../lib/library.js';
+import {cardPath} from '../../lib/social-cards.js';
 import {formatItemDate, formatLongDate, itemPath} from '../../utils/content.js';
 import '../../styles/pages/project.scss';
 
@@ -35,6 +36,7 @@ const {Content} = await render(project);
 <Layout
   title={`${data.title} - Projects - Seán McNamara`}
   description={data.summary || excerpt(project, 180)}
+  image={cardPath(`projects/${data.slug}`)}
 >
   <div class="page-wrap project-page">
     <article class="project-page__article">

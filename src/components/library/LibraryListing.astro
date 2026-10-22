@@ -4,11 +4,16 @@
  * whichever view it is. Shared by the index, type, tag and category routes.
  */
 import Layout from '../../layouts/Layout.astro';
+import {cardPath} from '../../lib/social-cards.js';
 import LibraryScreen from './LibraryScreen.astro';
 import '../../styles/pages/library.scss';
 
 const {description, pageTitle, ...screen} = Astro.props;
 ---
-<Layout title={pageTitle} description={description}>
+<Layout
+  title={pageTitle}
+  description={description}
+  image={cardPath('library')}
+>
   <LibraryScreen {...screen} />
 </Layout>

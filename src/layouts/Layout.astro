@@ -11,17 +11,20 @@ import SiteHeader from '../components/layout/SiteHeader.astro';
  */
 
 import {ICON_SIZES as APPLE_TOUCH_SIZES} from '../lib/site-icons.js';
+import {CARD_HEIGHT, CARD_WIDTH, cardPath} from '../lib/social-cards.js';
 
 const SITE_TITLE = 'Seán McNamara';
 const SITE_DESCRIPTION = 'Seán McNamara\'s personal website, containing ' +
   'articles surrounding programming, technology, games & reviews.';
 
-const {title, description, type = 'website', noIndex = false} =
-  Astro.props;
+const {title, description, type = 'website', noIndex = false,
+  image = cardPath('home')} = Astro.props;
 const resolvedDescription = (description || SITE_DESCRIPTION)
     .replace(/\s+/g, ' ')
     .trim();
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+// The social card: shared links show it, so it needs an absolute address.
+const imageUrl = new URL(image, Astro.site).toString();
 const currentYear = new Date().getFullYear();
 ---
 <!doctype html>
@@ -68,9 +71,16 @@ const currentYear = new Date().getFullYear();
     <meta property="og:title" content={title} />
     <meta property="og:description" content={resolvedDescription} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content={CARD_WIDTH} />
+    <meta property="og:image:height" content={CARD_HEIGHT} />
+    <meta property="og:image:alt" content={title} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={resolvedDescription} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={title} />
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
 
     <link rel="icon" href="/favicon-32x32.png" type="image/png" />

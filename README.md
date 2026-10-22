@@ -36,6 +36,7 @@ npm test
 - [Writing library items](docs/content.md): frontmatter rules, conventions and
   a starter template
 - [Featured images](docs/featured-images.md): generating an item's image
+- [Social cards](docs/social-cards.md): the images shared links show
 - [Development](docs/development.md): running locally, scripts, link favicons
   and project structure
 - [Testing](docs/testing.md): unit tests, Playwright, accessibility checks and

@@ -67,6 +67,10 @@ _Avoid_: Excerpt, description, teaser
 The illustration at the top of an item, also shown as its thumbnail.
 _Avoid_: Hero image, cover, thumbnail
 
+**Social card**:
+The image a page's link shows when it's shared. An item's is built from its title, summary and featured image.
+_Avoid_: OG image, preview image, share image
+
 ## Projects
 
 **Project**:
