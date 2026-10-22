@@ -6,7 +6,7 @@
 // start below it.
 $beside-blocks: "blockquote", ".note-aside";
 $wide-blocks: "table", ".code-wrapper", ".mermaid-wrapper", ".video-embed",
-  ".prose-image-link";
+  ".tabs", ".side-by-side", ".prose-image-link";
 
 /**
  * Rendered markdown. The measure is deliberately wide for a serif at 19px
@@ -212,6 +212,14 @@ $wide-blocks: "table", ".code-wrapper", ".mermaid-wrapper", ".video-embed",
     color: var(--accent-deep);
     font-family: $font-mono;
     font-size: 0.9375rem;
+  }
+
+  /* Code in a heading scales with it instead of dropping to body size. Only
+     the regular mono weight is loaded, so it stays regular rather than
+     getting a synthesised bold. */
+  :is(h2, h3, h4) code {
+    font-size: 0.8em;
+    font-weight: 400;
   }
 
   pre code {
@@ -430,6 +438,111 @@ $wide-blocks: "table", ".code-wrapper", ".mermaid-wrapper", ".video-embed",
     color: var(--bg);
 
     @include label(0.625rem, 0.18em);
+  }
+
+  /**
+   * Alternatives the reader picks one of (see Tabs in src/components/mdx).
+   * The tab list reads as a row of labels over a rule, with the selected one
+   * underlined in the accent. Without JavaScript every panel shows, each
+   * under its own label.
+   */
+  .tabs {
+    max-width: 74ch;
+    margin: 0.375rem 0 1.875rem;
+  }
+
+  .tabs__list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.25rem;
+    margin-bottom: 1.125rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tabs__tab {
+    margin-bottom: -1px;
+    padding: 0.625rem 0.75rem;
+    background: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    color: var(--muted);
+    cursor: pointer;
+
+    @include label(0.625rem, 0.16em);
+
+    &:hover {
+      color: var(--ink);
+    }
+
+    &[aria-selected='true'] {
+      border-bottom-color: var(--accent);
+      color: var(--accent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+  }
+
+  .tabs__panel {
+    > p {
+      max-width: 74ch;
+      margin: 0 0 1.375rem;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    & + & {
+      margin-top: 1.875rem;
+    }
+  }
+
+  .tabs__heading,
+  .side-by-side__label {
+    color: var(--muted);
+
+    @include label(0.625rem, 0.16em);
+  }
+
+  .tabs--enhanced .tabs__heading {
+    display: none;
+  }
+
+  /**
+   * Two blocks compared next to each other (see SideBySide in
+   * src/components/mdx), stacked on a phone where two columns would leave
+   * each too narrow to read. A quote inside drops its own measure and margin
+   * and stretches, so both columns end level.
+   */
+  .side-by-side {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin: 0.375rem 0 1.875rem;
+
+    @include narrow {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    blockquote {
+      flex: 1;
+      min-width: 0;
+      max-width: none;
+      margin: 0;
+    }
+  }
+
+  .side-by-side__side {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+
+    > p:not(.side-by-side__label) {
+      margin: 0;
+    }
   }
 
   /**
@@ -752,6 +865,24 @@ $wide-blocks: "table", ".code-wrapper", ".mermaid-wrapper", ".video-embed",
       border-color: color.mix($fill, white, 65%);
       box-shadow: 0 1px 0 color.mix($fill, white, 65%);
     }
+
+    /* A coloured Side (e.g. an amber "before" beside the default green
+       quote) puts its quote on the same paper. */
+    .side-by-side__side--#{$name} blockquote {
+      background: $fill;
+
+      &::before {
+        color: $label;
+      }
+
+      > * {
+        color: $ink;
+      }
+
+      code {
+        background: color.mix($fill, white, 35%);
+      }
+    }
   }
 
   /**
@@ -790,6 +921,22 @@ $wide-blocks: "table", ".code-wrapper", ".mermaid-wrapper", ".video-embed",
          over the single-class fill rule just above. */
       .sticky-stack__rear.sticky-note--#{$name} {
         background: $rear;
+      }
+
+      .side-by-side__side--#{$name} blockquote {
+        background: $fill;
+
+        &::before {
+          color: $label;
+        }
+
+        > * {
+          color: $ink;
+        }
+
+        code {
+          background: $rear;
+        }
       }
 
       .sticky-note--#{$name} .sticky-note__label,

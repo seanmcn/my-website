@@ -1,0 +1,74 @@
+---
+/*
+ * Alternatives the reader picks one of, such as install steps per platform.
+ * Each Tab is server-rendered as a labelled section (which is also what a
+ * reader without JavaScript sees), and the script below builds the tab list
+ * from their labels, since an Astro component can't read its children's
+ * props. The first tab starts selected.
+ */
+---
+<div class="tabs" data-tabs><slot /></div>
+
+<script>
+  let groups = 0;
+
+  document.querySelectorAll('[data-tabs]').forEach((tabs) => {
+    const panels = [...tabs.querySelectorAll(':scope > .tabs__panel')];
+
+    if (panels.length <= 1) {
+      return;
+    }
+
+    const group = groups;
+    groups += 1;
+
+    const list = document.createElement('div');
+    list.className = 'tabs__list';
+    list.setAttribute('role', 'tablist');
+
+    const buttons = panels.map((panel, i) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'tabs__tab';
+      button.id = `tabs-${group}-tab-${i}`;
+      button.textContent = panel.dataset.tabLabel;
+      button.setAttribute('role', 'tab');
+      button.setAttribute('aria-controls', `tabs-${group}-panel-${i}`);
+      button.addEventListener('click', () => select(i));
+
+      panel.id = `tabs-${group}-panel-${i}`;
+      panel.tabIndex = 0;
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', button.id);
+      return button;
+    });
+
+    function select(index, focus = false) {
+      buttons.forEach((button, i) => {
+        const selected = i === index;
+        button.setAttribute('aria-selected', String(selected));
+        button.tabIndex = selected ? 0 : -1;
+        panels[i].hidden = !selected;
+      });
+      if (focus) {
+        buttons[index].focus();
+      }
+    }
+
+    // Arrow keys move between tabs, as the ARIA tabs pattern expects.
+    list.addEventListener('keydown', (event) => {
+      const current = buttons.indexOf(document.activeElement);
+      const step = {ArrowRight: 1, ArrowLeft: -1}[event.key];
+      if (current === -1 || !step) {
+        return;
+      }
+      event.preventDefault();
+      select((current + step + buttons.length) % buttons.length, true);
+    });
+
+    list.append(...buttons);
+    tabs.prepend(list);
+    tabs.classList.add('tabs--enhanced');
+    select(0);
+  });
+</script>

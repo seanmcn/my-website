@@ -1,0 +1,12 @@
+---
+/*
+ * One column of a SideBySide, headed by its `label`. `color` puts a quote
+ * inside on one of the StickyNote papers (amber, blue, plum, rose, sky, moss,
+ * green) instead of the default green tint.
+ */
+const {label, color} = Astro.props;
+---
+<div class:list={['side-by-side__side', color && `side-by-side__side--${color}`]}>
+  {label && <p class="side-by-side__label">{label}</p>}
+  <slot />
+</div>

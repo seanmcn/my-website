@@ -1,0 +1,8 @@
+---
+/* One panel of a Tabs group. `label` names its tab. */
+const {label} = Astro.props;
+---
+<section class="tabs__panel" data-tab-label={label}>
+  <p class="tabs__heading">{label}</p>
+  <slot />
+</section>
