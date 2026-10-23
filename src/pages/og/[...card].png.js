@@ -84,6 +84,12 @@ export async function getStaticPaths() {
         'together, or just hello.',
       art: posePath('beer'),
     },
+    'subscribe': {
+      crumbs: ['seanmcn.com', 'subscribe'],
+      title: 'Subscribe',
+      lead: 'An email whenever something new goes up, or the RSS feed.',
+      art: posePath('thumbs-up'),
+    },
     'not-found': {
       crumbs: ['seanmcn.com', '404'],
       title: 'Not found',

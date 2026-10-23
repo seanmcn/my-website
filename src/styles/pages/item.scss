@@ -3,6 +3,7 @@
 @use "../../assets/styles/content";
 @use "../../assets/styles/code";
 @use "../../components/item/seriesNavigator";
+@use "../../components/subscribe/subscribeForm";
 @use "../itemBar" as bar;
 
 .item-page {
@@ -209,6 +210,17 @@
     @include narrow {
       flex-wrap: wrap;
       gap: 0.75rem;
+    }
+  }
+
+  &__subscribe {
+    margin-top: 2.5rem;
+    padding: 1.75rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+
+    @include narrow {
+      padding: 1.25rem;
     }
   }
 
