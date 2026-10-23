@@ -77,7 +77,13 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: page => new URL(page).pathname !== '/search/',
+      // Search, and the subscribe pages that only follow a form post.
+      filter: (page) => {
+        const {pathname} = new URL(page);
+
+        return pathname !== '/search/' &&
+          !/^\/subscribe\/.+/.test(pathname);
+      },
     }),
     redirects(),
     devPages(),

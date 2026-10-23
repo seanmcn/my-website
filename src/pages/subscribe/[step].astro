@@ -1,0 +1,72 @@
+---
+/*
+ * Where the subscribe API sends people after a form post. See
+ * infra/lambda/signup.mjs for which page follows what.
+ */
+import SubscribeForm from '../../components/subscribe/SubscribeForm.astro';
+import SubscribePage from '../../components/subscribe/SubscribePage.astro';
+
+export function getStaticPaths() {
+  return [
+    {
+      params: {step: 'check-your-inbox'},
+      props: {
+        title: 'Check your inbox',
+        body: [
+          'There’s an email on its way to you. If you’re new, it has a link ' +
+            'to confirm your subscription, and nothing else is sent until ' +
+            'you do.',
+          'It can take a minute or two. If it doesn’t turn up, check your ' +
+            'spam folder.',
+        ],
+      },
+    },
+    {
+      params: {step: 'confirmed'},
+      props: {
+        title: 'You’re subscribed',
+        body: [
+          'You’ll get an email whenever something new goes up. Every one has ' +
+            'an unsubscribe link at the bottom.',
+        ],
+        next: {href: '/library/', label: 'Browse the library →'},
+      },
+    },
+    {
+      params: {step: 'link-expired'},
+      props: {
+        title: 'That link doesn’t work any more',
+        body: [
+          'Confirmation links last a week, and only the newest one works. ' +
+            'Sign up again and I’ll send you a fresh one.',
+        ],
+        form: true,
+      },
+    },
+    {
+      params: {step: 'problem'},
+      props: {
+        title: 'Something went wrong',
+        body: [
+          'Your subscription didn’t go through. Check the address and try ' +
+            'again in a minute.',
+        ],
+        form: true,
+        contact: true,
+      },
+    },
+  ];
+}
+
+const {title, body, next, form, contact} = Astro.props;
+---
+<SubscribePage title={title}>
+  <Fragment slot="body">
+    {body.map(paragraph => <p>{paragraph}</p>)}
+    {contact && (
+      <p>If it keeps happening, <a href="/contact/">let me know</a>.</p>
+    )}
+    {next && <p><a href={next.href}>{next.label}</a></p>}
+  </Fragment>
+  {form && <SubscribeForm heading="Sign up again" />}
+</SubscribePage>

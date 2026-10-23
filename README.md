@@ -43,4 +43,6 @@ npm test
   CI
 - [Deployment](docs/deployment.md): Amplify, branches, redirects and old
   addresses
+- [Email subscriptions](docs/email-subscriptions.md): the signup form, the
+  SES stack in `infra/`, and emailing an item
 - [Glossary](GLOSSARY.md): what the site's terms mean

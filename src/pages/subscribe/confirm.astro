@@ -1,0 +1,41 @@
+---
+/*
+ * Opened from the link in the confirmation email. Confirming takes a button
+ * press, not just a visit, because mail scanners open links to check them.
+ * The address and token travel in the link's query string, and the script
+ * copies them into the form.
+ */
+import SubscribePage from '../../components/subscribe/SubscribePage.astro';
+import {SUBSCRIBE_API} from '../../lib/subscriptions.js';
+---
+<SubscribePage title="One more step">
+  <Fragment slot="body">
+    <p>
+      Press the button to confirm you’d like an email whenever something new
+      goes up on seanmcn.com.
+    </p>
+    <noscript>
+      <p>The button needs JavaScript to read your confirmation link.</p>
+    </noscript>
+  </Fragment>
+
+  <form
+    action={`${SUBSCRIBE_API}/confirm`}
+    class="subscribe-page__confirm"
+    data-confirm
+    method="post"
+  >
+    <input name="email" type="hidden" value="" />
+    <input name="token" type="hidden" value="" />
+    <button class="subscribe__submit" type="submit">Confirm subscription</button>
+  </form>
+</SubscribePage>
+
+<script>
+  const form = document.querySelector('[data-confirm]');
+  const params = new URLSearchParams(window.location.search);
+
+  for (const name of ['email', 'token']) {
+    form.elements[name].value = params.get(name) || '';
+  }
+</script>

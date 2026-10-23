@@ -19,6 +19,8 @@ const cards = [
   {path: '/projects/chinwag/', card: 'projects/chinwag'},
   {path: '/about/', card: 'about'},
   {path: '/contact/', card: 'contact'},
+  {path: '/subscribe/', card: 'subscribe'},
+  {path: '/subscribe/confirmed/', card: 'subscribe'},
   {path: '/404.html', card: 'not-found'},
 ];
 

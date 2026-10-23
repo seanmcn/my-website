@@ -16,6 +16,10 @@ what's released. If `develop` holds a commit that has no equivalent on `main`,
 it leaves `develop` alone and lists those commits in the run summary. Rebase
 duplicates of commits already on `main` don't count.
 
+The email subscriptions stack in `infra/` isn't part of the Amplify build.
+It's deployed by hand with CDK; see
+[email-subscriptions.md](email-subscriptions.md).
+
 ## Headers
 
 Cache and security headers live in `customHttp.yml` and change on deploy.

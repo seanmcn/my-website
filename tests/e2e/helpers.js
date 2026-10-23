@@ -15,6 +15,12 @@ const pages = [
   {label: 'about', path: '/about/'},
   {label: 'contact', path: '/contact/'},
   {label: 'search', path: '/search/'},
+  {label: 'subscribe', path: '/subscribe/'},
+  {
+    label: 'subscribe confirm',
+    path: '/subscribe/confirm/?email=reader%40example.com&token=abc',
+  },
+  {label: 'subscribe link expired', path: '/subscribe/link-expired/'},
 ];
 
 async function visitPage(page, path) {

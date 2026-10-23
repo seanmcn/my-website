@@ -1,0 +1,14 @@
+---
+import SubscribeForm from '../../components/subscribe/SubscribeForm.astro';
+import SubscribePage from '../../components/subscribe/SubscribePage.astro';
+---
+<SubscribePage
+  title="Subscribe"
+  description="Get an email whenever something new goes up on seanmcn.com, or follow the RSS feed."
+  noIndex={false}
+>
+  <p slot="body">
+    Two ways to hear when something new goes up: posts, notes and finds.
+  </p>
+  <SubscribeForm heading="By email" />
+</SubscribePage>
