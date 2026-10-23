@@ -26,7 +26,9 @@ module.exports = defineConfig({
     url: 'http://127.0.0.1:8001',
     // Always test a fresh production build.
     reuseExistingServer: false,
-    timeout: 300_000,
+    // A cold build spends about 4 minutes encoding images, which ran past
+    // the old 5-minute limit on slower CI runners.
+    timeout: 900_000,
     stdout: 'pipe',
   },
 });

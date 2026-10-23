@@ -25,6 +25,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Astro keeps optimised images and downloaded fonts here. Restored
+      # after npm ci, which wipes node_modules, so a build only encodes
+      # images it hasn't seen. Cold, image encoding takes about 4 minutes.
+      - name: Restore Astro asset cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            node_modules/.astro/assets
+            node_modules/.astro/fonts
+          key: astro-assets-${{ runner.os }}-${{ github.sha }}
+          restore-keys: astro-assets-${{ runner.os }}-
+
       - name: Lint
         run: npm run lint
 
