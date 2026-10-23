@@ -21,6 +21,9 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            infra/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -42,6 +45,16 @@ jobs:
 
       - name: Unit tests
         run: npm run test:unit
+
+      # The email subscriptions stack and its signup function. See
+      # docs/email-subscriptions.md.
+      - name: Install infra dependencies
+        run: npm ci
+        working-directory: infra
+
+      - name: Infra tests
+        run: npm test
+        working-directory: infra
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium

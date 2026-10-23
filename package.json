@@ -19,7 +19,7 @@
         "image:manual": "node scripts/generate-featured-image.mjs",
         "lint": "npm run lint:js && npm run lint:css",
         "lint:css": "stylelint \"src/**/*.scss\"",
-        "lint:js": "eslint src tests scripts astro.config.mjs playwright.config.js",
+        "lint:js": "eslint src tests scripts infra astro.config.mjs playwright.config.js",
         "format": "eslint src --fix",
         "preview": "astro preview",
         "start": "npm run dev",
