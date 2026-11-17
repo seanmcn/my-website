@@ -62,6 +62,7 @@ after adding links to new sites, and commit the icons it fetches.
 content/blog/        Library items (Markdown and MDX)
 content/projects/    Project pages
 docs/                These docs
+infra/               The email subscriptions stack (CDK, its own package)
 public/              Files served as-is (favicons, robots.txt, sw.js)
 scripts/             Featured images, favicons, schema and taxonomy
 src/pages/           Routes

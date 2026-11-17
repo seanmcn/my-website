@@ -1,0 +1,83 @@
+@use "../../assets/styles/tokens" as *;
+
+.subscribe {
+  max-width: 40rem;
+
+  &__heading {
+    font-size: 1.375rem;
+    letter-spacing: -0.012em;
+  }
+
+  &__lead {
+    margin-top: 0.5rem;
+    color: var(--muted);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  &__form {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.125rem;
+
+    @include narrow {
+      flex-direction: column;
+    }
+  }
+
+  &__input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--line-2);
+    color: var(--ink);
+    font-family: $font-serif;
+    font-size: 1.125rem;
+    outline: none;
+
+    &:focus {
+      border-color: var(--accent);
+    }
+
+    &::placeholder {
+      color: var(--faint);
+    }
+  }
+
+  /* Off-screen rather than display: none, which some bots check for. */
+  &__trap {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  &__submit {
+    padding: 0.8125rem 1.625rem;
+    background: var(--accent);
+    border: none;
+    color: var(--bg);
+    cursor: pointer;
+
+    @include label(0.6875rem, 0.16em);
+
+    &:hover {
+      background: var(--accent-hover);
+    }
+  }
+
+  &__alt {
+    margin-top: 0.875rem;
+    color: var(--faint);
+    font-size: 0.9375rem;
+
+    /* The link sits mid-sentence, so colour alone will not mark it. */
+    a {
+      text-decoration: underline;
+      text-underline-offset: 0.1875rem;
+    }
+  }
+}

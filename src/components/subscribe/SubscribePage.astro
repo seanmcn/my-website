@@ -1,0 +1,27 @@
+---
+/*
+ * The frame shared by every page under /subscribe/: an eyebrow, a title and
+ * a few lines of text, with anything else in the slot below.
+ */
+import Layout from '../../layouts/Layout.astro';
+import {cardPath} from '../../lib/social-cards.js';
+import '../../styles/pages/subscribe.scss';
+
+const {title, eyebrow = 'Subscribe', description, noIndex = true} =
+  Astro.props;
+---
+<Layout
+  title={`${title} - Seán McNamara`}
+  description={description}
+  image={cardPath('subscribe')}
+  noIndex={noIndex}
+>
+  <div class="page-wrap subscribe-page">
+    <div class="eyebrow">{eyebrow}</div>
+    <h1 class="subscribe-page__title">{title}</h1>
+    <div class="subscribe-page__body">
+      <slot name="body" />
+    </div>
+    <slot />
+  </div>
+</Layout>

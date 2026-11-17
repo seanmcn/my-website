@@ -9,6 +9,7 @@ import Icon from '../../components/icons/Icon.astro';
 import Layout from '../../layouts/Layout.astro';
 import Prose from '../../components/Prose.astro';
 import SeriesNavigator from '../../components/item/SeriesNavigator.astro';
+import SubscribeForm from '../../components/subscribe/SubscribeForm.astro';
 import {MDX_COMPONENTS} from '../../components/mdx/index.js';
 import {
   categoryPath,
@@ -198,6 +199,10 @@ const {relatedPosts} = context;
               Get in touch about this →
             </a>
           </span>
+        </div>
+
+        <div class="item-page__subscribe">
+          <SubscribeForm />
         </div>
       </div>
     </article>

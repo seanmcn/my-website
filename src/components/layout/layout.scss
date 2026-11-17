@@ -395,6 +395,13 @@
       margin: 0;
       text-wrap: pretty;
     }
+
+    /* Links sit mid-sentence, so colour alone will not mark them. */
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.1875rem;
+    }
   }
 }
 

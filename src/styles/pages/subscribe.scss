@@ -1,0 +1,47 @@
+@use "../../assets/styles/tokens" as *;
+@use "../base";
+@use "../../components/subscribe/subscribeForm";
+
+.subscribe-page {
+  padding-top: 4.375rem;
+
+  @include narrow {
+    padding-top: 2.25rem;
+  }
+
+  &__title {
+    margin-top: 0.625rem;
+    font-size: 2.375rem;
+    letter-spacing: -0.024em;
+
+    @include narrow {
+      font-size: 1.875rem;
+    }
+  }
+
+  &__body {
+    max-width: 54ch;
+    margin-top: 0.875rem;
+    color: var(--muted);
+    font-size: 1.1875rem;
+    line-height: 1.6;
+    text-wrap: pretty;
+
+    p + p {
+      margin-top: 0.75rem;
+    }
+
+    a {
+      text-decoration: underline;
+      text-underline-offset: 0.1875rem;
+    }
+  }
+
+  .subscribe {
+    margin-top: 2.5rem;
+  }
+
+  &__confirm {
+    margin-top: 1.75rem;
+  }
+}
