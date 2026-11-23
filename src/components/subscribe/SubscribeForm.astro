@@ -1,0 +1,41 @@
+---
+/*
+ * The email signup: one address, posted straight to the subscribe API, which
+ * redirects to /subscribe/check-your-inbox/. It needs no JavaScript.
+ */
+import {SUBSCRIBE_API} from '../../lib/subscriptions.js';
+
+const {heading = 'Get new posts by email'} = Astro.props;
+---
+<section aria-labelledby="subscribe-heading" class="subscribe">
+  <h2 class="subscribe__heading" id="subscribe-heading">{heading}</h2>
+  <p class="subscribe__lead">
+    One email whenever something new goes up, and nothing else. Unsubscribe
+    whenever you like.
+  </p>
+
+  <form action={`${SUBSCRIBE_API}/subscribe`} class="subscribe__form" method="post">
+    <label class="visually-hidden" for="subscribe-email">Email address</label>
+    <input
+      autocomplete="email"
+      class="subscribe__input"
+      id="subscribe-email"
+      name="email"
+      placeholder="you@example.com"
+      required
+      type="email"
+    />
+    {/* Hidden from people, so only bots fill it in. */}
+    <div aria-hidden="true" class="subscribe__trap">
+      <label>
+        Leave this empty
+        <input autocomplete="off" name="website" tabindex="-1" type="text" />
+      </label>
+    </div>
+    <button class="subscribe__submit" type="submit">Subscribe</button>
+  </form>
+
+  <p class="subscribe__alt">
+    Or follow the <a href="/rss.xml">RSS feed</a>.
+  </p>
+</section>

@@ -1,0 +1,25 @@
+{
+    "name": "seanmcn-web-infra",
+    "description": "AWS resources for seanmcn.com's email subscriptions",
+    "private": true,
+    "type": "module",
+    "engines": {
+        "npm": ">=10.9.0",
+        "node": ">=24 <25"
+    },
+    "scripts": {
+        "cdk": "cdk",
+        "email-item": "node scripts/email-item.mjs",
+        "synth": "cdk synth --quiet",
+        "test": "node --test 'test/*.test.mjs'"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "@aws-sdk/client-sesv2": "^3.1156.0",
+        "aws-cdk-lib": "^2.274.0",
+        "constructs": "^10.8.1"
+    },
+    "devDependencies": {
+        "aws-cdk": "^2.1146.1"
+    }
+}

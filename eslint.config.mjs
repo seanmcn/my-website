@@ -11,7 +11,7 @@ const googleRules = Object.fromEntries(
 );
 
 export default [
-  {ignores: ['dist/', '.astro/', 'content/']},
+  {ignores: ['dist/', '.astro/', 'content/', 'infra/cdk.out/']},
   {
     files: FILES,
     languageOptions: {
@@ -25,7 +25,7 @@ export default [
     },
   },
   {
-    files: ['scripts/**/*.{js,mjs}'],
+    files: ['scripts/**/*.{js,mjs}', 'infra/**/*.{js,mjs}'],
     languageOptions: {globals: globals.node},
     rules: {
       'max-len': ['error', {

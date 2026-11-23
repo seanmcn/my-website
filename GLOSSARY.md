@@ -80,3 +80,13 @@ _Avoid_: Portfolio item, app
 **Written about**:
 The relationship from an item to the project it discusses. The item links to the project, and the project lists the item.
 _Avoid_: Related project
+
+## Subscriptions
+
+**Subscriber**:
+Someone who gets an email whenever an item is published. They become one by confirming the link the signup form emails them.
+_Avoid_: Follower, member, list member
+
+**Feed**:
+The RSS feed at `/rss.xml`, listing every item. It's also where the email for an item is read from.
+_Avoid_: RSS, newsletter
