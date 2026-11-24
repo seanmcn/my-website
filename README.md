@@ -34,7 +34,7 @@ npm test
 ## Docs
 
 - [Writing library items](docs/content.md): frontmatter rules, conventions and
-  a starter template
+  a starter template, and publishing from ChatGPT or another external agent
 - [Featured images](docs/featured-images.md): generating an item's image
 - [Social cards](docs/social-cards.md): the images shared links show
 - [Development](docs/development.md): running locally, scripts, link favicons

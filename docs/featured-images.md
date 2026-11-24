@@ -1,9 +1,9 @@
 # Featured images
 
 Every post and note has a featured image: a square cartoon generated with
-OpenAI. Two scripts make one for an item under `content/blog`. Both need
-`OPENAI_API_KEY` set in a `.env` file at the repo root. `.env.example` lists
-it.
+OpenAI. Two scripts make one for an item under `content/blog`. For local
+use, set `OPENAI_API_KEY` in the environment or in a `.env` file at the repo
+root. For publishing through GitHub, see [the PR workflow](content.md#publishing-from-chatgpt-or-another-external-agent).
 
 ```sh
 npm run image

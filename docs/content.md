@@ -88,6 +88,49 @@ margins:
 For a find, swap `type` to `'find'` and add `source: 'https://…'`. `tags`,
 `summary`, `featured` and `margins` are optional there.
 
+## Publishing from ChatGPT or another external agent
+
+After the author approves the writing, use the GitHub connector to create a
+branch from `main` in `seanmcn/my-website`. Commit the entry under
+`content/blog/YYYY/MM/` and open a pull request into `main` from that branch.
+Keep publishing PRs to library Markdown, MDX and any accompanying images.
+
+For a post or note, supply these fields before image generation:
+
+```yaml
+---
+title: "The title"
+type: post
+date: "2026-10-19"
+slug: "2026/10/name"
+category: programming
+tags: [php]
+summary: "What the post covers, in one sentence."
+---
+```
+
+Set `type: note` for a note. For a find, set `type: find` and supply
+`title`, `date`, `slug`, `category` and `source` (the URL being shared).
+Include the approved text after the closing fence. Use the publication date
+for the path and slug, and simple lowercase, hyphenated filenames for new
+entries. Omit `draft` if the entry should appear after merge.
+
+Leave `featured` and the generated `featured*` fields out of a new post or
+note unless you are supplying the image yourself. The **Publish library
+content** workflow adds the image and updates the entry on the PR branch.
+It preserves an existing image and leaves finds without one unless you
+supply it. Review the generated commit and the **Publishing / content
+checks** status on the latest commit, then merge the PR.
+
+The repository needs an Actions secret called `OPENAI_API_KEY`. The workflow
+uses it for same-repository, content-only PRs. Give branch write access only
+to trusted collaborators and integrations. Fork PRs use normal CI and are
+ineligible for automatic image generation. To retry, open **Actions →
+Publish library content → Run workflow**, choose `main`, and enter the open
+PR number. The retry uses the current PR head. GitHub suppresses PR workflow
+events from the Actions bot's push, so the publishing run checks the
+resulting commit directly.
+
 ## Changing the rules
 
 1. Edit `src/lib/frontmatter.mjs`.
