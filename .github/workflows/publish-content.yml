@@ -1,0 +1,168 @@
+name: Publish library content
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'content/blog/**/*.md'
+      - 'content/blog/**/*.mdx'
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: Open library pull request number
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: publish-content-${{ github.event.pull_request.number || inputs.pr }}
+
+jobs:
+  images:
+    if: >-
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      pull-requests: read
+    outputs:
+      sha: ${{ steps.publish.outputs.sha }}
+    steps:
+      - name: Resolve the current PR head
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number || inputs.pr }}
+        run: |
+          [[ "$PR_NUMBER" =~ ^[1-9][0-9]*$ ]]
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" |
+            jq -r --arg repo "$GITHUB_REPOSITORY" '
+              select(.state == "open" and .base.ref == "main" and
+                     .head.repo.full_name == $repo)
+              | "head=\(.head.sha)\nbase=\(.base.sha)\nbranch=\(.head.ref)"
+            ' >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v7
+        if: steps.pr.outputs.head != ''
+        with:
+          ref: ${{ steps.pr.outputs.head }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check that the PR changes only library content
+        if: steps.pr.outputs.head != ''
+        id: scope
+        env:
+          BASE_SHA: ${{ steps.pr.outputs.base }}
+        run: |
+          # Inspect the Git tree before running any repository code. In particular,
+          # symlinks, submodules, workflows and npm configuration are out of scope.
+          python3 - <<'PY'
+          import os
+          import subprocess
+
+          diff = subprocess.check_output([
+              'git', 'diff', '--raw', '-z', '--no-renames', os.environ['BASE_SHA'] + '...HEAD'
+          ]).split(b'\0')
+          has_markdown = False
+          for change, path in zip(diff[::2], diff[1::2]):
+              old_mode, new_mode, _, _, status = change[1:].split()
+              suffix = os.path.splitext(path)[1].lower()
+              markdown = suffix in (b'.md', b'.mdx')
+              image = suffix in (b'.png', b'.jpg', b'.jpeg', b'.webp', b'.gif', b'.avif', b'.svg')
+              if (not path.startswith(b'content/blog/') or not (markdown or image)
+                      or any(mode not in (b'000000', b'100644') for mode in (old_mode, new_mode))):
+                  print('This PR includes changes outside the library publishing workflow.')
+                  break
+              has_markdown |= markdown and status in (b'A', b'M')
+          else:
+              if has_markdown:
+                  with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+                      print('eligible=true', file=output)
+          PY
+
+      - uses: actions/setup-node@v7
+        if: steps.scope.outputs.eligible == 'true'
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+
+      - name: Install dependencies
+        if: steps.scope.outputs.eligible == 'true'
+        run: npm ci
+
+      - name: Generate missing featured images
+        if: steps.scope.outputs.eligible == 'true'
+        env:
+          BASE_SHA: ${{ steps.pr.outputs.base }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/publish-featured-images.mjs
+
+      - name: Commit and push generated files
+        if: steps.scope.outputs.eligible == 'true'
+        id: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ steps.pr.outputs.head }}
+          HEAD_BRANCH: ${{ steps.pr.outputs.branch }}
+        run: |
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' \
+                -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+                commit -m 'Add library featured images'
+            gh auth setup-git
+            git push --force-with-lease="refs/heads/$HEAD_BRANCH:$HEAD_SHA" \
+              origin "HEAD:refs/heads/$HEAD_BRANCH"
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  checks:
+    needs: images
+    if: needs.images.outputs.sha != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.images.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+      - run: npm ci
+      - run: npm run test:unit
+      - run: npm run build
+
+  report:
+    if: ${{ !cancelled() && needs.images.outputs.sha != '' }}
+    needs: [images, checks]
+    runs-on: ubuntu-latest
+    permissions:
+      statuses: write
+    steps:
+      - name: Report checks on the published commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ needs.images.outputs.sha }}
+          RESULT: ${{ needs.checks.result }}
+        run: |
+          state=failure
+          if [[ "$RESULT" == "success" ]]; then
+            state=success
+          fi
+          gh api "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
+            -f state="$state" \
+            -f context='Publishing / content checks' \
+            -f description='Library frontmatter validation and site build' \
+            -f target_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"

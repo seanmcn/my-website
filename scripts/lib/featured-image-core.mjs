@@ -361,28 +361,32 @@ export async function updateFrontmatterFields(postPath, fields) {
 
   for (const [key, value] of fields) {
     const line = buildFrontmatterLine(key, value);
-    const fieldPattern = new RegExp(`^${key}:\\s*.*$`, 'm');
+    const fieldPattern = new RegExp(`^${key}:.*$`, 'm');
 
     currentFrontmatter = fieldPattern.test(currentFrontmatter) ?
-      currentFrontmatter.replace(fieldPattern, line) :
+      currentFrontmatter.replace(fieldPattern, () => line) :
       `${currentFrontmatter}\n${line}`;
   }
 
   const updatedContents = contents.replace(
       /^---\r?\n[\s\S]*?\r?\n---/,
-      `---\n${currentFrontmatter}\n---`,
+      () => `---\n${currentFrontmatter}\n---`,
   );
 
   await fs.writeFile(postPath, updatedContents, 'utf8');
 }
 
-export async function saveGeneratedImage(repoRoot, postPath, imageBuffer) {
-  const postDirectory = path.dirname(postPath);
-  const imagesDirectory = path.join(postDirectory, 'images');
+export function featuredImagePath(postPath) {
   const postBaseName = path.basename(postPath, path.extname(postPath));
   const outputFileName = `featured-${normaliseSlugSegment(postBaseName)}.png`;
-  const outputFilePath = path.join(imagesDirectory, outputFileName);
-  const featuredValue = `images/${outputFileName}`;
+  return path.join(path.dirname(postPath), 'images', outputFileName);
+}
+
+export async function saveGeneratedImage(repoRoot, postPath, imageBuffer) {
+  const outputFilePath = featuredImagePath(postPath);
+  const imagesDirectory = path.dirname(outputFilePath);
+  const featuredValue = path.relative(path.dirname(postPath), outputFilePath)
+      .split(path.sep).join('/');
 
   await fs.mkdir(imagesDirectory, {recursive: true});
   await fs.writeFile(outputFilePath, imageBuffer);
